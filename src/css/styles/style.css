@@ -19,10 +19,10 @@
 
 /* ================================================== */
 
-@import url("../css/fonts/font-awesome/css/font-awesome.css");
-@import url("../css/fonts/elegant_font/HTML_CSS/style.css");
-@import url("../css/fonts/et-line-font/style.css");
-@import url("../css/fonts/icofont/icofont.min.css");
+@import url("../fonts/font-awesome/css/font-awesome.css");
+@import url("../fonts/elegant_font/HTML_CSS/style.css");
+@import url("../fonts/et-line-font/style.css");
+@import url("../fonts/icofont/icofont.min.css");
 
 * {
   --body-font: "DM Sans", Helvetica, Arial, sans-serif;
@@ -16718,6 +16718,6 @@ img {
   color: white !important;
 }
 
-.no-cursor  {
+.no-cursor {
   cursor: not-allowed;
 }

@@ -15,8 +15,8 @@ const HotCollections = () => {
             </div>
           </div>
           {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              <div className="nft_coll" key={index}>
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
                     <img src={nftImage} className="lazy img-fluid" alt="" />
