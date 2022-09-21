@@ -1,6 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
   
 
 const HotCollections = () => {
@@ -15,7 +18,40 @@ const HotCollections = () => {
       setData([...response.data])})
    },[])
 
-   console.log(data)
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -26,11 +62,10 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {/* {new Array(4).fill(0).map((_, index) => ( */ data.map((data, index) => ( 
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                {/* <div>{JSON.stringify(data)}</div> */}
-                {/* {data.map((item) => <div>{item.title</div>               )} */}
+          <Slider {...settings}>
+          {data.map((data, index) => ( 
+            <div className="mx-2" key={index}>
+              <div className="nft_coll mx-4">
                 <div></div>
                 <div className="nft_wrap">
                   <Link to="/item-details">
@@ -51,12 +86,14 @@ const HotCollections = () => {
                 </div>
               </div>
             </div>
+            
           ))}
+          </Slider>
         </div>
-        {/* <button onClick={getHotcollections}>testing</button> */}
       </div>
     </section>
-  );
+  ); 
+    // } }
 };
 
 export default HotCollections;
