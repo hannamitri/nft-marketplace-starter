@@ -13187,6 +13187,7 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+ 
 }
 
 .nft_coll.style-2 {
@@ -13213,11 +13214,12 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   -webkit-border-radius: 10px 10px 0 0;
+
 }
 
 .nft_coll:hover img {
@@ -13266,7 +13268,10 @@ a.read_more i {
   -webkit-border-radius: 100%;
   border: solid 5px #ffffff;
   background: #ffffff;
+ 
 }
+
+
 
 .nft_coll_pp i {
   font-size: 10px;
