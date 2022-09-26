@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
@@ -32,19 +32,18 @@ const HotCollections = () => {
   };
 
   const [hotCollection, setHotCollection] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+
   async function getHotCollectionData() {
     const hotCollectionsData = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-    );
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`);
 
     setHotCollection(hotCollectionsData.data);
   }
-  useEffect(() => {
-    setLoading(false);
+ 
+  
     getHotCollectionData();
-  }, []);
-
+    
+ 
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -56,38 +55,13 @@ const HotCollections = () => {
             </div>
           </div>
           <OwlCarousel className="owl-theme" {...options}>
-            {isLoading ? (
-              <>
-                <OwlCarousel className="owl-theme" {...options}>
-                  {new Array(8).fill(0).map((_, index) => (
-                    <div className="nft_coll" key={index}>
-                      <div className="nft_wrap">
-                        <Skeleton width="100%" height="200px" />
-                      </div>
-                      <div className="nft_coll_pp">
-                        <Skeleton
-                          width="50px"
-                          height="50px"
-                          borderRadius="50%"
-                        />
-
-                        <i className="fa fa-check"></i>
-                      </div>
-                      <div className="nft_coll_info">
-                        <Skeleton width="100px" height="20px" />
-
-                        <br />
-                        <Skeleton width="60px" height="20px" />
-                      </div>
-                    </div>
-                  ))}
-                </OwlCarousel>
-              </>
-            ) : (
+            {hotCollection.length ? 
+            
+            (
               hotCollection.map((item) => (
                 <div className="nft_coll" key={item.id}>
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to="">
                       <img
                         src={item.nftImage}
                         className="lazy img-fluid"
@@ -112,10 +86,44 @@ const HotCollections = () => {
                     <span>ERC-{item.code}</span>
                   </div>
                 </div>
-              ))
-            )}
+              )
+              
+              )  
+             
+            ) : (
+              
+              <>
+              {new Array(6).fill(0).map((_, index) => (
+                <div className="nft_coll" key={index}>
+                  <div className="nft_wrap">
+                    <Skeleton width="100%" height="200px" />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Skeleton
+                      width="50px"
+                      height="50px"
+                      borderRadius="50%"
+                    />
+
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Skeleton width="100px" height="20px" />
+
+                    <br />
+                    <Skeleton width="60px" height="20px" />
+                  </div>
+                </div>
+              ))}
+           </>            
+              
+            )
+            
+            }
+
+
           </OwlCarousel>
-          ;
+          
         </div>
       </div>
     </section>
