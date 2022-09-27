@@ -5,6 +5,7 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
   return (
