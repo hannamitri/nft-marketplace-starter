@@ -9,6 +9,7 @@ const Explore = () => {
 
   return (
     <div id="wrapper">
+      /* Does this work
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
 
