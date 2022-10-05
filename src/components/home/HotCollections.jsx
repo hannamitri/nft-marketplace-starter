@@ -48,22 +48,26 @@ const HotCollections = () => {
               pagination: false,
               focus: 0,
             }}>
-              {new Array(1).fill(0).map((_, detail) => (
+              {new Array(1).fill(0).map((_, index) => (
                 (details.map(detail => (
                   
                   <SplideSlide>
                     {loading ? (
-                      <Skeleton/>
+                      <Skeleton
+                      width="18.5rem"
+                      height="300px"
+                      borderRadius="20px"
+                      />
                     ) : (
-                      <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={detail.id}>
+                      <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                         <div className="nft_coll" style={{width: "18.5rem"}}>
                           <div className="nft_wrap">
-                            <Link to="/item-details">
+                            <Link to={`/item-details/${detail.nftId}`}>
                               <img src={detail.nftImage} className="lazy img-fluid" alt="" />
                             </Link>
                           </div>
                           <div className="nft_coll_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${detail.authorId}`}>
                               <img className="lazy pp-coll" src={detail.authorImage} alt="" />
                             </Link>
                             <i className="fa fa-check"></i>
