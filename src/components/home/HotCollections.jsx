@@ -30,9 +30,6 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {loading ? (
-            <Skeleton/>
-          ) : (
             <Splide options={{
               perPage: 4,
               breakpoints: {
@@ -53,8 +50,11 @@ const HotCollections = () => {
             }}>
               {new Array(1).fill(0).map((_, detail) => (
                 (details.map(detail => (
-
+                  
                   <SplideSlide>
+                    {loading ? (
+                      <Skeleton/>
+                    ) : (
                       <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={detail.id}>
                         <div className="nft_coll" style={{width: "18.5rem"}}>
                           <div className="nft_wrap">
@@ -76,11 +76,11 @@ const HotCollections = () => {
                           </div>
                         </div>
                       </div>
+                    )}
                   </SplideSlide>
                 )))
               ))}
             </Splide>
-          )}
         </div>
       </div>
     </section>
