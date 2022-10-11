@@ -10189,6 +10189,9 @@ i.bg-color-secondary {
   display: inline-block;
   margin-top: 10px;
 }
+.hide{
+  display: none;
+}
 
 .d-item {
   display: none;
