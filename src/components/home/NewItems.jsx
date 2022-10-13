@@ -37,7 +37,6 @@ const NewItems = () => {
     );
     setIsData(data);
     setLoading(false);
-    console.log(data);
   }
 
   useEffect(() => {

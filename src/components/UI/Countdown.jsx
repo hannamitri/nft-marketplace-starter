@@ -7,6 +7,7 @@ const Countdown = (expiryDate) => {
     setInterval(() => {
       convertTime();
     }, 1000);
+    setTimeText('')
   }, []);
 
   const convertTime = () => {
