@@ -8,14 +8,14 @@ import { useEffect } from "react";
 import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
-  const [loaded, setLoaded] = useState(true);
+  const [loaded, setLoaded] = useState(undefined);
   const [items, setItems] = useState([]);
   async function getData() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setItems(data);
-    setLoaded(false);
+    setLoaded(true);
   }
 
   useEffect(() => {
