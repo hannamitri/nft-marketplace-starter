@@ -98,7 +98,7 @@ const HotCollections = () => {
               margin={12}
               responsive={state.responsive}
             >
-              {new Array(4).fill(0).map((_, index) => (
+              {new Array(5).fill(0).map((_, index) => (
                 <div className="item" key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
