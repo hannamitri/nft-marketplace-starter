@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
-
+//installed animations
 const Landing = () => {
+  
   return (
     <section
       id="section-hero"
