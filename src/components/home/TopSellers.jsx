@@ -57,7 +57,7 @@ const TopSellers = () => {
               ) : (
                 <>
                   {isData.map((item, index) => (
-                    <li key={index}>
+                    <li key={index} data-aos="fade-up" data-aos-duration="500">
                       <div className="author_list_pp">
                         <Link to={`/author/${item.authorId}`}>
                           <img

@@ -148,7 +148,7 @@ const NewItems = () => {
           ) : (
             <Slider {...settings}>
               {isData.map((item, index) => (
-                <div className="nft__item" key={index}>
+                <div className="nft__item" key={index} data-aos="fade-up" data-aos-duration="500">
                   <div className="author_list_pp">
                     <Link
                       to={`/author/${item.authorId}`}

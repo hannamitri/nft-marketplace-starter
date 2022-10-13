@@ -92,7 +92,7 @@ const HotCollections = () => {
             <>
               <Slider {...settings}>
                 {new Array(8).fill(0).map((_, index) => (
-                  <div className="nft_coll" key={index}>
+                  <div className="nft_coll" key={index} >
                     <div className="nft_wrap">
                       <Link to={``}>
                         <Skeleton width="100%" height="150px" />
@@ -122,7 +122,7 @@ const HotCollections = () => {
           ) : (
             <Slider {...settings}>
               {isData.map((data, index) => (
-                <div className="nft_coll" key={index}>
+                <div className="nft_coll" key={index} data-aos="fade-up" data-aos-duration="500">
                   <div className="nft_wrap">
                     <Link to={`/item-details/${data.nftId}`}>
                       <img
