@@ -62,7 +62,7 @@ const NewItems = () => {
                 margin={12}
                 responsive={state.responsive}
               >
-                {new Array(7).fill(0).map((_, index) => (
+                {new Array(5).fill(0).map((_, index) => (
                   <div className="item" key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp">
