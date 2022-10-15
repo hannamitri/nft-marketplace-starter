@@ -21,7 +21,7 @@ const HotCollections = () => {
 
   useEffect(() => {
     getData();
-  }, [])
+  }, []);
 
   const state = {
     responsive: {
@@ -51,7 +51,45 @@ const HotCollections = () => {
             </div>
           </div>
 
-          {loading ? (
+          {!loading ? (
+            <OwlCarousel
+              items={4}
+              loop={true}
+              nav={true}
+              margin={12}
+              responsive={state.responsive}
+            >
+              {new Array(5).fill(0).map((_, index) => (
+                <div className="item" key={index}>
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to="/item-details">
+                        <Skeleton width={268} height={150} borderRadius={1} />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to="/author">
+                        <div className="lazy pp-coll">
+                          <Skeleton width={60} height={60} borderRadius={999} />
+                        </div>
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>
+                          <Skeleton width={120} height={20} borderRadius={1} />
+                        </h4>
+                      </Link>
+                      <span>
+                        <Skeleton width={90} height={20} borderRadius={1} />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </OwlCarousel>
+          ) : (
             <OwlCarousel
               items={4}
               loop={true}
@@ -86,44 +124,6 @@ const HotCollections = () => {
                         <h4>{item.title}</h4>
                       </Link>
                       <span>ERC-{item.code}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </OwlCarousel>
-          ) : (
-            <OwlCarousel
-              items={4}
-              loop={true}
-              nav={true}
-              margin={12}
-              responsive={state.responsive}
-            >
-              {new Array(5).fill(0).map((_, index) => (
-                <div className="item" key={index}>
-                  <div className="nft_coll">
-                    <div className="nft_wrap">
-                      <Link to="/item-details">
-                        <Skeleton width={268} height={150} borderRadius={1} />
-                      </Link>
-                    </div>
-                    <div className="nft_coll_pp">
-                      <Link to="/author">
-                        <div className="lazy pp-coll">
-                          <Skeleton width={60} height={60} borderRadius={999} />
-                        </div>
-                      </Link>
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>
-                          <Skeleton width={120} height={20} borderRadius={1} />
-                        </h4>
-                      </Link>
-                      <span>
-                        <Skeleton width={90} height={20} borderRadius={1} />
-                      </span>
                     </div>
                   </div>
                 </div>
