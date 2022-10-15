@@ -21,7 +21,7 @@ const HotCollections = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [])
 
   const state = {
     responsive: {
