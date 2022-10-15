@@ -10,25 +10,8 @@ import axios from 'axios'
 const HotCollections = () => {
 
   const [hotCollections, setHotCollections] = useState([]);
-  const options = {
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      768: {
-        items: 2,
-      },
-      900: {
-        items: 3,
-      },
-      1200: {
-        items: 4,
-      },
-    },
-  };
+  
+  
 
 
  
@@ -53,30 +36,57 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-theme" {...options}>
+          <OwlCarousel
+            className="owl-theme"
+            margin={10}
+            loop
+            nav={true}
+            responsive={{
+              0: {
+                items: 1,
+              },
+              768: {
+                items: 2,
+              },
+              1000: {
+                items: 3,
+              },
+              1200: {
+                items: 4,
+              },
+            }}
+          >
             {hotCollections.map((collection, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to={`/item-details/${collection.nftId}`}>
-                    <img src={collection.nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={collection.authorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{collection.title}</h4>
-                  </Link>
-                  <span>{collection.code}</span>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Link to={`/item-details/${collection.nftId}`}>
+                      <img
+                        src={collection.nftImage}
+                        className="lazy img-fluid"
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <img
+                        className="lazy pp-coll"
+                        src={collection.authorImage}
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{collection.title}</h4>
+                    </Link>
+                    <span>{collection.code}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
           </OwlCarousel>
         </div>
       </div>
