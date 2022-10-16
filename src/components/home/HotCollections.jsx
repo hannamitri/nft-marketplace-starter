@@ -63,24 +63,20 @@ const HotCollections = () => {
                 <div className="item" key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Link to="/item-details">
-                        <Skeleton width={268} height={150} borderRadius={1} />
-                      </Link>
+                      <Skeleton width={268} height={150} borderRadius={1} />
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
-                        <div className="lazy pp-coll">
-                          <Skeleton width={60} height={60} borderRadius={999} />
-                        </div>
-                      </Link>
+                      <div className="lazy pp-coll">
+                        <Skeleton width={60} height={60} borderRadius={999} />
+                      </div>
+
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>
-                          <Skeleton width={120} height={20} borderRadius={1} />
-                        </h4>
-                      </Link>
+                      <h4>
+                        <Skeleton width={120} height={20} borderRadius={1} />
+                      </h4>
+
                       <span>
                         <Skeleton width={90} height={20} borderRadius={1} />
                       </span>
@@ -97,11 +93,11 @@ const HotCollections = () => {
               margin={12}
               responsive={state.responsive}
             >
-              {items.map((item, index) => (
-                <div className="item" key={index}>
+              {items.map((item) => (
+                <div className="item" key={item.id}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           className="lazy img-fluid"
@@ -110,7 +106,7 @@ const HotCollections = () => {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${item.authorId}`}>
                         <img
                           className="lazy pp-coll"
                           src={item.authorImage}
