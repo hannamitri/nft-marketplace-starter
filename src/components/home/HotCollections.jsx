@@ -11,10 +11,6 @@ const HotCollections = () => {
 
   const [hotCollections, setHotCollections] = useState([]);
   
-  
-
-
- 
   useEffect(() => {
     async function getInfo() {
       const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
@@ -23,9 +19,6 @@ const HotCollections = () => {
     getInfo()
   }, [])
   
-
-
-
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -57,8 +50,8 @@ const HotCollections = () => {
             }}
           >
             {hotCollections.map((collection, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                <div className="nft_coll">
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
                     <Link to={`/item-details/${collection.nftId}`}>
                       <img
@@ -69,7 +62,7 @@ const HotCollections = () => {
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${collection.authorId}`}>
                       <img
                         className="lazy pp-coll"
                         src={collection.authorImage}
@@ -95,3 +88,4 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+
