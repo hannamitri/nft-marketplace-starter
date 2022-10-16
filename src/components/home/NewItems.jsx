@@ -62,12 +62,12 @@ const NewItems = () => {
                 margin={12}
                 responsive={state.responsive}
               >
-                {items.map((item, index) => (
-                  <div className="item" key={index}>
+                {items.map((item) => (
+                  <div className="item" key={item.id}>
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
-                          to="/author"
+                          to={`/author/${item.authorId}`}
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Creator: Monica Lucas"
@@ -110,7 +110,7 @@ const NewItems = () => {
                           </div>
                         </div>
 
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${item.nftId}`}>
                           <img
                             src={item.nftImage}
                             className="lazy nft__item_preview"
@@ -119,7 +119,7 @@ const NewItems = () => {
                         </Link>
                       </div>
                       <div className="nft__item_info">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${item.nftId}`}>
                           <h4>{item.title}</h4>
                         </Link>
                         <div className="nft__item_price">{item.price} ETH</div>
@@ -146,15 +146,8 @@ const NewItems = () => {
                   <div className="item" key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp">
-                        <Link
-                          to="/author"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="Creator: Monica Lucas"
-                        >
-                          <Skeleton width={0} height={50} borderRadius={0} />
-                          <i className="fa fa-check"></i>
-                        </Link>
+                        <Skeleton width={0} height={50} borderRadius={0} />
+                        <i className="fa fa-check"></i>
                       </div>
 
                       <div className="nft__item_wrap">
@@ -163,9 +156,9 @@ const NewItems = () => {
 
                       <div className="nft__item_info">
                         <Skeleton width={0} height={35} borderRadius={0} />
-                        <Link to="/item-details">
-                          <Skeleton width={160} height={30} borderRadius={0} />
-                        </Link>
+
+                        <Skeleton width={160} height={30} borderRadius={0} />
+
                         <div className="nft__item_price">
                           <Skeleton width={90} height={20} borderRadius={0} />
                         </div>
