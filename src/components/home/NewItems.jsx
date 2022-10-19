@@ -64,7 +64,7 @@ const NewItems = () => {
                 responsive={state.responsive}
               >
                 {items.map((item) => (
-                  <Card item={item} />
+                  <Card item={item} key={item.id} />
                 ))}
               </OwlCarousel>
             </>
