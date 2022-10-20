@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import OwlCarousel from 'react-owl-carousel';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
@@ -32,7 +33,24 @@ const NewItems = () => {
           </div>
           {new Array(4).fill(0).map((_, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" >
-              {newItems?.map((item, index) => (
+              <OwlCarousel margin={10} 
+                  loop
+                  nav={true}
+                  responsive={{
+                    0: {
+                      items: 1
+                    },
+                    768: {
+                      items: 2
+                    },
+                    1000: {
+                      items: 3
+                    },
+                    1200: {
+                      items: 4
+                    }
+                  }}>
+                {newItems?.map((item, index) => (
                 <div className="nft__item" key={index}>
                 <div className="author_list_pp">
                   <Link
@@ -93,6 +111,7 @@ const NewItems = () => {
                 </div>
               </div>
               ))}
+              </OwlCarousel>
             </div>
           ))}
         </div>
