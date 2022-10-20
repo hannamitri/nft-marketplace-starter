@@ -102,7 +102,10 @@ const Author = () => {
                       <div className="tab-1">
                         <div className="row">
                           {new Array(8).fill(0).map((_, index) => (
-                            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                            <div
+                              className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                              key={index}
+                            >
                               <Skeleton
                                 width={260}
                                 height={400}
