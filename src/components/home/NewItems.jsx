@@ -5,11 +5,45 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Skeleton from "../UI/Skeleton";
-import CountDown from "./CountDown";
+import CountDown from "../CountDown";
 
-const NewItems = () => {
+const NewItems = ({item}) => {
   const [newItems, setNewItems] = useState()
   const [isLoading, setIsLoading] = useState(false)
+
+  let timeLeft;
+  let cancelId;
+  const [secondsText, setSecondsText] = useState();
+  const [minutesText, setMinutesText] = useState();
+  const [hoursText, setHoursText] = useState();
+
+  useEffect(() => {
+    start();
+    getnewItems()
+    return () => { cancelAnimationFrame(cancelId) }
+  }, [])
+
+  function start() {
+    cancelId = requestAnimationFrame(update)
+  }
+
+  function update() {
+    timeLeft = (item.expiryDate - Date.now());
+    let seconds = Math.floor(timeLeft / 1000)
+    let minutes = Math.floor(seconds / 60)
+    let hours = Math.floor(minutes / 60)
+
+    if(timeLeft < 0) {
+      cancelAnimationFrame(cancelId);
+      return;
+    }
+
+    setSecondsText(seconds % 60);
+    setMinutesText(minutes % 60);
+    setHoursText(hours);
+    
+    cancelId = requestAnimationFrame(update)
+  }
 
   const getnewItems = async () => {
     await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems`).then((res) => {
@@ -17,10 +51,6 @@ const NewItems = () => {
       setIsLoading(true)
     })
   }
-
-  useEffect(() => {
-    getnewItems()
-  }, [])
 
 
 
@@ -36,8 +66,7 @@ const NewItems = () => {
             </div>
           </div>
           {isLoading ? (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" >
-              <OwlCarousel margin={10} 
+              <OwlCarousel className="owl-theme" margin={10} 
                   loop
                   nav={true}
                   responsive={{
@@ -116,10 +145,9 @@ const NewItems = () => {
               </div>
               ))}
               </OwlCarousel>
-            </div>
           ) : (
             <>
-            <OwlCarousel margin={10} 
+            <OwlCarousel className="owl-theme" margin={10} 
             loop
             nav={true}
             responsive={{
@@ -149,9 +177,11 @@ const NewItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                {item.expiryDate && (
-                  <CountDown expiryDate={item.expiryDate} />
-                )}
+                {
+                  secondsText > 0 && (
+                  <div className="de_countdown">{hoursText}h {minutesText}m {secondsText}s</div>
+                  )
+                }
                 
 
                 <div className="nft__item_wrap">
@@ -206,7 +236,7 @@ const NewItems = () => {
           borderRadius="50%" />
           </OwlCarousel>
             </>
-            
+
           )}
         </div>
       </div>
