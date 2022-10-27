@@ -9,7 +9,7 @@ import TopSellers from "../components/home/TopSellers";
 const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, []); // Testing the commit
 
   return (
     <div id="wrapper">
