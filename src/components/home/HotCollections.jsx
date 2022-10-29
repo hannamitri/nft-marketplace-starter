@@ -9,16 +9,13 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const HotCollections = () => {
   const [hotCollectionsData, setHotCollectionsData] = useState([]);
-  const [loading, setLoading] = useState(true)
 
 
   async function fetchHotCollections() {
-    setLoading(true)
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setHotCollectionsData(data);
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -56,7 +53,7 @@ const HotCollections = () => {
           </div>
 
 
-          {!loading ? (
+          {hotCollectionsData.length ? (
           <OwlCarousel
             items={4}
             loop={true}
@@ -65,7 +62,7 @@ const HotCollections = () => {
             responsive={responsiveness.responsive}
           >
             {hotCollectionsData.map((data) => (
-              <div className="item" key={data.id}>
+              <div className="" key={data.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
@@ -105,7 +102,7 @@ const HotCollections = () => {
             responsive={responsiveness.responsive}
           >
             {new Array(1).fill(0).map((_, index) => (
-               <div className="item" key={index}>
+               <div className="" key={index}>
                <div className="nft_coll">
                  <div className="nft_wrap">
                  <Skeleton width={270} height={150} borderRadius={1}/>
