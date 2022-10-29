@@ -9,13 +9,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const HotCollections = () => {
   const [hotCollectionsData, setHotCollectionsData] = useState([]);
+  const [loading, setLoading] = useState()
 
 
   async function fetchHotCollections() {
+    setLoading(true)
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setHotCollectionsData(data);
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -53,7 +56,7 @@ const HotCollections = () => {
           </div>
 
 
-          {hotCollectionsData.length ? (
+          {loading ? (
           <OwlCarousel
             items={4}
             loop={true}
@@ -111,7 +114,7 @@ const HotCollections = () => {
                   <div className="lazy pp-coll">
                   <Skeleton width={50} height={50} borderRadius={50}/>
                   </div>
-                  <i className="fa fa-check"></i>
+                  <i className="fa fa-check" style={{zIndex:999}}></i>
                  </div>
                  <div className="nft_coll_info">
                   <h4>
