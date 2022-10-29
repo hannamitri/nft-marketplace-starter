@@ -6,7 +6,6 @@ import nftImage from "../../images/nftImage.jpg";
 import NewItem from "../home/NewItem"
 import Skeleton from "../UI/Skeleton";
 
-
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [itemsVisible, setItemsVisible] = useState(8);
