@@ -6,22 +6,17 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Countdown from '../UI/Countdown'
-
-// const timerText = document.querySelector('.de_countdown')
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState();
-  const [timer, setTimer] = useState([]);
 
   async function fetchNewItems() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
     setItems(data);
-    setTimer(data);
-    // console.log(data);
+    console.log(data);
     setLoading(false);
   }
 
@@ -29,45 +24,7 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
-  let timeLeft;
-  function getTimer() {
-    for (let i = 0; i < timer.length; ++i) {
-      let timeLeft = timer[i].expiryDate - Date.now();
-      if (timeLeft > 0) {
-        requestAnimationFrame(updateTimer);
-
-        // timerText.innerHTML = '000000'
-        let millisLeft = timeLeft;
-        let secondsLeft = millisLeft / 1000;
-        let minutesLeft = secondsLeft / 60;
-        let hoursLeft = minutesLeft / 60;
-
-        let millisText = millisLeft % 1000;
-        let secondsText = Math.floor(secondsLeft) % 60;
-        let minutesText = Math.floor(minutesLeft);
-        let hoursText = Math.floor(hoursLeft)
-
-        if (minutesText.toString().length < 2) {
-          minutesText = minutesText.toString().padStart(2, "0");
-        }
-        if (secondsText.toString().length < 2) {
-          secondsText = secondsText.toString().padStart(2, "0");
-        }
-        if (hoursText.toString().length < 2) {
-          hoursText = hoursText.toString().padStart(2, "0");
-        }
-
-        // timerhours.innerHTML = hoursText
-        // timerSeconds.innerHTML = secondsText
-        // timerMinutes.innerHTML = minutesText
-      } else {
-        continue;
-      }
-    }
-  }
-  getTimer();
-
-  function updateTimer() {}
+  function timer() {}
 
   const responsiveness = {
     responsive: {
@@ -119,9 +76,8 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">
-                      <Countdown expiryDate= {data.expiryDate}/>
-                    </div>
+                    <div className="de_countdown">5h 30m 32s</div>
+
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
                         <div className="nft__item_buttons">
@@ -178,13 +134,40 @@ const NewItems = () => {
               margin={10}
               responsive={responsiveness.responsive}
             >
-              {new Array(1).fill(0).map((data) => (
+               {new Array(1).fill(0).map((data) => (
                 <div className="" key={data.id}>
                   <div className="nft__item">
-                    <div className="author_list_pp">{/*  */}</div>
-                    <div className="de_countdown">{data.expiryDate}</div>
+                    <div className="author_list_pp">
+                      {/*  */}
+                    </div>
+                    <div className="de_countdown">5h 30m 32s</div>
 
                     <div className="nft__item_wrap">
+                      <div className="nft__item_extra">
+                        <div className="nft__item_buttons">
+                          <button>Buy Now</button>
+                          <div className="nft__item_share">
+                            <h4>Share</h4>
+                            <a
+                              href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <i className="fa fa-facebook fa-lg"></i>
+                            </a>
+                            <a
+                              href="https://twitter.com/intent/tweet?url=https://gigaland.io"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <i className="fa fa-twitter fa-lg"></i>
+                            </a>
+                            <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+                              <i className="fa fa-envelope fa-lg"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                       <Link to="/item-details">
                         <img
                           src={data.nftImage}
