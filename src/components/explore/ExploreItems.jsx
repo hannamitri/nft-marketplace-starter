@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import NewItem from "../home/NewItem"
-import Skeleton from "../UI/Skeleton";
+import NewSkeleton from "../home/NewSkeleton"
 
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
@@ -56,7 +56,7 @@ const ExploreItems = () => {
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
             >
-              <Skeleton />
+              <NewSkeleton />
             </div>
           ))
         )
