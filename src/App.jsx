@@ -17,6 +17,7 @@ function App() {
     Aos.init({
       duration: 1000,
       once: true
+      // Any comment 
     });
   }, [])
 
