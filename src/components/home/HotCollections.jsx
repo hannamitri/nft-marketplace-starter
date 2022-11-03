@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
+
+
 const HotCollections = () => {
+
+async function getData(){
+  const data = await fetch('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+ const userData = await data.json()
+ console.log(userData)
+
+}
+getData()
+ 
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
