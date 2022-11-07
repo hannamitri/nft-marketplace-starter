@@ -62,13 +62,13 @@ const HotCollections = () => {
               margin={24}
               responsive={state.responsive}
             >
-              {new Array(5).fill(0).map((_, index) => (
+              {new Array(4).fill(0).map((_, index) => (
                 <>
                   <div className="item" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
                         <Skeleton
-                          variant="rounded "
+                          variant="rounded"
                           width="100%"
                           height="100%"
                           animation="wave"
