@@ -1,20 +1,94 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import OwlCarousel from 'react-owl-carousel';
+import NewItem from "./NewItem";
+import Skeleton from "../UI/Skeleton"
+
 
 const NewItems = () => {
+  const [newItems, setNewItems] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems');
+      setNewItems(data);
+    }
+    getData();
+  }, [])
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-in">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
+          {
+            newItems.length ? (
+              <OwlCarousel
+                margin={10} 
+                loop
+                nav={true}
+                responsive={{
+                  0: {
+                    items: 1
+                  },
+                  480: {
+                    items: 2
+                  },
+                  1000: {
+                    items: 3
+                  },
+                  1200: {
+                    items: 4
+                  }
+                }}
+              >
+              
+                {
+                  newItems.map((item) => (
+                    <NewItem item={item}  key={item.id} />
+                  ))
+                }
+              </OwlCarousel>
+            ) : (
+              <>
+                <OwlCarousel
+                  margin={10} 
+                  loop
+                  nav={true}
+                  responsive={{
+                    0: {
+                      items: 1
+                    },
+                    480: {
+                      items: 2
+                    },
+                    1000: {
+                      items: 3
+                    },
+                    1200: {
+                      items: 4
+                    }
+                  }}
+                >
+                  {
+                    new Array(6).fill(0).map((_, index) => (
+                      <Skeleton key={index} />
+                    ))
+                  }
+                </OwlCarousel>
+              </>
+            )
+          }
+          {/* {new Array(4).fill(0).map((_, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -29,7 +103,6 @@ const NewItems = () => {
                   </Link>
                 </div>
                 <div className="de_countdown">5h 30m 32s</div>
-
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
@@ -48,7 +121,6 @@ const NewItems = () => {
                       </div>
                     </div>
                   </div>
-
                   <Link to="/item-details">
                     <img
                       src={nftImage}
@@ -69,7 +141,7 @@ const NewItems = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </section>
