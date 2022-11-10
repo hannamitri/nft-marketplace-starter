@@ -26,8 +26,7 @@ const HotCollections = () => {
     },
   };
 
-
-  async function fetchPosts() {
+  async function getData() {
     setLoading(true);
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
@@ -37,7 +36,7 @@ const HotCollections = () => {
   }
 
   useEffect(() => {
-    fetchPosts();
+    getData();
   }, []);
 
   return (
@@ -60,7 +59,7 @@ const HotCollections = () => {
               responsive={state.responsive}
               smartSpeed={500}
             >
-              {new Array(5).fill(0).map((_, index) => (
+              {new Array(4).fill(0).map((_, index) => (
                 <div className="item" key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
@@ -68,14 +67,14 @@ const HotCollections = () => {
                     </div>
                     <div className="nft_coll_pp">
                       <div className="lazy pp-coll">
-                        <Skeleton width={60} height={60} borderRadius={999} />
+                        <Skeleton width={60} height={60} borderRadius={55} />
                       </div>
 
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="nft_coll_info">
                       <h4>
-                        <Skeleton width={120} height={20} borderRadius={1} />
+                        <Skeleton width={126} height={20} borderRadius={1} />
                       </h4>
 
                       <span>
@@ -103,6 +102,8 @@ const HotCollections = () => {
                         />
                       </Link>
                     </div>
+
+                    
                     <div className="nft_coll_pp">
                       <Link to={`/author/${collect.authorId}`}>
                         <img
