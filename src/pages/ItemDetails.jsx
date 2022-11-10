@@ -3,8 +3,10 @@ import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import { useParams } from "react-router-dom";
 
 const ItemDetails = () => {
+  const {} = useParams();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
