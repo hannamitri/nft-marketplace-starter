@@ -10,7 +10,6 @@ import { useState } from "react";
 import { Skeleton } from "@mui/material";
 
 const HotCollections = () => {
-  const { id } = useParams();
   const [items, setItems] = useState([]);
   const [Loading, setLoading] = useState();
 
@@ -31,10 +30,10 @@ const HotCollections = () => {
       0: {
         items: 1,
       },
-      576: {
+      400: {
         items: 2,
       },
-      768: {
+      800: {
         items: 3,
       },
       1200: {

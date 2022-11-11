@@ -66,7 +66,7 @@ export default function NewItemTimer({ item }) {
 
       {secondsText > 0 && (
         <div className="de_countdown">
-          {hoursText}h{minutesText}m{secondsText}s
+          {hoursText}h {minutesText}m {secondsText}s
         </div>
       )}
 
