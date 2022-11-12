@@ -25,8 +25,6 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
-  function timer() {}
-
   const responsiveness = {
     responsive: {
       0: {
