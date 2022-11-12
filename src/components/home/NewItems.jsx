@@ -12,6 +12,7 @@ const NewItems = () => {
   const [loading, setLoading] = useState();
 
   async function fetchNewItems() {
+    setLoading(true)
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
@@ -54,7 +55,7 @@ const NewItems = () => {
             </div>
           </div>
 
-          {!loading ? (
+          {loading ? (
             <OwlCarousel
               items={4}
               loop={true}
@@ -114,8 +115,8 @@ const NewItems = () => {
               margin={10}
               responsive={responsiveness.responsive}
             >
-              {new Array(1).fill(0).map((data) => (
-                <div className="" key={data.id}>
+              {new Array(1).fill(0).map((_, index) => (
+                <div className="" key={index}>
                   <div className="nft__item">
                     <div className="author_list_pp">
                       <Skeleton width={50} height={50} borderRadius={50} />
@@ -132,7 +133,6 @@ const NewItems = () => {
                       <h4>
                         <Skeleton width={150} />
                       </h4>
-
                       <div className="nft__item_price">
                         <Skeleton width={75} />
                       </div>
