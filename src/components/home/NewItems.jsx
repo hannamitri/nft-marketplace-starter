@@ -4,8 +4,8 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from "../UI/Skeleton";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -23,6 +23,8 @@ const NewItems = () => {
   useEffect(() => {
     fetchNewItems();
   }, []);
+
+  function timer() {}
 
   const responsiveness = {
     responsive: {
@@ -52,7 +54,7 @@ const NewItems = () => {
             </div>
           </div>
 
-          {loading ? (
+          {!loading ? (
             <OwlCarousel
               items={4}
               loop={true}
@@ -74,34 +76,14 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+
+                    {data.expiryDate && (
+                      <div className="de_countdown">
+                        <Countdown time={data.expiryDate} />
+                      </div>
+                    )}
 
                     <div className="nft__item_wrap">
-                      <div className="nft__item_extra">
-                        <div className="nft__item_buttons">
-                          <button>Buy Now</button>
-                          <div className="nft__item_share">
-                            <h4>Share</h4>
-                            <a
-                              href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <i className="fa fa-facebook fa-lg"></i>
-                            </a>
-                            <a
-                              href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <i className="fa fa-twitter fa-lg"></i>
-                            </a>
-                            <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                              <i className="fa fa-envelope fa-lg"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
                       <Link to="/item-details">
                         <img
                           src={data.nftImage}
@@ -132,56 +114,33 @@ const NewItems = () => {
               margin={10}
               responsive={responsiveness.responsive}
             >
-               {new Array(1).fill(0).map((data) => (
+              {new Array(1).fill(0).map((data) => (
                 <div className="" key={data.id}>
                   <div className="nft__item">
                     <div className="author_list_pp">
-                      {/*  */}
+                      <Skeleton width={50} height={50} borderRadius={50} />
+                      <i className="fa fa-check"></i>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+                    <div className="de_countdown">
+                      <Skeleton width={90} height={10} borderRadius={8} />
+                    </div>
 
                     <div className="nft__item_wrap">
-                      <div className="nft__item_extra">
-                        <div className="nft__item_buttons">
-                          <button>Buy Now</button>
-                          <div className="nft__item_share">
-                            <h4>Share</h4>
-                            <a
-                              href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <i className="fa fa-facebook fa-lg"></i>
-                            </a>
-                            <a
-                              href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <i className="fa fa-twitter fa-lg"></i>
-                            </a>
-                            <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                              <i className="fa fa-envelope fa-lg"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <Link to="/item-details">
-                        <img
-                          src={data.nftImage}
-                          className="lazy nft__item_preview"
-                          alt=""
-                        />
-                      </Link>
+                      <Skeleton width={500} height={260} borderRadius={8} />
                     </div>
                     <div className="nft__item_info">
-                      <Link to="/item-details">
-                        <h4>{data.title}</h4>
-                      </Link>
-                      <div className="nft__item_price">{data.price}</div>
+                      <h4>
+                        <Skeleton width={150} />
+                      </h4>
+
+                      <div className="nft__item_price">
+                        <Skeleton width={75} />
+                      </div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                        <span>{data.likes}</span>
+                        <span>
+                          <Skeleton width={25} />
+                        </span>
                       </div>
                     </div>
                   </div>
