@@ -24,8 +24,6 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
-  function timer() {}
-
   const responsiveness = {
     responsive: {
       0: {
@@ -54,7 +52,7 @@ const NewItems = () => {
             </div>
           </div>
 
-          {!loading ? (
+          {loading ? (
             <OwlCarousel
               items={4}
               loop={true}
