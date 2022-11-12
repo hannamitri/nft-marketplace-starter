@@ -19,7 +19,7 @@ const Landing = () => {
               <div className="spacer-single"></div>
               <h6>
                 <span className="text-uppercase id-color-2">
-                  Ultraverse Market
+                  Gigaland Market
                 </span>
               </h6>
               <div className="spacer-10"></div>
