@@ -7,13 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 const HotCollections = () => {
   const [collection, setCollection] = React.useState();
-  // const settings = {
-  //   accessibility: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 1,
-  // };
   const settings = {
     accessibility: true,
     infinite: true,
@@ -64,41 +57,39 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-lg-12">
+          <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             {collection ? (
-              <div className="displayWidth__OneHundred">
-                <Slider {...settings}>
-                  {collection.map((item) => (
-                    <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link to="/item-details">
-                          <img
-                            src={item.nftImage}
-                            className="lazy img-fluid"
-                            alt=""
-                          />
-                        </Link>
-                      </div>
-                      <div className="nft_coll_pp">
-                        <Link to="/author">
-                          <img
-                            className="lazy pp-coll"
-                            src={item.authorImage}
-                            alt=""
-                          />
-                        </Link>
-                        <i className="fa fa-check"></i>
-                      </div>
-                      <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>{item.title}</h4>
-                        </Link>
-                        <span>ERC-{item.code}</span>
-                      </div>
+              <Slider {...settings}>
+                {collection.map((item) => (
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to="/item-details">
+                        <img
+                          src={item.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
                     </div>
-                  ))}
-                </Slider>
-              </div>
+                    <div className="nft_coll_pp">
+                      <Link to="/author">
+                        <img
+                          className="lazy pp-coll"
+                          src={item.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>{item.title}</h4>
+                      </Link>
+                      <span>ERC-{item.code}</span>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
             ) : (
               ""
             )}
