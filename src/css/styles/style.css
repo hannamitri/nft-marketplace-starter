@@ -16714,3 +16714,40 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* KEEN SLIDER STYLING */
+.navigation-wrapper {
+  position: relative;
+}
+
+.arrow {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) !important;
+  transition: all 300ms ease;
+  border: solid 1px #dddddd;
+  color: #0d0c22;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 25%);
+}
+
+.arrow:active {
+  transform: scale(0.9);
+}
+
+.arrow--left {
+  left: -5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: -5px;
+}
