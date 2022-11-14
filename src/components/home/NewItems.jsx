@@ -61,7 +61,7 @@ const NewItems = () => {
                 responsive={state.responsive}
                 smartSpeed={500}
               >
-                {new Array(3).fill(0).map((_, index) => (
+                {new Array(5).fill(0).map((_, index) => (
                   <div
                     className="item"
                     key={index}
