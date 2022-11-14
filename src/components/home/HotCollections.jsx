@@ -4,6 +4,8 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const HotCollections = () => {
   const [collection, setCollection] = React.useState();
@@ -13,6 +15,8 @@ const HotCollections = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <ArrowForwardIosIcon />,
+    prevArrow: <ArrowBackIosNewIcon />,
     responsive: [
       {
         breakpoint: 1024,
@@ -20,17 +24,26 @@ const HotCollections = () => {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
+          nextArrow: <ArrowForwardIosIcon />,
+          prevArrow: <ArrowBackIosNewIcon />,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 850,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 550,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -57,7 +70,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div className="col-lg-12 ">
             {collection ? (
               <Slider {...settings}>
                 {collection.map((item) => (

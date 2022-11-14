@@ -16714,3 +16714,39 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.slick-initialized .slick-slide {
+  display: block;
+  padding: 0 8px;
+}
+.slick-next {
+  right: -10px !important;
+}
+
+.slick-prev {
+  left: -10px !important;
+  z-index: 2 !important;
+}
+
+.slick-next,
+.slick-prev {
+  opacity: 1 !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  color: black !important;
+  width: 42px !important;
+  padding: 12px !important;
+  height: 42px !important;
+  transition: all 0.2s ease-in-out;
+}
+.slick-prev,
+.slick-next {
+  background: white !important;
+  box-shadow: 0 0 10px rgb(0 0 0 / 15%) !important;
+  border-radius: 50% !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root:hover {
+  box-shadow: 0 0 15px rgb(0 0 0 / 25%) !important;
+}
