@@ -7,7 +7,7 @@ import nftImage from "../../images/nftImage.jpg";
 import OwlCarousel from 'react-owl-carousel';
 import NewItem from "./NewItem";
 import Skeleton from "../UI/Skeleton"
-
+import NewSkeleton from "./NewSkeleton";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -81,7 +81,7 @@ const NewItems = () => {
                 >
                   {
                     new Array(6).fill(0).map((_, index) => (
-                      <Skeleton key={index} />
+                      <NewSkeleton key={index} />
                     ))
                   }
                 </OwlCarousel>
