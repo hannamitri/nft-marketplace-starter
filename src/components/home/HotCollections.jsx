@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import "./HotCollections.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);

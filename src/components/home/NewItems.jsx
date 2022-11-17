@@ -1,9 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import Slider from "react-slick";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const NewItems = () => {
+  const [newItems, setNewItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className="arrow next" onClick={onClick}>
+        <FaAngleRight />
+      </div>
+    );
+  };
+
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className="arrow prev" onClick={onClick}>
+        <FaAngleLeft />
+      </div>
+    );
+  };
+
+  const settings = {
+    infinite: true,
+    speed: 200,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    slickPlay: true,
+    responsive: [
+      {
+        breakpoint: 980,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
+  async function fetchNewItems() {
+    setLoading(true);
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+    );
+    setNewItems(data);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchNewItems();
+  }, []);
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,8 +79,9 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+          <Slider {...settings}>
+          {newItems.map((newItem) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={newItem.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -24,7 +90,7 @@ const NewItems = () => {
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                   >
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={newItem.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -51,7 +117,7 @@ const NewItems = () => {
 
                   <Link to="/item-details">
                     <img
-                      src={nftImage}
+                      src={newItem.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
@@ -59,17 +125,18 @@ const NewItems = () => {
                 </div>
                 <div className="nft__item_info">
                   <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                    <h4>{newItem.title}</h4>
                   </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
+                  <div className="nft__item_price">{newItem.price} ETH</div>
                   <div className="nft__item_like">
                     <i className="fa fa-heart"></i>
-                    <span>69</span>
+                    <span>{newItem.likes}</span>
                   </div>
                 </div>
               </div>
             </div>
           ))}
+          </Slider>
         </div>
       </div>
     </section>
