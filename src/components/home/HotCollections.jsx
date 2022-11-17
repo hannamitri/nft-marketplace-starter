@@ -139,7 +139,7 @@ const HotCollections = (props) => {
                 <Link to="/explore">
                   <h4>{collections.title}</h4>
                 </Link>
-                <span>ERC-192</span>
+                <span>ERC-192</span> 
                 </div>
             </div>
             
