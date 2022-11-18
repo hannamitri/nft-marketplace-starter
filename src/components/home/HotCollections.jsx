@@ -32,21 +32,21 @@ const HotCollections = () => {
     slickPlay: true,
     responsive: [
       {
-        breakpoint: 980,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
         },
       },
 
       {
-        breakpoint: 768,
+        breakpoint: 765,
         settings: {
           slidesToShow: 2,
         },
       },
 
       {
-        breakpoint: 480,
+        breakpoint: 467,
         settings: {
           slidesToShow: 1,
         },

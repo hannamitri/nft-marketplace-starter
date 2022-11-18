@@ -12,7 +12,7 @@
 .next {
   right: -10px;
   top: 40%;
-  padding: 10px 13px 11px 14px;    
+  padding: 10px 13px 11px 14px;
 }
 
 .prev {
@@ -32,7 +32,13 @@
 .skeleton::after {
   -webkit-animation: shimmer 2s infinite;
   animation: shimmer 2s infinite;
-  background-image: linear-gradient(90deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.2) 20%,hsla(0,0%,100%,.5) 60%,hsla(0,0%,100%,0));
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.2) 20%,
+    hsla(0, 0%, 100%, 0.5) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
   bottom: 0;
   content: "";
   left: 0;
@@ -63,4 +69,30 @@
 .nft_code_info-skeleton {
   width: 60px;
   height: 20px;
+}
+
+.author_list_pp-skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.nft__item_wrap-skeleton {
+  width: 100%; 
+  height: 350px;
+}
+
+.nft_title-skeleton {
+  width: 180px; 
+  height: 30px;
+}
+
+.nft__item_price-skeleton {
+  width: 100px; 
+  height: 20px;
+}
+
+.nft__item_like-skeleton {
+  width: 30px; 
+  height: 15px;
 }
