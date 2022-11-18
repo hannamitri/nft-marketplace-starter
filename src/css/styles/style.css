@@ -797,6 +797,53 @@ header .header-col.mid .social-icons {
   width: 100%;
 }
 
+.slick-prev:hover,
+.slick-next:hover {
+  box-shadow: 0 0 20px #15161865;
+  transform: scale(1.1) translateY(-20px);
+}
+
+.slick-next, .slick-prev {
+  z-index: 1;
+  font-size: 10px !important;
+  width: 48px !important;
+  height: 48px !important;
+  padding: 8px !important;
+  border-color: #000 !important;
+  color: black !important;
+  position: absolute !important;
+  top: 50% !important;
+  background: white !important;
+  border: 1px solid grey !important;
+  border-radius: 50% !important;
+  transition: all 200ms ease-in-out !important;
+}
+
+.slick-prev {
+  left: -8px !important;
+}
+
+.slick-next {
+  right: -8px !important;
+}
+
+.slick-slide > div {
+  margin: 0 4px;
+}
+
+.slick-list {
+  margin: 0 -4px;
+}
+
+.arrows {
+  width: 48px !important;
+  height: 48px !important;
+  border-color: #000 !important;
+  position: absolute !important;
+  top: 50% !important;
+  margin-top: -31px !important;
+}
+
 #mainmenu ul.mega > li ul li {
   margin: 0;
   padding: 0;
@@ -13206,7 +13253,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 170px;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
@@ -13272,6 +13319,7 @@ a.read_more i {
   position: absolute;
   bottom: 4px;
   right: 5px;
+  z-index: 1;
 }
 
 .author_list {
@@ -15467,6 +15515,12 @@ img {
     design for 768px
     /* ================================================== */
 
+@media screen and (max-width: 768px) {
+  .nft_wrap {
+    height: 130px !important;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
   .slider_text {
     padding-top: 0px;
@@ -16508,9 +16562,21 @@ img {
   }
 }
 
+@media screen and (max-width: 530px) {
+  .nft_wrap {
+    height: 90px !important;
+  }
+}
+
 /* -------------------------------------------------- 
     design for 480px
     /* -------------------------------------------------- */
+
+@media screen and (max-width: 480px) {
+  .nft_wrap {
+    height: 150px !important;
+  }
+}
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .container {
@@ -16535,6 +16601,12 @@ img {
 /* -------------------------------------------------- 
     design for 320px
     /* -------------------------------------------------- */
+
+@media screen and (max-width: 280px) {
+  .nft_wrap {
+    height: 80px !important;
+  }
+}
 
 @media only screen and (max-width: 480px) {
   .pf_full_width .item {
