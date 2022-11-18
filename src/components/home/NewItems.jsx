@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import Timer from "../UI/Timer";
+import CountdownTimer from "../UI/CountdownTimer";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -126,13 +126,12 @@ const NewItems = () => {
                         </Link>
                       </div>
                       <div className="de_countdown">
-{/* ////////////////////////////////////////////////////////////////////////// */}
-                        <span class="timer__hours">5h </span>:
-                        <span class="timer__minutes"> 30m </span>:
-                        <span class="timer__seconds"> <Timer /></span>
-
-{/* ///////////////////////////////////////////////////////////////////// */}
-
+                        <span>
+                          {" "}
+                          <CountdownTimer
+                            countdownTimestampsMs={newItem.expiryDate}
+                          />
+                        </span>
                       </div>
 
                       <div className="nft__item_wrap">

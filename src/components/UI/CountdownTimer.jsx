@@ -1,36 +1,31 @@
-import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import { getRemainingUntilMsTimestamp } from "./Utils/CountdownTimerUtils";
+import React, { useEffect, useState } from "react";
 
-function CountdownTimer() {
-    const [newItems, setNewItems] = useState([]);
-    const Ref = useRef(null);
-    const [timer, setTimer] = useState('00:00:00');
+const defaultRemainingTime = {
+  seconds: "00",
+  minutes: "00",
+  hours: "0",
+};
 
-    async function fetchNewItems() {
-        const { data } = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
-        );
-        setNewItems(data);
-      }
-    
-      useEffect(() => {
-        fetchNewItems();
-      }, []);
+function CountdownTimer ({countdownTimestampsMs}) {
+  const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
 
-      const getTimeRemaining = (e) => {
-        const total = Date.parse(e) - Date.parse(new Date());
-        const seconds = Math.floor((total / 1000) % 60);
-        const minutes = Math.floor((total / 1000 / 60) % 60);
-        const hours = Math.floor((total / 1000 / 60 / 60) % 24);
-        return {
-            total, hours, minutes, seconds
-        };
-    }
-    
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+        updateRemainingTime(countdownTimestampsMs);
+    }, 1000);
+    return () => clearInterval(intervalId)
+  }, [countdownTimestampsMs]);
 
-  return (
-    <div>CountdownTimer</div>
-  )
+  function updateRemainingTime(countdown) {
+    setRemainingTime(getRemainingUntilMsTimestamp(countdown));
+  }
+
+  return <div>
+    <span>{remainingTime.hours}h </span>
+    <span>{remainingTime.minutes}m </span>
+    <span>{remainingTime.seconds}s</span>
+    </div>;
 }
 
-export default CountdownTimer
+export default CountdownTimer;
