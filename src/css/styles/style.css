@@ -827,19 +827,19 @@ header .header-col.mid .social-icons {
 }
 
 .slick-prev {
-  left: 0.5px !important;
+  left: -8px !important;
 }
 
 .slick-next {
-  right: 0.5px !important;
+  right: -8px !important;
 }
 
 .slick-slide > div {
-  margin: 0 10px;
+  margin: 0 4px;
 }
 
 .slick-list {
-  margin: 0 -10px;
+  margin: 0 -4px;
 }
 
 .arrows {
