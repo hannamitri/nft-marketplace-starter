@@ -12,7 +12,6 @@ const TopSellers = () => {
       )
       .then((response) => {
         setTopSellers(response.data);
-        console.log(response.data);
       });
   }, []);
 
@@ -55,7 +54,7 @@ const TopSellers = () => {
                         <Link to="/author">
                           <div className="overlay__loading--pp top-sellers__pp"></div>
                         </Link>
-                          <i className="fa fa-check"></i>
+                        <i className="fa fa-check"></i>
                       </div>
                       <div className="author_list_info">
                         <Link to="" className="loading">
