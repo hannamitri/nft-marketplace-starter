@@ -16752,22 +16752,30 @@ img {
 }
 
 .loading {
-  color: transparent;
-  background: linear-gradient(100deg, #eceff1 30%, #f6f7f8 50%, #eceff1 70%);
-  background-size: 400%;
+  color: transparent !important;
+  background: linear-gradient(
+    100deg,
+    #eceff1 30%,
+    #f6f7f8 50%,
+    #eceff1 70%
+  ) !important;
+  background-size: 400% !important;
   animation: loading 1.2s ease-in-out infinite;
 }
 
 .overlay__loading--pp {
-  position: absolute;
-  top: 0;
   width: 100%;
-  height: 60px;
   border-radius: 50%;
   color: transparent;
   background: linear-gradient(100deg, #eceff1 30%, #f6f7f8 50%, #eceff1 70%);
   background-size: 400%;
   animation: loading 1.2s ease-in-out infinite;
+}
+.hot-collection__pp {
+  height: 60px;
+}
+.top-sellers__pp {
+  height: 50px;
 }
 .title__text--loading {
   display: inline-block;
@@ -16778,6 +16786,10 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.loading__span {
+  width: 30%;
 }
 
 @keyframes loading {
