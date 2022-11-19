@@ -70,6 +70,7 @@ const NewItems = () => {
     fetchNewItems();
   }, []);
 
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -83,7 +84,7 @@ const NewItems = () => {
           <Slider {...settings}>
             {loading
               ? new Array(5).fill(0).map((_, index) => (
-                  <div className="nft__item">
+                  <div className="nft__item" key={index}>
                     <div className="author_list_pp">
                       <div className="skeleton author_list_pp-skeleton"></div>
                       <i className="fa fa-check"></i>
@@ -125,15 +126,13 @@ const NewItems = () => {
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
-                      <div className="de_countdown">
+                      <div className={`${newItem.expiryDate ? "de_countdown" : " "}`}>
                         <span>
-                          {" "}
                           <CountdownTimer
                             countdownTimestampsMs={newItem.expiryDate}
                           />
                         </span>
                       </div>
-
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
                           <div className="nft__item_buttons">

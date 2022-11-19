@@ -4,9 +4,13 @@ export function getRemainingUntilMsTimestamp(timestampMs) {
 
     const timestampDayjs = dayjs(timestampMs)
     const nowDayjs = dayjs();
-    if(timestampDayjs.isBefore(nowDayjs)) {
-        return "EXPIRED"
-    }
+    // if(timestampDayjs.isBefore(nowDayjs)) {
+    //     return {
+    //         seconds: "0",
+    //         minutes: "0",
+    //         hours: "0",
+    //     }
+    // }
 
     return {
         seconds: getRemainingSeconds(nowDayjs, timestampDayjs),
