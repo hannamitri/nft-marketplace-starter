@@ -8,8 +8,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import artistThumbNail from "../../images/author_thumbnail.jpg";
 const HotCollections = () => {
-  const [collection, setCollection] = React.useState();
-  const loadingArr = [0, 1, 2, 3, 4];
   const settings = {
     accessibility: true,
     infinite: true,
@@ -52,6 +50,8 @@ const HotCollections = () => {
       },
     ],
   };
+  const [collection, setCollection] = React.useState();
+  const loadingArr = [0, 1, 2, 3, 4];
   React.useEffect(() => {
     axios
       .get(
@@ -75,7 +75,7 @@ const HotCollections = () => {
             <Slider {...settings}>
               {collection
                 ? collection.map((item) => (
-                    <div className="nft_coll">
+                    <div className="nft_coll" key={item.id}>
                       <div className="nft_wrap">
                         <Link to="/item-details">
                           <img
@@ -92,8 +92,8 @@ const HotCollections = () => {
                             src={item.authorImage}
                             alt=""
                           />
+                          <i className="fa fa-check"></i>
                         </Link>
-                        <i className="fa fa-check"></i>
                       </div>
                       <div className="nft_coll_info">
                         <Link to="/explore">
@@ -103,8 +103,8 @@ const HotCollections = () => {
                       </div>
                     </div>
                   ))
-                : loadingArr.map((index) => (
-                    <div className="nft_coll">
+                : loadingArr.map((_, index) => (
+                    <div className="nft_coll" key={index}>
                       <div className="nft_wrap loading">
                         <Link to="/item-details">
                           <img src="" className={"lazy img-fluid"} alt="" />
@@ -112,12 +112,7 @@ const HotCollections = () => {
                       </div>
                       <div className="nft_coll_pp">
                         <Link to="/author">
-                          <img
-                            className="lazy pp-coll"
-                            src={artistThumbNail}
-                            alt=""
-                          />
-                          <div className="overlay__loading--pp"></div>
+                          <div className="overlay__loading--pp hot-collection__pp"></div>
                         </Link>
                         <i className="fa fa-check"></i>
                       </div>
