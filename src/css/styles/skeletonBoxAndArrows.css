@@ -50,6 +50,8 @@
   box-sizing: border-box;
 }
 
+/* Hot Collections and New Items Skeleton Stages*/
+
 .nft_wrap-skeleton {
   width: 100%;
   height: 200px;
@@ -78,21 +80,39 @@
 }
 
 .nft__item_wrap-skeleton {
-  width: 100%; 
+  width: 100%;
   height: 350px;
 }
 
 .nft_title-skeleton {
-  width: 180px; 
+  width: 180px;
   height: 30px;
 }
 
 .nft__item_price-skeleton {
-  width: 100px; 
+  width: 100px;
   height: 20px;
 }
 
 .nft__item_like-skeleton {
-  width: 30px; 
+  width: 30px;
   height: 15px;
+}
+
+/* Top Sellers Skeleton Stage*/
+
+.author_list_pp-skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.author_list_info-skeleton {
+  width: 100px;
+  height: 20px;
+}
+
+.top_seller-price-skeleton {
+  width: 40px;
+  height: 20px
 }

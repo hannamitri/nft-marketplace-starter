@@ -23,7 +23,7 @@ const HotCollections = () => {
       </div>
     );
   };
-  ////
+
   const settings = {
     infinite: true,
     speed: 200,
