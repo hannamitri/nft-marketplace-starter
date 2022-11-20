@@ -6,6 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import AuthorImage from "../../images/author_thumbnail.jpg";
+import nftImage from "../../images/nftImage.jpg";
+import { Link } from "react-router-dom";
+import LazyLoadNewItem from "./LazyLoadNewItem.jsx";
 const NewItems = () => {
   const settings = {
     accessibility: true,
@@ -81,9 +85,12 @@ const NewItems = () => {
                       price={item.price}
                       likes={item.likes}
                       key={item.id}
+                      nftLink={item.nftId}
                     />
                   ))
-                : ""}
+                : new Array(6)
+                    .fill(0)
+                    .map((_, index) => <LazyLoadNewItem key={index} />)}
             </Slider>
           </div>
         </div>

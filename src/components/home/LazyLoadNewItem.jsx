@@ -1,40 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function NewItem({ authorImage, expiryDate, nftImage, title, price, likes, nftLink }) {
-  const [remainingTime, setRemainingTime] = React.useState("");
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const time = expiryDate - Date.now();
-      if (time <= 0) {
-        setRemainingTime("EXPIRED");
-        clearInterval(interval);
-        return;
-      }
-      setRemainingTime(
-        `${Math.floor((time / (1000 * 60 * 60)) % 24)}h ${Math.floor(
-          (time / 1000 / 60) % 60
-        )}m ${Math.floor((time / 1000) % 60)}s`
-      );
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+function LazyLoadNewItem() {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
         <Link
-          to="/author"
+          to=""
           data-bs-toggle="tooltip"
           data-bs-placement="top"
           title="Creator: Monica Lucas"
         >
-          <img className="lazy" src={authorImage} alt="" />
+          <div className="overlay__loading--pp top-sellers__pp"></div>
           <i className="fa fa-check"></i>
         </Link>
-      </div>
-      <div className={`${expiryDate ? "de_countdown " : " "}`}>
-        {expiryDate ? remainingTime : ""}
       </div>
       <div className="nft__item_wrap">
         <div className="nft__item_extra">
@@ -54,22 +32,22 @@ function NewItem({ authorImage, expiryDate, nftImage, title, price, likes, nftLi
             </div>
           </div>
         </div>
-        <Link to={`/item-details/${nftLink}`}>
-          <img src={nftImage} className="lazy nft__item_preview" alt="" />
+        <Link to="">
+          <div className="overlay__loading--image  loading__image"></div>
         </Link>
       </div>
       <div className="nft__item_info">
-        <Link to="/item-details">
-          <h4>{title}</h4>
+        <Link to="">
+          <h4 className="loading loading__title">Pinky Ocean</h4>
         </Link>
-        <div className="nft__item_price">{price} ETH</div>
-        <div className="nft__item_like">
+        <div className="nft__item_price loading loading__title">3.08 ETH</div>
+        <div className="nft__item_like loading">
           <i className="fa fa-heart"></i>
-          <span>{likes}</span>
+          <span className="loading">69</span>
         </div>
       </div>
     </div>
   );
 }
 
-export default NewItem;
+export default LazyLoadNewItem;
