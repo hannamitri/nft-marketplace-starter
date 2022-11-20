@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
+import axios from 'axios'
 import BrowseByCategory from "../components/home/BrowseByCategory";
 import HotCollections from "../components/home/HotCollections";
 import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+
 
 const Home = () => {
   useEffect(() => {
