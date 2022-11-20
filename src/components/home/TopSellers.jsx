@@ -48,8 +48,7 @@ const TopSellers = () => {
                 </li>))
               
               :
-              
-              
+                            
               topSellers.map((topSeller) => (
                 <li key={topSeller.id}>
                   <div className="author_list_pp">
