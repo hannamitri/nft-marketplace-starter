@@ -1,14 +1,9 @@
 import { getRemainingUntilMsTimestamp } from "./Utils/CountdownTimerUtils";
 import React, { useEffect, useState } from "react";
 
-const defaultRemainingTime = {
-  seconds: "s",
-  minutes: "m",
-  hours: "h",
-};
 
 function CountdownTimer({ countdownTimestampsMs }) {
-  const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
+  const [remainingTime, setRemainingTime] = useState({});
 
   useEffect(() => {
     const intervalId = setInterval(() => {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -62,7 +61,7 @@ const TopSellers = () => {
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">{topSeller.authorName}</Link>
+                    <Link to={{pathname: `author/${topSeller.authorId}`}}>{topSeller.authorName}</Link>
                     <span>{topSeller.price} ETH</span>
                   </div>
                 </li>
