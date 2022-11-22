@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FaAngleRight } from "react-icons/fa";
+import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
+import Skeleton from "../UI/Skeleton";
 
 
 //TODO - Change Next and Previous Arrows to use FA / react-icons 
@@ -16,39 +16,63 @@ import { FaAngleRight } from "react-icons/fa";
 const HotCollections = () => {
 
   const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadingArr = [1, 1, 1]
 
   async function getCollections() {
     const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
     setCollections(data);
+    setLoading(false);
   }
 
 
   //Settings, Arrow Config for Owl Slider
-  function NextArrow(props) {
-    const { className, style, onClick } = props;
+  function NextArrow({ onClick }) {
     return (
-      <div
-        className={className}
+      <RiArrowDropRightLine
+        className="slick-arrow"
         style={{
-          ...style,
+          position: "absolute",
+          color: "#999",
+          cursor: "pointer",
+          top: "50%",
+          right: "0px",
+          transform: "translate(0, -50%)",
           height: "50px",
           width: "50px",
+          fontSize: "6px",
           display: "block",
-          border: "1px solid grey",
+          border: "1px solid #ccc",
+          backgroundColor: "white",
           borderRadius: "100%",
+          zIndex: "10"
          }}
         onClick={onClick}
       />
     );
   }
-  function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    console.log(props);
+  function PrevArrow({ onClick }) {
     return (
-      <div
-        className={className}
-        style={{ ...style, content: "Hello",color: "black", display: "block", background: "red" }}
-        onClick={onClick}
+      <RiArrowDropLeftLine
+        className="slick-arrow"
+        style={{ 
+          position: "absolute",
+          color: "#999", 
+          cursor: "pointer",
+          top: "50%",
+          left: "0px",
+          transform: "translate(0, -50%)",
+          height: "50px",
+          width: "50px",
+          fontSize: "12px",
+          display: "block",
+          border: "1px solid #ccc",
+          backgroundColor: "white",
+          borderRadius: "100%",
+          zIndex: "10"
+        }}
+        onClick = {onClick}
       />
     );
   }
@@ -61,6 +85,7 @@ const HotCollections = () => {
     initialSlide: 1,
     slidesToShow: 4,
     slidesToScroll: 1,
+    vertical: false,
     responsive: [
       {
         breakpoint: 2000, 
@@ -81,7 +106,7 @@ const HotCollections = () => {
         }
       },
       {
-        breakpoint: 570, 
+        breakpoint: 765, 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -110,7 +135,38 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider className="hotSlider"{...settings}>
-          {collections.map((collection, index) => (
+            {loading ? loadingArr.map((_, index) => (
+              <div className="col-12" key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Skeleton
+                      width="100%"
+                      height="100%"
+                      borderRadius="10px"
+                    />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Skeleton
+                      width="60px"
+                      height="60px"
+                      borderRadius="100%"
+                    />
+                  </div>
+                  <div className="nft_coll_info">
+                    <Skeleton 
+                      width="100px"
+                      height="16px"
+                    />
+                    <br/>
+                    <Skeleton
+                      width="40px"
+                      height="16px"
+                    />
+                    </div>
+                </div>
+              </div> 
+            ))
+            :collections.map((collection, index) => (
             /* col-lg-3 col-md-6 col-sm-6 col-xs-12 */
             <div className="col-12" key={index}>
               <div className="nft_coll">
