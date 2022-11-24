@@ -50,7 +50,7 @@
   box-sizing: border-box;
 }
 
-/* HotCollections and NewItems Skeleton (Also, ExploreItems Skeleton) Stages*/
+/* NFTs */
 
 .nft_wrap-skeleton {
   width: 100%;
@@ -115,4 +115,32 @@
 .top_seller-price-skeleton {
   width: 40px;
   height: 20px
+}
+
+/* Author Items Skeleton Stage */
+
+.profile_avatar-skeleton {
+  width: 150px; 
+  height: 150px; 
+  border-radius: 50%
+}
+
+.authorName-skeleton {
+  width: 200px;
+  height: 25px;
+}
+
+.profile_username-skeleton {
+  width: 100px;
+  height: 15px;
+}
+
+.profile_wallet-skeleton {
+  width: 250px;
+  height: 15px;
+}
+
+.profile_follower-skeleton {
+  width: 150px; 
+  height: 40px
 }

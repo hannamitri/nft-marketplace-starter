@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CountdownTimer from "../UI/CountdownTimer";
 
 
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visible, setVisible] = useState(8)
+  const [visibleItems, setVisibleItems] = useState(8);
+  const navigate = useNavigate();
 
 
   async function fetchExploreItems() {
@@ -24,10 +25,10 @@ const ExploreItems = () => {
   }, []);
 
   const loadMore = () => {
-    setVisible((prevValue) => prevValue + 4)
+    setVisibleItems((prevValue) => prevValue + 4)
   }
 
-  async function filterBooks(value) {
+  async function filterNFTs(value) {
     setLoading(true);
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`
@@ -40,7 +41,7 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter" defaultValue="Default" onChange={(event) => filterBooks (event.target.value)}>
+        <select id="filter" defaultValue="Default" onChange={(event) => filterNFTs (event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -78,7 +79,7 @@ const ExploreItems = () => {
               </div>
             </div>
           ))
-        : exploreItems.slice(0, visible).map((exploreItem) => (
+        : exploreItems.slice(0, visibleItems).map((exploreItem) => (
             <div
               key={exploreItem.id}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -87,7 +88,7 @@ const ExploreItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to={`author/${exploreItem.authorId}`}
+                    to= {`/author/${exploreItem.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                   >
@@ -147,7 +148,7 @@ const ExploreItems = () => {
             </div>
           ))}
       <div className="col-md-12 text-center">
-        {visible >= exploreItems.length ? null : <Link to="" onClick={loadMore} id="loadmore" className="btn-main lead">
+        {visibleItems >= exploreItems.length ? null : <Link to="" onClick={loadMore} id="loadmore" className="btn-main lead">
           Load more
         </Link>}
       </div>
