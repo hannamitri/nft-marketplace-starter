@@ -18,7 +18,9 @@ const HotCollections = () => {
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const loadingArr = [1, 1, 1]
+  //This is for the skelly state. This creates 3 faux entries 
+    //and gives them unique keys.
+  const loadingArr = new Array(3).fill(null);
 
   async function getCollections() {
     const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
