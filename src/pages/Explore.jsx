@@ -7,8 +7,6 @@ const Explore = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  //does this work?
-  //does this work?
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
