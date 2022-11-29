@@ -29,7 +29,19 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel loop margin={10} nav>
+          <OwlCarousel
+            responsive={{
+              0: {
+                items: 1,
+              },
+              600: {
+                items: 3,
+              },
+            }}
+            loop
+            margin={10}
+            nav
+          >
             {users?.map((item) => (
               <div key={item.id} className="nft">
                 <div className="nft_coll">
