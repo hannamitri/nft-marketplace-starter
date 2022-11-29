@@ -1,10 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
 import Skeleton from "../UI/Skeleton";
 
 
@@ -28,100 +24,6 @@ const HotCollections = () => {
     setLoading(false);
   }
 
-
-  //Settings, Arrow Config for Owl Slider
-  function NextArrow({ onClick }) {
-    return (
-      <RiArrowDropRightLine
-        className="slick-arrow"
-        style={{
-          position: "absolute",
-          color: "#999",
-          cursor: "pointer",
-          top: "50%",
-          right: "0px",
-          transform: "translate(0, -50%)",
-          height: "50px",
-          width: "50px",
-          fontSize: "6px",
-          display: "block",
-          border: "1px solid #ccc",
-          backgroundColor: "white",
-          borderRadius: "100%",
-          zIndex: "10"
-         }}
-        onClick={onClick}
-      />
-    );
-  }
-  function PrevArrow({ onClick }) {
-    return (
-      <RiArrowDropLeftLine
-        className="slick-arrow"
-        style={{ 
-          position: "absolute",
-          color: "#999", 
-          cursor: "pointer",
-          top: "50%",
-          left: "0px",
-          transform: "translate(0, -50%)",
-          height: "50px",
-          width: "50px",
-          fontSize: "12px",
-          display: "block",
-          border: "1px solid #ccc",
-          backgroundColor: "white",
-          borderRadius: "100%",
-          zIndex: "10"
-        }}
-        onClick = {onClick}
-      />
-    );
-  }
-
-  const settings = { 
-    arrows: true,
-    draggable: true,
-    infinite: true,
-    speed: 500,
-    initialSlide: 1,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    vertical: false,
-    responsive: [
-      {
-        breakpoint: 2000, 
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 980, 
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 1,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 765, 
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 2,
-          infinite: true,
-        }
-      },
-    ],
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
-  };
-  
-
   useEffect(() => {
     getCollections();
   },[])
@@ -136,7 +38,6 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Slider className="hotSlider"{...settings}>
             {loading ? loadingArr.map((_, index) => (
               <div className="col-12" key={index}>
                 <div className="nft_coll">
@@ -192,7 +93,6 @@ const HotCollections = () => {
               </div>
             </div>
           ))}
-          </Slider>
         </div>
       </div>
     </section>
