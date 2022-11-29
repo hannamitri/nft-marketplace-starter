@@ -34,7 +34,7 @@ const HotCollections = () => {
               0: {
                 items: 1,
               },
-              600: {
+              800: {
                 items: 3,
               },
             }}
@@ -42,6 +42,7 @@ const HotCollections = () => {
             margin={10}
             nav
           >
+          
             {users?.map((item) => (
               <div key={item.id} className="nft">
                 <div className="nft_coll">
