@@ -1,11 +1,9 @@
 import React, {useState, useEffect, Component} from "react";
 import axios from 'axios'
 import { Link } from "react-router-dom";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import Slider from 'react-slick';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextSharpIcon from '@mui/icons-material/NavigateNextSharp';
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 import LoadingPlaceHolder from './LoadingPlaceHolder'
 import { width } from "@mui/system";
 
@@ -17,10 +15,9 @@ const HotCollections = (props) => {
   async function getHotCollection() {
    
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
-    console.log(data)
-    setCollection(data)
-    console.log(collection)
     setLoading(true);
+    setCollection(data)
+    setLoading(false);
   }
   
   useEffect(() => {
@@ -28,49 +25,27 @@ const HotCollections = (props) => {
   }, [])
 
 
-  const settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      initialSlide: 0,
-      prevArrow: 
-        <NavigateBeforeIcon/>  
-      ,
-      nextArrow: <NavigateNextSharpIcon/>,
-      responsive: [
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 979,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            initialSlide: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    };
+  const state = {
+    responsive: {
+      0: {
+        items: 1,
+      },
+      577: {
+        items: 2,
+      },
+      770: {
+        items: 3,
+      },
+      1200: {
+        items: 4,
+      },
+    },
+  };
 
  
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" className="no-bottom" data-aos="fade-in" data-aos-duration="1000">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -84,13 +59,15 @@ const HotCollections = (props) => {
 
           
 
-          <div className="">
-          <Slider {...settings}>
-
-          {
-            !loading 
-            
-            ? new Array(4).fill(0).map((_, index) => (
+          {!loading ? (
+            <OwlCarousel
+              items={4}
+              loop={true}
+              nav={true}
+              margin={12}
+              responsive={state.responsive}
+            >
+              {new Array(4).fill(0).map((_, index) => (
 
               <div key={index}>
               
@@ -109,55 +86,62 @@ const HotCollections = (props) => {
                 </div>
                 <div className="nft_coll_info">
                   <Link to="/explore">
-                  {<LoadingPlaceHolder extraStyles={{height:'15px', width:'100px', marginBottom: '16px', marginTop: '50px', borderRadius: '10px', marginLeft:'auto',  marginRight:'auto' }}/>}
+                  {<LoadingPlaceHolder extraStyles={{height:'15px', width:'100px', marginBottom: '16px', marginTop: '50px', marginLeft:'auto',  marginRight:'auto' }}/>}
                   </Link>
-                  {<LoadingPlaceHolder extraStyles={{height:'15px', width:'80px', marginBottom: '16px', marginTop: '10px', borderRadius: '10px', marginLeft:'auto',  marginRight:'auto' }}/>}
+                  {<LoadingPlaceHolder extraStyles={{height:'15px', width:'80px', marginBottom: '16px', marginTop: '10px', marginLeft:'auto',  marginRight:'auto' }}/>}
                   </div>
               </div>
               
             </div>
-      
-        )):
-
-        collection.map((collections) => (
-               
-          <div key={collections.id}>
-            
-            <div className="nft_coll" key={collections.id}>
-              <div className="nft_wrap">
-                <Link to="/item-details">
-                  <img src={collections.nftImage} className="lazy img-fluid" alt="" />
-                </Link>
-              </div>
-              <div className="nft_coll_pp">
-                <Link to="/author">
-                  {<img className="lazy pp-coll" src={collections.authorImage} alt="" />}
-                </Link> 
-                <i className="fa fa-check"></i>
-              </div>
-              <div className="nft_coll_info">
-                <Link to="/explore">
-                  <h4>{collections.title}</h4>
-                </Link>
-                <span>ERC-192</span> 
+              ))}
+            </OwlCarousel>
+          ) : (
+            <OwlCarousel
+              items={4}
+              loop={true}
+              nav={true}
+              margin={12}
+              responsive={state.responsive}
+            >
+              {collection.map((item) => (
+                <div className="item" key={item.id}>
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                    <Link to={`/item-details/${item.nftId}`} state={{ itemId: item.nftId }}>
+                        <img
+                          src={item.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      
+                      <Link to={`/author/${item.authorId}`} state={{ authorId: item.authorId }}>
+                        <img
+                          className="lazy pp-coll"
+                          src={item.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>{item.title}</h4>
+                      </Link>
+                      <span>ERC-{item.code}</span>
+                    </div>
+                  </div>
                 </div>
-            </div>
-            
-          </div>
-        ))}
-
-          
-
-
-
-            
-      
-          
-          </Slider>
-          </div>
+              ))}
+            </OwlCarousel>
+          )}
         </div>
       </div>
     </section>
   );
 };
+
 export default HotCollections;
+
