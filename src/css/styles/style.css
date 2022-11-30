@@ -15431,6 +15431,21 @@ img {
   animation: anim4 900ms linear infinite;
 }
 
+
+/* ================================================== */
+
+/* MANUALLY ADDED CSS BY NORIN */
+
+.skill__slider {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+
+/* ================================================== */
+
 @keyframes anim4 {
   to {
     transform: rotate(360deg);
