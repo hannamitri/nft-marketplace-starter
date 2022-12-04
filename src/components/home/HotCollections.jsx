@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from 'axios'
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
 
 const HotCollections = () => {
 
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
-
   const [collections, setCollections] = useState([])
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 10000,
+    centerPadding: "20px",
+    className: "carousel__slider",
+    rows: 1,
+    SlidesPerRow
+  };
 
   async function getCollections() {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
@@ -49,35 +45,37 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Carousel responsive={responsive} infinite={true} className="skill__slider">
-            {
-              collections.map((collection, index) => {
-                return (
-                  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                    <div className="nft_coll " key={index}>
-                      <div className="nft_wrap">
-                        <Link to="/item-details">
-                          <img src={collection.nftImage} className="lazy img-fluid" alt="" />
-                        </Link>
-                      </div>
-                      <div className="nft_coll_pp">
-                        <Link to="/author">
-                          <img className="lazy pp-coll" src={collection.authorImage} alt="" />
-                        </Link>
-                        <i className="fa fa-check"></i>
-                      </div>
-                      <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>{collection.title}</h4>
-                        </Link>
-                        <span>ERC-{collection.code}</span>
+          <div className="carousel__container">
+            <Slider {...settings}>
+              {
+                collections.map((collection, index) => {
+                  return (
+                    <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                      <div className="nft_coll " key={index}>
+                        <div className="nft_wrap">
+                          <Link to="/item-details">
+                            <img src={collection.nftImage} className="lazy img-fluid" alt="" />
+                          </Link>
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Link to="/author">
+                            <img className="lazy pp-coll" src={collection.authorImage} alt="" />
+                          </Link>
+                          <i className="fa fa-check"></i>
+                        </div>
+                        <div className="nft_coll_info">
+                          <Link to="/explore">
+                            <h4>{collection.title}</h4>
+                          </Link>
+                          <span>ERC-{collection.code}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })
-            }
-          </Carousel>
+                  )
+                })
+              }  
+            </Slider>    
+          </div>
         </div>
       </div>
     </section>
