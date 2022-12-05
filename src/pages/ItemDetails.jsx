@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ItemDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+ 
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">

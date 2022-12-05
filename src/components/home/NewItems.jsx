@@ -11,13 +11,13 @@ const NewItems = () => {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
+    console.log(data[0]);
     setItems(data);
   }
   useEffect(() => {
     fetchItems();
   }, []);
 
- 
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -33,7 +33,7 @@ const NewItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
