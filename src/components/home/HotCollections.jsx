@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import AuthorImage from "../../images/author_thumbnail.jpg";
+import nftImage from "../../images/nftImage.jpg";
 
 
 
@@ -31,10 +33,12 @@ const HotCollections = () => {
   
 
   const [collections, setCollections] = useState([])
+  const [loading, setLoading] = useState(true)
 
   async function getCollections() {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -54,18 +58,43 @@ const HotCollections = () => {
           <div className="carousel__container">
             <Carousel responsive={responsive} itemClass="carousel__slider" partialVisible={false} infinite={true}>
               {
+               loading ? (
+                new Array(4).fill(0).map((_, index) => (
+                  <div className="carousel__item" key={index}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap skeleton">
+                        <Link to="/item-details">
+                          <img className="lazy img-fluid skeleton" alt="" />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img className="header__img skeleton" alt="" />
+                        </Link>
+                        <i className="fa fa-check skeleton"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <div className="skeleton skeleton__text--title"></div>
+                        </Link>
+                        <div className="skeleton skeleton__text"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+               ) : (
                 collections.map((collection, index) => {
                   return (
                     <div className="carousel__item">
                       <div className="nft_coll " key={index}>
-                        <div className="nft_wrap">
+                        <div className="nft_wrap ">
                           <Link to="/item-details">
                             <img src={collection.nftImage} className="lazy img-fluid" alt="" />
                           </Link>
                         </div>
                         <div className="nft_coll_pp">
                           <Link to="/author">
-                            <img className="lazy pp-coll" src={collection.authorImage} alt="" />
+                            <img className="lazy pp-coll skeleton" src={collection.authorImage} alt="" />
                           </Link>
                           <i className="fa fa-check"></i>
                         </div>
@@ -78,7 +107,7 @@ const HotCollections = () => {
                       </div>
                     </div>
                   )
-                })
+                }))
               }  
             </Carousel>    
           </div>

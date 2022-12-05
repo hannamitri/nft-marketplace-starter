@@ -13252,8 +13252,8 @@ a.read_more i {
 }
 
 .nft_coll_pp img {
-  width: 60px;
-  height: auto;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
@@ -15428,9 +15428,51 @@ img {
   height: 75px;
   border-right: 2px solid gold;
   border-top: 2px solid gold;
-  animation: anim4 900ms linear infinite;
+  animation: anim4 900ms linear infinite alternate;
 }
 
+/* ================================================== */
+
+/* SKELETON LOADING STATE */
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+  opacity: .7;
+}
+
+.skeleton__text--title {
+  width: 20%;
+  margin: 0 auto;
+  height: .5rem;
+  border-radius: 1.25rem;
+  padding: 10px;
+  margin-bottom: 12px;
+  animation: skeleton-loading 1s infinite linear alternate;
+}
+
+.skeleton__text {
+  width: 40%;
+  margin-top: 12px;
+  margin: 0 auto;
+  height: .5rem;
+  border-radius: 1.25rem;
+  padding: 10px;
+}
+
+.header__img {
+  width: 50px;
+  height: 50px;
+}
+
+.nft_coll_pp--skeleton {
+  width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border: solid 5px #ffffff;
+    background: #ffffff;
+}
 
 /* ================================================== */
 
@@ -15460,6 +15502,16 @@ img {
 @keyframes anim4 {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color:  hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color:  hsl(200, 20%, 95%);
   }
 }
 
