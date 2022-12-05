@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 
 
 const HotCollections = () => {
 
-  const [collections, setCollections] = useState([])
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 10000,
-    centerPadding: "20px",
-    className: "carousel__slider",
-    rows: 1,
-    SlidesPerRow
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
   };
+
+  
+
+  const [collections, setCollections] = useState([])
 
   async function getCollections() {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
@@ -46,11 +52,11 @@ const HotCollections = () => {
             </div>
           </div>
           <div className="carousel__container">
-            <Slider {...settings}>
+            <Carousel responsive={responsive} itemClass="carousel__slider" partialVisible={false} infinite={true}>
               {
                 collections.map((collection, index) => {
                   return (
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div className="carousel__item">
                       <div className="nft_coll " key={index}>
                         <div className="nft_wrap">
                           <Link to="/item-details">
@@ -74,7 +80,7 @@ const HotCollections = () => {
                   )
                 })
               }  
-            </Slider>    
+            </Carousel>    
           </div>
         </div>
       </div>
