@@ -14,28 +14,43 @@ const ExploreItems = () => {
     );
 
     setExplores(data);
+    console.log(data);
   }
 
   useEffect(() => {
     setTimeout(() => {
       fetchExplores();
-    }, 200);
+    }, 100);
   }, []);
   const showMore = () => {
     setLoadMore((preValue) => preValue + 4);
   };
 
-  //https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low
+  async function filterExplore(filterValue) {
+    const { data } = await axios.get(
+      ` https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`
+    );
+    setExplores(data);
+  }
+  useEffect(() => {
+    filterExplore();
+  });
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select
+          id="filter-items"
+          defaultValue=""
+          onChange={(e) => filterExplore(e.target.value)}
+        >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
+
       {explores.slice(0, loadMore).map((explore) => (
         <div
           key={explore.id}
@@ -45,7 +60,7 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${explore.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
@@ -76,7 +91,7 @@ const ExploreItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
+              <Link to={`/item-details/${explore.nftId}`}>
                 <img
                   src={explore.nftImage}
                   className="lazy nft__item_preview"
@@ -85,7 +100,7 @@ const ExploreItems = () => {
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to={`/item-details/${explore.nftId}`}>
                 <h4>{explore.title}</h4>
               </Link>
               <div className="nft__item_price">{explore.price}</div>

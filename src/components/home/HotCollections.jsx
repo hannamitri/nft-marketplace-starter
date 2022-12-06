@@ -31,7 +31,7 @@ export default function HotCollections() {
             <div key={item.id} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="nft_coll">
                 <div className="nft_wrap">
-                  <Link to="/item-details">
+                  <Link to={"/item-details/"+item.nftId}>
                     <img
                       src={item.nftImage}
                       className="lazy img-fluid"
