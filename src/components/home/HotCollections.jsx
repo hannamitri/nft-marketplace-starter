@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-
 export default function HotCollections() {
   const [users, setUsers] = useState([]);
 
@@ -27,42 +26,38 @@ export default function HotCollections() {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-       
-            {users?.map((item) => (
-              <div
-                key={item.id}
-                className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              >
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img
-                        src={item.nftImage}
-                        className="lazy img-fluid"
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-coll"
-                        src={item.authorImage}
-                        alt=""
-                      />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>Pinky Ocean</h4>
-                    </Link>
-                    <span>ERC-192</span>
-                  </div>
+
+          {users?.map((item) => (
+            <div key={item.id} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <div className="nft_coll">
+                <div className="nft_wrap">
+                  <Link to="/item-details">
+                    <img
+                      src={item.nftImage}
+                      className="lazy img-fluid"
+                      alt=""
+                    />
+                  </Link>
+                </div>
+                <div className="nft_coll_pp">
+                  <Link to="/author">
+                    <img
+                      className="lazy pp-coll"
+                      src={item.authorImage}
+                      alt=""
+                    />
+                  </Link>
+                  <i className="fa fa-check"></i>
+                </div>
+                <div className="nft_coll_info">
+                  <Link to="/explore">
+                    <h4>Pinky Ocean</h4>
+                  </Link>
+                  <span>ERC-192</span>
                 </div>
               </div>
-            ))}
-   
+            </div>
+          ))}
         </div>
       </div>
     </section>

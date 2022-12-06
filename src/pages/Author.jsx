@@ -8,15 +8,15 @@ import axios from "axios";
 const Author = () => {
   const { id } = useParams();
   const [detail, setDetail] = useState({});
+  const [follow, setFollow] = useState(false);
 
   async function fetchSellers() {
     const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author${id}`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
-  
+
     setDetail(data);
   }
-  console.log(detail)
 
   useEffect(() => {
     fetchSellers();
@@ -47,12 +47,11 @@ const Author = () => {
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          {detail.authorName}
                           <span className="profile_username">
                             @{detail.authorName}
                           </span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {detail.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -63,10 +62,26 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <div className="profile_follower">
+                        {detail.followers + (follow ? "" : 1)}
+                      </div>
+                      {!follow ? (
+                        <Link
+                          to="#"
+                          className="btn-main"
+                          onClick={() => setFollow(true)}
+                        >
+                          Follow
+                        </Link>
+                      ) : (
+                        <Link
+                          to="#"
+                          className="btn-main"
+                          onClick={() => setFollow(false)}
+                        >
+                          unfollow
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -75,6 +90,7 @@ const Author = () => {
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
                   <AuthorItems />
+                  <AuthorItems detail={detail} />
                 </div>
               </div>
             </div>

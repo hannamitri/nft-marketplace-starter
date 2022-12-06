@@ -19,7 +19,7 @@ const ExploreItems = () => {
   useEffect(() => {
     setTimeout(() => {
       fetchExplores();
-    }, 600);
+    }, 200);
   }, []);
   const showMore = () => {
     setLoadMore((preValue) => preValue + 4);
