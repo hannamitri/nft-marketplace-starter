@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
+import axios from "axios";
+import Timer from "../Timer";
 
 const ExploreItems = () => {
+  const [explores, setExplores] = useState([]);
+  const [loadMore, setLoadMore] = useState(8);
+
+  async function fetchExplores() {
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+    );
+
+    setExplores(data);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetchExplores();
+    }, 200);
+  }, []);
+  const showMore = () => {
+    setLoadMore((preValue) => preValue + 4);
+  };
+
+  //https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low
   return (
     <>
       <div>
@@ -14,9 +36,9 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {explores.slice(0, loadMore).map((explore) => (
         <div
-          key={index}
+          key={explore.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
@@ -27,11 +49,14 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={explore.authorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+            <div className="de_countdown">
+              {" "}
+              <Timer expirationDate={explore.expiryDate} />
+            </div>
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -52,24 +77,28 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img
+                  src={explore.nftImage}
+                  className="lazy nft__item_preview"
+                  alt=""
+                />
               </Link>
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{explore.title}</h4>
               </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+              <div className="nft__item_price">{explore.price}</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>{explore.likes}</span>
               </div>
             </div>
           </div>
         </div>
       ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        <Link to="" id="loadmore" className="btn-main lead" onClick={showMore}>
           Load more
         </Link>
       </div>
