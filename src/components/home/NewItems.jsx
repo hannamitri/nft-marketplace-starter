@@ -11,7 +11,7 @@ const NewItems = () => {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
-    console.log(data[0]);
+
     setItems(data);
   }
   useEffect(() => {
@@ -65,7 +65,7 @@ const NewItems = () => {
                     </div>
                   </div>
 
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
                       src={item.nftImage}
                       className="lazy nft__item_preview"
