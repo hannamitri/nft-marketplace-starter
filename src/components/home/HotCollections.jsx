@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
-import "../../css/styles/skeleton.css";
+import Skeleton from "../UI/Skeleton";
 const HotCollections = () => {
   const [hotCollectionsData, setHotCollectionsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,11 +56,22 @@ const HotCollections = () => {
             new Array(4).fill(0).map((_, index) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft_coll">
-                  <div className="nft_wrap skeleton"></div>
-                  <div className="nft_coll_pp skeleton skeleton-img"></div>
-                  <div className="nft_coll_info nft_coll_info--loading">
-                    <div className="skeleton skeleton-text"></div>
-                    <div className="skeleton skeleton-text"></div>
+                  <div className="nft_wrap">
+                    <Skeleton width={500} height={150} borderRadius={1} />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <div className="lazy pp-coll">
+                      <Skeleton width={55} height={55} borderRadius={50} />
+                    </div>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <h4>
+                      <Skeleton width={125} height={20} borderRadius={1} />
+                    </h4>
+                    <span>
+                      <Skeleton width={90} height={18} borderRadius={1} />
+                    </span>
                   </div>
                 </div>
               </div>
