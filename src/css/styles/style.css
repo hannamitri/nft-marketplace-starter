@@ -15438,6 +15438,7 @@ img {
 .skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
   opacity: .7;
+  border-radius: 30px;
 }
 
 .skeleton__text--title {
@@ -15459,19 +15460,25 @@ img {
   padding: 10px;
 }
 
+.newitems__skeleton {
+  width: 30%;
+  border-radius: 12px;
+}
+
 .header__img {
   width: 50px;
   height: 50px;
+  border-radius: 30px;
 }
 
 .nft_coll_pp--skeleton {
   width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    -moz-border-radius: 100%;
-    -webkit-border-radius: 100%;
-    border: solid 5px #ffffff;
-    background: #ffffff;
+  height: 50px;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: solid 5px #ffffff;
+  background: #ffffff;
 }
 
 /* ================================================== */
