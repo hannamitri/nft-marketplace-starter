@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 
 
 
@@ -30,7 +28,6 @@ const HotCollections = () => {
     }
   };
 
-  
 
   const [collections, setCollections] = useState([])
   const [loading, setLoading] = useState(true)
@@ -43,7 +40,7 @@ const HotCollections = () => {
 
   useEffect(() => {
     getCollections()
-  },)
+  }, [])
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -56,7 +53,7 @@ const HotCollections = () => {
             </div>
           </div>
           <div className="carousel__container">
-            <Carousel responsive={responsive} itemClass="carousel__slider" partialVisible={false} infinite={true}>
+            <Carousel responsive={responsive} itemClass="carousel__slider"  infinite={true}>
               {
                loading ? (
                 new Array(4).fill(0).map((_, index) => (

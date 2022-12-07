@@ -15479,23 +15479,8 @@ img {
 /* MANUALLY ADDED CSS BY NORIN */
 
 .carousel__item {
-  width: 100%;
-  margin: 0 auto 15px auto;
   padding-right: 4px;
 }
-
-.carousel__container {
-  position: relative;
-}
-
-.carousel__slider {
-  position: unset;
-}
-
-.react-multiple-carousel__arrow {
-  position:absolute;
-}
-
 
 /* ================================================== */
 
