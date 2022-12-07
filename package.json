@@ -19,6 +19,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "slick-carousel": "^1.8.1",
+    "swiper": "^8.4.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
