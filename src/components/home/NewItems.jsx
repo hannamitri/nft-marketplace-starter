@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
-import nftImage from "../../images/nftImage.jpg";
 import Timer from "../UI/Timer";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
+import Skeleton from "../UI/Skeleton";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../css/styles/arrows.css'
@@ -22,7 +21,6 @@ const NewItems = () => {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
     setItems(data);
     setLoading(false);
-    console.log(data);
   }
 
   return (
@@ -67,8 +65,10 @@ const NewItems = () => {
                           data-bs-placement="top"
                           title="Creator: Monica Lucas"
                         >
-                          <img className="lazy" src={AuthorImage} alt="" />
-                          <i className="fa fa-check"></i>
+                          <Skeleton
+                            width={250}
+                            height={250}
+                          />
                         </Link>
                       </div>
                       <div className="de_countdown">5h 30m 32s</div>
@@ -92,11 +92,7 @@ const NewItems = () => {
                         </div>
 
                         <Link to="/item-details">
-                          <img
-                            src={nftImage}
-                            className="lazy nft__item_preview"
-                            alt=""
-                          />
+                          <Skeleton />
                         </Link>
                       </div>
                       <div className="nft__item_info">
