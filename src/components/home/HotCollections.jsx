@@ -16,7 +16,6 @@ const HotCollections = () => {
     setLoading(false);
   }
 
-  console.log(hotCollectionsData);
   useEffect(() => {
     getData();
   }, []);
@@ -53,29 +52,31 @@ const HotCollections = () => {
             </div>
           </div>
           {loading ? (
-            new Array(4).fill(0).map((_, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Skeleton width={500} height={150} borderRadius={1} />
-                  </div>
-                  <div className="nft_coll_pp">
-                    <div className="lazy pp-coll">
-                      <Skeleton width={55} height={55} borderRadius={50} />
+            <>
+              <OwlCarousel {...options}>
+                {new Array(6).fill(0).map((_, index) => (
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Skeleton width={500} height={150} borderRadius={1} />
                     </div>
-                    <i className="fa fa-check"></i>
+                    <div className="nft_coll_pp">
+                      <div className="lazy pp-coll">
+                        <Skeleton width={55} height={55} borderRadius={50} />
+                      </div>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <h4>
+                        <Skeleton width={125} height={20} borderRadius={1} />
+                      </h4>
+                      <span>
+                        <Skeleton width={90} height={18} borderRadius={1} />
+                      </span>
+                    </div>
                   </div>
-                  <div className="nft_coll_info">
-                    <h4>
-                      <Skeleton width={125} height={20} borderRadius={1} />
-                    </h4>
-                    <span>
-                      <Skeleton width={90} height={18} borderRadius={1} />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))
+                ))}
+              </OwlCarousel>
+            </>
           ) : (
             <OwlCarousel {...options}>
               {hotCollectionsData.map((item) => (
@@ -111,11 +112,6 @@ const HotCollections = () => {
               ))}
             </OwlCarousel>
           )}
-
-          <div
-            className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-            // key={item.id}
-          ></div>
         </div>
       </div>
     </section>
