@@ -4,8 +4,11 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import nftImage from "../../images/nftImage.jpg";
 import Timer from "../UI/Timer";
-import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import '../../css/styles/arrows.css'
 
 const NewItems = () => {
 
@@ -22,12 +25,6 @@ const NewItems = () => {
     console.log(data);
   }
 
-  const loadingArr = new Array(6).fill(null);
-
-  const settings = {
-    slidesPerView: 3
-  }
-
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -38,10 +35,32 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Swiper {...settings}>
+          <Swiper 
+            navigation={true}
+            loop={true}
+            spaceBetween={10}
+            slidesPerView={4}
+            allowTouchMove={false}
+            breakpoints={{
+              450: {
+                slidesPerView: 1
+              },
+              850: {
+                slidesPerView: 2
+              },
+              1300: {
+                slidesPerView: 3
+              },
+              1350: {
+                slidesPerView: 4
+              }
+            }}
+            modules={[Navigation]}
+
+          >
             {loading ?
               new Array(4).fill(0).map((_, index) => (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp">
@@ -56,7 +75,6 @@ const NewItems = () => {
                         </Link>
                       </div>
                       <div className="de_countdown">5h 30m 32s</div>
-
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
                           <div className="nft__item_buttons">
@@ -99,8 +117,8 @@ const NewItems = () => {
                 </SwiperSlide>
               ))
               : items.map((item) => (
-                <SwiperSlide>
-                  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
+                <SwiperSlide key={item.id}>
+                  <div className="col-12" >
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link

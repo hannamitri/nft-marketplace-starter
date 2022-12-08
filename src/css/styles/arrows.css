@@ -1,0 +1,17 @@
+.swiper-button-next, 
+.swiper-button-prev {
+    color: #8364E2;
+    background-color: rgba(255, 255, 255, .777);
+    border: 3px solid #8364E2;
+    border-radius: 100%;
+    height: 65px;
+    width: 65px;
+    box-shadow: 4px 0px 8px rgba(0, 0, 0, .2);
+    transition: all ease 250ms;
+}
+
+.swiper-button-next:active,
+.swiper-button-prev:active {
+    box-shadow: none;
+    transform:translateY(4px);
+}
