@@ -14152,7 +14152,20 @@ a.read_more i {
 }
 
 .de_countdown.bg-color-secondary {
+  border: none; 
+}
+
+.de_countdown--loading{
+  position: absolute;
+  right: 20px;
+  background: #ffffff;
+  padding: 1px 10px;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
   border: none;
+  z-index: 100;
+  color: #0d0c22;
 }
 
 .rtl .de_countdown {
