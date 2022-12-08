@@ -35,23 +35,20 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Swiper 
+          <Swiper
             navigation={true}
             loop={true}
             spaceBetween={10}
-            slidesPerView={4}
+            slidesPerView={1}
             allowTouchMove={false}
             breakpoints={{
-              450: {
-                slidesPerView: 1
-              },
-              850: {
+              400: {
                 slidesPerView: 2
               },
-              1300: {
+              750: {
                 slidesPerView: 3
               },
-              1350: {
+              975: {
                 slidesPerView: 4
               }
             }}
@@ -118,7 +115,7 @@ const NewItems = () => {
               ))
               : items.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="col-12" >
+                  <div className="" >
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
