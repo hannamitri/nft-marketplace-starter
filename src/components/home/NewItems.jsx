@@ -53,9 +53,9 @@ const NewItems = () => {
             </div>
           </div>
           {loading ? (
-            <OwlCarousel {...options}>
-              {new Array(6).fill(0).map((_, index) => (
-                <>
+            <>
+              <OwlCarousel {...options}>
+                {new Array(6).fill(0).map((_, index) => (
                   <div className="nft__item">
                     <div className="author_list_pp">
                       <Skeleton width={55} height={55} borderRadius={50} />
@@ -93,9 +93,9 @@ const NewItems = () => {
                       </div>
                     </div>
                   </div>
-                </>
-              ))}
-            </OwlCarousel>
+                ))}
+              </OwlCarousel>
+            </>
           ) : (
             <OwlCarousel {...options}>
               {newItems.map((item) => (
