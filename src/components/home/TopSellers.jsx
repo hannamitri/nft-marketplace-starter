@@ -12,7 +12,6 @@ const TopSellers = () => {
     setTopSellers(data);
     setLoading(false);
   }
-  console.log(topSellers);
   useEffect(() => {
     getTopSellers();
   }, []);
