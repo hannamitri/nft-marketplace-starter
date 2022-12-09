@@ -15,9 +15,13 @@ export default function Countdown({ expiryDate }) {
     }
   }
   useEffect(() => {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       timeConversion();
-    });
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
+
   return <span>{timeText}</span>;
 }
