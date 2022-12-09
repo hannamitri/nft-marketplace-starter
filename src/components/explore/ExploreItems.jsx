@@ -4,11 +4,15 @@ import axios from "axios";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import CountdownTimer from "../home/CountDownTimer";
+import { slice } from "lodash";
 
 const ExploreItems = () => {
 
   const [sellers, setSellers] = useState([])
+  const [showMoreItems, setShowMoreItems] = useState(false)
+  const [index, setIndex] = useState(8)
   const [loading, setLoading] = useState(true)
+  const intialPosts = slice(sellers, 0, index)
 
   async function getSellers() {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
@@ -28,6 +32,15 @@ const ExploreItems = () => {
         return setSellers(sellers.slice().sort((a, b) => (b.likes) - a.likes))
     }
   }
+
+  function loadMore() {
+    setIndex(index + 4);
+    if (index >= sellers.length - 4) {
+      setShowMoreItems(true);
+    }else{
+      setShowMoreItems(false)
+    }
+  };
 
   useEffect(() => {
     getSellers()
@@ -100,7 +113,7 @@ const ExploreItems = () => {
             </div>
           </div>
         ))) : (
-          sellers.map((seller, index) => {
+          intialPosts.map((seller, index) => {
             return (
               <div
                 key={index}
@@ -162,10 +175,15 @@ const ExploreItems = () => {
           })
         )
       }
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+    <div className="col-md-12 text-center">
+      { !showMoreItems ?
+      (
+        <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
           Load more
         </Link>
+        ) : (
+        null)
+      }
       </div>
     </>
   );
