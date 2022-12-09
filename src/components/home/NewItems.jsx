@@ -5,6 +5,8 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import Skeleton from "../UI/Skeleton";
+import Countdown from "../UI/Countdown";
+
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,7 +58,7 @@ const NewItems = () => {
             <>
               <OwlCarousel {...options}>
                 {new Array(6).fill(0).map((_, index) => (
-                  <div className="nft__item">
+                  <div className="nft__item" key={index}>
                     <div className="author_list_pp">
                       <Skeleton width={55} height={55} borderRadius={50} />
                     </div>
@@ -112,7 +114,9 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+                    <div className="de_countdown">
+                      <Countdown expiryDate={item.expiryDate} />
+                    </div>
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
