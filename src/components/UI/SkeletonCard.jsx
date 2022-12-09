@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 
 const SkeletonCard = ({ itemNo, className }) => {
 
-    let skeletonArray = new Array(itemNo).fill(0)
+  let skeletonArray = new Array(itemNo).fill(0)
 
     return (
        skeletonArray.map((_, index) => (

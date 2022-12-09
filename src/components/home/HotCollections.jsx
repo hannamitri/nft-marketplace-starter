@@ -50,7 +50,7 @@ const HotCollections = () => {
     getCollections()
     setTimeout(() => {
       setLoading(false)
-    })
+    }, 1000)
   }, [])
 
   return (
