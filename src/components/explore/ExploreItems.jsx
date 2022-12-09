@@ -8,6 +8,9 @@ import { slice } from "lodash";
 
 const ExploreItems = () => {
 
+  const baseUrl =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    
   const [sellers, setSellers] = useState([])
   const [showMoreItems, setShowMoreItems] = useState(false)
   const [index, setIndex] = useState(8)
@@ -15,22 +18,16 @@ const ExploreItems = () => {
   const intialPosts = slice(sellers, 0, index)
 
   async function getSellers() {
-    const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+    const { data } = await axios.get(
+      `${baseUrl}`)
     setSellers(data)
     setLoading(false)
   }
 
-  function filterCollection(filter) {
-    switch (filter) {
-      case "price_low_to_high":
-        return setSellers(sellers.slice().sort((a, b) => (a.price) - b.price))
-
-      case "price_high_to_low" :
-        return setSellers(sellers.slice().sort((a, b) => (b.price) - a.price))
-
-      case "likes_high_to_low" :
-        return setSellers(sellers.slice().sort((a, b) => (b.likes) - a.likes))
-    }
+  async function filterCollection(filter) {
+    const { data } = await axios.get(
+      `${baseUrl}?filter=${filter}`)
+    setSellers(data)
   }
 
   function loadMore() {
