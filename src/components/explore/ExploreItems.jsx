@@ -23,10 +23,40 @@ const ExploreItems = () => {
   useEffect(() => {
     getExploreData();
   }, []);
+
+  async function filterPrice(filter) {
+    console.log(filter);
+    if (filter === "") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+      );
+      setExploreData(data);
+    } else if (filter === "price_low_to_high") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_low_to_high"
+      );
+      setExploreData(data);
+    } else if (filter === "price_high_to_low") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low"
+      );
+      setExploreData(data);
+    } else if (filter === "likes_high_to_low") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low"
+      );
+      setExploreData(data);
+    }
+  }
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select
+          id="filter-items"
+          defaultValue=""
+          onChange={(event) => filterPrice(event.target.value)}
+        >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -99,7 +129,6 @@ const ExploreItems = () => {
                 <div className="de_countdown">
                   <Countdown expiryDate={item.expiryDate} />
                 </div>
-
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
