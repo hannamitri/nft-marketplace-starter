@@ -8,6 +8,7 @@ import { slice } from "lodash";
 
 const ExploreItems = () => {
 
+  const intialPosts = slice(sellers, 0, index)
   const baseUrl =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
     
@@ -15,7 +16,6 @@ const ExploreItems = () => {
   const [showMoreItems, setShowMoreItems] = useState(false)
   const [index, setIndex] = useState(8)
   const [loading, setLoading] = useState(true)
-  const intialPosts = slice(sellers, 0, index)
 
   async function getSellers() {
     const { data } = await axios.get(

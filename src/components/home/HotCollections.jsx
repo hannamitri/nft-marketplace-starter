@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import ReactOwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 
 
 const HotCollections = () => {
 
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
+  const options = {
+    margin: 30,
+    responsiveClass: true,
+    nav: true,
+    autoplay: false,
+    navText: ["<", ">"],
+    smartSpeed: 600,
+    loop: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      700: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
     },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
   };
 
 
@@ -35,11 +43,14 @@ const HotCollections = () => {
   async function getCollections() {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data)
-    setLoading(false)
+    setLoading(true)
   }
 
   useEffect(() => {
     getCollections()
+    setTimeout(() => {
+      setLoading(false)
+    })
   }, [])
 
   return (
@@ -53,7 +64,7 @@ const HotCollections = () => {
             </div>
           </div>
           <div className="carousel__container">
-            <Carousel responsive={responsive} itemClass="carousel__slider"  infinite={true}>
+            <ReactOwlCarousel {...options}>
               {
                loading ? (
                 new Array(4).fill(0).map((_, index) => (
@@ -106,7 +117,7 @@ const HotCollections = () => {
                   )
                 }))
               }  
-            </Carousel>    
+            </ReactOwlCarousel>    
           </div>
         </div>
       </div>

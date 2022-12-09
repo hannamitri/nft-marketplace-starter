@@ -15438,7 +15438,6 @@ img {
 .skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
   opacity: .7;
-  border-radius: 30px;
 }
 
 .skeleton__text--title {
@@ -15484,10 +15483,6 @@ img {
 /* ================================================== */
 
 /* MANUALLY ADDED CSS BY NORIN */
-
-.carousel__item {
-  padding-right: 4px;
-}
 
 /* ================================================== */
 
