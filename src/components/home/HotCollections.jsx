@@ -1,142 +1,47 @@
 //  https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
 import axios from "axios";
-import React, { Component } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
+import OwlCarousel from "react-owl-carousel";
 
 const HotCollections = () => {
   const [nfts, setNfts] = useState([]);
   const [loading, setLoading] = useState();
   async function hotData() {
-    setLoading(true);
+    setLoading(false);
     const { data } = await axios.get(
-      " https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setNfts(data);
-    setLoading(false);
+    setLoading(true);
   }
   useEffect(() => {
     hotData();
   }, []);
 
-
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "red" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "green" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-
-    responsive: [
-      //   {
-      //     breakpoint: 1024,
-      //     settings: {
-      //       slidesToShow: 3,
-      //       slidesToScroll: 1,
-      //       infinite: true,
-      //       dots: true,
-      //     },
-      //   },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-        },
+  const options = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1,
       },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-        },
+      600: {
+        items: 2,
       },
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-        },
+      900: {
+        items: 3,
       },
-      {
-        breakpoint: 780,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-        },
+      1200: {
+        items: 4,
       },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      //   {
-      //     breakpoint: 600,
-      //     settings: {
-      //       slidesToShow: 2,
-      //       slidesToScroll: 1,
-      //       initialSlide: 2,
-      //     },
-      //   },
-      //   {
-      //     breakpoint: 575,
-      //     settings: {
-      //       slidesToShow: 2,
-      //       slidesToScroll: 1,
-      //       initialSlide: 2,
-      //     },
-      //   },
-      //   {
-      //     breakpoint: 480,
-      //     settings: {
-      //       slidesToShow: 1,
-      //       slidesToScroll: 1,
-      //     },
-      //   },
-    ],
+    },
   };
+
+
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -148,60 +53,90 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>{" "}
-          <Slider {...settings}>
-            {loading
-              ? new Array(4).fill(0).map((_, index) => (
-                  <div
-                    key={index}
-                    className="skeleton-box "
-                    style={{
-                      width: "200px",
-                      height: "200px",
-                      borderRadius: "20px",
-                    }}
-                  ></div>
-                ))
-              : nfts.map((nft) => {
-                  return (
-                    <div
-                      className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                      key={nft.id}
-                    >
-                      <div className="nft_coll" style={{ width: 250 }}>
-                        <div
-                          className="nft_wrap"
-                          style={{ height: 200, marginLeft: 0 }}
-                        >
-                          <Link to="/item-details">
-                            <img
-                              style={{ height: 200 }}
-                              src={nft.nftImage}
-                              className="lazy img-fluid"
-                              alt=""
-                            />
-                          </Link>
-                        </div>
-                        <div className="nft_coll_pp">
-                          <Link to="/author">
-                            <img
-                              className="lazy pp-coll"
-                              src={nft.authorImage}
-                              alt=""
-                            />
-                          </Link>
-                          <i className="fa fa-check"></i>
-                        </div>
-                        <div className="nft_coll_info">
-                          <Link to="/explore">
-                            <h4>{nft.title}</h4>
-                          </Link>
-                          <span>ERC-{nft.code}</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-          </Slider>
+          {loading ? (
+            <OwlCarousel className="owl-theme" {...options}>
+              {nfts.map((nft, index) => (
+                <div className="nft_coll" key={index}>
+                  <div className="nft_wrap">
+                    <Link to={`/item-details/${nft.nftId}`}>
+                      <img
+                        src={nft.nftImage}
+                        className="lazy img-fluid"
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to={`/author/${nft.authorId}`}>
+                      <img
+                        className="lazy pp-coll"
+                        src={nft.authorImage}
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{nft.title}</h4>
+                    </Link>
+                    <span>ERC-{nft.code}</span>
+                  </div>
+                </div>
+              ))}
+            </OwlCarousel>
+          ) : (
+            <>
+              <OwlCarousel className="owl-theme" {...options}>
+                {new Array(4).fill(0).map((_, index) => (
+                
+                 <div
+                   className="nft_coll "
+                   key={index}
+                 >
+                   <div className="nft_wrap">
+                     <div
+                       className="lazy img-fluid skeleton-box"
+                       style={{ width: "100%", height: 200 }}
+                     />
+                   </div>
+                   <div className="nft_coll_pp">
+                     <div
+                       className="lazy pp-coll skeleton-box"
+                       style={{
+                         width: 50,
+                         height: 50,
+                         borderRadius: 999,
+                         borderWidth: 5,
+                         borderStyle: "solid",
+                         borderColor: "white",
+                       }}
+                     ></div>
+                   </div>
+                   <div
+                     className="nft_coll_info"
+                     style={{
+                       display: "flex",
+                       justifyContent: "center",
+                       alignItems: "center",
+                       flexDirection: "column",
+                     }}
+                   >
+                     <div
+                       className="skeleton-box"
+                       style={{ width: 150, marginBottom: 12 }}
+                     ></div>
+                     <div
+                       className="skeleton-box"
+                       style={{ width: 40 }}
+                     ></div>
+                   </div>
+                 </div>
+               
+                ))}
+              </OwlCarousel>
+            </>
+          )}
         </div>
       </div>
     </section>

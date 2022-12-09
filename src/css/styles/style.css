@@ -207,8 +207,6 @@ header div#logo {
   transition: all 0.3s;
 }
 
-
-
 header .logo-2 {
   display: none;
 }
@@ -320,8 +318,6 @@ header.smaller.scroll-light #mainmenu li li a:hover {
   line-height: 65px;
   font-size: 30px;
 }
-
-
 
 .logo-smaller div#logo img {
   font-size: 30px;
@@ -13210,7 +13206,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+ 
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
@@ -13223,7 +13219,6 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
- 
 }
 
 .nft_coll_info {
@@ -13246,7 +13241,6 @@ a.read_more i {
 .nft_coll_by {
   font-weight: bold;
 }
-
 
 .nft_coll_pp {
   width: 60px;
@@ -15454,7 +15448,6 @@ img {
     margin-left: 15px;
   }
 
- 
   .pf_full_width.gallery_border .item,
   .pf_full_width.gallery_border.pf_2_cols .item,
   .pf_full_width.gallery_border.pf_3_cols .item {
@@ -16519,15 +16512,13 @@ img {
     design for 480px
     /* -------------------------------------------------- */
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (min-width: 480px) and (max-width: 768px) {
   .container {
     padding-left: 30px;
     padding-right: 30px;
   }
-  
-  .nft_coll {
-    width: 300px !important;
-  } 
+
+ 
 
   .feature-box-image,
   .pricing-box {
@@ -16602,6 +16593,7 @@ img {
   #form_quick_search {
     margin-bottom: 0px;
   }
+  
 }
 
 @media only screen and (max-width: 360px) {
