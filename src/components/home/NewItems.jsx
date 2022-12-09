@@ -1,14 +1,14 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import AuthorImage from "../../images/author_thumbnail.jpg";
 // import nftImage from "../../images/nftImage.jpg";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { Skeleton } from "@mui/material";
-import NewItemTimer from "../UI/NewItemTimer";
+import NftCard from "../UI/NftCard";
 
 const NewItems = () => {
   const { id } = useParams();
@@ -121,11 +121,7 @@ const NewItems = () => {
               responsive={state.responsive}
             >
               {items.map((item) => (
-                <NewItemTimer item={item} key={item.id}></NewItemTimer>
-                // <div
-                //   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                //    key={index}
-                //>
+                <NftCard item={item} key={item.id}></NftCard>
               ))}
             </OwlCarousel>
           )}
