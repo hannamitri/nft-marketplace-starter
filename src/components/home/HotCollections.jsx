@@ -55,7 +55,7 @@ const HotCollections = () => {
             <>
               <OwlCarousel {...options}>
                 {new Array(7).fill(0).map((_, index) => (
-                  <div className="nft_coll">
+                  <div className="nft_coll" key={index}>
                     <div className="nft_wrap">
                       <Skeleton width={500} height={150} borderRadius={1} />
                     </div>
