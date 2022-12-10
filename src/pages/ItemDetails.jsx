@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
 
@@ -8,7 +8,7 @@ const ItemDetails = () => {
   const [itemDetails, setItemDetails] = useState("");
   const { id } = useParams();
 
-  const getItemsDetails = async () => {
+  const getItemDetails = async () => {
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
     );
@@ -17,7 +17,7 @@ const ItemDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getItemsDetails();
+    getItemDetails();
   }, []);
 
   return (
@@ -49,7 +49,9 @@ const ItemDetails = () => {
                         {itemDetails.likes}
                       </div>
                     </div>
+
                     <p>{itemDetails.description}</p>
+
                     <div className="d-flex flex-row">
                       <div className="mr40">
                         <h6>Owner</h6>
