@@ -21,7 +21,13 @@ const TopSellers = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Top Sellers</h2>
+              <h2
+                data-aos="fade-in"
+                data-aos-easing="ease-in"
+                data-aos-duration="1000"
+              >
+                Top Sellers
+              </h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
@@ -42,7 +48,12 @@ const TopSellers = () => {
                     </li>
                   ))
                 : topSellers.map((seller) => (
-                    <li key={seller.id}>
+                    <li
+                      key={seller.id}
+                      data-aos="fade-in"
+                      data-aos-easing="ease-in"
+                      data-aos-duration="1000"
+                    >
                       <div className="author_list_pp">
                         <Link to={`/author/${seller.authorId}`}>
                           <img
@@ -54,7 +65,9 @@ const TopSellers = () => {
                         </Link>
                       </div>
                       <div className="author_list_info">
-                        <Link to={`/author/${seller.authorId}`}>{seller.authorName}</Link>
+                        <Link to={`/author/${seller.authorId}`}>
+                          {seller.authorName}
+                        </Link>
                         <span>{seller.price} ETH</span>
                       </div>
                     </li>

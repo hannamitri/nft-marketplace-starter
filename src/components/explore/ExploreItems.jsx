@@ -115,6 +115,9 @@ const ExploreItems = () => {
               key={item.id}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
+              data-aos="fade-in"
+              data-aos-easing="ease-in"
+              data-aos-duration="1000"
             >
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -169,7 +172,12 @@ const ExploreItems = () => {
               </div>
             </div>
           ))}
-      <div className="col-md-12 text-center">
+      <div
+        className="col-md-12 text-center"
+        data-aos="fade-in"
+        data-aos-easing="ease-in"
+        data-aos-duration="1000"
+      >
         {index !== 16 && (
           <button id="loadmore" className="btn-main lead" onClick={loadMore}>
             Load More
