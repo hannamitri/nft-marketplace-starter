@@ -51,12 +51,11 @@ const NewItems = () => {
               }
             }}
             modules={[Navigation]}
-
           >
             {loading ?
               new Array(4).fill(0).map((_, index) => (
                 <SwiperSlide key={index}>
-                  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                  <div>
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
@@ -66,8 +65,9 @@ const NewItems = () => {
                           title="Creator: Monica Lucas"
                         >
                           <Skeleton
-                            width={250}
-                            height={250}
+                            width={280}
+                            height={280}
+                            borderRadius={10}
                           />
                         </Link>
                       </div>
@@ -90,19 +90,30 @@ const NewItems = () => {
                             </div>
                           </div>
                         </div>
-
-                        <Link to="/item-details">
-                          <Skeleton />
-                        </Link>
                       </div>
                       <div className="nft__item_info">
                         <Link to="/item-details">
-                          <h4>Pinky Ocean</h4>
+                          <h4>
+                          <Skeleton 
+                            height={16}
+                            width={100}
+                            borderRadius={4}
+                          /> 
+                          </h4>
                         </Link>
-                        <div className="nft__item_price">3.08 ETH</div>
+                        <div className="nft__item_price">
+                          <Skeleton 
+                            height={16}
+                            width={50}
+                            borderRadius={4}
+                          /> 
+                        </div>
                         <div className="nft__item_like">
-                          <i className="fa fa-heart"></i>
-                          <span>69</span>
+                        <Skeleton 
+                            height={16}
+                            width={50}
+                            borderRadius={4}
+                          /> 
                         </div>
                       </div>
                     </div>

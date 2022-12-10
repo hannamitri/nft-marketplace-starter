@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../css/styles/arrows.css'
@@ -17,7 +18,6 @@ const HotCollections = () => {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data);
     setLoading(false);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -41,44 +41,58 @@ const HotCollections = () => {
             slidesPerView={1}
             allowTouchMove={false}
             breakpoints={{
-              600: {
-                slidesPerView: 1
-              },
-              800: {
+              400: {
                 slidesPerView: 2
               },
-              975: {
+              800: {
                 slidesPerView: 3
+              },
+              975: {
+                slidesPerView: 4
               }
             }}
             modules={[Navigation]}
           >
             {loading ? new Array(4).fill(0).map((_, index) => (
               <SwiperSlide key={index}>
-                <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to="/item-details">
-                        <img src={null} className="lazy img-fluid" alt="" />
+                        <Skeleton 
+                          width={1000}
+                          height={1000}
+                          borderRadius={8}
+                        />
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
-                        <img className="lazy pp-coll" src={null} alt="" />
-                      </Link>
-                      <i className="fa fa-check"></i>
+                      <Skeleton 
+                        width={50}
+                        height={50}
+                        borderRadius={100}
+                      />
                     </div>
                     <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>Pinky Ocean</h4>
-                      </Link>
-                      <span>ERC-192</span>
+                      <Skeleton 
+                        width={100}
+                        height={16}
+                        borderRadius={4}
+                      />
+                      <br></br>
+                      <span>
+                        <Skeleton 
+                          width={80}
+                          height={16}
+                          borderRadius={4}
+                        />
+                      </span>
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
             )) : collections.map((colItem) => (
-              <SwiperSlide className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={colItem.id}>
+              <SwiperSlide className="" key={colItem.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
