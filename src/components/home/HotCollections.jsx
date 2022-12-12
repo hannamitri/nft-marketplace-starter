@@ -18,6 +18,7 @@ const HotCollections = () => {
     setLoading(true);
   }
   useEffect(() => {
+    window.scrollTo(0, 0)
     hotData();
   }, []);
 
