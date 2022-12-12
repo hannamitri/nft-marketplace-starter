@@ -8,6 +8,8 @@ const Nav = () => {
     document.body.classList += "menu__open";
   };
 
+  // does this work bitch?
+
   const closeNav = () => {
     document.body.classList.remove("menu__open");
   };
