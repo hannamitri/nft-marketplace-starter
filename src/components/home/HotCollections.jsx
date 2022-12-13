@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
   const [nfts, setNfts] = useState([]);
@@ -16,9 +18,10 @@ const HotCollections = () => {
     );
     setNfts(data);
     setLoading(true);
+    AOS.init();
   }
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     hotData();
   }, []);
 
@@ -49,15 +52,17 @@ const HotCollections = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
+            <div data-aos="fade-in">
             <div className="text-center">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
-            </div>
           </div>{" "}
+            </div>
           {loading ? (
             <OwlCarousel className="owl-theme" {...options}>
               {nfts.map((nft, index) => (
                 <div className="nft_coll" key={index}>
+                    <div data-aos="fade-in">
                   <div className="nft_wrap">
                     <Link to={`/item-details/${nft.nftId}`}>
                       <img
@@ -84,17 +89,14 @@ const HotCollections = () => {
                     <span>ERC-{nft.code}</span>
                   </div>
                 </div>
+                  </div>
               ))}
             </OwlCarousel>
           ) : (
             <>
               <OwlCarousel className="owl-theme" {...options}>
                 {new Array(4).fill(0).map((_, index) => (
-                
-                 <div
-                   className="nft_coll "
-                   key={index}
-                 >
+                    <div className="nft_coll " key={index}>
                    <div className="nft_wrap">
                      <div
                        className="lazy img-fluid skeleton-box"
@@ -133,11 +135,11 @@ const HotCollections = () => {
                      ></div>
                    </div>
                  </div>
-               
                 ))}
               </OwlCarousel>
             </>
           )}
+          </div>
         </div>
       </div>
     </section>

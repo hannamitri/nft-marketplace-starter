@@ -16,6 +16,7 @@ const TopSellers = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     topSellersData();
   }, []);
 
@@ -34,7 +35,7 @@ const TopSellers = () => {
               {!loading ? (
                 <>
                   {nfts.map((nft, index) => (
-                    <li key={index}>
+                    <li key={index}  data-aos="fade-in" data-aos-delay="400">
                       <div className="author_list_pp">
                         <Link to={`/author/${nft.authorId}`}>
                           <img

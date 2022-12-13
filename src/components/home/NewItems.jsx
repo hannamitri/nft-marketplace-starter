@@ -47,13 +47,13 @@ const NewItems = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <div className="small-border bg-color-2"></div> <h2>New Items</h2>
+              <div className="small-border bg-color-2"></div> <h2  data-aos="fade-in">New Items</h2>
             </div>
           </div>
           {loading ? (
             <OwlCarousel className="owl-theme" {...options}>
               {nfts.map((nft, index) => (
-                <div className="nft__item" key={index}>
+                <div className="nft__item"  data-aos="fade-in" key={index}>
                   <div className="author_list_pp">
                     <Link
                       to={`/author/${nft.authorId}`}
