@@ -11,7 +11,7 @@ const Explore = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-
+        
         <section
           id="subheader"
           className="text-light"
