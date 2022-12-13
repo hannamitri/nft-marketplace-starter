@@ -14,7 +14,7 @@ const ExploreItems = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
     );
     setExploreItems(data);
-    setLoading(false);
+    setLoading(false) ;
   }
   async function exploreFilter(value) {
     const { data } = await axios.get(
