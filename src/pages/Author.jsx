@@ -1,10 +1,42 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import SkeletonCard from "../components/UI/SkeletonCard";
 
 const Author = () => {
+
+  const { id } = useParams()
+  const baseUrl = `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+
+  const [author, setAuthor] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [followers, setFollowers] = useState(author.followers)
+  const [followBtnText, setFollowBtnText] = useState("Follow")
+
+  async function getAuthorbyId() {
+    const { data } = await axios.get(`${baseUrl}`)
+    setAuthor(data)
+    setLoading(false)
+  }
+
+  function followAuthor() {
+    if (followers === author.followers + 1){
+      setFollowers(author.followers)
+      setFollowBtnText("Follow")
+    } else {
+      setFollowers(author.followers + 1)
+      setFollowBtnText("Unfollow")
+      }
+  }
+
+  useEffect(() => {
+    getAuthorbyId()
+  })
+
+  const {nftPost} = author
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -21,19 +53,24 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <div className="col-md-12">
+              {loading ? (
+              <SkeletonCard 
+              itemNo={8} 
+              className={"col-lg-3 col-md-6 col-sm-6 col-xs-12"}/>
+              ) : ( 
+                <div className="col-md-12">
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={author.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {author.authorName}
+                          <span className="profile_username">{author.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {author.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -43,19 +80,32 @@ const Author = () => {
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+
+                    { loading ? (
+                      ""
+                    ) : (
+                      <div className="de-flex-col">
+                        <div className="profile_follower">
+                          { followers ? followers : author.followers} followers
+                       </div>
+
+                      <Link to="#" className="btn-main" onClick={followAuthor}>
+                        {followBtnText}
                       </Link>
                     </div>
+                    )}
                   </div>
                 </div>
               </div>
-
+              )
+              }
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems 
+                  author={author}
+                  nftPost={nftPost}
+                  loading={loading}
+                  />
                 </div>
               </div>
             </div>

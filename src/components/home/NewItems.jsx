@@ -40,13 +40,13 @@ const NewItems = () => {
   async function getItems() {
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
     setItems(data)
-    setLoading(true)
+    setLoading(false)
   }
 
   useEffect(() => {
     getItems()
     setTimeout(() => {
-      setLoading(false)
+      setLoading(true)
     }, 1000)
   }, [])
 
