@@ -19,7 +19,7 @@ const Author = () => {
   async function getAuthorbyId() {
     const { data } = await axios.get(`${baseUrl}`)
     setAuthor(data)
-    setLoading(true)
+    setLoading(false)
   }
 
   function followAuthor() {
