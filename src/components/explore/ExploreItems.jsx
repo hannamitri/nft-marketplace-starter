@@ -75,9 +75,10 @@ const ExploreItems = () => {
                 <div className="nft__item">
                   <div className="author_list_pp">
                     <Link
-                      to="/author"
+                      to={`/author/${seller.authorId}`}
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
+                      title="Creator: Monica Lucas"
                     >
                       <img className="lazy" src={seller.authorImage} alt="" />
                       <i className="fa fa-check"></i>

@@ -66,7 +66,7 @@ const HotCollections = () => {
           <div className="carousel__container">
             <ReactOwlCarousel {...options}>
               {
-               loading ? (
+               !loading ? (
                 new Array(4).fill(0).map((_, index) => (
                   <div className="carousel__item" key={index}>
                     <div className="nft_coll">
@@ -101,7 +101,7 @@ const HotCollections = () => {
                           </Link>
                         </div>
                         <div className="nft_coll_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${collection.authorId}`}>
                             <img className="lazy pp-coll skeleton" src={collection.authorImage} alt="" />
                           </Link>
                           <i className="fa fa-check"></i>
