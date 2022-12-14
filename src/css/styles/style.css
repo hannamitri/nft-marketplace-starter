@@ -15502,6 +15502,28 @@ img {
   }
 }
 
+.author_img--loading {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-size: 300% 500%;
+}
+.author_name--loading {
+  width: 150px;
+  height: 18px;
+}
+
+.profile_username--loading {
+  width: 120px;
+  height: 18px;
+  margin-top: 8px;
+}
+
+.profile_wallet--loading {
+  width: 250px;
+  height: 18px;
+  margin-top: 8px;
+}
 /* ================================================== */
 
 /* R E S P O N S I V E */

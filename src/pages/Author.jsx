@@ -3,14 +3,15 @@ import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import SkeletonCard from "../components/UI/SkeletonCard";
+
+import SkeletonAuthorpage from "../components/UI/SkeletonAuthorpage";
 
 const Author = () => {
 
   const { id } = useParams()
   const baseUrl = `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
 
-  const [author, setAuthor] = useState([])
+  const [author, setAuthor] = useState({})
   const [loading, setLoading] = useState(true)
   const [followers, setFollowers] = useState(author.followers)
   const [followBtnText, setFollowBtnText] = useState("Follow")
@@ -18,7 +19,7 @@ const Author = () => {
   async function getAuthorbyId() {
     const { data } = await axios.get(`${baseUrl}`)
     setAuthor(data)
-    setLoading(false)
+    setLoading(true)
   }
 
   function followAuthor() {
@@ -35,7 +36,7 @@ const Author = () => {
     getAuthorbyId()
   })
 
-  const {nftPost} = author
+  const {nftCollection} = author
 
   return (
     <div id="wrapper">
@@ -54,9 +55,7 @@ const Author = () => {
           <div className="container">
             <div className="row">
               {loading ? (
-              <SkeletonCard 
-              itemNo={8} 
-              className={"col-lg-3 col-md-6 col-sm-6 col-xs-12"}/>
+              <SkeletonAuthorpage />
               ) : ( 
                 <div className="col-md-12">
                 <div className="d_profile de-flex">
@@ -88,7 +87,6 @@ const Author = () => {
                         <div className="profile_follower">
                           { followers ? followers : author.followers} followers
                        </div>
-
                       <Link to="#" className="btn-main" onClick={followAuthor}>
                         {followBtnText}
                       </Link>
@@ -103,7 +101,7 @@ const Author = () => {
                 <div className="de_tab tab_simple">
                   <AuthorItems 
                   author={author}
-                  nftPost={nftPost}
+                  nftCollection={nftCollection}
                   loading={loading}
                   />
                 </div>
