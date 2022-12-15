@@ -22,23 +22,18 @@ const HotCollections = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 520,
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
@@ -117,7 +112,7 @@ const HotCollections = () => {
             <Slider {...settings}>
               {collection.map((item) => (
                 <div
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                  className="item--wrapper"
                   key={item.id}
                 >
                   <div className="nft_coll">

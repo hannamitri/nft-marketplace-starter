@@ -6,6 +6,7 @@ import nftImage from "../../images/nftImage.jpg";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import axios from "axios";
+import Slider from "react-slick";
 
 const NewItems = () => {
 
@@ -29,17 +30,15 @@ const NewItems = () => {
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 520,
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
@@ -72,7 +71,8 @@ const NewItems = () => {
             </div>
           </div>
           {loading ? (
-            new Array(4).fill(0).map((_, index) => (
+            <Slider {...settings}>
+            {new Array(4).fill(0).map((_, index) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft__item">
                   <div className="author_list_pp">
@@ -127,13 +127,15 @@ const NewItems = () => {
                   </div>
                 </div>
               </div>
-            ))
+            ))}
+            </Slider>
           ) 
           : 
           (
-            collection.map((item) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
-                <div className="nft__item">
+            <Slider {...settings}>
+            {collection.map((item) => (
+              <div className="item--wrapper" key={item.id}>
+                <div className="nft__item" key={item.id}>
                   <div className="author_list_pp">
                     <Link
                       to="/author"
@@ -185,10 +187,10 @@ const NewItems = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
+               </div>
+            ))}
+            </Slider>
           )}
-          
         </div>
       </div>
     </section>
