@@ -15480,6 +15480,64 @@ img {
   background: #ffffff;
 }
 
+.author_list_pp--loading-details {
+  margin-top: 2px;
+  display: inline-block;
+  width: 50px;
+  height: auto;
+  margin-left: 10px;
+  z-index: 10;
+}
+
+.nft-item-price--loading{
+  margin-top: 2px;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  margin-left: 10px;
+  z-index: 10;
+}
+
+.item_info_description--loading{
+  width: 600px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.item_info_title--loading{
+  width: 600px;
+  height: 46px;
+}
+
+.item_info_views--loading {
+  margin-right: 10px;
+  height: 30px;
+  font-weight: 400;
+  padding: 2px 10px;
+  font-size: 14px;
+  text-align: center;
+  min-width: 80px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  margin-top: 10px;
+}
+
+.skeleton_loding-Image {
+  width: 600px;
+  height: 600px;
+  border-radius: 8px;
+}
+
+.author_list_pp--loading-details {
+  margin-top: 2px;
+  display: inline-block;
+  width: 50px;
+  height: auto;
+  margin-left: 10px;
+  z-index: 10;
+}
+
 /* ================================================== */
 
 /* MANUALLY ADDED CSS BY NORIN */
