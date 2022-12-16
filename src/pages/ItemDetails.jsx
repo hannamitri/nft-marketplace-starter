@@ -84,7 +84,7 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${author.creatorId}`}>
                             <img className="lazy" src={author.creatorImage} alt=""/>
                             <i className="fa fa-check"></i>
                           </Link>
