@@ -4,7 +4,6 @@ import SkeletonCard from "../UI/SkeletonCard"
 
 const AuthorItems = ( {author, nftCollection, loading } ) => {
   return (
-    // TEST
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
