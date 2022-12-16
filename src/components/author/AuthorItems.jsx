@@ -4,7 +4,6 @@ import SkeletonCard from "../UI/SkeletonCard"
 
 const AuthorItems = ( {author, nftCollection, loading } ) => {
   return (
-    // TEST
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
@@ -38,7 +37,7 @@ const AuthorItems = ( {author, nftCollection, loading } ) => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${nft.nftId}`}>
                     <img
                       src={nft.nftImage}
                       className="lazy nft__item_preview"
@@ -47,7 +46,7 @@ const AuthorItems = ( {author, nftCollection, loading } ) => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${nft.nftId}`}>
                     <h4>{nft.title}</h4>
                   </Link>
                   <div className="nft__item_price">{nft.price} ETH</div>

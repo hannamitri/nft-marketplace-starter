@@ -96,7 +96,7 @@ const HotCollections = () => {
                     <div className="carousel__item">
                       <div className="nft_coll " key={index}>
                         <div className="nft_wrap ">
-                          <Link to="/item-details">
+                          <Link to={`/item-details/${collection.nftId}`}>
                             <img src={collection.nftImage} className="lazy img-fluid" alt="" />
                           </Link>
                         </div>
