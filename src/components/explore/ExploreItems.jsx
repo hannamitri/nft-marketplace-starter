@@ -10,35 +10,63 @@ const ExploreItems = () => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [itemCount, setCount] = useState(8);
+  const [, setSortValue] = useState("");
 
   async function getItems() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
     )
     setItems(data);
-    // setAllItems(data);
     setLoading(false);
   }
 
   function loadItemsToPage() {
     setCount(item => item + 4);
+    setSortValue(v => v);
   }
 
   function sortItems(value) {
-    if(value === "price_low_to_high") {} 
-    if(value === "price_high_to_low") {} 
-    if(value === "likes_high_to_low") {} 
+    console.log(items);
+    if (value === "price_low_to_high") {
+      console.log("Low-High");
+      setItems(itemList => {
+        const tempArr = itemList.sort((a, b) => {
+          return a.price - b.price;
+        })
+        console.log(itemList);
+        return tempArr;
+      });
+    } else if (value === "price_high_to_low") {
+      console.log("High-Low");
+      setItems(itemList => {
+        const tempArr = itemList.sort((a, b) => {
+          return b.price - a.price;
+      })
+      return tempArr;
+    });
+    } else if (value === "likes_high_to_low") {
+      console.log("Likes");
+      setItems(itemList => {
+        const tempArr = itemList.sort((a, b) => {
+        return b.likes - a.likes;
+      })
+    });
+    } else {
+      console.log("Default");
+      setItems(itemList => itemList);
+    }
+    setSortValue(value);
   }
 
   useEffect(() => {
     getItems();
-  }, [])
+  }, [setSortValue])
 
   return (
     <>
       <div>
-        <select 
-          id="filter-items" 
+        <select
+          id="filter-items"
           defaultValue=""
           onChange={event => sortItems(event.target.value)}
         >
