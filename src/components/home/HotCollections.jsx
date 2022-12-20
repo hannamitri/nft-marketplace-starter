@@ -18,6 +18,7 @@ const HotCollections = () => {
       setData(response.data);
       setLoading(true);
     });
+    // testing
   }, []);
 
   const media = {
