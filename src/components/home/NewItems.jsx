@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactOwlCarousel from "react-owl-carousel";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Skeleton from "../UI/Skeleton";
+import Count from "./Count";
 
 const NewItems = () => {
   const [data, setData] = useState([]);
@@ -67,7 +66,11 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+                    {obj.expiryDate && (
+                      <div className="de_countdown">
+                        <Count time={obj.expiryDate} />
+                      </div>
+                    )}
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
@@ -101,7 +104,7 @@ const NewItems = () => {
                         <h4>Pinky Ocean</h4>
                       </Link>
                       <div className="nft__item_price">
-                        {obj.price.toFixed(2)}
+                        {obj.price.toFixed(2)} ETH
                       </div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
@@ -121,18 +124,34 @@ const NewItems = () => {
                 nav={true}
               >
                 {new Array(1).fill(0).map((obj, index) => (
-                  <div className="nft_coll" key={index}>
-                    <div className="nft_wrap">
-                      <Skeleton width={277} height={170} />
-                    </div>
-                    <div className="nft_coll_pp">
-                      <Skeleton borderRadius={50} width={60} height={60} />
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft_coll_info">
-                      <Skeleton width={90} height={20} />
-                      <br />
-                      <Skeleton width={55} height={18} />
+                  <div className="" key={index}>
+                    <div className="nft__item">
+                      <div className="author_list_pp">
+                        <Skeleton width={60} height={60} borderRadius={50} />
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="de_countdown">
+                        <Skeleton width={85} height={11} borderRadius={7} />
+                      </div>
+
+                      <div className="nft__item_wrap">
+                        <Skeleton width={480} height={256} borderRadius={8} />
+                      </div>
+                      <div className="nft__item_info">
+                        <h4>
+                          <Skeleton width={145} />
+                        </h4>
+
+                        <div className="nft__item_price">
+                          <Skeleton width={78} />
+                        </div>
+                        <div className="nft__item_like">
+                          <i className="fa fa-heart"></i>
+                          <span>
+                            <Skeleton width={27} />
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
