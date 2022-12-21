@@ -22,38 +22,25 @@ const ExploreItems = () => {
 
   function loadItemsToPage() {
     setCount(item => item + 4);
-    setSortValue(v => v);
   }
 
   function sortItems(value) {
-    console.log(items);
     if (value === "price_low_to_high") {
-      console.log("Low-High");
-      setItems(itemList => {
-        const tempArr = itemList.sort((a, b) => {
-          return a.price - b.price;
-        })
-        console.log(itemList);
-        return tempArr;
-      });
+      setItems(itemList => 
+        itemList.sort((a, b) => a.price - b.price)
+      )
     } else if (value === "price_high_to_low") {
-      console.log("High-Low");
-      setItems(itemList => {
-        const tempArr = itemList.sort((a, b) => {
-          return b.price - a.price;
-      })
-      return tempArr;
-    });
+      setItems(itemList => 
+        itemList.sort((a, b) => b.price - a.price)
+      );
     } else if (value === "likes_high_to_low") {
-      console.log("Likes");
-      setItems(itemList => {
-        const tempArr = itemList.sort((a, b) => {
-        return b.likes - a.likes;
-      })
-    });
+      setItems(itemList =>
+        itemList.sort((a, b) => b.likes - a.likes)
+      );
     } else {
-      console.log("Default");
-      setItems(itemList => itemList);
+      setItems(itemList =>
+        itemList.sort((a, b) => a.id - b.id)
+      );
     }
     setSortValue(value);
   }
