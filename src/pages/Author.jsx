@@ -18,7 +18,6 @@ const Author = () => {
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthor(data);
-    console.log(data);
     setLoaded(true);
   }
   return (
@@ -69,9 +68,11 @@ const Author = () => {
                   </div>
                 </div>
                 {
-                  author.nftCollection.map(elem => (
-                    <NftCardAuthor author={author} nftItem={elem} />
-                  ))
+                  author.nftCollection.map(elem =>
+                  (
+                    <NftCardAuthor key={elem.nftId} author={author} nftItem={elem} />
+                  )
+                  )
                 }
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">

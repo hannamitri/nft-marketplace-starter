@@ -13,6 +13,7 @@ const TopSellers = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
     );
     setSellers(data);
+    console.log(data);
     setLoading(false);
   }
 
@@ -63,7 +64,7 @@ const TopSellers = () => {
                       </Link>
                     </div>
                     <div className="author_list_info">
-                      <Link to="/author">{seller.authorName}</Link>
+                      <Link to={`/author/${seller.authorId}`}>{seller.authorName}</Link>
                       <span>{seller.price} ETH</span>
                     </div>
                   </li>
