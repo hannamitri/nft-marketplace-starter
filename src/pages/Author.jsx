@@ -58,7 +58,7 @@ const Author = () => {
                             <span id="wallet" className="profile_wallet">
                               {author.address}
                             </span>
-                            <button id="btn_copy" title="Copy Text">
+                            <button id="btn_copy" title="Copy Text" disabled style={{cursor : "not-allowed"}}>
                               Copy
                             </button>
                           </h4>
