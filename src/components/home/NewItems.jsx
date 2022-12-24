@@ -1,4 +1,3 @@
-import { KeyboardArrowRightOutlined } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
@@ -7,6 +6,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import axios from "axios";
 import Slider from "react-slick";
+import Timer from "../UI/Timer";
 
 const NewItems = () => {
 
@@ -55,7 +55,6 @@ const NewItems = () => {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
-    console.log(data);
     setCollection(data);
     setLoading(false);
   }
@@ -73,20 +72,9 @@ const NewItems = () => {
           {loading ? (
             <Slider {...settings}>
             {new Array(4).fill(0).map((_, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                <div className="nft__item">
-                  <div className="author_list_pp">
-                    <Link
-                      to="/author"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Creator: Monica Lucas"
-                    >
-                      <img className="lazy" src={AuthorImage} alt="" />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="de_countdown">5h 30m 32s</div>
+              <div className="item--wrapper" key={index}>
+                <div className="nft__item skeleton-box" style={{ width: "90%", height: "300px", margin: "0 auto" }}>
+                  
   
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
@@ -105,24 +93,6 @@ const NewItems = () => {
                           </a>
                         </div>
                       </div>
-                    </div>
-  
-                    <Link to="/item-details">
-                      <img
-                        src={nftImage}
-                        className="lazy nft__item_preview"
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-                  <div className="nft__item_info">
-                    <Link to="/item-details">
-                      <h4>Pinky Ocean</h4>
-                    </Link>
-                    <div className="nft__item_price">3.08 ETH</div>
-                    <div className="nft__item_like">
-                      <i className="fa fa-heart"></i>
-                      <span>69</span>
                     </div>
                   </div>
                 </div>
@@ -147,7 +117,10 @@ const NewItems = () => {
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
-                  <div className="de_countdown">5h 30m 32s</div>
+                  
+                  {item.expiryDate &&
+                   ( <Timer expiryDate={item.expiryDate} />)
+                  }
   
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
