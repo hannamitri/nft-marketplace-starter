@@ -8,6 +8,7 @@ const Author = () => {
   const { id } = useParams();
   const [author, setAuthor] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [followed, setFollowed] = useState(false);
 
   useEffect(() => {
     getAuthor();
@@ -18,8 +19,15 @@ const Author = () => {
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthor(data);
+    console.log(data);
     setLoaded(true);
   }
+
+  function followButtonClicked() {
+    if (followed) { setFollowed(false) }
+    else { setFollowed(true) }
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -59,10 +67,18 @@ const Author = () => {
                     </div>
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
-                        <div className="profile_follower">{author.followers} followers</div>
-                        <Link to="#" className="btn-main">
-                          Follow
-                        </Link>
+                        <div className="profile_follower">{
+                          followed ? author.followers + 1
+                            : author.followers
+                        } followers</div>
+                        <button 
+                        onClick={followButtonClicked} 
+                        className="btn-main"
+                        style={{ backgroundColor: followed && "lightgrey" }}>
+                          {
+                            followed ? "Followed" : "Follow"
+                          }
+                        </button>
                       </div>
                     </div>
                   </div>
