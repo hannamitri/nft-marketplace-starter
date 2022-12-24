@@ -13179,7 +13179,7 @@ a.read_more i {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  margin-bottom: 10px;
+  margin: 0 12px 25px;
 }
 
 .nft_coll.style-2 {
@@ -13219,8 +13219,6 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
-  width: 300px;
-  padding: 25px !important;
 }
 
 .nft_coll_info {
@@ -13632,7 +13630,7 @@ a.read_more i {
   border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  margin-bottom: 25px;
+  margin: 0 12px 25px;
   background: #ffffff;
 }
 
@@ -16725,16 +16723,7 @@ img {
   color: black !important;
   font-size: 40px !important;
 }
-.slick-next:before {
-  /* content: '›' !important; */
-  position: absolute !important;
-  align-items: center !important;
-  justify-content: center;
-  align-self: center !important;
-  align-items: center !important;
 
-  border: 1px solid black !important;
-}
 .MuiSvgIcon-root {
   color: black !important;
   border: 2px solid black !important;
@@ -16742,11 +16731,20 @@ img {
   font-size: 40px !important;
   font-weight: 900 !important;
   z-index: 99 !important;
-  /* top: 50% !important; */
+  top: 50% !important;
   transform: translateY(-50%) !important;
   background-color: white !important;
   transition: all 200ms ease-in-out !important;
 }
 .MuiSvgIcon-root:hover {
   font-size: 45px !important;
+}
+.slick-next {
+  right: 6px !important;
+}
+.slick-prev{
+  left: 6px !important;
+}
+.slick-slider {
+  position: relative !important;
 }
