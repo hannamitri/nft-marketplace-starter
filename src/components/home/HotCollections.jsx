@@ -95,12 +95,12 @@ const HotCollections = () => {
               <SwiperSlide className="" key={colItem.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to={`/item-details/${colItem.nftId}`}>
                       <img src={colItem.nftImage} className="lazy img-fluid" alt="" />
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${colItem.authorId}`}>
                       <img className="lazy pp-coll" src={colItem.authorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>
