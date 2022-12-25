@@ -115,13 +115,13 @@ const NewItems = () => {
                       <Skeleton width={"100%"} height={"225px"} borderRadius={"8px"}/>
                     </div>
                     <div className="nft__item_info">
-                      <Skeleton width={"100px"} height={"20px"}/>
+                      <Skeleton width={"100px"} height={"20px"} borderRadius={"8px"}/>
                       <div className="nft__item_price">
-                        <Skeleton width={"50px"} height={"20px"}/>
+                        <Skeleton width={"50px"} height={"20px"} borderRadius={"8px"}/>
                       </div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                        <span><Skeleton width={"15px"} height={"15px"}/></span>
+                        <span><Skeleton width={"15px"} height={"15px"} borderRadius={"4px"}/></span>
                       </div>
                     </div>
                   </div>
