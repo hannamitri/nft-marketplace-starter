@@ -2,8 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Skeleton from "../UI/Skeleton";
 import Countdown from "../UI/Countdown";
 
@@ -12,7 +10,7 @@ const ExploreItems = () => {
   const [exploreData, setExploreData] = useState([])
   const [numOfResults, setNumOfResults] = useState(8)
 
-  async function fetchData(value = "") {
+  async function fetchData() {
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
     setExploreData(data)
   }
@@ -124,7 +122,6 @@ const ExploreItems = () => {
         </div>
       ))
       }
-
       {
         numOfResults < exploreData.length
         &&
