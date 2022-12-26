@@ -7,14 +7,13 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
 function App() {
-  // testing
   return (
     <Router>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
+        <Route path="/author/:id" element={<Author />} />
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
