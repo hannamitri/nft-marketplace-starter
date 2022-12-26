@@ -69,7 +69,9 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to={`/author/${nft.ownerId}`}></Link>
+                            <Link to={`/author/${nft.ownerId}`}>
+                              {nft.ownerName}
+                            </Link>
                           </div>
                         </div>
                       </div>
