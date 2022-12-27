@@ -2,7 +2,7 @@ import { Skeleton } from "@mui/material";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NftCard from "../UI/NftCard";
 // import AuthorImage from "../../images/author_thumbnail.jpg";
 // import nftImage from "../../images/nftImage.jpg";

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Timer from "./Timer";
 
-const NftCard = ({ item, responsiveclass }) => {
+const NftCard = ({ item, responsiveclass, authorId, authorImage }) => {
   return (
     <div
       key={item.id}
@@ -11,8 +11,17 @@ const NftCard = ({ item, responsiveclass }) => {
     >
       <div className="nft__item">
         <div className="author_list_pp">
-          <Link to="/author" data-bs-toggle="tooltip" data-bs-placement="top">
-            <img className="lazy" src={item.authorImage} alt="" />
+          <Link
+            to={`/author/${item.authorId || authorId}`}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            state={{ authorId: item.authorId || authorId }}
+          >
+            <img
+              className="lazy"
+              src={item.authorImage || authorImage}
+              alt=""
+            />
             <i className="fa fa-check"></i>
           </Link>
         </div>
