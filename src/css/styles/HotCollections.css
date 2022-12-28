@@ -1,0 +1,66 @@
+.navigation-wrapper {
+    position: relative;
+}
+.arrow {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    fill: #000;
+    cursor: pointer;
+}
+
+.arrow--left {
+    left: 5px;
+}
+
+.arrow--right {
+    left: auto;
+    right: 5px;
+}
+
+.arrow--disabled {
+    fill: rgba(255, 255, 255, 0.5);
+}
+
+.nft_card {
+    padding: 10px;
+}
+.slick-next {
+    right: 0px;
+    z-index: 1;
+}
+.slick-prev {
+    left: 4px;
+    z-index: 1;
+}
+.slick-next,
+.slick-prev {
+    background-color: #fff;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+}
+.slick-next:hover,
+.slick-prev:hover {
+    background-color: #fff;
+    box-shadow: 5px 5px 30px 0 rgb(0 0 0 / 30%);
+}
+.slick-prev::before {
+    content: url("../../images/chevron_left.svg");
+}
+.slick-next::before {
+    content: url("../../images/chevron_right.svg");
+}
+.slick-prev::before,
+.slick-next::before {
+    /* background-color: #fff; */
+    color: #000;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 50px; */
+    /* font-size: 30px; */
+    /* padding-top: 12px; */
+}
