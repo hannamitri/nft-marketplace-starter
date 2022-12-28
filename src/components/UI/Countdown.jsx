@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-function Countdown({item}) {
+function Countdown({item}) {    
     const [timeNow, setTimeNow] = useState(Date.now());
 
-    const [secs, setSecs] = useState()
-    const [mins, setMins] = useState()
-    const [hours, setHours] = useState()
+    const [secs, setSecs] = useState(0)
+    const [mins, setMins] = useState(0)
+    const [hours, setHours] = useState(0)
 
     function displayCount() {
         const secsRemaining = Math.floor((item.expiryDate - timeNow) / 1000)
@@ -23,7 +23,10 @@ function Countdown({item}) {
 
     return (
         <div className="de_countdown">
-            {`${hours}h ${mins}m ${secs}s`}
+            {
+                secs > 0 && mins > 0 && hours > 0
+                &&
+                `${hours}h ${mins}m ${secs}s`}
         </div>
     )
 }
