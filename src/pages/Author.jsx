@@ -19,7 +19,6 @@ const Author = () => {
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthor(data);
-    console.log(data);
     setLoaded(true);
   }
 
