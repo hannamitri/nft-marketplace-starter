@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton.jsx";
 
@@ -67,7 +65,7 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${item.ownerId}`}>
                               <img className="lazy" src={item.ownerImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>

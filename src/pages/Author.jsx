@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import NftCardAuthor from "../components/UI/NftCardAuthor";
 import AuthorBanner from "../images/author_banner.jpg";
 import axios from 'axios';
+import Skeleton from "../components/UI/Skeleton";
+import LoadingCard from "../components/UI/LoadingCard";
 
 const Author = () => {
   const { id } = useParams();
@@ -11,6 +13,7 @@ const Author = () => {
   const [followed, setFollowed] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getAuthor();
   }, []);
 
@@ -39,7 +42,7 @@ const Author = () => {
           data-bgimage="url(images/author_banner.jpg) top"
           style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
-        {loaded &&
+        {loaded ?
           <section aria-label="section">
             <div className="container">
               <div className="row">
@@ -57,7 +60,7 @@ const Author = () => {
                             <span id="wallet" className="profile_wallet">
                               {author.address}
                             </span>
-                            <button id="btn_copy" title="Copy Text" disabled style={{cursor : "not-allowed"}}>
+                            <button id="btn_copy" title="Copy Text" disabled style={{ cursor: "not-allowed" }}>
                               Copy
                             </button>
                           </h4>
@@ -70,10 +73,10 @@ const Author = () => {
                           followed ? author.followers + 1
                             : author.followers
                         } followers</div>
-                        <button 
-                        onClick={followButtonClicked} 
-                        className="btn-main"
-                        style={{ backgroundColor: followed && "lightgrey" }}>
+                        <button
+                          onClick={followButtonClicked}
+                          className="btn-main"
+                          style={{ backgroundColor: followed && "lightgrey" }}>
                           {
                             followed ? "Followed" : "Follow"
                           }
@@ -91,6 +94,54 @@ const Author = () => {
                 }
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          :
+          <section aria-label="section">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <Skeleton height={150} width={150} borderRadius={100} />
+
+                        <i className="fa fa-check"></i>
+                        <div className="profile_name">
+                          <h4>
+                            <span className="profile_username">
+                              <Skeleton width={150} height={50} borderRadius={4} />
+                            </span>
+                            <span id="wallet" className="profile_wallet">
+                            </span>
+
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_follower">
+                          <Skeleton width={150} height={60} borderRadius={4}/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="container">
+                    <div className="row">
+                      {
+                        new Array(4).fill(0).map((_, index) => (
+                          <LoadingCard index={index} />
+                        ))
+                      }
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <div className="de_tab tab_simple">
+                    </div>
                   </div>
                 </div>
               </div>
