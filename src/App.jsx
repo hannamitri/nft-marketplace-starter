@@ -6,6 +6,8 @@ import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
+//git pull push test
+
 function App() {
   return (
     <Router>
