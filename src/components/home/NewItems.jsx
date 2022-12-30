@@ -1,9 +1,23 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
+import Timer from "../Timer";
 
 const NewItems = () => {
+  const [items, setItems] = useState([]);
+
+  async function fetchItems() {
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+    );
+
+    setItems(data);
+  }
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,21 +28,23 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+          {items?.map((item) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                   >
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={item.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                <div className="de_countdown">
+                  <Timer expirationDate={item.expiryDate} />
+                </div>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -49,9 +65,9 @@ const NewItems = () => {
                     </div>
                   </div>
 
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
-                      src={nftImage}
+                      src={item.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
