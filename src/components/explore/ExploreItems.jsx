@@ -31,7 +31,7 @@ const ExploreItems = () => {
 
   return (
     <>
-      <div>
+      <div data-aos="fade-in" data-aos-once="true">
         <select id="filter-items" defaultValue="" onChange={(event) => sortItems(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
