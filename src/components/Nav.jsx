@@ -11,7 +11,7 @@ const Nav = () => {
   const closeNav = () => {
     document.body.classList.remove("menu__open");
   };
-
+//gu
   return (
     <header className="transparent header-light scroll-light smaller">
       <div className="container">
