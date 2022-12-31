@@ -1,35 +1,22 @@
-import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
-
-// done
+import axios from "axios";
+import { useState } from "react";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
-  const baseUrl = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
-
+  const baseUrl =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    axios.get(`${baseUrl}`).then((res) => {
-      setPost(res.data);
-    });
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
 
   const options = {
     margin: 30,
     responsiveClass: true,
     nav: true,
-    autoplay: true,
+    autoplay: false,
     navText: ["<", ">"],
     smartSpeed: 600,
     loop: true,
@@ -51,6 +38,16 @@ const HotCollections = () => {
       },
     },
   };
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`${baseUrl}`).then((res) => {
+      setPost(res.data);
+    });
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -118,4 +115,5 @@ const HotCollections = () => {
     </section>
   );
 };
-export default HotCollections
+
+export default HotCollections;
