@@ -31,13 +31,12 @@ const Author = () => {
     setLoading(true);
     if (id) {
       getAuthorbyId();
-
-      
     }
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   }, [id]);
+
 
   const { nftCollection } = post;
   return (
