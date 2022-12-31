@@ -5,7 +5,7 @@ const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos='fade-in' data-aos-duration="1000">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Browse by category</h2>
