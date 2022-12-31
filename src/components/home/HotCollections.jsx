@@ -118,5 +118,4 @@ const HotCollections = () => {
     </section>
   );
 };
-
 export default HotCollections
