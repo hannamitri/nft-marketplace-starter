@@ -31,13 +31,12 @@ const Author = () => {
     setLoading(true);
     if (id) {
       getAuthorbyId();
-
-      
     }
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   }, [id]);
+
 
   const { nftCollection } = post;
   return (
@@ -55,7 +54,7 @@ const Author = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
+            <div className="row" >
               {loading ? (
                 <SkeletonAuthorPage />
               ) : (

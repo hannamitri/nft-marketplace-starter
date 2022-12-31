@@ -2,7 +2,7 @@ import React from "react";
 
 const SkeletonAuthorPage = () => {
   return (
-    <div className="profile_avatar">
+    <div className="profile_avatar" data-aos='fade-down' data-aos-duration="2000">
       <div className="author_img--loading"></div>
 
       <i className="fa fa-check"></i>
