@@ -28,7 +28,7 @@ const HotCollections = () => {
     margin: 30,
     responsiveClass: true,
     nav: true,
-    autoplay: true,
+    autoplay: false,
     navText: ["<", ">"],
     smartSpeed: 600,
     loop: true,
