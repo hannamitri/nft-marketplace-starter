@@ -19,7 +19,7 @@ const HotCollections = ({ getHotCollections }) => {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
@@ -31,7 +31,7 @@ const HotCollections = ({ getHotCollections }) => {
                 },
             },
             {
-                breakpoint: 980,
+                breakpoint: 760,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,
@@ -39,7 +39,7 @@ const HotCollections = ({ getHotCollections }) => {
                 },
             },
             {
-                breakpoint: 760,
+                breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
