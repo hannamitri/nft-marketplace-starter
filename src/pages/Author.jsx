@@ -57,6 +57,7 @@ const Author = () => {
                     <div className="de-flex-col">
                       <div className="profile_avatar">
                         <Skeleton
+                          animation="wave"
                           variant="circular"
                           height={140}
                           width={145}
@@ -64,9 +65,14 @@ const Author = () => {
                         <i className="fa fa-check"></i>
                         <div className="profile_name">
                           <h4>
-                            <Skeleton width={200} height={30} />
+                            <Skeleton
+                              animation="wave"
+                              width={200}
+                              height={30}
+                            />
                             <span className="profile_username">
                               <Skeleton
+                                animation="wave"
                                 variant="text"
                                 width={100}
                                 height={20}
@@ -74,6 +80,7 @@ const Author = () => {
                             </span>
                             <span id="wallet" className="profile_wallet">
                               <Skeleton
+                                animation="wave"
                                 variant="text"
                                 width={200}
                                 height={25}
@@ -86,7 +93,7 @@ const Author = () => {
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
                         <div className="profile_follower">
-                          <Skeleton width={150} height={40} />
+                          <Skeleton animation="wave" width={150} height={40} />
                         </div>
                       </div>
                     </div>
@@ -103,7 +110,11 @@ const Author = () => {
                               className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                               key={index}
                             >
-                              <Skeleton width={260} height={550} />
+                              <Skeleton
+                                animation="wave"
+                                width={260}
+                                height={550}
+                              />
                             </div>
                           ))}
                         </div>
@@ -129,7 +140,7 @@ const Author = () => {
                           <h4>
                             {author.authorName}
                             <span className="profile_username">
-                              {author.tag}
+                              @{author.tag}
                             </span>
                             <span id="wallet" className="profile_wallet">
                               {author.address}

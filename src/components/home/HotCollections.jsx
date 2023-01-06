@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-// import AuthorImage from "../../images/author_thumbnail.jpg";
-// import nftImage from "../../images/nftImage.jpg";
+
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -132,11 +131,13 @@ const HotCollections = () => {
               responsive={state.responsive}
             >
               {items.map((item) => (
-                // <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div className="item" src={item.id}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Link to="/item-details">
+                      <Link
+                        to={`/item-details/${item.nftId}`}
+                        state={{ itemId: item.nftId }}
+                      >
                         <img
                           src={item.nftImage}
                           className="lazy img-fluid"
@@ -166,7 +167,6 @@ const HotCollections = () => {
                     </div>
                   </div>
                 </div>
-                /* </div> */
               ))}
             </OwlCarousel>
           )}

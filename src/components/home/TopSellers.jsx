@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = () => {
   const [items, setItems] = useState([]);
@@ -40,6 +39,7 @@ const TopSellers = () => {
                         <div className="author_list_pp">
                           <div className="lazy pp-author">
                             <Skeleton
+                              animation="wave"
                               variant="circular"
                               width={50}
                               height={50}
@@ -49,10 +49,20 @@ const TopSellers = () => {
                         </div>
                         <div className="author_list_info">
                           <a>
-                            <Skeleton variant="text" width={100} height={30} />
+                            <Skeleton
+                              animation="wave"
+                              variant="text"
+                              width={100}
+                              height={30}
+                            />
                           </a>
                           <span>
-                            <Skeleton variant="text" width={40} height={30} />
+                            <Skeleton
+                              animation="wave"
+                              variant="text"
+                              width={40}
+                              height={30}
+                            />
                           </span>
                         </div>
                       </li>

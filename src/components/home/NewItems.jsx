@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-// import AuthorImage from "../../images/author_thumbnail.jpg";
-// import nftImage from "../../images/nftImage.jpg";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -69,6 +67,7 @@ const NewItems = () => {
                     <div className="author_list_pp">
                       <div className="lazy">
                         <Skeleton
+                          animation="wave"
                           variant="circular"
                           width={50}
                           height={50}
@@ -76,6 +75,7 @@ const NewItems = () => {
                       </div>
                       <i className="fa fa-check">
                         <Skeleton
+                          animation="wave"
                           variant="circular"
                           width="100%"
                           height="100%"
@@ -86,6 +86,7 @@ const NewItems = () => {
                     <div className="nft__item_wrap">
                       <div className="lazy nft__item_preview">
                         <Skeleton
+                          animation="wave"
                           variant="rounded"
                           width={234}
                           height={220}
@@ -95,6 +96,7 @@ const NewItems = () => {
                     <div className="nft__item_info">
                       <h4 className="item_title">
                         <Skeleton
+                          animation="wave"
                           variant="text"
                           width={70}
                           height={20}
@@ -102,6 +104,7 @@ const NewItems = () => {
                       </h4>
                       <div className="nft__item_price">
                         <Skeleton
+                          animation="wave"
                           variant="text"
                           width={60}
                           height={20}
