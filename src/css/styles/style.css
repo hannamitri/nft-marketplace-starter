@@ -13274,6 +13274,47 @@ a.read_more i {
   right: 5px;
 }
 
+.slick-slide > div {
+  margin: 0 5px;
+}
+.slick-list {
+  margin: 0 -5px;
+}
+
+.slider__container{
+  position: relative;
+}
+
+.slider__btn{
+  border-radius: 9999px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 200ms ease;
+  z-index: 2;
+  transform: translate(0, -50%);
+  position: absolute;
+  top: 50%;
+}
+
+
+.slider__btn:hover{
+  filter: drop-shadow(0 0 0.25rem gray);
+}
+
+.slider__btn--left{
+  left: -0%;
+}
+
+.slider__btn--right{
+  right: -0%;
+}
+
+
 .author_list {
   -moz-column-count: 4;
   -moz-column-gap: 20px;
