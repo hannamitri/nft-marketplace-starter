@@ -5,6 +5,7 @@ import NewItem from "../UI/NewItem";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Skeleton from "../UI/Skeleton";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -59,21 +60,29 @@ const NewItems = () => {
             margin={16}
             responsive={state.responsive}
           >
-            {items.map((item) => {
-              return (
-                <NewItem
-                  // key={index}
-                  title={item.title}
-                  image={item.authorImage}
-                  expire={item.expiryDate}
-                  likes={item.likes}
-                  nftImage={item.nftImage}
-                  price={item.price}
-                  authorId={item.authorId}
-                  nftId={item.nftId}
-                />
-              );
-            })}
+            {loading ? (
+              items.map((item) => {
+                return (
+                  <NewItem
+                    // key={index}
+                    title={item.title}
+                    image={item.authorImage}
+                    expire={item.expiryDate}
+                    likes={item.likes}
+                    nftImage={item.nftImage}
+                    price={item.price}
+                    authorId={item.authorId}
+                    nftId={item.nftId}
+                  />
+                );
+              })
+            ) : (
+              <Skeleton
+                width={"244px"}
+                height={"408px"}
+                borderRadius={"16px"}
+              />
+            )}
           </OwlCarousel>
         </div>
       </div>
