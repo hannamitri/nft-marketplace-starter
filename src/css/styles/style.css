@@ -13274,6 +13274,14 @@ a.read_more i {
   right: 5px;
 }
 
+.slick-slide > div {
+  margin: 0 5px;
+}
+.slick-list {
+  margin: 0 -5px;
+}
+
+
 .author_list {
   -moz-column-count: 4;
   -moz-column-gap: 20px;

@@ -4,6 +4,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Skeleton } from "@mui/material";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function HotCollections() {
   const [loading, setLoading] = useState(true);
@@ -14,6 +16,26 @@ function HotCollections() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   async function fetchCollections() {
@@ -86,10 +108,7 @@ function HotCollections() {
           ) : (
             <Slider {...settings}>
               {hotCollections.map((item) => (
-                <div
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                  key={item.id}
-                >
+                <div key={item.id}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to="/item-details">
