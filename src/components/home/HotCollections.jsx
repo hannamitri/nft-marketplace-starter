@@ -2,10 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Skeleton } from "@mui/material";
+import Slider from "react-slick";
 
 function HotCollections() {
   const [loading, setLoading] = useState(true);
   const [hotCollections, setHotCollections] = useState([]);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
 
   async function fetchCollections() {
     setLoading(true);
@@ -30,29 +39,88 @@ function HotCollections() {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {hotCollections.map((item) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={item.nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={item.authorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{item.title}</h4>
-                  </Link>
-                  <span>{`ERC-${item.code}`}</span>
+          {loading ? (
+            new Array(6).fill(0).map((_, index) => (
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Skeleton
+                      variant="rectangular"
+                      animation="wave"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Skeleton
+                      variant="circular"
+                      animation="wave"
+                      width={60}
+                      height={60}
+                    ></Skeleton>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div
+                    className="nft_coll_info"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Skeleton
+                      variant="rectangular"
+                      animation="wave"
+                      width="35%"
+                      style={{ marginBottom: "5px" }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      animation="wave"
+                      width="20%"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <Slider {...settings}>
+              {hotCollections.map((item) => (
+                <div
+                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                  key={item.id}
+                >
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to="/item-details">
+                        <img
+                          src={item.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to="/author">
+                        <img
+                          className="lazy pp-coll"
+                          src={item.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>{item.title}</h4>
+                      </Link>
+                      <span>{`ERC-${item.code}`}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
         </div>
       </div>
     </section>
