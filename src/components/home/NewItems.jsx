@@ -13,6 +13,7 @@ const NewItems = () => {
   const [loading, setLoading] = useState(true);
   const [newItems, setNewItems] = useState([]);
   const [sliderRef, setSliderRef] = useState(null);
+  const [time, setTime] = useState(new Date());
 
   const settings = {
     dots: false,
@@ -53,6 +54,13 @@ const NewItems = () => {
 
   useEffect(() => {
     loadNewItems();
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -110,11 +118,7 @@ const NewItems = () => {
                             </div>
                           </div>
                         </div>
-                        <Skeleton
-                          animation="wave"
-                          width="100%"
-                          height="100%"
-                        />
+                        <Skeleton animation="wave" width="100%" height="100%" />
                       </div>
                       <div className="nft__item_info">
                         <Skeleton
@@ -153,7 +157,13 @@ const NewItems = () => {
                         </Link>
                       </div>
                       {item.expiryDate && (
-                        <div className="de_countdown">5h 30m 32s</div>
+                        <div className="de_countdown">{`${Math.floor(
+                          (item.expiryDate - time) / 1000 / 60 / 24
+                        )}h ${Math.floor(
+                          ((item.expiryDate - time) / 1000 / 60) % 60
+                        )}m ${Math.floor(
+                          ((item.expiryDate - time) / 1000) % 60
+                        )}s`}</div>
                       )}
 
                       <div className="nft__item_wrap">
