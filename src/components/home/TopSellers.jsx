@@ -1,8 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Skeleton } from "@mui/material";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = () => {
+  const [loading, setLoading] = useState(true);
+  const [sellers, setSellers] = useState([]);
+
+  async function loadSellers() {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
+    );
+    setSellers(data);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    loadSellers();
+  }, []);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,24 +34,54 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))}
+              {loading
+                ? sellers.map((seller) => (
+                    <li key={seller.id}>
+                      <div className="author_list_pp">
+                        <Skeleton
+                          variant="circular"
+                          animation="wave"
+                          width={60}
+                          height={60}
+                        />
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="author_list_info">
+                        <Skeleton
+                          variant="rectangular"
+                          animation="wave"
+                          width="60%"
+                          height={20}
+                          style={{ marginBottom: "5px", marginLeft: "5px" }}
+                        />
+                        <Skeleton
+                          variant="rectangular"
+                          animation="wave"
+                          width="20%"
+                          height={20}
+                          style={{ marginLeft: "5px" }}
+                        />
+                      </div>
+                    </li>
+                  ))
+                : sellers.map((seller) => (
+                    <li key={seller.id}>
+                      <div className="author_list_pp">
+                        <Link to="/author">
+                          <img
+                            className="lazy pp-author"
+                            src={seller.authorImage}
+                            alt=""
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
+                      <div className="author_list_info">
+                        <Link to="/author">{seller.authorName}</Link>
+                        <span>{`${seller.price} ETH`}</span>
+                      </div>
+                    </li>
+                  ))}
             </ol>
           </div>
         </div>
