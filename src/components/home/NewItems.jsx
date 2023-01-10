@@ -82,16 +82,8 @@ const NewItems = () => {
               <Slider ref={setSliderRef} {...settings}>
                 {new Array(6).fill(0).map((_, index) => (
                   <div key={index}>
-                    <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Skeleton
-                          variant="rectangular"
-                          animation="wave"
-                          width="100%"
-                          height="100%"
-                        />
-                      </div>
-                      <div className="nft_coll_pp">
+                    <div className="nft__item">
+                      <div className="author_list_pp">
                         <Skeleton
                           variant="circular"
                           animation="wave"
@@ -100,14 +92,31 @@ const NewItems = () => {
                         ></Skeleton>
                         <i className="fa fa-check"></i>
                       </div>
-                      <div
-                        className="nft_coll_info"
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
+                      <div className="nft__item_wrap">
+                        <div className="nft__item_extra">
+                          <div className="nft__item_buttons">
+                            <button>Buy Now</button>
+                            <div className="nft__item_share">
+                              <h4>Share</h4>
+                              <a href="" target="_blank" rel="noreferrer">
+                                <i className="fa fa-facebook fa-lg"></i>
+                              </a>
+                              <a href="" target="_blank" rel="noreferrer">
+                                <i className="fa fa-twitter fa-lg"></i>
+                              </a>
+                              <a href="">
+                                <i className="fa fa-envelope fa-lg"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <Skeleton
+                          animation="wave"
+                          width="100%"
+                          height="100%"
+                        />
+                      </div>
+                      <div className="nft__item_info">
                         <Skeleton
                           variant="rectangular"
                           animation="wave"
@@ -119,6 +128,9 @@ const NewItems = () => {
                           animation="wave"
                           width="20%"
                         />
+                        <div className="nft__item_like">
+                          <i className="fa fa-heart"></i>
+                        </div>
                       </div>
                     </div>
                   </div>
