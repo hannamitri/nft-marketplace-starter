@@ -12,7 +12,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 function HotCollections() {
   const [loading, setLoading] = useState(true);
   const [hotCollections, setHotCollections] = useState([]);
-  const [sliderRef, setSliderRef] = useState(null)
+  const [sliderRef, setSliderRef] = useState(null);
 
   const settings = {
     dots: false,
@@ -66,10 +66,16 @@ function HotCollections() {
             </div>
           </div>
           <div className="slider__container">
-            <button className="slider__btn--left slider__btn" onClick={sliderRef?.slickPrev}>
+            <button
+              className="slider__btn--left slider__btn"
+              onClick={sliderRef?.slickPrev}
+            >
               <ChevronLeftIcon />
             </button>
-            <button className="slider__btn--right slider__btn" onClick={sliderRef?.slickNext}>
+            <button
+              className="slider__btn--right slider__btn"
+              onClick={sliderRef?.slickNext}
+            >
               <ChevronRightIcon />
             </button>
             {loading ? (
@@ -133,7 +139,7 @@ function HotCollections() {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/:${item.authorId}`}>
                           <img
                             className="lazy pp-coll"
                             src={item.authorImage}
