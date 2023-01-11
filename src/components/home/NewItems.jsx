@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import NewItem from "../UI/NewItem";
+import ExploreItem from "../UI/ItemInfo";
 
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
@@ -61,23 +61,24 @@ const NewItems = () => {
             {loading ? (
               items.map((item) => {
                 return (
-                  <NewItem
+                  <ExploreItem
                     key={item.id}
                     title={item.title}
-                    image={item.authorImage}
+                    authImg={item.authorImage}
                     expire={item.expiryDate}
                     likes={item.likes}
-                    nftImage={item.nftImage}
+                    nftImg={item.nftImage}
                     price={item.price}
-                    authorId={item.authorId}
+                    authId={item.authorId}
                     nftId={item.nftId}
+                    loading={loading}
                   />
                 );
               })
             ) : (
               <Skeleton
-                width={"244px"}
-                height={"408px"}
+                width={"284px"}
+                height={"422px"}
                 borderRadius={"16px"}
               />
             )}
