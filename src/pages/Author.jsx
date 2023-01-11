@@ -62,17 +62,38 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={authorData.authorImage} alt="" />
+                      {loading ? (
+                        <Skeleton
+                          variant="circular"
+                          animation="wave"
+                          width={150}
+                          height={150}
+                        ></Skeleton>
+                      ) : (
+                        <img src={authorData.authorImage} alt="" />
+                      )}
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          {authorData.authorName}
+                          {loading ? (
+                            <Skeleton animation="wave" width={100}></Skeleton>
+                          ) : (
+                            authorData.authorName
+                          )}
                           <span className="profile_username">
-                            @{authorData.tag}
+                            {loading ? (
+                              <Skeleton animation="wave" width={100}></Skeleton>
+                            ) : (
+                              `@${authorData.tag}`
+                            )}
                           </span>
                           <span id="wallet" className="profile_wallet">
-                            {authorData.address}
+                            {loading ? (
+                              <Skeleton animation="wave" width={150}></Skeleton>
+                            ) : (
+                              authorData.address
+                            )}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -83,7 +104,15 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{`${followerCount} followers`}</div>
+                      {loading ? (
+                        <Skeleton
+                          animation="wave"
+                          width={100}
+                          style={{ marginRight: "10px" }}
+                        ></Skeleton>
+                      ) : (
+                        <div className="profile_follower">{`${followerCount} followers`}</div>
+                      )}
                       <Link
                         to="#"
                         className="btn-main"
@@ -101,6 +130,7 @@ const Author = () => {
                   <AuthorItems
                     AuthorImage={authorData.authorImage}
                     nftCollection={nftList}
+                    loading={loading}
                   />
                 </div>
               </div>
