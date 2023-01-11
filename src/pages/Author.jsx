@@ -11,6 +11,7 @@ const Author = () => {
   const [authorData, setAuthorData] = useState([]);
   const [followerCount, setFollowerCount] = useState(0);
   const [followed, setFollowed] = useState(false);
+  const [nftList, setNftList] = useState([]);
 
   async function loadData() {
     setLoading(true);
@@ -19,6 +20,7 @@ const Author = () => {
     );
     setAuthorData(data);
     setFollowerCount(data.followers);
+    setNftList(data.nftCollection);
     setLoading(false);
   }
 
@@ -96,7 +98,10 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems
+                    AuthorImage={authorData.authorImage}
+                    nftCollection={nftList}
+                  />
                 </div>
               </div>
             </div>
