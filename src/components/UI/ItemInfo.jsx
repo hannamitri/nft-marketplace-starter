@@ -1,47 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Clock from "./Clock";
 import { Link } from "react-router-dom";
 
-export default function NewItem({
-  title,
-  image,
+export default function ExploreItem({
+  authId,
+  authImg,
   expire,
   likes,
-  nftImage,
-  price,
-  authorId,
   nftId,
+  nftImg,
+  price,
+  title,
+  classN,
+  styleA,
 }) {
-  const [timer, setTimer] = useState(false);
-  function countDown() {
-    requestAnimationFrame(countDown);
-    let milliseconds = expire - Date.now();
-
-    let seconds = Math.floor(milliseconds / 1000);
-    let minutes = Math.floor(seconds / 60);
-    let hours = Math.floor(minutes / 24);
-    setTimer(
-      milliseconds > 0 ? `${hours}h ${minutes % 60}m ${seconds % 60}s` : null
-    );
-  }
-
-  useEffect(() => {
-    requestAnimationFrame(countDown);
-  }, []);
   return (
-    <div>
+    <div className={classN && classN} style={styleA && styleA}>
       <div className="nft__item">
         <div className="author_list_pp">
           <Link
-            to={`/author/${authorId}`}
+            to={`/author/${authId}`}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title="Creator: Monica Lucas"
           >
-            <img className="lazy" src={image} alt="" />
+            <img className="lazy" src={authImg} alt="" />
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        {timer && <div className="de_countdown">{timer}</div>}
+
+        {expire > 0 && (
+          <div className="de_countdown">
+            <Clock time={expire} />
+          </div>
+        )}
 
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
@@ -61,16 +52,15 @@ export default function NewItem({
               </div>
             </div>
           </div>
-
           <Link to={`/item-details/${nftId}`}>
-            <img src={nftImage} className="lazy nft__item_preview" alt="" />
+            <img src={nftImg} className="lazy nft__item_preview" alt="" />
           </Link>
         </div>
         <div className="nft__item_info">
-          <Link to="/item-details">
+          <Link to={`/item-details/${nftId}`}>
             <h4>{title}</h4>
           </Link>
-          <div className="nft__item_price">{price}</div>
+          <div className="nft__item_price">{`${price} ETH`}</div>
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
             <span>{likes}</span>
