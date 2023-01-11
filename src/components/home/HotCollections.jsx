@@ -37,7 +37,6 @@ const HotCollections = () => {
   }
 
   useEffect(() => {
-    console.log(collection);
     getHotCollection();
   }, []);
   return (

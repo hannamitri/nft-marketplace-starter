@@ -28,8 +28,6 @@ const NewItems = () => {
     },
   };
 
-  console.log(items);
-
   async function getNew() {
     setLoading(true);
     const { data } = await axios.get(
@@ -64,7 +62,7 @@ const NewItems = () => {
               items.map((item) => {
                 return (
                   <NewItem
-                    // key={index}
+                    key={item.id}
                     title={item.title}
                     image={item.authorImage}
                     expire={item.expiryDate}

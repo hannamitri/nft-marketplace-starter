@@ -1,8 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import Skeleton from "../UI/Skeleton";
+import TopSeller from "../UI/TopSeller";
 
 const TopSellers = () => {
+  const [sellers, setSellers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function getSellers() {
+    setLoading(true);
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+    );
+    setSellers(data);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    getSellers();
+  }, []);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,24 +32,41 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))}
+              {!loading
+                ? sellers.map((item) => (
+                    <TopSeller
+                      key={item.id}
+                      authImage={item.authorImage}
+                      authId={item.authorId}
+                      authName={item.authorName}
+                      price={item.price}
+                    />
+                  ))
+                : new Array(12).fill(0).map((_, index) => (
+                    <li style={{ display: "flex" }} key={index}>
+                      <div className="author_list_pp">
+                        <Skeleton
+                          width={"50px"}
+                          height={"50px"}
+                          borderRadius={"50%"}
+                        />
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="author_list_info">
+                        <Skeleton
+                          width={"125px"}
+                          height={"22px"}
+                          borderRadius={"8px"}
+                        />
+                        <br />
+                        <Skeleton
+                          width={"72px"}
+                          height={"16px"}
+                          borderRadius={"8px"}
+                        />
+                      </div>
+                    </li>
+                  ))}
             </ol>
           </div>
         </div>
