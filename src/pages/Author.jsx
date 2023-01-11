@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Skeleton } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 const Author = () => {
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [authorData, setAuthorData] = useState([]);
   const [followerCount, setFollowerCount] = useState(0);
@@ -16,7 +18,10 @@ const Author = () => {
   async function loadData() {
     setLoading(true);
     const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id.replace(
+        ":",
+        ""
+      )}`
     );
     setAuthorData(data);
     setFollowerCount(data.followers);
@@ -41,6 +46,8 @@ const Author = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  console.log(id);
 
   return (
     <div id="wrapper">
