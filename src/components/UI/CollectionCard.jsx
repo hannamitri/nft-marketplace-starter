@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CollectionCard = ({ img, author, title, code, url }) => {
+const CollectionCard = ({ img, author, title, code, url, authId }) => {
   return (
     <div>
       <div className="nft_coll">
@@ -11,7 +11,7 @@ const CollectionCard = ({ img, author, title, code, url }) => {
           </Link>
         </div>
         <div className="nft_coll_pp">
-          <Link to="/author">
+          <Link to={`/author/${authId}`}>
             <img className="lazy pp-coll" src={author} alt="" />
           </Link>
           <i className="fa fa-check"></i>

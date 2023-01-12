@@ -62,6 +62,7 @@ const HotCollections = () => {
                   <CollectionCard
                     key={index}
                     img={item.nftImage}
+                    authId={item.authorId}
                     author={item.authorImage}
                     title={item.title}
                     code={item.code}
