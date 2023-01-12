@@ -60,12 +60,12 @@ function HotCollections() {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-in" data-aos-duration="1000">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="slider__container">
+          <div className="slider__container" data-aos="fade-up" data-aos-duration="1000">
             <button
               className="slider__btn--left slider__btn"
               onClick={sliderRef?.slickPrev}
