@@ -3,7 +3,12 @@ import React, { useState, useEffect } from "react";
 import Skeleton from "../UI/Skeleton";
 import TopSeller from "../UI/TopSeller";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const TopSellers = () => {
+  Aos.init();
+
   const [sellers, setSellers] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +36,12 @@ const TopSellers = () => {
             </div>
           </div>
           <div className="col-md-12">
-            <ol className="author_list">
+            <ol
+              data-aos="fade-in"
+              data-aos-delay="100"
+              data-aos-duration="1000"
+              className="author_list"
+            >
               {!loading
                 ? sellers.map((item) => (
                     <TopSeller

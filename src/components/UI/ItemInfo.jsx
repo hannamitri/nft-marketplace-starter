@@ -2,6 +2,9 @@ import React from "react";
 import Clock from "./Clock";
 import { Link } from "react-router-dom";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 export default function ExploreItem({
   authId,
   authImg,
@@ -14,8 +17,15 @@ export default function ExploreItem({
   classN,
   styleA,
 }) {
+  Aos.init();
   return (
-    <div className={classN && classN} style={styleA && styleA}>
+    <div
+      data-aos="fade-left"
+      data-aos-delay="250"
+      data-aos-duration="1000"
+      className={classN && classN}
+      style={styleA && styleA}
+    >
       <div className="nft__item">
         <div className="author_list_pp">
           <Link

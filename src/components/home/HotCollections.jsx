@@ -6,8 +6,11 @@ import Skeleton from "../UI/Skeleton";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
+  Aos.init();
   const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState(true);
   const state = {
@@ -55,6 +58,9 @@ const HotCollections = () => {
             loop
             margin={16}
             responsive={state.responsive}
+            data-aos="fade-in"
+            data-aos-delay="100"
+            data-aos-duration="1000"
           >
             {!loading ? (
               collection.map((item, index) => {
