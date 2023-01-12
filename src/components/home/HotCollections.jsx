@@ -130,7 +130,7 @@ function HotCollections() {
                   <div key={item.id}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/:${item.nftId}`}>
                           <img
                             src={item.nftImage}
                             className="lazy img-fluid"
