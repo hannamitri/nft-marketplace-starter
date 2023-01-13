@@ -48,70 +48,71 @@ const HotCollections = () => {
               {...options}
             >
               {items.map((item, index) => (
-                <div
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                  key={index}
-                >
-                  <div className="nft_coll">
-                    <div className="nft_wrap">
-                      <Link to="/item-details">
-                        <img
-                          src={item.nftImage}
-                          className="lazy img-fluid"
-                          alt=""
-                        />
-                      </Link>
-                    </div>
-                    <div className="nft_coll_pp">
-                      <Link to="/author">
-                        <img
-                          className="lazy pp-coll"
-                          src={item.authorImage}
-                          alt=""
-                        />
-                      </Link>
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>{item.title}</h4>
-                      </Link>
-                      <span>ERC-{item.code}</span>
-                    </div>
+                <div className="nft_coll" key={index}>
+                  <div className="nft_wrap">
+                    <Link to="/item-details">
+                      <img
+                        src={item.nftImage}
+                        className="lazy img-fluid"
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <img
+                        className="lazy pp-coll"
+                        src={item.authorImage}
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{item.title}</h4>
+                    </Link>
+                    <span>ERC-{item.code}</span>
                   </div>
                 </div>
               ))}
             </OwlCarousel>
           ) : (
-            <OwlCarousel
-              className="owl-theme owl-custom"
-              loop
-              margin={10}
-              nav
-              {...options}
-            >
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Skeleton height={"100%"} width={"100%"} />
-                </div>
-                <div className="nft_coll_pp">
-                  <Skeleton
-                    height={"60px"}
-                    width={"60px"}
-                    borderRadius={"50%"}
-                  />
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
+            <>
+              <OwlCarousel
+                className="owl-theme owl-custom"
+                loop
+                margin={10}
+                nav
+                {...options}
+              >
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Skeleton height={"100%"} width={"100%"} />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Skeleton
+                      height={"60px"}
+                      width={"60px"}
+                      borderRadius={"50%"}
+                    />
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Skeleton
+                      height={"20px"}
+                      width={"150px"}
+                      borderRadius={"8px"}
+                    />
+                  </div>
                   <Skeleton
                     height={"20px"}
-                    width={"150px"}
+                    width={"80px"}
                     borderRadius={"8px"}
                   />
                 </div>
-                <Skeleton height={"20px"} width={"80px"} borderRadius={"8px"} />
-              </div>
-            </OwlCarousel>
+              </OwlCarousel>
+            </>
           )}
         </div>
       </div>
