@@ -38,9 +38,16 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-theme" loop margin={10} nav {...options}>
-            {items.length ? (
-              items.map((item, index) => (
+
+          {items.length ? (
+            <OwlCarousel
+              className="owl-theme owl-custom"
+              loop
+              margin={10}
+              nav
+              {...options}
+            >
+              {items.map((item, index) => (
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={index}
@@ -73,8 +80,16 @@ const HotCollections = () => {
                     </div>
                   </div>
                 </div>
-              ))
-            ) : (
+              ))}
+            </OwlCarousel>
+          ) : (
+            <OwlCarousel
+              className="owl-theme owl-custom"
+              loop
+              margin={10}
+              nav
+              {...options}
+            >
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Skeleton height={"100%"} width={"100%"} />
@@ -96,8 +111,8 @@ const HotCollections = () => {
                 </div>
                 <Skeleton height={"20px"} width={"80px"} borderRadius={"8px"} />
               </div>
-            )}
-          </OwlCarousel>
+            </OwlCarousel>
+          )}
         </div>
       </div>
     </section>
