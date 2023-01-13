@@ -1,9 +1,14 @@
+import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const HotCollections = () => {
+  async function fetchCollections() {
+    const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
+  }
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -32,7 +37,7 @@ const HotCollections = () => {
                   <Link to="/explore">
                     <h4>Pinky Ocean</h4>
                   </Link>
-                  <span>ERC-192</span>
+                  <span>ERC-1922</span>
                 </div>
               </div>
             </div>
