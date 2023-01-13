@@ -39,7 +39,7 @@ const HotCollections = () => {
             </div>
           </div>
           <OwlCarousel className="owl-theme" loop margin={10} nav {...options}>
-            {items.length > 0 ? (
+            {items.length ? (
               items.map((item, index) => (
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
