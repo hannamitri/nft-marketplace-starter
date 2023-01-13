@@ -27,6 +27,10 @@
 /* body */
 
 /* ================================================== */
+/* 
+.nft_coll {
+  width: 270px !important;
+} */
 
 html {
   overflow-x: hidden;
@@ -13206,7 +13210,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 200%;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
