@@ -7636,6 +7636,10 @@ a.btn-right {
   .single-timeline:nth-child(even) .timeline-text span {
     text-align: left !important;
   }
+
+  .nft_coll {
+
+  }
 }
 
 @media all and (max-width: 360px) {
@@ -13180,6 +13184,7 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .nft_coll.style-2 {
@@ -13222,7 +13227,9 @@ a.read_more i {
 }
 
 .nft_coll_info {
-  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .nft_coll h4 {
@@ -16656,6 +16663,8 @@ img {
   position: relative;
   overflow: hidden;
   background-color: #dddbdd;
+  max-height: 250px;
+  height: 100%;
 }
 
 .skeleton-box::after {
@@ -16714,3 +16723,4 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
