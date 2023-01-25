@@ -1,0 +1,7 @@
+.not-loading {
+  position: absolute;
+  opacity: 0;
+}
+.loading {
+  display: block;
+}
