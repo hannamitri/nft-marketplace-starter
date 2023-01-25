@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
 function App() {
+  // does this work
   return (
     <Router>
       <Nav />
