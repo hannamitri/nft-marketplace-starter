@@ -10,13 +10,12 @@ const HotCollections = () => {
   const [hotCollectionsData, setHotCollectionsData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  function fetchAPI() {
-    axios
-      .get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-      )
-      .then((data) => setHotCollectionsData(data.data))
-      .finally(() => setLoading(false));
+  async function fetchAPI() {
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+    );
+    setHotCollectionsData(data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -35,63 +34,65 @@ const HotCollections = () => {
             </div>
           </div>
 
-          {!loading && <OwlCarousel
-            className="owl-theme"
-            loop
-            nav
-            margin={8}
-            dots={false}
-            responsiveClass
-            responsive={{
-              0: {
-                items: 1,
-              },
+          {!loading && (
+            <OwlCarousel
+              className="owl-theme"
+              loop
+              nav
+              margin={8}
+              dots={false}
+              responsiveClass
+              responsive={{
+                0: {
+                  items: 1,
+                },
 
-              480: {
-                items: 2,
-              },
+                480: {
+                  items: 2,
+                },
 
-              1000: {
-                items: 3,
-              },
+                1000: {
+                  items: 3,
+                },
 
-              1200: {
-                items: 4,
-              },
-            }}
-          >
-            {hotCollectionsData?.map((item) => (
-              <div className="item" key={item.id}>
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img
-                        src={item.nftImage}
-                        className="lazy img-fluid"
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-coll"
-                        src={item.authorImage}
-                        alt=""
-                      />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>{item.title}</h4>
-                    </Link>
-                    <span>ERC-{item.code}</span>
+                1200: {
+                  items: 4,
+                },
+              }}
+            >
+              {hotCollectionsData?.map((item) => (
+                <div className="item" key={item.id}>
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to={`/item-details/${item.nftId}`}>
+                        <img
+                          src={item.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to={`/author/${item.authorId}`}>
+                        <img
+                          className="lazy pp-coll"
+                          src={item.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>{item.title}</h4>
+                      </Link>
+                      <span>ERC-{item.code}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </OwlCarousel>}
+              ))}
+            </OwlCarousel>
+          )}
           {loading && (
             <OwlCarousel
               loop
