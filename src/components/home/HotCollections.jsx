@@ -84,7 +84,7 @@ const HotCollections = () => {
           ) : (
             <>
               <OwlCarousel className="owl-theme" {...options}>
-                {new Array(4).fill(0).map((_, index) => (
+                {new Array(8).fill(0).map((_, index) => (
                   <div
                     className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                     key={index}
@@ -96,20 +96,21 @@ const HotCollections = () => {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
-                          <img
-                            className="lazy pp-coll"
-                            src={AuthorImage}
-                            alt=""
+                        <Link to={``}>
+                          <Skeleton
+                            width="50px"
+                            height="50px"
+                            borderRadius="50%"
                           />
                         </Link>
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>Pinky Ocean</h4>
+                        <Link to="">
+                          <Skeleton width="100px" height="20px" />
                         </Link>
-                        <span>ERC-192</span>
+                        <br />
+                        <Skeleton width="60px" height="20px" />
                       </div>
                     </div>
                   </div>
