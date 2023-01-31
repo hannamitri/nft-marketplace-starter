@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
+//Does this work? Am I seeing this on my new git branch
 const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
