@@ -1,0 +1,35 @@
+
+.arrow_buttons {
+    display: flex;
+    align-items: start;
+    position: relative;
+    justify-content: space-between;
+}
+
+.arrow {
+    color: black !important;
+    top: 220px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(227, 236, 236);
+    transition: all 350ms;
+    
+}
+
+.arrow:hover {
+    cursor: pointer;
+    transform: scale(107%);
+}
+
+.arrow-left {
+    position: relative;
+    top: -185px;
+    right: 25px;
+}
+
+.arrow-right {
+    position: relative;
+    top: -185px;
+    left: 25px;
+}
