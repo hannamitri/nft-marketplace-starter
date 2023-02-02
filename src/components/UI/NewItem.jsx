@@ -1,30 +1,71 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "./Skeleton";
-import useCountDown from "../../hooks/useCountDown";
 
-function NewItem({ newItemsData }) {
+function NewItem({ data }) {
   const [loading, setLoading] = useState(true);
-  const { expired, hours, minutes, seconds } = useCountDown(
-    newItemsData?.expiryDate
-  );
+  const [expired, setExpired] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    if (!data?.expiryDate) {
+      return;
+    }
+    const expiryTime = new Date(data.expiryDate).getTime();
+    const currentTime = new Date().getTime();
+    const distance = expiryTime - currentTime;
+    if (distance < 0) {
+      setExpired(true);
+      return;
+    }
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    setTimeRemaining({ hours, minutes, seconds });
+    setLoading(false);
+    const intervalId = setInterval(() => {
+      const currentTime = new Date().getTime();
+      const distance = expiryTime - currentTime;
+      if (distance < 0) {
+        setExpired(true);
+        clearInterval(intervalId);
+        return;
+      }
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      setTimeRemaining({ hours, minutes, seconds });
+    }, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [data]);
 
   const mountedRef = useRef(true);
 
   useEffect(() => {
     const img = new Image();
-    img.src = newItemsData.authorImage;
+    img.src = data?.authorImage;
     img.onload = () => {
       setTimeout(() => {
-        if (mountedRef) {
+        if (mountedRef.current) {
           setLoading(false);
         }
-      }, 1000);
+      }, 300);
     };
     return () => {
       mountedRef.current = false;
     };
-  }, [newItemsData.authorImage]);
+  }, [data?.authorImage]);
+
   return (
     <>
       {loading ? (
@@ -82,20 +123,19 @@ function NewItem({ newItemsData }) {
               data-bs-toggle="tooltip"
               data-bs-placement="top"
               title="Creator: Monica Lucas">
-              <img className="lazy" src={newItemsData?.authorImage} alt="" />
+              <img className="lazy" src={data?.authorImage} alt="" />
               <i className="fa fa-check"></i>
             </Link>
           </div>
-          {newItemsData?.expiryDate ? (
+          {data?.expiryDate ? (
             <div className="de_countdown">
-              {expired ? (
-                <div>EXPIRED</div>
+              {!expired ? (
+                `${timeRemaining.hours}h ${timeRemaining.minutes}m ${timeRemaining.seconds}s`
               ) : (
-                `${hours}h ${minutes}m ${seconds}s`
+                <div>EXPIRED</div>
               )}
             </div>
           ) : null}
-          {expired ? <div className="de_countdown">EXPIRED</div> : null}
           <div className="nft__item_wrap">
             <div className="nft__item_extra">
               <div className="nft__item_buttons">
@@ -117,7 +157,7 @@ function NewItem({ newItemsData }) {
 
             <Link to="/item-details/">
               <img
-                src={newItemsData?.nftImage}
+                src={data?.nftImage}
                 className="lazy nft__item_preview"
                 alt=""
               />
@@ -125,12 +165,12 @@ function NewItem({ newItemsData }) {
           </div>
           <div className="nft__item_info">
             <Link to="/item-details">
-              <h4>{newItemsData?.title}</h4>
+              <h4>{data?.title}</h4>
             </Link>
-            <div className="nft__item_price">{newItemsData?.price} ETH</div>
+            <div className="nft__item_price">{data?.price} ETH</div>
             <div className="nft__item_like">
               <i className="fa fa-heart"></i>
-              <span>{newItemsData?.likes}</span>
+              <span>{data?.likes}</span>
             </div>
           </div>
         </div>

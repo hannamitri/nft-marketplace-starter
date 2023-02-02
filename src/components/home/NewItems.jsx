@@ -62,7 +62,7 @@ const NewItems = () => {
             }}
             loop>
             {newItemsData?.map((newItemsData, id) => (
-              <NewItem newItemsData={newItemsData} key={id} loading={loading} />
+              <NewItem data={newItemsData} key={id} loading={loading} />
             ))}
           </OwlCarousel>
         </div>
