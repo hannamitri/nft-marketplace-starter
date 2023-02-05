@@ -2,7 +2,11 @@ import React from "react";
 
 const LandingIntro = () => {
   return (
-    <section id="section-intro" className="no-top no-bottom">
+    <section
+    id="section-intro"
+    className="no-top no-bottom"
+    data-aos="fade-up"
+    data-aos-delay="300">
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-sm-30">
