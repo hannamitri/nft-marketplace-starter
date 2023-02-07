@@ -10,3 +10,61 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+.slick-prev:before, .slick-next:before {
+  color:#8364E2 !important;
+  font-weight: bold;
+  right: -199px !important;
+  font-size: 50px !important;
+}
+.slick-next{
+  right: -15px !important;
+
+    width: 60px !important;
+    transition: all 200ms ease-in-out;
+}
+.slick-next:hover{
+  right: -18px !important;
+
+}
+.slick-prev{
+  left: -15px !important;
+
+    width: 60px !important;
+    z-index: 1;
+    transition: all 200ms ease-in-out;
+}
+.slick-prev:hover{
+  left: -18px !important;
+}
+
+.slick-slide > div{
+  margin: 0 5px;
+}
+.slick-list{
+margin: 0 -10px;
+}
+
+
+/*skeleton*/
+.card__wrap{
+  flex: 1;
+  display: flex;
+  flex-direction: row ;
+}
+.card__wrapper{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__circle{
+  position: absolute;
+  top: 185px;
+  
+  z-index: 50;
+}
+.card__title{
+
+  margin-top: 38px;
+}
