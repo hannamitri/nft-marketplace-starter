@@ -7,21 +7,21 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const NewItems = () => {
   const [newItemsData, setnewItemsData] = useState();
-  const [loading, setLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
 
   const getNewItemsData = async () => {
     try {
-      setLoading(true);
+      setDataLoading(true);
       await axios
         .get(
           `https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems`
         )
         .then(({ data }) => {
           setnewItemsData(data);
-          setLoading(false);
+          setDataLoading(false);
         });
     } catch (error) {
-      setLoading(false);
+      setDataLoading(false);
       console.log("Error: ", error);
     }
   };
@@ -40,31 +40,37 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel
-            className="owl-theme"
-            dots={false}
-            items={4}
-            nav={true}
-            margin={10}
-            responsive={{
-              600: {
-                items: 1,
-              },
-              800: {
-                items: 2,
-              },
-              1000: {
-                items: 3,
-              },
-              1200: {
-                items: 4,
-              },
-            }}
-            loop>
-            {newItemsData?.map((newItemsData, id) => (
-              <NewItem data={newItemsData} key={id} loading={loading} />
-            ))}
-          </OwlCarousel>
+          {dataLoading ? null : (
+            <OwlCarousel
+              className="owl-theme"
+              dots={false}
+              items={4}
+              nav={true}
+              margin={10}
+              responsive={{
+                600: {
+                  items: 1,
+                },
+                800: {
+                  items: 2,
+                },
+                1000: {
+                  items: 3,
+                },
+                1200: {
+                  items: 4,
+                },
+              }}
+              loop>
+              {newItemsData?.map((newItemsData, id) => (
+                <NewItem
+                  data={newItemsData}
+                  key={id}
+                  dataloading={dataLoading}
+                />
+              ))}
+            </OwlCarousel>
+          )}
         </div>
       </div>
     </section>

@@ -36,17 +36,19 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-12">
-            <ol className="author_list">
-              {topSellersData?.map((topSellerData, id) => (
-                <TopSeller
-                  topSellersData={topSellerData}
-                  loading={loading}
-                  key={id}
-                />
-              ))}
-            </ol>
-          </div>
+          {loading ? null : (
+            <div className="col-md-12">
+              <ol className="author_list">
+                {topSellersData?.map((topSellerData, id) => (
+                  <TopSeller
+                    topSellersData={topSellerData}
+                    loading={loading}
+                    key={id}
+                  />
+                ))}
+              </ol>
+            </div>
+          )}
         </div>
       </div>
     </section>
