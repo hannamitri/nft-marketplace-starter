@@ -76,7 +76,11 @@ function ExploreItems() {
                 key={id}
                 className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 style={{ display: "block", backgroundSize: "cover" }}>
-                <NewItem data={exploreItemsData} key={id} loading={loading} />
+                <NewItem
+                  data={exploreItemsData}
+                  key={id}
+                  dataLoading={loading}
+                />
               </div>
             ))}
           {visibleItems >= exploreItemsData?.length ? null : (
