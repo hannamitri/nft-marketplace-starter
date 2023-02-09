@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import ExpiryTime from "../home/ExpiryTime";
 
 const ExploreItems = () => {
   return (
@@ -31,7 +32,7 @@ const ExploreItems = () => {
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+            {expiryDate ? <ExpiryTime expiryDate={expiryDate} /> : ""}
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
