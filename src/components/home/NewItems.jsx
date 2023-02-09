@@ -17,9 +17,7 @@ const NewItems = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
     setNewNFT(data);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    setLoading(false);
   }
 
   useEffect(() => {
