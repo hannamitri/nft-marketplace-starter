@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 
 const Skeleton = ({ cards, loading }) => {
   return (
-    <div className="d-flex">
+    <div className="">
       {new Array(6).fill(0).map((index) => (
         <Card sx={{ maxWidth: 345, mr: 3 }} key={index}>
           {loading ? (
