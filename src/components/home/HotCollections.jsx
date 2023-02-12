@@ -35,17 +35,17 @@ const HotCollections = () => {
               loop
               responsive={{
                 0: {
-                  items: 1
+                  items: 1,
                 },
                 768: {
-                  items: 2
+                  items: 2,
                 },
                 1000: {
-                  items: 3
+                  items: 3,
                 },
                 1200: {
-                  items: 4
-                }
+                  items: 4,
+                },
               }}
             >
               {hotCollection.map((collection) => (
@@ -79,48 +79,54 @@ const HotCollections = () => {
               ))}
             </ReactOwlCarousel>
           ) : (
-            <ReactOwlCarousel
-              nav={true}
-              margin={10}
-              loop
-              responsive={{
-                0: {
-                  items: 1
-                },
-                768: {
-                  items: 2
-                },
-                1000: {
-                  items: 3
-                },
-                1200: {
-                  items: 4
-                }
-              }}
-            >
-              {new Array(6).fill(0).map((_, index) => (
-                <div className="nft_coll" key={index}>
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <Skeleton width="100%" height="100%" />
-                    </Link>
+            <>
+              <ReactOwlCarousel
+                nav={true}
+                margin={10}
+                loop
+                responsive={{
+                  0: {
+                    items: 1,
+                  },
+                  768: {
+                    items: 2,
+                  },
+                  1000: {
+                    items: 3,
+                  },
+                  1200: {
+                    items: 4,
+                  },
+                }}
+              >
+                {new Array(6).fill(0).map((_, index) => (
+                  <div className="nft_coll" key={index}>
+                    <div className="nft_wrap">
+                      <Link to="/item-details">
+                        <Skeleton width="100%" height="100%" />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to="/">
+                        <Skeleton
+                          width="50px"
+                          height="50px"
+                          borderRadius="50%"
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/">
+                        <Skeleton width="200px" height="20px" />
+                      </Link>
+                      <br />
+                      <Skeleton width="100px" height="20px" />
+                    </div>
                   </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/">
-                      <Skeleton width="50px" height="50px" borderRadius="50%" />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/">
-                      <Skeleton width="200px" height="20px" />
-                    </Link>
-                    <br />
-                    <Skeleton width="100px" height="20px" />
-                  </div>
-                </div>
-              ))}
-            </ReactOwlCarousel>
+                ))}
+              </ReactOwlCarousel>
+            </>
           )}
         </div>
       </div>
