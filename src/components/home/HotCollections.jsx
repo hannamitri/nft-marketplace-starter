@@ -27,12 +27,9 @@ const HotCollections = () => {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
-    console.log(data);
     setCards(data);
-    setLoading(false);
+    setLoading(true);
   }
-
-  console.log(loading);
 
   useEffect(() => {
     fetchHotCollections();
@@ -50,7 +47,10 @@ const HotCollections = () => {
           </div>
           <Slider {...settings}>
             {cards.map((card, id) => (
-              <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12" key={id}>
+              <div
+                className="col-lg-12 col-md-6 col-sm-6 col-xs-12 mw-100"
+                key={id}
+              >
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
