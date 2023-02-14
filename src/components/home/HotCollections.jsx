@@ -44,14 +44,15 @@ const HotCollections = () => {
             </div>
           </div>
           <div>
-            <OwlCarousel className="owl-theme" {...options}>
+            {collections.length&&( 
+              <OwlCarousel className="owl-theme" {...options}>
               { collections.length > 0?
               collections.map((collection) => (
                 <div
-                  className="collections"
+                className="collections"
                   style={{ display: "flex" }}
                   key={collection.id}
-                >
+                  >
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to="/item-details">
@@ -68,7 +69,7 @@ const HotCollections = () => {
                           className="lazy pp-coll"
                           src={collection.authorImage}
                           alt=""
-                        />
+                          />
                       </Link>
                       <i className="fa fa-check"></i>
                     </div>
@@ -105,6 +106,7 @@ const HotCollections = () => {
               </div>
               }
             </OwlCarousel>
+                )}
           </div>
         </div>
       </div>
