@@ -1,11 +1,43 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import ExpiryTime from "../home/ExpiryTime";
+import Skeleton from '../UI/Skeleton'
 
 const ExploreItems = () => {
+  const [exploreNft, setExploreNft] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function getExploreItems() {
+    setLoading(true)
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
+    );
+    setExploreNft(data);
+    setLoading(false);
+  }
+
+  useState(() => {
+    getExploreItems();
+  }, []);
   return (
     <>
+    {loading ? (
+        <>
+          {new Array(8).fill(0).map((_, index) => (
+            <div
+              data-aos="fade in"
+              data-aos-delay="200"
+              key={index}
+              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              style={{ display: "block", backgroundSize: "cover" }}
+            >
+              <Skeleton width={300} height={400} borderRadius={1} />
+            </div>
+          ))}
+          </>
+    ) : (
       <div>
         <select id="filter-items" defaultValue="">
           <option value="">Default</option>
@@ -14,7 +46,8 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+    )}
+      {exploreNft.slice(0, 8).map((_, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -27,11 +60,12 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={_.authorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+            
+            {_.expiryDate ? <ExpiryTime expiryTime={_.expiryDate} /> : ""}
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -52,14 +86,18 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img
+                  src={_.nftImage}
+                  className="lazy nft__item_preview"
+                  alt=""
+                />
               </Link>
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{_.title}</h4>
               </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+              <div className="nft__item_price">{_.price} ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
                 <span>69</span>
@@ -67,7 +105,8 @@ const ExploreItems = () => {
             </div>
           </div>
         </div>
-      ))}
+      )
+      )}
       <div className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more

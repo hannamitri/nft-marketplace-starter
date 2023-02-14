@@ -30,7 +30,7 @@ const ExpiryTime = ({ expiryTime }) => {
     const hoursLeft = minutesLeft / 60;
 
     setExpired(
-    `${Math.floor(hoursLeft)}h 
+      `${Math.floor(hoursLeft)}h 
       ${Math.floor(minutesLeft % 60)}m 
       ${Math.floor(secondsLeft % 60)}s 
             `
