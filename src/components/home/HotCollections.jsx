@@ -47,6 +47,7 @@ const HotCollections = () => {
             {collections.length&&( 
               <OwlCarousel className="owl-theme" {...options}>
               { collections.length > 0?
+              
               collections.map((collection) => (
                 <div
                 className="collections"

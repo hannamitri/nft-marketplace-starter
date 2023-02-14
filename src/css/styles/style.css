@@ -13670,6 +13670,11 @@ a.read_more i {
 .nft__item:hover img.nft__item_preview {
   transform: scale(1.03);
 }
+.items__wrap{
+  width: 100%;
+  display: inline-block;
+  padding: 0px 5px;
+}
 
 .nft__item_wrap {
   width: 100%;
