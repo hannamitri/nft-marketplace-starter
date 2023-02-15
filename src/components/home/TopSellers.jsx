@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import Skeleton from "../UI/Skeleton";
 
 const TopSellers = () => {
@@ -33,7 +32,7 @@ const TopSellers = () => {
                 sellers.map((seller) => (
                   <li key={seller.id}>
                     <div className="author_list_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${seller.authorId}`}>
                         <img
                           className="lazy pp-author"
                           src={seller.authorImage}
@@ -43,7 +42,7 @@ const TopSellers = () => {
                       </Link>
                     </div>
                     <div className="author_list_info">
-                      <Link to="/author">{seller.authorName}</Link>
+                      <Link to={`/author/${seller.authorId}`}>{seller.authorName}</Link>
                       <span>{seller.price} ETH</span>
                     </div>
                   </li>

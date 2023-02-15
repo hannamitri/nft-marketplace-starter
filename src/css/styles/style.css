@@ -16691,6 +16691,7 @@ img {
   -webkit-animation: shimmer 2s infinite;
   animation: shimmer 2s infinite;
   content: "";
+  
 }
 @-webkit-keyframes shimmer {
   100% {
