@@ -13683,7 +13683,8 @@ a.read_more i {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 350px;
+  overflow: hidden;
+  height:350px;
 }
 
 .nft__item_wrap a {
