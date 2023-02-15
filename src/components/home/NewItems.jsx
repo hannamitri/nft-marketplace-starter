@@ -29,7 +29,7 @@ const NewItems = () => {
       responsive: {
         1200: { items: 4 },
         768: { items: 2 },
-        470: { items: 2 },
+        570: { items: 2 },
         0: { items: 1 },
       },
     };
