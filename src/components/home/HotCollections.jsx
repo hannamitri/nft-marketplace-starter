@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import OwlCarousel from "react-owl-carousel";
+import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
+  const [collections, setCollections] = useState([]);
+
+  async function getCollections() {
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+    );
+    setCollections(data);
+  }
+  useEffect(() => {
+    getCollections();
+  }, []);
+
+  const options = {
+    nav: true,
+    loop: true,
+    items: 4,
+    margin: 10,
+    dots: false,
+    stagePadding: 10,
+    responsiveRefreshRate: 50,
+    responsive: {
+      1200: { items: 4 },
+      768: { items: 3 },
+      570: { items: 2 },
+      0: { items: 1 },
+    },
+  };
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -14,29 +43,70 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+          <div>
+              <OwlCarousel className="owl-theme" key={Date.now()} {...options}>
+              { collections.length > 0?
+              
+              collections.map((collection) => (
+                <div
+                className="collections"
+                  style={{ display: "flex" }}
+                  key={collection.id}
+                  >
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to={`/item-details/${collection.nftId}`}>
+                        <img
+                          src={collection.nftImage}
+                          className="nft_img"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to={`/author/${collection.authorId}`}>
+                        <img
+                          className="lazy pp-coll"
+                          src={collection.authorImage}
+                          alt=""
+                          />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to={`/item-details/${collection.nftId}`}>
+                        <h4>{collection.title}</h4>
+                      </Link>
+                      <span>ERC-{collection.code}</span>
+                    </div>
+                  </div>
+                </div>
+              ))
+              :
               <div className="nft_coll">
                 <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
+                  <Skeleton height={"100%"} width={"100%"} />
                 </div>
                 <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
+                  <Skeleton
+                    height={"60px"}
+                    width={"60px"}
+                    borderRadius={"50%"}
+                    />
                   <i className="fa fa-check"></i>
                 </div>
                 <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
+                  <Skeleton
+                    height={"20px"}
+                    width={"150px"}
+                    borderRadius={"8px"}
+                    />
                 </div>
+                <Skeleton height={"20px"} width={"80px"} borderRadius={"8px"} />
               </div>
-            </div>
-          ))}
+              }
+            </OwlCarousel>
+          </div>
         </div>
       </div>
     </section>
