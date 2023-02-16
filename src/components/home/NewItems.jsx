@@ -41,14 +41,14 @@ const NewItems = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Items</h2>
+              <h2 data-aos="fade-up" data-aos-offset="50" data-aos-once="true">New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
-          </div>
+          </div >
           <OwlCarousel className="owl-theme" key={Date.now()} {...options}>
           {items.length > 0?
           items.map((item) => (
-            <div className="items__wrap" key={item.authorId}>
+            <div className="items__wrap" key={item.authorId} data-aos="fade-up" data-aos-duration="1000" data-aos-offset="50" data-aos-once="true" >
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link

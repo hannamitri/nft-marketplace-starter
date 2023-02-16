@@ -39,11 +39,11 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2 data-aos="fade-in" data-aos-offset="50" data-aos-once="true">Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div>
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-offset="50" data-aos-once="true">
               <OwlCarousel className="owl-theme" key={Date.now()} {...options}>
               { collections.length > 0?
               
