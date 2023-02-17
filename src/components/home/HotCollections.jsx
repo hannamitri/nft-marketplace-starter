@@ -15,7 +15,7 @@ const HotCollections = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
   
@@ -44,7 +44,7 @@ const HotCollections = () => {
 
           <Slider {...settings}>
             {new Array(6).fill(0).map((_, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div style={{ width: "100% !important;" }} className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
