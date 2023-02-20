@@ -1,0 +1,31 @@
+.arrowButton {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  transform: translate(0, -50%);
+  color: #000;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  transition: all 300ms ease;
+  right: 0;
+  top: 50%;
+  background-color: #fff;
+  z-index: 10;
+  cursor: pointer;
+  transform-origin: center;
+}
+
+.arrowButton:hover {
+  color: #000;
+  background-color: #fff;
+  transform: translate(0, -50%) scale(1.2);
+  box-shadow: 5px 5px 30px 0 rgb(0 0 0 / 20%);
+}
+
+.arrowButton__prev {
+  left: 0;
+}
