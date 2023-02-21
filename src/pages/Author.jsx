@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useCallback } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
@@ -6,23 +5,6 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const Author = () => {
-  const [author, setAuthor] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [follow, setFollow] = useState(false);
-  const { authorId } = useParams();
-
-  const getAuthor = useCallback(async () => {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
-    );
-    setAuthor(data);
-    setLoading(false);
-  }, [authorId]);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    getAuthor();
-  }, [getAuthor]);
 
   return (
     <div id="wrapper">
@@ -40,12 +22,11 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              
               <div className="col-md-12">
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={author.authorImage} alt="" />
+                      <img src={AuthorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
