@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
 import ExpiryTime from "./ExpiryTime";
 
@@ -66,10 +66,7 @@ const NewItems = () => {
           {!loading ? (
             <OwlCarousel className="slider-items owl-carousel" {...settings}>
               {new Array(4).fill(0).map((_, index) => (
-                <div
-                  className=""
-                  key={index}
-                >
+                <div className="" key={index}>
                   <div className="nft__item">
                     <div className="nft__item_wrap">
                       <Skeleton width={330} height={330} borderRadius={5} />
