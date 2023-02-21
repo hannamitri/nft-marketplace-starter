@@ -1,35 +1,48 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import { Link, useParams } from "react-router-dom";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
+
 
 const HotCollections = () => {
 
   const [collections, setCollections] = useState([])
+  const [loading, setLoading] = useState()
+  const { id } = useParams()
 
-  // carousel
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+  const options = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      900: {
+        items: 3,
+      },
+      1200: {
+        items: 4,
+      },
+    },
   };
-  
 
   async function getCollections() {
+    setLoading(true)
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data)
+    setLoading(false)
   }
 
   useEffect(() => {
     getCollections()
   }, [])
-
-  const width = 100
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -42,31 +55,67 @@ const HotCollections = () => {
             </div>
           </div>
 
-          <Slider {...settings}>
-            {new Array(6).fill(0).map((_, index) => (
-              <div style={{ width: "100% !important;" }} className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                <div className="nft_coll">
+          { !loading ? (
+            <OwlCarousel className="owl-theme" {...options}>
+              {collections.map((item, index) => (
+                <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img src={ collections[index]?.nftImage } className="lazy img-fluid" alt="" />
+                    <Link to={`/item-details/${item?.nftId}`}>
+                      <img src={item?.nftImage} className="lazy img-fluid" />
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to={`/author/`}>
-                      <img className="lazy pp-coll" src={ collections[index]?.authorImage } alt="" />
+                    <Link to={`/author/${item?.authorId}`}>
+                      <img src={item?.authorImage} className="lazy pp-coll"/>
                     </Link>
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
                     <Link to="/explore">
-                      <h4>{ collections[index]?.title }</h4>
+                      <h4>{item?.title}</h4>
                     </Link>
-                    <span>ERC-{ collections[index]?.code }</span>
+                    <span>ERC-{item?.code}</span>
                   </div>
                 </div>
+              ))}
+            </OwlCarousel> 
+          ) : (
+            <>
+          <OwlCarousel className="owl-theme" {...options}>
+            {new Array(6).fill(0).map((_, index) => (
+              <div className="nfr_coll" key={index}>
+                <div className="nft_wrap">
+                      <Link to={``}>
+                        <Skeleton width="100%" height="200px" />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to={``}>
+                        <Skeleton
+                          width="50px"
+                          height="50px"
+                          borderRadius="50%"
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="">
+                        <Skeleton width="100px" height="20px" />
+                      </Link>
+                      <br />
+                      <Skeleton width="60px" height="20px" />
+                    </div>
               </div>
             ))}
-          </Slider>
+          </OwlCarousel>
+          </>
+          )
+
+          }
+          
+
+
         </div>
       </div>
     </section>
