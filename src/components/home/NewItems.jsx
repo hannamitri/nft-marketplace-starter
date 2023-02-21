@@ -67,8 +67,6 @@ const NewItems = () => {
             <OwlCarousel className="slider-items owl-carousel" {...settings}>
               {new Array(4).fill(0).map((_, index) => (
                 <div
-                  data-aos="fade-in"
-                  data-aos-delay="200"
                   className=""
                   key={index}
                 >
