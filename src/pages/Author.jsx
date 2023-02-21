@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+  
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
