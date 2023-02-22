@@ -10,7 +10,6 @@ import Countdown from "../UI/Countdown";
 const NewItems = () => {
 
   const [items, setItems] = useState([])
-  const [loading, setLoading] = useState()
 
   const options = {
     loop: true,
@@ -33,10 +32,8 @@ const NewItems = () => {
   };
 
   async function getItems() {
-    setLoading(true)
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
     setItems(data)
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -57,7 +54,7 @@ const NewItems = () => {
           </div>
 
           <OwlCarousel className="owl-theme" {...options}>
-          { items.length>0 ? (
+          { items.length > 0 ? (
               items.map((item, index) => (
                 <div className="nft__item" key={index}>
                   <div className="author_list_pp">
@@ -74,7 +71,6 @@ const NewItems = () => {
                   {
                   item.expiryDate != null && <Countdown item={item}/>
                   }
-
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
                       <div className="nft__item_buttons">
@@ -116,9 +112,9 @@ const NewItems = () => {
           ))
           ) : (
             <>
-            {new Array(7).fill(0).map((_, index) => (
+            {new Array(6).fill(0).map((_, index) => (
               <div>
-              <div className="nft__item">
+              <div className="nft__item" key={index}>
                 <div className="author_list_pp">
                     <Skeleton width={"50px"} height={"50px"} borderRadius={"50%"}/>
                     <i className="fa fa-check"></i>
