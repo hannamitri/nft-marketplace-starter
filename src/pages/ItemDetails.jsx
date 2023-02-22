@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
 
 const ItemDetails = () => {
+  const [itemDetails, setItemDetails] = useState();
+  const { nftId } = useParams();
+
+  async function nftItemDetails() {
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
+    );
+    setItemDetails(data);
+    console.log(data)
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    nftItemDetails();
   }, []);
 
   return (
