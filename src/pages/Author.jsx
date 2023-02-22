@@ -36,7 +36,7 @@ const Author = () => {
           style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
 
-<section aria-label="section">
+        <section aria-label="section">
           <div className="container">
             <div className="row">
               {loading ? (
