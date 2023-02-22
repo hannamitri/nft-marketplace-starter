@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -10,8 +10,6 @@ import Skeleton from "../UI/Skeleton";
 const HotCollections = () => {
 
   const [collections, setCollections] = useState([])
-  const [loading, setLoading] = useState()
-  const { id } = useParams()
 
   const options = {
     loop: true,
@@ -34,10 +32,8 @@ const HotCollections = () => {
   };
 
   async function getCollections() {
-    setLoading(true)
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setCollections(data)
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -55,9 +51,9 @@ const HotCollections = () => {
             </div>
           </div>
 
-          { !loading ? (
-            <OwlCarousel className="owl-theme" {...options}>
-              {collections.map((item, index) => (
+          <OwlCarousel className="owl-theme" {...options}>
+          { collections.length>0 ? (
+              collections.map((item, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
                     <Link to={`/item-details/${item?.nftId}`}>
@@ -77,11 +73,9 @@ const HotCollections = () => {
                     <span>ERC-{item?.code}</span>
                   </div>
                 </div>
-              ))}
-            </OwlCarousel> 
+              ))
           ) : (
             <>
-          <OwlCarousel className="owl-theme" {...options}>
             {new Array(6).fill(0).map((_, index) => (
               <div className="nfr_coll" key={index}>
                 <div className="nft_wrap">
@@ -108,11 +102,11 @@ const HotCollections = () => {
                     </div>
               </div>
             ))}
-          </OwlCarousel>
           </>
           )
-
-          }
+          
+        }
+        </OwlCarousel> 
           
 
 
