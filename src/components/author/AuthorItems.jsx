@@ -19,7 +19,9 @@ const AuthorItems = ({ author, loading }) => {
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-          {author ? (
+          {loading ? (
+            loadingskeleton
+          ) : (
             <>
             {author?.nftCollection?.map((_, index) => (
               <div
@@ -73,8 +75,6 @@ const AuthorItems = ({ author, loading }) => {
               </div>
             ))}
           </>
-          ) : (
-            loadingskeleton
           )}
         </div>
       </div>
