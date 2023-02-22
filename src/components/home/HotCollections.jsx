@@ -55,9 +55,9 @@ const HotCollections = () => {
             </div>
           </div>
 
-          { !loading ? (
-            <OwlCarousel className="owl-theme" {...options}>
-              {collections.map((item, index) => (
+          <OwlCarousel className="owl-theme" {...options}>
+          { collections.length>0 ? (
+              collections.map((item, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
                     <Link to={`/item-details/${item?.nftId}`}>
@@ -77,11 +77,9 @@ const HotCollections = () => {
                     <span>ERC-{item?.code}</span>
                   </div>
                 </div>
-              ))}
-            </OwlCarousel> 
+              ))
           ) : (
             <>
-          <OwlCarousel className="owl-theme" {...options}>
             {new Array(6).fill(0).map((_, index) => (
               <div className="nfr_coll" key={index}>
                 <div className="nft_wrap">
@@ -108,11 +106,11 @@ const HotCollections = () => {
                     </div>
               </div>
             ))}
-          </OwlCarousel>
           </>
           )
-
-          }
+          
+        }
+        </OwlCarousel> 
           
 
 
