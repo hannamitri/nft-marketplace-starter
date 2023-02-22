@@ -1,14 +1,14 @@
 import React from 'react';
 
 function Countdown({item}) {
-    const timeRemaining = Math.floor((item.expiryDate - Date.now())/1000)
+    const timeRemaining = Math.floor((item?.expiryDate - Date.now())/1000)
     const hours = Math.floor(timeRemaining/3600);
     const mins = Math.floor((timeRemaining%3600)/60);
     const secs = timeRemaining%60;
     return (
-        <div className="de_countdown">
+        <div className="de_countdown" key={item.id}>
             {
-               item.expiryDate - Date.now() > 0
+               item?.expiryDate - Date.now() > 0
                 &&
                 `${hours}h ${mins}m ${secs}s`
            }

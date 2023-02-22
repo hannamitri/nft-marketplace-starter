@@ -38,7 +38,7 @@ const NewItems = () => {
 
   useEffect(() => {
     getItems()
-  }, [])
+  }, [items.length])
 
 
 
@@ -53,9 +53,9 @@ const NewItems = () => {
             </div>
           </div>
 
-          <OwlCarousel className="owl-theme" {...options}>
           { items.length > 0 ? (
-              items.map((item, index) => (
+          <OwlCarousel className="owl-theme" {...options}>
+              {items.map((item, index) => (
                 <div className="nft__item" key={index}>
                   <div className="author_list_pp">
                     <Link
@@ -69,7 +69,7 @@ const NewItems = () => {
                     </Link>
                   </div>
                   {
-                  item.expiryDate != null && <Countdown item={item}/>
+                  item?.expiryDate != null && <Countdown item={items[index]}/>
                   }
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
@@ -109,36 +109,37 @@ const NewItems = () => {
                     </div>
                   </div>
                 </div>
-          ))
-          ) : (
-            <>
-            {new Array(6).fill(0).map((_, index) => (
-              <div>
-              <div className="nft__item" key={index}>
-                <div className="author_list_pp">
-                    <Skeleton width={"50px"} height={"50px"} borderRadius={"50%"}/>
-                    <i className="fa fa-check"></i>
-                </div>
-                <div className="nft__item_wrap">     
-                  <Skeleton width={"100%"} height={"225px"} borderRadius={"8px"}/>
-                </div>
-                <div className="nft__item_info">
-                  <Skeleton width={"100px"} height={"20px"} borderRadius={"8px"}/>
-                  <div className="nft__item_price">
-                    <Skeleton width={"50px"} height={"20px"} borderRadius={"8px"}/>
-                  </div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span><Skeleton width={"15px"} height={"15px"} borderRadius={"4px"}/></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            ))}
-          </>
+          ))}
+            </OwlCarousel>
+          ) : ( <OwlCarousel className="owl-theme" {...options}>
+             <>
+             {new Array(6).fill(0).map((_, indx) => (
+               <div key={indx}>
+               <div className="nft__item" >
+                 <div className="author_list_pp">
+                     <Skeleton width={"50px"} height={"50px"} borderRadius={"50%"}/>
+                     <i className="fa fa-check"></i>
+                 </div>
+                 <div className="nft__item_wrap">     
+                   <Skeleton width={"100%"} height={"225px"} borderRadius={"8px"}/>
+                 </div>
+                 <div className="nft__item_info">
+                   <Skeleton width={"100px"} height={"20px"} borderRadius={"8px"}/>
+                   <div className="nft__item_price">
+                     <Skeleton width={"50px"} height={"20px"} borderRadius={"8px"}/>
+                   </div>
+                   <div className="nft__item_like">
+                     <i className="fa fa-heart"></i>
+                     <span><Skeleton width={"15px"} height={"15px"} borderRadius={"4px"}/></span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             ))}
+          </> 
+         </OwlCarousel>
           )
-        }
-        </OwlCarousel>
+          }
           
         </div>
       </div>
