@@ -39,7 +39,7 @@ const ExploreItems = () => {
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
             >
-              <Skeleton width={300} height={400} borderRadius={1} />
+              <Skeleton width={320} height={400} borderRadius={1} />
             </div>
           ))}
         </>
@@ -66,7 +66,7 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${_.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
@@ -95,7 +95,7 @@ const ExploreItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
+              <Link to={`/item-details/${_.nftId}`}>
                 <img
                   src={_.nftImage}
                   className="lazy nft__item_preview"
