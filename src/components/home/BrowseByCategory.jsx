@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "aos/dist/aos.css";
 
 const BrowseByCategory = () => {
   return (
@@ -12,37 +13,61 @@ const BrowseByCategory = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="100"
+            className="col-md-2 col-sm-4 col-6 mb-sm-30"
+          >
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-image"></i>
               <span>Art</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="200"
+            className="col-md-2 col-sm-4 col-6 mb-sm-30"
+          >
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-music"></i>
               <span>Music</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="300"
+            className="col-md-2 col-sm-4 col-6 mb-sm-30"
+          >
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-search"></i>
               <span>Domain Names</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="400"
+            className="col-md-2 col-sm-4 col-6 mb-sm-30"
+          >
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-globe"></i>
               <span>Virtual Worlds</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="500"
+            className="col-md-2 col-sm-4 col-6 mb-sm-30"
+          >
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-vcard"></i>
               <span>Trading Cards</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="600"
+            className="col-md-2 col-sm-4 col-6 mb-sm-30"
+          >
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-th"></i>
               <span>Collectibles</span>
