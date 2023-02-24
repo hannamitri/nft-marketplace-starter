@@ -8,6 +8,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
 import ExpiryTime from "../explore/ExpiryTime";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
   const [newNFT, setNewNFT] = useState([]);
@@ -66,7 +67,12 @@ const NewItems = () => {
           {!loading ? (
             <OwlCarousel className="slider-items owl-carousel" {...settings}>
               {new Array(4).fill(0).map((_, index) => (
-                <div className="" key={index}>
+                <div
+                  className=""
+                  data-aos="fade-in"
+                  data-aos-delay="200"
+                  key={index}
+                >
                   <div className="nft__item">
                     <div className="nft__item_wrap">
                       <Skeleton width={330} height={330} borderRadius={5} />
@@ -90,13 +96,16 @@ const NewItems = () => {
           ) : (
             <OwlCarousel className="slider-items owl-carousel" {...settings}>
               {newNFT.map((nft, index) => (
-                <div className="" key={index}>
+                <div
+                  className=""
+                  data-aos="fade-in"
+                  data-aos-delay="200"
+                  key={index}
+                >
                   <div className="nft__item">
                     <div className="author_list_pp">
                       <Link
                         to={`/author/${nft.authorId}`}
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
                         title="Creator: Monica Lucas"
                       >
                         <img className="lazy" src={nft.authorImage} alt="" />

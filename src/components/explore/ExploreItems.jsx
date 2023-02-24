@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ExpiryTime from "../explore/ExpiryTime";
 import Skeleton from "../UI/Skeleton";
+import "aos/dist/aos.css";
 
 const ExploreItems = () => {
   const [exploreNft, setExploreNft] = useState([]);
@@ -35,6 +36,8 @@ const ExploreItems = () => {
         <>
           {new Array(8).fill(0).map((_, index) => (
             <div
+              data-aos="fade-in"
+              data-aos-delay="200"
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
@@ -59,6 +62,8 @@ const ExploreItems = () => {
       )}
       {exploreNft.slice(0, loader).map((_, index) => (
         <div
+          data-aos="fade-in"
+          data-aos-delay="200"
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}

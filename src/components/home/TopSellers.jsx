@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -52,7 +53,7 @@ const TopSellers = () => {
               ) : (
                 <>
                   {topSellers.map((_, index) => (
-                    <li key={index}>
+                    <li data-aos="fade-in" data-aos-delay="150" key={index}>
                       <div className="author_list_pp">
                         <Link to={`/author/${_.authorId}`}>
                           <img

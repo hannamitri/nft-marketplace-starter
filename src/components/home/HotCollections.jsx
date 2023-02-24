@@ -6,6 +6,8 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "aos/dist/aos.css";
+
 
 const HotCollections = () => {
   const [NFT, setNFT] = useState([]);
@@ -64,7 +66,7 @@ const HotCollections = () => {
           {!loading ? (
             <OwlCarousel {...settings}>
               {new Array(4).fill(0).map((_, index) => (
-                <div className="" key={index}>
+                <div className="" data-aos="fade-in" data-aos-delay="200" key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Skeleton width={310} height={240} borderRadius={1} />
@@ -90,7 +92,7 @@ const HotCollections = () => {
           ) : (
             <OwlCarousel {...settings}>
               {NFT.map((nft, index) => (
-                <div className="" key={index}>
+                <div className="" data-aos="fade-in" data-aos-delay="200" key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to={`/item-details/${nft.nftId}`}>
