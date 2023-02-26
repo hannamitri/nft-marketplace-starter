@@ -44,7 +44,7 @@ const ExploreItems = () => {
       {!loading 
       ? (
         items.slice(0, loadmore).map((item, index) => (
-          (<div
+          (<div key={index}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
             >

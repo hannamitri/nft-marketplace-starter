@@ -62,7 +62,7 @@ const NewItems = () => {
                       to={`/author/${item?.authorId}`}
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
-                      title="Creator: Monica Lucas"
+                      title={`Creator: ${item?.title}`}
                       >
                       <img className="lazy" src={item?.authorImage} alt="" />
                       <i className="fa fa-check"></i>
@@ -118,7 +118,6 @@ const NewItems = () => {
                <div className="nft__item" >
                  <div className="author_list_pp">
                      <Skeleton width={"50px"} height={"50px"} borderRadius={"50%"}/>
-                     <i className="fa fa-check"></i>
                  </div>
                  <div className="nft__item_wrap">     
                    <Skeleton width={"100%"} height={"225px"} borderRadius={"8px"}/>

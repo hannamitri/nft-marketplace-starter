@@ -100,7 +100,7 @@ const Author = () => {
 
             <div className="col-md-12">
                   <div className="de_tab tab_simple">
-                    <AuthorItems />
+                    <AuthorItems author={author}/>
                   </div>
                 </div>
               </div>
@@ -139,12 +139,28 @@ const Author = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="col-md-12">
-                  <div className="de_tab tab_simple">
-                    <AuthorItems />
-                  </div>
-                </div>
+                    {new Array(8).fill(0).map((_, index) => (
+                      <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                      <div className="nft__item" >
+                        <div className="author_list_pp">
+                            <Skeleton width={"50px"} height={"50px"} borderRadius={"50%"}/>
+                        </div>
+                        <div className="nft__item_wrap">     
+                          <Skeleton width={"100%"} height={"225px"} borderRadius={"8px"}/>
+                        </div>
+                        <div className="nft__item_info">
+                          <Skeleton width={"100px"} height={"20px"} borderRadius={"8px"}/>
+                          <div className="nft__item_price">
+                            <Skeleton width={"50px"} height={"20px"} borderRadius={"8px"}/>
+                          </div>
+                          <div className="nft__item_like">
+                            <i className="fa fa-heart"></i>
+                            <span><Skeleton width={"15px"} height={"15px"} borderRadius={"4px"}/></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    ))}
               </div>
             </div>
           </section>
