@@ -55,7 +55,7 @@ const HotCollections = () => {
           { collections.length>0 ? (
           <OwlCarousel className="owl-theme"         
           data-aos="fade-in"
-          data-aos-duration="800"
+          data-aos-duration="1000"
           {...options}>
               {collections.map((item, index) => (
                 <div className="nft_coll" key={index}>
@@ -83,7 +83,7 @@ const HotCollections = () => {
             <>
             <OwlCarousel className="owl-theme" 
             data-aos="fade-in"
-            data-aos-duration="800"
+            data-aos-duration="1000"
             {...options}>
             {new Array(6).fill(0).map((_, index) => (
               <div className="nfr_coll" key={index}>
