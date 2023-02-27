@@ -13180,6 +13180,7 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .nft_coll.style-2 {
@@ -13272,6 +13273,68 @@ a.read_more i {
   position: absolute;
   bottom: 4px;
   right: 5px;
+}
+
+/* SKELETON HOT COLLECTIONS */
+
+.img-fluid--skeleton {
+  width: 100%;
+  height: 60%;
+  background-color: rgb(204, 204, 204);
+}
+
+.nft_coll_thumbnail--skeleton {
+  padding-bottom: 10px;
+  border-radius: 999px;
+  height: 40px;
+  background-color: rgb(204, 204, 204);
+  max-width: 40px;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 110px;
+  right: 0;
+  bottom: 0;
+  left: 5px;
+}
+
+.skeleton-check {
+  position: absolute;
+  top: 132px;
+  left: 28px;
+  right: 0;
+  border: 1px;
+  color: purple;
+}
+
+.nft_coll_title--skeleton {
+  padding-bottom: 10px;
+  border-radius: 4px;
+  height: 14px;
+  background-color: rgb(204, 204, 204);
+  max-width: 130px;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 154px;
+  right: 0;
+  bottom: 0;
+  left: 5px;
+}
+
+.nft_coll_subTitle--skeleton {
+  border-radius: 4px;
+  padding-bottom: 10px;
+  height: 14px;
+  background-color: rgb(204, 204, 204);
+  max-width: 80px;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 174px;
+  right: 0;
+  bottom: 0;
+  left: 5px;
 }
 
 .author_list {
