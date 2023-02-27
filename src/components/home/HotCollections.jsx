@@ -5,6 +5,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
+import "aos/dist/aos.css";
 
 
 const HotCollections = () => {
@@ -52,7 +53,10 @@ const HotCollections = () => {
           </div>
 
           { collections.length>0 ? (
-          <OwlCarousel className="owl-theme" {...options}>
+          <OwlCarousel className="owl-theme"         
+          data-aos="fade-in"
+          data-aos-duration="800"
+          {...options}>
               {collections.map((item, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
@@ -77,7 +81,10 @@ const HotCollections = () => {
               </OwlCarousel>
           ) : (
             <>
-            <OwlCarousel className="owl-theme" {...options}>
+            <OwlCarousel className="owl-theme" 
+            data-aos="fade-in"
+            data-aos-duration="800"
+            {...options}>
             {new Array(6).fill(0).map((_, index) => (
               <div className="nfr_coll" key={index}>
                 <div className="nft_wrap">

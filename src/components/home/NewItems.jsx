@@ -6,6 +6,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
 import Countdown from "../UI/Countdown";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
 
@@ -54,7 +55,10 @@ const NewItems = () => {
           </div>
 
           { items.length > 0 ? (
-          <OwlCarousel className="owl-theme" {...options}>
+          <OwlCarousel className="owl-theme" 
+          data-aos="fade-in"
+          data-aos-duration="800"
+          {...options}>
               {items.map((item, index) => (
                 <div className="nft__item" key={index}>
                   <div className="author_list_pp">
@@ -111,7 +115,11 @@ const NewItems = () => {
                 </div>
           ))}
             </OwlCarousel>
-          ) : ( <OwlCarousel className="owl-theme" {...options}>
+          ) : ( 
+            <OwlCarousel className="owl-theme"
+            data-aos="fade-in"
+            data-aos-duration="800"    
+            {...options}>
              <>
              {new Array(6).fill(0).map((_, indx) => (
                <div key={indx}>

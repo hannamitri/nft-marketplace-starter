@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
 
@@ -31,7 +32,9 @@ const TopSellers = () => {
               {sellers.length 
               ? (
                   sellers.map((seller, index) => (
-                  <li key={index}>
+                  <li key={index}
+                  data-aos="fade-left"
+                  data-aos-delay="250">
                     <div className="author_list_pp">
                       <Link to={`/author/${seller?.authorId}`}>
                         <img
@@ -53,7 +56,9 @@ const TopSellers = () => {
                 )
               : (
                   new Array(12).fill(0).map((_, index) => (
-                    <li key={index}>
+                    <li key={index} 
+                    data-aos="fade-left"
+                    data-aos-delay="250">
                       <div className="author_list_pp">
                         <Link to={`/author/`}>
                           <Skeleton width={"50px"} height={"50px"} borderRadius={"50%"}/>
