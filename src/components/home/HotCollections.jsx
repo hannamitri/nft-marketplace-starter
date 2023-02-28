@@ -81,17 +81,17 @@ const HotCollections = () => {
                     <div className="nft_coll">
                       <div
                         className="nft_wrap"
-                        onClick={() => navigate(`${posts.id}`)}
+                        onClick={() => navigate(`/author/${posts.id}`)}
                       >
                         <img
-                          onClick={() => navigate(`${posts.id}`)}
+                          onClick={() => navigate(`/author/${posts.id}`)}
                           src={posts.nftImage}
                           className="lazy img-fluid"
                           alt=""
                         />
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${posts.id}`}>
                           <img
                             className="lazy pp-coll"
                             src={posts.authorImage}
@@ -101,7 +101,7 @@ const HotCollections = () => {
                         <i className="fa fa-check "></i>
                       </div>
                       <div className="nft_coll_info">
-                        <Link to="/explore">
+                        <Link to={`/explore/${posts.id}`}>
                           <h4>{posts.title}</h4>
                         </Link>
                         <span>ERC-192</span>
