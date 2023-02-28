@@ -13216,6 +13216,7 @@ a.read_more i {
 
 .nft_coll:hover img {
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .nft_coll {
@@ -13745,6 +13746,58 @@ a.read_more i {
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+}
+
+/* 
+
+SKELETON
+
+*/
+
+.skeleton__container {
+  width: 100%;
+}
+
+.skeleton__img--item {
+  width: 100%;
+  height: 100%;
+}
+
+.skeleton__wrap {
+  height: 200px;
+  background-color: rgb(204, 204, 204) !important;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.skeleton-countdown {
+  background-color: rgb(204, 204, 204) !important;
+  width: 50%;
+  height: 30px;
+}
+
+.skeleton__author {
+  background-color: rgb(204, 204, 204) !important;
+  width: 20%;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.skeleton__title {
+  height: 14px;
+  width: 60%;
+  background-color: rgb(204, 204, 204) !important ;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+.skeleton__price {
+  border-radius: 10px;
+  height: 10px;
+  width: 20%;
+  background-color: rgb(204, 204, 204) !important;
+  margin-bottom: 5px;
 }
 
 .nft__item .author_list_pp {

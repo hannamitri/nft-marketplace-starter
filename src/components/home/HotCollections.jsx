@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import OwlCarousel from "react-owl-carousel";
@@ -11,19 +11,20 @@ const HotCollections = () => {
   const { id } = useParams();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  async function fetchCollections() {
+  async function fetchCollections(id) {
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
     );
     setPosts(data);
-    setLoading(true);
+    setLoading(false);
   }
 
   useEffect(() => {
     fetchCollections();
     setTimeout(() => {
-      setLoading(false);
+      setLoading(true);
     }, 1000);
   }, []);
 
@@ -41,7 +42,7 @@ const HotCollections = () => {
             classID="owl-theme"
             margin={10}
             items={4}
-            nav
+            nav={true}
             dots={false}
             responsive={{
               0: {
@@ -78,14 +79,16 @@ const HotCollections = () => {
               : posts.map((posts) => (
                   <div className="ml-3 grid md:cols-3 sm:cols-2" key={posts.id}>
                     <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link to="/item-details">
-                          <img
-                            src={posts.nftImage}
-                            className="lazy img-fluid"
-                            alt=""
-                          />
-                        </Link>
+                      <div
+                        className="nft_wrap"
+                        onClick={() => navigate(`${posts.id}`)}
+                      >
+                        <img
+                          onClick={() => navigate(`${posts.id}`)}
+                          src={posts.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
                       </div>
                       <div className="nft_coll_pp">
                         <Link to="/author">
