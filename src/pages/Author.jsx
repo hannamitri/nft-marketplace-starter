@@ -7,20 +7,19 @@ import axios from "axios";
 
 const Author = () => {
   const { id } = useParams();
-  const [author, setAuthor] = useState([]);
+  const [author, setAuthor] = useState("");
 
   async function fetchAuthor() {
-    const { data } = await axios.get(
+    const data = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthor(data);
     console.log(data);
-    console.log(id);
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     fetchAuthor();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -39,43 +38,40 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              {author?.map((author) => (
-                <div className="col-md-12" key={author.id}>
-                  <div className="d_profile de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_avatar">
-                        <img src={author.authorImage} alt="" />
+              <div className="col-md-12" key={author.id}>
+                <div className="d_profile de-flex">
+                  <div className="de-flex-col">
+                    <div className="profile_avatar">
+                      <img src={author.authorImage} alt="" />
 
-                        <i className="fa fa-check"></i>
-                        <div className="profile_name">
-                          <h4>
-                            Monica Lucas
-                            <span className="profile_username">@monicaaaa</span>
-                            <span id="wallet" className="profile_wallet">
-                              UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                            </span>
-                            <button id="btn_copy" title="Copy Text">
-                              Copy
-                            </button>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="profile_follow de-flex">
-                      <div className="de-flex-col">
-                        <div className="profile_follower">573 followers</div>
-                        <Link to="#" className="btn-main">
-                          Follow
-                        </Link>
+                      <i className="fa fa-check"></i>
+                      <div className="profile_name">
+                        <h4>
+                          {author.authorName}
+                          <span className="profile_username">{author.tag}</span>
+                          <span id="wallet" className="profile_wallet">
+                            {author.address}
+                          </span>
+                          <button id="btn_copy" title="Copy Text">
+                            Copy
+                          </button>
+                        </h4>
                       </div>
                     </div>
                   </div>
+                  <div className="profile_follow de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_follower">{author.followers}</div>
+                      <Link to="#" className="btn-main">
+                        Follow
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              ))}
-
+              </div>
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems author={author} />
                 </div>
               </div>
             </div>

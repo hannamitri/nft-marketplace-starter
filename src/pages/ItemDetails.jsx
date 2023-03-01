@@ -7,11 +7,11 @@ import axios from "axios";
 
 const ItemDetails = () => {
   const [nft, setNft] = useState([]);
-  const { id } = useParams();
+  const { nftId } = useParams();
 
-  async function fetchNft(id) {
+  async function fetchNft() {
     const { data } = await axios.get(
-      `nft-marketplace.web.app/item-details/${id}`
+      `nft-marketplace.web.app/item-details/${nftId}`
     );
     setNft(data);
     console.log(data);
@@ -19,7 +19,7 @@ const ItemDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchNft(id);
+    fetchNft();
   }, []);
 
   return (
