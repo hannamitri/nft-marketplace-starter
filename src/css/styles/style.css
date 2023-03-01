@@ -13345,11 +13345,58 @@ a.read_more i {
   -webkit-column-gap: 20px;
   column-count: 4;
   column-gap: 20px;
+  list-style: decimal;
 }
 
 .author_list li {
   position: relative;
   margin-bottom: 30px;
+}
+
+/* ------------- */
+/* SKELETON */
+/* ------------ */
+
+.skeleton__list {
+  height: 40px;
+  width: 40px;
+  background-color: rgb(204, 204, 204) !important;
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  border-radius: 999px;
+}
+
+.skeleton__check {
+  position: absolute;
+}
+
+.skeleton__links {
+  bottom: 10px;
+  right: 0px;
+}
+
+.skeleton__price {
+  position: absolute;
+  top: 28px;
+  max-width: 100px;
+  padding-right: 50px;
+  width: 100%;
+  left: 50px;
+  height: 10px;
+  background-color: rgb(204, 204, 204) !important;
+}
+
+.skeleton__info {
+  position: absolute;
+  top: 10px;
+  max-width: 100px;
+  padding-right: 50px;
+  width: 100%;
+  left: 50px;
+  height: 10px;
+  background-color: rgb(204, 204, 204) !important;
+  border-radius: 8px;
 }
 
 .author_list_pp {

@@ -17,9 +17,9 @@ const NewItems = () => {
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems`
     );
-    console.log(data);
     setItems(data);
     setLoading(false);
+    console.log(data);
   }
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const NewItems = () => {
           >
             {loading
               ? new Array(4).fill(0).map((_, index) => (
-                  <div className="container skeleton__container" key={items.id}>
+                  <div className="container skeleton__container" key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp skeleton__author">
                         <img className="lazy " alt="" />
@@ -88,7 +88,7 @@ const NewItems = () => {
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
-                          to="/author"
+                          to={`/author/:${items.authorId}`}
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Creator: Monica Lucas"
@@ -125,7 +125,7 @@ const NewItems = () => {
                           </div>
                         </div>
 
-                        <Link to="/item-details">
+                        <Link to={`/item-details/:${items.nftId}`}>
                           <img
                             src={items.nftImage}
                             className="lazy nft__item_preview"
@@ -134,7 +134,7 @@ const NewItems = () => {
                         </Link>
                       </div>
                       <div className="nft__item_info">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/:${items.nftId}`}>
                           <h4>{items.title}</h4>
                         </Link>
                         <div className="nft__item_price">{items.price}</div>
