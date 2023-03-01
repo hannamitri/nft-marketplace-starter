@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Timer from "../home/Timer";
@@ -14,27 +14,27 @@ const ExploreItems = () => {
     setVisible((prevValue) => prevValue + 4);
   };
 
-  let value = "LOW_TO_HIGH" | "HIGH_TO_LOW" | "LIKES";
+  const handleFilterChange = (event) => {
+    setLoading(true);
+
+    let filterURL = `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${event.target.value}`;
+    if (event.target.value === "default") {
+      filterURL =
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore/";
+    }
+    axios.get(filterURL).then((data) => {
+      setExplore(data.data);
+      setLoading(false);
+    });
+  };
 
   async function fetchExploreItems() {
     const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?_filter=${value}`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
     );
     setExplore(data);
     console.log(data);
     setLoading(false);
-  }
-
-  function filterItems(filter) {
-    if (filter === "LOW_TO_HIGH") {
-      setExplore(explore.slice().sort((a, b) => a.price - b.price));
-    }
-    if (filter === "HIGH_TO_LOW") {
-      setExplore(explore.slice().sort((a, b) => b.price - a.price));
-    }
-    if (filter === "LIKES") {
-      setExplore(explore.slice().sort((a, b) => b.likes - a.likes));
-    }
   }
 
   useEffect(() => {
@@ -48,12 +48,12 @@ const ExploreItems = () => {
         <select
           id="filter-items"
           defaultValue="DEFAULT"
-          onChange={(event) => filterItems(event.target.value)}
+          onChange={handleFilterChange}
         >
-          <option value="">Default</option>
-          <option value="LOW_TO_HIGH">Price, Low to High</option>
-          <option value="HIGH_TO_LOW">Price, High to Low</option>
-          <option value="LIKES">Most liked</option>
+          <option value="default">Default</option>
+          <option value="price_low_to_high">Price, Low to High</option>
+          <option value="price_high_to_low">Price, High to Low</option>
+          <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
       {loading
@@ -92,7 +92,7 @@ const ExploreItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${explore.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                   >
@@ -124,7 +124,7 @@ const ExploreItems = () => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
+                  <Link to={`/items-details/${explore.nftId}`}>
                     <img
                       src={explore.nftImage}
                       className="lazy nft__item_preview"
@@ -133,7 +133,7 @@ const ExploreItems = () => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to={`/items-details/${explore.nftId}`}>
                     <h4>{explore.title}</h4>
                   </Link>
                   <div className="nft__item_price">{explore.price}</div>
