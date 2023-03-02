@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Timer from "../home/Timer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
@@ -40,6 +42,7 @@ const ExploreItems = () => {
   useEffect(() => {
     fetchExploreItems();
     setLoading(true);
+    AOS.init();
   }, []);
 
   return (
@@ -88,6 +91,8 @@ const ExploreItems = () => {
               key={explore.id}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
+              data-aos="fade-in"
+              data-aos-easing="ease-in-out"
             >
               <div className="nft__item">
                 <div className="author_list_pp">

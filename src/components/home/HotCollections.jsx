@@ -6,6 +6,8 @@ import nftImage from "../../images/nftImage.jpg";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
   const [posts, setPosts] = useState([]);
@@ -18,7 +20,7 @@ const HotCollections = () => {
     );
     setPosts(data);
     setLoading(false);
-    console.log(data)
+    console.log(data);
   }
 
   useEffect(() => {
@@ -26,12 +28,13 @@ const HotCollections = () => {
     setTimeout(() => {
       setLoading(true);
     }, 1000);
+    AOS.init();
   }, []);
 
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-in" data-aos-easing="ease-in-out">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
@@ -84,7 +87,9 @@ const HotCollections = () => {
                         onClick={() => navigate(`/item-details/${posts.nftId}`)}
                       >
                         <img
-                          onClick={() => navigate(`/item-details/${posts.nftId}`)}
+                          onClick={() =>
+                            navigate(`/item-details/${posts.nftId}`)
+                          }
                           src={posts.nftImage}
                           className="lazy img-fluid"
                           alt=""

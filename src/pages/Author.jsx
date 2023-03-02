@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import AuthorSkeleton from "../components/UI/AuthorSkeleton";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Author = () => {
   const { id } = useParams();
@@ -37,6 +39,7 @@ const Author = () => {
     fetchAuthor();
     setLoading(true);
     window.scrollTo(0, 0);
+    AOS.init();
   }, []);
 
   return (
@@ -58,7 +61,7 @@ const Author = () => {
               {loading ? (
                 <AuthorSkeleton />
               ) : (
-                <div className="col-md-12" key={author.id}>
+                <div className="col-md-12" key={author.id} data-aos="fade-in" data-aos-easing="ease-in-out">
                   <div className="d_profile de-flex">
                     <div className="de-flex-col">
                       <div className="profile_avatar">

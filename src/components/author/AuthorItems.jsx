@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const AuthorItems = ({ authorImage }) => {
+const AuthorItems = () => {
   const { id } = useParams();
   const [author, setAuthor] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +26,7 @@ const AuthorItems = ({ authorImage }) => {
     fetchAuthorItems();
     setLoading(true);
     window.scrollTo(0, 0);
+    AOS.init();
   }, []);
   return (
     <div className="de_tab_content">
@@ -60,7 +63,11 @@ const AuthorItems = ({ authorImage }) => {
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={author.id}
                 >
-                  <div className="nft__item">
+                  <div
+                    className="nft__item"
+                    data-aos="fade-in"
+                    data-aos-easing="ease-in-out"
+                  >
                     <div className="author_list_pp">
                       <Link to="">
                         <img className="lazy" src={image.authorImage} alt="" />

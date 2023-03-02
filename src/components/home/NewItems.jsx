@@ -7,6 +7,8 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Timer from "./Timer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -26,12 +28,13 @@ const NewItems = () => {
     setTimeout(() => {
       setLoading(true);
     }, 1000);
+    AOS.init();
   }, []);
 
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up" data-aos-easing="ease-in-out">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>

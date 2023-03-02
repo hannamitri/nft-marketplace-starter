@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import ItemsSkeleton from "../components/UI/ItemsSkeleton";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ItemDetails = () => {
   const { id } = useParams();
@@ -23,6 +25,7 @@ const ItemDetails = () => {
     fetchNft();
     window.scrollTo(0, 0);
     setLoading(true);
+    AOS.init();
   }, []);
 
   return (
@@ -30,11 +33,11 @@ const ItemDetails = () => {
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
-          <div className="container">
+          <div className="container" >
             {loading ? (
               <ItemsSkeleton />
             ) : (
-              <div className="row">
+              <div className="row" data-aos="fade-in" data-aos-easing="ease-in-out">
                 <div className="col-md-6 text-center">
                   <img
                     src={nft.nftImage}
