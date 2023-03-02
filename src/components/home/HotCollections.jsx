@@ -18,6 +18,7 @@ const HotCollections = () => {
     );
     setPosts(data);
     setLoading(false);
+    console.log(data)
   }
 
   useEffect(() => {
@@ -80,10 +81,10 @@ const HotCollections = () => {
                     <div className="nft_coll">
                       <div
                         className="nft_wrap"
-                        onClick={() => navigate(`/author/${posts.nftId}`)}
+                        onClick={() => navigate(`/item-details/${posts.nftId}`)}
                       >
                         <img
-                          onClick={() => navigate(`/author/${posts.nftId}`)}
+                          onClick={() => navigate(`/item-details/${posts.nftId}`)}
                           src={posts.nftImage}
                           className="lazy img-fluid"
                           alt=""

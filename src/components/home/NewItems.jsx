@@ -11,7 +11,6 @@ import Timer from "./Timer";
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   async function fetchItems() {
     const { data } = await axios.get(
