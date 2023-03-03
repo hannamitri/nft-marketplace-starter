@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Skeleton from '../UI/Skeleton';
 
 const HotCollections = () => {
-  const [collections, setCollections] = useState();
+  const [loading, setLoading] = useState(true);
+  const [collections, setCollections] = useState([]);
 
   useEffect(() => {
     const fetchCollection = async () => {
@@ -13,6 +15,7 @@ const HotCollections = () => {
         'https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections'
       ).then((response) => response.json());
       setCollections(response);
+      setLoading(false);
     };
     fetchCollection();
   }, []);
@@ -27,7 +30,40 @@ const HotCollections = () => {
               <div className='small-border bg-color-2'></div>
             </div>
           </div>
-          {collections ? (
+          {loading ? (
+            new Array(4).fill(0).map((_, index) => (
+              <div className='col-lg-3 col-md-6 col-sm-6 col-xs-12' key={index}>
+                <div className='nft_coll'>
+                  <div className='nft_wrap'>
+                    <Link to='/item-details'>
+                      <Skeleton height='100%' width='100%' />
+                    </Link>
+                  </div>
+                  <div className='nft_coll_pp'>
+                    <Link to='/author'>
+                      <Skeleton
+                        height='60px'
+                        width='60px'
+                        borderRadius='50%'
+                        border='solid 5px #ffffff'
+                      />
+                    </Link>
+                    <i className='fa fa-check'></i>
+                  </div>
+                  <div className='nft_coll_info'>
+                    <Link to='/explore'>
+                      <h4>
+                        <Skeleton height='1rem' width='6rem' />
+                      </h4>
+                    </Link>
+                    <span>
+                      <Skeleton height='1rem' width='3rem' />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
             <OwlCarousel
               className='owl-theme'
               items={1}
@@ -42,10 +78,13 @@ const HotCollections = () => {
                 992: {
                   items: 3,
                 },
+                1200: {
+                  items: 4,
+                },
               }}
             >
               {collections.map((collection, index) => (
-                <div className='item' key={index}>
+                <div key={index}>
                   <div className='nft_coll'>
                     <div className='nft_wrap'>
                       <Link to='/item-details'>
@@ -76,8 +115,6 @@ const HotCollections = () => {
                 </div>
               ))}
             </OwlCarousel>
-          ) : (
-            console.log('loading')
           )}
         </div>
       </div>
