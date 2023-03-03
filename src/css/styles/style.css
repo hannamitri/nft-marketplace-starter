@@ -16714,3 +16714,36 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* ================================================== */
+
+/* Hot Collection Skeleton Loading State */
+
+/* ================================================== */
+
+.nft_skeleton{
+  background-color: #DFDBDD;
+  margin: 0 auto;
+  width: 100%;
+  height: 20px;
+}
+
+.nft_skeleton_image{
+  height: 200px;
+}
+
+.nft_skeleton_author{
+  border: 1px solid white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.nft_skeleton_title{
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.nft_skeleton_code{
+  width: 30%;
+}
