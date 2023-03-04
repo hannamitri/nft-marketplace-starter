@@ -4,8 +4,6 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Timer from "../UI/Timer.jsx";
 
 const NewItems = () => {
@@ -41,7 +39,6 @@ const NewItems = () => {
     },
   };
 
-
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -64,55 +61,17 @@ const NewItems = () => {
               {new Array(7).fill(0).map((_, index) => (
                 <div key={index}>
                   <div className="nft__item">
-                    <div className="author_list_pp">
-                      <Link
-                        to="/author"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Creator: Monica Lucas"
-                      >
-                        <img className="lazy" src={AuthorImage} alt="" />
-                        <i className="fa fa-check"></i>
-                      </Link>
-                    </div>
-                    <div className="de_countdown">5h 30m 32s</div>
-
                     <div className="nft__item_wrap">
-                      <div className="nft__item_extra">
-                        <div className="nft__item_buttons">
-                          <button>Buy Now</button>
-                          <div className="nft__item_share">
-                            <h4>Share</h4>
-                            <a href="" target="_blank" rel="noreferrer">
-                              <i className="fa fa-facebook fa-lg"></i>
-                            </a>
-                            <a href="" target="_blank" rel="noreferrer">
-                              <i className="fa fa-twitter fa-lg"></i>
-                            </a>
-                            <a href="">
-                              <i className="fa fa-envelope fa-lg"></i>
-                            </a>
-                          </div>
+                      <div className="nft__item_preview--skeleton">
+                        <div className="check_skeleton--wrapper">
+                          <i className="fa fa-check check_skeleton"></i>
                         </div>
                       </div>
-
-                      <Link to="/item-details">
-                        <img
-                          src={nftImage}
-                          className="lazy nft__item_preview"
-                          alt=""
-                        />
-                      </Link>
                     </div>
-                    <div className="nft__item_info">
-                      <Link to="/item-details">
-                        <h4>Pinky Ocean</h4>
-                      </Link>
-                      <div className="nft__item_price">3.08 ETH</div>
-                      <div className="nft__item_like">
-                        <i className="fa fa-heart"></i>
-                        <span>69</span>
-                      </div>
+                    <div className="nft__item_info--skeleton">
+                      <div className="nft__item_title--skeleton"></div>
+                      <div className="nft__item_price--skeleton"></div>
+                      <div className="nft__item_like--skeleton"></div>
                     </div>
                   </div>
                 </div>
@@ -146,9 +105,9 @@ const NewItems = () => {
                       </Link>
                     </div>
 
-                    {profile.expiryDate && 
-                      <Timer expiryDate={profile.expiryDate}/>
-                    }
+                    {profile.expiryDate && (
+                      <Timer expiryDate={profile.expiryDate} />
+                    )}
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
