@@ -7,6 +7,7 @@ import Skeleton from '../components/UI/Skeleton';
 import SkeletonCards from '../components/re-useable/SkeletonCards';
 
 const Author = () => {
+  const [isFollowing, setIsFollowing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [author, setAuthor] = useState();
   const { authorId } = useParams();
@@ -25,6 +26,19 @@ const Author = () => {
   const authorObj = {
     authorId: author?.authorId,
     authorImage: author?.authorImage,
+  };
+
+  const handleFollow = () => {
+    isFollowing
+      ? setAuthor((existingValues) => ({
+          ...existingValues,
+          followers: author.followers - 1,
+        }))
+      : setAuthor((existingValues) => ({
+          ...existingValues,
+          followers: author.followers + 1,
+        }));
+    setIsFollowing(!isFollowing);
   };
 
   return (
@@ -99,8 +113,8 @@ const Author = () => {
                         )}{' '}
                         followers
                       </div>
-                      <Link to='#' className='btn-main'>
-                        Follow
+                      <Link to='#' className='btn-main' onClick={handleFollow}>
+                        {isFollowing ? 'Following' : 'Follow'}
                       </Link>
                     </div>
                   </div>
