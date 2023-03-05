@@ -7,6 +7,7 @@ import SkeletonCards from '../re-useable/SkeletonCards';
 const ExploreItems = () => {
   const [loading, setLoading] = useState(true);
   const [exploreItems, setExploreItems] = useState([]);
+  const [sliceAmount, setSliceAmount] = useState(8);
 
   useEffect(() => {
     const fetchExploreItems = async () => {
@@ -28,6 +29,10 @@ const ExploreItems = () => {
     setLoading(false);
   };
 
+  const handleArraySlice = () => {
+    if (sliceAmount < exploreItems?.length) setSliceAmount(sliceAmount + 4);
+  };
+
   return (
     <>
       <div>
@@ -45,13 +50,20 @@ const ExploreItems = () => {
       {loading ? (
         <SkeletonCards itemsAmount={8} />
       ) : (
-        <Cards items={exploreItems} cardType='explore' />
+        <Cards items={exploreItems.slice(0, sliceAmount)} cardType='explore' />
       )}
-      <div className='col-md-12 text-center'>
-        <Link to='' id='loadmore' className='btn-main lead'>
-          Load more
-        </Link>
-      </div>
+      {sliceAmount < exploreItems?.length ? (
+        <div className='col-md-12 text-center'>
+          <Link
+            to=''
+            id='loadmore'
+            className='btn-main lead'
+            onClick={handleArraySlice}
+          >
+            Load more
+          </Link>
+        </div>
+      ) : null}
     </>
   );
 };
