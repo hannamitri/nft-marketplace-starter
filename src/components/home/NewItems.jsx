@@ -62,16 +62,3 @@ const NewItems = () => {
 };
 
 export default NewItems;
-
-{
-  /* const hours = Math.floor(
-        (countDownTimer % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor(
-        (countDownTimer % (1000 * 60 * 60)) / (1000 * 60)
-      );
-      const seconds = Math.floor((countDownTimer % (1000 * 60)) / 1000);
-      setFormattedTimer(`${hours}h ${minutes}m ${seconds}s`);
-    }, 1000);
-    console.log(formattedTimer); */
-}
