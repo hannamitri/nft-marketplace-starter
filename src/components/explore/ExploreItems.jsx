@@ -19,10 +19,23 @@ const ExploreItems = () => {
     fetchExploreItems();
   }, []);
 
+  const handleSelectChange = async (filter) => {
+    setLoading(true);
+    const response = await axios(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+    ).then((response) => response.data);
+    setExploreItems(response);
+    setLoading(false);
+  };
+
   return (
     <>
       <div>
-        <select id='filter-items' defaultValue=''>
+        <select
+          id='filter-items'
+          defaultValue=''
+          onChange={(e) => handleSelectChange(e.target.value)}
+        >
           <option value=''>Default</option>
           <option value='price_low_to_high'>Price, Low to High</option>
           <option value='price_high_to_low'>Price, High to Low</option>
