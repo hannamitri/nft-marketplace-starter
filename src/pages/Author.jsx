@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import AuthorBanner from '../images/author_banner.jpg';
 import AuthorItems from '../components/author/AuthorItems';
 import { Link, useParams } from 'react-router-dom';
-import AuthorImage from '../images/author_thumbnail.jpg';
 import axios from 'axios';
+import Skeleton from '../components/UI/Skeleton';
+import SkeletonCards from '../components/re-useable/SkeletonCards';
 
 const Author = () => {
   const [loading, setLoading] = useState(true);
@@ -26,18 +27,21 @@ const Author = () => {
     authorImage: author?.authorImage,
   };
 
-  return loading ? null : (
+  return (
     <div id='wrapper'>
       <div className='no-bottom no-top' id='content'>
         <div id='top'></div>
-
-        <section
-          id='profile_banner'
-          aria-label='section'
-          className='text-light'
-          data-bgimage='url(images/author_banner.jpg) top'
-          style={{ background: `url(${AuthorBanner}) top` }}
-        ></section>
+        {loading ? (
+          <Skeleton height={'360px'} width={'100vw'} />
+        ) : (
+          <section
+            id='profile_banner'
+            aria-label='section'
+            className='text-light'
+            data-bgimage='url(images/author_banner.jpg) top'
+            style={{ background: `url(${AuthorBanner}) top` }}
+          ></section>
+        )}
 
         <section aria-label='section'>
           <div className='container'>
@@ -46,17 +50,37 @@ const Author = () => {
                 <div className='d_profile de-flex'>
                   <div className='de-flex-col'>
                     <div className='profile_avatar'>
-                      <img src={author.authorImage} alt='' />
+                      {loading ? (
+                        <Skeleton
+                          width={'150px'}
+                          height={'150px'}
+                          borderRadius={'50%'}
+                        />
+                      ) : (
+                        <img src={author.authorImage} alt='' />
+                      )}
 
                       <i className='fa fa-check'></i>
                       <div className='profile_name'>
                         <h4>
-                          {author.authorName}
+                          {loading ? (
+                            <Skeleton height={'1.5rem'} width={'8rem'} />
+                          ) : (
+                            author.authorName
+                          )}
                           <span className='profile_username'>
-                            @{author.tag}
+                            {loading ? (
+                              <Skeleton height={'1rem'} width={'5rem'} />
+                            ) : (
+                              `@${author.tag}`
+                            )}
                           </span>
                           <span id='wallet' className='profile_wallet'>
-                            {author.address}
+                            {loading ? (
+                              <Skeleton height={'1rem'} width={'10rem'} />
+                            ) : (
+                              author.address
+                            )}
                           </span>
                           <button id='btn_copy' title='Copy Text'>
                             Copy
@@ -68,7 +92,12 @@ const Author = () => {
                   <div className='profile_follow de-flex'>
                     <div className='de-flex-col'>
                       <div className='profile_follower'>
-                        {author.followers} followers
+                        {loading ? (
+                          <Skeleton height={'1rem'} width={'2rem'} />
+                        ) : (
+                          author.followers
+                        )}{' '}
+                        followers
                       </div>
                       <Link to='#' className='btn-main'>
                         Follow
@@ -80,11 +109,16 @@ const Author = () => {
 
               <div className='col-md-12'>
                 <div className='de_tab tab_simple'>
-                  <AuthorItems
-                    nftCollection={author.nftCollection.map((nft) =>
-                      Object.assign(nft, authorObj)
-                    )}
-                  />
+                  {loading ? (
+                    <SkeletonCards itemsAmount={1} />
+                  ) : (
+                    <AuthorItems
+                      nftCollection={author.nftCollection.map((nft) =>
+                        Object.assign(nft, authorObj)
+                      )}
+                      loading={loading}
+                    />
+                  )}
                 </div>
               </div>
             </div>
