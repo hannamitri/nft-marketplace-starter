@@ -14151,6 +14151,17 @@ a.read_more i {
   color: #0d0c22;
 }
 
+.de_countdown_skeleton {
+  position: absolute;
+  right: 20px;
+  background: #ffffff;
+  padding: 1px 10px;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  z-index: 100;
+}
+
 .de_countdown.bg-color-secondary {
   border: none;
 }
