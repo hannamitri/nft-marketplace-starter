@@ -101,12 +101,12 @@ const NewItems = () => {
                     </div>
                     <div className="nft__item_info">
                       <Link to="/item-details">
-                        <h4>Pinky Ocean</h4>
+                        <h4>{item.title}</h4>
                       </Link>
-                      <div className="nft__item_price">3.08 ETH</div>
+                      <div className="nft__item_price">{item.price}</div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                        <span>69</span>
+                        <span>{item.likes}</span>
                       </div>
                     </div>
                   </div>
@@ -153,8 +153,8 @@ const NewItems = () => {
                         </Link>
                       </div>
                       <div className="nft__item_info">
-                        <Link to="/item-details">
-                          <h4>Pinky Ocean</h4>
+                        <Link to="">
+                          <Skeleton />
                         </Link>
                         <div className="nft__item_price">3.08 ETH</div>
                         <div className="nft__item_like">
