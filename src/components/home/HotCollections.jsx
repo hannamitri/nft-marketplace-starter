@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import { Link, useNavigate } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
@@ -25,9 +23,7 @@ const HotCollections = () => {
 
   useEffect(() => {
     fetchCollections();
-    setTimeout(() => {
-      setLoading(true);
-    }, 1000);
+    setLoading(true);
     AOS.init();
   }, []);
 
