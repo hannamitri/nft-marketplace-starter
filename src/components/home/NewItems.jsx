@@ -90,7 +90,7 @@ const NewItems = () => {
                         </div>
                       </div>
 
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           className="lazy nft__item_preview"
@@ -99,7 +99,7 @@ const NewItems = () => {
                       </Link>
                     </div>
                     <div className="nft__item_info">
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${item.nftId}`}>
                         <h4>{item.title}</h4>
                       </Link>
                       <div className="nft__item_price">{item.price}</div>
@@ -123,7 +123,7 @@ const NewItems = () => {
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link to={``}>
-                          <Skeleton />
+                          <Skeleton width="100%" height="200px" />
                         </Link>
                       </div>
                       <div className="de_countdown">5h 30m 32s</div>
@@ -148,12 +148,16 @@ const NewItems = () => {
                         </div>
 
                         <Link to="/item-details">
-                          <Skeleton />
+                          <Skeleton
+                            width="50px"
+                            height="50px"
+                            borderRadius="50%"
+                          />
                         </Link>
                       </div>
                       <div className="nft__item_info">
                         <Link to="">
-                          <Skeleton />
+                          <Skeleton width="100px" height="20px" />
                         </Link>
                         <div className="nft__item_price">3.08 ETH</div>
                         <div className="nft__item_like">
