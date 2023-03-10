@@ -127,7 +127,6 @@ const NewItems = () => {
                           />
                         </Link>
                       </div>
-                      <div className="de_countdown">5h 30m 32s</div>
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
