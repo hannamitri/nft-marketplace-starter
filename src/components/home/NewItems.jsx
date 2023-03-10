@@ -102,7 +102,7 @@ const NewItems = () => {
                       <Link to={`/item-details/${item.nftId}`}>
                         <h4>{item.title}</h4>
                       </Link>
-                      <div className="nft__item_price">{item.price}</div>
+                      <div className="nft__item_price">{item.price} ETH</div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
                         <span>{item.likes}</span>
@@ -115,15 +115,24 @@ const NewItems = () => {
           ) : (
             <>
               <OwlCarousel className="owl-theme" {...options}>
-                {new Array(4).fill(0).map((_, index) => (
+                {new Array(8).fill(0).map((_, index) => (
                   <div
                     className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                     key={index}
                   >
                     <div className="nft__item">
                       <div className="author_list_pp">
-                        <Link to={``}>
-                          <Skeleton width="100%" height="200px" />
+                        <Link
+                          to={``}
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Creator: Monica Lucas"
+                        >
+                          <Skeleton
+                            width="50px"
+                            height="50px"
+                            borderRadius="50%"
+                          />
                         </Link>
                       </div>
                       <div className="de_countdown">5h 30m 32s</div>
@@ -147,22 +156,17 @@ const NewItems = () => {
                           </div>
                         </div>
 
-                        <Link to="/item-details">
-                          <Skeleton
-                            width="50px"
-                            height="50px"
-                            borderRadius="50%"
-                          />
+                        <Link to={``}>
+                          <Skeleton width="100%" height="350px" />
                         </Link>
                       </div>
                       <div className="nft__item_info">
-                        <Link to="">
-                          <Skeleton width="100px" height="20px" />
+                        <Link to={``}>
+                          <Skeleton width="180px" height="30px" />
                         </Link>
-                        <div className="nft__item_price">3.08 ETH</div>
+                        <Skeleton width="100px" height="20px" />
                         <div className="nft__item_like">
-                          <i className="fa fa-heart"></i>
-                          <span>69</span>
+                          <Skeleton width="30px" height="15px" />
                         </div>
                       </div>
                     </div>
