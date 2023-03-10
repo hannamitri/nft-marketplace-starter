@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
+import Countdown from "./Countdown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -64,7 +65,9 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+                    {item.expiryDate && (
+                      <Countdown expiryDate={item.expiryDate} />
+                    )}
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
