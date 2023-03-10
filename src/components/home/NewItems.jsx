@@ -51,14 +51,11 @@ const NewItems = () => {
           {newItems.length ? (
             <OwlCarousel className="owl-theme" {...options}>
               {newItems.map((item, index) => (
-                <div
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                  key={index}
-                >
+                <di key={index}>
                   <div className="nft__item">
                     <div className="author_list_pp">
                       <Link
-                        to={`/${item.authorId}`}
+                        to={`/author/${item.authorId}`}
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title="Creator: Monica Lucas"
@@ -107,17 +104,14 @@ const NewItems = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </di>
               ))}
             </OwlCarousel>
           ) : (
             <>
               <OwlCarousel className="owl-theme" {...options}>
                 {new Array(8).fill(0).map((_, index) => (
-                  <div
-                    className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                    key={index}
-                  >
+                  <div key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
