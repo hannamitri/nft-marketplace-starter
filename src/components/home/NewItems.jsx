@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
-import Countdown from "./Countdown";
+import Countdown from "../Countdown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
