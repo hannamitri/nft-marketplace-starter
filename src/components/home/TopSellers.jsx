@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
-import OwlCarousel from "react-owl-carousel";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -49,9 +47,8 @@ const TopSellers = () => {
             </div>
           </div>
           <div className="col-md-12">
-            <ol className="author_list">
               {topSellers.length ? (
-                <OwlCarousel className="owl-theme" {...options}>
+                <ol className="author_list">
                   {topSellers.map((item, index) => (
                     <li key={index}>
                       <div className="author_list_pp">
@@ -72,32 +69,28 @@ const TopSellers = () => {
                       </div>
                     </li>
                   ))}
-                </OwlCarousel>
+                  </ol>
               ) : (
-                <>
-                  <OwlCarousel className="owl-theme" {...options}>
+                
+                <ol className="author_list"></ol>
                     {new Array(12).fill(0).map((_, index) => (
                       <li key={index}>
                         <div className="author_list_pp">
-                          <Link to="/author">
-                            <img
-                              className="lazy pp-author"
-                              src={AuthorImage}
-                              alt=""
-                            />
-                            <i className="fa fa-check"></i>
+                          <Link to={``}>
+                           <Skeleton />
+                           <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
-                          <span>2.1 ETH</span>
+                          <Link to={``}>
+                            <Skeleton />
+                          </Link>
+                          <Skeleton />
                         </div>
                       </li>
                     ))}
-                  </OwlCarousel>
-                </>
+                    </ol>
               )}
-            </ol>
           </div>
         </div>
       </div>
