@@ -50,6 +50,32 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
+              {topSellers.length ? (
+                <OwlCarousel className="owl-theme" {...options}>
+                  {topSellers.map((item, index) => (
+                    <li key={index}>
+                      <div className="author_list_pp">
+                        <Link to={`/author/${item.authorId}`}>
+                          <img
+                            className="lazy pp-author"
+                            src={item.authorImage}
+                            alt=""
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
+                      <div className="author_list_info">
+                        <Link to={`/author/${item.authorID}`}>
+                          Monica Lucas
+                        </Link>
+                        <span>{item.price} ETH</span>
+                      </div>
+                    </li>
+                  ))}
+                </OwlCarousel>
+              ) : (
+                <></>
+              )}
               {new Array(12).fill(0).map((_, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
