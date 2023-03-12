@@ -5,25 +5,6 @@ import Skeleton from "../UI/Skeleton";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
-  const options = {
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 2,
-      },
-      900: {
-        items: 3,
-      },
-      1200: {
-        items: 4,
-      },
-    },
-  };
 
   const getTopSellers = async () => {
     const response = await axios.get(
