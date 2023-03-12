@@ -13,10 +13,7 @@ const Countdown = ({ expiryDate }) => {
 
     setIntervalId(intervalId);
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+   
 
   function calculateTime() {
     const millisLeft = expiryDate - Date.now();
