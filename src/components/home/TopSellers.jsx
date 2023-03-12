@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
+import OwlCarousel from "react-owl-carousel";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -29,7 +31,12 @@ const TopSellers = () => {
     const response = await axios.get(
       ` https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
     );
+    setTopSellers(response.data);
   };
+
+  useEffect(() => {
+    getTopSellers();
+  }, []);
 
   return (
     <section id="section-popular" className="pb-5">
