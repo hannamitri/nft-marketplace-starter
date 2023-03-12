@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -22,6 +23,12 @@ const TopSellers = () => {
         items: 4,
       },
     },
+  };
+
+  const getTopSellers = async () => {
+    const response = await axios.get(
+      ` https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
+    );
   };
 
   return (
