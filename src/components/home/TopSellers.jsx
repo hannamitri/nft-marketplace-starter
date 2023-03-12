@@ -73,7 +73,7 @@ const TopSellers = () => {
               ) : (
                 
                 <ol className="author_list"></ol>
-                    {new Array(12).fill(0).map((_, index) => (
+                    {new Array(12).fill(0).map((item, index) => (
                       <li key={index}>
                         <div className="author_list_pp">
                           <Link to={``}>
@@ -85,7 +85,9 @@ const TopSellers = () => {
                           <Link to={``}>
                             <Skeleton />
                           </Link>
+                          <span>
                           <Skeleton />
+                          </span>
                         </div>
                       </li>
                     ))}
