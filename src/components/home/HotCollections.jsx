@@ -1,8 +1,10 @@
 import axios from "axios"
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 const HotCollection = () => {
   const { id } = useParams();
@@ -18,9 +20,7 @@ const HotCollection = () => {
   }, [])
 
 
-
-
-return (
+  return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -30,6 +30,8 @@ return (
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <OwlCarousel className="owl-rtl" items="1" autoWidth margin={10} nav loop >
+            <div className="item">
           {collection.map((_, id) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
               <div className="nft_coll">
@@ -50,13 +52,18 @@ return (
                   </Link>
                   <span>ERC-{_.code}</span>
                 </div>
+                </div>
               </div>
+            ))} 
             </div>
-          ))}
+          </OwlCarousel>
         </div>
       </div>
     </section>
   );
 };
+
+
+
 
 export default HotCollection;
