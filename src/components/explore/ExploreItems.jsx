@@ -9,7 +9,7 @@ const ExploreItems = () => {
 
   const getExplore = async () => {
     const response = await axios.get(
-      ` https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
     );
     setExplore(response.data);
   };
