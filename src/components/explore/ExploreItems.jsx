@@ -92,7 +92,6 @@ const ExploreItems = () => {
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{ display: "block", backgroundSize: "cover" }}
             >
               <Skeleton width="100%" height="400px" />
             </div>
