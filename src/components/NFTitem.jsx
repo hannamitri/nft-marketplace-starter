@@ -3,7 +3,7 @@ import React from "react";
 import Countdown from "./Countdown";
 import { Link } from "react-router-dom";
 
-function NFTitem({ item }) {
+const NFTitem = ({ item }) => {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
@@ -54,6 +54,6 @@ function NFTitem({ item }) {
       </div>
     </div>
   );
-}
+};
 
 export default NFTitem;
