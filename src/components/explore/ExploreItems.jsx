@@ -70,7 +70,7 @@ const ExploreItems = () => {
             onClick={() => setItemCount(itemCount + 4)}
             to=""
             id="loadmore"
-            className="btn-main wow fadeInUp lead"
+            className="btn-main lead"
           >
             Load more
           </Link>
