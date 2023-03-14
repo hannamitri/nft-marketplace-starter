@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
-import Countdown from "../Countdown";
 import NFTitem from "../NFTitem";
 
 const ExploreItems = () => {
@@ -68,9 +65,16 @@ const ExploreItems = () => {
         </>
       )}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+        {itemCount !== 16 && (
+          <Link
+            onClick={() => setItemCount(itemCount + 4)}
+            to=""
+            id="loadmore"
+            className="btn-main wow fadeInUp lead"
+          >
+            Load more
+          </Link>
+        )}
       </div>
     </>
   );
