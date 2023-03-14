@@ -6,6 +6,9 @@ import axios from "axios";
 
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
+  const [skeletonLoading, setSkeletonLoading] = useState(true);
+  const [itemCount, setItemCount] = useState(8);
+
 
   const getExplore = async () => {
     const response = await axios.get(
@@ -14,19 +17,33 @@ const ExploreItems = () => {
     setExplore(response.data);
   };
 
+  async function filterItems(filter) {
+    setSkeletonLoading(false)
+    const response = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low`
+    );
+    setExplore(response.data);
+    setSkeletonLoading(true);
+  }
+
   useEffect(() => {
     getExplore();
   }, []);
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={(event) => filterItems(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
+      {explore.length && skeletonLoading ? (
+          
+      ): (
+
+      )}
       {new Array(8).fill(0).map((_, index) => (
         <div
           key={index}
