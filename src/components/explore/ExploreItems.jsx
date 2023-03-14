@@ -19,7 +19,7 @@ const ExploreItems = () => {
   async function filterItems(filter) {
     setSkeletonLoading(false);
     const response = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
     );
     setExplore(response.data);
     setSkeletonLoading(true);
