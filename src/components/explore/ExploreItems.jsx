@@ -4,6 +4,18 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const ExploreItems = () => {
+  const [explore, setExplore] = useState([]);
+
+  const getExplore = async () => {
+    const response = await axios.get(
+      ` https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
+    );
+    setExplore(response.data);
+  };
+
+  useEffect(() => {
+    getExplore();
+  }, []);
   return (
     <>
       <div>
