@@ -64,6 +64,4 @@ const HotCollection = () => {
 };
 
 
-
-
 export default HotCollection;
