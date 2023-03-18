@@ -58,7 +58,7 @@ const TopSellers = () => {
                 ? Array(12)
                     .fill(null)
                     .map((_, index) => (
-                      <React.Fragment key={index}>
+                      <React.Fragment  key={index}>
                         {renderSkeleton()}
                       </React.Fragment>
                     ))
