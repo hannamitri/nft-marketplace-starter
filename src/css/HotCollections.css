@@ -2,6 +2,8 @@
     border: 1px solid black;
     background-color: white;
     margin: 20px;
+    height: 400px;
+    width: 800px;
   }
   
   .post__title {

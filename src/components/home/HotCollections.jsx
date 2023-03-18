@@ -14,16 +14,17 @@ import Skeleton from "react-loading-skeleton";
 const HotCollections = () => {
 
   const [imgs, setImgs] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState()
   
   async function Imgdata() {
+    setLoading(false)
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setImgs(data)
   }
   
+  
   useEffect(() => {
     Imgdata()
-    setLoading(true)
   }, [])
 
   const options = {
