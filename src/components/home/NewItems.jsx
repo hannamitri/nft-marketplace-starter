@@ -18,7 +18,6 @@ const NewItems = () => {
       )
       .then((response) => {
         setNewItems(response.data);
-        console.log(response.data);
         setIsLoading(false);
       })
       .catch((error) => {
