@@ -59,6 +59,7 @@ const HotCollections = () => {
           className="skeleton-box"
           style={{ width: "64px", height: "64px", borderRadius: "50%" }}
         ></div>
+        <i className="fa fa-check"></i>
       </div>
       <div className="nft_coll_info">
         <div className="skeleton-text-wrapper">
