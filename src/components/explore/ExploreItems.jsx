@@ -32,7 +32,6 @@ const ExploreItems = () => {
       )
       .then((response) => {
         setExploreItems(response.data);
-        console.log(response.data);
         setIsLoading(false);
       })
       .catch((error) => {

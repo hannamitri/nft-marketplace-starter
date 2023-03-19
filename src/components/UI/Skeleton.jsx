@@ -62,6 +62,51 @@ const SkeletonItem = ({ type }) => {
     )
   }
 
+  if (type === "Author") {
+    return (
+      <div className="d_profile de-flex">
+        <div className="de-flex-col">
+          <div className="profile_avatar">
+            <div
+              className="skeleton-box"
+              style={{ width: "150px", height: "150px", borderRadius: "50%" }}
+            ></div>
+            <i className="fa fa-check"></i>
+            <div className="skeleton-text-wrapper" style={{ marginTop: "24px", marginLeft:"12px" }}>
+              <div
+                className="skeleton-box"
+                style={{
+                  width: "200px",
+                  height: "20px",
+                  marginBottom: "8px",
+                }}
+              ></div>
+              <div
+                className="skeleton-box"
+                style={{ width: "100px", height: "20px",  }}
+              ></div>
+              <div
+                className="skeleton-box"
+                style={{
+                  width: "200px",
+                  height: "20px",
+                  marginTop: "8px",
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div className="profile_follow de-flex" style={{ marginTop: "20px" }}>
+          <div className="de-flex-col">
+            <div className="skeleton-box" style={{ width: "100px", height: "32px", borderRadius: "4px" }}></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+
+
   // Add more cases for other types of components
 
   return <div>Unknown skeleton type</div>;
