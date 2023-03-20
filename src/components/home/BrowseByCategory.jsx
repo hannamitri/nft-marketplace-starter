@@ -18,31 +18,31 @@ const BrowseByCategory = () => {
               <span>Art</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="360">
+          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="350">
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-music"></i>
               <span>Music</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="370">
+          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="350">
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-search"></i>
               <span>Domain Names</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="380">
+          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="350">
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-globe"></i>
               <span>Virtual Worlds</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="390">
+          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="350">
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-vcard"></i>
               <span>Trading Cards</span>
             </Link>
           </div>
-          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="400">
+          <div className="col-md-2 col-sm-4 col-6 mb-sm-30" data-aos="fade-left" data-aos-delay="350">
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-th"></i>
               <span>Collectibles</span>
