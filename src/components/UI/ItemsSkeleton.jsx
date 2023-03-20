@@ -5,7 +5,7 @@ const ItemsSkeleton = () => {
   return (
     <div className="row">
       <div className="col-md-6 text-center">
-        <Skeleton width={"500px"} height={"550px"} borderRadius={"14%"} bottom />
+        <Skeleton width={"500px"} height={"550px"} borderradius={"14%"} bottom />
       </div>
       <div className="col-md-6">
         <div className="item_info">
