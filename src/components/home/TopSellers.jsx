@@ -63,7 +63,7 @@ const TopSellers = () => {
                       </React.Fragment>
                     ))
                 : topSellers.map((topSeller) => (
-                    <li key={topSeller.id}>
+                    <li key={topSeller.id} data-aos="fade" data-aos-delay="350">
                       <div className="author_list_pp">
                         <Link to={`/author/${topSeller.authorId}`}>
                           <img

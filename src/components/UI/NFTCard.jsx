@@ -5,7 +5,7 @@ import CountDown from "../Countdown";
 const NFTCard = ({ item }) => {
   return (
     <div>
-      <div className="nft__item">
+      <div className="nft__item" data-aos="fade" data-aos-delay="350">
         <div className="author_list_pp">
           <Link
             to={`/author/${item.authorId}`}
