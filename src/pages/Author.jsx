@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
+import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
   const [author, setAuthor] = useState("");
@@ -40,7 +40,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      {author ? (
+                        <img src={author.AuthorImage} alt="" />
+                      ) : (
+                        <Skeleton
+                          width="150px"
+                          height="150px"
+                          borderRadius="50%"
+                        />
+                      )}
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
