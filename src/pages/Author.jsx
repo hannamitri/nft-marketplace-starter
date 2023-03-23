@@ -110,10 +110,6 @@ const Author = () => {
                           <Skeleton width="150px" height="40px" />
                         </div>
                       )}
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
                     </div>
                   </div>
                 </div>
