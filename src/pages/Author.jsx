@@ -7,6 +7,7 @@ import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
   const [author, setAuthor] = useState("");
+  const [isFollowing, setIsFollowing] = useState(false);
   const id = useParams().id;
 
   const getAuthor = useCallback(async () => {
@@ -76,21 +77,18 @@ const Author = () => {
                             </span>
                           </h4>
                         )}
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
                       </div>
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
+                      {author ? (
+                        <>
+                        <div className="profile_follower">
+                          {author.followers + ()}
+                        </div>
+                        </>
+                      )}
                       <div className="profile_follower">573 followers</div>
                       <Link to="#" className="btn-main">
                         Follow
