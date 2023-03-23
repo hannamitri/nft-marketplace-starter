@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
@@ -9,16 +9,16 @@ const Author = () => {
   const [author, setAuthor] = useState("");
   const id = useParams().id;
 
-  const getAuthor = async () => {
+  const getAuthor = useCallback(async () => {
     const response = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthor(response.data);
-  };
+  }, [id]);
 
   useEffect(() => {
     getAuthor();
-  }, []);
+  }, [getAuthor]);
 
   return (
     <div id="wrapper">
