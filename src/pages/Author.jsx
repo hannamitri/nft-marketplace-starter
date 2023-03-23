@@ -52,6 +52,30 @@ const Author = () => {
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
+                        {author ? (
+                          <h4>
+                            {author.authorName}
+                            <span className="profile_username">
+                              @{author.tag}
+                            </span>
+                            <span id="wallet" className="profile_wallet">
+                              {author.address}
+                            </span>
+                            <button id="btn_copy" title="Copy Text">
+                              Copy
+                            </button>
+                          </h4>
+                        ) : (
+                          <h4>
+                            <Skeleton width="200px" />
+                            <span className="profile_username">
+                              <Skeleton width="100px" />
+                            </span>
+                            <span id="wallet" className="profile_wallet">
+                              <Skeleton width="250px" />
+                            </span>
+                          </h4>
+                        )}
                         <h4>
                           Monica Lucas
                           <span className="profile_username">@monicaaaa</span>
