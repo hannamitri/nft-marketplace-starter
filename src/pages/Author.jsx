@@ -84,10 +84,31 @@ const Author = () => {
                     <div className="de-flex-col">
                       {author ? (
                         <>
-                        <div className="profile_follower">
-                          {author.followers + ()}
-                        </div>
+                          <div className="profile_follower">
+                            {author.followers + (isFollowing ? 1 : 0)} followers
+                          </div>
+                          {isFollowing ? (
+                            <Link
+                              to="#"
+                              className="btn-main"
+                              onClick={() => setIsFollowing(!isFollowing)}
+                            >
+                              Unfollow
+                            </Link>
+                          ) : (
+                            <Link
+                              to="#"
+                              className="btn-main"
+                              onClick={() => setIsFollowing(!isFollowing)}
+                            >
+                              Follow
+                            </Link>
+                          )}
                         </>
+                      ) : (
+                        <div className="profile_follower">
+                          <Skeleton width="150px" height="40px" />
+                        </div>
                       )}
                       <div className="profile_follower">573 followers</div>
                       <Link to="#" className="btn-main">
