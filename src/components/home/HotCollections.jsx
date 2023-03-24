@@ -14,8 +14,9 @@ const HotCollections = () => {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
-    setCollections(data);
+    setCollections(data)
     setLoading(false)
+    
   }
 
   const options = {
@@ -57,7 +58,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {collections.length > 0 ? (
+          {!loading && (
             <OwlCarousel className="owl-theme" {...options}>
               {collections.map((collection, index) => (
                 <div key={index}>
@@ -91,7 +92,7 @@ const HotCollections = () => {
                 </div>
               ))}
             </OwlCarousel>
-          ) : (
+          )} {loading && (
             <OwlCarousel className="owl-theme" {...options}>
               {new Array(6).fill(0).map((_, index) => (
                 <div key={index}>
