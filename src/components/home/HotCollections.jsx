@@ -5,7 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
 const HotCollections = () => {
-  const [hotCollections, setHotCollections] = useState("");
+  const [hotCollections, setHotCollections] = useState([]);
 
   useEffect(() => {
     axios
@@ -16,6 +16,8 @@ const HotCollections = () => {
         setHotCollections(res.data);
       });
   }, []);
+
+console.log(hotCollections);
 
   return (
     <section id="section-collections" className="no-bottom">
