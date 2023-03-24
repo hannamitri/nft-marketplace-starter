@@ -4,9 +4,11 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
-const HotCollections = () => {
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
-  // changes
+const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
 
   useEffect(() => {
@@ -19,7 +21,25 @@ const HotCollections = () => {
       });
   }, []);
 
-console.log(hotCollections);
+  const options = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      900: {
+        items: 3,
+      },
+      1200: {
+        items: 4,
+      },
+    },
+  };
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -36,12 +56,20 @@ console.log(hotCollections);
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
-                    <img src={elem.nftImage} className="lazy img-fluid" alt="" />
+                    <img
+                      src={elem.nftImage}
+                      className="lazy img-fluid"
+                      alt=""
+                    />
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
-                    <img className="lazy pp-coll" src={elem.AuthorImage} alt="" />
+                    <img
+                      className="lazy pp-coll"
+                      src={elem.AuthorImage}
+                      alt=""
+                    />
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
