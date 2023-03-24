@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const HotCollections = () => {
+  // change please
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
