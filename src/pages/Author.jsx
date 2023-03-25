@@ -26,14 +26,15 @@ const Author = () => {
     if (followButton === "Follow") {
       setFollowers((prev) => prev + 1);
       setFollowButton("Unfollow");
-    }
-    else {
+    } else {
       setFollowers((prev) => prev - 1);
       setFollowButton("Follow");
     }
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     getAuthor();
   }, []);
 
