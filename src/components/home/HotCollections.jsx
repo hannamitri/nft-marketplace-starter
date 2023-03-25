@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
 import OwlCarousel from "react-owl-carousel";
@@ -9,7 +7,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
-  const [hotCollections, setHotCollections] = useState([]);
+  const [hotCollections, setHotCollections] = useState(new Array(6).fill("0"))
+  const [isLoading, setIsLoading] = useState(true); // set initial value to true
 
   useEffect(() => {
     axios
@@ -18,8 +17,10 @@ const HotCollections = () => {
       )
       .then((res) => {
         setHotCollections(res.data);
+        setIsLoading(false); // set to false after getting dat
+        console.log("data loaded successfully");
       });
-  }, []);
+  }, [isLoading]);
 
   const options = {
     loop: true,
@@ -51,37 +52,83 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {hotCollections.map((elem, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img
-                      src={elem.nftImage}
-                      className="lazy img-fluid"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img
-                      className="lazy pp-coll"
-                      src={elem.AuthorImage}
-                      alt=""
-                    />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{elem.title}</h4>
-                  </Link>
-                  <span>ERC-{elem.code}</span>
+          <OwlCarousel className="owl-rtl" {...options}>
+            {hotCollections.map((elem, index) => (
+              <div key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    {isLoading ? (
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "100%", height: "200px" }}
+                      ></div>
+                    ) : (
+                      <Link to="/item-details">
+                        <img
+                          src={elem.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    )}
+                  </div>
+                  <div className="nft_coll_pp">
+                    {isLoading ? (
+                      <div
+                        className="skeleton-box"
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "50%",
+                        }}
+                      ></div>
+                    ) : (
+                      <Link to="/author">
+                        <img
+                          className="lazy pp-coll"
+                          src={elem.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                    )}
+
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    {isLoading ? (
+                      <>
+                        <div
+                          className="skeleton-box"
+                          style={{ width: "100px", height: "20px" }}
+                        ></div>
+                      </>
+                    ) : (
+                      <>
+                        <Link to="/explore">
+                          <h4>{elem.title}</h4>
+                        </Link>
+                      </>
+                    )}
+                    {isLoading ? (
+                      <>
+                        <div
+                          className="skeleton-box"
+                          style={{
+                            width: "60px",
+                            height: "20px",
+                            display: "flex",
+                            margin: "0 auto",
+                          }}
+                        ></div>
+                      </>
+                    ) : (
+                      <span>ERC-{elem.code}</span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </OwlCarousel>
         </div>
       </div>
     </section>
