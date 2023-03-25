@@ -7,7 +7,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
-  const [hotCollections, setHotCollections] = useState(new Array(6));
+  const [hotCollections, setHotCollections] = useState(new Array(6).fill("0"))
   const [isLoading, setIsLoading] = useState(true); // set initial value to true
 
   useEffect(() => {
