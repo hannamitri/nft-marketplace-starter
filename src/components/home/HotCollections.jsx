@@ -18,7 +18,7 @@ const HotCollections = () => {
       .then((res) => {
         setHotCollections(res.data);
         setIsLoading(false); // set to false after getting dat
-        console.log("data loaded successfully");
+        console.log(hotCollections);
       });
   }, [isLoading]);
 
@@ -63,7 +63,7 @@ const HotCollections = () => {
                         style={{ width: "100%", height: "200px" }}
                       ></div>
                     ) : (
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${elem.nftId}`}>
                         <img
                           src={elem.nftImage}
                           className="lazy img-fluid"
@@ -83,7 +83,7 @@ const HotCollections = () => {
                         }}
                       ></div>
                     ) : (
-                      <Link to="/author">
+                      <Link to={`/author/${elem.authorId}`}>
                         <img
                           className="lazy pp-coll"
                           src={elem.authorImage}
@@ -104,7 +104,7 @@ const HotCollections = () => {
                       </>
                     ) : (
                       <>
-                        <Link to="/explore">
+                        <Link to={`/explore/${elem.nftId}`}>
                           <h4>{elem.title}</h4>
                         </Link>
                       </>
