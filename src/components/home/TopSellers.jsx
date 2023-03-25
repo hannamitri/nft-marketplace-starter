@@ -1,8 +1,24 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = () => {
+  const [topSellers, setTopSellers] = useState(new Array(6).fill("0"));
+  const [isLoading, setIsLoading] = useState(true); // set initial value to true
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+      )
+      .then((res) => {
+        setTopSellers(res.data);
+        setIsLoading(false); // set to false after getting data
+      });
+  }, [isLoading]);
+
+  console.log(topSellers);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,21 +31,46 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
+              {topSellers.map((_, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
+                    {isLoading ? (
+                      <div
+                        className="skeleton-box"
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "50%",
+                        }}
+                      ></div>
+                    ) : (
+                      <Link to={`/author/${_.authorId}`}>
+                        <img
+                          className="lazy pp-author"
+                          src={_.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                    )}
+                    <i className="fa fa-check"></i>
                   </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                  <div className="author_list_info" style={{display: "flex", flexDirection: "column"}}>
+                    {isLoading ? (
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "100px", height: "20px" }}
+                      ></div>
+                    ) : (
+                      <Link to={`/author/${_.authorId}`}>{_.authorName}</Link>
+                    )}
+                    {isLoading ? (
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "40px", height: "20px", marginTop: "8px" }}
+                      ></div>
+                    ) : (
+                      <span>{_.price} ETH</span>
+                    )}
                   </div>
                 </li>
               ))}
