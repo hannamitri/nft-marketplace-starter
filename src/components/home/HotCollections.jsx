@@ -12,8 +12,6 @@ const HotCollections = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-
     axios
       .get(
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
@@ -25,7 +23,7 @@ const HotCollections = () => {
         setIsLoading(false);
       });
   }, []);
-
+  
   const options = {
     loop: true,
     margin: 10,
@@ -116,10 +114,9 @@ const HotCollections = () => {
                     )}
                     {isLoading ? (
                       <>
-                      <br />
                       <div
                         className="skeleton-box"
-                        style={{ width: "60px", height: "20px" }}
+                        style={{ width: "60px", height: "20px", display: "flex", margin: "0 auto" }}
                       ></div>
                       </>
                       
