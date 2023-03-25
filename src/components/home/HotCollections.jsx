@@ -7,9 +7,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
-  const [hotCollections, setHotCollections] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(false);
+  const [hotCollections, setHotCollections] = useState(new Array(6));
+  const [isLoading, setIsLoading] = useState(true); // set initial value to true
 
   useEffect(() => {
     axios
@@ -18,12 +17,11 @@ const HotCollections = () => {
       )
       .then((res) => {
         setHotCollections(res.data);
-      })
-      .finally(() => {
-        setIsLoading(false);
+        setIsLoading(false); // set to false after getting dat
+        console.log("data loaded successfully")
       });
-  }, []);
-  
+  }, [isLoading]);
+
   const options = {
     loop: true,
     margin: 10,
@@ -43,7 +41,6 @@ const HotCollections = () => {
       },
     },
   };
-  //
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -114,12 +111,16 @@ const HotCollections = () => {
                     )}
                     {isLoading ? (
                       <>
-                      <div
-                        className="skeleton-box"
-                        style={{ width: "60px", height: "20px", display: "flex", margin: "0 auto" }}
-                      ></div>
+                        <div
+                          className="skeleton-box"
+                          style={{
+                            width: "60px",
+                            height: "20px",
+                            display: "flex",
+                            margin: "0 auto",
+                          }}
+                        ></div>
                       </>
-                      
                     ) : (
                       <span>ERC-{elem.code}</span>
                     )}
