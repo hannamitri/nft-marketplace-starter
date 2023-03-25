@@ -18,7 +18,6 @@ const HotCollections = () => {
       .then((res) => {
         setHotCollections(res.data);
         setIsLoading(false); // set to false after getting dat
-        console.log(hotCollections);
       });
   }, [isLoading]);
 
