@@ -18,7 +18,7 @@ const HotCollections = () => {
       .then((res) => {
         setHotCollections(res.data);
         setIsLoading(false); // set to false after getting dat
-        console.log("data loaded successfully")
+        console.log("data loaded successfully");
       });
   }, [isLoading]);
 
