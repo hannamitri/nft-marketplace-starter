@@ -13180,7 +13180,37 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+  width: 400px;
 }
+
+@media (max-width: 1400px) {
+  .nft_coll {
+    width: 350px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .nft_coll {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nft_coll {
+    width: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .nft_coll {
+    width: 250px;
+  }
+}
+@media (max-width: 500px) {
+  .nft_coll {
+    width: 350px;
+  }
+}
+
 
 .nft_coll.style-2 {
   border: none;

@@ -1,0 +1,204 @@
+.slider {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-item {
+  padding: 10px;
+  background-color: rgb(100, 89, 89);
+  width: 330px;
+}
+
+.main-item-input-wrapper {
+  padding: 10px;
+  background-color: rgb(207, 207, 207);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.main-item-input {
+  padding: 10px;
+  border: none;
+  /* width: calc(100%/2); */
+}
+
+.background-masker {
+  background-color: #fff;
+  position: absolute;
+}
+
+.btn-divide-left {
+  top: 0;
+  left: 25%;
+  height: 100%;
+  width: 5%;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -800px 0;
+  }
+  100% {
+    background-position: 800px 0;
+  }
+}
+
+.animated-title-background,
+.animated-title-background-input {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.animated-type-background,
+.animated-type-background-input {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  width: 150px;
+}
+
+.animated-year-background,
+.animated-year-background-input {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  width: 130px;
+}
+
+.animated-poster-background,
+.animated-poster-background-input {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 200px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.animated-id-background,
+.animated-id-background-input {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  height: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  width: 270px;
+}
+.shared-dom {
+  width: 800px;
+  height: 110px;
+}
+.sub-rect {
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  float: left;
+  margin: 20px 20px 20px 0;
+}
+.pure-background {
+  background-color: #eee;
+}
+
+.css-dom:empty {
+  width: 280px;
+  height: 220px;
+  border-radius: 6px;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+
+  background-image: radial-gradient(circle 16px, lightgray 99%, transparent 0),
+    linear-gradient(lightgray, lightgray), linear-gradient(lightgray, lightgray),
+    linear-gradient(lightgray, lightgray), linear-gradient(lightgray, lightgray),
+    linear-gradient(#fff, #fff);
+
+  background-size: 32px 32px, 200px 32px, 180px 32px, 230px 16px, 100% 40px,
+    280px 100%;
+
+  background-position: 24px 30px, 66px 30px, 24px 90px, 24px 142px, 0 180px, 0 0;
+}
+
+.loading__state {
+  background-color: #bbbbbb;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 2rem;
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: 1rem;
+}
+
+.slick-next {
+  right: 1rem;
+}
+
+.carousel-container {
+  text-align: center;
+}
+
+.response__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.response__wrapper {
+  display: flex !important;
+  align-items: center!important;
+  justify-content: center !important;
+  max-width: 400px;
+}
+
+@media (max-width: 500px) {
+  .response__wrapper {
+    max-width: 200px;
+  }
+}
