@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import nftImage from "../../images/nftImage.jpg";
 
 const AuthorItems = ({ isLoading, author }) => {
   const [currAuth, setCurrAuth] = useState(new Array(8).fill(0));
 
   useEffect(() => {
     setCurrAuth(author);
-    console.log(currAuth.nftCollection);
   }, [currAuth, []]);
 
   function isCollection() {
@@ -55,7 +53,7 @@ const AuthorItems = ({ isLoading, author }) => {
                         </div>
                       </div>
                     </div>
-                    <Link to="/item-details">
+                    <Link to={`/item-details/${_.nftId}`}>
                       <img
                         src={_.nftImage}
                         className="lazy nft__item_preview"
