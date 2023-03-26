@@ -6,7 +6,13 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
+import AOS from "aos";
+import 'aos/dist/aos.css';
+
 const HotCollections = () => {
+
+  AOS.init()
+
   const [hotCollections, setHotCollections] = useState(new Array(6).fill("0"))
   const [isLoading, setIsLoading] = useState(true); // set initial value to true
 
@@ -46,12 +52,12 @@ const HotCollections = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up" data-aos-duration="4000">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-rtl" {...options}>
+          <OwlCarousel className="owl-rtl" {...options} data-aos="fade-up" data-aos-duration="4000">
             {hotCollections.map((elem, index) => (
               <div key={index}>
                 <div className="nft_coll">
