@@ -17,9 +17,8 @@ const ExploreItems = () => {
       .then((res) => {
         setExplore(res.data);
         setIsLoading(false); // set to false after getting data
-        console.log(explore);
       });
-  }, [filter]);
+  }, [filter, isLoading]);
 
   function showVisibility(index) {
     if (index < endArr) {
@@ -34,6 +33,7 @@ const ExploreItems = () => {
 
   function getSelectValue(event) {
     setFilter(event.target.value);
+    setIsLoading(true)
   }
 
   return (
