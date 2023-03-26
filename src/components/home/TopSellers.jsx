@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const TopSellers = () => {
-  const [topSellers, setTopSellers] = useState(new Array(6).fill("0"));
+  const [topSellers, setTopSellers] = useState(new Array(12).fill("0"));
   const [isLoading, setIsLoading] = useState(true); // set initial value to true
 
   useEffect(() => {
@@ -16,8 +16,6 @@ const TopSellers = () => {
         setIsLoading(false); // set to false after getting data
       });
   }, [isLoading]);
-
-  console.log(topSellers);
 
   return (
     <section id="section-popular" className="pb-5">
