@@ -118,14 +118,14 @@ const HotCollections = () => {
 
   return (
     <section id="section-collections" className="no-bottom">
-      <div className="post">
+      {/* <div className="post">
             <div className="post__title">
               <div className="post__title--skeleton"></div>
             </div>
             <div className="post__body">
               <p className="post__body--skeleton"></p>
             </div>
-          </div>
+          </div> */}
       <div className="container">
         <div className="row " >
         
@@ -135,12 +135,11 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-
-          <Slider  {...settings}>
+        {
           {
             loading ? (
               new Array(4).fill(0).map((_, index) =>{
-                <div className="post" key={index}>
+                <div className="post">
             <div className="post__title">
               <div className="post__title--skeleton"></div>
             </div>
@@ -150,7 +149,10 @@ const HotCollections = () => {
           </div>
               })
             )
-            :
+          }
+          :
+          <Slider  {...settings}>
+          {
               (
               imgs.map(img => (
                 <div className="nft_coll">
@@ -182,7 +184,7 @@ const HotCollections = () => {
           )
         }
       </Slider>
-
+}
         {/* <Slider  {...settings}>
         {
           imgs.map(img => (
