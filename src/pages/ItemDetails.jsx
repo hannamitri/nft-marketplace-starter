@@ -7,7 +7,7 @@ import ItemsSkeleton from "../components/UI/ItemsSkeleton";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const ItemDetails = () => {
+const ItemDetails = ({ authorId }) => {
   const { id } = useParams();
   const [nft, setNft] = useState("");
   const [loading, setLoading] = useState(true);
@@ -33,11 +33,15 @@ const ItemDetails = () => {
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
-          <div className="container" >
+          <div className="container">
             {loading ? (
               <ItemsSkeleton />
             ) : (
-              <div className="row" data-aos="fade-in" data-aos-easing="ease-in-out">
+              <div
+                className="row"
+                data-aos="fade-in"
+                data-aos-easing="ease-in-out"
+              >
                 <div className="col-md-6 text-center">
                   <img
                     src={nft.nftImage}
@@ -67,7 +71,7 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${nft.ownerId}`}>
                               <img
                                 className="lazy"
                                 src={nft.ownerImage}
@@ -88,7 +92,7 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${nft.creatorId}`}>
                               <img
                                 className="lazy"
                                 src={nft.creatorImage}
@@ -98,7 +102,7 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{nft.creatorName}</Link>
+                            <Link to="/author:id">{nft.creatorName}</Link>
                           </div>
                         </div>
                       </div>
