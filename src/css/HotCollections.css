@@ -1,40 +1,72 @@
-.post {
-    border: 1px solid black;
-    background-color: white;
-    margin: 20px;
-    height: 250px;
-    width: 300px;
-  }
-  
-  .post__title {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 1px solid black;
-    padding: 8px;
-  }
-  
-  .post__title--skeleton {
-    width: 80px;
-    height: 12px;
-    background-color: lightgray;
-  }
-  
-  
-  .post__body {
-    padding: 0 8px;
-  }
-  
-  .post__body--skeleton {
-    width: 100%;
-    height: 24px;
-    background-color: lightgray;
-  }
-  
-  .post__search {
-    margin-top: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-  }
+.grey_box {
+  background-color: rgb(219, 218, 218);
+  position: relative;
+  height: 185px;
+  width: 100%;  
+}
+
+.pp-coll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(219, 218, 218);
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  left: 8px;
+  bottom: 8px;
+  position: relative;
+  border: 2px solid rgba(141, 141, 141, 0.075);
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.wrap > .MuiSvgIcon-root {
+  font-size: 38px;
+  background-color: white;
+}
+
+.arrow__left {
+  position: relative;
+  left: 24px;
+  z-index: 100;
+}
+
+.arrow__right {
+  position: relative;
+  right: 25px; 
+}
+
+.arrow {
+  border: 2px solid rgb(220, 218, 218);
+  border-radius: 50%;
+}
+
+.nft_coll-skeleton {
+  width: 350px;
+  height: 300px;
+  margin-right: 5px;
+}
+
+.nft_coll_info {
+  flex-direction: column;
+}
+
+.titleLoading {
+  background-color: rgb(219, 218, 218);
+  width: 50%;
+  margin-left: 25%;
+  height: 20px;
+}
+
+.spanLoading {
+  background-color: rgb(219, 218, 218);
+  width: 50%;
+  height: 10px;
+  color:rgb(219, 218, 218);
+}
