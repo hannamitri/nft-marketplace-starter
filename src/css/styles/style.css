@@ -13180,7 +13180,8 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
-  width: 400px;
+  width: 300px;
+  height: 330px;
 }
 
 @media (max-width: 1400px) {
@@ -13321,7 +13322,7 @@ a.read_more i {
 .author_list_pp {
   margin-top: 2px;
   position: absolute;
-  display: inline-block;
+  display: block;
   width: 50px;
   height: auto;
   margin-left: 10px;
@@ -13659,6 +13660,12 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+}
+
+@media (max-width: 765px) {
+  .nft__item {
+    width: 100%;
+  }
 }
 
 .nft__item.style-2,

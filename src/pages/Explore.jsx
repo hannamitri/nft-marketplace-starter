@@ -1,12 +1,28 @@
-import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Explore = () => {
+  const [explore, setExplore] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function fetchData() {
+    setLoading(true);
+    const response = await axios(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
+    );
+
+    setExplore(response.data);
+    // console.log(response.data);
+    setLoading(false);
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    //dsdsdsd
+    fetchData();
   }, []);
+
 
   return (
     <div id="wrapper">
@@ -34,6 +50,9 @@ const Explore = () => {
           <div className="container">
             <div className="row">
               <ExploreItems />
+              {/* {nfts && nfts.map((nft__item) => {
+                  return <ExploreItems nft={nft} key={nft.id} />;
+                })} */}
             </div>
           </div>
         </section>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./hotcollection.css";
+import "../../css/home css/hotcollection.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -28,17 +28,13 @@ const HotCollections = () => {
 
   const PrevArrow = ({ onClick }) => (
     <button className="slick-prev custom-prev" onClick={onClick}>
-      <svg viewBox="0 0 24 24">
-        <path d="M15 4L7 12L15 20" />
-      </svg>
+      <path d="M15 4L7 12L15 20" />
     </button>
   );
 
   const NextArrow = ({ onClick }) => (
     <button className="slick-next custom-next" onClick={onClick}>
-      <svg viewBox="0 0 24 24">
-        <path d="M9 4L17 12L9 20" />
-      </svg>
+      <path d="M9 4L17 12L9 20" />
     </button>
   );
 
@@ -93,7 +89,6 @@ const HotCollections = () => {
           slidesToScroll: 1,
         },
       },
-      
     ],
   };
 
@@ -111,51 +106,23 @@ const HotCollections = () => {
             <Slider {...settings}>
               {loading
                 ? new Array(6).fill(0).map((_, id) => (
-                    <div
-                      className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                      key={id}
-                    >
-                      <div className="nft_coll">
-                        <div className="nft_wrap">
-                          <div className="main-item-input">
-                            <div className="animated-poster-background-input"></div>
-                            <div className="animated-title-background-input"></div>
-                            <Link to="/item-details">
-                              <img
-                                className="animated-title-background-input lazy img-fluid"
-                                alt=""
-                              />
-                            </Link>
-                          </div>
-                          <div className="nft_coll_pp">
-                            <Link to="/author">
-                              <img
-                                className="animated-title-background-input lazy pp-coll"
-                                alt=""
-                              />
-                            </Link>
-                            <i className="fa fa-check"></i>
-                          </div>
-                          <div className="nft_coll_info">
-                            <Link to="/explore">
-                              <h4 className="animated-title-background-input"></h4>
-                            </Link>
-                            <span className="animated-title-background-input"></span>
-                          </div>
-                        </div>
+                    <div className="hot__collection--loading">
+                      <div className="hot__collection-loading-author-wrapper">
+                        <div className="hot__collection-loading-author"></div>
+                      </div>
+                      <div className="hot__collection-loading-author-text-wrapper">
+                        <div className="hot__collection-loading-author-text"></div>
+                        <div className="hot__collection-loading-author-mini-text"></div>
                       </div>
                     </div>
                   ))
                 : hotCollection.map((response, id) => (
-                    <div className="response__wrapper">
-                      <div
-                        className="col-lg-3 col-md-6 col-sm-6 col-xs-12 response__wrap"
-                        key={id}
-                      >
+                    <div className="response__wrapper" key={id}>
+                      <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 response__wrap">
                         <div className="nft__wrapper">
                           <div className="nft_coll">
                             <div className="nft_wrap">
-                              <Link to="/item-details">
+                              <Link to={`/item-details/${response.nftId}`}>
                                 <img
                                   src={response.nftImage}
                                   className="lazy img-fluid"
@@ -164,7 +131,7 @@ const HotCollections = () => {
                               </Link>
                             </div>
                             <div className="nft_coll_pp">
-                              <Link to="/author">
+                              <Link to={`/author/${response.authorId}`}>
                                 <img
                                   className="lazy pp-coll"
                                   src={response.authorImage}

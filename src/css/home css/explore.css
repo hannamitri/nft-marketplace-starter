@@ -1,0 +1,15 @@
+.explore__loading {
+  height: 400px;
+  max-width: 300px;
+  border-radius: 10px;
+  border: 1px solid #bbbbbb;
+  padding: 20px;
+  margin: 5px 10px;
+}
+
+.explore__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
