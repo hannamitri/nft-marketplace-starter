@@ -81,7 +81,9 @@ const ItemDetails = ({ authorId }) => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{nft.ownerName}</Link>
+                            <Link to={`/author/${nft.ownerId}`}>
+                              {nft.ownerName}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -102,7 +104,9 @@ const ItemDetails = ({ authorId }) => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author:id">{nft.creatorName}</Link>
+                            <Link to={`/author/${nft.creatorId}`}>
+                              {nft.creatorName}
+                            </Link>
                           </div>
                         </div>
                       </div>
