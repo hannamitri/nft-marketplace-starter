@@ -2,6 +2,10 @@ import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
+
 
 const Explore = () => {
   const [explore, setExplore] = useState([]);
@@ -10,7 +14,7 @@ const Explore = () => {
   async function fetchData() {
     setLoading(true);
     const response = await axios(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low`
     );
 
     setExplore(response.data);
@@ -21,6 +25,7 @@ const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchData();
+    // any comment
   }, []);
 
 
@@ -50,9 +55,6 @@ const Explore = () => {
           <div className="container">
             <div className="row">
               <ExploreItems />
-              {/* {nfts && nfts.map((nft__item) => {
-                  return <ExploreItems nft={nft} key={nft.id} />;
-                })} */}
             </div>
           </div>
         </section>

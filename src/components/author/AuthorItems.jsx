@@ -53,7 +53,8 @@ const AuthorItems = () => {
             </div>
             ))
           :
-         authorItems.length < 0 ? authorItems?.map((response, index) => (
+         authorItems.length < 0 ?
+          authorItems?.map((response, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -82,7 +83,7 @@ const AuthorItems = () => {
                   </div>
                   <Link to={`/item-details/${response.nftId}`}> 
                     <img
-                      src={response.nftImage}
+                      src={response.nftCollection.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
@@ -90,17 +91,18 @@ const AuthorItems = () => {
                 </div>
                 <div className="nft__item_info">
                   <Link to={`/item-details/${response.nftId}`}>
-                    <h4>{response.nftImage}</h4>
+                    <h4>{response.nftCollection.nftImage}</h4>
                   </Link>
                   <div className="nft__item_price">{response.nftCollection.price} ETH</div>
                   <div className="nft__item_like">
                     <i className="fa fa-heart"></i>
-                    <span>{response.likes}</span>
+                    <span>{response.nftCollection.likes}</span>
                   </div>
                 </div>
               </div>
             </div>
-          )): <h1>loading</h1>
+          ))
+          : <h1>loading</h1>
           
           }
           </div>

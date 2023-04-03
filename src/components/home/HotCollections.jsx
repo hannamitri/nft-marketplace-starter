@@ -6,6 +6,9 @@ import "../../css/home css/hotcollection.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const HotCollections = () => {
   const [hotCollection, setHotCollection] = useState([]);
@@ -124,6 +127,13 @@ const HotCollections = () => {
                             <div className="nft_wrap">
                               <Link to={`/item-details/${response.nftId}`}>
                                 <img
+                                  data-aos="fade-in"
+                                  data-aos-offset="200"
+                                  data-aos-delay="50"
+                                  data-aos-duration="1000"
+                                  data-aos-easing="ease-in-out"
+                                  data-aos-mirror="true"
+                                  data-aos-once="true"
                                   src={response.nftImage}
                                   className="lazy img-fluid"
                                   alt=""
@@ -136,15 +146,51 @@ const HotCollections = () => {
                                   className="lazy pp-coll"
                                   src={response.authorImage}
                                   alt=""
+                                  data-aos="fade-in"
+                                  data-aos-offset="200"
+                                  data-aos-delay="50"
+                                  data-aos-duration="1000"
+                                  data-aos-easing="ease-in-out"
+                                  data-aos-mirror="true"
+                                  data-aos-once="true"
                                 />
                               </Link>
-                              <i className="fa fa-check"></i>
+                              <i
+                                className="fa fa-check"
+                                data-aos="fade-in"
+                                data-aos-offset="200"
+                                data-aos-delay="50"
+                                data-aos-duration="1000"
+                                data-aos-easing="ease-in-out"
+                                data-aos-mirror="true"
+                                data-aos-once="true"
+                              ></i>
                             </div>
                             <div className="nft_coll_info">
                               <Link to="/explore">
-                                <h4>{response.title}</h4>
+                                <h4
+                                  data-aos="fade-in"
+                                  data-aos-offset="200"
+                                  data-aos-delay="50"
+                                  data-aos-duration="1000"
+                                  data-aos-easing="ease-in-out"
+                                  data-aos-mirror="true"
+                                  data-aos-once="true"
+                                >
+                                  {response.title}
+                                </h4>
                               </Link>
-                              <span>ERC-{response.code}</span>
+                              <span
+                                data-aos="fade-in"
+                                data-aos-offset="200"
+                                data-aos-delay="50"
+                                data-aos-duration="1000"
+                                data-aos-easing="ease-in-out"
+                                data-aos-mirror="true"
+                                data-aos-once="true"
+                              >
+                                ERC-{response.code}
+                              </span>
                             </div>
                           </div>
                         </div>
