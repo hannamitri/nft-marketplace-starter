@@ -5,7 +5,7 @@ import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
 
 const ItemDetails = () => {
-  const [itemDetails, setItemDetails] = useState([]);
+  const [itemDetails, setItemDetails] = useState("");
   const id = useParams().id;
 
   useEffect(() => {
