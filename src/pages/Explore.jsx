@@ -24,8 +24,7 @@ const Explore = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchData();
-    // any comment
+    //FROM MAIN DONOT REMOVE
   }, []);
 
 
