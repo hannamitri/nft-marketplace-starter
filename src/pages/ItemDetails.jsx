@@ -36,14 +36,14 @@ const ItemDetails = () => {
           <div className="container">
             {itemDetails ? (
               <div className="row">
-                <div className="col-md-6 text-center" data-aos="fade-right">
+                <div className="col-md-6 text-center">
                   <img
                     src={itemDetails.nftImage}
                     className="img-fluid img-rounded mb-sm-30 nft-image"
                     alt=""
                   />
                 </div>
-                <div className="col-md-6" data-aos="fade-left">
+                <div className="col-md-6">
                   <div className="item_info">
                     <h2>{itemDetails.title + " #" + itemDetails.tag}</h2>
 
