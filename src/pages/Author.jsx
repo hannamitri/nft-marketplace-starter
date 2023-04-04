@@ -4,6 +4,8 @@ import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Author = () => {
   const [author, setAuthor] = useState("");
@@ -21,6 +23,10 @@ const Author = () => {
     window.scrollTo(0, 0);
     getAuthor();
   }, [getAuthor]);
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   return (
     <div id="wrapper">
