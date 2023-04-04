@@ -3,8 +3,6 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
-import Aos from "aos";
-import "aos/dist/aos.css";
 
 const ItemDetails = () => {
   const [itemDetails, setItemDetails] = useState("");
@@ -21,12 +19,6 @@ const ItemDetails = () => {
     );
     setItemDetails(response.data);
   };
-
-  useEffect(() => {
-    Aos.init({
-      duration: 600,
-    });
-  }, []);
 
   return (
     <div id="wrapper">
