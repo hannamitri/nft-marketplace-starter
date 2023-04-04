@@ -25,7 +25,7 @@ const TopSellers = () => {
 
   return (
     <section id="section-popular" className="pb-5">
-      <div className="container">
+      <div className="container" data-aos-duration="600" data-aos="fade-up">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
