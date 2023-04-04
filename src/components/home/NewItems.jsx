@@ -5,6 +5,8 @@ import OwlCarousel from "react-owl-carousel";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 import Countdown from "../Countdown";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -37,6 +39,10 @@ const NewItems = () => {
 
   useEffect(() => {
     getNewItems();
+  }, []);
+
+  useEffect(() => {
+    Aos.init();
   }, []);
 
   return (
