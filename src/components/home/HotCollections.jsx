@@ -7,6 +7,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useEffect } from "react";
 import Skeleton from "../UI/Skeleton";
 import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
