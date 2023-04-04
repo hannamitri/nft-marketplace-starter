@@ -20,11 +20,7 @@ const Landing = () => {
       data-aos-duration="600"
     >
       <div className="v-center">
-        <div
-          className="container"
-          data-aos="fade-right"
-          data-aos-duration="600"
-        >
+        <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="spacer-single"></div>
