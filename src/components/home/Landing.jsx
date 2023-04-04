@@ -16,9 +16,15 @@ const Landing = () => {
       className="no-top no-bottom vh-100"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
+      data-aos="fade-left"
+      data-aos-duration="600"
     >
       <div className="v-center">
-        <div className="container">
+        <div
+          className="container"
+          data-aos="fade-right"
+          data-aos-duration="600"
+        >
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="spacer-single"></div>
