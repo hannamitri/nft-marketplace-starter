@@ -6,6 +6,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useEffect } from "react";
 import Skeleton from "../UI/Skeleton";
+import Aos from "aos";
 
 const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
@@ -38,6 +39,10 @@ const HotCollections = () => {
 
   useEffect(() => {
     getExploreData();
+  }, []);
+
+  useEffect(() => {
+    Aos.init();
   }, []);
 
   return (
