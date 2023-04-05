@@ -1,7 +1,8 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -30,33 +31,39 @@ const HotCollection = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-rtl" items="1" autoWidth margin={10} nav loop >
-            <div className="item">
+          {collection.length && (
+          <OwlCarousel className="owl-nav" autoWidth items="4" nav loop >
+            
           {collection.map((_, id) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
+
+           
+               <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12" key={id}>
               <div className="nft_coll">
+              <div className="item">
                 <div className="nft_wrap">
                   <Link to="/item-details">
-                    <img src={_.nftImage} className="lazy img-fluid" alt="" />
+                    <img src={_.nftImage || <Skeleton />}  className="lazy img-fluid" alt="" />
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
-                    <img className="lazy pp-coll" src={_.AuthorImage} alt="" />
+                    <img className="lazy pp-coll" src={_.authorImage || <Skeleton />} alt="" />
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
                 <div className="nft_coll_info">
                   <Link to="/explore">
-                    <h4>{_.title}</h4>
+                    <h4>{_.title || <Skeleton />}</h4>
                   </Link>
-                  <span>ERC-{_.code}</span>
+                  <span>ERC-{_.code || <Skeleton />}</span>
                 </div>
                 </div>
               </div>
+              </div>
             ))} 
-            </div>
+            
           </OwlCarousel>
+          )}          
         </div>
       </div>
     </section>
