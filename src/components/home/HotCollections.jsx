@@ -18,9 +18,6 @@ const [data, setdata]=useState()
   useEffect(()=>{
     getData()
   },[])
-console.log(data.map((arr)=>{
-
-}))
 
 
 
