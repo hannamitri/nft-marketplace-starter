@@ -15,10 +15,9 @@ const [data, setdata]=useState(null)
   async function getData(){
    await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     .then((response)=>{
-        setTimeout(() => {
+      
           
           setdata(response.data)
-        }, 500);
     })
   }
 if(!data){
@@ -82,7 +81,7 @@ if(!data){
                :
                <div className="nft_coll">
                <div className="nft_wrap">
-             <Link to="/item-details">
+             <Link to="/">
 
              <Skeleton width={"100%"} height={200}/>
           </Link>

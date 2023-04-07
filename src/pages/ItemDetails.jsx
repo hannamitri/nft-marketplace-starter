@@ -14,11 +14,11 @@ const ItemDetails = () => {
       setTimeout(() => {
         
         setdata(items.data)
-      }, 500);
+      }, 200);
 
     })
    }
-
+console.log(data)
 useEffect(() => {
     fetchData()
     window.scrollTo(0, 0);
@@ -60,13 +60,13 @@ useEffect(() => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${data.ownerId}`}>
                             <img className="lazy" src={data?.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{data?.ownerName}</Link>
+                          <Link to={`/author/${data.ownerId}`}>{data?.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -83,7 +83,7 @@ useEffect(() => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${data.creatorId}`}>{data.creatorName}</Link>
                         </div>
                       </div>
                     </div>
