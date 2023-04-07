@@ -14,10 +14,8 @@ const NewItems = () => {
   async function getitems(){
    await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems ")
     .then((response)=>{
-      setTimeout(() => {
         
         setitems(response.data)
-      }, 500);
     })
   }
   if(!items){
@@ -65,7 +63,7 @@ const NewItems = () => {
               <div key={arr.id} className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${arr.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
@@ -105,7 +103,7 @@ const NewItems = () => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${arr.nftId}`}>
                     <h4>{arr.title}</h4>
                   </Link>
                   <div className="nft__item_price">{arr.price} ETH</div>

@@ -9,10 +9,8 @@ const TopSellers = () => {
 async function sellerData(){
   await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers')
 .then((response)=>{
-  setTimeout(() => {
     
     setdata(response.data)
-  }, 500);
 })}
 
 useEffect(()=>{
