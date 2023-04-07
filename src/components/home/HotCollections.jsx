@@ -15,7 +15,10 @@ const [data, setdata]=useState(null)
   async function getData(){
    await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     .then((response)=>{
-        setdata(response.data)
+        setTimeout(() => {
+          
+          setdata(response.data)
+        }, 500);
     })
   }
 if(!data){
@@ -54,15 +57,15 @@ if(!data){
        >
             {data ? data.map((arr)=>{
               return(
-                    <div className="nft_coll">
+                    <div key={arr.id} className="nft_coll">
                     <div className="nft_wrap">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${arr.nftId}`}>
 
                     {<img src={arr.nftImage} className="lazy img-fluid" alt="" />}
                </Link>
                </div>
                <div className="nft_coll_pp">
-                  <Link to="/author">
+                  <Link to={`/author/${arr.authorId}`}>
                <img className="lazy pp-coll" src={arr.authorImage} alt="" />
                </Link>
                <i className="fa fa-check"></i>
