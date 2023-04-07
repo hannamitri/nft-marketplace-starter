@@ -30,7 +30,6 @@ getitems()
 setitems(null)
 },[select])
 
-console.log(select)
 
 
   return (

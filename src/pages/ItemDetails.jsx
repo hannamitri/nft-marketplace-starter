@@ -18,7 +18,6 @@ const ItemDetails = () => {
 
     })
    }
-console.log(data)
 useEffect(() => {
     fetchData()
     window.scrollTo(0, 0);

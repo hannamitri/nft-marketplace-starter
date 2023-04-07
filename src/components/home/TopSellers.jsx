@@ -17,7 +17,6 @@ useEffect(()=>{
 sellerData()
 },[])
 
-console.log(data)
 
 
 
