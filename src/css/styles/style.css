@@ -16284,6 +16284,11 @@ img {
     display: none;
   }
 
+  .nft_coll {
+    width: 70%;
+    margin: 32px;
+  }
+
   .d_profile {
     display: block;
   }
