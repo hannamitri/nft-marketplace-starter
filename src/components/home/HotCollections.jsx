@@ -18,7 +18,7 @@ const HotCollections = () => {
     setHotCollections(data);
     setTimeout(() => {
       setLoadingSkeleton(false);
-    }, 200);
+    }, 250);
   }
 
   useEffect(() => {
