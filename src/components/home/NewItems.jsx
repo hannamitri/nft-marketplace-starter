@@ -1,9 +1,63 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import "../../css/NewItems.css"
+import Countdown from "../Countdown";
+
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 const NewItems = () => {
+
+  const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  async function Itemsdata() {
+    const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
+    setItems(data)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    Itemsdata()
+  }, [])
+
+
+  const options = {
+    loop: false,
+    items:4,
+    margin: 10,
+    nav: true, 
+    dots: false,
+    responsive: {
+      0: {
+        loop: (('.owl-carousel .items').length > 0 ),
+        items:1
+      },
+      640: {
+        loop: ( ('.owl-carousel .items').length > 1 ),
+        items:2
+      },
+      1050:{
+        loop: ( ('.owl-carousel .items').length > 2 ),
+        items:3
+      },
+      1410:{
+        loop: ( ('.owl-carousel .items').length > 3 ),
+        items:4
+      }
+    },
+  }
+  
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,21 +68,75 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+
+{
+          loading ? (
+              new Array(1).fill(0).map((_, index) => (
+                <div className="wrap" key={index}>
+                    <KeyboardArrowLeftIcon className="arrow__left arrow" />
+                    <div className="nft_coll nft_coll-skeleton">
+                        <div className="nft_wrap nft_wrap-skeleton">  
+                         <div className="grey_box"></div>
+                        </div>
+                        <div className="nft_coll_pp loading">
+                            <div className="lazy pp-coll"  alt="" />
+                          <i className="fa fa-check "></i>
+                        </div>
+                        <div className="nft_coll_info ">
+                            <h4 className="titleLoading"></h4>
+                          <span className="spanLoading">ERC-111</span>
+                        </div>
+                      </div>
+                      <div className="nft_coll nft_coll-skeleton">
+                        <div className="nft_wrap nft_wrap-skeleton">  
+                         <div className="grey_box"></div>
+                        </div>
+                        <div className="nft_coll_pp loading">
+                            <div className="lazy pp-coll"  alt="" />
+                          <i className="fa fa-check "></i>
+                        </div>
+                        <div className="nft_coll_info ">
+                            <h4 className="titleLoading"></h4>
+                          <span className="spanLoading">ERC-111</span>
+                        </div>
+                      </div>
+                      <div className="nft_coll nft_coll-skeleton">
+                        <div className="nft_wrap nft_wrap-skeleton">  
+                         <div className="grey_box"></div>
+                        </div>
+                        <div className="nft_coll_pp loading">
+                            <div className="lazy pp-coll"  alt="" />
+                          <i className="fa fa-check "></i>
+                        </div>
+                        <div className="nft_coll_info ">
+                            <h4 className="titleLoading"></h4>
+                          <span className="spanLoading">ERC-111</span>
+                        </div>
+                      </div>
+                    <KeyboardArrowRightIcon className="arrow__right arrow"/>
+                </div>
+              ))
+              )
+          :
+          <OwlCarousel {...options}>
+          {
+            items.map(item => (
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${item.nftId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                   >
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={item.authorImage}/>
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                
+                {item.expiryDate && (
+                  <Countdown key={item.id} expiryDate = {item.expiryDate} />
+                )}
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -49,27 +157,28 @@ const NewItems = () => {
                     </div>
                   </div>
 
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
-                      src={nftImage}
+                      src={item.nftImage}
                       className="lazy nft__item_preview"
-                      alt=""
                     />
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                  <Link to={`/item-details/${item.nftId}`}>
+                    <h4>{item.title}</h4>
                   </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
+                  <div className="nft__item_price">{item.price} ETH</div>
                   <div className="nft__item_like">
                     <i className="fa fa-heart"></i>
-                    <span>69</span>
+                    <span>{item.likes}</span>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+          ))
+        }
+        </OwlCarousel>
+      }
         </div>
       </div>
     </section>
