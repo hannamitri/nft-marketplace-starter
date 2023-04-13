@@ -16268,6 +16268,9 @@ img {
   #items-carousel-big .owl-next {
     top: 30%;
   }
+  .nft__item img {
+    max-width: 480px;
+  }
 }
 
 /* -------------------------------------------------- 
@@ -16282,6 +16285,10 @@ img {
   .de-table.table-rank tbody td:nth-child(5),
   .de-table.table-rank tbody td:nth-child(6) {
     display: none;
+  }
+
+  .nft__item img {
+    max-width: 320px;
   }
 
   .d_profile {
