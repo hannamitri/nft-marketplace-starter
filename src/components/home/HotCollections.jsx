@@ -35,7 +35,7 @@ const HotCollections = () => {
           background: "black",
           borderRadius: "100%",
           transform: "scale(2)",
-          opacity: 0.6,
+          opacity: 0.63,
           marginRight: "16px",
           zIndex: "999",
         }}
