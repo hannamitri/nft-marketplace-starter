@@ -14151,6 +14151,12 @@ a.read_more i {
   color: #0d0c22;
 }
 
+.de_countdown--hide {
+  width: 100%;
+  /* display: none; */
+  background-color: #000;
+}
+
 .de_countdown.bg-color-secondary {
   border: none;
 }

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
-// import AuthorImage from "../../images/author_thumbnail.jpg";
-// import nftImage from "../../images/nftImage.jpg";
+import CountDownTimer from "../UI/CountDownTimer";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,21 +11,17 @@ const NewItems = () => {
   const [loadingItems, setLoadingItems] = useState([]);
   const [loadingSkeleton, setLoadingSkeleton] = useState();
 
-  async function fetchNewitems() {
+  async function fetchNewItems() {
     setLoadingSkeleton(true);
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
-    console.log(data);
-
     setLoadingItems(data);
+    setLoadingSkeleton(false);
   }
 
   useEffect(() => {
-    fetchNewitems();
-    setTimeout(() => {
-      setLoadingSkeleton(false);
-    }, 2000);
+    fetchNewItems();
   }, []);
 
   // Carousel Settings for Hot Collections
@@ -141,7 +136,7 @@ const NewItems = () => {
                       />
                     ) : (
                       <Link
-                        to="/author"
+                        to={`/author/${items.authorId}`}
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title="Creator: Monica Lucas"
@@ -154,7 +149,13 @@ const NewItems = () => {
                   {loadingSkeleton ? (
                     <Skeleton />
                   ) : (
-                    <div className="de_countdown">5h 30m 32s</div>
+                    <div>
+                      {items.expiryDate <= 0 ? (
+                        <p className="d-none"></p>
+                      ) : (
+                        <CountDownTimer items={[items]} />
+                      )}
+                    </div>
                   )}
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
@@ -177,7 +178,7 @@ const NewItems = () => {
                     {loadingSkeleton ? (
                       <Skeleton width={"100%"} height={"120px"} />
                     ) : (
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${items.nftId}`}>
                         <img
                           src={items.nftImage}
                           className="lazy nft__item_preview"
@@ -194,22 +195,30 @@ const NewItems = () => {
                         borderRadius={"24px"}
                       />
                     ) : (
-                      <Link to="/item-details">
-                        <h4>{items.title}</h4>
-                      </Link>
+                      <>
+                        <Link to="/item-details">
+                          <h4>{items.title}</h4>
+                        </Link>
+                        <div className="nft__item_price">3.08 ETH</div>
+                      </>
                     )}
-                    <div className="nft__item_price">3.08 ETH</div>
                     <div className="nft__item_like">
                       {loadingSkeleton ? (
-                        <Skeleton
-                          width={"70%"}
-                          height={"15px"}
-                          borderRadius={"24px"}
-                        />
+                        <>
+                          <Skeleton
+                            width={"100%"}
+                            height={"15px"}
+                            borderRadius={"24px"}
+                          />
+                          <i style={{ width: "10px" }}> </i>
+                          <span></span>
+                        </>
                       ) : (
-                        <i className="fa fa-heart"></i>
+                        <>
+                          <i className="fa fa-heart"></i>
+                          <span>{items.likes}</span>
+                        </>
                       )}
-                      <span>{items.likes}</span>
                     </div>
                   </div>
                 </div>
