@@ -199,7 +199,7 @@ const NewItems = () => {
                         <Link to="/item-details">
                           <h4>{items.title}</h4>
                         </Link>
-                        <div className="nft__item_price">3.08 ETH</div>
+                        <div className="nft__item_price">{items.price}</div>
                       </>
                     )}
                     <div className="nft__item_like">
