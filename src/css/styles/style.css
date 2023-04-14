@@ -16293,9 +16293,9 @@ img {
     display: none;
   }
 
-  .nft__item img {
+  /* .nft__item img {
     max-width: 320px;
-  }
+  } */
 
   .d_profile {
     display: block;
