@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import CountDownTimer from "../UI/CountDownTimer";
+import Skeleton from "../UI/Skeleton";
+// import AuthorImage from "../../images/author_thumbnail.jpg";
+// import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
 
 const ExploreItems = () => {
+  const [loadExploreItems, setLoadExploreItems] = useState([]);
+  const [loadingSkeleton, setLoadingSkeleton] = useState();
+
+  async function fetchExploreItems() {
+    setLoadingSkeleton(true);
+    const api =
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+
+    const { data } = await axios.get(api);
+    setTimeout(() => {
+      setLoadingSkeleton(false);
+    }, 2500);
+    setLoadExploreItems(data);
+    console.log(data);
+  }
+
+  useEffect(() => {
+    fetchExploreItems();
+  }, []);
   return (
     <>
       <div>
@@ -14,24 +36,42 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {loadExploreItems.map((items) => (
         <div
-          key={index}
+          key={items.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
           <div className="nft__item">
             <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={AuthorImage} alt="" />
-                <i className="fa fa-check"></i>
-              </Link>
+              {loadingSkeleton ? (
+                <Skeleton
+                  width={"100%"}
+                  height={"50px"}
+                  borderRadius={"240px"}
+                />
+              ) : (
+                <Link
+                  to="/author"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                >
+                  <img className="lazy" src={items.authorImage} alt="" />
+                  <i className="fa fa-check"></i>
+                </Link>
+              )}
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+            {loadingSkeleton ? (
+              <Skeleton />
+            ) : (
+              <div>
+                {items.expiryDate <= 0 ? (
+                  <p className="d-none"></p>
+                ) : (
+                  <CountDownTimer items={[items]} />
+                )}
+              </div>
+            )}
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -51,18 +91,47 @@ const ExploreItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
-              </Link>
+              {loadingSkeleton ? (
+                <Skeleton width={"100%"} height={"120px"} />
+              ) : (
+                <Link to={`/item-details/${items.nftId}`}>
+                  <img
+                    src={items.nftImage}
+                    className="lazy nft__item_preview"
+                    alt=""
+                  />
+                </Link>
+              )}
             </div>
+
             <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
-              </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+              {loadingSkeleton ? (
+                <Skeleton width={"50%"} height={"15px"} borderRadius={"24px"} />
+              ) : (
+                <>
+                  <Link to="/item-details">
+                    <h4>{items.title}</h4>
+                  </Link>
+                  <div className="nft__item_price">{items.price}</div>
+                </>
+              )}
               <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>69</span>
+                {loadingSkeleton ? (
+                  <>
+                    <Skeleton
+                      width={"100%"}
+                      height={"15px"}
+                      borderRadius={"24px"}
+                    />
+                    <i style={{ width: "10px" }}> </i>
+                    <span></span>
+                  </>
+                ) : (
+                  <>
+                    <i className="fa fa-heart"></i>
+                    <span>{items.likes}</span>
+                  </>
+                )}
               </div>
             </div>
           </div>
