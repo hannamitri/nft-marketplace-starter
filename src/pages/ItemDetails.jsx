@@ -1,21 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
 
 const ItemDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { id } = useParams();
+  let navigate = useNavigate()
+  const [posts, setPost] = useState([])
+  const [searchId, setSearchId] = useState(id)
+
+  async function fetchPost(nftId) {
+    const {data} = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections/nftId=${nftId || id}`)
+    setPost(data)
+    console.log(data)
+  }
+
+  useEffect(() => {
+    fetchPost()
+  }, [])
+
   return (
+  
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
+              {posts.map((post) => (
+                <div className="col-md-6 text-center">
+                <img
+                  src={post.nftImage}
+                  className="img-fluid img-rounded mb-sm-30 nft-image"
+                  alt=""
+                />
+              </div>
+              ))}
               <div className="col-md-6 text-center">
                 <img
                   src={nftImage}

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Navigation, A11y } from 'swiper';
 
 const HotCollections = () => {
 
+  let navigate = useNavigate()
   const [userData, setUserData] = useState([]);
-  
 
   async function fetchData() {
     const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
@@ -17,45 +23,6 @@ const HotCollections = () => {
   useEffect(() => {
     fetchData()
   }, [])
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
-
-
-const item = []
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -68,32 +35,48 @@ const item = []
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {userData.map((user) => (              
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={user.id}>
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img src={user.nftImage} className="lazy img-fluid" alt="" />
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img className="lazy pp-coll" src={user.authorImage} alt={user.title} />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>{user.title}</h4>
-                    </Link>
-                    <span>ERC - {user.code}</span>
+          <Swiper
+            modules={[Navigation, A11y]}
+            slidesPerView={4}
+            navigation
+            pagination={{ clickable: true }}
+            effect={"cube"}
+      cubeEffect={{
+        shadow: true,
+        slideShadows: true,
+        shadowOffset: 20,
+        shadowScale: 0.94,
+      }}>
+            {userData.map((user) => (
+              <SwiperSlide key={user.id}>
+                <div className="col-lg-10 col-md-8 col-sm-10 col-xs-12 offset-lg-1" >
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to="/item-details">
+                        <img src={user.nftImage} className="lazy img-fluid" alt="" />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to="/author">
+                        <img className="lazy pp-coll" src={user.authorImage} alt={user.title} />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>{user.title}</h4>
+                      </Link>
+                      <span>ERC - {user.code}</span>
+                    </div>
                   </div>
                 </div>
-              </div>              
+              </SwiperSlide>
             ))}
-            
-            
-          
+
+          </Swiper>
+
+
+
         </div>
       </div>
     </section>
