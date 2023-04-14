@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -8,16 +8,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Navigation, A11y } from 'swiper';
+import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
 
-  let navigate = useNavigate()
+  const [loading, setLoading] = useState()
   const [userData, setUserData] = useState([]);
 
   async function fetchData() {
+    setLoading(true)
     const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
     setUserData(data)
-    console.log(data)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -47,7 +49,10 @@ const HotCollections = () => {
         shadowOffset: 20,
         shadowScale: 0.94,
       }}>
-            {userData.map((user) => (
+            {loading ? (new Array(6).fill(0).map((_, index) =>(
+              <Skeleton key={index}/>
+            )
+            )) : (userData.map((user) => (
               <SwiperSlide key={user.id}>
                 <div className="col-lg-10 col-md-8 col-sm-10 col-xs-12 offset-lg-1" >
                   <div className="nft_coll">
@@ -70,7 +75,7 @@ const HotCollections = () => {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </SwiperSlide>)          
             ))}
 
           </Swiper>
