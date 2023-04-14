@@ -16293,10 +16293,6 @@ img {
     display: none;
   }
 
-  .nft__item img {
-    max-width: 320px;
-  }
-
   .nft_coll {
     width: 70%;
     margin: 32px;
