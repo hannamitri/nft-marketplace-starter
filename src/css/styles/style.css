@@ -14151,6 +14151,12 @@ a.read_more i {
   color: #0d0c22;
 }
 
+.de_countdown--hide {
+  width: 100%;
+  /* display: none; */
+  background-color: #000;
+}
+
 .de_countdown.bg-color-secondary {
   border: none;
 }
@@ -16267,6 +16273,9 @@ img {
   #items-carousel-big .owl-prev,
   #items-carousel-big .owl-next {
     top: 30%;
+  }
+  .nft__item img {
+    max-width: 480px;
   }
 }
 
