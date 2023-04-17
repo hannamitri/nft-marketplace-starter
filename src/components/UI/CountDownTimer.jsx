@@ -27,6 +27,7 @@ function CountDownTimer({ items }) {
       setTimeStrings(newTimeStrings);
       timerId = requestAnimationFrame(updateTimer);
     };
+
     timerId = requestAnimationFrame(updateTimer);
 
     return () => {
