@@ -13208,7 +13208,7 @@ a.read_more i {
 }
 @media (max-width: 500px) {
   .nft_coll {
-    width: 350px;
+    width: 300px;
   }
 }
 
@@ -13665,6 +13665,11 @@ a.read_more i {
 @media (max-width: 765px) {
   .nft__item {
     width: 100%;
+  }
+  }
+@media (max-width: 500px) {
+  .nft__item {
+    width: 300px;
   }
 }
 

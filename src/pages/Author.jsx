@@ -22,7 +22,7 @@ const Author = () => {
     );
 
     setAuthor(response.data);
-    console.log(response.data);
+    // console.log(response.data);
     setLoading(false);
   }
 

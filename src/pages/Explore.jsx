@@ -14,7 +14,7 @@ const Explore = () => {
   async function fetchData() {
     setLoading(true);
     const response = await axios(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
     );
 
     setExplore(response.data);

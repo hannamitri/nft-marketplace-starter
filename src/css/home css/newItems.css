@@ -17,6 +17,7 @@
 
 .slick-next {
   right: 1rem;
+  font-size: 30px;
 }
 
 .carousel-container {
@@ -37,7 +38,7 @@
 
 @media (max-width: 500px) {
   .response__wrapper {
-    max-width: 200px;
+    max-width: 400px;
   }
 }
 
