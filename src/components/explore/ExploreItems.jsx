@@ -2,41 +2,46 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CountDownTimer from "../UI/CountDownTimer";
 import Skeleton from "../UI/Skeleton";
-// import AuthorImage from "../../images/author_thumbnail.jpg";
-// import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
 const ExploreItems = () => {
   const [loadExploreItems, setLoadExploreItems] = useState([]);
   const [loadingSkeleton, setLoadingSkeleton] = useState();
+  const [numItems, setNumItems] = useState(8);
+  const [filterApi, setFilterApi] = useState("");
 
   async function fetchExploreItems() {
     setLoadingSkeleton(true);
-    const api =
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    const api = `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterApi}`;
 
     const { data } = await axios.get(api);
-    setTimeout(() => {
-      setLoadingSkeleton(false);
-    }, 2500);
+    setLoadingSkeleton(false);
     setLoadExploreItems(data);
-    console.log(data);
   }
 
   useEffect(() => {
     fetchExploreItems();
-  }, []);
+  }, [filterApi]);
+
+  const loadNextItems = () => {
+    setNumItems(numItems + 4);
+  };
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
+        <select
+          id="filter-items"
+          onChange={(event) => setFilterApi(event.target.value)}
+          value={filterApi}
+        >
+          <option value="likes_high_to_low">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {loadExploreItems.map((items) => (
+      {loadExploreItems.slice(0, numItems).map((items) => (
         <div
           key={items.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -52,7 +57,7 @@ const ExploreItems = () => {
                 />
               ) : (
                 <Link
-                  to="/author"
+                  to={`/author/${items.authorId}`}
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
                 >
@@ -137,7 +142,7 @@ const ExploreItems = () => {
           </div>
         </div>
       ))}
-      <div className="col-md-12 text-center">
+      <div onClick={loadNextItems} className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more
         </Link>
