@@ -8,14 +8,13 @@ import "../../css/home css/explore.css";
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [explore, setExplore] = useState([]);
   const [nfts, setNfts] = useState(8);
   const [disabled, setDisabled] = useState(false);
   const [filter, setFilter] = useState()
 
   async function fetchData() {
     const response = await axios(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
     );
 
     setExploreItems(response.data);
@@ -35,7 +34,7 @@ const ExploreItems = () => {
     setExploreItems(response.data);
     // console.log(response.data);
     setLoading(false);
-  }
+  }   
 
   function loadMore() {
     setNfts(nfts + 4);
