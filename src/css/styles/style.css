@@ -13180,7 +13180,38 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+  width: 300px;
+  height: 330px;
 }
+
+@media (max-width: 1400px) {
+  .nft_coll {
+    width: 350px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .nft_coll {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nft_coll {
+    width: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .nft_coll {
+    width: 250px;
+  }
+}
+@media (max-width: 500px) {
+  .nft_coll {
+    width: 300px;
+  }
+}
+
 
 .nft_coll.style-2 {
   border: none;
@@ -13291,7 +13322,7 @@ a.read_more i {
 .author_list_pp {
   margin-top: 2px;
   position: absolute;
-  display: inline-block;
+  display: block;
   width: 50px;
   height: auto;
   margin-left: 10px;
@@ -13629,6 +13660,17 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+}
+
+@media (max-width: 765px) {
+  .nft__item {
+    width: 100%;
+  }
+  }
+@media (max-width: 500px) {
+  .nft__item {
+    width: 300px;
+  }
 }
 
 .nft__item.style-2,

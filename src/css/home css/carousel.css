@@ -1,0 +1,44 @@
+/* .carousel-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .carousel-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-container {
+    width: 90%;
+  }
+}
+
+.slick-slide {
+  margin: 0 10px;
+}
+
+@media (max-width: 992px) {
+  .slick-slide {
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slick-slide {
+    margin: 0 2.5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .slick-slide {
+    margin: 0 1px;
+  }
+} */
