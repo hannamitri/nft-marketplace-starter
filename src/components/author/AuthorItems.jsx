@@ -48,7 +48,7 @@ const AuthorItems = () => {
                   />
                 ) : (
                   <div className="author_list_pp">
-                    <Link to={`/item-details/${id}`}>
+                    <Link to={`/author/${id}`}>
                       <img className="lazy" src={imageAuthor} alt="" />
                       <i className="fa fa-check"></i>
                     </Link>
@@ -77,7 +77,7 @@ const AuthorItems = () => {
                       <Skeleton width={"100%"} height={"120px"} />
                     </>
                   ) : (
-                    <Link to={`/item-details/${id}`}>
+                    <Link to={`/item-details/${author.nftId}`}>
                       <img
                         src={author.nftImage}
                         className="lazy nft__item_preview"
@@ -88,7 +88,7 @@ const AuthorItems = () => {
                 </div>
 
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${id}`}>
                     {loadingSkeleton ? (
                       <>
                         <Skeleton
