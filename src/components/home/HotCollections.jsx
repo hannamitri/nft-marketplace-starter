@@ -127,7 +127,7 @@ const HotCollections = () => {
               >
                 <div className="nft_coll">
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to={`/item-details/${collections.nftId}`}>
                       {loadingSkeleton ? (
                         <Skeleton width={"100%"} height={"120px"} />
                       ) : (
@@ -147,7 +147,7 @@ const HotCollections = () => {
                         borderRadius={"50%"}
                       />
                     ) : (
-                      <Link to="/author">
+                      <Link to={`/author/${collections.authorId}`}>
                         <img
                           className="lazy pp-coll"
                           src={collections.authorImage}

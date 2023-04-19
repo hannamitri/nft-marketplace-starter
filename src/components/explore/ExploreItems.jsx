@@ -5,27 +5,28 @@ import Skeleton from "../UI/Skeleton";
 import axios from "axios";
 
 const ExploreItems = () => {
-  const [loadExploreItems, setLoadExploreItems] = useState([]);
   const [loadingSkeleton, setLoadingSkeleton] = useState();
   const [numItems, setNumItems] = useState(8);
   const [filterApi, setFilterApi] = useState("");
+  const [loadExploreItems, setLoadExploreItems] = useState([]);
 
   async function fetchExploreItems() {
     setLoadingSkeleton(true);
     const api = `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterApi}`;
 
     const { data } = await axios.get(api);
+
     setLoadingSkeleton(false);
     setLoadExploreItems(data);
   }
 
-  useEffect(() => {
-    fetchExploreItems();
-  }, [filterApi]);
-
   const loadNextItems = () => {
     setNumItems(numItems + 4);
   };
+
+  useEffect(() => {
+    fetchExploreItems();
+  }, [filterApi]);
 
   return (
     <>
@@ -77,7 +78,6 @@ const ExploreItems = () => {
                 )}
               </div>
             )}
-
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
                 <div className="nft__item_buttons">
@@ -108,7 +108,6 @@ const ExploreItems = () => {
                 </Link>
               )}
             </div>
-
             <div className="nft__item_info">
               {loadingSkeleton ? (
                 <Skeleton width={"50%"} height={"15px"} borderRadius={"24px"} />

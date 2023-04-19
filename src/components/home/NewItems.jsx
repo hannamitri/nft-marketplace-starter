@@ -178,7 +178,7 @@ const NewItems = () => {
                     {loadingSkeleton ? (
                       <Skeleton width={"100%"} height={"120px"} />
                     ) : (
-                      <Link to={`/item-details/${items.nftId}`}>
+                      <Link to="">
                         <img
                           src={items.nftImage}
                           className="lazy nft__item_preview"
