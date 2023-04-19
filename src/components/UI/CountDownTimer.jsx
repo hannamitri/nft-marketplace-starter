@@ -32,6 +32,7 @@ function CountDownTimer({ items }) {
 
     return () => {
       cancelAnimationFrame(timerId);
+      setTimeStrings([]); // Clear the state when the component is unmounted
     };
   }, [items]);
 
