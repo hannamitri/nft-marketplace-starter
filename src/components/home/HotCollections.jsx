@@ -113,72 +113,74 @@ const HotCollections = () => {
     <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row ">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+            <div className="col-lg-12">
+              <div className="text-center">
+                <h2>Hot Collections</h2>
+                <div className="small-border bg-color-2"></div>
+              </div>
             </div>
-          </div>
-          <Slider {...settings}>
-            {hotCollections.map((collections) => (
-              <div
-                className="lazy col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                key={collections.id}
-              >
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to={`/item-details/${collections.nftId}`}>
-                      {loadingSkeleton ? (
-                        <Skeleton width={"100%"} height={"120px"} />
-                      ) : (
-                        <img
-                          src={collections.nftImage}
-                          className="lazy img-fluid h-100"
-                          alt=""
-                        />
-                      )}
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp ">
-                    {loadingSkeleton ? (
-                      <Skeleton
-                        width={"50px"}
-                        height={"45px"}
-                        borderRadius={"50%"}
-                      />
-                    ) : (
-                      <Link to={`/author/${collections.authorId}`}>
-                        <img
-                          className="lazy pp-coll"
-                          src={collections.authorImage}
-                          alt=""
-                        />
+            <Slider {...settings}>
+              {hotCollections.map((collections) => (
+                <div
+                  className="lazy col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                  key={collections.id}
+                >
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to={`/item-details/${collections.nftId}`}>
+                        {loadingSkeleton ? (
+                          <Skeleton width={"100%"} height={"120px"} />
+                        ) : (
+                          <img
+                            src={collections.nftImage}
+                            className="lazy img-fluid h-100"
+                            alt=""
+                          />
+                        )}
                       </Link>
-                    )}
-                    {loadingSkeleton ? (
-                      <Skeleton />
-                    ) : (
-                      <i className="fa fa-check"></i>
-                    )}
-                  </div>
-                  <div className="nft_coll_info d-flex flex-column align-items-center">
-                    <Link to="/explore">
+                    </div>
+                    <div className="nft_coll_pp ">
                       {loadingSkeleton ? (
-                        <Skeleton width={"80px"} height={"15px"} />
+                        <Skeleton
+                          width={"50px"}
+                          height={"45px"}
+                          borderRadius={"50%"}
+                        />
                       ) : (
-                        <h4>{collections.title}</h4>
+                        <Link to={`/author/${collections.authorId}`}>
+                          <img
+                            className="lazy pp-coll"
+                            src={collections.authorImage}
+                            alt=""
+                          />
+                        </Link>
                       )}
-                    </Link>
-                    {loadingSkeleton ? (
-                      <Skeleton width={"50px"} height={"15px"} />
-                    ) : (
-                      <span>ERC-{collections.code}</span>
-                    )}
+                      {loadingSkeleton ? (
+                        <Skeleton />
+                      ) : (
+                        <i className="fa fa-check"></i>
+                      )}
+                    </div>
+                    <div className="nft_coll_info d-flex flex-column align-items-center">
+                      <Link to="/explore">
+                        {loadingSkeleton ? (
+                          <Skeleton width={"80px"} height={"15px"} />
+                        ) : (
+                          <h4>{collections.title}</h4>
+                        )}
+                      </Link>
+                      {loadingSkeleton ? (
+                        <Skeleton width={"50px"} height={"15px"} />
+                      ) : (
+                        <span>ERC-{collections.code}</span>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </section>
