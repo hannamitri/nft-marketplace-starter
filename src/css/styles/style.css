@@ -14151,6 +14151,12 @@ a.read_more i {
   color: #0d0c22;
 }
 
+.de_countdown--hide {
+  width: 100%;
+  /* display: none; */
+  background-color: #000;
+}
+
 .de_countdown.bg-color-secondary {
   border: none;
 }
@@ -16268,6 +16274,9 @@ img {
   #items-carousel-big .owl-next {
     top: 30%;
   }
+  .nft__item img {
+    max-width: 480px;
+  }
 }
 
 /* -------------------------------------------------- 
@@ -16282,6 +16291,11 @@ img {
   .de-table.table-rank tbody td:nth-child(5),
   .de-table.table-rank tbody td:nth-child(6) {
     display: none;
+  }
+
+  .nft_coll {
+    width: 70%;
+    margin: 32px;
   }
 
   .d_profile {
