@@ -1,9 +1,24 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
-
+import axios from "axios"
+import { useEffect } from "react";
 const HotCollections = () => {
+
+  const [posts,setPosts] = useState([])
+
+  const fetchData = async () => {
+    const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
+ console.log(data)
+    setPosts(data)
+  }
+
+  useEffect(() => {
+fetchData()
+  },[posts])
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -17,15 +32,22 @@ const HotCollections = () => {
           {new Array(4).fill(0).map((_, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
+             
                 <div className="nft_wrap">
+                {posts.map((post) => (
                   <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
+                    <img src={post?.nftImage} className="lazy img-fluid" alt="" key={post?.id} />
                   </Link>
+                ))}
+                
                 </div>
+                
                 <div className="nft_coll_pp">
+                {posts.map((post) => (
                   <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
+                    <img className="lazy pp-coll" src={post.authorImage} alt="" />
                   </Link>
+                   ))}
                   <i className="fa fa-check"></i>
                 </div>
                 <div className="nft_coll_info">
