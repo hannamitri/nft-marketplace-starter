@@ -13138,6 +13138,10 @@ a.read_more i {
   height: 100%;
 }
 
+
+.grey{
+  background-color: lightgray;
+}
 .dih-title {
   opacity: 0;
   font-size: 16px;
