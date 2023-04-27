@@ -7,7 +7,6 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
   const [collectionsData, setCollectionsData] = useState([]);
-
   const owlCarouselOptions = {
     nav: true,
     loop: true,
@@ -40,7 +39,7 @@ const HotCollections = () => {
     }
 
     fetchData();
-  }, []);
+  }, [collectionsData.length]);
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -52,7 +51,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {false ? (
+          {collectionsData.length ? (
             <OwlCarousel className="owl-theme" {...owlCarouselOptions}>
               {collectionsData.map((elem) => (
                 <div className="nft_coll item" key={elem.id}>
@@ -87,17 +86,17 @@ const HotCollections = () => {
           ) : (
             <OwlCarousel className="owl-theme" {...owlCarouselOptions}>
               {new Array(5).fill(0).map((_, index) => (
-                  <div className="nft_coll nft__coll--skeleton" key={index}>
-                    <div className="nft_wrap lazy nft_wrap--skeleton skeleton-box"></div>
-                    <div className="nft_coll_pp">
-                      <div className="lazy pp-coll pp__coll--skeleton skeleton-box"></div>
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft_coll_info nft_coll_info--skeleton">
-                      <h4 className="skeleton-box"></h4>
-                      <span className="skeleton-box"></span>
-                    </div>
+                <div className="nft_coll nft__coll--skeleton" key={index}>
+                  <div className="nft_wrap lazy nft_wrap--skeleton skeleton-box"></div>
+                  <div className="nft_coll_pp">
+                    <div className="lazy pp-coll pp__coll--skeleton skeleton-box"></div>
+                    <i className="fa fa-check"></i>
                   </div>
+                  <div className="nft_coll_info nft_coll_info--skeleton">
+                    <h4 className="skeleton-box"></h4>
+                    <span className="skeleton-box"></span>
+                  </div>
+                </div>
               ))}
             </OwlCarousel>
           )}
