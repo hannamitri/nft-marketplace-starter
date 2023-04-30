@@ -4,6 +4,7 @@ import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
   useEffect(() => {
+    // Does this work?
     window.scrollTo(0, 0);
   }, []);
 
