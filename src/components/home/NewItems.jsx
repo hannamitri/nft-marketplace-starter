@@ -22,7 +22,6 @@ const NewItems = () => {
     );
     setNewItems(data);
     setLoading(false);
-    console.log(data)
   }
 
   return (
