@@ -5,6 +5,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Skeleton from "../UI/Skeleton";
+import CountDown from "../Countdown";
 
 const NewItems = () => {
 
@@ -112,6 +113,9 @@ const NewItems = () => {
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
+                  {newItem.expiryDate && (
+                    <CountDown expiryDate={newItem.expiryDate} />
+                  )}
 
                   <div className="nft__item_wrap">
                     <div className="nft__item_extra">
