@@ -15,12 +15,12 @@ const Home = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-        <Landing />
-        <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
-        <BrowseByCategory />
+        <Landing  />
+        <LandingIntro data-aos="fade-up" /> 
+              <HotCollections data-aos="fade-up" />
+        <NewItems data-aos="fade-up"/>
+        <TopSellers data-aos="fade-up"/>
+        <BrowseByCategory data-aos="fade-left"/>
       </div>
     </div>
   );

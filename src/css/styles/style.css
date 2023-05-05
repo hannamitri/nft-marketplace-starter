@@ -28,11 +28,14 @@
 
 /* ================================================== */
 
+
+
 html {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
   background: #fff;
+  
 }
 
 body {
@@ -46,6 +49,26 @@ body {
   word-spacing: 0px;
 }
 
+.lazy{
+  --color-skeleton:rgb(190,190,190);
+}
+
+.lazy .img-fluid {
+  width:100%;
+  height:14rem;
+  background-color: var(--color-skeleton);
+}
+
+.slick-prev {
+  left: 1% !important;
+  z-index: 1;
+  
+}
+.slick-next {
+  right: 1% !important;
+  z-index: 1;
+}
+
 .dark-scheme {
   color: #9fa4dd;
 }
@@ -53,6 +76,8 @@ body {
 body.dark-scheme {
   background: #161d30;
 }
+
+
 
 body.boxed {
   margin: 30px;
