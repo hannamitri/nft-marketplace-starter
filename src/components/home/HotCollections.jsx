@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 
 const HotCollections = () => {
@@ -61,11 +62,17 @@ console.log(data)
             </div>
           ))} */}
 
-           {data?.map((items) => { 
-            
-            return (
 
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={items?.id}>
+
+ {  data && 
+
+  <OwlCarousel className='owl-theme' loop nav items={4} dots={false} margin={14}>
+
+           {data?.map((items) => { 
+             
+             return (
+               
+               <div key={items?.id}>
              <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
@@ -87,7 +94,9 @@ console.log(data)
               </div>
             </div>
             )
-            })
+          })
+}
+          </OwlCarousel>
 }
         </div>
       </div>
