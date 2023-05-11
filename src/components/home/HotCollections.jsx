@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
   const [loading, setLoading] = useState(true);
+  // hi new items - remember to take this out
 
   useEffect(() => {
     async function main() {
