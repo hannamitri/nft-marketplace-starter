@@ -1,0 +1,52 @@
+import { Options } from 'react-owl-carousel';
+import { OnEvent } from 'react-owl-carousel';
+ 
+ ObjectHTMLAttributesowl } from 'react';
+ 
+import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_FORM_ACTIONS } from 'react';
+ 
+mport 'owl.theme.css';
+ 
+ OwlCarouselProps } from 'react-owl-carousel';
+ 
+import "import {  } from "module";"
+ 
+import AuthorImage from "../../images/author_thumbnail.jpg";
+import nftImage from "../../images/nftImage.jpg";
+ 
+useRef
+ 
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+ 
+import 'owl.carousel/dist/assets/owl.carousel.css';
+ 
+</OwlCarousel>
+ 
+</OwlCarousel>
+ 
+<OwlCarousel className="owl-theme" {...options}>
+ 
+</OwlCarousel>
+ 
+<OwlCarousel className="owl-theme" {...options}>
+ 
+ender() {
+ 
+xport default class SimpleSlider extends Component {
+ 
+</Slider>
+ 
+<Slider {...settings}>
+ 
+
+export default class SimpleSlider extends Component {
+  render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+ 
