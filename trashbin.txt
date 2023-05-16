@@ -1,3 +1,79 @@
+;
+ 
+responsive: 
+      0: {
+        items: 1,
+      },
+      768: {
+        items: 2,
+      },
+      992: {
+        items: 3,
+      },
+ 
+responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+ 
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+ 
+  const options = {
+    items: 4,
+    dots: true,
+    nav: false,
+    autoplay: true,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      576: {
+        items: 2,
+      },
+      768: {
+        items: 3,
+      },
+      992: {
+        items: 4,
+      },
+    },
+  };
+ 
+{...options}>
+ 
+</>
+ 
+wlCarousel
+ 
+lassName="owl-theme"
+ 
+/OwlCarousel>
+ 
+</OwlCarousel>
+ 
+<OwlCarousel className="owl-theme" {...options}>
+ 
+</OwlCarousel>
+ 
+<OwlCarousel className="owl-theme" {...options}>
+ 
+import { OwlCarouselProps } from 'react-owl-carousel';
+ 
+olor: #009900;},
+ 
 import { Options } from 'react-owl-carousel';
 import { OnEvent } from 'react-owl-carousel';
  
