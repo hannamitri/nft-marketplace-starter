@@ -39,7 +39,6 @@ setSecond(seconds)
 
 
 
-    console.log(hour)
 
 
     // console.log(expiryDate.expiryDate)
