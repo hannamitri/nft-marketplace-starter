@@ -122,6 +122,7 @@ const HotCollections = () => {
                                 width: "100%",
                                 height: "80%",
                               }}
+                              
                             ></div>
                           </div>
                           <div style={{ paddingBottom: "10px" }}>
@@ -133,7 +134,9 @@ const HotCollections = () => {
                                   height: "60px",
                                   borderRadius: "100%",
                                 }}
+                                
                               ></div>
+                              <i className="fa fa-check"></i>
                             </div>
                             <div className="nft_coll_info">
                               <h4
