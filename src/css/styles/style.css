@@ -16650,6 +16650,29 @@ img {
   }
 }
 
+.slick-arrow {
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev {
+  padding-right: 40px;
+}
+
+.slick-next {
+  padding-left: 20px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 40px;
+  height: 40px;
+}
+
 .skeleton-box {
   display: inline-block;
   height: 1em;
