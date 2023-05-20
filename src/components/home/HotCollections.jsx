@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import OwlCarousel from "react-owl-carousel";
-// import "owl.carousel/dist/assets/owl.carousel.css";
-// import "owl.carousel/dist/assets/owl.theme.default.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -17,6 +14,7 @@ const HotCollections = () => {
   const [isLoading, setIsLoading] = useState(true);
   const skeletonArray = Array(4).fill(null);
 
+  // Load state and fetching API data with error catcher
   async function hotCollectionsData() {
     try {
       const response = await axios.get(`${API__URL}`);
@@ -31,7 +29,6 @@ const HotCollections = () => {
   useEffect(() => {
     hotCollectionsData();
   }, []);
-
 
   // Arrow styling for carousel
   function SamplePrevArrow(props) {
@@ -54,7 +51,7 @@ const HotCollections = () => {
       />
     );
   }
-
+  // settings for carousel
   const settings = {
     dots: false,
     nextArrow: <SampleNextArrow />,
