@@ -7,45 +7,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const HotCollections = () => {
-  const [collections, setCollections] = useState([]);
-
-  useEffect(() => {
-    const fetchCollections = async () => {
-      try {
-        const response = await axios.get(
-          'https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections'
-        );
-        setCollections(response.data);
-      } catch (error) {
-        console.error('Error fetching collections:', error);
-      }
-    };
-
-    fetchCollections();
-  }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
