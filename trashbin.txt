@@ -1,3 +1,50 @@
+ {item.countdown && (
+                    <div className="de_countdown">
+                      {item.countdown}
+                    </div>
+                  )}
+ 
+ const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
+ 
+Slider {...settings}>
+ 
+</Slider>
+ 
+
+   
+ 
+import moment from "moment";
+ 
+ttps://example.com/api/item/123
+ 
+/author
+ 
+src={item.author}
+ 
+{item.author}
+ 
+/author" src=
+ 
+tem.authorId}
+ 
+nftImage.id}
+ 
+item.nftid}
+ 
+/author"
+ 
+/item-details
+ 
+import React from "react";
+ 
+import { Link } from "react-router-dom";
+ 
 import axios from "axios";
  
 const [users, setUsers] = useState([]);
