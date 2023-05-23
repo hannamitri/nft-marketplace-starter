@@ -19,15 +19,15 @@ const CountDown = ({ expiryDate }) => {
   }, []);
 
   function calculateTime() {
-    const millisLeft = expiryDate - Date.now();
+    const millsLeft = expiryDate - Date.now();
 
-    if (millisLeft < 0) {
+    if (millsLeft < 0) {
       clearInterval(intervalId);
       setTimeText("EXPIRED");
       return;
     }
 
-    const secondsLeft = millisLeft / 1000;
+    const secondsLeft = millsLeft / 1000;
     const minutesLeft = secondsLeft / 60;
     const hoursLeft = minutesLeft / 60;
 
