@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import OwlCarousel from 'react-owl-carousel'
+import OwlCarousel from "react-owl-carousel";
 import Skeleton from "../UI/Skeleton";
-import CountDown from '../CountDown'
+import CountDown from "../CountDown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -50,9 +50,17 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          
+
           {newItems.length ? (
-            <OwlCarousel className="owl-theme" {...options}>
+            <OwlCarousel
+              data-aos="fade-in"
+              data-aos-delay="200"
+              data-aos-offset="0"
+              data-aos-duration="600"
+              data-aos-easing="ease-in-out"
+              className="owl-theme"
+              {...options}
+            >
               {newItems.map((item, index) => (
                 <div className="nft__item" key={index}>
                   <div className="author_list_pp">

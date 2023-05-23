@@ -10,11 +10,11 @@ const ItemDetails = () => {
   const id = useParams().id;
 
   const getNftItem = async () => {
-    const response = await axios.get(
+    const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
     );
 
-    setNftItem(response.data);
+    setNftItem(data);
   };
 
   useEffect(() => {

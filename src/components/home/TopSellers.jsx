@@ -11,7 +11,7 @@ const TopSellers = () => {
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
     );
     setTopSellers(data);
-  };
+  }
 
   useEffect(() => {
     fetchTopSellers();
@@ -27,7 +27,14 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-12 fadeIn">
+          <div
+            className="col-md-12"
+            data-aos="fade-in"
+            data-aos-delay="200"
+            data-aos-offset="0"
+            data-aos-duration="600"
+            data-aos-easing="ease-in-out"
+          >
             {topSellers.length ? (
               <ol className="author_list">
                 {topSellers.map((item, index) => (
