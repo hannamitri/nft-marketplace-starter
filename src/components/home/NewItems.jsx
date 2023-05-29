@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -102,8 +103,9 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
-
+                    {items.expiryDate && (
+                      <Countdown expiryDate={items.expiryDate} />
+                    )}
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
                         <div className="nft__item_buttons">
