@@ -29,11 +29,16 @@ const ExploreItems = () => {
 
   async function filterNfts(value) {
     setIsLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`
-    );
-    setExploreItems(data);
-    setIsLoading(false);
+    axios
+      .get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`
+      )
+      .then((res) => {
+        setExploreItems(res.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   return (
