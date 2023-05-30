@@ -9,11 +9,12 @@ const Author = () => {
   const [authors, setAuthors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
+  const { id } = useParams();
 
   async function fetchData() {
     setIsLoading(true);
     const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthors(data);
     setIsLoading(false);
