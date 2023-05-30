@@ -8,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 const Author = () => {
   const [authors, setAuthors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   async function fetchData() {
     setIsLoading(true);
@@ -22,6 +23,18 @@ const Author = () => {
     window.scrollTo(0, 0);
     fetchData();
   }, []);
+
+  function toggleFollow() {
+    setIsFollowing(true);
+    const followersCount = authors.followers;
+    setAuthors({ ...authors, followers: followersCount + 1 });
+  }
+
+  function toggleUnfollow() {
+    setIsFollowing(false);
+    const followersCount = authors.followers;
+    setAuthors({ ...authors, followers: followersCount - 1 });
+  }
 
   return (
     <div id="wrapper">
@@ -100,9 +113,21 @@ const Author = () => {
                         <div className="profile_follower">
                           {authors.followers} followers
                         </div>
-                        <Link to="#" className="btn-main">
-                          Follow
-                        </Link>
+                        {isFollowing ? (
+                          <Link
+                            to="#"
+                            className="btn-main"
+                            onClick={() => toggleUnfollow()}>
+                            Unfollow
+                          </Link>
+                        ) : (
+                          <Link
+                            to="#"
+                            className="btn-main"
+                            onClick={() => toggleFollow()}>
+                            Follow
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
