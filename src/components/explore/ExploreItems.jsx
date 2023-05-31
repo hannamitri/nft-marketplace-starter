@@ -16,7 +16,6 @@ const ExploreItems = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     axios
       .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
       .then((res) => {
