@@ -5,13 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import SkeletonCard from "../components/UI/SkeletonCard";
-
 const Author = () => {
   const [authors, setAuthors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
   const { id } = useParams();
-
   async function fetchData() {
     setIsLoading(true);
     const { data } = await axios.get(
@@ -20,36 +18,30 @@ const Author = () => {
     setAuthors(data);
     setIsLoading(false);
   }
-
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchData();
   }, []);
-
   function toggleFollow() {
     setIsFollowing(true);
     const followersCount = authors.followers;
     setAuthors({ ...authors, followers: followersCount + 1 });
   }
-
   function toggleUnfollow() {
     setIsFollowing(false);
     const followersCount = authors.followers;
     setAuthors({ ...authors, followers: followersCount - 1 });
   }
-
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-
         <section
           id="profile_banner"
           aria-label="section"
           className="text-light"
           data-bgimage="url(images/author_banner.jpg) top"
           style={{ background: `url(${AuthorBanner}) top` }}></section>
-
         <section aria-label="section">
           <div className="container">
             <div className="row">
@@ -92,7 +84,6 @@ const Author = () => {
                     <div className="de-flex-col">
                       <div className="profile_avatar">
                         <img src={authors.authorImage} alt="" />
-
                         <i className="fa fa-check"></i>
                         <div className="profile_name">
                           <h4>
@@ -135,7 +126,6 @@ const Author = () => {
                   </div>
                 </div>
               )}
-
               {isLoading ? (
                 new Array(8)
                   .fill(0)
@@ -154,5 +144,4 @@ const Author = () => {
     </div>
   );
 };
-
 export default Author;
