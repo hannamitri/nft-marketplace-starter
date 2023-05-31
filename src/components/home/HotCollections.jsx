@@ -12,7 +12,6 @@ const HotCollections = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     axios
       .get(
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"

@@ -10,7 +10,6 @@ const ItemDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   async function fetchData() {
-    setIsLoading(true);
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
     );
@@ -56,9 +55,7 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
-                              <Skeleton height={50} borderRadius="50%" />
-                            </Link>
+                            <Skeleton height={50} borderRadius="50%" />
                           </div>
                           <div className="author_list_info">
                             <Skeleton width={100} />
@@ -72,9 +69,7 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
-                              <Skeleton height={50} borderRadius="50%" />
-                            </Link>
+                            <Skeleton height={50} borderRadius="50%" />
                           </div>
                           <div className="author_list_info">
                             <Skeleton width={100} />
@@ -121,7 +116,7 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${itemDetails.ownerId}`}>
                               <img
                                 className="lazy"
                                 src={itemDetails.ownerImage}
@@ -131,7 +126,9 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{itemDetails.ownerName}</Link>
+                            <Link to={`/author/${itemDetails.ownerId}`}>
+                              {itemDetails.ownerName}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -142,7 +139,7 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${itemDetails.creatorId}`}>
                               <img
                                 className="lazy"
                                 src={itemDetails.creatorImage}
@@ -152,7 +149,9 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{itemDetails.creatorName}</Link>
+                            <Link to={`/author/${itemDetails.creatorId}`}>
+                              {itemDetails.creatorName}
+                            </Link>
                           </div>
                         </div>
                       </div>
