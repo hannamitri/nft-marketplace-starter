@@ -16746,13 +16746,13 @@ img {
 
 @media (max-width: 992px) {
   .explore-extra {
-    width: 50%
+    width: 50%;
   }
 }
 
 @media (max-width: 575px) {
   .nft__item_preview {
-    width: 55% !important
+    width: 55% !important;
   }
 
   .skeleton-img-explore {
@@ -16760,7 +16760,7 @@ img {
   }
 
   .explore-extra {
-    width: 100%
+    width: 100%;
   }
 }
 
@@ -16772,7 +16772,7 @@ img {
 
 @media (max-width: 380px) {
   .nft__item_preview {
-    width: 100% !important
+    width: 100% !important;
   }
 }
 
@@ -16784,5 +16784,3 @@ img {
   scale: none;
   box-shadow: none;
 }
-
-
