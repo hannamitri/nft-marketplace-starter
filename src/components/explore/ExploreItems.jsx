@@ -43,18 +43,24 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select
-          onChange={(event) => sortedCards(event.target.value)}
-          id="filter-items"
-          defaultValue=""
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-once="true"
+          data-aos-offset="300"
         >
-          <option value="">Default</option>
-          <option value="price_low_to_high">Price, Low to High</option>
-          <option value="price_high_to_low">Price, High to Low</option>
-          <option value="likes_high_to_low">Most liked</option>
-        </select>
+          <select
+            onChange={(event) => sortedCards(event.target.value)}
+            id="filter-items"
+            defaultValue=""
+          >
+            <option value="">Default</option>
+            <option value="price_low_to_high">Price, Low to High</option>
+            <option value="price_high_to_low">Price, High to Low</option>
+            <option value="likes_high_to_low">Most liked</option>
+          </select>
+        </div>
       </div>
-
       {!loading
         ? exploreItems.slice(0, visibleItems).map((explore, index) => (
             <div
