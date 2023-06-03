@@ -199,15 +199,29 @@ const NewItems = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div
-                style={{ height: "2.5px" }}
-                className="small-border bg-color-2"
-              ></div>
+            <div
+              data-aos="fade-in"
+              data-aos-duration="1000"
+              data-aos-once="true"
+              data-aos-offset="300"
+            >
+              <div className="text-center">
+                <h2>New Items</h2>
+                <div
+                  style={{ height: "2.5px" }}
+                  className="small-border bg-color-2"
+                ></div>
+              </div>
             </div>
           </div>
-          <SimpleSlider />
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            data-aos-offset="400"
+          >
+            <SimpleSlider />
+          </div>
         </div>
       </div>
     </section>
