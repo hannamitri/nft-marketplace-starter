@@ -8,6 +8,7 @@ const TopSellers = () => {
   const [isLoading, setIsLoading] = useState();
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
