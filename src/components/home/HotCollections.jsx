@@ -4,9 +4,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import HotItem from "../utility/HotItem";
+import HotItemLoadingState from "../utility/HotItemLoadingState";
 
 const HotCollections = () => {
   const [data, setData] = useState([]);
+  const [loading, isLoading] = useState();
 
   const settings = {
     dots: false,
@@ -21,15 +23,15 @@ const HotCollections = () => {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-        }
+        },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
@@ -38,16 +40,20 @@ const HotCollections = () => {
           slidesToScroll: 1,
           arrows: false,
           dots: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   async function getData() {
+    isLoading(true);
     let { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setData(data);
+    setTimeout(() => {
+      isLoading(false);
+    }, 2000);
   }
   useEffect(() => {
     getData();
@@ -64,9 +70,11 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {data.map((nft) => (
-                <HotItem nft={nft} key={nft.key}/>
-            ))}
+            {!loading
+              ? data.map((nft) => <HotItem nft={nft} key={nft.key} />)
+              : new Array(6)
+                  .fill(0)
+                  .map((_, index) => <HotItemLoadingState key={index} />)}
           </Slider>
         </div>
       </div>
