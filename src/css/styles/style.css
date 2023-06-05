@@ -13242,6 +13242,24 @@ a.read_more i {
   font-weight: bold;
 }
 
+.slick-slide {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.slick-slider {
+  position: relative;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  background-color: #fff !important;
+  color: black !important;
+  font-size: 25px !important;
+  cursor: pointer;
+  z-index: 100;
+}
+
 .nft_coll_pp {
   width: 60px;
   display: block;
