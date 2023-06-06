@@ -1,21 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
 const NewItems = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [countdowns, setCountdowns] = useState({});
 
   async function fetchNewItemsData() {
-    let {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
-    setData(data)
-    console.log(data)
+    let { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+    );
+    setData(data);
+    console.log(data);
+    calculateTime();
   }
 
-  useEffect(()=> {
-    fetchNewItemsData()
-  },[])
+  const calculateTime = () => {
+    const timesArr = data.filter((item) => 
+        item.expiryDate !== null
+    )
+    timesArr.map((item) => {
+      
+        const time = item.expiryDate - Date.now();
+        const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((time / 1000 / 60) % 60);
+        const seconds = Math.floor((time / 1000) % 60);
+
+        setCountdowns((previousCountdowns) => ({
+          ...previousCountdowns,
+
+          [item.id]: { hours, minutes, seconds },
+        }));
+      
+    });
+    console.log(countdowns);
+  };
+
+     useEffect(() => {
+       const interval = setInterval(() => calculateTime(), 1000);
+      return () => clearInterval(interval);
+     });
+
+  useEffect(() => {
+    fetchNewItemsData();
+  }, []);
 
   return (
     <section id="section-items" className="no-bottom">
@@ -28,7 +56,10 @@ const NewItems = () => {
             </div>
           </div>
           {data.map((newItem) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={newItem.id}>
+            <div
+              className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              key={newItem.id}
+            >
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -41,7 +72,17 @@ const NewItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                
+                  {countdowns[newItem.id] ? (
+                    <div className="de_countdown">
+                      {countdowns[newItem.id].hours}h{" "}
+                      {countdowns[newItem.id].minutes}m{" "}
+                      {countdowns[newItem.id].seconds}s
+                    </div>
+                  ) :
+                  null
+                }
+                
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
