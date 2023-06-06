@@ -71,7 +71,7 @@ const HotCollections = () => {
           </div>
           <Slider {...settings}>
             {!loading
-              ? data.map((nft) => <HotItem nft={nft} key={nft.key} />)
+              ? data.map((nft) => <HotItem nft={nft} key={nft.id} />)
               : new Array(6)
                   .fill(0)
                   .map((_, index) => <HotItemLoadingState key={index} />)}

@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TopSeller from "../utility/TopSeller";
-
+import TopSellerLoadingState from "../utility/TopSellerLoadingState";
 
 const TopSellers = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [loading, isLoading] = useState();
 
   async function getSellersData() {
-    let {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
-    setData(data)
+    isLoading(true);
+    let { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+    );
+    setData(data);
+    setTimeout(() => {
+      isLoading(false);
+    }, 2000);
   }
 
-  useEffect(()=> {
-    getSellersData()
-  }, [])
+  useEffect(() => {
+    getSellersData();
+  }, []);
 
   return (
     <section id="section-popular" className="pb-5">
@@ -27,9 +34,13 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {data.map((seller) => 
-                <TopSeller seller={seller} key={seller.id}/>
-              )}
+              {!loading
+                ? data.map((seller) => 
+                    <TopSeller seller={seller} key={seller.id} />
+                  )
+                : new Array(data.length).fill(0).map((_, index) => 
+                    <TopSellerLoadingState key={index} />
+                  )}
             </ol>
           </div>
         </div>
