@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import NewItem from "../utility/NewItem";
 
 const ExploreItems = () => {
-  const [exploreData, setExploreData] = useState([])
+  const [exploreData, setExploreData] = useState([]);
+  const [dataSlice, setDataSlice] = useState(8);
+  let maxItems = exploreData.length;
+  const increment = 4;
 
   async function getExploreData() {
-    let {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
-    setExploreData(data)
+    let { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+    );
+    setExploreData(data);
   }
 
-  useEffect(()=> {
-    getExploreData()
-  },[])
+  const show4MoreItems = () => {
+    setDataSlice((dataSlice) => dataSlice + increment)
+  };
+
+  useEffect(() => {
+    console.log(dataSlice);
+  }, [dataSlice]);
+
+  useEffect(() => {
+    getExploreData();
+  }, []);
 
   return (
     <>
@@ -24,65 +38,27 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {exploreData.map((exploreItem) => (
+      {exploreData.slice(0, dataSlice).map((exploreItem) => (
         <div
           key={exploreItem.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
-          <div className="nft__item">
-            <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={exploreItem.authorImage} alt="" />
-                <i className="fa fa-check"></i>
-              </Link>
-            </div>
-            <div className="de_countdown">5h 30m 32s</div>
-
-            <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <Link to="/item-details">
-                <img src={exploreItem.nftImage} className="lazy nft__item_preview" alt="" />
-              </Link>
-            </div>
-            <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>{exploreItem.title}</h4>
-              </Link>
-              <div className="nft__item_price">{exploreItem.price} ETH</div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>{exploreItem.likes}</span>
-              </div>
-            </div>
-          </div>
+          <NewItem newItem={exploreItem} />
         </div>
       ))}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+      {dataSlice < maxItems && (
+        <div className="col-md-12 text-center">
+          <Link
+            to=""
+            id="loadmore"
+            className="btn-main lead"
+            onClick={show4MoreItems}
+          >
+            Load more
+          </Link>
+        </div>
+      )}
     </>
   );
 };
