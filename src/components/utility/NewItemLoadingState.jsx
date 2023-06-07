@@ -22,7 +22,9 @@ function NewItemLoadingState() {
         </Link>
       </div>
       <div className="nft__item_wrap">
+      
         <div className="nft__item_extra">
+          
           <div className="nft__item_buttons">
             <button>Buy Now</button>
             <div className="nft__item_share">
@@ -41,9 +43,7 @@ function NewItemLoadingState() {
         </div>
 
         <Link to="/item-details">
-          {
             <Skeleton className="lazy nft__item_preview" width={200} height={250} />
-          }
             
           
         </Link>

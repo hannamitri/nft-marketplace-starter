@@ -8,7 +8,6 @@ import NewItemLoadingState from "../utility/NewItemLoadingState";
 
 const NewItems = () => {
   const [data, setData] = useState([]);
-  const [countdowns, setCountdowns] = useState({});
   const [loading, isLoading] = useState();
 
   const settings = {
@@ -52,32 +51,10 @@ const NewItems = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
     setData(data);
-    calculateTime();
     setTimeout(() => {
       isLoading(false);
-    }, 2000);
+    },2000);
   }
-
-  const calculateTime = () => {
-    const timesArr = data.filter((item) => item.expiryDate !== null);
-    timesArr.map((item) => {
-      const time = item.expiryDate - Date.now();
-      const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((time / 1000 / 60) % 60);
-      const seconds = Math.floor((time / 1000) % 60);
-
-      setCountdowns((previousCountdowns) => ({
-        ...previousCountdowns,
-
-        [item.id]: { hours, minutes, seconds },
-      }));
-    });
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => calculateTime(), 1000);
-    return () => clearInterval(interval);
-  });
 
   useEffect(() => {
     fetchNewItemsData();
@@ -98,7 +75,6 @@ const NewItems = () => {
               ? data.map((newItem) => (
                   <NewItem
                     newItem={newItem}
-                    countdowns={countdowns}
                     key={newItem.id}
                   />
                 ))
