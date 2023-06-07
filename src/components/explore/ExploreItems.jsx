@@ -26,6 +26,17 @@ const ExploreItems = () => {
     setDataSlice((dataSlice) => dataSlice + increment);
   };
 
+  const setFilterQuery = async (event) => {
+    isLoading(true);
+    let { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${event.target.value}`
+    );
+    setExploreData(data);
+    setTimeout(() => {
+      isLoading(false);
+    }, 2000);
+  }
+
   useEffect(() => {
     getExploreData();
   }, []);
@@ -33,7 +44,7 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={setFilterQuery}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
