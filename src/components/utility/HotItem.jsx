@@ -10,7 +10,7 @@ function HotItem({ nft }) {
         </Link>
       </div>
       <div className="nft_coll_pp">
-        <Link to="/author">
+        <Link to={`/author/${nft.authorId}`}>
           <img className="lazy pp-coll" src={nft.authorImage} alt="" />
         </Link>
         <i className="fa fa-check"></i>

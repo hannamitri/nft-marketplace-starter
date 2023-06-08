@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function NewItem({ newItem }) {
+function NewItem({ newItem, authImg }) {
   const [countdown, setCountdown] = useState(null);
 
   const calculateTime = () => {
-    if (newItem.expiryDate !== null) {
+    if (newItem.expiryDate) {
       const time = newItem.expiryDate - Date.now();
       const hours = Math.floor((time / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((time / 1000 / 60) % 60);
       const seconds = Math.floor((time / 1000) % 60);
 
       setCountdown({hours: hours, minutes:minutes, seconds:seconds});
+    }
+    else {
+      setCountdown(null)
     }
   };
 
@@ -30,7 +33,7 @@ function NewItem({ newItem }) {
           data-bs-placement="top"
           title="Creator: Monica Lucas"
         >
-          <img className="lazy" src={newItem.authorImage} alt="" />
+          <img className="lazy" src={newItem.authorImage || authImg} alt="" />
           <i className="fa fa-check"></i>
         </Link>
       </div>
