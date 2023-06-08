@@ -9,12 +9,26 @@ const Author = () => {
   const [authorsData, setAuthorsData] = useState([])
   const [nftCollection, setNftCollection] = useState([])
   const [authorsImage, setAuthorsImage] = useState("")
+  const [followers, setFollowers] = useState()
+  const [followClicked, setFollowClicked] = useState(false)
 
   const getAuthorsData = async () => {
     let {data} = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
     setAuthorsData(data)
     setNftCollection(data.nftCollection)
     setAuthorsImage(data.authorImage)
+    setFollowers(data.followers)
+  }
+
+  const toggleLikes = () => {
+    if (followClicked === false) {
+      setFollowers(followers + 1)
+      setFollowClicked(!followClicked)
+    }
+    else {
+      setFollowers(followers - 1)
+      setFollowClicked(!followClicked)
+    }
   }
 
   useEffect(()=> {
@@ -60,9 +74,9 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{authorsData.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <div className="profile_follower">{followers} followers</div>
+                      <Link to="#" className="btn-main" onClick={toggleLikes}>
+                        {!followClicked ? ("Follow") : ("Unfollow")}
                       </Link>
                     </div>
                   </div>
