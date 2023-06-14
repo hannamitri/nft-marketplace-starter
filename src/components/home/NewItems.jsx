@@ -71,6 +71,7 @@ const NewItems = () => {
                             width: "50px",
                             height: "50px",
                             borderRadius: "50%",
+                            backgroundColor: "lightgray",
                           }}
                         ></div>
 
