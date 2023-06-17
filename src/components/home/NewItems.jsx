@@ -3,6 +3,8 @@ import axios from "axios";
 import NewItem from "../utility/NewItem";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Slider from "react-slick";
 import NewItemLoadingState from "../utility/NewItemLoadingState";
 
@@ -58,11 +60,12 @@ const NewItems = () => {
 
   useEffect(() => {
     fetchNewItemsData();
+    AOS.init();
   }, []);
 
   return (
     <section id="section-items" className="no-bottom">
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-duration="500">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
