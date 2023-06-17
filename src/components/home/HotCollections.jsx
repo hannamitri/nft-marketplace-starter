@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import HotItem from "../utility/HotItem";
 import HotItemLoadingState from "../utility/HotItemLoadingState";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HotCollections = () => {
   const [data, setData] = useState([]);
@@ -57,11 +59,12 @@ const HotCollections = () => {
   }
   useEffect(() => {
     getData();
+    AOS.init();
   }, []);
 
   return (
     <section id="section-collections" className="no-bottom">
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-duration="500">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
