@@ -3115,6 +3115,14 @@ a.btn-line {
   border: none;
 }
 
+@media (max-width: 768px) {
+  .btn-follow {
+    margin-top: 20px;
+    width: 120px !important;
+    height: 35px !important;
+  }
+}
+
 a.btn-lg {
   font-size: 16px !important;
   padding: 12px 40px !important;
@@ -16578,6 +16586,7 @@ img {
     padding: 7px 12px !important;
     border-radius: 2px !important;
     margin-top: -1px;
+    background-color: black;
   }
 
   header a.btn-main i {
@@ -16651,11 +16660,8 @@ img {
 }
 
 .skeleton-box {
-  display: inline-block;
-  height: 1em;
-  position: relative;
   overflow: hidden;
-  background-color: #dddbdd;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .skeleton-box::after {
@@ -16672,8 +16678,8 @@ img {
     rgba(255, 255, 255, 0.5) 60%,
     rgba(255, 255, 255, 0)
   );
-  -webkit-animation: shimmer 2s infinite;
-  animation: shimmer 2s infinite;
+  -webkit-animation: shimmer 1s infinite;
+  animation: shimmer forwards 1s infinite;
   content: "";
 }
 @-webkit-keyframes shimmer {
@@ -16713,4 +16719,68 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: rgba(0, 0, 0, 0.3) !important;
+  font-size: 24px !important;
+  transition: all 300ms ease;
+}
+
+.slick-prev:before,
+.slick-next:before:hover {
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+.slick-prev:before,
+.slick-next:before:focus {
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.extra-style {
+  max-width: initial !important;
+  padding-right: 13px;
+  padding-left: 13px;
+}
+
+@media (max-width: 992px) {
+  .explore-extra {
+    width: 50%;
+  }
+}
+
+@media (max-width: 575px) {
+  .nft__item_preview {
+    width: 55% !important;
+  }
+
+  .skeleton-img-explore {
+    width: 100% !important;
+  }
+
+  .explore-extra {
+    width: 100%;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+  .container {
+    min-width: initial;
+  }
+}
+
+@media (max-width: 380px) {
+  .nft__item_preview {
+    width: 100% !important;
+  }
+}
+
+.skeleton-hover-style {
+  transition: none;
+}
+
+.skeleton-hover-style:hover {
+  scale: none;
+  box-shadow: none;
 }
