@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function NewItem({ newItem, authImg }) {
   const [countdown, setCountdown] = useState(null);
@@ -21,11 +23,13 @@ function NewItem({ newItem, authImg }) {
   useEffect(() => {
     calculateTime()
     const interval = setInterval(() => calculateTime(), 1000);
+    AOS.init();
     return () => clearInterval(interval);
   },[]);
 
+
   return (
-    <div className="nft__item">
+    <div className="nft__item" data-aos="zoom-in" data-aos-duration="500">
       <div className="author_list_pp">
         <Link
           to={`/author/${newItem.authorId}`}
