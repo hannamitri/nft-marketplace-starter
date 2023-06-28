@@ -3,11 +3,28 @@ import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
 
 const ItemDetails = () => {
   useEffect(() => {
+    console.log("HELELELLELEL")
     window.scrollTo(0, 0);
   }, []);
+
+  // let GetData = () => {
+  //   useEffect(() => {
+  //     axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+  //       .then(response => {
+  //         // Handle the successful response
+  //         console.log(response.data);
+  //       })
+  //       .catch(error => {
+  //         // Handle the error
+  //         console.error(error);
+  //       });
+  //     }, [])
+  // };
+
 
   return (
     <div id="wrapper">
