@@ -4,7 +4,7 @@ const TimerCountDown = ({ expiryDate }) => {
 
   // write function before using it to set intial hook value
   const updateTimer = (millisLeft) => {
-    if (millisLeft < 0) return "Item Expired";
+    if (millisLeft < 0) return "Expired";
 
     let seconds = Math.floor(millisLeft / 1000) % 60;
     let minutes = Math.floor(millisLeft / 1000 / 60) % 60;
