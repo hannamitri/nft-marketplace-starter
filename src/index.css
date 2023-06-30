@@ -10,3 +10,69 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.nft_coll{
+    height: 100%;
+    width: 100%;
+    margin: 0 auto !important;
+}
+
+.nft_wrap{
+    height: 100% !important;
+}
+
+@media (max-width: 600px){
+    .nft_coll{
+        width: 400px;
+    }
+
+    .slide{
+        display: flex;
+        align-items: center;
+    }
+}
+
+.slick-slide{
+    /* padding: 0 10px; */
+}
+
+.slide{
+    max-width: 330px;
+    width: 100%;
+}
+
+.slick-list{
+    position: relative !important;
+}
+
+/* Arrow Styling fort Hot Collections */
+.slick-arrow {
+    background-color: #fff!important;
+    color: black !important;
+    z-index: 50 !important;
+    font-size: 30px !important; 
+}
+
+.slick-next{
+    visibility: hidden !important;
+}
+
+.slick-prev{
+    visibility: hidden !important;
+}
+.slick-prev:after{
+    content: "<" !important;
+    visibility: visible !important;
+    position: absolute !important;
+    left: 30px !important;
+}
+
+.slick-next:after{
+    content: ">" !important;
+    visibility: visible !important;
+    position: absolute !important;
+    right: 30px !important;
+}
+
+
+
