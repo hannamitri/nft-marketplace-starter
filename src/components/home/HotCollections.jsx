@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import "./HotCollections.css";
 
 
 const HotCollections = () => {
@@ -18,6 +21,24 @@ const HotCollections = () => {
     fetchHotCollections();
   }, [])
 
+  const PrevButton = (props) => {
+    const { className, onClick } = props;
+    return (
+      <button className={className} onClick={onClick}>
+        Previous
+      </button>
+    );
+  };
+  
+  const NextButton = (props) => {
+    const { className, onClick } = props;
+    return (
+      <button className={className} onClick={onClick}>
+        Next
+      </button>
+    );
+  };
+
 
   const settings = {
     dots: false,
@@ -25,8 +46,9 @@ const HotCollections = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    prevArrow: <button className="prev-arrow">Previous</button>,
-    nextArrow: <button className="next-arrow">Next</button>,
+    arrows: true,
+    prevArrow: <PrevButton />,
+    nextArrow: <NextButton />,
     responsive: [
       {
         breakpoint: 1024,
@@ -67,7 +89,7 @@ const HotCollections = () => {
           </div>
           <Slider {...settings}>
             {users.map((user, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 card" key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
