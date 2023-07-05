@@ -4,9 +4,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
-  const [HotCollections, setHotCollections] = useState([]);
+  const [hotCollections, setHotCollections] = useState([]);
 
   useEffect(() => {
     axios
@@ -18,6 +21,26 @@ const HotCollections = () => {
       });
   }, []);
 
+  const owlCarouselOptions = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 2,
+      },
+      900: {
+        items: 3,
+      },
+      1200: {
+        items: 4,
+      },
+    },
+  };
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -28,9 +51,9 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {HotCollections.map((hotCollection, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
+          <OwlCarousel className="owl-rtl" {...owlCarouselOptions}>
+            {hotCollections.map((hotCollection, index) => (
+              <div className="nft_coll" key={index}>
                 <div className="nft_wrap">
                   <Link to="/item-details">
                     <img
@@ -57,8 +80,8 @@ const HotCollections = () => {
                   <span>{hotCollection.code}</span>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </OwlCarousel>
         </div>
       </div>
     </section>
