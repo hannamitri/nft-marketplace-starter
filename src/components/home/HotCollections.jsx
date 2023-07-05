@@ -10,11 +10,13 @@ import "./HotCollections.css";
 const HotCollections = () => {
 
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function fetchHotCollections()
   {
     const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
     setUsers(response.data);
+    setLoading(false);
   }
 
   useEffect(()=> {
@@ -53,22 +55,13 @@ const HotCollections = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
@@ -87,31 +80,68 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Slider {...settings}>
-            {users.map((user, index) => (
-              <div className="card" key={index}>
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img src={user.nftImage} className="lazy img-fluid" alt="" />
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img className="lazy pp-coll" src={user.authorImage} alt="" />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>{user.title}</h4>
-                    </Link>
-                    <span>{user.code}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
+
+          {
+            loading ? (
+              <>
+                {new Array(4).fill(0).map((_, index) => {
+                  return (
+                    <div className="skeliton_card" key={index}>
+                      <div className="skeliton_nft_coll">
+                        <div className="skeliton_nft_wrap">
+                          <Link to="/item-details">
+                            <div></div>
+                          </Link>
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Link to="/author">
+                            <div className="skeliton_circle"></div>
+                          </Link>
+                          <i className="fa fa-check skeliton_check"></i>
+                        </div>
+                        <div className="nft_coll_info">
+                          <Link to="/explore">
+                            <div className="skeliton_row1"></div>
+                          </Link>
+                          <div className="skeliton_row2"></div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+                
+              </>
+            ) : (
+              <>
+                <Slider {...settings}>
+                  {users.map((user, index) => (
+                    <div className="card" key={index}>
+                      <div className="nft_coll">
+                        <div className="nft_wrap">
+                          <Link to="/item-details">
+                            <img src={user.nftImage} className="lazy img-fluid" alt="" />
+                          </Link>
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Link to="/author">
+                            <img className="lazy pp-coll" src={user.authorImage} alt="" />
+                          </Link>
+                          <i className="fa fa-check"></i>
+                        </div>
+                        <div className="nft_coll_info">
+                          <Link to="/explore">
+                            <h4>{user.title}</h4>
+                          </Link>
+                          <span>{user.code}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+              </>
+            )
+          }
+
         </div>
       </div>
     </section>

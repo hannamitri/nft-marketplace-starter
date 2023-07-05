@@ -9,7 +9,7 @@
     z-index: 1;
     width: 40px;
     height: 40px;
-    background-color: #fff;
+    background-color: white;
     border: 1px solid gray;
     border-radius: 50%;
     display: flex;
@@ -24,6 +24,7 @@ content: "<"; /* Customize the content/icon */
 font-size: 24px;
 color: #000;
 font-weight: 900;
+
 }
 
 /* Customize the next button */
@@ -35,7 +36,7 @@ transform: translateY(-50%);
 z-index: 1;
 width: 40px;
 height: 40px;
-background-color: #fff;
+background-color: white;
 border: 1px solid gray;
 border-radius: 50%;
 display: flex;
@@ -51,6 +52,76 @@ color: #000;
 font-weight: 900;
 }
 
+.slick-prev:focus, .slick-next:focus
+.slick-prev:active, .slick-next:focus{
+  background-color: white;
+}
+
 .card {
 width: 25%;
+border: none;
+}
+
+.nft_coll {
+    margin: 0px 8px;
+}
+
+
+/*#############################################
+skeliton loading state */
+
+.skeliton_card {
+    width: calc(100% / 4 );
+    height: 300px;
+    padding: 25px 0px 0px 0px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.skeliton_nft_coll {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    width: 100%;
+    height: 70%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    
+}
+
+.skeliton_circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: relative;
+    top: 170px;
+    margin: 0 auto;
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+}
+
+.skeliton_check {
+    position: relative;
+    top: 200px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+
+.skeliton_row1 {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 100px;
+    position: relative;
+    top: 170px;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.skeliton_row2 {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 50px;
+    position: relative;
+    top: 180px;
+    margin: 0 auto;
+    border-radius: 4px;
 }
