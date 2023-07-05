@@ -89,7 +89,7 @@ const HotCollections = () => {
           </div>
           <Slider {...settings}>
             {users.map((user, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 card" key={index}>
+              <div className="card" key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
