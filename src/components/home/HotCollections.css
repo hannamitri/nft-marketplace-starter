@@ -17,40 +17,40 @@
     justify-content: center;
     cursor: pointer;
     
-  }
+}
   
-  .slick-prev:before {
-    content: "<"; /* Customize the content/icon */
-    font-size: 24px;
-    color: #000;
-    font-weight: 900;
-  }
-  
-  /* Customize the next button */
-  .slick-next {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    border: 1px solid gray;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .slick-next:before {
-    content: ">"; /* Customize the content/icon */
-    font-size: 24px;
-    color: #000;
-    font-weight: 900;
-  }
-  
-  .card {
-    width: 25%;
-  }
+.slick-prev:before {
+content: "<"; /* Customize the content/icon */
+font-size: 24px;
+color: #000;
+font-weight: 900;
+}
+
+/* Customize the next button */
+.slick-next {
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+z-index: 1;
+width: 40px;
+height: 40px;
+background-color: #fff;
+border: 1px solid gray;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+}
+
+.slick-next:before {
+content: ">"; /* Customize the content/icon */
+font-size: 24px;
+color: #000;
+font-weight: 900;
+}
+
+.card {
+width: 25%;
+}
