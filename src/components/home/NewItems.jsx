@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Skeleton from "react-loading-skeleton";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -108,7 +109,9 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+                    {items.expiryDate && (
+                      <Countdown expiryDate={items.expiryDate} />
+                    )}
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
