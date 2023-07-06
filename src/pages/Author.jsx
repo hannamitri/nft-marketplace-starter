@@ -133,15 +133,7 @@ const Author = () => {
                   </div>
                 </>
               )
-            }
-
-            
-
-
-
-              
-
-              
+            } 
             </div>
           </div>
         </section>
