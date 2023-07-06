@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
@@ -10,6 +10,7 @@ const NewItems = () => {
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [countdownTimes, setCountdownTimes] = useState([]);
 
   async function fetchNewItems()
   {
@@ -21,6 +22,47 @@ const NewItems = () => {
   useEffect(() => {
     fetchNewItems();
   }, [])
+  
+
+  const countDown = useCallback(() => {
+    const updatedCountdownTimes = items.map((item) => {
+      if (!item.expiryDate) {
+        // Handle the case when no expiry date is available
+        return "";
+      }
+  
+      const countDownDate = new Date(item.expiryDate).getTime(); // Convert the start time to Unix format
+  
+      const now = new Date().getTime();
+    
+      let distance = countDownDate - now;
+  
+      if (distance <= 0) {
+        return "EXPIRED";
+      }
+  
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      let timeString = `${hours}h ${minutes}m ${seconds}s`;
+    
+      return timeString;
+    });
+  
+    setCountdownTimes(updatedCountdownTimes);
+  }, [items]);
+
+
+  
+  useEffect(() => {
+    const countdownInterval = setInterval(countDown, 1000);
+  
+    // Clear the interval when the component is unmounted or when the items change
+    return () => clearInterval(countdownInterval);
+  }, [items, countDown]); // Include countDown in the dependency array
+
+
 
   const PrevButton = (props) => {
     const { className, onClick } = props;
@@ -87,7 +129,7 @@ const NewItems = () => {
                 {
                   new Array(4).fill(0).map((_, index) => {
                     return (
-                      <div className="card">
+                      <div className="card" key={index}>
                         <div className="nft__item">
                           <div className="author_list_pp">
                             <div className="skeliton_face"></div>
@@ -133,7 +175,7 @@ const NewItems = () => {
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
-                        <div className="de_countdown">{item.expiryDate}</div>
+                        <div className="de_countdown">{countdownTimes[index]}</div>
 
                         <div className="nft__item_wrap">
                           <div className="nft__item_extra">
