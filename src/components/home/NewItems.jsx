@@ -22,7 +22,7 @@ const NewItems = () => {
   useEffect(() => {
     fetchNewItems();
   }, [])
-  
+
 
   const countDown = useCallback(() => {
     const updatedCountdownTimes = items.map((item) => {
@@ -52,7 +52,6 @@ const NewItems = () => {
   
     setCountdownTimes(updatedCountdownTimes);
   }, [items]);
-
 
   
   useEffect(() => {
