@@ -4,7 +4,6 @@ const Countdown = () => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    // Generate random values for hours, minutes, and seconds
     const randomHours = Math.floor(Math.random() * 24);
     const randomMinutes = Math.floor(Math.random() * 60);
     const randomSeconds = Math.floor(Math.random() * 60);
