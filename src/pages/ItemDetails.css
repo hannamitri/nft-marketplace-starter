@@ -1,0 +1,66 @@
+.skeleton_big_img {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    width: 640px;
+    height: 480px;
+}
+
+.skeleton_nft_title {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 25px;
+    width: 300px;
+}
+
+.skeleton_view {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 80px;
+    margin: 8px 0px;
+}
+
+
+.skeleton_description1 {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 400px;
+}
+
+.skeleton_description2 {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 150px;
+    margin-top: 8px;
+}
+
+.skeleton_owner {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 100px;
+    margin: 8px 0px;
+}
+
+.skeleton_profile_pic {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    margin: 8px 0px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.skeleton_price {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 70px;
+    margin-bottom: 8px;
+}
+
+.skeleton_price_tag {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 130px;
+}
+
+.skeleton_person_name {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 25px;
+    width: 150px;
+}
