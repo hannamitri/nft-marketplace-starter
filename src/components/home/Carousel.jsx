@@ -102,8 +102,7 @@ const Carousel = ({ collections }) => {
         <Slider {...settings}>
           {loading
             ? new Array(6).fill(0).map((collection, index) => (
-                <div className="" key={index}>
-                  <div className="nft_coll">
+                  <div className="nft_coll" key={index}>
                     <div className="nft_wrap">
                       <Link to={`/${collection.authorId}`}>
                         <div className="skeleton-box" style={stylesImg}></div>
@@ -122,13 +121,11 @@ const Carousel = ({ collections }) => {
                       <div className="skeleton-box" style={stylesText}></div>
                     </div>
                   </div>
-                </div>
               ))
             : collections.map((collection, index) => (
-                <div className="" key={index}>
-                  <div className="nft_coll">
+                  <div className="nft_coll" key = {index}>
                     <div className="nft_wrap">
-                      <Link to={`/${collection.authorId}`}>
+                      <Link to={`/item-details/${collection.authorId}`}>
                         {loading ? (
                           <div className="skeleton-box" style={stylesImg}></div>
                         ) : (
@@ -172,7 +169,6 @@ const Carousel = ({ collections }) => {
                       )}
                     </div>
                   </div>
-                </div>
               ))}
         </Slider>
       </>
