@@ -7,6 +7,7 @@ import Slider from "./Carousel";
 
 const HotCollections = () => {
   
+  
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
