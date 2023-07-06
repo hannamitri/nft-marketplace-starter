@@ -1,0 +1,12 @@
+.de_countdown {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  color: #0d0c22;
+  padding: 1px 10px;
+  position: absolute;
+  right: 20px;
+  z-index: 100;
+}
