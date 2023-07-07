@@ -5,6 +5,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "./HotCollections.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 
 const HotCollections = () => {
@@ -21,6 +24,7 @@ const HotCollections = () => {
 
   useEffect(()=> {
     fetchHotCollections();
+    AOS.init();
   }, [])
 
   const PrevButton = (props) => {
@@ -76,7 +80,7 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2 data-aos="zoom-in" data-aos-duration="1000">Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
@@ -113,9 +117,9 @@ const HotCollections = () => {
               </>
             ) : (
               <>
-                <Slider {...settings}>
+                <Slider {...settings} data-aos="zoom-in">
                   {users.map((user, index) => (
-                    <div className="card" key={index}>
+                    <div className="card" key={index} data-aos="zoom-in" data-aos-duration="700">
                       <div className="nft_coll">
                         <div className="nft_wrap">
                           <Link to={`/item-details/${user.nftId}`}>

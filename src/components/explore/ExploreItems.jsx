@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeliton from "../home/Skeliton.jsx";
 import Card from "../home/Card.jsx";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const ExploreItems = () => {
 
@@ -23,6 +26,7 @@ const ExploreItems = () => {
 
   useEffect(() => {
     fetchExploreItems()
+    AOS.init();
   }, [])
 
   useEffect(() => {
@@ -85,7 +89,7 @@ const ExploreItems = () => {
 
       {
         showLoadMore && (
-          <div className="col-md-12 text-center">
+          <div className="col-md-12 text-center" data-aos="fade-up" data-aos-duration="1000">
             <Link to="" id="loadmore" className="btn-main lead" onClick={loadMoreItems}>
               Load more
             </Link>

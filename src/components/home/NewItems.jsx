@@ -7,6 +7,9 @@ import "./NewItems.css";
 import Skeliton from "./Skeliton.jsx";
 import CountDownTimer from "./CountDownTimer.jsx";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const NewItems = () => {
 
@@ -22,6 +25,7 @@ const NewItems = () => {
 
   useEffect(() => {
     fetchNewItems();
+    AOS.init();
   }, [])
 
   const PrevButton = (props) => {
@@ -78,7 +82,7 @@ const NewItems = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Items</h2>
+              <h2 data-aos="zoom-in" data-aos-duration="1000">New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
@@ -93,7 +97,6 @@ const NewItems = () => {
                     )
                   }) 
                 }
-                
               </>
             ) : (
               <>
@@ -101,7 +104,7 @@ const NewItems = () => {
                   {
                     items.map((item, index) => {
                       return (
-                        <div className="card">
+                        <div className="card" key={index} data-aos="zoom-in" data-aos-duration="700">
                           <div className="nft__item">
                           <div className="author_list_pp">
                               <Link

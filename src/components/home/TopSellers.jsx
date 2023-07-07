@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./TopSellers.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const TopSellers = () => {
 
@@ -17,6 +20,7 @@ const TopSellers = () => {
 
   useEffect(() => {
     fetchTopSellers(); 
+    AOS.init();
   }, [])
 
   return (
@@ -25,7 +29,7 @@ const TopSellers = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Top Sellers</h2>
+              <h2 data-aos="zoom-in" data-aos-duration="1000">Top Sellers</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
@@ -56,7 +60,7 @@ const TopSellers = () => {
                 ) : (
                   <>  
                     {sellers.map((seller, index) => (
-                      <li key={index}>
+                      <li key={index} data-aos="zoom-in" data-aos-duration="700">
                         <div className="author_list_pp">
                           <Link to={`/author/${seller.authorId}`}>
                             <img
