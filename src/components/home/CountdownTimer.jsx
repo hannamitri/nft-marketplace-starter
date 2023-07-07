@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function CountdownTimer({ targetTime }) {
-  console.log(targetTime)
   const calculateTimeRemaining = () => {
     const currentTime = Math.floor(Date.now() / 1000);
     return targetTime - currentTime;
