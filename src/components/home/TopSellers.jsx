@@ -59,7 +59,7 @@ const TopSellers = () => {
                 : collections.map((collection) => (
                     <li key={collection.id}>
                       <div className="author_list_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${collection.authorName}`}>
                           <img
                             className="lazy pp-author"
                             src={collection.authorImage}
@@ -69,7 +69,7 @@ const TopSellers = () => {
                         </Link>
                       </div>
                       <div className="author_list_info">
-                        <Link to="/author">{collection.authorName}</Link>
+                        <Link to = {`/author/${collection.authorName}`} >{collection.authorName}</Link>
                         <span>{collection.price} ETH</span>
                       </div>
                     </li>
