@@ -1,80 +1,100 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import CountdownTimer from "../home/CountdownTimer.jsx";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import NewItem from "../home/NewItem.jsx";
 
 const ExploreItems = () => {
+  const [slice, setSlice] = useState(8);
+  let data = [0];
+  const [option, setOption] = useState("");
+  const showMore = () => {
+    console.log(slice);
+    setSlice((prev) => prev + 4);
+    console.log(slice);
+  };
+  const [loading, setLoading] = useState([]);
+  const [collections, setCollections] = useState();
+
+  useEffect(() => {
+    async function getData() {
+      // console.log("OPTION" + option);
+      if (option == "price_low_to_high") {
+        data = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_low_to_high"
+        );
+      } else if (option == "price_high_to_low") {
+        data = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low"
+        );
+      } else if (option == "likes_high_to_low") {
+        data = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low"
+        );
+      } else {
+        data = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+        );
+      }
+      console.log(data.data);
+      setCollections(data.data);
+      setLoading(false);
+    }
+    getData();
+  }, [loading]);
+  const customStyles = {
+    width: "100%",
+    height: "400px",
+  };
+
+  const sort = (event) => {
+    setOption(event.target.value);
+    setLoading(true);
+  };
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={sort}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
-        <div
-          key={index}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block", backgroundSize: "cover" }}
-        >
-          <div className="nft__item">
-            <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={AuthorImage} alt="" />
-                <i className="fa fa-check"></i>
-              </Link>
+      {loading
+        ? new Array(12).fill(0).map((_, index) => (
+            <div
+              key={index}
+              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              style={{ display: "block", backgroundSize: "cover" }}
+            >
+              <div className="skeleton-box" style={customStyles}></div>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
-
-            <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
-              </Link>
+          ))
+        : collections.slice(0, slice).map((collection) => (
+            <div
+              key={collection.id}
+              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              style={{ display: "block", backgroundSize: "cover" }}
+            >
+              <NewItem item={collection} />
             </div>
-            <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
-              </Link>
-              <div className="nft__item_price">1.74 ETH</div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>69</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+          ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+        {slice != 16 && (
+          <Link
+            to=""
+            id="loadmore"
+            className="btn-main lead"
+            onClick={showMore}
+          >
+            Load more
+          </Link>
+        )}
       </div>
     </>
   );
 };
-
 export default ExploreItems;
