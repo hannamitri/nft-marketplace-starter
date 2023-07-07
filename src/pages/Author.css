@@ -1,0 +1,45 @@
+.organize_flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skeliton_pic {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.skeleton_name {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 180px;
+}
+
+.skeleton_tag {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 80px;
+    margin-top: 8px;
+}
+
+.skeleton_address {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 240px;
+    margin-top: 8px;
+}
+
+.skeleton_followers {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 22px;
+    width: 120px;
+    margin-right: 8px;
+}
+
+.skeleton_btn {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 40px;
+    width: 120px;
+
+}

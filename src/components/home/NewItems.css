@@ -1,0 +1,116 @@
+/* NewItems.css */
+
+/* Customize the previous button */
+.slick-prev {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+  
+.slick-prev:before {
+content: "<"; /* Customize the content/icon */
+font-size: 24px;
+color: #000;
+font-weight: 900;
+
+}
+
+/* Customize the next button */
+.slick-next {
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+z-index: 1;
+width: 40px;
+height: 40px;
+background-color: white;
+border: 1px solid gray;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+}
+
+.slick-next:before {
+content: ">"; /* Customize the content/icon */
+font-size: 24px;
+color: #000;
+font-weight: 900;
+}
+
+.slick-prev:focus, .slick-next:focus
+.slick-prev:active, .slick-next:focus{
+  background-color: white;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background-color: white;
+}
+
+.card {
+width: 25%;
+border: none;
+}
+
+.nft__item {
+    margin: 0px 8px;
+}
+
+/*######################################
+skeliton loading state */
+
+.skeliton_face  {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.skeliton_timer {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 22px;
+    width: 110px;
+    border-radius: 50px;
+    position: relative;
+    left: 120px;
+}
+
+.skeliton_img {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    width: 250px;
+    height: 270px;
+    border-radius: 5px;
+}
+
+.skeliton_name {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 150px;
+    border-radius: 5px;
+    position: relative;
+    bottom: 30px;
+}
+
+.skeliton_price {
+    background: linear-gradient(to right, lightgray, rgb(155, 155, 155));
+    height: 20px;
+    width: 90px;
+    border-radius: 5px;
+    position: relative;
+    bottom: -10px;
+    right: 157px;
+}
