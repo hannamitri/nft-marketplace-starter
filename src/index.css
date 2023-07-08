@@ -76,3 +76,16 @@
 
 
 
+
+.itemSlide{
+    max-width: 350px;
+    width: 100% ;
+    
+}
+
+.nft__item{
+    align-items: center !important;
+}
+
+
+
