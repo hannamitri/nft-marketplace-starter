@@ -138,7 +138,7 @@ const Carousel = ({ collections }) => {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${collection.authorId}`}>
                         {loading ? (
                           <div className="skeleton-box" style={stylesPfp}></div>
                         ) : (
