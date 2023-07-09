@@ -125,7 +125,7 @@ const Carousel = ({ collections }) => {
             : collections.map((collection, index) => (
                   <div className="nft_coll" key = {index}>
                     <div className="nft_wrap">
-                      <Link to={`/item-details/${collection.authorId}`}>
+                    <Link to={`/item-details/${collection.nftId}`}>
                         {loading ? (
                           <div className="skeleton-box" style={stylesImg}></div>
                         ) : (
