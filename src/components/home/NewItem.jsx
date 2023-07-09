@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 import CountdownTimer from "./CountdownTimer";
 
 const NewItem = ({ item }) => {
@@ -45,7 +44,7 @@ const NewItem = ({ item }) => {
             </div>
           </div>
 
-          <Link to="/item-details">
+          <Link to={`/item-details/${item.nftId}`}>
             <img
               src={item.nftImage}
               className="lazy nft__item_preview"

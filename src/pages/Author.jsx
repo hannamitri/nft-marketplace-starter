@@ -8,16 +8,24 @@ import axios from "axios";
 const Author = () => {
   const [author, setAuthor] = useState();
   const [loading, setLoading] = useState();
+  const [follow, setFollow] = useState(false);
+  const [followers, setFollowers] = useState(0);
   const { id } = useParams();
+  function followUser() {
+    setFollow((prev) => !prev);
+    console.log(follow);
+  }
   async function fetchPosts() {
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthor(data);
     setLoading(true);
-    console.log(author)
+    console.log(author);
+    setFollowers(author.followers + 1);
   }
   fetchPosts();
+
   return (
     <div id="wrapper">
       {loading && (
@@ -61,10 +69,15 @@ const Author = () => {
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
                         <div className="profile_follower">
-                          {author.followers} followers
+                          {follow ? (
+                            <>{followers} </>
+                          ) : (
+                            <> {author.followers} </>
+                          )}
+                          followers
                         </div>
-                        <Link to="#" className="btn-main">
-                          Follow
+                        <Link to="#" className="btn-main" onClick={followUser}>
+                          {follow ? <>Following</> : <>Follow</>}
                         </Link>
                       </div>
                     </div>
@@ -73,7 +86,10 @@ const Author = () => {
 
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
-                    <AuthorItems collection={author.nftCollection} authorImage = {author.authorImage} />
+                    <AuthorItems
+                      collection={author.nftCollection}
+                      authorImage={author.authorImage}
+                    />
                   </div>
                 </div>
               </div>
