@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
-      <div className="container">
+      <div className="container" data-aos="fade-left">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">

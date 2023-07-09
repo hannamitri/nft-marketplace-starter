@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 function CountdownTimer({ targetTime }) {
   const calculateTimeRemaining = () => {
     const currentTime = Math.floor(Date.now() / 1000);
-    return targetTime - currentTime;
+    return targetTime/1000 - currentTime;
   };
 
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
@@ -32,7 +32,7 @@ function CountdownTimer({ targetTime }) {
 
   const hours = Math.floor(timeRemaining / 3600);
   const minutes = Math.floor((timeRemaining % 3600) / 60);
-  const seconds = timeRemaining % 60;
+  const seconds = Math.floor(timeRemaining) % 60;
 
   return (
     <div>
