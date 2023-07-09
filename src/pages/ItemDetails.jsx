@@ -176,7 +176,7 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{item.ownerName}</Link>
+                            <Link to={`/author/${item.ownerId}`}>{item.ownerName}</Link>
                           </div>
                         </div>
                       </div>
@@ -197,7 +197,7 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{item.creatorName}</Link>
+                            <Link to={`/author/${item.creatorId}`}>{item.creatorName}</Link>
                           </div>
                         </div>
                       </div>
