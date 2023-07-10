@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Data from "./data";
 
 const BrowseByCategory = () => {
+  
+  const data = Data();
+  console.log(`fainnly, or data is is ${data}`)
   return (
     <section id="section-category" className="no-top">
       <div className="container">

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import ItemDetails from "../../pages/ItemDetails";
 
 
 const HotCollections = () => {
@@ -22,6 +23,7 @@ const HotCollections = () => {
     }, [])
   return (
     <section id="section-collections" className="no-bottom">
+
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -35,6 +37,7 @@ const HotCollections = () => {
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
+                <Link to={{ pathname: "/item-details", state: { data: element } }}></Link>
                   <Link to="/item-details">
                     <img src={element.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
@@ -56,6 +59,7 @@ const HotCollections = () => {
           ))}
         </div>
       </div>
+      <ItemDetails data={ data } />
     </section>
   );
 };

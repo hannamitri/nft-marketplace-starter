@@ -1,31 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
+import data from "../components/home/HotCollections"
 
-const ItemDetails = () => {
+
+const ItemDetails = (props) => {
   useEffect(() => {
     console.log("HELELELLELEL")
     window.scrollTo(0, 0);
   }, []);
-
-  // let GetData = () => {
-  //   useEffect(() => {
-  //     axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-  //       .then(response => {
-  //         // Handle the successful response
-  //         console.log(response.data);
-  //       })
-  //       .catch(error => {
-  //         // Handle the error
-  //         console.error(error);
-  //       });
-  //     }, [])
-  // };
-
-
+  
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -107,5 +94,7 @@ const ItemDetails = () => {
     </div>
   );
 };
+
+
 
 export default ItemDetails;
