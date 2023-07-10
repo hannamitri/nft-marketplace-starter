@@ -14,6 +14,7 @@ function App() {
       axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
         .then(response => {
           // Handle the successful response
+          console.log(`here lies gaming, response data is ${response.data}`)
           console.log(response.data);
         })
         .catch(error => {

@@ -14,7 +14,6 @@ const HotCollections = () => {
       .then(response => {
         // Handle the successful response
         setData(response.data)
-        console.log(`lorem data is now ${data}`);
       })
       .catch(error => {
         // Handle the error
@@ -32,15 +31,16 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {console.log(`hello? data is ${data}`)}
+          {console.log(`hello? data[0] is ${data[0]}`)}
           {data.map((element, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
-                <Link to={{ pathname: "/item-details", state: { data: element } }}></Link>
-                  <Link to="/item-details">
+                <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link>
+                  <Link to={`/item-details/${element.nftId}`}>
                     <img src={element.nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
+                </Link>
+                  {/* <Link to="/item-details"> */}
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">

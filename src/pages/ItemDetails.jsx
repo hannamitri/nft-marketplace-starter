@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
-import data from "../components/home/HotCollections"
-
+import Data from "../components/home/data";
 
 const ItemDetails = (props) => {
   useEffect(() => {
     console.log("HELELELLELEL")
     window.scrollTo(0, 0);
   }, []);
-  
+  const data = Data();
+  console.log(`we have data, it is ${data}`)
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
