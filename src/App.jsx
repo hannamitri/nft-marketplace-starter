@@ -14,7 +14,6 @@ function App() {
       axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
         .then(response => {
           // Handle the successful response
-          console.log(`here lies gaming, response data is ${response.data}`)
           console.log(response.data);
         })
         .catch(error => {
@@ -31,7 +30,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
-        <Route path="/item-details/:authorId" element={<ItemDetails />} />
+        <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>

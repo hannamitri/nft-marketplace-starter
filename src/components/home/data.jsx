@@ -8,7 +8,6 @@ export default function Data() {
       .then(response => {
         // Handle the successful response
         setData(response.data)
-        console.log(`new data is now ${data}`);
       })
       .catch(error => {
         // Handle the error

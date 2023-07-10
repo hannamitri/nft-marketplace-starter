@@ -40,7 +40,6 @@ const HotCollections = () => {
                   <Link to={`/item-details/${element.nftId}`}>
                     <img src={element.nftImage} className="lazy img-fluid" alt="" />
                 </Link>
-                  {/* <Link to="/item-details"> */}
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">

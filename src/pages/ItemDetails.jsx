@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 import Data from "../components/home/data";
-
 const ItemDetails = (props) => {
-  useEffect(() => {
-    console.log("HELELELLELEL")
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   console.log("HELELELLEL EL")
+  //   window.scrollTo(0, 0);
+  // }, []);
+  const { nftId } = useParams();
   const data = Data();
-  console.log(`we have data, it is ${data}`)
+  console.log(`data is ${data}`)
+  const element = data.filter((elem) => {
+    if (elem.nftId == nftId) return true
+  })
+  console.log(`element`)
+  console.log(`element.nftId is ${element.length}`)
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
