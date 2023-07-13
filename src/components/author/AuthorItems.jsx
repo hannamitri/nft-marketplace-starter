@@ -9,10 +9,11 @@ import "aos/dist/aos.css";
 const AuthorItems = () => {
   const { id } = useParams();
   const [author, setAuthor] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
   const [image, setImage] = useState("");
 
   async function fetchAuthorItems() {
+    setLoading(true)
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
@@ -24,7 +25,6 @@ const AuthorItems = () => {
 
   useEffect(() => {
     fetchAuthorItems();
-    setLoading(true);
     window.scrollTo(0, 0);
     AOS.init();
   }, []);

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import ItemsSkeleton from "../components/UI/ItemsSkeleton";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const ItemDetails = ({ authorId }) => {
+const ItemDetails = () => {
   const { id } = useParams();
   const [nft, setNft] = useState("");
   const [loading, setLoading] = useState(true);

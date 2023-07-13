@@ -52,9 +52,7 @@ const Nav = () => {
                     <Link
                       to="#"
                       className="btn-main connect-wallet"
-                      onClick={() =>
-                        alert("This feature has not been implemented yet")
-                      }
+                      style={{ cursor: "not-allowed" }}
                     >
                       Connect wallet
                     </Link>

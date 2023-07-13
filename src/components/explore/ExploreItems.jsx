@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
   const [visible, setVisible] = useState(8);
 
   const showMoreItems = () => {
@@ -31,6 +31,7 @@ const ExploreItems = () => {
   };
 
   async function fetchExploreItems() {
+    setLoading(true)
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
     );
@@ -41,7 +42,6 @@ const ExploreItems = () => {
 
   useEffect(() => {
     fetchExploreItems();
-    setLoading(true);
     AOS.init();
   }, []);
 
