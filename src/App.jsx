@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 function App() {
-  // const GetData = () => {
+
     useEffect(() => {
       axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
         .then(response => {
@@ -21,8 +21,6 @@ function App() {
           console.error(error);
         });
       }, [])
-  // };
-  // GetData()
   return (
     <Router>
       <Nav />

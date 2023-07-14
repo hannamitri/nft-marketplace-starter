@@ -6,18 +6,12 @@ import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 import Data from "../components/home/data";
 const ItemDetails = (props) => {
-  // useEffect(() => {
-  //   console.log("HELELELLEL EL")
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    console.log("HELELELLEL EL")
+    window.scrollTo(0, 0);
+  }, []);
   const { nftId } = useParams();
-  const data = Data();
-  console.log(`data is ${data}`)
-  const element = data.filter((elem) => {
-    if (elem.nftId == nftId) return true
-  })
-  console.log(`element`)
-  console.log(`element.nftId is ${element.length}`)
+
 
   return (
     <div id="wrapper">
@@ -35,7 +29,7 @@ const ItemDetails = (props) => {
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
+                  <h2>hey eee #194</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
