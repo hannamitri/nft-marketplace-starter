@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
-import Data from "../components/home/data";
 const ItemDetails = (props) => {
   useEffect(() => {
     console.log("HELELELLEL EL")
