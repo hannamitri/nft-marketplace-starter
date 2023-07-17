@@ -49,9 +49,10 @@ const HotCollections = () => {
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${element.nftId}`}>
                     <img src={element.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
+                  {/* <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link> */}
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">

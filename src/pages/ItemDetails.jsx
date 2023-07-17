@@ -5,12 +5,43 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 const ItemDetails = (props) => {
-  useEffect(() => {
-    console.log("HELELELLEL EL")
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   console.log("HELELELLEL EL")
+  //   window.scrollTo(0, 0);
+  // }, []);
   const { nftId } = useParams();
+  const [data, setData] = useState([]);
+  let [fin, setFin] = useState(null);
 
+  useEffect(() => {
+    console.log("run or no")
+    axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`)
+      .then(response => {
+        // Handle the successful response
+        console.log(`victory`)
+        setData(response.data)
+      })
+      .catch(error => {
+        // Handle the error
+        console.error(`the error is ${error}`);
+      });
+    }, [])
+
+    useEffect(() => {
+      // Filter the data and update 'fin' when 'data' changes
+      if (data.length > 0) {
+        let filteredData = data.filter(element => element.nftId == nftId);
+        setFin(filteredData[0]);
+      }
+    }, [data, nftId]);
+  
+    // Render loading state or actual content based on whether 'fin' is null or not
+    if (!fin) {
+      return <div>Loading...</div>;
+    }
+    fin = data.filter(element => element.nftId == nftId);
+    fin = fin[0];
+    console.log(fin);
 
   return (
     <div id="wrapper">
@@ -21,14 +52,14 @@ const ItemDetails = (props) => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={nftImage}
+                  src={fin.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>hey eee #194</h2>
+                  <h2>{fin.title} #194</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
@@ -68,7 +99,7 @@ const ItemDetails = (props) => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={fin.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
