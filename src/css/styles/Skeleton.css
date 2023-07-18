@@ -1,0 +1,43 @@
+.card-skeleton{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.circle__skeleton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 24px;
+    right: 1px;
+    left: 1px;
+}
+
+.check-circle__skeleton{
+    color: #8364E2;
+    position: absolute;
+    bottom: 24px;
+    right: 10px;
+    left: 132px;
+    z-index: 1;
+}
+
+
+
+.name__skeleton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 26px;
+
+}
+
+.code__skeleton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Add this line */
+    top: 26px;
+}

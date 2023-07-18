@@ -10,3 +10,15 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.owl-carousel {
+    width: 100%;
+    /* or */
+    width: 800px; /* Adjust the value as needed */
+  }
+
+  .owl-item {
+    width: 100%;
+  }
+  
+  
