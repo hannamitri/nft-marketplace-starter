@@ -71,9 +71,13 @@ function StyledPrevArrow(props) {
         <Slider {...settings}>
         {data.map((element, index) => (
             // <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-            <div key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap" style={{marginRight: "10px"}}>
+            // we want to change nftcoll
+            <div key={index} >
+              <div className="nft_coll" style={{
+              tabindex: "1",
+              marginLeft: "10px"
+            }}>
+                <div className="nft_wrap">
                   <Link to={`/item-details/${element.nftId}`}>
                     <img src={element.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
