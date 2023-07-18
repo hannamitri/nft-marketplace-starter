@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import ItemDetails from "../../pages/ItemDetails";
-
+import Carousel from "./Carousel";
 // const HotCollections = () => {
   // const [data, setData] = useState([])
 
@@ -27,7 +27,8 @@ const HotCollections = () => {
     axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
       .then(response => {
         // Handle the successful response
-        console.log(`wetlkntngwerb ajks.fnwejklsbfnerwejklrsfnmdoipaeklwjnrfmdoiweakr.hsfgneljrst,.fndipoejklw4fniuwe,.`)
+        console.log("good work soldier")
+        console.log(response.data)
         setData(response.data)
       })
       .catch(error => {

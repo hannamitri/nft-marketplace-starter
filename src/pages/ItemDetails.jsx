@@ -5,43 +5,19 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 const ItemDetails = (props) => {
-  // useEffect(() => {
-  //   console.log("HELELELLEL EL")
-  //   window.scrollTo(0, 0);
-  // }, []);
   const { nftId } = useParams();
+  console.log(nftId)
+ 
   const [data, setData] = useState([]);
   let [fin, setFin] = useState(null);
-
   useEffect(() => {
-    console.log("run or no")
-    axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`)
-      .then(response => {
-        // Handle the successful response
-        console.log(`victory`)
-        setData(response.data)
-      })
-      .catch(error => {
-        // Handle the error
-        console.error(`the error is ${error}`);
-      });
-    }, [])
-
-    useEffect(() => {
-      // Filter the data and update 'fin' when 'data' changes
-      if (data.length > 0) {
-        let filteredData = data.filter(element => element.nftId == nftId);
-        setFin(filteredData[0]);
-      }
-    }, [data, nftId]);
+    console.log("PLEASE DO THIS FOR ME")
+  }, [])
   
-    // Render loading state or actual content based on whether 'fin' is null or not
-    if (!fin) {
-      return <div>Loading...</div>;
-    }
-    fin = data.filter(element => element.nftId == nftId);
-    fin = fin[0];
-    console.log(fin);
+
+  
+  console.log("BIG REVEAL TIMEEEE")
+  console.log(data)
 
   return (
     <div id="wrapper">
@@ -128,3 +104,63 @@ const ItemDetails = (props) => {
 
 
 export default ItemDetails;
+
+
+
+
+  // useEffect(() => {
+  //     async function fetchData () {
+  //       console.log("run or no")
+  //       await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`)
+  //       .then(response => {
+  //         // Handle the successful response
+  //         console.log(`victory`)
+  //         setData(response.data)
+  //       })
+  //       .catch(error => {
+  //         // Handle the error
+  //         console.error(`the error is ${error}`);
+  //       });
+  //     }
+  //     fetchData();
+  //   }, [])
+  //   console.log("BIG REVEAL")
+  //   console.log(data);
+
+      // useEffect(() => {
+    //   // Filter the data and update 'fin' when 'data' changes
+    //   if (data.length > 0) {
+    //     let filteredData = data.filter(element => element.nftId == nftId);
+    //     setFin(filteredData[0]);
+    //   }
+    // }, [data, nftId]);
+  
+    // Render loading state or actual content based on whether 'fin' is null or not
+    // if (!fin) {
+    //   return <div>Loading...</div>;
+    // }
+    // fin = data.filter(element => element.nftId == nftId);
+    // fin = fin[0];
+    // console.log(fin);
+
+     // useEffect(() => {
+  //   console.log("HELELELLEL EL")
+  //   window.scrollTo(0, 0);
+  // }, []);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     console.log("run or no")
+  //     try {
+  //       const response = await axios.get(
+  //         "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+  //       );
+  //       console.log("victory")
+  //       setData(response.data);
+  //     } catch (error) {
+  //       // Handle the error
+  //       console.error("the error is", error);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
