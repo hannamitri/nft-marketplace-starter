@@ -27,7 +27,6 @@ const HotCollections = () => {
     axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
       .then(response => {
         // Handle the successful response
-        console.log("good work soldier")
         console.log(response.data)
         setData(response.data)
       })
@@ -46,14 +45,14 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {data.map((element, index) => (
+          <Carousel></Carousel>
+          {/* {data.map((element, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to={`/item-details/${element.nftId}`}>
                     <img src={element.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
-                  {/* <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link> */}
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
@@ -69,7 +68,7 @@ const HotCollections = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </section>
@@ -79,3 +78,4 @@ const HotCollections = () => {
 export default HotCollections;
 
 
+                  {/* <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link> */}
