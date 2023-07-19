@@ -11,7 +11,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import CardSkeleton from "../UI/CardSkeleton";
 
-// HC
 
 const HotCollections = () => {
   const [profile, setprofile] = useState([]);
