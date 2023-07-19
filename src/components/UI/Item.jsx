@@ -1,7 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Skeleton from "../UI/Skeleton.jsx";
 
 function Item({ item }) {
+  const [img, setImg] = useState();
+
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = item.nftImage;
+    image.onload = () => {
+      if (mountedRef.current) {
+        setImg(image);
+      }
+    };
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [item.nftImage]);
+
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();
@@ -26,9 +44,30 @@ function Item({ item }) {
   }, 1000);
 
   return (
-    <>
-      <div>
-        <div className="nft__item">
+    <div className="nft__item">
+      {!img ? (
+        <>
+          <div
+            style={{
+              height: "350px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Skeleton width={300} height={300} borderRadius={8}></Skeleton>
+          </div>
+          <div
+            style={{
+              display: "block",
+            }}
+          >
+            <Skeleton width={120} height={18}></Skeleton>
+          </div>
+          <Skeleton width={80} height={18}></Skeleton>
+        </>
+      ) : (
+        <>
           <div className="author_list_pp">
             <Link
               to={`/author/${item.authorId}`}
@@ -83,9 +122,9 @@ function Item({ item }) {
               <span>{item.likes}</span>
             </div>
           </div>
-        </div>
-      </div>
-    </>
+        </>
+      )}
+    </div>
   );
 }
 
