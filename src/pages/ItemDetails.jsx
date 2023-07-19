@@ -6,38 +6,8 @@ import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-
-
-// useEffect(() => {
-//       // Filter the data and update 'fin' when 'data' changes
-//       if (data.length > 0) {
-//         let filteredData = data.filter(element => element.nftId == nftId);
-//         setFin(filteredData[0]);
-//       }
-//     }, [data, nftId]);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       console.log("run or no");
-  //       const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`);
-  //       // Handle the successful response
-  //       console.log(`victory`);
-  //       setData(response.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       // Handle the error
-  //       console.error(`the error is ${error}`);
-  //       setLoading(false);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
 const ItemDetails = (props) => {
-  // useEffect(() => {
-  //   console.log("HELELELLEL EL")
-  //   window.scrollTo(0, 0);
-  // }, []);
+
   const { nftId } = useParams();
   const [fin, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,30 +22,7 @@ const ItemDetails = (props) => {
     }
     getData();
   }, []);
- 
 
- 
-  
-
-
-  
-  // if (!data.length) {
-  //   return <h1>gaming...</h1>;
-  // } else {
-  //   console.log("sakura");
-  //   const arr = data.filter(element => element.nftId == nftId);
-  //   const fin = arr[0];
-  // }
-
-
-    
-    // if (!data.length) {
-    //   return (
-    // <h1>Gaming</h1>
-    //   );
-    // }
-    
-    
 
   return (
 
@@ -83,7 +30,6 @@ const ItemDetails = (props) => {
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         {loading ? (
-          // insert loading code
           <>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
@@ -154,22 +100,6 @@ const ItemDetails = (props) => {
           </div>
         </section>
           </>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         ) : (
           <>
         <section aria-label="section" className="mt90 sm-mt-0">

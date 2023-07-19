@@ -15,13 +15,10 @@ const HotCollections = () => {
   useEffect(() => {
     axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
       .then(response => {
-        // Handle the successful response
-        console.log(response.data)
         setData(response.data)
         setLoading(false);
       })
       .catch(error => {
-        // Handle the error
         console.error(`the error is ${error}`);
       });
     }, [])
@@ -36,14 +33,6 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-            {/* {loading ? (
-              // insert loading stae
-              <Carousel></Carousel>
-              ) : (
-                // insert finished
-              <Carousel></Carousel>
-
-            )} */}
             <Carousel></Carousel>
         </div>
       </div>
@@ -52,47 +41,3 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
-
-
-{/* <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link> */}
-
-// const HotCollections = () => {
-  // const [data, setData] = useState([])
-
-  // useEffect(() => {
-  //   axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-  //     .then(response => {
-  //       // Handle the successful response
-  //       console.log(`wetlkntngwerb ajks.fnwejklsbfnerwejklrsfnmdoipaeklwjnrfmdoiweakr.hsfgneljrst,.fndipoejklw4fniuwe,.`)
-  //       setData(response.data)
-  //     })
-  //     .catch(error => {
-  //       // Handle the error
-  //       console.error(`the error is ${error}`);
-  //     });
-  //   }, [])
-
-
-  {/* {data.map((element, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to={`/item-details/${element.nftId}`}>
-                    <img src={element.nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={element.authorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{element.title}</h4>
-                  </Link>
-                  <span>ERC-{element.code}</span>
-                </div>
-              </div>
-            </div>
-          ))} */}
