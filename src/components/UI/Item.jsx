@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Skeleton from "../UI/Skeleton.jsx";
 
 function Item({ item }) {
-  console.log(item);
+  const [img, setImg] = useState();
+
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = item.nftImage;
+    image.onload = () => {
+      if (mountedRef.current) {
+        setImg(image);
+      }
+    };
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [item.nftImage]);
 
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
@@ -29,7 +45,40 @@ function Item({ item }) {
 
   return (
     <>
-      <div>
+      {!img ? (
+        <div
+          style={{
+            width: "315px",
+            height: "441px",
+            display: "flex",
+            flexDirection: "column",
+            padding: "20px",
+            border: "1px solid rgb(221, 221, 221)",
+            borderRadius: "15px",
+          }}
+        >
+          <div
+            style={{
+              height: "350px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Skeleton width={273} height={300} borderRadius={8}></Skeleton>
+          </div>
+          <div
+            className=""
+            style={{
+              display: "block",
+              marginTop: "",
+            }}
+          >
+            <Skeleton width={120} height={18}></Skeleton>
+          </div>
+          <Skeleton width={80} height={18}></Skeleton>
+        </div>
+      ) : (
         <div className="nft__item">
           <div className="author_list_pp">
             <Link
@@ -86,7 +135,7 @@ function Item({ item }) {
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
