@@ -5,23 +5,17 @@ import OwlCarousel from "react-owl-carousel";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
-  const [loading, setLoading] = useState();
 
   async function fetchCollections() {
-    setLoading(true);
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
     );
 
     setCollections(data);
-    setLoading(false);
   }
 
   useEffect(() => {
     fetchCollections();
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
   }, []);
 
   return (
