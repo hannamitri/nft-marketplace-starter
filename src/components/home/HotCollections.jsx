@@ -5,6 +5,59 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import ItemDetails from "../../pages/ItemDetails";
 import Carousel from "./Carousel";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+
+const HotCollections = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+      .then(response => {
+        // Handle the successful response
+        console.log(response.data)
+        setData(response.data)
+        setLoading(false);
+      })
+      .catch(error => {
+        // Handle the error
+        console.error(`the error is ${error}`);
+      });
+    }, [])
+  return (
+    
+    <section id="section-collections" className="no-bottom">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="text-center">
+              <h2>Hot Collections</h2>
+              <div className="small-border bg-color-2"></div>
+            </div>
+          </div>
+          {loading ? (
+          // insert loading stae
+            <Skeleton>
+          <Carousel></Carousel>
+            </Skeleton>
+          ) : (
+            // insert finished
+          <Carousel></Carousel>
+
+          )}
+          {/* where our map used to be */}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HotCollections;
+
+
+{/* <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link> */}
+
 // const HotCollections = () => {
   // const [data, setData] = useState([])
 
@@ -21,32 +74,8 @@ import Carousel from "./Carousel";
   //     });
   //   }, [])
 
-const HotCollections = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-      .then(response => {
-        // Handle the successful response
-        console.log(response.data)
-        setData(response.data)
-      })
-      .catch(error => {
-        // Handle the error
-        console.error(`the error is ${error}`);
-      });
-    }, [])
-  return (
-    <section id="section-collections" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
-          <Carousel></Carousel>
-          {/* {data.map((element, index) => (
+
+  {/* {data.map((element, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
@@ -69,13 +98,3 @@ const HotCollections = () => {
               </div>
             </div>
           ))} */}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default HotCollections;
-
-
-                  {/* <Link to={{ pathname: `/item-details/${element.nftId}`, state: { data: element } }}></Link> */}
