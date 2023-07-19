@@ -8,16 +8,13 @@ import ReactOwlCarousel from "react-owl-carousel";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState();
 
   async function fetchItems() {
-    setLoading(true);
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
 
     setItems(data);
-    setLoading(false);
   }
 
   useEffect(() => {
@@ -54,7 +51,9 @@ const NewItems = () => {
               },
             }}
           >
-            {!loading ? <></> : items.map((item) => <Item item={item} key={item.id}></Item>)}
+            {items.map((item) => (
+              <Item item={item} key={item.id}></Item>
+            ))}
           </ReactOwlCarousel>
         </div>
       </div>

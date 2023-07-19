@@ -44,19 +44,9 @@ function Item({ item }) {
   }, 1000);
 
   return (
-    <>
+    <div className="nft__item">
       {!img ? (
-        <div
-          style={{
-            width: "315px",
-            height: "441px",
-            display: "flex",
-            flexDirection: "column",
-            padding: "20px",
-            border: "1px solid rgb(221, 221, 221)",
-            borderRadius: "15px",
-          }}
-        >
+        <>
           <div
             style={{
               height: "350px",
@@ -65,21 +55,19 @@ function Item({ item }) {
               alignItems: "center",
             }}
           >
-            <Skeleton width={273} height={300} borderRadius={8}></Skeleton>
+            <Skeleton width={300} height={300} borderRadius={8}></Skeleton>
           </div>
           <div
-            className=""
             style={{
               display: "block",
-              marginTop: "",
             }}
           >
             <Skeleton width={120} height={18}></Skeleton>
           </div>
           <Skeleton width={80} height={18}></Skeleton>
-        </div>
+        </>
       ) : (
-        <div className="nft__item">
+        <>
           <div className="author_list_pp">
             <Link
               to={`/author/${item.authorId}`}
@@ -134,9 +122,9 @@ function Item({ item }) {
               <span>{item.likes}</span>
             </div>
           </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 
