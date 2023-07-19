@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Collection({ collection }) {
-
-  console.log(collection)
   return (
     <div className="width: 316.5px; margin-right: 10px;">
       <div className="nft_coll">
