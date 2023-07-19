@@ -154,6 +154,22 @@ const ItemDetails = (props) => {
           </div>
         </section>
           </>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ) : (
           <>
         <section aria-label="section" className="mt90 sm-mt-0">
@@ -241,13 +257,3 @@ const ItemDetails = (props) => {
 export default ItemDetails;
 
    
-
-
-
-
-
-
-
-
-
-    

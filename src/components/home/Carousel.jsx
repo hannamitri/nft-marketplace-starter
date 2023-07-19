@@ -151,25 +151,27 @@ function StyledPrevArrow(props) {
       <div>
         <Slider {...settings}>
           {loading ? ( // Check if loading is true, render skeleton loading component
-            new Array(4).fill(0).map((element, index) => (
+            new Array(4).fill(6).map((element, index) => (
               <div key={index}>
-                <div className="nft_coll">
+                <div className="nft_coll" style={{marginLeft: "10px"}}>
                   <div className="nft_wrap">
                     <Link to={`/item-details/${element.nftId}`}>
-                      <img src={element.nftImage} className="lazy img-fluid" alt="" />
+                      {/* <img src={element.nftImage} className="lazy img-fluid" alt="" /> */}
+                      <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div>
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
                     <Link to="/author">
-                      <img className="lazy pp-coll" src={element.authorImage} alt="" />
+                      {/* <img className="lazy pp-coll" src={element.authorImage} alt="" /> */}
+                      <div className="skeleton-box" style={{width: "60px", height: "60px", borderRadius: "50%"}}></div>
                     </Link>
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
                     <Link to="/explore">
-                      <h4>{element.title}</h4>
+                      <h4 className="skeleton-box" style={{color: "#dddbdd"}}>{element.title}</h4>
                     </Link>
-                    <span>ERC-{element.code}</span>
+                    <span className="skeleton-box" style={{color: "#dddbdd"}}>ERC-{element.code}</span>
                   </div>
                 </div>
               </div>

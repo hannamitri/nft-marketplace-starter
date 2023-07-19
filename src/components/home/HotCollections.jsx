@@ -36,17 +36,15 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {loading ? (
-          // insert loading stae
-            <Skeleton>
-          <Carousel></Carousel>
-            </Skeleton>
-          ) : (
-            // insert finished
-          <Carousel></Carousel>
+            {/* {loading ? (
+              // insert loading stae
+              <Carousel></Carousel>
+              ) : (
+                // insert finished
+              <Carousel></Carousel>
 
-          )}
-          {/* where our map used to be */}
+            )} */}
+            <Carousel></Carousel>
         </div>
       </div>
     </section>
