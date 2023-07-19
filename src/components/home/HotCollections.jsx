@@ -22,7 +22,6 @@ const HotCollections = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setprofile(data);
-    console.log(data);
     setLoading(false);
   }
 
