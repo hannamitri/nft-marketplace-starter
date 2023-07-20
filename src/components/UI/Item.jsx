@@ -20,6 +20,25 @@ function Item({ item }) {
     };
   }, [item.nftImage]);
 
+  useEffect(() => {
+    if (!item.expiryDate) {
+      return;
+    }
+
+    let now = new Date().getTime();
+    let timeleft = item.expiryDate - now;
+
+    let hours = Math.floor(
+      (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+    setHours(hours);
+    setMinutes(minutes);
+    setSeconds(seconds);
+  }, []);
+
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
   const [seconds, setSeconds] = useState();

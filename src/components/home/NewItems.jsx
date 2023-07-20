@@ -38,7 +38,7 @@ const NewItems = () => {
           {loading ? (
             <>
               {new Array(4).fill(0).map((_, index) => (
-                <div className="nft__item" style={{
+                <div className="nft__item" key={index} style={{
                   width: "315px",
                 }}>
                   <div

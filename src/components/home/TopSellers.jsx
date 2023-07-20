@@ -39,7 +39,7 @@ const TopSellers = () => {
               {loading ? (
                 <>
                   {new Array(12).fill(0).map((_, index) => (
-                    <li>
+                    <li key={index}>
                       <div className="author_list_pp">
                         <Skeleton width={50} height={50} borderRadius={100} />
                       </div>

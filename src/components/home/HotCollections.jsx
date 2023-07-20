@@ -38,7 +38,7 @@ const HotCollections = () => {
           {loading ? (
             <>
               {new Array(4).fill(0).map((_, index) => (
-                <div className="nft_col--skeleton" style={{
+                <div key={index} className="nft_col--skeleton" style={{
                   width: "315px"
                 }}>
                   <Skeleton width={313} height={176.312} />
