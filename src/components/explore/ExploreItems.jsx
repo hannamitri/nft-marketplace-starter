@@ -36,13 +36,17 @@ const ExploreItems = () => {
 
   function filterItems(filter) {
     setLoaded(8)
+    setLoading(true)
 
     if (filter === "price_low_to_high") {
       setItems(items.slice().sort((a, b) => a.price - b.price));
+      setLoading(false)
     } else if (filter === "price_high_to_low") {
       setItems(items.slice().sort((a, b) => b.price - a.price));
+      setLoading(false)
     } else if (filter === "likes_high_to_low") {
       setItems(items.slice().sort((a, b) => b.likes - a.likes));
+      setLoading(false)
     } else if (filter === "") {
       fetchItems()
     }
