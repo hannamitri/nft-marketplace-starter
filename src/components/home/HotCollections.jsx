@@ -51,7 +51,7 @@ const HotCollections = () => {
               </div>
             </div>
 
-            {loading ? (
+            {userData?.length ? (
               <OwlCarousel
                 className="owl-theme"
                 items={4}
