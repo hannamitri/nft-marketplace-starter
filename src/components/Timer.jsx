@@ -4,9 +4,15 @@ function Timer({ timeLeft }) {
   const [text, setText] = useState("");
   let timeInterval;
 
-  timeInterval = setInterval(() => {
-    getTimeLeft();
-  }, 1000);
+  useEffect(() => {
+    timeInterval = setInterval(() => {
+      getTimeLeft();
+    }, 1000);
+
+    return () => {
+      clearInterval(timeInterval)
+    }
+  }, [])
 
   function getTimeLeft() {
     const expiryDate = timeLeft - Date.now();
