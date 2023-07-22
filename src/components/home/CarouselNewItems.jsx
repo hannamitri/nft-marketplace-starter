@@ -98,25 +98,92 @@ const CarouselNewItems = () => {
         <Slider {...settings}>
           {loading ? ( 
             new Array(4).fill(7).map((element, index) => (
-              <div key={index}>
-                <div className="nft_coll" style={{marginLeft: "10px"}}>
-                  <div className="nft_wrap">
-                    <Link to={`/item-details/${element.nftId}`}>
+            //   <div key={index}>
+            //     <div className="nft_coll" style={{marginLeft: "10px"}}>
+            //       <div className="nft_wrap">
+            //         <Link to={`/item-details/${element.nftId}`}>
+            //           <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div>
+            //         </Link>
+            //       </div>
+            //       <div className="nft_coll_pp">
+            //         <Link to="/author">
+            //           <div className="skeleton-box" style={{width: "60px", height: "60px", borderRadius: "50%"}}></div>
+            //         </Link>
+            //         <i className="fa fa-check"></i>
+            //       </div>
+            //       <div className="nft_coll_info">
+            //         <Link to="/explore">
+            //           <h4 className="skeleton-box" style={{color: "#dddbdd"}}>{element.title}</h4>
+            //         </Link>
+            //         <span className="skeleton-box" style={{color: "#dddbdd"}}>ERC-{element.price}</span>
+            //       </div>
+            //     </div>
+            //   </div>
+            <div key={index}>
+                <div className="nft__item" style={{marginLeft: "10px"}}>
+                <div className="author_list_pp">
+                    {/* <Link to={`/item-details/${element.nftId}`}>
                       <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div>
+                    </Link> */}
+                    <Link
+                        to="/author"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Creator: Monica Lucas"
+                      >
+                        <div className="skeleton-box" style={{height: "60px", width: "60px", borderRadius : "50%"}}></div>
+                        {/* style="width: 50px; height: 50px; border-radius: 50%;" */}
+                        <i className="fa fa-check"></i>
                     </Link>
-                  </div>
-                  <div className="nft_coll_pp">
+                </div>
+
+                <div className="nft__item_wrap" >
+                    <div className="nft__item_extra">
+                    <div className="nft__item_buttons">
+                        <button className="skeleton-box" style={{color:"#dddbdd"}} >Buy Now</button>
+                        <div className="nft__item_share">
+                            <h4 className="skeleton-box" style={{color:"#dddbdd"}}>Share</h4>
+                            <a href="" target="_blank" rel="noreferrer">
+                                <i className="fa fa-facebook fa-lg"></i>
+                            </a>
+                            <a href="" target="_blank" rel="noreferrer">
+                                {/* <i className="fa fa-twitter fa-lg"></i> */}
+                                <div className="skeleton-box" style={{width:"100%", height: "100%"}}></div>
+                            </a>
+                            <a href="">
+                                <i className="fa fa-envelope fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+    
+                      <Link to={`/item-details/${element.nftId}`} className="skeleton-box" style={{width: "100%", height: "100%"}}>
+                        {/* <img
+                          src={element.nftImage}
+                          className="lazy nft__item_preview"
+                          alt=""
+                        /> */}
+                        {/* <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div> */}
+                      </Link>
+                    </div>
+
+                  {/* <div className="nft_coll_pp">
                     <Link to="/author">
                       <div className="skeleton-box" style={{width: "60px", height: "60px", borderRadius: "50%"}}></div>
                     </Link>
                     <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4 className="skeleton-box" style={{color: "#dddbdd"}}>{element.title}</h4>
-                    </Link>
-                    <span className="skeleton-box" style={{color: "#dddbdd"}}>ERC-{element.price}</span>
-                  </div>
+                  </div> */}
+                    <div className="nft_coll_info" style={{display: "flex", flexDirection: "column"}}>
+                        <Link to="/explore">
+                            {/* <h4 className="skeleton-box" style={{color: "#dddbdd"}}>{element.title}</h4> */}
+                            <div className="skeleton-box" style={{width: "180px", height: "30px", marginTop : "4px"}}></div>
+                        </Link>
+                        {/* <span className="skeleton-box" style={{color: "#dddbdd"}}>ERC-{element.price}</span> */}
+                        <div className="skeleton-box" style={{width: "100px", height: "30px"}}></div>
+                    </div>
+                    <div className="nft__item_like">
+                        <span className="skeleton-box" style={{color: "#dddbdd"}}>{element.likes}</span>
+                    </div>
                 </div>
               </div>
             ))
@@ -172,7 +239,7 @@ const CarouselNewItems = () => {
                       <div className="nft__item_price">{element.price} ETH</div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                        <span>{element.likes}</span>
+                        <span className="skeleton-box" style={{color: "#dddbdd"}}>{element.likes}</span>
                       </div>
                     </div>
                   </div>
