@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import ItemDetails from "../../pages/ItemDetails";
-import Carousel from "./Carousel";
+import Carousel from "./CarouselHotCollections";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import CarouselHotCollections from "./CarouselHotCollections";
 
 
 const HotCollections = () => {
@@ -33,7 +34,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-            <Carousel></Carousel>
+            <CarouselHotCollections></CarouselHotCollections>
         </div>
       </div>
     </section>
