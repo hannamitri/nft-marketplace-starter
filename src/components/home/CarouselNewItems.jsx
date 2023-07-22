@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import countDown from "./countDown";
 
 function StyledNextArrow(props) {
   const { className, style, onClick } = props;
@@ -53,16 +54,16 @@ const CarouselNewItems = () => {
     
     
     const slidesToShow = 4;
-    const slideWidth = 100 / slidesToShow + "%";
 
     const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: slidesToShow,
-      slidesToScroll: 1,
-      nextArrow: <StyledNextArrow />,
-      prevArrow: <StyledPrevArrow />,
+        nextArrow: <StyledNextArrow />,
+        prevArrow: <StyledPrevArrow />,
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: slidesToShow,
+        slidesToScroll: 1,
+      
       responsive: [
         {
           breakpoint: 1000,
@@ -97,7 +98,7 @@ const CarouselNewItems = () => {
       <div>
         <Slider {...settings}>
           {loading ? ( 
-            new Array(4).fill(7).map((element, index) => (
+            new Array(7).fill(0).map((element, index) => (
             //   <div key={index}>
             //     <div className="nft_coll" style={{marginLeft: "10px"}}>
             //       <div className="nft_wrap">
@@ -122,9 +123,6 @@ const CarouselNewItems = () => {
             <div key={index}>
                 <div className="nft__item" style={{marginLeft: "10px"}}>
                 <div className="author_list_pp">
-                    {/* <Link to={`/item-details/${element.nftId}`}>
-                      <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div>
-                    </Link> */}
                     <Link
                         to="/author"
                         data-bs-toggle="tooltip"
@@ -147,7 +145,6 @@ const CarouselNewItems = () => {
                                 <i className="fa fa-facebook fa-lg"></i>
                             </a>
                             <a href="" target="_blank" rel="noreferrer">
-                                {/* <i className="fa fa-twitter fa-lg"></i> */}
                                 <div className="skeleton-box" style={{width:"100%", height: "100%"}}></div>
                             </a>
                             <a href="">
@@ -156,40 +153,22 @@ const CarouselNewItems = () => {
                         </div>
                     </div>
                     </div>
-    
-                      <Link to={`/item-details/${element.nftId}`} className="skeleton-box" style={{width: "100%", height: "100%"}}>
-                        {/* <img
-                          src={element.nftImage}
-                          className="lazy nft__item_preview"
-                          alt=""
-                        /> */}
-                        {/* <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div> */}
-                      </Link>
+                      <Link to={`/item-details/${element.nftId}`} className="skeleton-box" style={{width: "100%", height: "100%"}}></Link>
                     </div>
-
-                  {/* <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <div className="skeleton-box" style={{width: "60px", height: "60px", borderRadius: "50%"}}></div>
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div> */}
                     <div className="nft_coll_info" style={{display: "flex", flexDirection: "column"}}>
                         <Link to="/explore">
-                            {/* <h4 className="skeleton-box" style={{color: "#dddbdd"}}>{element.title}</h4> */}
                             <div className="skeleton-box" style={{width: "180px", height: "30px", marginTop : "4px"}}></div>
                         </Link>
-                        {/* <span className="skeleton-box" style={{color: "#dddbdd"}}>ERC-{element.price}</span> */}
                         <div className="skeleton-box" style={{width: "100px", height: "30px"}}></div>
                     </div>
                     <div className="nft__item_like">
-                        <span className="skeleton-box" style={{color: "#dddbdd"}}>{element.likes}</span>
+                        <div className="skeleton-box" style={{width: "32px", height: "16px"}}>{element.likes}</div>
                     </div>
                 </div>
               </div>
             ))
           ) : (
             data.map((element, index) => (
-                // <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div key={index}>
                   <div className="nft__item" style={{marginLeft: "10px"}}>
                     <div className="author_list_pp">
@@ -203,7 +182,8 @@ const CarouselNewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
+                    <div className="de_countdown">
+                    </div>
     
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
@@ -239,7 +219,7 @@ const CarouselNewItems = () => {
                       <div className="nft__item_price">{element.price} ETH</div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                        <span className="skeleton-box" style={{color: "#dddbdd"}}>{element.likes}</span>
+                        <span>{element.likes}</span>
                       </div>
                     </div>
                   </div>
