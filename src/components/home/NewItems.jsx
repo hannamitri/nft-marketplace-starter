@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import CarouselNewItems from "./CarouselNewItems";
 
 const NewItems = () => {
   const [data, setData] = useState([]);
@@ -28,7 +29,7 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {data.map((element, index) => (
+          {/* {data.map((element, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -83,7 +84,8 @@ const NewItems = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
+          <CarouselNewItems></CarouselNewItems>
         </div>
       </div>
     </section>
