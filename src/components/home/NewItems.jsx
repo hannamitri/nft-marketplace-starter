@@ -85,7 +85,7 @@ const NewItems = () => {
               </div>
             </div>
           ))} */}
-          <CarouselNewItems></CarouselNewItems>
+      <CarouselNewItems></CarouselNewItems>
         </div>
       </div>
     </section>

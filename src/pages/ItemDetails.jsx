@@ -137,12 +137,12 @@ const ItemDetails = (props) => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={fin.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{fin.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -154,12 +154,12 @@ const ItemDetails = (props) => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={fin.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{fin.creatorName}</Link>
                         </div>
                       </div>
                     </div>
