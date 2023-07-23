@@ -60,23 +60,23 @@ const HotCollections = () => {
                 responsive={responsive}
                 nav
               >
-                {userData?.map((user) => (
-                  <div className="" key={user.id}>
+                {userData?.map((item) => (
+                  <div className="" key={item.id}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to={`/item-details/${user.nftId}`}>
+                        <Link to={`/item-details/${item.nftId}`}>
                           <img
-                            src={user.nftImage}
+                            src={item.nftImage}
                             className="lazy img-fluid"
                             alt=""
                           />
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${item.authorId}`}>
                           <img
                             className="lazy pp-coll"
-                            src={user.authorImage}
+                            src={item.authorImage}
                             alt=""
                           />
                         </Link>
@@ -84,9 +84,9 @@ const HotCollections = () => {
                       </div>
                       <div className="nft_coll_info">
                         <Link to="/explore">
-                          <h4>{user.title}</h4>
+                          <h4>{item.title}</h4>
                         </Link>
-                        <span>ERC-{user.code}</span>
+                        <span>ERC-{item.code}</span>
                       </div>
                     </div>
                   </div>

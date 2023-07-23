@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 import ExploreNewItem from "../UI/exploreNewItem";
+import SkeletonLoading from "../UI/SkeletonLoading";
 
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
@@ -44,21 +45,7 @@ const ExploreItems = () => {
           ))}
         </>
       ) : (
-        <>
-          {new Array(8).fill(0).map((_, index) => (
-            <div
-              key={index}
-              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{ display: "block", backgroundSize: "cover" }}
-            >
-              <div className="nft__item">
-                <div className="nft__item_wrap">
-                  <Skeleton width="100%" height="400px" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </>
+        <SkeletonLoading />
       )}
 
      {slice !== 16 && <div onClick={() => setSlice(slice + 4)} className="col-md-12 text-center">

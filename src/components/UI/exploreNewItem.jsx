@@ -2,17 +2,19 @@ import React from "react";
 import Timer from "../Timer";
 import { Link } from "react-router-dom";
 
-function ExploreNewItem({ item }) {
+function ExploreNewItem({ item, author }) {
+
+
   return (
     <div className="nft__item">
       <div className="author_list_pp">
         <Link
-          to={`/author/${item.authorId}`}
+          to={`/author/${author?.authorId || item.authorId}`}
           data-bs-toggle="tooltip"
           data-bs-placement="top"
           title={`Title: ${item.title}`}
         >
-          <img className="lazy" src={item.authorImage} alt="" />
+          <img className="lazy" src={item.authorImage || author?.authorImage} alt="" />
           <i className="fa fa-check"></i>
         </Link>
       </div>
@@ -38,7 +40,7 @@ function ExploreNewItem({ item }) {
         </div>
 
         <Link to={`/item-details/${item.nftId}`}>
-          <img src={item.nftImage} className="lazy nft__item_preview" alt="" />
+          <img src={item?.nftImage} className="lazy nft__item_preview" alt="" />
         </Link>
       </div>
       <div className="nft__item_info">

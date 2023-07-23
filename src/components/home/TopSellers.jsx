@@ -12,7 +12,7 @@ const TopSellers = () => {
     );
     setTopSellers(response.data);
   };
-  // console.log(topSellers.map((elem) => elem.id))
+
 
   useEffect(() => {
     getTopSellers();
