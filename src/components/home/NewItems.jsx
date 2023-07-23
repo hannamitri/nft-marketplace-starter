@@ -15,7 +15,6 @@ const NewItems = () => {
         setLoading(false);
       })
       .catch(error => {
-        console.error(`the error is ${error}`);
       });
     }, [])
 
