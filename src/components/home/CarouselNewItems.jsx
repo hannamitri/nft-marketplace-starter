@@ -6,7 +6,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import countDown from "./countDown";
+import CountDown from "./CountDown";
+
 
 function StyledNextArrow(props) {
   const { className, style, onClick } = props;
@@ -99,27 +100,6 @@ const CarouselNewItems = () => {
         <Slider {...settings}>
           {loading ? ( 
             new Array(7).fill(0).map((element, index) => (
-            //   <div key={index}>
-            //     <div className="nft_coll" style={{marginLeft: "10px"}}>
-            //       <div className="nft_wrap">
-            //         <Link to={`/item-details/${element.nftId}`}>
-            //           <div className="skeleton-box" style={{width: "100%", height: "100%"}}></div>
-            //         </Link>
-            //       </div>
-            //       <div className="nft_coll_pp">
-            //         <Link to="/author">
-            //           <div className="skeleton-box" style={{width: "60px", height: "60px", borderRadius: "50%"}}></div>
-            //         </Link>
-            //         <i className="fa fa-check"></i>
-            //       </div>
-            //       <div className="nft_coll_info">
-            //         <Link to="/explore">
-            //           <h4 className="skeleton-box" style={{color: "#dddbdd"}}>{element.title}</h4>
-            //         </Link>
-            //         <span className="skeleton-box" style={{color: "#dddbdd"}}>ERC-{element.price}</span>
-            //       </div>
-            //     </div>
-            //   </div>
             <div key={index}>
                 <div className="nft__item" style={{marginLeft: "10px"}}>
                 <div className="author_list_pp">
@@ -130,7 +110,6 @@ const CarouselNewItems = () => {
                         title="Creator: Monica Lucas"
                       >
                         <div className="skeleton-box" style={{height: "60px", width: "60px", borderRadius : "50%"}}></div>
-                        {/* style="width: 50px; height: 50px; border-radius: 50%;" */}
                         <i className="fa fa-check"></i>
                     </Link>
                 </div>
@@ -182,8 +161,11 @@ const CarouselNewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">
-                    </div>
+                    {element.expiryDate != null && (
+                        <div className="de_countdown">
+                            <CountDown fullTime={element.expiryDate / 1000} />
+                        </div>
+                    )}
     
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
