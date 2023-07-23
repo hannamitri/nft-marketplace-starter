@@ -2,8 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
-
+import axios from "axios";
+import { useState, useEffect } from "react";
 const NewItems = () => {
+  const [fetchedData, setFetchedData] = useState([]);
+  useEffect(() => {
+    async function fetchCollections() {
+      try {
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+        );
+        const fetchData = response.data;
+        setFetchedData(fetchData);
+        console.log(fetchData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchCollections();
+  }, []);
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,7 +33,7 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
+          {fetchedData.map((nft, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -24,7 +43,7 @@ const NewItems = () => {
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                   >
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={nft.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -51,7 +70,7 @@ const NewItems = () => {
 
                   <Link to="/item-details">
                     <img
-                      src={nftImage}
+                      src={nft.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
@@ -59,9 +78,9 @@ const NewItems = () => {
                 </div>
                 <div className="nft__item_info">
                   <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                    <h4>{nft.title}</h4>
                   </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
+                  <div className="nft__item_price">ERC-{nft.code}</div>
                   <div className="nft__item_like">
                     <i className="fa fa-heart"></i>
                     <span>69</span>
