@@ -886,6 +886,8 @@ header:not(.header-mobile) #mainmenu > li:hover ul.mega {
   .close__button {
     display: block;
   }
+
+
 }
 
 @media (min-width: 992px) {
@@ -13179,7 +13181,8 @@ a.read_more i {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+ margin-right: 10px;
 }
 
 .nft_coll.style-2 {
@@ -13622,12 +13625,11 @@ a.read_more i {
 
 .nft__item {
   position: relative;
-  padding: 20px;
   border: solid 1px #ddd;
   border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  margin-bottom: 25px;
+  padding: 10px;
   background: #ffffff;
 }
 
@@ -16714,3 +16716,17 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* ADDED STYLES */
+
+.slick-arrow:before {
+  /* Arrow Buttons (left and right for the sliders)*/
+  color: black;
+  scale: 1.5;
+}
+
+.slick-dots::before{
+  display: none;
+}
+
+
