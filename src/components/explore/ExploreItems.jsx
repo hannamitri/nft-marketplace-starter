@@ -84,14 +84,32 @@ const ExploreItems = () => {
           </div>
         </div>
       ))} */}
-      {exploreData.map((element, index) => {
-        return (
-          <div key={element.id} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" style={{ display: "block", backgroundSize: "cover" }}
-          >
-          <UseItem card={element} />
-          </div>
-        )
-      })}
+
+      {loading 
+      ? 
+        // insert skeleton state
+        new Array(16).fill(0).map((element, index) => {
+          return (
+            <div key={element.id} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" 
+            style={{ display: "block", backgroundSize: "cover" }}
+            >
+            <div className="skeleton-box" style={{width: "100%", height: "400px"}}></div>
+            </div>
+          )
+        })
+       : 
+        // insert loaded code
+        exploreData.map((element, index) => {
+          return (
+            <div key={element.id} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" 
+            style={{ display: "block", backgroundSize: "cover" }}
+            >
+            <UseItem card={element} />
+            </div>
+          )
+        })
+      }
+
       <div className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more
