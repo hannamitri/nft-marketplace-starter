@@ -10,3 +10,8 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.chevron--hover:hover {
+    scale: 1.08;
+}
