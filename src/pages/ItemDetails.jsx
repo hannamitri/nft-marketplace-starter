@@ -17,7 +17,6 @@ const ItemDetails = (props) => {
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
       );
       setData(response.data);
-      console.log(response.data);
       setLoading(false);
     }
     getData();

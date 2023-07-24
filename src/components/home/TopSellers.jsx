@@ -20,7 +20,6 @@ const TopSellers = () => {
       }
       fetchData();
     }, []);
-    console.log(data);
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -61,7 +60,7 @@ const TopSellers = () => {
                         </Link>
                       </div>
                       <div className="author_list_info">
-                        <Link to = {`/author/${element.authorName}`} >{element.authorName}</Link>
+                        <Link to = {`/author/${element.authorId}`} >{element.authorName}</Link>
                         <span>{element.price} ETH</span>
                       </div>
                     </li>
