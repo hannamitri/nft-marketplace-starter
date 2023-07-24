@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import NewItemExplore from "../home/CarouselNewItems";
+import UseItem from "../home/UseItem";
 
 const ExploreItems = () => {
-  const [data, setData] = useState([]);
+  const [exploreData, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function getData() {
@@ -17,7 +19,7 @@ const ExploreItems = () => {
     }
     getData();
   }, []);
-  console.log(data)
+  console.log(exploreData)
   return (
     <>
       <div>
@@ -28,7 +30,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {/* {exploreData.map((element, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -41,7 +43,7 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={element.authorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
@@ -66,22 +68,30 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img src={element.nftImage} className="lazy nft__item_preview" alt="" />
               </Link>
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{element.title}</h4>
               </Link>
               <div className="nft__item_price">1.74 ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>{element.likes}</span>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
+      {exploreData.map((element, index) => {
+        return (
+          <div key={element.id} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" style={{ display: "block", backgroundSize: "cover" }}
+          >
+          <UseItem card={element} />
+          </div>
+        )
+      })}
       <div className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more
