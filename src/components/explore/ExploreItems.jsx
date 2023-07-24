@@ -17,8 +17,10 @@ const ExploreItems = () => {
 
   useEffect(() => {
     async function getData() {
+      let end = '';
+      if (option !== undefined) end = `?filter=${option}`
       const response = await axios.get(
-        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore${end}`
       );
       setData(response.data);
       setLoading(false);
