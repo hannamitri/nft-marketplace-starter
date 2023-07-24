@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import CountDown from "./CountDown";
 
 const UseItem = ({ card, key, margin }) => {
-  console.log(margin)
   return (
     <div className="" key={key}>
       <div className="nft__item" style={{margin: `${margin}`}}>

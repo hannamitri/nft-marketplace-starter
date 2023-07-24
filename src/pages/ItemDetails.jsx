@@ -21,6 +21,8 @@ const ItemDetails = (props) => {
     }
     getData();
   }, []);
+  console.log(fin)
+
 
 
   return (
@@ -129,19 +131,20 @@ const ItemDetails = (props) => {
                     doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
                     illo inventore veritatis et quasi architecto beatae vitae
                     dicta sunt explicabo.
+                    HELLO GAMERS I AM THE GAMER
                   </p>
                   <div className="d-flex flex-row">
                     <div className="mr40">
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${fin.ownerId}`}>
                             <img className="lazy" src={fin.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{fin.ownerName}</Link>
+                          <Link to={`/author/${fin.ownerId}`}>{fin.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -152,13 +155,13 @@ const ItemDetails = (props) => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${fin.creatorId}`}>
                             <img className="lazy" src={fin.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{fin.creatorName}</Link>
+                          <Link to={`/author/${fin.creatorId}`}>{fin.creatorName}</Link>
                         </div>
                       </div>
                     </div>
