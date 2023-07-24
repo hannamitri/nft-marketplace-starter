@@ -50,7 +50,6 @@ const Author = () => {
                       <div className="profile_name">
                         <h4>
                           <div className="skeleton-box" style={{width: "200px"}}></div>
-                          {/* {author.authorName} */}
                           <span className="profile_username">
                             <div className="skeleton-box" style={{width: "100px"}}></div>
                           </span>
