@@ -147,7 +147,7 @@ const CarouselNewItems = () => {
           ))
         ) : (
           data.map((element, index) => (
-            <UseItem card={element} key ={index}></UseItem>
+            <UseItem card={element} key ={index} margin={"4px"}></UseItem>
           ))
         )}
       </Slider>
