@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BrowseByCategory = () => {
+  
   return (
     <section id="section-category" className="no-top">
       <div className="container">
