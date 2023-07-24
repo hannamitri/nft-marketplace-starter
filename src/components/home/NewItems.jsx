@@ -19,10 +19,6 @@ const NewItems = () => {
         fetchData()
     }, [])
 
-    useEffect(() => {
-        if (!data) return
-    }, [data])
-
     const handleNext = () => {
         sliderRef.current.slickNext();
     }
