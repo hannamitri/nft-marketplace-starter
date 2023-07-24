@@ -13,3 +13,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.skeleton {
+    background-color: rgb(227, 227, 227);
+  }
