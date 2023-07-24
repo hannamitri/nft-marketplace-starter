@@ -5,7 +5,7 @@ import axios from "axios";
 
 const TopSellers = () => {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     useEffect(() => {
       async function fetchData() {
@@ -38,17 +38,13 @@ const TopSellers = () => {
                     <li key={index}>
                       <div className="author_list_pp">
                         <Link to="/author">
-                          <img
-                            className="lazy pp-author"
-                            src={AuthorImage}
-                            alt=""
-                          />
+                          <div className="skeleton-box" style={{width: "50px", height: "50px", borderRadius: "100%"}}></div>
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
                       <div className="author_list_info">
-                        <Link to="/author">Monica Lucas</Link>
-                        <span>2.1 ETH</span>
+                        <Link to="/author" className="skeleton-box" style={{width: "100px", height: "20px"}}></Link>
+                        <span className="skeleton-box" style={{color: "#dddbdd", width: "40px", height: "20px"}}>2.1 ETH</span>
                       </div>
                     </li>
                   ))
