@@ -9,6 +9,12 @@ import UseItem from "../home/UseItem";
 const ExploreItems = () => {
   const [exploreData, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loaded, generate] = useState(8);
+
+  function LoadMore () {
+    if (loaded < 16) generate(loaded + 4);
+  }
+
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
@@ -88,7 +94,7 @@ const ExploreItems = () => {
       {loading 
       ? 
         // insert skeleton state
-        new Array(16).fill(0).map((element, index) => {
+        new Array(8).fill(0).map((element, index) => {
           return (
             <div key={element.id} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" 
             style={{ display: "block", backgroundSize: "cover" }}
@@ -99,7 +105,7 @@ const ExploreItems = () => {
         })
        : 
         // insert loaded code
-        exploreData.map((element, index) => {
+        exploreData.slice(0, loaded).map((element, index) => {
           return (
             <div key={element.id} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" 
             style={{ display: "block", backgroundSize: "cover" }}
@@ -111,9 +117,12 @@ const ExploreItems = () => {
       }
 
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+        {loaded < 16 
+          ? 
+          <button to="" id="loadmore" className="btn-main lead" onClick = {LoadMore}>Load more</button>
+          :
+          <></>
+        }
       </div>
     </>
   );
