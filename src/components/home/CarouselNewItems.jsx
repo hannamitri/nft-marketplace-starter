@@ -45,13 +45,11 @@ const CarouselNewItems = () => {
         setLoading(false);
         })
         .catch(error => {
-          console.error(`the error is ${error}`);
         });
       }
       fetchData();
     }, [])
 
-    console.log(data);
     
     
     const slidesToShow = 4;
