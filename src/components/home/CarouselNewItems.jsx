@@ -99,10 +99,6 @@ const CarouselNewItems = () => {
       <Slider {...settings}>
         {loading ? (
           new Array(7).fill(0).map((element, index) => (
-            <UseItem card={element}></UseItem>
-          ))
-        ) : (
-          data.map((element, index) => (
             <div key={index}>
               <div className="nft__item" style={{ marginLeft: "10px" }}>
                 <div className="author_list_pp">
@@ -112,27 +108,22 @@ const CarouselNewItems = () => {
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                   >
-                    <img className="lazy" src={element.authorImage} alt="" />
+                    <div className="skeleton-box" style={{ height: "60px", width: "60px", borderRadius: "50%" }}></div>
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                {element.expiryDate != null && (
-                  <div className="de_countdown">
-                    <CountDown fullTime={element.expiryDate / 1000} />
-                  </div>
-                )}
 
-                <div className="nft__item_wrap">
+                <div className="nft__item_wrap" >
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
-                      <button>Buy Now</button>
+                      <button className="skeleton-box" style={{ color: "#dddbdd" }} >Buy Now</button>
                       <div className="nft__item_share">
-                        <h4>Share</h4>
+                        <h4 className="skeleton-box" style={{ color: "#dddbdd" }}>Share</h4>
                         <a href="" target="_blank" rel="noreferrer">
                           <i className="fa fa-facebook fa-lg"></i>
                         </a>
                         <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
+                          <div className="skeleton-box" style={{ width: "100%", height: "100%" }}></div>
                         </a>
                         <a href="">
                           <i className="fa fa-envelope fa-lg"></i>
@@ -140,27 +131,23 @@ const CarouselNewItems = () => {
                       </div>
                     </div>
                   </div>
-
-                  <Link to={`/item-details/${element.nftId}`}>
-                    <img
-                      src={element.nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
+                  <Link to={`/item-details/${element.nftId}`} className="skeleton-box" style={{ width: "100%", height: "100%" }}></Link>
                 </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>{element.title}</h4>
+                <div className="nft_coll_info" style={{ display: "flex", flexDirection: "column" }}>
+                  <Link to="/explore">
+                    <div className="skeleton-box" style={{ width: "180px", height: "30px", marginTop: "4px" }}></div>
                   </Link>
-                  <div className="nft__item_price">{element.price} ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>{element.likes}</span>
-                  </div>
+                  <div className="skeleton-box" style={{ width: "100px", height: "30px" }}></div>
+                </div>
+                <div className="nft__item_like">
+                  <div className="skeleton-box" style={{ width: "32px", height: "16px" }}>{element.likes}</div>
                 </div>
               </div>
             </div>
+          ))
+        ) : (
+          data.map((element, index) => (
+            <UseItem card={element} key ={index}></UseItem>
           ))
         )}
       </Slider>

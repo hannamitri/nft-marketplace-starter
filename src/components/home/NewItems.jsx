@@ -18,8 +18,6 @@ const NewItems = () => {
       .catch(error => {
       });
     }, [])
-    console.log("BIG DATA ")
-    console.log(data)
 
   return (
     <section id="section-items" className="no-bottom">

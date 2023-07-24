@@ -3,9 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import CountDown from "./CountDown";
 
-const UseItem = ({ card }) => {
+const UseItem = ({ card, key }) => {
   return (
-    <div className="" key={card.id}>
+    <div className="" key={key}>
       <div className="nft__item">
         <div className="author_list_pp">
           <Link
