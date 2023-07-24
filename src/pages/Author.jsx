@@ -9,6 +9,11 @@ const Author = () => {
   const { authorId } = useParams();
   const [loading, setLoading] = useState(true);
   const [author, setAuthor] = useState([]);
+  let [liked, setLike] = useState(false);
+
+  function indecrement () {
+    setLike(!liked);
+  }
  
     useEffect(() => {
       async function fetchData() {
@@ -16,6 +21,7 @@ const Author = () => {
           `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
         ).then((response) => {
           setAuthor(response.data);
+          console.log(author)
           setLoading(false);
         }).catch((error) => {
           console.log(error)
@@ -23,6 +29,8 @@ const Author = () => {
       }
       fetchData();
     }, []);
+    console.log(`authorlikes is ${author.followers}, it is a ${typeof author.followers}`)
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -104,10 +112,11 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{author.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <div className="profile_follower">
+                        {liked ? author.followers + 1 : author.followers} followers</div>
+                      <button to="#" className="btn-main" onClick={indecrement}>
+                        {liked ? `Unfollow` : `Follow`} 
+                      </button>
                     </div>
                   </div>
                 </div>
