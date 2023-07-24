@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import CountDown from "./CountDown";
 
 const UseItem = ({ card }) => {
-  console.log(card.expiryDate)
   return (
     <div className="" key={card.id}>
       <div className="nft__item">

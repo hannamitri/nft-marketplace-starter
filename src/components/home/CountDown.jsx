@@ -19,7 +19,6 @@ function CountDown({ fullTime }) {
   const hours = Math.floor(timeRemaining / 3600);
   const minutes = Math.floor((timeRemaining % 3600) / 60);
   const seconds = Math.floor(timeRemaining) % 60;
-  console.log(`hours is ${hours}`)
   return hours > 100 ? (
     <div>
       {}h: {}m: {}s
