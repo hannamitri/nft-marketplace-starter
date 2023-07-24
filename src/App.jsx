@@ -5,8 +5,11 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
+  library.add(faAngleLeft, faAngleRight)
   return (
     <Router>
       <Nav />
