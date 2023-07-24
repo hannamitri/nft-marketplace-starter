@@ -1,11 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Card from "../UI/Card";
 
 const AuthorItems = ({data, authorId, authorImage}) => {
-
     return (
         <div className="de_tab_content">
             <div className="tab-1">
