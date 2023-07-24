@@ -13364,6 +13364,7 @@ a.read_more i {
 
 .author_list_info a {
   color: #1a1b1e;
+  text-decoration: none;
 }
 
 .coll_list_pp {
