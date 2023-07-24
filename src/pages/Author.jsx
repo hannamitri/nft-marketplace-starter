@@ -23,10 +23,7 @@ const Author = () => {
       }
       fetchData();
     }, []);
-  
-  console.log(author, loading)
   return (
-    
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
