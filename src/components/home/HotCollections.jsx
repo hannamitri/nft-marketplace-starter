@@ -6,34 +6,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Chevron from "./Chevron";
 import Skeleton from "../UI/Skeleton";
-
-const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-        {
-            breakpoint: 1100,
-            settings: {
-                slidesToShow: 3,
-            }
-        },
-        {
-            breakpoint: 990,
-            settings: {
-                slidesToShow: 2,
-            }
-        },
-        {
-            breakpoint: 576,
-            settings: {
-                slidesToShow: 1,
-            }
-        }
-    ]
-};
+import {settings} from "../sliderSettings";
 
 const HotCollections = () => {
     const [data, setData] = useState([])
@@ -43,7 +16,6 @@ const HotCollections = () => {
         const fetchData = async () => {
             const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
             setData(response.data)
-            console.log(response.data)
         }
 
         fetchData()
