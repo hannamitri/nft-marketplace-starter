@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
-      <div className="container">
-        <div className="row">
+      <div className="container" >
+        <div className="row" data-aos="fade-in" data-aos-easing="ease-in-out">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Browse by category</h2>

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Landing = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <section
       id="section-hero"
@@ -13,7 +18,11 @@ const Landing = () => {
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
     >
       <div className="v-center">
-        <div className="container">
+        <div
+          className="container"
+          data-aos="fade-in"
+          data-aos-easing="ease-in-out"
+        >
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="spacer-single"></div>
