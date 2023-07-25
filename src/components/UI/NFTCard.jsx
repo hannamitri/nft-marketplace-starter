@@ -2,7 +2,7 @@ import React from "react";
 import { Countdown } from "./Countdown";
 import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
-export const NFTCard = ({ nft }) => {
+export const NFTCard = ({ nft,user }) => {
   return (
     <div className="nft__item">
       <div className="author_list_pp">

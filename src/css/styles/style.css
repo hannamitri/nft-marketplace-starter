@@ -16726,5 +16726,13 @@ img {
   scale: 1.5;
 }
 
-
+.de_countdown-seklly{
+  position: absolute;
+  right: 20px;
+  padding: 1px 10px;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  z-index: 100;
+}
 
