@@ -35,7 +35,7 @@ const NewItems = () => {
     setItems((previtems) => {
       return previtems.map((item) => {
         if (item.expiryDate) {
-          const timeRemaining = item.expiryDate - Date.now();
+          const timeRemaining = item.expiryDate - Date.now() - 3399600
 
           let secondsEls = timeRemaining / 1000;
           let minutesEls = secondsEls / 60;
