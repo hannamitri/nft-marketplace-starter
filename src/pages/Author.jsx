@@ -32,8 +32,6 @@ const Author = () => {
     setClicked(!clicked);
   };
 
-  console.log(items);
-
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
