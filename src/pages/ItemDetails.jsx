@@ -3,6 +3,7 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
+// testing <= GITHUB TEST
 const ItemDetails = () => {
   const { nftId } = useParams();
   const [items, setItems] = useState([]);
