@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Author = () => {
+  const [items, setItems] = useState([]);
+  const [clicked, setClicked] = useState(false);
+  
+
+  const { authorId } = useParams();
+  async function fetchAuthorData() {
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+    );
+    setItems(data);
+  }
+
+  useEffect(() => {
+    fetchAuthorData();
+  }, []);
+
+  if (!items) {
+    return null;
+  }
+
+  const { address, authorImage, authorName, followers,  tag } = items;
+
+
+  const handleOnClick = () => {
+    setClicked(!clicked);
+  };
+
+  console.log(items);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +54,14 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
-
+                      <img src={authorImage} alt="" />
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {authorName}
+                          <span className="profile_username">@{tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -43,11 +71,33 @@ const Author = () => {
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                    <div className="de-flex-col" onClick={handleOnClick}>
+                      {clicked ? (
+                        <div className="profile_follower">
+                          {followers + 1} followers
+                        </div>
+                      ) : (
+                        <div className="profile_follower">
+                          {followers} followers
+                        </div>
+                      )}
+                      {clicked ? (
+                        <Link
+                          to="#"
+                          className="btn-main"
+                          onClick={handleOnClick}
+                        >
+                          Unfollow
+                        </Link>
+                      ) : (
+                        <Link
+                          to="#"
+                          className="btn-main"
+                          onClick={handleOnClick}
+                        >
+                          Follow
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
