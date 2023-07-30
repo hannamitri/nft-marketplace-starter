@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../css/styles/style.css";
 import Slider from "react-slick";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
   const [posts, nftPost] = useState([]);
@@ -21,6 +23,7 @@ const HotCollections = () => {
   useEffect(() => {
     fetchAuthorData();
     setLoading(false);
+    AOS.init();
   }, []);
 
   function CustomNextArrow(props) {
@@ -130,7 +133,7 @@ const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up fade-in" data-aos-duration="500">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>

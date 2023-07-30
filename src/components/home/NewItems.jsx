@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../css/styles/style.css";
 import Slider from "react-slick";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -20,6 +22,7 @@ const NewItems = () => {
       );
       setItems(data);
       setLoading(false);
+      AOS.init();
     };
     fetchNewItems();
 
@@ -35,7 +38,7 @@ const NewItems = () => {
     setItems((previtems) => {
       return previtems.map((item) => {
         if (item.expiryDate) {
-          const timeRemaining = item.expiryDate - Date.now() - 3399600
+          const timeRemaining = item.expiryDate - Date.now() - 3399600;
 
           let secondsEls = timeRemaining / 1000;
           let minutesEls = secondsEls / 60;
@@ -174,7 +177,7 @@ const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up fade-in" data-aos-duration="500">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>

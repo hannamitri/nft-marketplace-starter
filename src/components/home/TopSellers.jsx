@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [items, setItems] = useState([]);
@@ -14,6 +16,7 @@ const TopSellers = () => {
 
       setItems(data);
       setLoading(false);
+      AOS.init();
     }
     fetchNewItems();
   }, []);
@@ -28,7 +31,11 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-12">
+          <div
+            className="col-md-12"
+            data-aos="fade-up fade-in"
+            data-aos-duration="500"
+          >
             <ol className="author_list">
               {loading
                 ? new Array(12).fill(0).map((_, index) => (
