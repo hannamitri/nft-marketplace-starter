@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    AOS.init();
   }, []);
 
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-
         <section
           id="subheader"
           className="text-light"
@@ -31,7 +33,11 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
+            <div
+              className="row"
+              data-aos="fade-in"
+              data-aos-duration="500"
+            >
               <ExploreItems />
             </div>
           </div>

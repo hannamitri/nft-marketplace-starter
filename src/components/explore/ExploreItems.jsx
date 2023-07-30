@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "../count/Countdown";
 
+
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,7 @@ const ExploreItems = () => {
   const fetchData = async (filterType) => {
     const endPoint = filterType
       ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterType}`
-      : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+      : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
 
     const { data } = await axios.get(endPoint);
     setItems(data);
