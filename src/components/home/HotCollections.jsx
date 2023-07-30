@@ -9,6 +9,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
+// test
 const HotCollections = () => {
   const [posts, nftPost] = useState([]);
   const [loading, setLoading] = useState(true);
