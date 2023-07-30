@@ -10,7 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 
-// test
+// test :)
 const HotCollections = () => {
   const [posts, nftPost] = useState([]);
   const [loading, setLoading] = useState(true);
