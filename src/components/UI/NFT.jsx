@@ -6,7 +6,7 @@ function NFT({ data }) {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
-        <Link to="/author" data-bs-toggle="tooltip" data-bs-placement="top">
+        <Link to={`/author/${data.authorId}`} data-bs-toggle="tooltip" data-bs-placement="top">
           <img className="lazy" src={data.authorImage} alt="" />
           <i className="fa fa-check"></i>
         </Link>
