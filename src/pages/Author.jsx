@@ -27,7 +27,6 @@ const Author = () => {
     setLoading(false);
     setItems(data.nftCollection);
     setImg(data.authorImage);
-    console.log(data.nftCollection);
   }
 
   useEffect(() => getData(), []);

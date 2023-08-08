@@ -31,10 +31,10 @@ function AuthorItemsLoading() {
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details"></Link>
+                  <Link to=""></Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to="">
                     <h4>
                       <Skeleton
                         width="100px"
