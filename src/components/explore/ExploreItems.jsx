@@ -1,19 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import ExploreItem from "../UI/ExploreItem.jsx";
+import Skeleton from "../UI/Skeleton.jsx";
 
 const ExploreItems = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(8);
+
+  function loadMore() {
+    if (loaded !== 16) {
+      setLoaded(loaded + 4);
+    }
+  }
+
+  async function fetchItems() {
+    try {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+      );
+      setItems(data);
+      setLoading(false);
+
+      console.log(data);
+    } catch (error) {
+      console.log("Error fetching: ", error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  function filterItems(filter) {
+    setLoaded(8)
+    setLoading(true)
+
+    if (filter === "price_low_to_high") {
+      setItems(items.slice().sort((a, b) => a.price - b.price));
+      setLoading(false)
+    } else if (filter === "price_high_to_low") {
+      setItems(items.slice().sort((a, b) => b.price - a.price));
+      setLoading(false)
+    } else if (filter === "likes_high_to_low") {
+      setItems(items.slice().sort((a, b) => b.likes - a.likes));
+      setLoading(false)
+    } else if (filter === "") {
+      fetchItems()
+    }
+  }
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select
+          id="filter-items"
+          defaultValue=""
+          onChange={(event) => filterItems(event.target.value)}
+        >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
+      {loading ? (
+        <>
+          {new Array(8).fill(0).map((_, index) => (
+            <div
+              key={index}
+              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              style={{ display: "block", backgroundSize: "cover" }}
+            >
+              <Skeleton width={261} height={441} borderRadius={15} />
+            </div>
+          ))}
+        </>
+      ) : (
+        <>
+          {items.slice(0, loaded).map((item) => (
+            <ExploreItem item={item} key={item.id} />
+          ))}
+        </>
+      )}
+      {/*
       {new Array(8).fill(0).map((_, index) => (
         <div
           key={index}
@@ -68,10 +140,15 @@ const ExploreItems = () => {
           </div>
         </div>
       ))}
+      */}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+        {loaded !== 16 ? (
+          <button onClick={loadMore} id="loadmore" className="btn-main lead">
+            Load more
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

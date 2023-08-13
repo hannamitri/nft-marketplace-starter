@@ -1,10 +1,50 @@
-import React from "react";
-import AuthorBanner from "../images/author_banner.jpg";
+import React, { useEffect, useState } from "react";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Author = () => {
+  const { id } = useParams();
+  const [author, setAuthor] = useState([])
+  const [banner, setBanner] = useState()
+  const [followers, setFollowers] = useState()
+  const [following, setFollowing] = useState(false)
+
+  async function fetchAuthor() {
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+    );
+
+    setAuthor(data)
+    setFollowers(data.followers)
+    setBanner(data.nftCollection[Math.floor(Math.random() * data.nftCollection.length)].nftImage)
+  }
+
+  function copyAddress() {
+    navigator.clipboard.writeText(author.address)
+
+    document.getElementById("btn_copy").innerText = "Copied"
+    setTimeout(() => {
+      document.getElementById("btn_copy").innerText = "Copy"
+    }, 1000)
+  }
+
+  function followAuthor() {
+    if (following) {
+      setFollowing(false)
+      setFollowers(followers - 1)
+      document.querySelector("#follow-btn").innerText = "Follow"
+      return
+    }
+    setFollowing(true)
+    setFollowers(followers + 1)
+    document.querySelector("#follow-btn").innerText = "Unfollow"
+  }
+
+  useEffect(() => {
+    fetchAuthor();
+  }, []);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -15,7 +55,7 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
+          style={{ background: `url(${banner}) top` }}
         ></section>
 
         <section aria-label="section">
@@ -25,17 +65,17 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={author.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {author.authorName}
+                          <span className="profile_username">@{author.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {author.address}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <button onClick={copyAddress} id="btn_copy" title="Copy Text">
                             Copy
                           </button>
                         </h4>
@@ -44,10 +84,10 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
+                      <div className="profile_follower">{followers} followers</div>
+                      <button onClick={followAuthor} className="btn-main" id="follow-btn">
                         Follow
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -55,7 +95,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems items={author.nftCollection} author={author} />
                 </div>
               </div>
             </div>
