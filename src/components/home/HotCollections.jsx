@@ -74,21 +74,27 @@ const HotCollections = () => {
             {...options}
           >
             {loading
-              ? new Array(4).fill(0).map((_, index) => (
-                  <div className="nft_coll" key={index}>
-                    <div className="skeleton nft__coll--skeleton ">
-                      <div className="skeleton-box nft__img--skeleton"></div>
-                      <div className="nfg_coll_user_container skeleton-box"></div>
-                    </div>
-                    <div className="skeleton nft__name-skeleton skeleton-box"></div>
-                    <div className="skeleton nft__id--skeleton skeleton-box"></div>
+              ? 
+              new Array(4).fill(0).map((_, index) => (
+                <div className="nft_coll" key={index}>
+                <div className="skeleton nft__coll--skeleton ">
+                  <div className="skeleton-box nft__img--skeleton">
                   </div>
+                  <div className="nft_coll_user_container skeleton-box"></div>
+                </div>
+                <figure className="check--skeleton">
+                  <i className="fa fa-check fa-check--skeleton"></i>
+                  </figure>
+                <div className="skeleton nft__name-skeleton skeleton-box"></div>
+                <div className="skeleton nft__id--skeleton skeleton-box"></div>
+              </div>
                 ))
-              :usernames.map((user, index) => (
+              :
+              usernames.map((user, index) => (
                   <div className="" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${user.nftId}`}>
                           <img
                             src={user.nftImage}
                             className="lazy img-fluid"
@@ -98,7 +104,7 @@ const HotCollections = () => {
                       </div>
                       <div className="nft_coll_user_container">
                         <div className="nft_coll_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${user.authorId}`}>
                             <img
                               className="lazy pp-coll"
                               src={user.authorImage}
@@ -116,7 +122,8 @@ const HotCollections = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))
+                }
           </OwlCarousel>
         </div>
       </div>
