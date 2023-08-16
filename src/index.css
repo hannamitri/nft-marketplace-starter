@@ -136,6 +136,38 @@
   background-color: rgb(139, 139, 139);
 }
 
+/* Top Sellers Features */
+.newItems--author--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nft__topSellers--container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: translate(0%, -20%);
+}
+
+.nft__topSellers--info {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.nft__topSellers--position {
+  transform: translate(-120%, -160%);
+}
+
+.nft__topSellers--checkmark--container {
+  transform: translate(-130%, 280%);
+}
+
+.nft__topSellers--checkmark--position {
+  transform: translate(15%, -20%);
+}
+
 /* Responsive Design */
 
 @media (max-width: 1400px) {
