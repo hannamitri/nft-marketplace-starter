@@ -1,61 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import AuthorImage from "../../images/author_thumbnail.jpg";
-// import nftImage from "../../images/nftImage.jpg";
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
-
 import OwlCarousel from "react-owl-carousel";
-// import "owl.carousel/dist/assets/owl.theme.default.css";
 import "owl.carousel/dist/assets/owl.carousel.css";
 
-const HotCollections = () => {
-  const options = {
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsiveClass: true,
-    dots: false,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      576: {
-        items: 2,
-      },
-      768: {
-        items: 3,
-      },
-      1200: {
-        items: 4,
-      },
-      1400: {
-        items: 4,
-      },
-    },
-  };
-
-  const [loading, setLoading] = useState(true);
-  const [usernames, setUsernames] = useState([]);
-
-  async function responseCollections() {
-    setLoading(false);
-
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
-    );
-
-    setUsernames(data);
-    setTimeout(() => {
-      setLoading(true);
-    }, 500)
-  }
-
-  useEffect(() => {
-    responseCollections();
-  }, []);
-
+const HotCollections = ( { hotCollectionsUsersData, hotCollectionsLoading, owlCarouselPresets } ) => {
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -71,9 +19,9 @@ const HotCollections = () => {
             items={4}
             lazyLoad
             merge
-            {...options}
+            {...owlCarouselPresets}
           >
-            {loading
+            {hotCollectionsLoading
               ? 
               new Array(4).fill(0).map((_, index) => (
                 <div className="nft_coll" key={index}>
@@ -89,8 +37,8 @@ const HotCollections = () => {
                 <div className="skeleton nft__id--skeleton skeleton-box"></div>
               </div>
                 ))
-              :
-              usernames.map((user, index) => (
+              : (hotCollectionsUsersData &&
+              hotCollectionsUsersData.map((user, index) => (
                   <div className="" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
@@ -122,7 +70,7 @@ const HotCollections = () => {
                       </div>
                     </div>
                   </div>
-                ))
+                )))
                 }
           </OwlCarousel>
         </div>
