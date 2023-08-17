@@ -102,7 +102,12 @@
   display: none;
 }
 
-/* .nft__item--skeleton */
+.nft__item {
+  width: 315px;
+  margin-right: 14px;
+  height: 440px;
+}
+
 .skeleton-style {
   margin-top: 40px;
   height: 270px;
@@ -129,6 +134,7 @@
   display: flex;
   align-items: center;
   justify-content: end;
+  transform: translate(0%, -140%);
 }
 
 .heart--skeleton {
@@ -166,6 +172,14 @@
 
 .nft__topSellers--checkmark--position {
   transform: translate(15%, -20%);
+}
+
+/* Explore Items */
+.btn-main {
+  color: white !important;
+}
+.btn-main:hover {
+  cursor: pointer;
 }
 
 /* Responsive Design */
