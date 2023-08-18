@@ -1,6 +1,6 @@
 import React from "react";
 
-const SkeletonLoading = ( { index } ) => {
+const SkeletonLoading = ({ index }) => {
   return (
     <>
       <div

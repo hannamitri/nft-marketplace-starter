@@ -14,7 +14,7 @@ function App() {
   const [hotCollectionsLoading, setHotCollectionsLoading] = useState(false);
   const [newItemsLoading, setNewItemsLoading] = useState(false);
   const [topSellersLoading, setTopSellersLoading] = useState(false);
-  const [exploreItemsLoading, setExploreItemsLoading] = useState(false);
+  // const [exploreItemsLoading, setExploreItemsLoading] = useState(false);
 
   // Hot Collections Response
   const [hotCollectionsUsersData, sethotCollectionsUsersData] = useState([]);
@@ -55,17 +55,6 @@ function App() {
     }, 500);
   }
 
-  // Explore Items Response
-  const [exploreItemsUsersData, setExploreItemsUsersData] = useState([]);
-  async function exploreItemsResponse() {
-    setExploreItemsLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`
-    );
-    setExploreItemsUsersData(data);
-    setExploreItemsLoading(false);
-  }
-
   // Owl-Carousel Re-usable Options
   const owlCarouselPresets = {
     loop: true,
@@ -97,7 +86,6 @@ function App() {
     hotCollectionsResponse();
     newItemsResponse();
     topSellersResponse();
-    exploreItemsResponse();
   }, []);
 
   return (
@@ -118,17 +106,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/explore"
-          element={
-            <Explore
-              exploreItemsUsersData={exploreItemsUsersData}
-              setExploreItemsUsersData={setExploreItemsUsersData}
-              exploreItemsLoading={exploreItemsLoading}
-              setExploreItemsLoading={setExploreItemsLoading}
-            />
-          }
-        />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/author/:id" element={<Author />} />
         <Route path="/item-details/:authorId" element={<ItemDetails />} />
       </Routes>
