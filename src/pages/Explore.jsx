@@ -5,7 +5,6 @@ import ExploreItems from "../components/explore/ExploreItems";
 const Explore = ({
   exploreItemsUsersData,
   setExploreItemsUsersData,
-  newItemsLoading,
   exploreItemsLoading,
   setExploreItemsLoading,
 }) => {
@@ -44,7 +43,6 @@ const Explore = ({
               <ExploreItems
                 exploreItemsUsersData={exploreItemsUsersData}
                 setExploreItemsUsersData={setExploreItemsUsersData}
-                newItemsLoading={newItemsLoading}
                 exploreItemsLoading={exploreItemsLoading}
                 setExploreItemsLoading={setExploreItemsLoading}
               />

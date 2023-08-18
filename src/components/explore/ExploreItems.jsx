@@ -8,47 +8,43 @@ import SkeletonLoading from "../reusable-components/SkeletonLoading";
 const ExploreItems = ({
   exploreItemsUsersData,
   setExploreItemsUsersData,
-  newItemsLoading,
+  exploreItemsLoading,
 }) => {
   // Filter Options Data & Loading States
   const [lowToHighData, setLowToHighData] = useState([]);
   const [highToLowData, setHighToLowData] = useState([]);
   const [likesHighToLowData, setLikesHighToLowData] = useState([]);
 
-  const [lowToHighLoading, setLowToHighLoading] = useState(true);
-  const [highToLowLoading, setHighToLowLoading] = useState(true);
-  const [likesHighToLowLoading, setLikesHighToLowLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function lowToHighResponse() {
-    setLowToHighLoading(true);
+    setLoading(true);
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_low_to_high`
     );
     setLowToHighData(data);
     setExploreItemsUsersData(lowToHighData);
-    setLowToHighLoading(false);
+    setLoading(false);
   }
 
   async function highToLowResponse() {
-    setHighToLowLoading(true);
-    console.log("high to low");
+    setLoading(true);
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low`
     );
     setHighToLowData(data);
     setExploreItemsUsersData(highToLowData);
-    setHighToLowLoading(false);
+    setLoading(false);
   }
 
   async function likesHighToLowResponse() {
-    setLikesHighToLowLoading(true);
-    console.log("likes high to low");
+    setLoading(true);
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low`
     );
     setLikesHighToLowData(data);
     setExploreItemsUsersData(likesHighToLowData);
-    setLikesHighToLowLoading(false);
+    setLoading(false);
   }
 
   function filterCards(filter) {
@@ -86,6 +82,7 @@ const ExploreItems = ({
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     lowToHighResponse();
     highToLowResponse();
     likesHighToLowResponse();
@@ -107,16 +104,15 @@ const ExploreItems = ({
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {newItemsLoading ||
-      lowToHighLoading ||
-      highToLowLoading ||
-      likesHighToLowLoading ? (
-        new Array(16)
-          .fill(0)
-          .map((_, index) => <SkeletonLoading index={index} />)
-      ) : (
-        <ExploreCards usersData={exploreItemsUsersData.slice(0, 8)} />
-      )}
+      {exploreItemsLoading || loading
+        ? new Array(16)
+            .fill(0)
+            .map((_, index) => (
+              <SkeletonLoading index={exploreItemsUsersData} key={index} />
+            ))
+        : exploreItemsUsersData && (
+            <ExploreCards usersData={exploreItemsUsersData.slice(0, 8)} />
+          )}
 
       {showMoreItems && (
         <ExploreCards usersData={exploreItemsUsersData.slice(8, 12)} />
