@@ -5,63 +5,31 @@ import axios from "axios";
 import { useEffect } from "react";
 import SkeletonLoading from "../reusable-components/SkeletonLoading";
 
-const ExploreItems = ({
-  exploreItemsUsersData,
-  setExploreItemsUsersData,
-  exploreItemsLoading,
-}) => {
+const ExploreItems = () => {
   // Filter Options Data & Loading States
-  const [lowToHighData, setLowToHighData] = useState([]);
-  const [highToLowData, setHighToLowData] = useState([]);
-  const [likesHighToLowData, setLikesHighToLowData] = useState([]);
-
+  const [exploreItemsUsersData, setExploreItemsUsersData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  async function lowToHighResponse() {
+  async function fetchData(filter) {
     setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_low_to_high`
-    );
-    setLowToHighData(data);
-    setExploreItemsUsersData(lowToHighData);
-    setLoading(false);
-  }
+    let apiUrl =
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
 
-  async function highToLowResponse() {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low`
-    );
-    setHighToLowData(data);
-    setExploreItemsUsersData(highToLowData);
-    setLoading(false);
-  }
+    if (filter === "price_low_to_high") {
+      apiUrl += "?filter=price_low_to_high";
+    } else if (filter === "price_high_to_low") {
+      apiUrl += "?filter=price_high_to_low";
+    } else if (filter === "likes_high_to_low") {
+      apiUrl += "?filter=likes_high_to_low";
+    }
 
-  async function likesHighToLowResponse() {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low`
-    );
-    setLikesHighToLowData(data);
-    setExploreItemsUsersData(likesHighToLowData);
+    const { data } = await axios.get(apiUrl);
+    setExploreItemsUsersData(data);
     setLoading(false);
   }
 
   function filterCards(filter) {
-    if (filter === "price_low_to_high") {
-      console.log("LowToHigh");
-      lowToHighResponse();
-    }
-
-    if (filter === "price_high_to_low") {
-      console.log("HighToLowData");
-      highToLowResponse();
-    }
-
-    if (filter === "likes_high_to_low") {
-      console.log("likesHighToLow");
-      likesHighToLowResponse();
-    }
+    fetchData(filter);
   }
 
   // Upon click, load more items
@@ -83,9 +51,8 @@ const ExploreItems = ({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    lowToHighResponse();
-    highToLowResponse();
-    likesHighToLowResponse();
+
+    fetchData();
   }, []);
 
   return (
@@ -96,23 +63,17 @@ const ExploreItems = ({
           defaultValue="DEFAULT"
           onChange={(event) => filterCards(event.target.value)}
         >
-          <option value="DEFAULT" disabled>
-            Default
-          </option>
+          <option value="DEFAULT">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {exploreItemsLoading || loading
-        ? new Array(16)
-            .fill(0)
-            .map((_, index) => (
-              <SkeletonLoading index={exploreItemsUsersData} key={index} />
-            ))
-        : exploreItemsUsersData && (
-            <ExploreCards usersData={exploreItemsUsersData.slice(0, 8)} />
-          )}
+      {loading ? (
+        new Array(16).fill(0).map((_, index) => <SkeletonLoading key={index} />)
+      ) : (
+        <ExploreCards usersData={exploreItemsUsersData.slice(0, 8)} />
+      )}
 
       {showMoreItems && (
         <ExploreCards usersData={exploreItemsUsersData.slice(8, 12)} />
