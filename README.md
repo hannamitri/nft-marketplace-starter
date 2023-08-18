@@ -1,3 +1,9 @@
+<!-- btw this is how to branch off -->
+<!-- We open terminal and change to git bash instead -->
+<!-- git checkout -b nameOfNewBranch -->
+<!-- after doing stuff, the usual git add . -->
+<!-- then git commit -m "valueable info about task done" -->
+<!-- git push, then copy paste the new push command -->
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
