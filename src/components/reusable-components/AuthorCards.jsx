@@ -1,30 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TimerLogic from "../functions/TimerLogic";
 
-const UserCards = ({ newItemsUsersData }) => {
+const AuthorCards = ({ usersData }) => {
+  const {id} = useParams();
   return (
     <>
-      {newItemsUsersData.map((user, index) => (
-        // UserCards has different styling compared to AuthorCards & ExploreCards
-          <div className="nft__item d-item col-lg-12 col-md-12 col-sm-6 col-xs-12" key={index}
+      {
+      usersData.map((nftUser, index) => (
+          <div className="nft__item d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}
           style={{ display: "block", backgroundSize: "cover"}}
           >
             <div className="author_list_pp">
-              <Link
-                to={`/author/${user.authorId}`}
+              <a
+                href={`/author/${id}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title={user.title}
+                title={nftUser.title}
               >
-                <img className="lazy" src={user.authorImage} alt="" />
+                <img className="lazy" src={nftUser.authorImage} alt={nftUser.authorImage} />
                 <i className="fa fa-check"></i>
-              </Link>
+              </a>
             </div>
-            {user.expiryDate ? (
+            {nftUser.expiryDate ? (
               <div className="de_countdown">
                 <div>
-                  <TimerLogic expiryDate={user.expiryDate} />
+                  <TimerLogic expiryDate={nftUser.expiryDate} />
                 </div>
               </div>
             ) : (
@@ -49,9 +50,9 @@ const UserCards = ({ newItemsUsersData }) => {
                 </div>
               </div>
 
-              <Link to={`/item-details/${user.nftId}`}>
+              <Link to={`/item-details/${nftUser.nftId}`}>
                 <img
-                  src={user.nftImage}
+                  src={nftUser.nftImage}
                   className="lazy nft__item_preview"
                   alt=""
                 />
@@ -59,12 +60,12 @@ const UserCards = ({ newItemsUsersData }) => {
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>{user.title}</h4>
+                <h4>{nftUser.title}</h4>
               </Link>
-              <div className="nft__item_price">{user.price} ETH</div>
+              <div className="nft__item_price">{nftUser.price} ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>{user.likes}</span>
+                <span>{nftUser.likes}</span>
               </div>
             </div>
         </div>
@@ -73,4 +74,4 @@ const UserCards = ({ newItemsUsersData }) => {
   );
 };
 
-export default UserCards;
+export default AuthorCards;

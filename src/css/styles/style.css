@@ -14194,6 +14194,7 @@ a.read_more i {
 }
 
 .profile_avatar {
+  /* margin-top: 90px; */
   display: flex;
 }
 

@@ -124,14 +124,13 @@ function App() {
             <Explore
               exploreItemsUsersData={exploreItemsUsersData}
               setExploreItemsUsersData={setExploreItemsUsersData}
-              newItemsLoading={newItemsLoading}
               exploreItemsLoading={exploreItemsLoading}
               setExploreItemsLoading={setExploreItemsLoading}
             />
           }
         />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/author/:id" element={<Author />} />
+        <Route path="/item-details/:authorId" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
