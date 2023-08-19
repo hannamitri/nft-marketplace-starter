@@ -8,6 +8,7 @@ const Explore = ({
   exploreItemsLoading,
   setExploreItemsLoading,
 }) => {
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

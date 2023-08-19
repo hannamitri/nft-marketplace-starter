@@ -1,13 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TimerLogic from "../functions/TimerLogic";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const ExploreCards = ({ usersData }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <>
       {usersData.map((user, index) => (
         <div
           className="nft__item d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+          data-aos="fade-up"
+          data-aos-duration="900"
           key={index}
           style={{ display: "block", backgroundSize: "cover" }}
         >

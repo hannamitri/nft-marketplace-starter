@@ -2,19 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const HotCollections = ( { hotCollectionsUsersData, hotCollectionsLoading, owlCarouselPresets } ) => {
+const HotCollections = ({
+  hotCollectionsUsersData,
+  hotCollectionsLoading,
+  owlCarouselPresets,
+}) => {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2 data-aos="fade-up" data-aos-duration="1000">
+                Hot Collections
+              </h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
           <OwlCarousel
+          data-aos="fade-up" data-aos-duration="1500"
             className="owl-theme owl-style"
             items={4}
             lazyLoad
@@ -22,23 +35,21 @@ const HotCollections = ( { hotCollectionsUsersData, hotCollectionsLoading, owlCa
             {...owlCarouselPresets}
           >
             {hotCollectionsLoading
-              ? 
-              new Array(4).fill(0).map((_, index) => (
-                <div className="nft_coll" key={index}>
-                <div className="skeleton nft__coll--skeleton ">
-                  <div className="skeleton-box nft__img--skeleton">
+              ? new Array(4).fill(0).map((_, index) => (
+                  <div className="nft_coll" key={index}>
+                    <div className="skeleton nft__coll--skeleton ">
+                      <div className="skeleton-box nft__img--skeleton"></div>
+                      <div className="nft_coll_user_container skeleton-box"></div>
+                    </div>
+                    <figure className="check--skeleton">
+                      <i className="fa fa-check fa-check--skeleton"></i>
+                    </figure>
+                    <div className="skeleton nft__name-skeleton skeleton-box"></div>
+                    <div className="skeleton nft__id--skeleton skeleton-box"></div>
                   </div>
-                  <div className="nft_coll_user_container skeleton-box"></div>
-                </div>
-                <figure className="check--skeleton">
-                  <i className="fa fa-check fa-check--skeleton"></i>
-                  </figure>
-                <div className="skeleton nft__name-skeleton skeleton-box"></div>
-                <div className="skeleton nft__id--skeleton skeleton-box"></div>
-              </div>
                 ))
-              : (hotCollectionsUsersData &&
-              hotCollectionsUsersData.map((user, index) => (
+              : hotCollectionsUsersData &&
+                hotCollectionsUsersData.map((user, index) => (
                   <div className="" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
@@ -70,8 +81,7 @@ const HotCollections = ( { hotCollectionsUsersData, hotCollectionsLoading, owlCa
                       </div>
                     </div>
                   </div>
-                )))
-                }
+                ))}
           </OwlCarousel>
         </div>
       </div>

@@ -1,18 +1,32 @@
 import OwlCarousel from "react-owl-carousel";
 import UserCards from "../reusable-components/UserCards";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
-const NewItems = ({ newItemsUsersData, newItemsLoading, owlCarouselPresets }) => {
+const NewItems = ({
+  newItemsUsersData,
+  newItemsLoading,
+  owlCarouselPresets,
+}) => {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Items</h2>
+              <h2 data-aos="fade-up" data-aos-duration="1000">
+                New Items
+              </h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
           <OwlCarousel
+            data-aos="fade-up"
+            data-aos-duration="1500"
             className="owl-theme owl-style"
             items={4}
             lazyLoad
@@ -36,8 +50,11 @@ const NewItems = ({ newItemsUsersData, newItemsLoading, owlCarouselPresets }) =>
                   </div>
                 </div>
               </div>
-            ) : (newItemsUsersData && (<UserCards newItemsUsersData={newItemsUsersData}/>))
-            }
+            ) : (
+              newItemsUsersData && (
+                <UserCards newItemsUsersData={newItemsUsersData} />
+              )
+            )}
           </OwlCarousel>
         </div>
       </div>

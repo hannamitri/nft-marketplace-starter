@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
-const TopSellers = ( { topSellersUsersData, topSellersLoading } ) => {
+const TopSellers = ({ topSellersUsersData, topSellersLoading }) => {
+  useEffect(() => {
+    AOS.init();
+  });
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Top Sellers</h2>
+              <h2 data-aos="fade-up" data-aos-duration="1000">
+                Top Sellers
+              </h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
           <div className="">
-            <ol className="author_list">
+            <ol
+              className="author_list"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               {topSellersLoading
                 ? new Array(12).fill(0).map((_, index) => (
                     <div className="nft__topSellers--container" key={index}>
@@ -28,8 +40,8 @@ const TopSellers = ( { topSellersUsersData, topSellersLoading } ) => {
                       </div>
                     </div>
                   ))
-                : (topSellersUsersData &&
-                topSellersUsersData.map((user, index) => (
+                : topSellersUsersData &&
+                  topSellersUsersData.map((user, index) => (
                     <div className="newItems--author--container" key={index}>
                       <li>
                         <div className="author_list_pp">
@@ -50,8 +62,7 @@ const TopSellers = ( { topSellersUsersData, topSellersLoading } ) => {
                         </div>
                       </li>
                     </div>
-                  )))
-                  }
+                  ))}
             </ol>
           </div>
         </div>
