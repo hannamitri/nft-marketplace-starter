@@ -158,18 +158,11 @@ const Author = () => {
                                             className="btn-main"
                                             onClick={handleAddFollow}
                                           >
-                                            
-                                            {follower ?
-                                             ( <div>
-                                                {`${"Unfollow"}`}                                
-                                              </div>)
-                                              :
-                                              (
-                                                <div>
-                                                  Follow
-                                                </div>
-                                              )
-                                            }
+                                            {follower ? (
+                                              <div>{`${"Unfollow"}`}</div>
+                                            ) : (
+                                              <div>Follow</div>
+                                            )}
                                           </Link>
                                         </div>
                                       </div>

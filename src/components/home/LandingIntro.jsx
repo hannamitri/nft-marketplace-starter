@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 const LandingIntro = () => {
   useEffect(() => {
     AOS.init();
   });
+
   return (
     <section id="section-intro" className="no-top no-bottom">
       <div className="container">
@@ -61,7 +61,7 @@ const LandingIntro = () => {
                 </h4>
                 <p data-aos="fade-up" data-aos-duration="1300">
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem.
+                  accusantium doloremque, totam rem.
                 </p>
               </div>
               <i className="wm icon_tags_alt"></i>

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
 import { useState } from "react";
 import axios from "axios";
 
@@ -19,7 +17,7 @@ const ItemDetails = () => {
     setItemDetails([data]);
     setTimeout(() => {
       setLoading(false);
-    }, 500)
+    }, 500);
   }
   console.log(itemDetails);
 
@@ -127,7 +125,7 @@ const ItemDetails = () => {
                           <h6>Creator</h6>
                           <div className="item_author">
                             <div className="author_list_pp">
-                            <Link to={`/author/${user.creatorId}`}>
+                              <Link to={`/author/${user.creatorId}`}>
                                 <img
                                   className="lazy"
                                   src={user.creatorImage}

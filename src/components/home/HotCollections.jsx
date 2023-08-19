@@ -27,7 +27,8 @@ const HotCollections = ({
             </div>
           </div>
           <OwlCarousel
-          data-aos="fade-up" data-aos-duration="1500"
+            data-aos="fade-up"
+            data-aos-duration="1500"
             className="owl-theme owl-style"
             items={4}
             lazyLoad
