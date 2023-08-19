@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
-const Explore = () => {
+const Explore = ({
+  exploreItemsUsersData,
+  setExploreItemsUsersData,
+  exploreItemsLoading,
+  setExploreItemsLoading,
+}) => {
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -31,8 +37,16 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
-              <ExploreItems />
+            <div
+              className="row"
+              style={{ justifyContent: "center", alignItems: "center" }}
+            >
+              <ExploreItems
+                exploreItemsUsersData={exploreItemsUsersData}
+                setExploreItemsUsersData={setExploreItemsUsersData}
+                exploreItemsLoading={exploreItemsLoading}
+                setExploreItemsLoading={setExploreItemsLoading}
+              />
             </div>
           </div>
         </section>

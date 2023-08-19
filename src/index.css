@@ -10,3 +10,375 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* Owl Carousel */
+.owl-carousel {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.owl-item {
+  flex: 0 0 calc(25% - 10px);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nft_coll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.nft_coll_user_container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Skeleton Loading States */
+.skeleton {
+  background-color: rgb(184, 184, 184);
+  margin-bottom: 8px;
+}
+
+.nft__coll--skeleton {
+  width: 100%;
+  height: 175px;
+  position: relative;
+}
+
+.nft__img--skeleton {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(139, 139, 139);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 160px;
+  z-index: 100;
+  transform: translate(0, -25%);
+}
+
+.nft__name-skeleton {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+}
+
+.nft__id--skeleton {
+  display: inline-block;
+  width: 76px;
+  height: 20px;
+}
+
+.check--skeleton {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(108, 1, 214);
+  border-radius: 50%;
+  transform: translate(70%, -20%);
+  position: relative;
+  z-index: 110;
+}
+
+.fa-check {
+  z-index: 10 !important;
+  color: white;
+  border-radius: 50%;
+  transform: translate(0%, -20%);
+}
+
+.fa-check--skeleton {
+  border-radius: 50%;
+}
+
+.hidden__timer {
+  display: none;
+}
+
+.nft__item {
+  width: 300px;
+  margin-right: 16px;
+  height: 440px;
+}
+
+.skeleton-style {
+  margin-top: 40px;
+  height: 270px;
+}
+
+.nft__newItem--position {
+  transform: translate(0%, -400%);
+}
+
+.nft__newItem--pp--position {
+  transform: translate(145%, -1450%);
+}
+
+.nft__newItem--checkmark--position {
+  transform: translate(10%, -15%);
+}
+
+.nft__detail--container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nft__detail--container-heart {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  transform: translate(0%, -140%);
+}
+
+.heart--skeleton {
+  width: 20px;
+  background-color: rgb(139, 139, 139);
+}
+
+/* Top Sellers Features */
+.newItems--author--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nft__topSellers--container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transform: translate(0%, -20%);
+}
+
+.nft__topSellers--info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nft__topSellers--position {
+  transform: translate(-120%, -160%);
+}
+
+.nft__topSellers--checkmark--container {
+  transform: translate(-130%, 280%);
+}
+
+.nft__topSellers--checkmark--position {
+  transform: translate(15%, -20%);
+}
+
+/* Explore Items */
+.btn-main {
+  color: white !important;
+}
+.btn-main:hover {
+  cursor: pointer;
+}
+
+/* Authors */
+.author__info--container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.author__space--between {
+  display: flex;
+  width: 140px;
+  height: 40px;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.author__follow--button--skeleton {
+  width: 100px;
+  height: 20px;
+}
+
+.author--skeleton--container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.skeleton__container {
+  flex-wrap: wrap;
+}
+
+.author__skeleton--pp {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50% !important;
+}
+
+.author__skeleton--name {
+  width: 180px;
+  height: 24px;
+}
+
+.author__skeleton--tag {
+  width: 80px;
+  margin-top: 12px;
+  height: 14px;
+}
+
+.author__skeleton--address {
+  width: 180px;
+  height: 24px;
+}
+
+.skeleton--container--margin {
+  margin-top: 100px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1265px;
+}
+
+/* Item Details */
+.itemImage--style {
+  width: auto;
+  height: 600px;
+  text-align: center;
+}
+
+.itemImage--skeleton {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  
+}
+
+.itemImage--title--skeleton {
+  width: 300px;
+  height: 44px;
+}
+
+.itemImage--count--skeleton {
+  width: 50px;
+  height: 30px;
+}
+
+.itemImage--p--skeleton {
+  width: 600px;
+  height: 90px;
+}
+
+.itemImage--user--container {
+  display: flex;
+  /* align-items: center; */
+}
+
+.itemImage--pp-skeleton {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(139, 139, 139);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 160px;
+  z-index: 100;
+  transform: translate(0%, -320%);
+}
+
+.itemImage--owner--skeleton {
+width: 100px;
+height: 20px;
+margin-top: 6px;
+margin-left: 14px;
+}
+
+.itemImage--skeleton-col {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.itemImage--price--style {
+  margin-left: 0px;
+  width: 80px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1400px) {
+  .nft_coll {
+    display: flex;
+  }
+  .nft__item {
+    width: 240px;
+  }
+  /* .itemImage--skeleton {
+    height: 546px;
+  } */
+}
+
+@media (max-width: 1200px) {
+  .nft__item {
+    width: 350px;
+  }
+}
+
+@media (max-width: 992px) {
+  .nft__item {
+    width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nft_coll {
+    width: 100%;
+  }
+  .nft__item {
+    max-width: 215px;
+  }
+  .itemImage--style {
+    height: 510px;
+    text-align: center;
+  }
+  
+  .itemImage--skeleton {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 578px) {
+  .nft__item {
+    max-width: 600px;
+  }
+}
+
+.skeleton::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -200%;
+  transform: translateX(65%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite ease-in-out;
+  content: "";
+}
+@-webkit-keyframes shimmer {
+  100% {
+    transform: translateX(80%);
+  }
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(80%);
+  }
+}
