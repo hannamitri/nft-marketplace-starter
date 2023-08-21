@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Countdown = ({ info }) => {
-  const [timer, setTimer] = useState(updateTimer());
+  const [timer, setTimer] = useState(info);
   function updateTimer() {
     let startTime = Date.now();
 
@@ -10,19 +10,19 @@ const Countdown = ({ info }) => {
     let minutesLeft = Math.floor((secondsLeft / 60) % 60);
     let hoursLeft = Math.floor(millisLeft / 1000 / 60 / 60);
 
-    return {
+    setTimer((prevInfo) => ({
       millisLeft,
       secondsLeft,
       minutesLeft,
       hoursLeft,
-    };
+    }));
   }
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer(updateTimer());
-    }, 1000 / 60);
 
-    return () => clearInterval(interval);
+  useEffect(() => {
+    const interval = setInterval(updateTimer, 1000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
