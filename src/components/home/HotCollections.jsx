@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "owl.carousel/dist/assets/owl.carousel.css";
 
 const HotCollections = ({}) => {
-  useEffect(() => {
-  });
-
   const [hotCollectionsData, setHotCollectionsData] = useState([]);
   async function fetchHotCollections() {
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
-    );
-    setHotCollectionsData(data);
-  }
-  fetchHotCollections();
+      try {
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
+        );
+        setHotCollectionsData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    useEffect(() => {
+      fetchHotCollections();
+  }, []);
 
   return (
     <section id="section-collections" className="no-bottom">
