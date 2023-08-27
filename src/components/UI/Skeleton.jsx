@@ -14,3 +14,6 @@ const Skeleton = ({ width, height, borderRadius }) => {
 };
 
 export default Skeleton;
+
+
+// 296 x 307
