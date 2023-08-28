@@ -11,34 +11,28 @@
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
 
-
 .slick-prev:before,
-.slick-next:before
-{
-    color: black !important;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    
+.slick-next:before {
+  color: black !important;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
-
 .nft_coll {
-    margin: 8px;
+  margin: 6px;
 }
 
 .nft__item {
-    margin: 8px;
+  margin: 6px;
 }
 
 .slick-next {
-    scale: 1.5;
-    background-color: white;
+  scale: 1.5;
+  background-color: white;
+}
 
-  }
-
-  .slick-prev {
-    scale: 1.5;
-    background-color: white;
-  }
-  
+.slick-prev {
+  scale: 1.5;
+  background-color: white;
+}

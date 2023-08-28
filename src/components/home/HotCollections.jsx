@@ -106,10 +106,22 @@ const HotCollections = ({}) => {
                     <Skeleton width="100%" height="100%" />
                   </div>
                   <div className="nft_col_pp">
-                    <Skeleton style={{ marginLeft: "100px"}} width={60} height={60} borderRadius={9999} />
+                    <Skeleton
+                      style={{ marginLeft: "100px" }}
+                      width={60}
+                      height={60}
+                      borderRadius={99}
+                    />
+                    <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_col_info">
-                    <Skeleton count={2} style={{ marginLeft: "75px"}} width="40%" height={20} borderRadius={5} />
+                    <Skeleton
+                      count={2}
+                      style={{ marginLeft: "75px" }}
+                      width="40%"
+                      height={20}
+                      borderRadius={5}
+                    />
                   </div>
                 </div>
               </div>
