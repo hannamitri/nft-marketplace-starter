@@ -23,9 +23,22 @@
 }
 
 
-
-
-
 .nft_coll {
     margin: 8px;
 }
+
+.nft__item {
+    margin: 8px;
+}
+
+.slick-next {
+    scale: 1.5;
+    background-color: white;
+
+  }
+
+  .slick-prev {
+    scale: 1.5;
+    background-color: white;
+  }
+  
