@@ -24,6 +24,7 @@ const HotCollections = ({}) => {
     arrows: true,
     draggable: false,
     speed: 300,
+
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
