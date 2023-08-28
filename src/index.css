@@ -19,20 +19,26 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    width: 40px;
-    height: 40px;
-}
-
-
-.slick-prev {
-    padding-right: 40px;
-}
-
-.slick-next {
-    padding-left: 20px;
+    
 }
 
 
 .nft_coll {
     margin: 8px;
 }
+
+.nft__item {
+    margin: 8px;
+}
+
+.slick-next {
+    scale: 1.5;
+    background-color: white;
+
+  }
+
+  .slick-prev {
+    scale: 1.5;
+    background-color: white;
+  }
+  

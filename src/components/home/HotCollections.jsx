@@ -19,11 +19,12 @@ const HotCollections = ({}) => {
   }, [loading]);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     arrows: true,
     draggable: false,
-    speed: 500,
+    speed: 300,
+
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
