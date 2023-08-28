@@ -10,3 +10,22 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.slick-prev:before,
+.slick-next:before
+{
+    color: black !important;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+
+
+
+
+.nft_coll {
+    margin: 8px;
+}
