@@ -24,7 +24,7 @@ const NewItems = () => {
     dots: false,
     infinite: true,
     arrows: true,
-    draggable: false,
+    draggable: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,

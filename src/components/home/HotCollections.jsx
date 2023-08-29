@@ -22,7 +22,7 @@ const HotCollections = ({}) => {
     dots: false,
     infinite: true,
     arrows: true,
-    draggable: false,
+    draggable: true,
     speed: 300,
 
     slidesToShow: 4,
