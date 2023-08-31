@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16714,3 +16714,16 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.grayed-out {
+  
+  opacity: 80%;
+  position: absolute;
+  inset: 0;
+  filter: blur(50px); 
+  animation: pulse 1.2s infinite;
+  
+}
+
+
+/* "absolute inset-0 bg-gray-400 blur-md animate-pulse" */
