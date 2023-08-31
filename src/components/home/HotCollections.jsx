@@ -73,8 +73,9 @@ const HotCollections = () => {
       )
       .then(
         (response) => {
-          setItems(response.data); 
-          setLoading(false); 
+          setItems(response.data);
+          setLoading(false);
+           
       
         },
         (error) => {
@@ -142,8 +143,8 @@ const HotCollections = () => {
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img className={loading ? "grayed-out" :"lazy pp-coll"} src={item.authorImage} alt="" />
+                    <Link to="/author" className={loading ? "grayed-out" : ""}>
+                      <img className="lazy pp-coll" src={item.authorImage} alt="" />
                     </Link>
                     <i className={loading ?"grayed-out" : "fa fa-check"}></i>
                   </div>

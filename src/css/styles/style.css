@@ -16716,10 +16716,7 @@ img {
 }
 
 .grayed-out {
-  
   opacity: 80%;
-  position: absolute;
-  inset: 0;
   filter: blur(50px); 
   animation: pulse 1.2s infinite;
   
