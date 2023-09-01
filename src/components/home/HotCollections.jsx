@@ -62,9 +62,7 @@ function SamplePrevArrow(props) {
 
 const HotCollections = () => {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true); 
-
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios
@@ -74,13 +72,12 @@ const HotCollections = () => {
       .then(
         (response) => {
           setItems(response.data);
-          setLoading(false);
-           
-      
+          setLoading(true);
+        
         },
         (error) => {
           console.log(error);
-          setLoading(false); 
+          setLoading(false);
         }
       );
   }, []);
@@ -132,37 +129,80 @@ const HotCollections = () => {
             </div>
           </div>
         </div>
+        {loading ? (
           <Slider {...settings}>
             {items.map((item) => (
               <div className="relative" key={item.id}>
-                
                 <div className="nft_coll mx-2">
                   <div className="nft_wrap">
                     <Link to="/item-details">
-                      <img src={item.nftImage} className={loading ? "grayed-out" : "lazy img-fill"} alt="" />
+                      <img
+                        src={item.nftImage}
+                        className="lazy img-fill"
+                        alt=""
+                      />
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author" className={loading ? "grayed-out" : ""}>
-                      <img className="lazy pp-coll" src={item.authorImage} alt="" />
+                    <Link to="/author">
+                      <img
+                        className="lazy pp-coll"
+                        src={item.authorImage}
+                        alt=""
+                      />
                     </Link>
-                    <i className={loading ?"grayed-out" : "fa fa-check"}></i>
+                    <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
                     <Link to="/explore">
-                      <h4 className={loading ? "grayed-out" : "opacity-100"}>{item.title}</h4>
+                      <h4>{item.title}</h4>
                     </Link>
-                    <span className={loading ? "grayed-out" : "opacity-100"}>ERC-{item.code}</span>
+                    <span>ERC-{item.code}</span>
                   </div>
                 </div>
               </div>
-              
-        
             ))}
           </Slider>
+        ) : (
+          <Slider {...settings}>
+            {items.map((item) => (
+              <div className="relative" key={item.id}>
+                <div className="nft_coll mx-2">
+                  <div className="nft_wrap">
+                    <Link to="/item-details">
+                      <div className="gray-placeholder"></div>
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <div className="gray-placeholder">
+                        <img
+                          className="lazy pp-coll"
+                          src={item.authorImage}
+                          alt=""
+                        />
+                      </div>
+                    </Link>
+                    
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <div className="gray-placeholder">
+                        <h4>{item.title}</h4>
+                      </div>
+                    </Link>
+                    <div className="gray-placeholder-title">
+                      <span>ERC-{item.code}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
     </section>
   );
-  };
-  
-  export default HotCollections;
+};
+
+export default HotCollections;
