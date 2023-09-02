@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
   const [nftArray, setNftArray] = useState([]);
@@ -91,37 +92,71 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider {...carouselSettings}>
-            {nftArray.map((nft) => (
-              <div className="carousel-slide" key={nft.id}>
-                <div className="nft_coll">
-                  <div className="nft_wrap ">
-                    <Link to="/item-details">
-                      <img
-                        src={nft.nftImage}
-                        className="lazy img-fluid "
-                        alt=""
-                      />
-                    </Link>
+            {nftArray.length > 0
+              ? //Show nftArray if its length is superior to 0. In other words, when nftArray is fetched.
+                nftArray.map((nft) => (
+                  <div className="carousel-slide" key={nft.id}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap ">
+                        <Link to="/item-details">
+                          <img
+                            src={nft.nftImage}
+                            className="lazy img-fluid "
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp ">
+                        <Link to="/author">
+                          <img
+                            className="lazy pp-coll  "
+                            src={nft.authorImage}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{nft.title}</h4>
+                        </Link>
+                        <span>{`ERC-${nft.code}`}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="nft_coll_pp ">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-coll  "
-                        src={nft.authorImage}
-                        alt=""
-                      />
-                    </Link>
-                    <i className="fa fa-check"></i>
+                ))
+              : // Show skeleton loading state if nftArray.length isn't superior than 0. In other words, when nftArray isn't fetched. An array of length 5 is created then is filled with empty nft objects that have a loading state animation. I picked an array of length 5 instead of 6 to save memory.
+                Array.from({ length: 5 }).map((_, index) => (
+                  <div className="carousel-slide" key={index}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap ">
+                        <Skeleton width={"100%"} height={"100%"}>
+                          <div>&nbsp;</div>
+                        </Skeleton>
+                      </div>
+                      <div className="nft_coll_pp ">
+                        <Skeleton
+                          width={"60px"}
+                          height={"60px"}
+                          borderRadius={"25px"}
+                        >
+                          <div>&nbsp;</div>
+                        </Skeleton>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <Skeleton width={"120px"} height={"19.19px"}>
+                            <div>&nbsp;</div>
+                          </Skeleton>
+                        </Link>
+                        <Skeleton width={"90px"} height={"19.19px"}>
+                          <div>&nbsp;</div>
+                        </Skeleton>
+                      </div>
+                    </div>
                   </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>{nft.title}</h4>
-                    </Link>
-                    <span>{`ERC-${nft.code}`}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+                ))}
           </Slider>
         </div>
       </div>
