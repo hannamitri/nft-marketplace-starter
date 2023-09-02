@@ -10,3 +10,52 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* Hot Collections Carousel */
+
+.carousel-slide {
+  padding: 0 10px; /* Add padding between the inner sides of the NFTs */
+}
+
+.slick-prev,
+.slick-next {
+  width: 50px !important;
+  height: 50px !important;
+  background-color: white !important;
+  border-radius: 25px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 1 !important;
+  cursor: pointer !important;
+  transform: scale(1) !important;
+  transition: transform 0.2s ease-in-out !important;
+  box-shadow: 0 0 2px black; /* Thin black border using box-shadow */
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  transform: scale(1.1) !important;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  content: "" !important; /* Remove the provided arrows from the react-slick library */
+  width: 20px !important;
+  height: 20px !important;
+  background: url("./images/arrowhead-right.svg") no-repeat !important; /* Use arrowhead svg, replacing the given arrow from react-slick library */
+  background-size: contain !important;
+  opacity: 1 !important;
+}
+
+.slick-prev::before {
+  transform: rotate(180deg); /* Flip the arrow horizontally for left arrow */
+}
+
+.slick-prev {
+  left: 0px !important; /* Position the left arrow */
+}
+
+.slick-next {
+  right: 0px !important; /* Position the right arrow */
+}
