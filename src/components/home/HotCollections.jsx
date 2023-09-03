@@ -144,16 +144,14 @@ const HotCollections = () => {
                         </Skeleton>
                         <i className="fa fa-check"></i>
                       </div>
-                      <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <Skeleton width={"120px"} height={"19.19px"}>
-                            <div>&nbsp;</div>
-                          </Skeleton>
-                        </Link>
-                        <Skeleton width={"90px"} height={"19.19px"}>
+                      <div>
+                        <Skeleton width={"120px"} height={"19.19px"}>
                           <div>&nbsp;</div>
                         </Skeleton>
                       </div>
+                      <Skeleton width={"90px"} height={"19.19px"}>
+                        <div>&nbsp;</div>
+                      </Skeleton>
                     </div>
                   </div>
                 ))}
