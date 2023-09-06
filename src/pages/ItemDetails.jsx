@@ -11,11 +11,11 @@ const ItemDetails = ({collections}) => {
   }, []);
 const { id } = useParams();
 const idNumber = parseInt(id, 10);
-console.log( "worked", collections)
+
 
 const collection = collections.find((collection) => collection.authorId === idNumber);
 
- console.log("collection", collection.authorImage);
+
 return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
