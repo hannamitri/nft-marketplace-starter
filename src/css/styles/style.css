@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16714,3 +16714,33 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.grayed-out-image {
+  background-color: #ccc; /* Gray background */
+  width: 100%; /* Make sure it fills the entire space */
+  height: 100%; /* Make sure it fills the entire space */
+  object-fit: cover; /* Maintain aspect ratio and cover the space */
+}
+
+.gray-placeholder-container {
+  width: 100%; /* Set the width of the container to 100% */
+  padding-bottom: 60%; /* Set the padding bottom to maintain a 3:2 aspect ratio (60% = 2/3) */
+  position: relative; /* Maintain the aspect ratio while positioning content */
+}
+
+.gray-placeholder {
+  background: gray; 
+  width: 60%; 
+  height: 60%; 
+  filter: blur(40px);
+  margin: 0 auto;
+}
+.gray-placeholder-title {
+  color:transparent
+}
+
+
+
+
+
+/* "absolute inset-0 bg-gray-400 blur-md animate-pulse" */
