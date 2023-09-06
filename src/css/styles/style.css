@@ -16739,8 +16739,31 @@ img {
   color:transparent
 }
 
+.skeleton__loading {
+  background-color: rgb(204, 204, 204);
+  margin-top: 2px;
+  border-radius: 50%;
+  position: absolute;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  height: auto;
+  margin-left: 10px;
+  z-index: 10;
+  color: transparent;
+  background: #efeff1;
+}
+.skeleton {
+  
+  color:transparent !important;
+  background: #efeff1;
+}
 
 
+.skeleton_author_list_info {
+  font-weight: bold;
+  padding-left: 70px;
+  background-color: rgb(204, 204, 204);
+}
 
 
-/* "absolute inset-0 bg-gray-400 blur-md animate-pulse" */
