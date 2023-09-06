@@ -16715,12 +16715,32 @@ img {
   cursor: not-allowed;
 }
 
-.grayed-out {
-  opacity: 80%;
-  filter: blur(50px); 
-  animation: pulse 1.2s infinite;
-  
+.grayed-out-image {
+  background-color: #ccc; /* Gray background */
+  width: 100%; /* Make sure it fills the entire space */
+  height: 100%; /* Make sure it fills the entire space */
+  object-fit: cover; /* Maintain aspect ratio and cover the space */
 }
+
+.gray-placeholder-container {
+  width: 100%; /* Set the width of the container to 100% */
+  padding-bottom: 60%; /* Set the padding bottom to maintain a 3:2 aspect ratio (60% = 2/3) */
+  position: relative; /* Maintain the aspect ratio while positioning content */
+}
+
+.gray-placeholder {
+  background: gray; 
+  width: 60%; 
+  height: 60%; 
+  filter: blur(40px);
+  margin: 0 auto;
+}
+.gray-placeholder-title {
+  color:transparent
+}
+
+
+
 
 
 /* "absolute inset-0 bg-gray-400 blur-md animate-pulse" */

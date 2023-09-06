@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,8 @@ import {
   MdOutlineKeyboardArrowRight,
   MdOutlineKeyboardArrowLeft,
 } from "react-icons/md";
+import { getHotCollections } from "../../api/hotcollections";
+
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -61,28 +63,17 @@ function SamplePrevArrow(props) {
 }
 
 const HotCollections = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(false);
 
-
+  const [hotCollections, setHotCollections] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-      )
-      .then(
-        (response) => {
-          setItems(response.data);
-          setLoading(false);
-           
-      
-        },
-        (error) => {
-          console.log(error);
-          setLoading(false); 
-        }
-      );
+    async function fetchData() {
+      const hotcollections = await getHotCollections();
+      setLoading(true);
+      setHotCollections(hotcollections);
+    }
+    fetchData();
   }, []);
 
   const settings = {
@@ -97,17 +88,17 @@ const HotCollections = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -132,37 +123,86 @@ const HotCollections = () => {
             </div>
           </div>
         </div>
+        {loading ? (
           <Slider {...settings}>
-            {items.map((item) => (
-              <div className="relative" key={item.id}>
-                
+            {hotCollections.map((hotCollection) => (
+              <div className="relative" key={hotCollection.id}>
                 <div className="nft_coll mx-2">
                   <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img src={item.nftImage} className={loading ? "grayed-out" : "lazy img-fill"} alt="" />
+                    <Link
+                      to={{
+                        pathname: `/item-details/${hotCollection.authorId}`,
+                      }}
+                    >
+                      <img
+                        src={hotCollection.nftImage}
+                        className="lazy img-fill"
+                        alt=""
+                      />
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author" className={loading ? "grayed-out" : ""}>
-                      <img className="lazy pp-coll" src={item.authorImage} alt="" />
+                    <Link to=
+                    {{
+                      pathname:`/author/${hotCollection.authorId}`
+                      }}>
+                      <img
+                        className="lazy pp-coll"
+                        src={hotCollection.authorImage}
+                        alt=""
+                      />
                     </Link>
-                    <i className={loading ?"grayed-out" : "fa fa-check"}></i>
+                    <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
                     <Link to="/explore">
-                      <h4 className={loading ? "grayed-out" : "opacity-100"}>{item.title}</h4>
+                      <h4>{hotCollection.title}</h4>
                     </Link>
-                    <span className={loading ? "grayed-out" : "opacity-100"}>ERC-{item.code}</span>
+                    <span>ERC-{hotCollection.code}</span>
                   </div>
                 </div>
               </div>
-              
-        
             ))}
           </Slider>
+        ) : (
+          <Slider {...settings}>
+            {hotCollections.map((hotCollection) => (
+              <div className="relative" key={hotCollection.id}>
+                <div className="nft_coll mx-2">
+                  <div className="nft_wrap">
+                    <Link to={`/item-details/${hotCollection.id}`}>
+                      <div className="gray-placeholder"></div>
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <div className="gray-placeholder">
+                        <img
+                          className="lazy pp-coll"
+                          src={hotCollection.authorImage}
+                          alt=""
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <div className="gray-placeholder">
+                        <h4>{hotCollection.title}</h4>
+                      </div>
+                    </Link>
+                    <div className="gray-placeholder-title">
+                      <span>ERC-{hotCollection.code}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
     </section>
   );
-  };
-  
-  export default HotCollections;
+};
+
+export default HotCollections;
