@@ -7,6 +7,7 @@ import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import { getCombinedCollections } from "./api/combineCollections";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
 const [collections, setCollections] = useState([]);
@@ -28,6 +29,7 @@ useEffect(() => {
 
 
   return (
+    <SkeletonTheme color="blue" highlightColor="#525252">
     <Router>
       <Nav />
       <Routes>
@@ -38,6 +40,7 @@ useEffect(() => {
       </Routes>
       <Footer />
     </Router>
+    </SkeletonTheme>
   );
 }
 

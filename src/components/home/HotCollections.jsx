@@ -9,6 +9,7 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from "react-icons/md";
 import { getHotCollections } from "../../api/hotcollections";
+import { Skeleton } from "@mui/material";
 
 
 function SampleNextArrow(props) {
@@ -63,14 +64,14 @@ function SamplePrevArrow(props) {
 }
 
 const HotCollections = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [hotCollections, setHotCollections] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const hotcollections = await getHotCollections();
-      setLoading(true);
+      setLoading(false);
       setHotCollections(hotcollections);
     }
     fetchData();
@@ -123,12 +124,15 @@ const HotCollections = () => {
             </div>
           </div>
         </div>
-        {loading ? (
+        
           <Slider {...settings}>
             {hotCollections.map((hotCollection) => (
               <div className="relative" key={hotCollection.id}>
                 <div className="nft_coll mx-2">
                   <div className="nft_wrap">
+                    {loading ? (
+                      <Skeleton variant="rectangular" width={400} height={400} />
+                    ) : (
                     <Link
                       to={{
                         pathname: `/item-details/${hotCollection.authorId}`,
@@ -140,8 +144,12 @@ const HotCollections = () => {
                         alt=""
                       />
                     </Link>
+                    )}
                   </div>
                   <div className="nft_coll_pp">
+                   {loading ? (
+                      <Skeleton variant="circular" width={50} height={50} />
+                    ) : ( 
                     <Link to=
                     {{
                       pathname:`/author/${hotCollection.authorId}`
@@ -151,55 +159,30 @@ const HotCollections = () => {
                         src={hotCollection.authorImage}
                         alt=""
                       />
+                      <i className="fa fa-check"></i>
                     </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
+                    )}
+                    </div>
                   <div className="nft_coll_info">
+                    {loading ? (
+                      <Skeleton  />
+                    ) : (
                     <Link to="/explore">
                       <h4>{hotCollection.title}</h4>
                     </Link>
-                    <span>ERC-{hotCollection.code}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
-        ) : (
-          <Slider {...settings}>
-            {hotCollections.map((hotCollection) => (
-              <div className="relative" key={hotCollection.id}>
-                <div className="nft_coll mx-2">
-                  <div className="nft_wrap">
-                    <Link to={`/item-details/${hotCollection.id}`}>
-                      <div className="gray-placeholder"></div>
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <div className="gray-placeholder">
-                        <img
-                          className="lazy pp-coll"
-                          src={hotCollection.authorImage}
-                          alt=""
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <div className="gray-placeholder">
-                        <h4>{hotCollection.title}</h4>
-                      </div>
-                    </Link>
-                    <div className="gray-placeholder-title">
+                    )}
+                    {loading ? (
+                      <Skeleton  />
+                    ) : (
                       <span>ERC-{hotCollection.code}</span>
-                    </div>
+                    )
+                    }
                   </div>
                 </div>
               </div>
             ))}
           </Slider>
-        )}
+        
       </div>
     </section>
   );
