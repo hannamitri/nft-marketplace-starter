@@ -1,15 +1,22 @@
-import React, { useEffect } from "react";
+import React, {useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
 
-const ItemDetails = () => {
+
+
+const ItemDetails = ({collections}) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+const { id } = useParams();
+const idNumber = parseInt(id, 10);
+console.log( "worked", collections)
 
-  return (
+const collection = collections.find((collection) => collection.authorId === idNumber);
+
+ console.log("collection", collection.authorImage);
+return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -18,14 +25,14 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={nftImage}
+                  src={collection.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
+                  <h2>{collection.title}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
@@ -34,7 +41,7 @@ const ItemDetails = () => {
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      74
+                      {collection.likes}
                     </div>
                   </div>
                   <p>
@@ -48,7 +55,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={collection.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
@@ -78,7 +85,7 @@ const ItemDetails = () => {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      <span></span>
                     </div>
                   </div>
                 </div>

@@ -16729,7 +16729,7 @@ img {
 }
 
 .gray-placeholder {
-  background-color: #ccc; 
+  background: gray; 
   width: 60%; 
   height: 60%; 
   filter: blur(40px);
@@ -16738,6 +16738,9 @@ img {
 .gray-placeholder-title {
   color:transparent
 }
+
+
+
 
 
 /* "absolute inset-0 bg-gray-400 blur-md animate-pulse" */
