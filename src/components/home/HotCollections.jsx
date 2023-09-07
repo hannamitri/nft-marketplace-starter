@@ -124,7 +124,6 @@ const HotCollections = () => {
             </div>
           </div>
         </div>
-        
           <Slider {...settings}>
             {hotCollections.map((hotCollection) => (
               <div className="relative" key={hotCollection.id}>

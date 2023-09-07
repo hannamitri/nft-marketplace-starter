@@ -16715,55 +16715,6 @@ img {
   cursor: not-allowed;
 }
 
-.grayed-out-image {
-  background-color: #ccc; /* Gray background */
-  width: 100%; /* Make sure it fills the entire space */
-  height: 100%; /* Make sure it fills the entire space */
-  object-fit: cover; /* Maintain aspect ratio and cover the space */
-}
 
-.gray-placeholder-container {
-  width: 100%; /* Set the width of the container to 100% */
-  padding-bottom: 60%; /* Set the padding bottom to maintain a 3:2 aspect ratio (60% = 2/3) */
-  position: relative; /* Maintain the aspect ratio while positioning content */
-}
-
-.gray-placeholder {
-  background: gray; 
-  width: 60%; 
-  height: 60%; 
-  filter: blur(40px);
-  margin: 0 auto;
-}
-.gray-placeholder-title {
-  color:transparent
-}
-
-.skeleton__loading {
-  background-color: rgb(204, 204, 204);
-  margin-top: 2px;
-  border-radius: 50%;
-  position: absolute;
-  display: inline-block;
-  width: 60px;
-  height: 60px;
-  height: auto;
-  margin-left: 10px;
-  z-index: 10;
-  color: transparent;
-  background: #efeff1;
-}
-.skeleton {
-  
-  color:transparent !important;
-  background: #efeff1;
-}
-
-
-.skeleton_author_list_info {
-  font-weight: bold;
-  padding-left: 70px;
-  background-color: rgb(204, 204, 204);
-}
 
 

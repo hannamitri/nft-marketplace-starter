@@ -11,6 +11,7 @@ import {
 import { getNewItems } from "../../api/newitems";
 import CountdownTimer from "../../functions/countdown";
 import { Skeleton } from "@mui/material";
+import NftCard from "../UI/NftCard";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -126,98 +127,7 @@ const NewItems = () => {
           <Slider {...settings}>
             {newItems.map((newItem) => (
               <div className="" key={newItem.id}>
-                <div className="nft__item mx-2">
-                  <div className="author_list_pp">
-                    {loading ? (
-                      <Skeleton variant="circular" width={50} height={50} />
-                    ) : (
-                      <Link
-                        to={{
-                          pathname: `/author/${newItem.authorId}`,
-                        }}
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Creator: Monica Lucas"
-                      >
-                        <img
-                          className="lazy"
-                          src={newItem.authorImage}
-                          alt=""
-                        />
-                        <i className="fa fa-check"></i>
-                      </Link>
-                    )}
-                  </div>
-                  {newItem.expiryDate !== null &&
-                    (loading ? (
-                      ""
-                    ) : (
-                      <div className="de_countdown">
-                        <CountdownTimer targetTime={newItem.expiryDate} />
-                      </div>
-                    ))}
-
-                  <div className="nft__item_wrap">
-                    <div className="nft__item_extra">
-                      <div className="nft__item_buttons">
-                        <button>Buy Now</button>
-                        <div className="nft__item_share">
-                          <h4>Share</h4>
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-facebook fa-lg"></i>
-                          </a>
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-twitter fa-lg"></i>
-                          </a>
-                          <a href="">
-                            <i className="fa fa-envelope fa-lg"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    {loading ? (
-                      <Skeleton
-                        variant="rectangular"
-                        width={200}
-                        height={200}
-                      />
-                    ) : (
-                      <Link
-                        to={{
-                          pathname: `/item-details/${newItem.authorId}`,
-                        }}
-                      >
-                        <img
-                          src={newItem.nftImage}
-                          className="lazy nft__item_preview"
-                          alt=""
-                        />
-                      </Link>
-                    )}
-                  </div>
-                  <div className="nft__item_info">
-                    {loading ? (
-                      <Skeleton />
-                    ) : (
-                      <Link to="/item-details">
-                        <h4>{newItem.title}</h4>
-                      </Link>
-                    )}
-                    {loading ? (
-                      <Skeleton />
-                    ) : (
-                      <div>
-                        <div className="nft__item_price">
-                          {newItem.price} ETH
-                        </div>
-                        <div className="nft__item_like">
-                          <i className="fa fa-heart"></i>
-                          <span>{newItem.likes}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                <NftCard item={newItem} loading={loading} />
               </div>
             ))}
           </Slider>
