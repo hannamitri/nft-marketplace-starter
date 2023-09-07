@@ -10,10 +10,12 @@ const TopSellersUI = () => {
   useEffect(() => {
     async function fetchTopSellers() {
       const topSellers = await getTopSellers();
-      setTopSellers(topSellers);
-      setLoading(false);
+      setTopSellers(topSellers);  
     }
-    console.log(topSellers);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+   
     fetchTopSellers();
   }, []);
 
