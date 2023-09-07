@@ -3,25 +3,36 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import { Skeleton } from "@mui/material";
+import { getItemDetails } from "../api/itemdetails";
 
 
 
-const ItemDetails = ({collections}) => {
+const ItemDetails = () => {
+const [items, setItems] = useState([]);
+const { id } = useParams();
+
+const idNumber = parseInt(id, 10);
+const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-const { id } = useParams();
-const idNumber = parseInt(id, 10);
 
-const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
-}, []);
+  useEffect(() => {
+    async function fetchData() {
+      const items = await getItemDetails(idNumber);
+      setLoading(true);
+      setItems(items);
+    }
+    setTimeout(() => {
+      setLoading(false);
+    }, 350);
+    fetchData();
+  }, [idNumber]);
+ 
 
-const collection = collections.find((collection) => collection.authorId === idNumber);
+
 
 return (
     <div id="wrapper">
@@ -38,7 +49,7 @@ return (
                     height={500}
                     />) : (
                 <img
-                  src={collection.nftImage}
+                  src={items.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
@@ -50,7 +61,7 @@ return (
                     <Skeleton height={50}/>
                   ) : (
                     
-                    <h2>{collection.title}</h2>
+                    <h2>{items.title}</h2>
                   )}
 
                   <div className="item_info_counts">
@@ -60,7 +71,7 @@ return (
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      {collection.likes}
+                      {items.likes}
                     </div>
                   </div>
                   {loading ? (
@@ -68,9 +79,7 @@ return (
                    
                   ) : (
                   <p>
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                    illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
+                    {items.description}
                   </p>
                   )}
                   <div className="d-flex flex-row">
@@ -82,7 +91,7 @@ return (
                             <Skeleton variant="circular" width={50} height={50} />
                           ) : (
                           <Link to="/author">
-                            <img className="lazy" src={collection.authorImage} alt="" />
+                            <img className="lazy" src={items.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                           )}
@@ -91,7 +100,7 @@ return (
                           {loading ? (
                             <Skeleton width={200} height={25} />
                           ) : (
-                            <Link to="/author">Monica Lucas</Link>
+                            <Link to="/author">{items.ownerName}</Link>
                           )}
                         </div>
                       </div>
@@ -107,7 +116,7 @@ return (
                             <Skeleton variant="circular" width={50} height={50} />
                           ) : (
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={items.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                           )}
@@ -116,7 +125,7 @@ return (
                           {loading ? (
                             <Skeleton width={200} height={25} />
                           ) : (
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{items.creatorName}</Link>
                           )}
                         </div>
                       </div>
@@ -128,7 +137,7 @@ return (
                       ) : (
                         <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>{collection.price}</span>
+                      <span>{items.price}</span>
                       </div>
                       )}
                   </div>
