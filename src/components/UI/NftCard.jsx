@@ -51,7 +51,7 @@ const NftCard = ({ item, loading }) => {
         ) : (
           <Link
             to={{
-              pathname: `/item-details/${item.authorId}`,
+              pathname: `/item-details/${item.nftId}`,
             }}
           >
             <img

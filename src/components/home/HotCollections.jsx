@@ -136,7 +136,7 @@ const HotCollections = () => {
                     ) : (
                     <Link
                       to={{
-                        pathname: `/item-details/${hotCollection.authorId}`,
+                        pathname: `/item-details/${hotCollection.nftId}`,
                       }}
                     >
                       <img
