@@ -30,9 +30,12 @@ const ExploreItems = () => {
   useEffect(() => {
     async function fetchData() {
       const items = await getExploreItemsFilter(filter);
-      setLoading(false);
+      setLoading(true);
       setItems(items);
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 350);
     fetchData();
   }, [filter]);
 

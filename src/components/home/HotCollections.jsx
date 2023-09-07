@@ -71,9 +71,11 @@ const HotCollections = () => {
   useEffect(() => {
     async function fetchData() {
       const hotcollections = await getHotCollections();
-      setLoading(false);
       setHotCollections(hotcollections);
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     fetchData();
   }, []);
 

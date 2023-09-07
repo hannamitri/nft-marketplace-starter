@@ -71,9 +71,11 @@ const NewItems = () => {
   useEffect(() => {
     async function fetchData() {
       const newItems = await getNewItems();
-      setLoading(false);
       setNewItems(newItems);
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     fetchData();
   }, []);
 
