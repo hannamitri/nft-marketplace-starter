@@ -13,6 +13,7 @@ const TopSellersUI = () => {
       setTopSellers(topSellers);
       setLoading(false);
     }
+    console.log(topSellers);
     fetchTopSellers();
   }, []);
 
