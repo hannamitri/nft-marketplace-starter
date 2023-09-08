@@ -1,10 +1,11 @@
 import React, {useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+
 import { Skeleton } from "@mui/material";
 import { getItemDetails } from "../api/itemdetails";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 
 const ItemDetails = () => {
@@ -17,6 +18,8 @@ const [loading, setLoading] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+// Any comment animations
+
 
 // from main do not remove
   useEffect(() => {
@@ -30,12 +33,19 @@ const [loading, setLoading] = useState(true);
     }, 350);
     fetchData();
   }, [idNumber]);
+  
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+  
  
 
 
 
 return (
-    <div id="wrapper">
+    <div id="wrapper"
+    data-aos="fade-in"
+    >
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
@@ -90,7 +100,7 @@ return (
                           {loading ? (
                             <Skeleton variant="circular" width={50} height={50} />
                           ) : (
-                          <Link to="/author">
+                          <Link to={`/author/${items.ownerId}`}>
                             <img className="lazy" src={items.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
@@ -115,7 +125,7 @@ return (
                           {loading ? (
                             <Skeleton variant="circular" width={50} height={50} />
                           ) : (
-                          <Link to="/author">
+                          <Link to={`/author/${items.creatorId}`}>
                             <img className="lazy" src={items.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
@@ -125,7 +135,12 @@ return (
                           {loading ? (
                             <Skeleton width={200} height={25} />
                           ) : (
-                          <Link to="/author">{items.creatorName}</Link>
+                          <Link to=
+                          {{pathname:`/author/${items.authorId}`}}
+                          
+                          >
+                            
+                            {items.creatorName}</Link>
                           )}
                         </div>
                       </div>

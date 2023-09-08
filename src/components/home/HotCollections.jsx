@@ -10,6 +10,8 @@ import {
 } from "react-icons/md";
 import { getHotCollections } from "../../api/hotcollections";
 import { Skeleton } from "@mui/material";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 
 function SampleNextArrow(props) {
@@ -67,6 +69,10 @@ const HotCollections = () => {
   const [loading, setLoading] = useState(true);
 
   const [hotCollections, setHotCollections] = useState([]);
+  
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -78,6 +84,7 @@ const HotCollections = () => {
     }, 1000);
     fetchData();
   }, []);
+
 
   const settings = {
     dots: false,
@@ -116,7 +123,9 @@ const HotCollections = () => {
   };
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" className="no-bottom"
+    data-aos="fade-up"
+    >
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

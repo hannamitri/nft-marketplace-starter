@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 import TopSellersUI from "../UI/TopSellersUI";
 
 const TopSellers = () => {
-
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
   return (
-    <section id="section-popular" className="pb-5">
+    <section 
+    data-aos="fade-up"
+    id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

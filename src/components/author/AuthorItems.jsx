@@ -23,7 +23,7 @@ const AuthorItems = () => {
     }, 350);
     fetchData();
   }, [idNumber]);
-
+console.log(collections)
 
   return (
     <div className="de_tab_content">
