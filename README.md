@@ -1,18 +1,3 @@
-<!-- btw this is how to branch off -->
-<!-- We open terminal and change to git bash instead -->
-<!-- git checkout -b nameOfNewBranch ; -b is the one for creating new branch -->
-<!-- after doing stuff, the usual git add . -->
-<!-- then git commit -m "valueable info about task done" -->
-<!-- If not yet encoded email & username, follow upcoming guide after git commiting -->
-<!-- git push, then copy paste the new push command -->
-<!-- To check if what branch are we working on, 'git status' -->
-
-<!-- IF YOU ARE READY TO WORK ON ANOTHER FEATURE -->
-
-<!-- How to switch to main branch (parent branch), using 'git checkout main' -->
-<!-- Then we 'git pull' ; this pulls all changes that everyone pushed on this branch then brings back to your repo -->
-<!-- Then we 'git checkout -b 'lama-next-feature' to work on another feature -->
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
