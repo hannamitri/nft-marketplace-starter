@@ -12707,6 +12707,7 @@ a.read_more i {
 .switch {
   margin-bottom: -5px;
   -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -15441,7 +15442,7 @@ img {
 
 /* ================================================== */
 
-/* R E S P O N S I V E responsiveness */
+/* R E S P O N S I V E */
 
 /* ================================================== */
 
