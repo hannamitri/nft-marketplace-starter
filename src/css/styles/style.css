@@ -11362,7 +11362,7 @@ section.no-padding {
 .d-nav-right {
   cursor: pointer;
   position: absolute;
-  top: 37.5%;
+  top: 40%;
   z-index: 100;
   width: 45px;
   height: 45px;
@@ -11400,14 +11400,14 @@ section.no-padding {
 
 .owl-prev,
 .d-nav-left {
-  left: -12px;
+  left: 1px;
   border-radius: 60px;
   padding-left: 4px;
 }
 
 .owl-next,
 .d-nav-right {
-  right: -12px;
+  right: 1px;
   border-radius: 60px;
   padding-right: 4px;
 }
@@ -12706,7 +12706,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -13219,6 +13219,8 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
+  max-width: 100%;
+  margin: 10px;
 }
 
 .nft_coll_info {
@@ -15145,7 +15147,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -15439,7 +15441,7 @@ img {
 
 /* ================================================== */
 
-/* R E S P O N S I V E */
+/* R E S P O N S I V E responsiveness */
 
 /* ================================================== */
 
