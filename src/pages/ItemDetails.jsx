@@ -20,6 +20,8 @@ const [loading, setLoading] = useState(true);
   }, []);
 // Any comment animations
 
+
+// from main do not remove
   useEffect(() => {
     async function fetchData() {
       const items = await getItemDetails(idNumber);
