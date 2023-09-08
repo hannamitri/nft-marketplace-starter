@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import CountdownTimer from "../../functions/countdown";
+
 import { Skeleton } from "@mui/material";
 
 const NftCardAuthor = ({ item, loading, collection }) => {
@@ -47,7 +47,7 @@ const NftCardAuthor = ({ item, loading, collection }) => {
         ) : (
           <Link
             to={{
-              pathname: `/item-details/${item.authorId}`,
+              pathname: `/item-details/${collection.nftId}`,
             }}
           >
             <img

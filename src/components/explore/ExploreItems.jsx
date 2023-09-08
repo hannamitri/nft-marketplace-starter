@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { getExploreItemsFilter } from "../../api/exploreItems";
 
 import NftCard from "../UI/NftCard";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
@@ -39,6 +42,10 @@ const ExploreItems = () => {
     fetchData();
   }, [filter]);
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   return (
     <>
       <div>
@@ -51,6 +58,7 @@ const ExploreItems = () => {
       </div>
       {items.slice(0, slice).map((item) => (
         <div
+          data-aos='fade-in'
           key={item.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}

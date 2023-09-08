@@ -9,9 +9,9 @@ import {
   MdOutlineKeyboardArrowLeft,
 } from "react-icons/md";
 import { getNewItems } from "../../api/newitems";
-import CountdownTimer from "../../functions/countdown";
-import { Skeleton } from "@mui/material";
 import NftCard from "../UI/NftCard";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -79,6 +79,10 @@ const NewItems = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -116,7 +120,9 @@ const NewItems = () => {
   };
 
   return (
-    <section id="section-items" className="no-bottom">
+    <section id="section-items" 
+    data-aos="fade-up"
+    className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
