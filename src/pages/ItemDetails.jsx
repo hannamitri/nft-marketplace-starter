@@ -18,7 +18,7 @@ const [loading, setLoading] = useState(true);
     window.scrollTo(0, 0);
   }, []);
 
-
+// from main do not remove
   useEffect(() => {
     async function fetchData() {
       const items = await getItemDetails(idNumber);
