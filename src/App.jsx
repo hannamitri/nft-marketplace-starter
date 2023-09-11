@@ -6,26 +6,14 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import { getCombinedCollections } from "./api/combineCollections";
+
 import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
-const [collections, setCollections] = useState([]);
 
 
-useEffect(() => {
-  async function fetchData(){
-    try{
-      const data = await getCombinedCollections();
-      // console.log("Fetched data:", data); // Log the fetched data
-      setCollections(data);
-    }
-    catch(error){
-      console.log("Error:", error);
-    }
-  }
-  fetchData();
-}, []);
+
+
 
 
   return (
