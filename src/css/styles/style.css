@@ -16744,9 +16744,9 @@ img {
 }
 
 .arrow-left {
-  left: 0;
+  left: -5px;
 }
 
 .arrow-right {
-  right: 0;
+  right: -5px;
 }
