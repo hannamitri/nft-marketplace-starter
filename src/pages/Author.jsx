@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+
 
 const Author = () => {
   const [authorData, setAuthorData] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followerCount, setFollowerCount] = useState(0);
+  let params = useParams();
+
+  console.log(params);
 
   useEffect(() => {
     const fetchAuthorData = async () => {
       try {
-        const response = await fetch('https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012');
+        const author_id = params.id
+        const response = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${author_id}`);
         const data = await response.json();
         setAuthorData(data);
+        setFollowerCount(data.followers);
       } catch (error) {
         console.error("Error fetching author data:", error);
       }
@@ -20,6 +28,17 @@ const Author = () => {
 
     fetchAuthorData();
   }, []);
+
+  const toggleFollow = () => {
+    if (isFollowing) {
+      setFollowerCount((prevCount) => prevCount - 1);
+    } else {
+      setFollowerCount((prevCount) => prevCount + 1);
+    }
+    setIsFollowing(!isFollowing);
+  };
+
+  const authorId = authorData ? authorData.authorId : null;
 
   return (
     <div id="wrapper">
@@ -41,34 +60,35 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      {authorData && (
-                        <>
-                          <img src={authorData.authorImage} alt="" />
-                          <i className="fa fa-check"></i>
-                          <div className="profile_name">
-                            <h4>
-                              {authorData.authorName}
-                              <span className="profile_username">@{authorData.tag}</span>
-                              <span id="wallet" className="profile_wallet">
-                                {authorData.address}
-                              </span>
-                              <button id="btn_copy" title="Copy Text">
-                                Copy
-                              </button>
-                            </h4>
-                          </div>
-                        </>
-                      )}
+                      <img src={authorData?.authorImage} alt="" />
+
+                      <i className="fa fa-check"></i>
+                      <div className="profile_name">
+                        {authorData ? (
+                          <h4>
+                            {authorData.authorName}
+                            <span className="profile_username">@{authorData.tag}</span>
+                            <span id="wallet" className="profile_wallet">
+                              {authorData.address}
+                            </span>
+                            <button id="btn_copy" title="Copy Text">
+                              Copy
+                            </button>
+                          </h4>
+                        ) : (
+                          <h4>Loading...</h4>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       {authorData ? (
                         <>
-                          <div className="profile_follower">{authorData.followers} followers</div>
-                          <Link to="#" className="btn-main">
-                            Follow
-                          </Link>
+                          <div className="profile_follower">{followerCount} followers</div>
+                          <button className="btn-main" onClick={toggleFollow}>
+                            {isFollowing ? 'Unfollow' : 'Follow'}
+                          </button>
                         </>
                       ) : (
                         <>
@@ -97,3 +117,5 @@ const Author = () => {
 };
 
 export default Author;
+
+

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Slider from 'react-slick';
 
@@ -7,13 +7,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const HotCollections = () => {
+  const {id} = useParams
   const [collections, setCollections] = useState([]);
 
   useEffect(() => {
     const fetchCollections = async () => {
       try {
         const response = await axios.get(
-          'https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections'
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections?authorId=${id}`
         );
         setCollections(response.data);
       } catch (error) {
@@ -66,7 +67,7 @@ const HotCollections = () => {
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${collection.authorId}`}>
                       <img className="lazy pp-coll" src={collection.authorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>
