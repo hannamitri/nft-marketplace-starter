@@ -36,7 +36,7 @@ const ExploreItems = () => {
       setTimeout(() => {
       setLoading(false);
     }
-    , 350);
+    , 500);
       setItems(items);
     }
    
