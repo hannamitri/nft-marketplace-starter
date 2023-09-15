@@ -11362,7 +11362,7 @@ section.no-padding {
 .d-nav-right {
   cursor: pointer;
   position: absolute;
-  top: 40%;
+  top: 42.5%;
   z-index: 100;
   width: 45px;
   height: 45px;
@@ -11400,14 +11400,14 @@ section.no-padding {
 
 .owl-prev,
 .d-nav-left {
-  left: 1px;
+  left: -2px;
   border-radius: 60px;
   padding-left: 4px;
 }
 
 .owl-next,
 .d-nav-right {
-  right: 1px;
+  right: -2px;
   border-radius: 60px;
   padding-right: 4px;
 }
@@ -13221,7 +13221,7 @@ a.read_more i {
 .nft_coll {
   text-align: center;
   max-width: 100%;
-  margin: 10px;
+  margin: 0 5px;
 }
 
 .nft_coll_info {
