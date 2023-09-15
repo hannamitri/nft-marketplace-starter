@@ -6,7 +6,7 @@ import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
 
-const Home = ({ nftHotCollectionsData }) => {
+const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,7 +17,7 @@ const Home = ({ nftHotCollectionsData }) => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections nftHotCollectionsData={nftHotCollectionsData} />
+        <HotCollections />
         <NewItems />
         <TopSellers />
         <BrowseByCategory />
