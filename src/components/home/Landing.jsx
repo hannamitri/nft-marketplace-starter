@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Landing = () => {
+useEffect(() => {
+  Aos.init({ duration: 2000 });
+}, []);
+
+
   return (
     <section
+      data-aos = "fade-up"
       id="section-hero"
       aria-label="section"
       className="no-top no-bottom vh-100"

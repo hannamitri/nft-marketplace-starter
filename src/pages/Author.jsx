@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+
+import { getAuthor } from "../api/author";
 
 const Author = () => {
+  const { id } = useParams();
+  const idNumber = parseInt(id, 10);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [followers, setFollowers] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const items = await getAuthor(idNumber);
+      setLoading(true);
+      setItems(items);
+    }
+    setTimeout(() => {
+      setLoading(false);
+    }, 350);
+    fetchData();
+  }, [idNumber]);
+
+  const addFollower = () => {
+    setFollowers((prevFollowers) => !prevFollowers);
+  };
+
+  useEffect(() => {
+    const followerButton = document.getElementById("follower");
+    if (followerButton) {
+      followerButton.addEventListener("click", addFollower);
+    }
+
+    return () => {
+      if (followerButton) {
+        followerButton.removeEventListener("click", addFollower);
+      }
+    };
+  }, []);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +61,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={items.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
+                          {items.authorName}
                           <span className="profile_username">@monicaaaa</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {items.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,10 +80,25 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      {followers ? (
+                        <div>
+                          <div className="profile_follower">
+                            {items.followers} followers
+                          </div>
+                          <Link to="#" id="follower" className="btn-main">
+                            Follow
+                          </Link>
+                        </div>
+                      ) : (
+                        <div>
+                          <div className="profile_follower">
+                            {items.followers + 1} followers
+                          </div>
+                          <Link to="#" id="follower" className="btn-main">
+                            UnFollow
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
