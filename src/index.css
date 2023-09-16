@@ -102,3 +102,13 @@ HOT COLLECTION
     transform: translateX(100%);
   }
 }
+
+/* 
+
+NEW ITEMS 
+
+*/
+
+.new-items-nft {
+  max-width: 100%;
+}
