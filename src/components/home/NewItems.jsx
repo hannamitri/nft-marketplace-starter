@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,12 +8,15 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import NftWithTimer from "../UI/NftWithTimer";
+import SkeletonNftWithTimer from "../UI/SkeletonNftWithTimer";
 
 const NewItems = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [newItems, setNewItems] = useState([]);
   const url =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
+  const skeletonArr = [1, 2, 3, 4, 5, 6, 7, 8];
 
   useEffect(() => {
     async function fetchData() {
@@ -69,90 +71,67 @@ const NewItems = () => {
     ],
   };
 
-  function convertTime(releaseDate) {
-    const seconds = (releaseDate - Date.now()) / 1000;
-    const minutes = seconds / 60;
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = Math.floor(minutes % 60);
-    const remainingSeconds = Math.floor((seconds % 60) % 60);
-    return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
-  }
-
   return (
-    <section id="section-items" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
+    <>
+      <section id="section-items" className="no-bottom">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="text-center">
+                <h2>New Items</h2>
+                <div className="small-border bg-color-2"></div>
+              </div>
             </div>
-          </div>
-          {isLoaded ? (
-            <>
+
+            {isLoaded ? (
               <div className="slider__wrapper">
                 <Slider ref={sliderRef} {...settings}>
                   {newItems.map((nft, index) => (
-                    <div
-                      className="col-lg-3 col-md-6 col-sm-6 col-xs-12 new-items-nft"
-                      key={index}>
+                    <span
+                      key={index}
+                      className="col-lg-3 col-md-6 col-sm-6 col-xs-12 new-items-nft">
+                      <NftWithTimer nft={nft} key={index} />
+                    </span>
+                  ))}
+                </Slider>
+                <button
+                  className="slider-prev-btn slider-btn"
+                  onClick={previous}>
+                  <FontAwesomeIcon icon={faChevronLeft} />
+                </button>
+                <button className="slider-next-btn slider-btn" onClick={next}>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+              </div>
+            ) : (
+              <div className="slider__wrapper">
+                <Slider ref={sliderRef} {...settings}>
+                  {skeletonArr.map(() => (
+                    <div className="new-items__item--skeleton">
                       <div className="nft__item">
                         <div className="author_list_pp">
-                          <Link
-                            to={`/author/${nft.authorId}`}
+                          <div
+                            className="new-items__img--skeleton--wrapper skeleton"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Creator: Monica Lucas">
-                            <img
-                              className="lazy"
-                              src={nft.authorImage}
-                              alt=""
-                            />
-                            <i className="fa fa-check"></i>
-                          </Link>
+                            <img className="lazy" alt="" />
+                          </div>
+                          <i className="fa fa-check"></i>
                         </div>
-                        {nft.expiryDate ? (
-                          <div className="de_countdown">
-                            {convertTime(nft.expiryDate)}
-                          </div>
-                        ) : null}
-
-                        <div className="nft__item_wrap">
-                          <div className="nft__item_extra">
-                            <div className="nft__item_buttons">
-                              <button>Buy Now</button>
-                              <div className="nft__item_share">
-                                <h4>Share</h4>
-                                <a href="" target="_blank" rel="noreferrer">
-                                  <i className="fa fa-facebook fa-lg"></i>
-                                </a>
-                                <a href="" target="_blank" rel="noreferrer">
-                                  <i className="fa fa-twitter fa-lg"></i>
-                                </a>
-                                <a href="">
-                                  <i className="fa fa-envelope fa-lg"></i>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-
-                          <Link to={`/item-details/${nft.nftId}`}>
-                            <img
-                              src={nft.nftImage}
-                              className="lazy nft__item_preview"
-                              alt=""
-                            />
-                          </Link>
+                        <div className="nft__item_wrap skeleton">
+                          <img className="lazy nft__item_preview" alt="" />
                         </div>
                         <div className="nft__item_info">
-                          <Link to="/item-details">
-                            <h4>{nft.title}</h4>
-                          </Link>
-                          <div className="nft__item_price">{nft.price} ETH</div>
-                          <div className="nft__item_like">
-                            <i className="fa fa-heart"></i>
-                            <span>{nft.likes}</span>
-                          </div>
+                          <span className="new-items__title--skeleton skeleton">
+                            Title Title Title
+                          </span>
+                          <span className="nft__item_price new-items__price--skeleton skeleton">
+                            5.07 ETH
+                          </span>
+                          <span className="nft__item_like new-items__likes--skeleton skeleton">
+                            Likes
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -167,13 +146,11 @@ const NewItems = () => {
                   <FontAwesomeIcon icon={faChevronRight} />
                 </button>
               </div>
-            </>
-          ) : (
-            <>false</>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

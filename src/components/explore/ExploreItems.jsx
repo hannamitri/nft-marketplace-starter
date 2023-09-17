@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import NftWithTimer from "../UI/NftWithTimer";
 
 const ExploreItems = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [originalExplorePage, setOriginalExplorePage] = useState([]);
+  const [visibleNFTs, setVisibleNFTs] = useState([]);
   const [explorePage, setExplorePage] = useState([]);
   const url =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -13,6 +15,7 @@ const ExploreItems = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(url);
+      setVisibleNFTs(response.data.slice(0, 8));
       setExplorePage(response.data);
       setOriginalExplorePage(response.data);
       setTimeout(() => {
@@ -23,33 +26,28 @@ const ExploreItems = () => {
     fetchData();
   }, [url]);
 
-  function convertTime(releaseDate) {
-    const seconds = (releaseDate - Date.now()) / 1000;
-    const minutes = seconds / 60;
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = Math.floor(minutes % 60);
-    const remainingSeconds = Math.floor((seconds % 60) % 60);
-    return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
-  }
-
   function filterNft(event) {
     const value = event.target.value;
     if (isLoaded) {
       if (value === "") {
-        setExplorePage(originalExplorePage);
+        console.log(originalExplorePage.slice(0, visibleNFTs.length));
+        setVisibleNFTs(originalExplorePage.slice(0, visibleNFTs.length));
       }
       if (value === "price_low_to_high") {
         const lowToHigh = [...explorePage].sort((a, b) => a.price - b.price);
+        setVisibleNFTs(lowToHigh.slice(0, visibleNFTs.length));
         setExplorePage(lowToHigh);
       }
       if (value === "price_high_to_low") {
         const highToLow = [...explorePage].sort((a, b) => b.price - a.price);
+        setVisibleNFTs(highToLow.slice(0, visibleNFTs.length));
         setExplorePage(highToLow);
       }
       if (value === "likes_high_to_low") {
         const LikesHighToLow = [...explorePage].sort(
           (a, b) => b.likes - a.likes
         );
+        setVisibleNFTs(LikesHighToLow.slice(0, visibleNFTs.length));
         setExplorePage(LikesHighToLow);
       }
     }
@@ -67,140 +65,42 @@ const ExploreItems = () => {
       </div>
       {isLoaded ? (
         <>
-          {explorePage.map((nft, index) => (
-            <div
-              className="col-lg-3 col-md-6 col-sm-6 col-xs-12 new-items-nft"
-              key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to={`/author/${nft.authorId}`}
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas">
-                    <img className="lazy" src={nft.authorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                {nft.expiryDate ? (
-                  <div className="de_countdown">
-                    {convertTime(nft.expiryDate)}
-                  </div>
-                ) : null}
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Link to={`/item-details/${nft.nftId}`}>
-                    <img
-                      src={nft.nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>{nft.title}</h4>
-                  </Link>
-                  <div className="nft__item_price">{nft.price} ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>{nft.likes}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {visibleNFTs.map((nft, index) => (
+            <span key={index} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <NftWithTimer nft={nft} />
+            </span>
           ))}
         </>
       ) : (
         <>
-          <>
-            {skeletonArr.map((nft, index) => (
-              <div
-                className="col-lg-3 col-md-6 col-sm-6 col-xs-12 new-items-nft"
-                key={index}>
-                <div className="nft__item">
-                  <div className="author_list_pp">
-                    <Link
-                      to={`/author/${nft.authorId}`}
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Creator: Monica Lucas">
-                      <img className="lazy" src={nft.authorImage} alt="" />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  {nft.expiryDate ? (
-                    <div className="de_countdown">
-                      {convertTime(nft.expiryDate)}
-                    </div>
-                  ) : null}
-
-                  <div className="nft__item_wrap">
-                    <div className="nft__item_extra">
-                      <div className="nft__item_buttons">
-                        <button>Buy Now</button>
-                        <div className="nft__item_share">
-                          <h4>Share</h4>
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-facebook fa-lg"></i>
-                          </a>
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-twitter fa-lg"></i>
-                          </a>
-                          <a href="">
-                            <i className="fa fa-envelope fa-lg"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <Link to={`/item-details/${nft.nftId}`}>
-                      <img
-                        src={nft.nftImage}
-                        className="lazy nft__item_preview"
-                        alt=""
-                      />
-                    </Link>
-                  </div>
-                  <div className="nft__item_info">
-                    <Link to="/item-details">
-                      <h4>{nft.title}</h4>
-                    </Link>
-                    <div className="nft__item_price">{nft.price} ETH</div>
-                    <div className="nft__item_like">
-                      <i className="fa fa-heart"></i>
-                      <span>{nft.likes}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </>
+          {skeletonArr.map(() => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+              <div className="skeleton snwt__skeleton"></div>
+            </div>
+          ))}
         </>
       )}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+      {visibleNFTs.length !== 16 ? (
+        <div className="col-md-12 text-center">
+          <Link
+            to=""
+            id="loadmore"
+            onClick={() => {
+              if (visibleNFTs.length === 8) {
+                setVisibleNFTs(explorePage.slice(0, 12));
+              } else if (visibleNFTs.length === 12) {
+                setVisibleNFTs(explorePage.slice(0, 16));
+              } else {
+                setVisibleNFTs(visibleNFTs);
+              }
+            }}
+            className="btn-main lead">
+            Load more
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
