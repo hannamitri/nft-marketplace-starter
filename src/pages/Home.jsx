@@ -12,6 +12,8 @@ const Home = () => {
   const [loadinghotCollections, setloadinghotCollections] = useState(null)
   const [newItems, setNewItems] = useState([])
   const [newItemsLoading, setNewItemsLoading] = useState(null)
+  const [topSellers, settopSellers] = useState([])
+  const [loadingtopSellers, setloadingtopSellers] = useState(null)
 
   const fetchHotCollections = async () => {
     setloadinghotCollections(true)
@@ -30,10 +32,21 @@ const Home = () => {
     setNewItemsLoading(false)
   };
 
+  const fetchTopSellers = async () => {
+    setloadingtopSellers(true)
+    const { data } = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+    );
+    settopSellers(data)
+    setloadingtopSellers(false)
+  };
+
+
 
   useEffect(() => {
     fetchHotCollections();
     fetchNewItems();
+    fetchTopSellers();
   }, []);
 
   return (
@@ -44,7 +57,7 @@ const Home = () => {
         <LandingIntro />
         <HotCollections hotCollections={hotCollections} loadinghotCollections={loadinghotCollections}/>
         <NewItems newItems={newItems} newItemsLoading={newItemsLoading} />
-        <TopSellers />
+        <TopSellers topSellers={topSellers} loadingtopSellers={loadingtopSellers}/>
         <BrowseByCategory />
       </div>
     </div>
