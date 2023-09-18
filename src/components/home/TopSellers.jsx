@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
 
-const TopSellers = ({ topSellers, loadingtopSellers}) => {
+const TopSellers = ({ topSellers, loadingtopSellers }) => {
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -16,7 +16,7 @@ const TopSellers = ({ topSellers, loadingtopSellers}) => {
           <div className="col-md-12">
             <ol className="author_list">
               {loadingtopSellers
-                ? new Array(12).fill(0).map((_,index) => (
+                ? new Array(12).fill(0).map((_, index) => (
                     <li key={index}>
                       <div className="author_list_pp">
                         <Link to="/author">
