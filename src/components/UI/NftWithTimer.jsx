@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const NftWithTimer = ({ nft }) => {
-  function convertTime(releaseDate) {
-    const seconds = (releaseDate - Date.now()) / 1000;
+  const [liked, setLiked] = useState(false);
+  const [countdown, setCountdown] = useState(nft.expiryDate - Date.now());
+
+  function handleLike() {
+    if (liked) {
+      setLiked(false);
+    } else {
+      setLiked(true);
+    }
+  }
+
+  setInterval(() => {
+    setCountdown(nft.expiryDate - Date.now());
+  }, 1000);
+
+  function printTime(releaseDate) {
+    const seconds = releaseDate / 1000;
     const minutes = seconds / 60;
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = Math.floor(minutes % 60);
     const remainingSeconds = Math.floor((seconds % 60) % 60);
+
+    if (releaseDate - Date.now() === 0) {
+      return "EXPIRED";
+    }
+
     return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
   }
+
   return (
     <div className="nft__item">
       <div className="author_list_pp">
@@ -23,7 +44,7 @@ const NftWithTimer = ({ nft }) => {
         </Link>
       </div>
       {nft.expiryDate ? (
-        <div className="de_countdown">{convertTime(nft.expiryDate)}</div>
+        <div className="de_countdown">{printTime(countdown)}</div>
       ) : null}
 
       <div className="nft__item_wrap">
@@ -54,9 +75,18 @@ const NftWithTimer = ({ nft }) => {
           <h4>{nft.title}</h4>
         </Link>
         <div className="nft__item_price">{nft.price} ETH</div>
-        <div className="nft__item_like">
-          <i className="fa fa-heart"></i>
-          <span>{nft.likes}</span>
+        <div className="nft__item_like" onClick={handleLike}>
+          {liked ? (
+            <>
+              <i className="fa fa-heart heart-red"></i>
+              <span>{nft.likes + 1}</span>
+            </>
+          ) : (
+            <>
+              <i className="fa fa-heart"></i>
+              <span>{nft.likes}</span>
+            </>
+          )}
         </div>
       </div>
     </div>

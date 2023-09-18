@@ -5,7 +5,7 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
-  let { itemID } = useParams();
+  let { nftID } = useParams();
 
   return (
     <div id="wrapper">

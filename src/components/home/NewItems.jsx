@@ -9,7 +9,6 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import NftWithTimer from "../UI/NftWithTimer";
-import SkeletonNftWithTimer from "../UI/SkeletonNftWithTimer";
 
 const NewItems = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,7 +45,7 @@ const NewItems = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
     pauseOnHover: true,
     responsive: [
@@ -106,8 +105,8 @@ const NewItems = () => {
             ) : (
               <div className="slider__wrapper">
                 <Slider ref={sliderRef} {...settings}>
-                  {skeletonArr.map(() => (
-                    <div className="new-items__item--skeleton">
+                  {skeletonArr.map((__, index) => (
+                    <div className="new-items__item--skeleton" key={index}>
                       <div className="nft__item">
                         <div className="author_list_pp">
                           <div
