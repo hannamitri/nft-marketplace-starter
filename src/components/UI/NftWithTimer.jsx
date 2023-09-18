@@ -3,7 +3,30 @@ import { Link } from "react-router-dom";
 
 const NftWithTimer = ({ nft }) => {
   const [liked, setLiked] = useState(false);
-  const [countdown, setCountdown] = useState(nft.expiryDate - Date.now());
+  const [expireDate, setExpireDate] = useState(
+    Math.floor((nft.expiryDate - Date.now()) / 1000)
+  );
+
+  useEffect(() => {
+    setTimeout(() => {
+      setExpireDate(expireDate - 1);
+    }, 1000);
+  }, [expireDate]);
+
+  function printTime(releaseDate) {
+    if (releaseDate > 0) {
+      const seconds = expireDate;
+      const minutes = seconds / 60;
+      const hours = Math.floor(minutes / 60);
+      const remainingMinutes = Math.floor(minutes % 60);
+      const remainingSeconds = (seconds % 60) % 60;
+      return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
+    }
+
+    if (releaseDate - Date.now() === 0) {
+      return "EXPIRED";
+    }
+  }
 
   function handleLike() {
     if (liked) {
@@ -11,24 +34,6 @@ const NftWithTimer = ({ nft }) => {
     } else {
       setLiked(true);
     }
-  }
-
-  setInterval(() => {
-    setCountdown(nft.expiryDate - Date.now());
-  }, 1000);
-
-  function printTime(releaseDate) {
-    const seconds = releaseDate / 1000;
-    const minutes = seconds / 60;
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = Math.floor(minutes % 60);
-    const remainingSeconds = Math.floor((seconds % 60) % 60);
-
-    if (releaseDate - Date.now() === 0) {
-      return "EXPIRED";
-    }
-
-    return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`;
   }
 
   return (
@@ -44,7 +49,7 @@ const NftWithTimer = ({ nft }) => {
         </Link>
       </div>
       {nft.expiryDate ? (
-        <div className="de_countdown">{printTime(countdown)}</div>
+        <div className="de_countdown">{printTime(expireDate)}</div>
       ) : null}
 
       <div className="nft__item_wrap">

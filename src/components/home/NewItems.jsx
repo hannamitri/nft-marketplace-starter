@@ -42,9 +42,12 @@ const NewItems = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 1200,
@@ -86,7 +89,7 @@ const NewItems = () => {
                     <span
                       key={index}
                       className="col-lg-3 col-md-6 col-sm-6 col-xs-12 new-items-nft">
-                      <NftWithTimer nft={nft} key={index} />
+                      <NftWithTimer nft={nft} />
                     </span>
                   ))}
                 </Slider>

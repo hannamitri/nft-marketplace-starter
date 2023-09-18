@@ -47,6 +47,9 @@ const HotCollections = () => {
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 1200,
