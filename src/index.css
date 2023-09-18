@@ -10,3 +10,139 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/*
+
+HOT COLLECTION 
+
+*/
+
+.slider__wrapper {
+  position: relative;
+}
+
+.hot-collections-nft {
+  max-width: 100%;
+  padding: 0 7.5px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  border: 2px solid #24242440;
+  cursor: pointer;
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  transition: all 300ms ease;
+}
+
+.slider-btn:hover {
+  transform: scale(1.05) translateY(-50%);
+  box-shadow: 4px 4px 8px #24242440;
+}
+
+.slider-next-btn {
+  right: 0px;
+}
+
+.slider-prev-btn {
+  left: 0px;
+}
+
+.skeleton {
+  background-color: #dddbdd;
+  color: #dddbdd;
+  background-size: 300%;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton:after {
+  -webkit-animation: shimmer 2s infinite;
+  animation: shimmer 2s infinite;
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.2) 20%,
+    hsla(0, 0%, 100%, 0.5) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.skeleton__hot-collections--img {
+  height: 100%;
+}
+
+.skeleton__hot-collections--author--img {
+  height: 60px;
+  border-radius: 50%;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 
+
+NEW ITEMS 
+
+*/
+
+.new-items-nft {
+  max-width: 100%;
+  width: 100%;
+}
+
+.new-items__item--skeleton {
+  margin-right: 10px;
+}
+
+.snwt__skeleton {
+  max-width: 100%;
+  width: 100%;
+  height: calc(440px - 65px);
+  margin: 0 0 25px;
+  padding: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.new-items__price--skeleton {
+  width: 20%;
+  height: 16px;
+}
+
+.new-items__likes--skeleton {
+  height: 16px;
+}
+
+.new-items__img--skeleton--wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.heart-red {
+  color: red;
+}
