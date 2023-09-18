@@ -5,16 +5,18 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/UI/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/author/:authorID" element={<Author />} />
+        <Route path="/item-details/:nftID" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
