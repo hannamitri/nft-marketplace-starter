@@ -45,9 +45,6 @@ const NewItems = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 1200,

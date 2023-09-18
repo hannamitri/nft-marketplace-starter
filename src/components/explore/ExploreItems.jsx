@@ -73,8 +73,8 @@ const ExploreItems = () => {
         </>
       ) : (
         <>
-          {skeletonArr.map(() => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          {skeletonArr.map((__, index) => (
+            <div key={index} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
               <div className="skeleton snwt__skeleton"></div>
             </div>
           ))}
