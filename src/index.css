@@ -146,3 +146,24 @@ NEW ITEMS
 .heart-red {
   color: red;
 }
+
+/* 
+
+TOP SELLERS 
+
+*/
+
+.top-sellers__img--skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.top-seller__name--skeleton {
+  width: 60%;
+  margin-bottom: 4px;
+}
+
+.top-seller__price--skeleton {
+  width: 40%;
+}
