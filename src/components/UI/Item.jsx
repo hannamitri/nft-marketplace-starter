@@ -23,7 +23,7 @@ function CountdownTimer(expiryDate) {
     return () => clearInterval(interval);
   }, []);
 
-  if (timeLeftInSeconds < 0) {
+  if (timeLeftInSeconds < 0 || !expiryDate) {
     return <div></div>;
   }
 
@@ -42,21 +42,21 @@ function CountdownTimer(expiryDate) {
 
 export default function Item({ item }) {
   return (
-    <div key={item.id}>
+    <div key={item?.id}>
       <div className="nft__item">
         <div className="author_list_pp">
           <Link
-            to="/author"
+            to={`/author/${item?.authorId}`}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Creator: Monica Lucas"
           >
-            <img className="lazy" src={item.authorImage} alt="" />
+            <img className="lazy" src={item?.authorImage} alt="" />
             <i className="fa fa-check"></i>
           </Link>
         </div>
 
-        {CountdownTimer(item.expiryDate)}
+        {CountdownTimer(item?.expiryDate)}
 
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
@@ -79,7 +79,7 @@ export default function Item({ item }) {
 
           <Link to="/item-details">
             <img
-              src={item.nftImage}
+              src={item?.nftImage}
               className="lazy nft__item_preview"
               alt=""
             />
@@ -87,12 +87,12 @@ export default function Item({ item }) {
         </div>
         <div className="nft__item_info">
           <Link to="/item-details">
-            <h4>{item.title}</h4>
+            <h4>{item?.title}</h4>
           </Link>
-          <div className="nft__item_price">{item.price} ETH</div>
+          <div className="nft__item_price">{item?.price} ETH</div>
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
-            <span>{item.likes}</span>
+            <span>{item?.likes}</span>
           </div>
         </div>
       </div>
