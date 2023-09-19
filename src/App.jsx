@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/UI/ScrollToTop";
 
 function App() {
+  const url = "https://us-central1-nft-cloud-functions.cloudfunctions.net/";
+
   return (
     <Router>
       <ScrollToTop />

@@ -167,3 +167,43 @@ TOP SELLERS
 .top-seller__price--skeleton {
   width: 40%;
 }
+
+/* 
+
+AUTHOR PAGE 
+
+*/
+
+.profile__avatar--skeleton {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.follow__button {
+  width: 150px;
+  height: 40px;
+}
+
+.fa-check {
+  z-index: 999;
+}
+
+.author__name--skeleton,
+.profile__username--skeleton,
+.profile__wallet--skeleton {
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.profile__name--skeleton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.author__items--skeleton--wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
