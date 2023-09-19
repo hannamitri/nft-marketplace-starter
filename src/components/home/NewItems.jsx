@@ -45,7 +45,7 @@ const NewItems = () => {
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
     responsive: [
@@ -73,7 +73,7 @@ const NewItems = () => {
   return (
     <>
       <section id="section-items" className="no-bottom">
-        <div className="container">
+        <div className="container" data-aos="fade-in">
           <div className="row">
             <div className="col-lg-12">
               <div className="text-center">

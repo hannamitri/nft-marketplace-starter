@@ -48,7 +48,7 @@ const NftWithTimer = ({ nft }) => {
   }
 
   return (
-    <div className="nft__item">
+    <div data-aos="fade-in" className="nft__item">
       <div className="author_list_pp">
         <Link
           to={`/author/${nft.authorId}`}

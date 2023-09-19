@@ -6,9 +6,16 @@ import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/UI/ScrollToTop";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
-  const url = "https://us-central1-nft-cloud-functions.cloudfunctions.net/";
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
 
   return (
     <Router>
