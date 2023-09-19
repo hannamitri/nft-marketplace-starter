@@ -207,3 +207,40 @@ AUTHOR PAGE
   display: flex;
   flex-wrap: wrap;
 }
+
+/* 
+
+ITEM DETAILS 
+
+*/
+
+.item__img--skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.item__price--skeleton {
+  height: 20px;
+  width: 75px;
+}
+
+.item__creator--name--skeleton {
+  width: 125px;
+  height: 20px;
+}
+
+.item__title--skeleton {
+  height: 40px;
+  width: 300px;
+}
+
+.likes__skeleton,
+.views__skeleton {
+  height: 30px;
+  width: 80px;
+}
+
+.para__skeleton {
+  height: 80px;
+}

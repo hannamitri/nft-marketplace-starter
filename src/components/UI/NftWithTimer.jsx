@@ -8,10 +8,21 @@ const NftWithTimer = ({ nft }) => {
   );
 
   useEffect(() => {
-    setTimeout(() => {
-      setExpireDate(expireDate - 1);
-    }, 1000);
-  }, [expireDate]);
+    let isMounted = true;
+
+    const updateExpireDate = () => {
+      if (isMounted) {
+        setExpireDate((prevExpireDate) => prevExpireDate - 1);
+      }
+    };
+
+    const timerId = setInterval(updateExpireDate, 1000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(timerId);
+    };
+  }, [nft.expiryDate]);
 
   function printTime(releaseDate) {
     if (releaseDate > 0) {
