@@ -9,48 +9,41 @@ const ExploreItems = () => {
   const [visibleNFTs, setVisibleNFTs] = useState([]);
   const [explorePage, setExplorePage] = useState([]);
   const url =
-    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=";
   const skeletonArr = [1, 2, 3, 4, 5, 6, 7, 8];
 
   useEffect(() => {
+    let isMounted = true;
+
     async function fetchData() {
-      const response = await axios.get(url);
-      setVisibleNFTs(response.data.slice(0, 8));
-      setExplorePage(response.data);
-      setOriginalExplorePage(response.data);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 200);
+      try {
+        const response = await axios.get(url);
+        if (isMounted) {
+          setVisibleNFTs(response.data.slice(0, 8));
+          setExplorePage(response.data);
+          setOriginalExplorePage(response.data);
+          setTimeout(() => {
+            setIsLoaded(true);
+          }, 200);
+        }
+      } catch (error) {}
     }
 
     fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [url]);
 
-  function filterNft(event) {
-    const value = event.target.value;
-    if (isLoaded) {
-      if (value === "") {
-        console.log(originalExplorePage.slice(0, visibleNFTs.length));
-        setVisibleNFTs(originalExplorePage.slice(0, visibleNFTs.length));
-      }
-      if (value === "price_low_to_high") {
-        const lowToHigh = [...explorePage].sort((a, b) => a.price - b.price);
-        setVisibleNFTs(lowToHigh.slice(0, visibleNFTs.length));
-        setExplorePage(lowToHigh);
-      }
-      if (value === "price_high_to_low") {
-        const highToLow = [...explorePage].sort((a, b) => b.price - a.price);
-        setVisibleNFTs(highToLow.slice(0, visibleNFTs.length));
-        setExplorePage(highToLow);
-      }
-      if (value === "likes_high_to_low") {
-        const LikesHighToLow = [...explorePage].sort(
-          (a, b) => b.likes - a.likes
-        );
-        setVisibleNFTs(LikesHighToLow.slice(0, visibleNFTs.length));
-        setExplorePage(LikesHighToLow);
-      }
+  async function filterNft(e) {
+    const value = e.target.value;
+    if (value === "") {
+      setVisibleNFTs(originalExplorePage.slice(0, visibleNFTs.length));
     }
+    const filteredData = (await axios.get(url + value)).data;
+    setVisibleNFTs(filteredData.slice(0, visibleNFTs.length));
+    setExplorePage(filteredData);
   }
 
   return (
