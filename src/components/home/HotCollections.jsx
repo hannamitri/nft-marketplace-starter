@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
 
 const HotCollections = () => {
+  const [collections, setCollections] = useState([])
+  
+  useEffect(() => {
+    // Define an async function inside useEffect
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`)
+        const data = res
+        console.log(data)
+  
+        setCollections(data.data.map(e => ({
+          id: e.id,
+          title: e.title,
+          authorImage: e.authorImage,
+          nftImage: e.nftImage,
+          authorId: e.authorId,
+          code: e.code
+        })))
+      
+      } catch (error) {
+        console.error(error.message)
+      }
+    }
+  
+    // Call the async function
+    fetchData();
+  }, [axios, setCollections]); // Use a dependency array with all the variables used inside useEffect
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2>Hot Collections AA</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
