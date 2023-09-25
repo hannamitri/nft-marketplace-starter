@@ -17,12 +17,10 @@ const HotCollections = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setNFTs(data);
-    console.log("fetched nfts")
+
     setLoading(false);
-    console.log("set loading state to false")
   }
 
-  console.log(NFTs);
   useEffect(() => {
     fetchNFTs();
   }, [loading]);
@@ -44,42 +42,42 @@ const HotCollections = () => {
         }}
       >
         {new Array(6).fill(0).map((_, index) => (
-            <div className="nft_coll" key={index}>
-              <div className="nft_wrap">
-                <a href="/">
-                  <div
-                    className="skeleton-box"
-                    style={{ width: "100%", height: "200px" }}
-                  ></div>
-                </a>
-              </div>
-              <div className="nft_coll_pp">
-                <a href="/">
-                  <div
-                    className="skeleton-box"
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                    }}
-                  ></div>
-                </a>
-                <i className="fa fa-check"></i>
-              </div>
-              <div className="nft_coll_info">
-                <a href="/">
-                  <div
-                    className="skeleton-box"
-                    style={{ width: "100px", height: "20px" }}
-                  ></div>
-                </a>
-                <br />
+          <div className="nft_coll" key={index}>
+            <div className="nft_wrap">
+              <a href="/">
                 <div
                   className="skeleton-box"
-                  style={{ width: "60px", height: "20px" }}
+                  style={{ width: "100%", height: "200px" }}
                 ></div>
-              </div>
+              </a>
             </div>
+            <div className="nft_coll_pp">
+              <a href="/">
+                <div
+                  className="skeleton-box"
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                  }}
+                ></div>
+              </a>
+              <i className="fa fa-check"></i>
+            </div>
+            <div className="nft_coll_info">
+              <a href="/">
+                <div
+                  className="skeleton-box"
+                  style={{ width: "100px", height: "20px" }}
+                ></div>
+              </a>
+              <br />
+              <div
+                className="skeleton-box"
+                style={{ width: "60px", height: "20px" }}
+              ></div>
+            </div>
+          </div>
         ))}
       </ReactOwlCarousel>
     ) : (
@@ -97,7 +95,7 @@ const HotCollections = () => {
           0: { items: 1 },
         }}
       >
-        {NFTs.map((NFT,index) => (
+        {NFTs.map((NFT, index) => (
           <div className="nft_coll" key={index}>
             <div className="nft_wrap">
               <Link to="/item-details">
