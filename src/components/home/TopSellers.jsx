@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const TopSellers = () => {
-  const [NFTs, setNFTs] = useState([]);
+  const [topSellers, setTopSellers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  async function fetchNFTs() {
+  async function fetchTopSellers() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
     );
-    setNFTs(data);
+    setTopSellers(data);
     setLoading(false);
   }
 
   useEffect(() => {
-    fetchNFTs();
+    fetchTopSellers();
   }, []);
 
-  function renderNFTs() {
+  function renderTopSellers() {
     return loading
       ? new Array(12).fill(0).map((_, index) => (
           <li>
@@ -47,17 +47,17 @@ const TopSellers = () => {
             </div>
           </li>
         ))
-      : NFTs.map((NFT, index) => (
+      : topSellers.map((author, index) => (
           <li key={index}>
             <div className="author_list_pp">
-              <Link to={`author/${NFT.authorId}`}>
-                <img className="lazy pp-author" src={NFT.authorImage} alt="" />
+              <Link to={`author/${author.authorId}`}>
+                <img className="lazy pp-author" src={author.authorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
             <div className="author_list_info">
-              <Link to={`author/${NFT.authorId}`}>{NFT.authorName}</Link>
-              <span>{NFT.price} ETH</span>
+              <Link to={`author/${author.authorId}`}>{author.authorName}</Link>
+              <span>{author.price} ETH</span>
             </div>
           </li>
         ));
@@ -74,7 +74,7 @@ const TopSellers = () => {
             </div>
           </div>
           <div className="col-md-12">
-            <ol className="author_list">{renderNFTs()}</ol>
+            <ol className="author_list">{renderTopSellers()}</ol>
           </div>
         </div>
       </div>
