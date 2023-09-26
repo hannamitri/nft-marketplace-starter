@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
+
 import CountdownTimer from "../CountdownTimer";
 
 const NewItems = () => {
