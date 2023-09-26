@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
-//testing...
+
 const TopSellers = () => {
   const [NFTs, setNFTs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +17,6 @@ const TopSellers = () => {
   useEffect(() => {
     fetchNFTs();
   }, []);
-  console.log(NFTs);
 
   function renderNFTs() {
     return loading
