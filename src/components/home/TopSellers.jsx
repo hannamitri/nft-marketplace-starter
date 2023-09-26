@@ -21,7 +21,7 @@ const TopSellers = () => {
   function renderTopSellers() {
     return loading
       ? new Array(12).fill(0).map((_, index) => (
-          <li>
+          <li key={index}>
             <div className="author_list_pp">
               <a href="/">
                 <div
