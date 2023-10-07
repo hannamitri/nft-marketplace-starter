@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import ExploreItems from '../components/explore/ExploreItems';
 
 
 const Author = () => {
@@ -10,6 +10,7 @@ const Author = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(0);
   let params = useParams();
+  const [id, setid ] = useState(0);
 
   console.log(params);
 
@@ -20,11 +21,13 @@ const Author = () => {
         const response = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${author_id}`);
         const data = await response.json();
         setAuthorData(data);
+        setid (data.authorId)
         setFollowerCount(data.followers);
       } catch (error) {
         console.error("Error fetching author data:", error);
       }
     };
+
 
     fetchAuthorData();
   }, []);
@@ -38,8 +41,7 @@ const Author = () => {
     setIsFollowing(!isFollowing);
   };
 
-  const authorId = authorData ? authorData.authorId : null;
-
+  
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -60,7 +62,7 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={authorData?.authorImage} alt="" />
+                      <img src={authorData && authorData.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
@@ -100,17 +102,19 @@ const Author = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="col-md-12">
-                {authorData && (
-                  <div className="de_tab tab_simple">
-                    <AuthorItems authorId={authorData.id} />
-                  </div>
-                )}
-              </div>
             </div>
           </div>
+          <div className="col-md-12">
+                <div className="de_tab tab_simple">
+                  <AuthorItems />
+                </div>
+                
+          </div>
+          
         </section>
+        
+
+
       </div>
     </div>
   );

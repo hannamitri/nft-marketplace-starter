@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+
 
 const ItemDetails = () => {
   const [itemData, setItemData] = useState(null);
@@ -40,38 +40,44 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={itemData?.image || EthImage}
+                  src={itemData && itemData.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>{itemData?.title || "Loading..."}</h2>
+                  <h2>{itemData?itemData.title:"Loading..."}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
-                      <i className="fa fa-eye"></i> {itemData?.views || "Loading..."}
+                      <i className="fa fa-eye"></i> {itemData?itemData.views:"Loading..."}
                     </div>
                     <div className="item_info_like">
-                      <i className="fa fa-heart"></i> {itemData?.likes || "Loading..."}
+                      <i className="fa fa-heart"></i> {itemData?itemData.likes:"Loading..."}
                     </div>
                   </div>
                   <p>
-                    {itemData?.description || "Loading..."}
+                    {itemData?itemData.description:"Loading..."}
                   </p>
                   <div className="d-flex flex-row">
                     <div className="mr40">
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${itemData.authorId}`}>
-                            <img className="lazy" src={AuthorImage} alt="" />
-                            <i className="fa fa-check"></i>
+                          <div>
+                          <Link to={`/author/${itemData && itemData.ownerId}`}>
+                            <img className="lazy" src={itemData && itemData.ownerImage} alt="" />
+                            <i className="fa fa-check"></i> 
                           </Link>
+                          </div>
+                          <div className="author_list_pp_name" >
+                            {itemData && itemData.ownerName}
+                          </div>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{itemData?.owner || "Loading..."}</Link>
+                          <Link to="/author">{itemData?itemData.owner:"Loading..."}</Link>
+
                         </div>
                       </div>
                     </div>
@@ -82,21 +88,28 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${itemData.authorId}`}>
-                            <img className="lazy" src={AuthorImage} alt="" />
+                          <Link to={`/author/${itemData && itemData.creatorId}`}>
+                            <img className="lazy" src={itemData && itemData.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
+                          <div className="author_list_pp_name">
+                            {itemData && itemData.creatorName}
+                          </div>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${itemData.authorId}`}>{itemData?.creator || "Loading..."}</Link>
+                          <Link to={`/author/${itemData && itemData.creatorId}`}>
+                            {itemData?itemData.creator:"loading..."}
+                            </Link>
                         </div>
                       </div>
                     </div>
                     <div className="spacer-40"></div>
-                    <h6>v</h6>
+                    <div className="author_list_pp">
+                    <h6>Price</h6>
+                    </div>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>{itemData?.price || "Loading..."}</span>
+                      <span>{itemData?itemData.price:"Loading..."}</span>
                     </div>
                   </div>
                 </div>
