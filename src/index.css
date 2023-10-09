@@ -10,3 +10,19 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+@media (max-width: 550px) {
+    .nft-dynamic {
+        max-width: 100%;
+        padding: 0 7.5px;
+      }
+    
+}
+
+@media (max-width: 912px) {
+    .nft-dynamic {
+        max-width: 100%;
+        padding: 0 5px;
+      }
+    
+}
