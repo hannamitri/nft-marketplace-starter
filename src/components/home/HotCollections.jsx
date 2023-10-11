@@ -32,32 +32,32 @@ function HotCollections()
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {hotData.length > 0 && !loading ? 
-          hotData.map(
+          {!loading ? 
+          hotData.map((nft) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" >
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
-                    <img src={hotData.nftImage} className="lazy img-fluid" alt="" />
+                    <img src={nft.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
                     ``
-                    <img className="lazy pp-coll" src={hotData.AuthorImage} alt="" />
+                    <img className="lazy pp-coll" src={nft.AuthorImage} alt="" />
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
                 <div className="nft_coll_info">
                   <Link to="/explore">
-                    <h4>{hotData.title}</h4>
+                    <h4>{nft.title}</h4>
                   </Link>
-                  <span>ERC-{hotData.code}</span>
+                  <span>ERC-{nft.code}</span>
                 </div>
               </div>
             </div>
-          ) : (
-            new Array(4).fill(0).map((_, index) => <></>)
+)) : (
+            new Array(4).fill(0).map((_, index) => <>hi</>)
           )
           }
         </div>
