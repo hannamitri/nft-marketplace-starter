@@ -18,17 +18,6 @@ const NewItems = () => {
     setLoading(false);
   }
 
-  function timer()
-  {
-    let startTime = Date.now()
-    let nftTime = itemsData.expiryDate
-    console.log(nftTime)
-
-    let millis = (startTime - nftTime/ 1000) % 1000
-    let minutes = Math.floor((millis / 60) % 60)
-    let hours = Math.floor(minutes / 24)
-  }
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -95,7 +84,7 @@ const NewItems = () => {
                     </div>
 
                     <Timer nftInfo={item.expiryDate}/>
-                    {/* <div className="de_countdown">5h 30m 32s</div> */}
+                    
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
