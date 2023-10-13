@@ -31,7 +31,7 @@ const HotCollections = () => {
   
     // Call the async function
     fetchData();
-  }, [axios, setCollections]); // Use a dependency array with all the variables used inside useEffect
+  }, []);
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -39,29 +39,29 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections AA</h2>
+              <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
+          {collections.map((collection, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
+                    <img src={collection.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
+                    <img className="lazy pp-coll" src={collection.authorImage} alt="" />
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
                 <div className="nft_coll_info">
                   <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
+                    <h4>{collection.title}</h4>
                   </Link>
-                  <span>ERC-192</span>
+                  <span>ERC-{collection.code}</span>
                 </div>
               </div>
             </div>
