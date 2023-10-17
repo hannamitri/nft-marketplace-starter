@@ -6,10 +6,11 @@ function Timer({ nftInfo })
     const [minutes, setMinutes] = useState()
     const [hours, setHours] = useState()
 
+
     function updateTimer()
     {
         let startTime = Date.now()
-        let time = nftInfo - Date.now()
+        let time = nftInfo.expiryDate - Date.now()
 
         let seconds = time / 1000
         let minutes = seconds / 60
@@ -35,7 +36,7 @@ function Timer({ nftInfo })
     return (
         <>
         {
-            nftInfo && <div className="de_countdown">{hours}h {minutes}m {seconds}s</div>
+           seconds > 0 && <div className="de_countdown">{hours}h {minutes}m {seconds}s</div>
         }
         </>
     )
