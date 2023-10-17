@@ -47,11 +47,6 @@ const ExploreItems = () => {
 
   function showMoreNft() {
     setNfts((Nfts) => Nfts + 4);
-
-    if (Nfts.length === 0)
-    {
-      document.getElementsByClassName("disabled").style.color="red"
-    }
   }
 
   
@@ -85,7 +80,7 @@ const ExploreItems = () => {
           </div>
           ))
       )}
-      <div className="col-md-12 text-center disabled" >
+      <div className="col-md-12 text-center" >
         <Link
           to=""
           id="loadmore"
