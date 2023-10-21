@@ -9,10 +9,10 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
 const NewItems = () => {
   const [latestNft, setLatestNft] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function fetchCollections() {
-    setLoading(true);
+    setLoading(false);
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
@@ -88,7 +88,7 @@ const NewItems = () => {
                     <div className="nft__item">
                       <div className="author_list_pp">
                         <Link
-                          to="/author"
+                          to={`/author/${latestNft.authorId}`}
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
                           title="Creator: Monica Lucas"
@@ -123,7 +123,7 @@ const NewItems = () => {
                           </div>
                         </div>
 
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${latestNft.nftId}`}>
                           <img
                             src={latestNft.nftImage}
                             className="lazy nft__item_preview"
