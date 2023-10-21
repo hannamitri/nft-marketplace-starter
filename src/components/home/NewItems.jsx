@@ -8,20 +8,19 @@ import Timer from "../UI/Timer";
 
 
 const NewItems = () => {
-  const [items, setitems] = useState(false)
+  const [items, setitems] = useState(null)
 
   async function getitems() {
-    await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems ")
+    await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
       .then((response) => {
-        setTimeout(() => {
-
-          setitems(response.data)
-        }, 500);
+        setitems(response.data)
       })
+
   }
-  if (!items) {
+  useEffect(() => {
     getitems()
-  }
+  }, [items === null])
+
 
 
 
@@ -64,7 +63,7 @@ const NewItems = () => {
                   <div key={arr.id} className="nft__item">
                     <div className="author_list_pp">
                       <Link
-                        to="/author"
+                        to="/item-details"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title="Creator: Monica Lucas"
@@ -97,7 +96,7 @@ const NewItems = () => {
                         </div>
                       </div>
 
-                      <Link to={`/item-details/${arr.nftId}`}>
+                      <Link to="/item-details">
                         <img
                           src={arr.nftImage}
                           className="lazy nft__item_preview"
@@ -118,9 +117,12 @@ const NewItems = () => {
                   </div>
                 )
               })
+
               }
             </OwlCarousel>
             :
+
+
             <OwlCarousel className='owl-theme' loop nav dots={false} items={4} margin={10} responsiveClass={true}
               responsive={
                 {
@@ -142,7 +144,7 @@ const NewItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/"
+                    to="/item-details"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
@@ -176,7 +178,7 @@ const NewItems = () => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/">
+                  <Link to="/item-details">
                     <Skeleton width={180} height={30}></Skeleton>
                   </Link>
                   <div className="nft__item_price"><Skeleton width={100} height={20}></Skeleton></div>
