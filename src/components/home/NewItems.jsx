@@ -132,7 +132,7 @@ const NewItems = () => {
                         </Link>
                       </div>
                       <div className="nft__item_info">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${latestNft.nftId}`}>
                           <h4>{latestNft.title}</h4>
                         </Link>
                         <div className="nft__item_price">
