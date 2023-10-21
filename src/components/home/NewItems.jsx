@@ -63,7 +63,7 @@ const NewItems = () => {
                   <div key={arr.id} className="nft__item">
                     <div className="author_list_pp">
                       <Link
-                        to="/item-details"
+                        to={`/author/${arr.authorId}`}
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title="Creator: Monica Lucas"
@@ -96,7 +96,7 @@ const NewItems = () => {
                         </div>
                       </div>
 
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${arr.nftId}`}>
                         <img
                           src={arr.nftImage}
                           className="lazy nft__item_preview"
@@ -105,7 +105,7 @@ const NewItems = () => {
                       </Link>
                     </div>
                     <div className="nft__item_info">
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${arr.nftId}`}>
                         <h4>{arr.title}</h4>
                       </Link>
                       <div className="nft__item_price">{arr.price} ETH</div>
@@ -144,7 +144,7 @@ const NewItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/item-details"
+                    to="/"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
@@ -178,7 +178,7 @@ const NewItems = () => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to="/">
                     <Skeleton width={180} height={30}></Skeleton>
                   </Link>
                   <div className="nft__item_price"><Skeleton width={100} height={20}></Skeleton></div>
