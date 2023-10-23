@@ -1,4 +1,6 @@
 import React from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const LandingIntro = () => {
   return (
@@ -49,5 +51,6 @@ const LandingIntro = () => {
     </section>
   );
 };
+AOS.init({ once: true });
 
 export default LandingIntro;
