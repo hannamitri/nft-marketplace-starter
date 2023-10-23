@@ -19,8 +19,8 @@ const Author = () => {
   }
   useEffect(() => {
     fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchData === null])
+
+  }, [])
 
   return (
     <div id="wrapper">
