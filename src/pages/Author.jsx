@@ -4,7 +4,7 @@ import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
-import Skeleton from "./components/UI/Skeleton";
+import Skeleton from "../components/UI/Skeleton";
 import { useState, useEffect } from "react";
 
 const Author = () => {
