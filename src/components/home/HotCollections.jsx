@@ -16,9 +16,32 @@ const HotCollections = () => {
         setData(response.data)
       })
   }
-  if (!data) {
+  useEffect(() => {
     getData()
-  }
+  }, [data === null])
+
+  const options = {
+    items: 4,
+    loop: true,
+    margin: 10,
+    nav: true,
+    dots: false,
+    rewind: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      768: {
+        items: 2,
+      },
+      992: {
+        items: 3,
+      },
+      1200: {
+        items: 4,
+      },
+    },
+  };
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -31,35 +54,18 @@ const HotCollections = () => {
             </div>
           </div>
 
-          <OwlCarousel className='owl-theme' loop nav dots={false} items={4} margin={10} responsiveClass={true}
-            responsive={
-              {
-                '320': {
-                  items: 1
-                },
-                '768': {
-                  items: 2
-                },
-                '1024': {
-                  items: 3
-                },
-                '1440': {
-                  items: 4
-                },
-              }
-            }
-          >
+          <OwlCarousel {...options}>
             {data ? data.map((arr) => {
               return (
-                <div className="nft_coll">
+                <div data-aos="fade-right" key={arr.id} className="nft_coll">
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to={`/item-details/${arr.nftId}`}>
 
                       {<img src={arr.nftImage} className="lazy img-fluid" alt="" />}
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${arr.authorId}`}>
                       <img className="lazy pp-coll" src={arr.authorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>
@@ -76,7 +82,7 @@ const HotCollections = () => {
               :
               <div className="nft_coll">
                 <div className="nft_wrap">
-                  <Link to="/item-details">
+                  <Link to="/">
 
                     <Skeleton width={"100%"} height={200} />
                   </Link>
