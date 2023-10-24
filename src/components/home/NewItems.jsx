@@ -60,7 +60,7 @@ const NewItems = () => {
 
               {items?.map((arr) => {
                 return (
-                  <div key={arr.id} className="nft__item">
+                  <div data-aos="fade-left" key={arr.id} className="nft__item">
                     <div className="author_list_pp">
                       <Link
                         to={`/author/${arr.authorId}`}
