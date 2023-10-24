@@ -18,6 +18,26 @@ const HotCollections = () => {
         setCollections(response.data);
       });
   }, []);
+
+  const owlCarouselOptions = {
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1, 
+      },
+      768: {
+        items: 2, 
+      },
+      992:{
+        items: 3,
+      },
+      1200:{
+        items: 4,
+      }
+    },
+  };
   
   return (
     <section id="section-collections" className="no-bottom">
@@ -29,8 +49,8 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-rtl" 
-          loop={true} margin={10} nav={true} items={4} >
+          <OwlCarousel className="owl-rtl" {...owlCarouselOptions}
+           >
           { collections.map((collections, index) => (
             
               <div className="nft_coll" key={index}>
