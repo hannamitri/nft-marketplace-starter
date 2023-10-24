@@ -7,6 +7,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
+import Countdown from "../UI/Countdown";
 const NewItems = () => {
   const [latestNft, setLatestNft] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -102,7 +103,9 @@ const NewItems = () => {
                         </Link>
                       </div>
 
-                      <div className="de_countdown">5h 30m 32s</div>
+                      {latestNft.expiryDate && (
+                      <Countdown countdown={latestNft.expiryDate} />
+                    )}
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
