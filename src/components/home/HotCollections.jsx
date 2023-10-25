@@ -22,7 +22,7 @@ const HotCollections = () => {
         setTimeout(() => {
           setCollections(res.data);
           setLoading(false);
-        }, 5000); 
+        }, 2000); 
       })
       .finally(() => {
         setLoading(false);
