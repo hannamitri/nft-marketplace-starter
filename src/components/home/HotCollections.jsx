@@ -36,26 +36,26 @@ export default function HotCollections() {
           {skelLoad ? (
             new Array(1).fill(0).map((index) => (
               <OwlCarousel loop items={4} nav dots={false} key={index}>
-              <div className="nft_skeleton">
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Skeleton height="93%" width="100%" />
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Skeleton borderRadius={50} height={50} width={50} />
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <h4>
-                      <Skeleton height={20} width={100} />
-                    </h4>
-                    <span>
-                      <Skeleton height={20} width={60} />
-                    </span>
+                <div className="nft_skeleton">
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Skeleton height="93%" width="100%" />
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Skeleton borderRadius={50} height={50} width={50} />
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <h4>
+                        <Skeleton height={20} width={100} />
+                      </h4>
+                      <span>
+                        <Skeleton height={20} width={60} />
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </OwlCarousel>
+              </OwlCarousel>
             ))
           ) : (
             <OwlCarousel
@@ -92,7 +92,7 @@ export default function HotCollections() {
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="nft_coll_info">
-                      <Link to="/explore">
+                      <Link to={`/item-details/${collection.nftId}`}>
                         <h4>{collection.title}</h4>
                       </Link>
                       <span>ERC-{collection.code}</span>
