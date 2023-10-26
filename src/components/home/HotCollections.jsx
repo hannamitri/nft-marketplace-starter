@@ -64,7 +64,7 @@ const HotCollections = () => {
             {loading ? (
               
               Array.from({ length: 4 }).map((_, index) => (
-                <SkeletonTheme baseColor="lightgray" highlightColor="black" >
+                
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
                     <Skeleton height="100%" width="100%" />
@@ -77,7 +77,7 @@ const HotCollections = () => {
                     <Skeleton  height={20} width={60} />
                   </div>
                 </div>
-                </SkeletonTheme>
+                
               ))
             ) : (
               
