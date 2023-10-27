@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 
 const Countdown = ({ countdown }) => {
   const [expired, setExpired] = useState("");
-  const [time, setTime] = useState();
+  const [timer, setTimer] = useState();
 
   useEffect(() => {
     calcTime();
-    const time = setInterval(() => {
+    const timer = setInterval(() => {
       calcTime();
     }, 1000);
 
-    setTime(time);
+    setTimer(timer);
 
     return () => {
-      clearInterval(time);
+      clearInterval(timer);
     };
   }, []);
 
@@ -21,7 +21,7 @@ const Countdown = ({ countdown }) => {
     const millisLeft = countdown - Date.now();
 
     if (millisLeft < 0) {
-      clearInterval(time);
+      clearInterval(timer);
       setExpired("Expired");
       return;
     }
