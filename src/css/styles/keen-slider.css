@@ -1,0 +1,14 @@
+.keen-slider {
+  /* Your container styles */
+  /* position: relative; */
+  display: flex;
+  overflow: hidden;
+}
+
+.keen-slider__slide {
+    /* Your slide styles */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* More styles */
+  }
