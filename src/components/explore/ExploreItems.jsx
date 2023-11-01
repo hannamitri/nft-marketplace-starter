@@ -7,18 +7,25 @@ import axios from "axios";
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCards, setVisibleCards] = useState(4);
+  const [totalCards, setTotalCards] = useState(0);
 
   async function fetchCollections() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
     );
     setExplore(data);
+    setTotalCards(data.total);
     setLoading(false);
   }
 
   useEffect(() => {
     fetchCollections();
   }, []);
+
+  const handleLoadMore = () => {
+    setVisibleCards(prevVisibleCards => prevVisibleCards + 4);
+  };
 
   return (
     <>
@@ -89,7 +96,7 @@ const ExploreItems = () => {
               </div>
             </div>
           ))
-        : explore.slice(0, 16).map((explore, index) => (
+        : explore.slice(0, visibleCards).map((explore, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -148,7 +155,12 @@ const ExploreItems = () => {
             </div>
           ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        <Link
+          to="#"
+          onClick={handleLoadMore}
+          id="loadmore"
+          className="btn-main lead"
+        >
           Load more
         </Link>
       </div>
