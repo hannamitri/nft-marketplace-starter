@@ -170,14 +170,7 @@ const ExploreItems = () => {
             Load more
           </Link>
         ) : (
-          <Link
-            to="#"
-            onClick={handleLoadMore}
-            id="loadmore"
-            className="btn-main lead"
-          >
-            {`No more cards :(`}
-          </Link>
+          <Link to="#" id="loadmore"></Link>
         )}
       </div>
     </>
