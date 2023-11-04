@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import Countdown from "../UI/Countdown";
+import Skeleton from "../UI/Skeleton";
 
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
@@ -114,7 +116,9 @@ const ExploreItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                {explore.expiryDate && (
+                  <Countdown countdown={explore.expiryDate} />
+                )}
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
