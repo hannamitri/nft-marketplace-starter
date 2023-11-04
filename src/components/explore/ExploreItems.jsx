@@ -7,15 +7,14 @@ import axios from "axios";
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCards, setVisibleCards] = useState(4);
-  const [totalCards, setTotalCards] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(8);
 
   async function fetchCollections() {
+    setLoading(true);
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
     );
     setExplore(data);
-    setTotalCards(data.total);
     setLoading(false);
   }
 
@@ -24,8 +23,10 @@ const ExploreItems = () => {
   }, []);
 
   const handleLoadMore = () => {
-    setVisibleCards(prevVisibleCards => prevVisibleCards + 4);
+    setVisibleCards((prevVisibleCards) => prevVisibleCards + 4);
   };
+
+  const hasMoreCards = explore.length > visibleCards;
 
   return (
     <>
@@ -155,14 +156,25 @@ const ExploreItems = () => {
             </div>
           ))}
       <div className="col-md-12 text-center">
-        <Link
-          to="#"
-          onClick={handleLoadMore}
-          id="loadmore"
-          className="btn-main lead"
-        >
-          Load more
-        </Link>
+        {hasMoreCards ? (
+          <Link
+            to="#"
+            onClick={handleLoadMore}
+            id="loadmore"
+            className="btn-main lead"
+          >
+            Load more
+          </Link>
+        ) : (
+          <Link
+            to="#"
+            onClick={handleLoadMore}
+            id="loadmore"
+            className="btn-main lead"
+          >
+            {`No more cards :(`}``
+          </Link>
+        )}
       </div>
     </>
   );
