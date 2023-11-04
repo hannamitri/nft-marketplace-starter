@@ -172,7 +172,7 @@ const ExploreItems = () => {
             id="loadmore"
             className="btn-main lead"
           >
-            {`No more cards :(`}``
+            {`No more cards :(`}
           </Link>
         )}
       </div>
