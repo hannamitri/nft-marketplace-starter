@@ -37,9 +37,6 @@ const HotCollections = () => {
     );
   }
 
-  //Left arrow function for carousel
-
-  
   var carouselSettings = {
     infinite: true,
     speed: 300,
