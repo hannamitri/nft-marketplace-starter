@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
 
@@ -26,20 +26,7 @@ const HotCollections = () => {
     getData();
   }, []);
 
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  //Left arrow function for carousel
-
-  function SamplePrevArrow(props) {
+  function Arrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
@@ -50,13 +37,16 @@ const HotCollections = () => {
     );
   }
 
+  //Left arrow function for carousel
+
+  
   var carouselSettings = {
     infinite: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <Arrow />,
+    prevArrow: <Arrow />,
     responsive: [
       {
         breakpoint: 1200,
@@ -98,7 +88,7 @@ const HotCollections = () => {
           </div>
           <Slider {...carouselSettings}>
             {nftArray.length > 0
-              ? //Show nftArray if its length is superior to 0. In other words, when nftArray is fetched.
+              ? //Show nftArray if its length is greater than 0. 
                 nftArray.map((nft) => (
                   <div className="carousel-slide" key={nft?.id}>
                     <div className="nft_coll mx-2">
@@ -130,7 +120,7 @@ const HotCollections = () => {
                     </div>
                   </div>
                 ))
-              : // Show skeleton loading state if nftArray.length isn't superior than 0. In other words, when nftArray isn't fetched. An array of length 5 is created then is filled with empty nft objects that have a loading state animation. I picked an array of length 5 instead of 6 to save memory.
+              : // Show skeleton loading state if nftArray.length isn't greater than 0. 
                 Array.from({ length: 5 }).map((_, index) => (
                   <div className="carousel-slide" key={index}>
                     <div className="nft_coll">
@@ -146,9 +136,9 @@ const HotCollections = () => {
                         <i className="fa fa-check"></i>
                       </div>
                       <div>
-                        <Skeleton width={"120px"} height={"19.19px"} />
+                        <Skeleton width={"120px"} height={"20px"} />
                       </div>
-                      <Skeleton width={"90px"} height={"19.19px"} />
+                      <Skeleton width={"90px"} height={"20px"} />
                     </div>
                   </div>
                 ))}
