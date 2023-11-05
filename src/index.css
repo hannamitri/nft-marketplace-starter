@@ -10,3 +10,102 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* HOT COLLECTIONS  */
+
+    /* SKELETON LOADING */
+
+.nft__wrap--skeleton {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: rgb(196, 196, 196);
+    color: rgb(196, 196, 196);
+}
+
+.nft__wrap--skeleton::before,
+.author__img--skeleton::before,
+.collection__name--skeleton::before,
+.collection__code--skeleton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.author__img--skeleton {
+    position: absolute;
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+    background-color: rgb(196, 196, 196);
+    bottom: -30px; 
+    right: 50%; 
+    z-index: 5;
+    transform: translateX(50%); /* Center horizontally using transform */
+}
+
+.collection__text--skeleton {
+    width: 100%; 
+    position: absolute; 
+    min-height: 130px;
+}
+
+.collection__name--skeleton {
+    height: 20px;
+    width: 100px;
+    background-color: rgb(196, 196, 196);
+    margin-top: 16px;
+}
+
+.collection__code--skeleton {
+    height: 20px; 
+    width: 60px; 
+    margin-top: 8px;
+    background-color: rgb(196, 196, 196);
+    bottom: 0; 
+}
+
+.nft__text--skeleton {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.skeleton__check {
+    position: absolute;
+    bottom: 3px;
+    right: 4px;
+    color: white; 
+    z-index: 10;
+    font-size: 10px;
+    border-radius: 50%;
+    padding: 2px; 
+    background-color: rgb(101, 0, 190);
+}
+
+    /* CAROUSEL  */
+
+.owl-next {
+    right: -25px; /* Adjust the right position for the next button */
+  }
+  
+.owl-prev {
+    left: -25px; /* Adjust the left position for the previous button */
+  }
+
