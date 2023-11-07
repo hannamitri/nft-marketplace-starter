@@ -8,7 +8,7 @@ import Skeleton from "../UI/Skeleton";
 
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState([]);
   const [visibleCards, setVisibleCards] = useState(8);
 
   async function fetchCollections() {
@@ -30,11 +30,41 @@ const ExploreItems = () => {
 
   const hasMoreCards = explore.length > visibleCards;
 
+  async function filterNfts(filter) {
+    setLoading(true);
+    if (filter === "DEFAULT") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+      );
+      setExplore(data);
+    } else if (filter === "price_low_to_high") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_low_to_high"
+      );
+      setExplore(data);
+    } else if (filter === "price_high_to_low") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low"
+      );
+      setExplore(data);
+    } else if (filter === "likes_high_to_low") {
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low"
+      );
+      setExplore(data);
+    }
+    setLoading(false);
+  }
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
+        <select
+          id="filter-items"
+          defaultValue="DEFAULT"
+          onChange={(event) => filterNfts(event.target.value)}
+        >
+          <option value="DEFAULT">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
