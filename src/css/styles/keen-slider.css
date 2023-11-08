@@ -12,3 +12,29 @@
     justify-content: center;
     /* More styles */
   }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    fill: #fff;
+    cursor: pointer;
+    color: red;
+    background-color: red;
+  }
+  
+  .arrow--left {
+    left: 5px;
+  }
+  
+  .arrow--right {
+    left: auto;
+    right: 5px;
+  }
+  
+  .navigation-wrapper {
+    position: relative; /* Important: this enables absolute positioning for children */
+  }
