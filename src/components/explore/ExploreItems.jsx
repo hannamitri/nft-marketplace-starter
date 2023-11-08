@@ -8,11 +8,10 @@ import Skeleton from "../UI/Skeleton";
 
 const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
-  const [loading, setLoading] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [visibleCards, setVisibleCards] = useState(8);
 
   async function fetchCollections() {
-    setLoading(true);
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
     );
@@ -70,56 +69,14 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {loading 
+      {loading
         ? new Array(16).fill(0).map((_, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{ display: "block", backgroundSize: "cover" }}
             >
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                  >
-                    <Skeleton width={50} height={50} borderRadius={30}/>
-                  </Link>
-                </div>
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <Link to="/item-details">
-                  <Skeleton width={300} height={300} borderRadius={30}/>
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                  <Skeleton width={100} height={20} borderRadius={0}/>
-                  </Link>
-                  <div className="nft__item_price"><Skeleton width={50} height={20} borderRadius={0}/></div>
-                  <div className="nft__item_like">
-                  <Skeleton width={30} height={10} borderRadius={0}/>
-                  </div>
-                </div>
-              </div>
+               <Skeleton width={"100%"} height={400} />
             </div>
           ))
         : explore.slice(0, visibleCards).map((explore, index) => (
