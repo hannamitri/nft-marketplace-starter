@@ -70,7 +70,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {loading
+      {loading 
         ? new Array(16).fill(0).map((_, index) => (
             <div
               key={index}
@@ -84,11 +84,9 @@ const ExploreItems = () => {
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                   >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
+                    <Skeleton width={50} height={50} borderRadius={30}/>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -109,21 +107,16 @@ const ExploreItems = () => {
                     </div>
                   </div>
                   <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
+                  <Skeleton width={300} height={300} borderRadius={30}/>
                   </Link>
                 </div>
                 <div className="nft__item_info">
                   <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                  <Skeleton width={100} height={20} borderRadius={0}/>
                   </Link>
-                  <div className="nft__item_price">1.74 ETH</div>
+                  <div className="nft__item_price"><Skeleton width={50} height={20} borderRadius={0}/></div>
                   <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
+                  <Skeleton width={30} height={10} borderRadius={0}/>
                   </div>
                 </div>
               </div>
