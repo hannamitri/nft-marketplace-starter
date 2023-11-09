@@ -13,17 +13,46 @@
     /* More styles */
   }
 
-  .arrow {
+  .arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30px;
     height: 30px;
+    border: 1px solid black;
+    border-radius: 9999px;
+    position: absolute;
+    top: 50%;
+    background-color: white;
+  }
+
+  .arrow-wrapper__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(145, 145, 145);
+    border-radius: 9999px;
+    position: absolute;
+    top: 50%;
+    left: auto;
+    right: 5px;
+    background-color: white;
+  }
+
+  .arrow {
+    width: 15px;
+    height: 15px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
-    fill: #fff;
+    fill: #322f2f;
     cursor: pointer;
-    color: red;
-    background-color: red;
+
+    /* background-color: white; */
+    
   }
   
   .arrow--left {
@@ -37,4 +66,6 @@
   
   .navigation-wrapper {
     position: relative; /* Important: this enables absolute positioning for children */
+    display: flex;
+    align-items: center;
   }

@@ -9,7 +9,7 @@ import "../../css/styles/keen-slider.css";
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +48,7 @@ const HotCollections = () => {
     loop: true, //enables continuous loop
     mode: "free-snap",
     created() {
-      setLoaded(true)
+      setLoaded(true);
     },
   });
 
@@ -60,9 +60,7 @@ const HotCollections = () => {
     return (
       <svg
         onClick={props.onClick}
-        className={`arrow ${
-          props.left ? "arrow--left" : "arrow--right"
-        } `}
+        className={`arrow ${props.left ? "arrow--left" : "arrow--right"} `}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -73,7 +71,7 @@ const HotCollections = () => {
           <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
         )}
       </svg>
-    )
+    );
   }
 
   return (
@@ -124,19 +122,15 @@ const HotCollections = () => {
               ))}
             </div>
             {loaded && instanceRef.current && (
-          <>
-            <Arrow
-              left
-              onClick={(e) =>
-                instanceRef.current?.prev()
-              }/>
-            <Arrow
-              onClick={(e) =>
-                instanceRef.current?.next()
-              }/>
-          </>
-        )}
-        
+              <>
+                <div className="arrow-wrapper">
+                  <Arrow left onClick={(e) => instanceRef.current?.prev()} />
+                </div>
+                <div className="arrow-wrapper__right">
+                  <Arrow onClick={(e) => instanceRef.current?.next()} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
