@@ -47,9 +47,6 @@ const NewItems = () => {
         setItems(res.data);
         
       })
-      .finally(() => {
-      
-      });
   }, []);
 
   return (
