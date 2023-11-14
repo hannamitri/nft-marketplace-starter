@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -45,7 +44,7 @@ const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+      <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>
@@ -54,19 +53,12 @@ const NewItems = () => {
           </div>
           {items.length ? (
             <OwlCarousel className="owl-theme" {...options}>
-              {items.map((item) => (
-                <div
-                  data-aos="fade-zoom-in"
-                  data-aos-easing="ease-in-back"
-                  data-aos-delay="0"
-                  data-aos-duration="800"
-                  data-aos-offset="0"
-                  key={item.id}
-                >
-                  <div className="nft__item">
+              {items.map((item, id) => (
+                
+                  <div className="nft__item" key={id}>
                     <div className="author_list_pp">
                       <Link
-                        to={`author/${item.authorId}`}
+                        to={`/author/${item?.authorid}`}
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title={item.title}
@@ -96,7 +88,7 @@ const NewItems = () => {
                           </div>
                         </div>
                       </div>
-                      <Link to={`item-details/${item.nftId}`}>
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           className="lazy nft__item_preview"
@@ -115,7 +107,7 @@ const NewItems = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+               
               ))}
             </OwlCarousel>
           ) : (
