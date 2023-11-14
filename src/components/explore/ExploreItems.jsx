@@ -6,7 +6,13 @@ import SkeletonCard from "../UI/SkeletonCard";
 
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState();
+  const image = 4;
+  const [more, setMore] = useState(8);
+
+  const handleMoreImage = () => {
+    setMore(more + image);
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -48,7 +54,7 @@ const ExploreItems = () => {
       </div>
       {isLoading
         ? new Array(8).fill(0).map((_, index) => <SkeletonCard key={index} />)
-        : exploreItems.map((exploreItem, index) => (
+        : exploreItems?.slice(0, more)?.map((exploreItem, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -56,7 +62,7 @@ const ExploreItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${exploreItem.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top">
                     <img
@@ -88,7 +94,7 @@ const ExploreItems = () => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${exploreItem?.nftId}`}>
                     <img
                       src={exploreItem.nftImage}
                       className="lazy nft__item_preview"
@@ -110,9 +116,15 @@ const ExploreItems = () => {
         </div>
       ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+      {more < exploreItems?.length && (
+          <Link
+            to=""
+            id="loadmore"
+            className="btn-main lead"
+            onClick={handleMoreImage}>
+            Load more
+          </Link>
+        )}
       </div>
     </>
   );
