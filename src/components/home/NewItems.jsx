@@ -12,13 +12,9 @@ const NewItems = () => {
   const [items, setItems] = useState([]);
   
   const options = {
-    margin: 5,
-    responsiveClass: true,
-    nav: true,
-    dots: false,
-    autoplay: false,
-    smartSpeed: 500,
     loop: true,
+    margin: 10,
+    nav: true,
     responsive: {
       0: {
         items: 1,
