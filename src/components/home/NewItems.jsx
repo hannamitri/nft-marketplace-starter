@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
-import Countdown from "react-countdown";
 import OwlCarousel from "react-owl-carousel";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Countdown from "../UI/Countdown";
+
+import SkeletonCard from "../UI/SkeletonCard";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
-  
+
   const options = {
     loop: true,
     margin: 10,
@@ -31,18 +32,14 @@ const NewItems = () => {
     },
   };
 
-  const calMilisecond = (time) => {
-    return time - Date.now();
-  };
+ 
 
   useEffect(() => {
-    
     axios
       .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
       .then((res) => {
         setItems(res.data);
-        
-      })
+      });
   }, []);
 
   return (
@@ -78,19 +75,9 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    {item.expiryDate ? (
-                      <div className="de_countdown">
-                        {calMilisecond(item.expiryDate) > 0 ? (
-                          <>
-                            <Countdown date={item.expiryDate} />
-                          </>
-                        ) : (
-                          <>Expired</>
-                        )}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
+                    {item.expiryDate && (
+              <Countdown expiryDate={item.expiryDate} />
+            )}
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
                         <div className="nft__item_buttons">
@@ -133,40 +120,9 @@ const NewItems = () => {
             </OwlCarousel>
           ) : (
             <>
-              {new Array(4).fill(0).map((_, index) => (
-                <div
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                  key={index}
-                >
-                  <div className="nft__item">
-                    <div className="author_list_pp">
-                      <Skeleton
-                        width={`50px`}
-                        height={`50px`}
-                        borderRadius={`50%`}
-                      />
-                    </div>
-                    <div className="nft__item_wrap">
-                      <Skeleton
-                        width={`100%`}
-                        height={`320px`}
-                        borderRadius={`50px`}
-                      />
-                    </div>
-                    <div className="nft__item_info">
-                      <Skeleton width={`90px`} height={`20px`} />
-                      <div className="nft__item_price">
-                        <Skeleton width={`75px`} height={`20px`} />
-                      </div>
-                      <div className="nft__item_like">
-                        <Skeleton width={`50px`} height={`20px`} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </>
-          )}
+            {new Array(4).fill(0).map((_, index) => <SkeletonCard key={index} />)}
+          </>
+        )}
         </div>
       </div>
     </section>
