@@ -7,7 +7,6 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { SkeletonTheme } from 'react-loading-skeleton';
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
