@@ -75,25 +75,25 @@ const HotCollections = () => {
             {loading ?
               <>
                 <Slider {...settings} >
-                  {data.map((nft) => (
-                    <div className="px-2 sm:px-1" key={nft.id} data-aos="fade-left">
+                  {data.map((data) => (
+                    <div className="px-2 sm:px-1" key={data.id} data-aos="fade-left">
                       <div className="nft_coll">
                         <div className="nft_wrap">
-                          <Link to={`/item-details/${nft.nftId}`}>
-                            <img src={nft.nftImage} className="lazy img-fluid" alt="" />
+                          <Link to={`/item-details/${data.nftId}`}>
+                            <img src={data.nftImage} className="lazy img-fluid" alt="" />
                           </Link>
                         </div>
                         <div className="nft_coll_pp">
-                          <Link to={`/author/${nft.authorId}`}>
-                            <img className="lazy pp-coll" src={nft.authorImage} alt="" />
+                          <Link to={`/author/${data.authorId}`}>
+                            <img className="lazy pp-coll" src={data.authorImage} alt="" />
                           </Link>
                           <i className="fa fa-check"></i>
                         </div>
                         <div className="nft_coll_info">
                           <Link to="/explore">
-                            <h4>{nft.title}</h4>
+                            <h4>{data.title}</h4>
                           </Link>
-                          <span>ERC-{nft.code}</span>
+                          <span>ERC-{data.code}</span>
                         </div>
                       </div>
                     </div>
