@@ -5,8 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 
 const HotCollections = () => {
   const [data, setData] = useState([]);
@@ -72,20 +70,23 @@ const HotCollections = () => {
 
           {/* Added sliders */}
           <div className="relative p-1">
+            {/* loading state */}
             {loading ?
               <>
+                {/* added a sliders */}
                 <Slider {...settings} >
                   {data.map((data) => (
                     <div className="px-2 sm:px-1" key={data.id} data-aos="fade-left">
                       <div className="nft_coll">
                         <div className="nft_wrap">
-                          <Link to={`/item-details/${data.nftId}`}>
-                            <img src={data.nftImage} className="lazy img-fluid" alt="" />
+                          {/* can not get the id to work to go to the pages */}
+                          <Link to={`/item-details/${data.nftId}`} alt="" >
+                            <img src={data.nftImage} className="lazy img-fluid" alt="nft image" />
                           </Link>
                         </div>
                         <div className="nft_coll_pp">
-                          <Link to={`/author/${data.authorId}`}>
-                            <img className="lazy pp-coll" src={data.authorImage} alt="" />
+                          <Link to={`/author/${data.authorId}`} >
+                            <img className="lazy pp-coll" src={data.authorImage} alt="author image" />
                           </Link>
                           <i className="fa fa-check"></i>
                         </div>
@@ -101,6 +102,7 @@ const HotCollections = () => {
                 </Slider>
               </>
               : (
+                // sliders
                 <Slider {...settings}>
                   {new Array(4).fill(0).map((_, index) => (
                     <div className="px-2 sm:px-1" key={index}>
