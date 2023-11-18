@@ -44,7 +44,7 @@ const HotCollections = () => {
                         <img
                           src={data.nftImage}
                           className="lazy img-fluid h-100"
-                          alt=""
+                          alt="nft-image"
                         />
                       </Link>
                     </div>
