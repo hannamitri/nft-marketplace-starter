@@ -31,43 +31,39 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel nav={true} loop>
-            {collection &&
-              collection.map((data, index) => (
-                <div
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                  key={index}
-                >
-                  <div className="nft_coll">
-                    <div className="nft_wrap">
-                      <Link to="/item-details">
-                        <img
-                          src={data.nftImage}
-                          className="lazy img-fluid h-100"
-                          alt="nft-image"
-                        />
-                      </Link>
-                    </div>
-                    <div className="nft_coll_pp">
-                      <Link to="/author">
-                        <img
-                          className="lazy pp-coll"
-                          src={data.authorImage}
-                          alt=""
-                        />
-                      </Link>
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>{data.title}</h4>
-                      </Link>
-                      <span>ERC-{data.code}</span>
-                    </div>
+          {collection && (
+            <OwlCarousel nav margin={10} items={4} loop>
+              {collection.map((data, index) => (
+                <div className="nft_coll" key={index}>
+                  <div className="nft_wrap">
+                    <Link to="/item-details">
+                      <img
+                        src={data.nftImage}
+                        className="lazy img-fluid h-100"
+                        alt="nft-image"
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <img
+                        className="lazy pp-coll"
+                        src={data.authorImage}
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{data.title}</h4>
+                    </Link>
+                    <span>ERC-{data.code}</span>
                   </div>
                 </div>
               ))}
-          </OwlCarousel>
+            </OwlCarousel>
+          )}
         </div>
       </div>
     </section>
