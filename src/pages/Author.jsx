@@ -10,6 +10,7 @@ import Skeleton from "../components/UI/Skeleton";
 const Author = () => {
   const [author, setAuthor] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [following, setFollowing] = useState(false)
 
   async function fetchCollections() {
     const { data } = await axios.get(
@@ -17,6 +18,23 @@ const Author = () => {
     );
     setAuthor(data);
     setLoading(false);
+  }
+
+  function followToggle() {
+    setFollowing((prevFollowing) => {
+      const newFollowingState = !prevFollowing;
+      const newFollowersCount = newFollowingState
+        ? author.followers + 1
+        : author.followers - 1;
+
+      // Update the follow count in the author state
+      setAuthor((prevAuthor) => ({
+        ...prevAuthor,
+        followers: newFollowersCount,
+      }));
+
+      return newFollowingState;
+    });
   }
 
   useEffect(() => {
@@ -107,8 +125,10 @@ const Author = () => {
                           <div className="profile_follower">
                             {author.followers} followers
                           </div>
-                          <Link to="#" className="btn-main">
-                            Follow
+                          <Link to="#" className="btn-main"
+                          onClick={followToggle} 
+                          >
+                            {following ? "Unfollow" : "Follow"}
                           </Link>
                         </div>
                       </div>
