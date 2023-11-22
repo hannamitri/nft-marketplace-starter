@@ -13223,6 +13223,10 @@ a.read_more i {
 
 .nft_coll_info {
   padding-bottom: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nft_coll h4 {
@@ -16650,9 +16654,34 @@ img {
   }
 }
 
+.skeleton--image {
+  width: 100%;
+  max-width: 315px;
+  height: 200px;
+  background-color: #dddbdd;
+}
+
+.skeleton--icon {
+  height: 60px;
+  background-color: #dddbdd;
+  border-radius: 50%;
+}
+
+.skeleton--title {
+  height: 20px;
+  background-color: #dddbdd;
+  width: 100px;
+}
+
+.skeleton--id {
+  height: 20px;
+  background-color: #dddbdd;
+  width: 55px;
+  margin-top: 10px;
+
+}
+
 .skeleton-box {
-  display: inline-block;
-  height: 1em;
   position: relative;
   overflow: hidden;
   background-color: #dddbdd;
