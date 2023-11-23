@@ -50,7 +50,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {!loading && collection ? (
+          {loading && collection ? (
             <OwlCarousel
               nav={true}
               margin={10}
@@ -94,7 +94,7 @@ const HotCollections = () => {
               loop
               responsive={options.responsive}
             >
-              {new Array(6).fill(0).map((index) => (
+              {new Array(6).fill(0).map((_,index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
                     <div className="skeleton--image skeleton-box"></div>
