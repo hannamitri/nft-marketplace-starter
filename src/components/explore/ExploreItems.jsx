@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Countdown from "../UI/Countdown";
@@ -61,8 +61,8 @@ const ExploreItems = () => {
               style={{ display: "block", backgroundSize: "cover" }}>
               <div className="nft__item">
                 <div className="author_list_pp">
-                  <Link
-                    to={`/author/${exploreItem.authorId}`}
+                  <Link 
+                   to={`/author/${exploreItem.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top">
                     <img

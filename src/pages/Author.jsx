@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Author = () => {
   const [authors, setAuthors] = useState([]);
+  const { id } = useParams();
 
   async function fetchData() {
     const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012`
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthors(data);
   }
@@ -29,8 +30,7 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
-        ></section>
+          style={{ background: `url(${AuthorBanner}) top` }}></section>
 
         <section aria-label="section">
           <div className="container">
