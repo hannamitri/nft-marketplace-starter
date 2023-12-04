@@ -6,7 +6,6 @@ import Skeleton from "react-loading-skeleton";
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
   const [isLoading, setIsLoading] = useState();
-
   useEffect(() => {
     setIsLoading(true);
     axios
@@ -19,8 +18,8 @@ const TopSellers = () => {
       .finally(() => {
         setIsLoading(false);
       });
-      
   }, []);
+  
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -36,7 +35,7 @@ const TopSellers = () => {
             {topSellers.map((topSeller, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
-                    <Link to="/author">
+                  <Link to={`/author/${topSeller.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={topSeller.authorImage}
@@ -46,7 +45,9 @@ const TopSellers = () => {
                     </Link>
                   </div>
                   <div className="author_list_info">
-                  <Link to="/author">{topSeller.authorName}</Link>
+                  <Link to={`/author/${topSeller.authorId}`}>
+                          {topSeller.authorName}
+                        </Link>
                     <span>{topSeller.price} ETH</span>
                   </div>
                 </li>
