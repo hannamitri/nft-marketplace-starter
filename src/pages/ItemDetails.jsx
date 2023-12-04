@@ -1,4 +1,4 @@
-import React, { useEffect, useState  } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -29,7 +29,7 @@ const ItemDetails = () => {
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
-          {isLoading ? (
+            {isLoading ? (
               <div className="row">
                 <div className="col-md-6 text-center">
                   <Skeleton height="100%" width="100%" />
@@ -63,7 +63,7 @@ const ItemDetails = () => {
                             <Skeleton width={100} />
                           </div>
                         </div>
-                        </div>
+                      </div>
                       <div></div>
                     </div>
                     <div className="de_tab tab_simple">
@@ -88,8 +88,8 @@ const ItemDetails = () => {
                         </span>
                       </div>
                     </div>
-                    </div>
-                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="row">
@@ -147,7 +147,7 @@ const ItemDetails = () => {
                                 src={itemDetails.creatorImage}
                                 alt=""
                               />
-                              <i className="fa fa-check"></i>
+                              <i className="fa  fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
@@ -165,12 +165,12 @@ const ItemDetails = () => {
                   </div>
                 </div>
               </div>
-                )}
-                </div>
-              </section>
-            </div>
+            )}
           </div>
-        );
-      };
+        </section>
+      </div>
+    </div>
+  );
+};
 
 export default ItemDetails;
