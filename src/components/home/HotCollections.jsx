@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import AuthorImage from "../../images/author_thumbnail.jpg";
+import nftImage from "../../images/nftImage.jpg";
 
 
 const HotCollections = () => {
@@ -54,20 +56,20 @@ const HotCollections = () => {
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
-                      <img className="lazy img-fluid skeleton-box" alt="" />
+                      <img className="lazy img-fluid skeleton-box" src={nftImage} alt="" />
                     </Link>
                   </div>
-                  <div className="nft_coll_pp">
+                  <div className="nft_coll_pp skeleton-box">
                     <Link to="/author">
-                      <img className="lazy pp-coll" alt="" />
+                      <img className="lazy pp-coll skeleton-box" src={AuthorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
                     <Link to="/explore">
-                      <h4 className="">Pinky Ocean</h4>
+                      <h4 className="skeleton-box">Pinky Ocean</h4>
                     </Link>
-                    <span className="">ERC-196</span>
+                    <span className="skeleton-box">ERC-196</span>
                   </div>
                 </div>
             ) : (
@@ -75,12 +77,12 @@ const HotCollections = () => {
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
                     <Link to="/item-details">
-                      <img src={hotCollections[index].nftImage} className="lazy img-fluid" alt="" />
+                      <img src={hotCollections[index].nftImage || nftImage} className="lazy img-fluid" alt="" />
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
                     <Link to="/author">
-                      <img className="lazy pp-coll" src={hotCollections[index].authorImage} alt="" />
+                      <img className="lazy pp-coll" src={hotCollections[index].authorImage || AuthorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>
                   </div>
