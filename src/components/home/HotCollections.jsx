@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 
 
 const HotCollections = () => {
@@ -80,13 +78,13 @@ const HotCollections = () => {
               hotCollections.map((_, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img src={hotCollections[index].nftImage || nftImage} className="lazy img-fluid" alt="" />
+                    <Link to="/item-details/">
+                      <img src={hotCollections[index].nftImage} className="lazy img-fluid" alt="" />
                     </Link>
                   </div>
                   <div className="nft_coll_pp">
                     <Link to="/author">
-                      <img className="lazy pp-coll" src={hotCollections[index].authorImage || AuthorImage} alt="" />
+                      <img className="lazy pp-coll" src={hotCollections[index].authorImage} alt="" />
                     </Link>
                     <i className="fa fa-check"></i>
                   </div>
