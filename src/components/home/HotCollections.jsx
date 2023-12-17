@@ -16,11 +16,11 @@ const HotCollections = () => {
   async function fetchHotCollections() {
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
     setHotCollections(data);
-    setIsLoading(false);
   }
 
   useEffect(() => {
       fetchHotCollections();
+      setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -53,25 +53,29 @@ const HotCollections = () => {
           </div>
           <OwlCarousel className="owl-theme" {...owlOptions}>
             { isLoading ? (
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img className="lazy img-fluid skeleton-box" src={nftImage} alt="" />
-                    </Link>
+                new Array(6).fill(0).map((_, index) => (
+                  <div className="display: flex" key={index}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to="/item-details">
+                          <img className="skeleton-box" Style={'width:100%; height: 200px'} alt="" />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <div className="skeleton-box" Style={'width:50px; height: 50px; border-radius: 50%'}></div>
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4 className="skeleton-box" Style={'width:100px; height: 20px'}></h4>
+                        </Link>
+                        <span className="skeleton-box" Style={'width:60px; height: 20px; display: block; margin: auto'}></span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="nft_coll_pp skeleton-box">
-                    <Link to="/author">
-                      <img className="lazy pp-coll skeleton-box" src={AuthorImage} alt="" />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4 className="skeleton-box">Pinky Ocean</h4>
-                    </Link>
-                    <span className="skeleton-box">ERC-196</span>
-                  </div>
-                </div>
+                ))
             ) : (
               hotCollections.map((_, index) => (
                 <div className="nft_coll" key={index}>
