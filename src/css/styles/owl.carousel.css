@@ -38,3 +38,4 @@
 .owl-carousel .owl-video-playing .owl-video-play-icon{display:none;}
 .owl-carousel .owl-video-tn{opacity:0;height:100%;background-position:center center;background-repeat:no-repeat;background-size:contain;transition:opacity 400ms ease;}
 .owl-carousel .owl-video-frame{position:relative;z-index:1;height:100%;width:100%;}
+.owl-carousel .custom-owl-carousel{width: 100%;}
