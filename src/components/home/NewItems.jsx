@@ -4,6 +4,7 @@ import axios from "axios";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+//<Link to={`/users/${user.id}`} for use in dynamic links
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -34,6 +35,8 @@ const NewItems = () => {
     };
     setOwlOptions(owlOptions);
   }, [newItems]);
+
+  
 
   return (
     <section id="section-items" className="no-bottom">
