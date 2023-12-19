@@ -9,6 +9,12 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
   const [owlOptions, setOwlOptions] = useState([]);
+  const [isExpired, setIsExpired] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [countdownHours, setCountdownHours] = useState(0);
+  const [countdownMinutes, setCountdownMinutes] = useState(0);
+  const [countdownSeconds, setCountdownSeconds] = useState(0);
+  let cancelId;
   
   async function fetchNewItems() {
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
@@ -17,6 +23,7 @@ const NewItems = () => {
 
   useEffect(() => {
     fetchNewItems();
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -34,9 +41,36 @@ const NewItems = () => {
       },
     };
     setOwlOptions(owlOptions);
+    newItems.forEach((item, index) => {
+      const expiryDate = item.expiryDate;
+
+      if (expiryDate) {
+        cancelId = setInterval(() => updateCountdown(expiryDate), 1000 / 60);
+        return () => clearInterval(cancelId);
+      }
+    });
   }, [newItems]);
 
-  
+  function updateCountdown(expiryDate) {
+    let countdown = expiryDate - Date.now();
+    if (countdown < 0) {
+      countdown = 0;
+      setIsExpired(true);
+      clearInterval(cancelId);
+    }
+
+    let secondsLeft = countdown / 1000;
+    let minutesLeft = secondsLeft / 60;
+    let hoursLeft = minutesLeft / 60;
+
+    let secondsText = Math.floor(secondsLeft) % 60;
+    let minutesText = Math.floor(minutesLeft) % 60;
+    let hoursText = Math.floor(hoursLeft);
+    
+    setCountdownHours(hoursText);
+    setCountdownMinutes(minutesText);
+    setCountdownSeconds(secondsText);
+  }
 
   return (
     <section id="section-items" className="no-bottom">
@@ -63,7 +97,21 @@ const NewItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
+                {
+                  (newItems[index].expiryDate !== null) ? (
+                    !isExpired ? (
+                      <div className="de_countdown">
+                        <span>{countdownHours}</span>h
+                        <span>{countdownMinutes}</span>m
+                        <span>{countdownSeconds}</span>s
+                      </div>
+                    ) : (
+                      <div className="de_countdown">EXPIRED</div>
+                    )
+                  ) : (
+                    <></>
+                  )
+                }
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
