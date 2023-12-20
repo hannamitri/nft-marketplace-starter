@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import Skeleton from "../UI/Skeleton";
 import { Link } from "react-router-dom";
 import Countdown from "../UI/Countdown";
 import OwlCarousel from "react-owl-carousel";
@@ -74,7 +74,8 @@ const NewItems = () => {
                       position: "absolute",
                       display: "inline-block",
                       right: "20px",
-                    }}>
+                    }}
+                  >
                     <Skeleton
                       height={"32px"}
                       width={"110px"}
@@ -97,10 +98,7 @@ const NewItems = () => {
                         <Skeleton height={"1rem"} width={"5rem"} />
                       </h4>
                     </Link>
-                    <div
-                      style={{
-                        display: "block",
-                      }}>
+                    <div style={{ display: "block" }}>
                       <Skeleton height={"1rem"} width={"3rem"} />
                     </div>
                     <div className="nft__item_like">
@@ -121,7 +119,8 @@ const NewItems = () => {
                       to="/author"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
-                      title={items.title}>
+                      title={items.title}
+                    >
                       <img className="lazy" src={items.authorImage} alt="" />
                       <i className="fa fa-check"></i>
                     </Link>
