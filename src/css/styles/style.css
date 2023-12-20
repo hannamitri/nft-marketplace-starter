@@ -13213,6 +13213,19 @@ a.read_more i {
   -webkit-border-radius: 10px 10px 0 0;
 }
 
+.nft_slider {
+  padding: 15px;
+}
+
+.slider_item {
+  min-width: 324px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+}
+
 .nft_coll:hover img {
   transform: scale(1.05);
 }
@@ -15145,7 +15158,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
