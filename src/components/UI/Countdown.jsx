@@ -1,43 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Countdown = ({ countdown }) => {
-  const [expired, setExpired] = useState("");
-  const [time, setTime] = useState();
+const Countdown = ({ expiryDate }) => {
+  const [time, setTime] = useState("");
+  const [intervalId, setIntervalId] = useState();
 
   useEffect(() => {
-    calcTime();
-    const time = setInterval(() => {
-      calcTime();
+    calculateTime();
+
+    const intervalId = setInterval(() => {
+      calculateTime();
     }, 1000);
 
-    setTime(time);
+    setIntervalId(intervalId);
 
     return () => {
-      clearInterval(time);
+      clearInterval(intervalId);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function calcTime() {
-    const millisLeft = countdown - Date.now();
+  function calculateTime() {
+    const millisLeft = expiryDate - Date.now();
 
     if (millisLeft < 0) {
-      clearInterval(time);
-      setExpired("Expired");
+      clearInterval(intervalId);
+      setTime("EXPIRED");
       return;
     }
+
     const secondsLeft = millisLeft / 1000;
     const minutesLeft = secondsLeft / 60;
     const hoursLeft = minutesLeft / 60;
 
-    setExpired(
+    setTime(
       `${Math.floor(hoursLeft)}h 
       ${Math.floor(minutesLeft % 60)}m 
       ${Math.floor(secondsLeft % 60)}s`
     );
   }
-
-  return <div className="de_countdown">{expired}</div>;
+  return <div className="de_countdown">{time}</div>;
 };
 
 export default Countdown;
