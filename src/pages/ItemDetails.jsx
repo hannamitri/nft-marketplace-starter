@@ -124,7 +124,7 @@ setLoading(true);
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${itemDetail.ownerId}`}>
                             <img
                               className="lazy"
                               src={itemDetail.ownerImage}
@@ -134,7 +134,7 @@ setLoading(true);
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{itemDetail.ownerName}</Link>
+                          <Link to={`/author/${itemDetail.ownerId}`}>{itemDetail.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -145,7 +145,7 @@ setLoading(true);
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${itemDetail.creatorId}`}>
                             <img
                               className="lazy"
                               src={itemDetail.creatorImage}
@@ -155,7 +155,7 @@ setLoading(true);
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{itemDetail.creatorName}</Link>
+                          <Link to={`/author/${itemDetail.creatorId}`}>{itemDetail.creatorName}</Link>
                         </div>
                       </div>
                     </div>
