@@ -96,6 +96,10 @@ a.a-underline:hover span {
   width: 100%;
 }
 
+.custom-owl-carousel{
+  width: 100%;
+}
+
 /* ================================================== */
 
 /*  header  */
@@ -556,9 +560,9 @@ header .header-col.mid .social-icons {
   margin: 0px 0px;
   padding: 0px;
   height: 30px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
   overflow: hidden;
   background: #ffffff;
   -webkit-box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
@@ -953,9 +957,9 @@ header.header-mobile.header-light #menu-btn {
 
 .de-menu-profile img {
   width: 38px;
-  border-radius: 30px;
-  -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
   margin-left: 5px;
   margin-bottom: 2px;
 }
@@ -11473,9 +11477,10 @@ section.no-padding {
   height: 40px;
 }
 
+
 .owl-theme .owl-controls .owl-page span {
   display: block;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
   width: 6px;
@@ -15145,7 +15150,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
