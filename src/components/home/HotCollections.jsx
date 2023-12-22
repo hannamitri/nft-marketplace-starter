@@ -80,7 +80,7 @@ const HotCollections = () => {
               {collectionData.map((item, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to={`/item-details/${item.nftId}`}>
                       <img
                         src={item.nftImage || <Skeleton />}
                         className="lazy img-fluid custom-owl-carousel"
