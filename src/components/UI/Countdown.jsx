@@ -12,7 +12,7 @@ const Countdown = ({expiryDate}) => {
       }, []);
 
     function startTimer() {
-        cancelId = setInterval(updateCountdown(), 1000/60);
+        cancelId = setInterval(updateCountdown, 1000/60);
     }
     
     function updateCountdown() {
