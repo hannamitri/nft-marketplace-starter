@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Aos from 'aos'
 
 const ItemdetailsSkeleton = () => {
+  useEffect(() => {
+    Aos.init();
+  },[])
   return (
     <div>
-        <div id="wrapper">
+      <div id="wrapper" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">

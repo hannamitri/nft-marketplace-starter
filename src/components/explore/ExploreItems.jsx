@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ItemsCard from "../ItemsCard";
 import Skeleton from "../Skeleton";
+import Aos from "aos";
 
 const ExploreItems = () => {
   const [users, setUsers] = useState([]);
@@ -35,6 +36,7 @@ const ExploreItems = () => {
   useEffect(() => {
     fetchData()
     filterItems()
+    Aos.init()
   }, [])
   
   setTimeout(() => {
@@ -48,7 +50,8 @@ const ExploreItems = () => {
 
   return (
     <>
-      <div>
+      <div data-aos="fade-up"
+    data-aos-duration="1000">
         <select id="filter-items" defaultValue=""  onChange={(event) => filterItems(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>

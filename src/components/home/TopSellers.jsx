@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Aos from "aos";
 
 const TopSellers = () => {
   const[items, setItems] = useState([]);
@@ -13,6 +14,7 @@ const TopSellers = () => {
 
   useEffect(() => {
       fetchData();
+      Aos.init();
   }, [])
 
   setTimeout(() => {
@@ -20,7 +22,8 @@ const TopSellers = () => {
   }, 3000);
 
   return (
-    <section id="section-popular" className="pb-5">
+    <section id="section-popular" className="pb-5" data-aos="fade-up"
+    data-aos-duration="1000" data-aos-delay="1000">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

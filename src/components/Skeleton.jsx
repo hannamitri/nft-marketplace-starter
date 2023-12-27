@@ -1,11 +1,18 @@
 import React from 'react'
+import Aos from 'aos'
+import { useEffect } from 'react'
 
 const Skeleton = () => {
+  useEffect(() => {
+    Aos.init()
+  },[])
   return ( new Array(8).fill(0).map((_, index) => (
     <div
     key={index}
     className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
     style={{ display: "block", backgroundSize: "cover" }}
+    data-aos="fade-up"
+    data-aos-duration="1000" data-aos-delay="1500"
     >
                 <div className="nft__item">
                   <div className="author_list_pp">
