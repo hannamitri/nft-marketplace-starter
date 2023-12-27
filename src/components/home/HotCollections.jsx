@@ -7,13 +7,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const HotCollections = () => {
-  const [images, setImages] = useState([]);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   
   async function getData() {
     const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`)
     const results = response.data
-    setImages(results)
+    setItems(results)
   }
   useEffect(() => {
     getData()
@@ -105,7 +105,7 @@ const HotCollections = () => {
           </div>
               ))) : (
 
-                images.map((item, index) => (
+                items.map((item, index) => (
                   <div key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
@@ -114,7 +114,7 @@ const HotCollections = () => {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${item.authorId}`}>
                           <img className="lazy pp-coll" src={`${item.authorImage}`} alt="" />
                         </Link>
                         <i className="fa fa-check"></i>

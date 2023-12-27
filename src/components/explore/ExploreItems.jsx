@@ -6,7 +6,7 @@ import Skeleton from "../Skeleton";
 
 const ExploreItems = () => {
   const [users, setUsers] = useState([]);
-  const [showItems, setShowItems] = useState(4);
+  const [showItems, setShowItems] = useState(8);
   const [loading, setLoading] = useState(true);
 
   async function fetchData() {
