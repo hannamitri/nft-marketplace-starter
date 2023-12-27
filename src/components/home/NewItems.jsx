@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import ItemsCard from "../ItemsCard";
-import Skeleton from "../Skeleton";
+import Aos from "aos";
 
 const NewItems = () => {
   const [users, setUsers] = useState([]);
@@ -16,7 +16,8 @@ const NewItems = () => {
   }
 
   useEffect(() => {
-    getItems()
+    getItems();
+    Aos.init();
   }, [])
 
   setTimeout(() => {
@@ -69,7 +70,8 @@ const NewItems = () => {
 
 
   return (
-    <section id="section-items" className="no-bottom">
+    <section id="section-items" className="no-bottom" data-aos="fade-up"
+    data-aos-duration="500" data-aos-delay="500">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
