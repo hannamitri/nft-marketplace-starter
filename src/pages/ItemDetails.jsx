@@ -152,6 +152,7 @@ setLoading(true);
                               alt=""
                             />
                             <i className="fa fa-check"></i>
+                            
                           </Link>
                         </div>
                         <div className="author_list_info">
@@ -163,7 +164,7 @@ setLoading(true);
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>{itemDetail.price}</span>
+                      <span>{itemDetail.price}</span> 
                     </div>
                   </div>
                 </div>
