@@ -16650,6 +16650,43 @@ img {
   }
 }
 
+.nft_coll--loading {
+  height: 308px;
+}
+
+.nft_coll_pp--loading {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nft_coll_info--loading {
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.margin {
+  margin-top: 10px;
+}
+
+.fa-check__loading {
+  position: absolute;
+  top: 60%;
+  left: 55%;
+  border: 1px solid rgb(133, 101, 196);
+  border-radius: 999px;
+  background-color: rgb(133, 101, 196);
+  color: white;
+  font-size: 12px;
+  padding: 2px;
+}
+
 .skeleton-box {
   display: inline-block;
   height: 1em;
