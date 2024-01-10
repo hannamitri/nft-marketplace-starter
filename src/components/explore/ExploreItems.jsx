@@ -62,7 +62,7 @@ const ExploreItems = () => {
               <div className="nft__item_price">1.74 ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>79</span>
               </div>
             </div>
           </div>
