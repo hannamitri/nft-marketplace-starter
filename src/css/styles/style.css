@@ -16687,6 +16687,26 @@ img {
   padding: 2px;
 }
 
+.nft__item--loading {
+  height: 441px;
+}
+
+.nft__wrap--loading {
+  height: 300px;
+  border-radius: 1px;
+}
+
+.nft_item_pp--loading {
+  position: absolute;
+  top: 7%;
+  left: 7%;
+}
+
+.nft__item_like--loading {
+  position: relative;
+  left: 85%;
+}
+
 .skeleton-box {
   display: inline-block;
   height: 1em;
