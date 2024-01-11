@@ -24,8 +24,8 @@ const Author = () => {
     setFollowing((prevFollowing) => {
       const newFollowingState = !prevFollowing;
       const newFollowersCount = newFollowingState
-        ? author.followers - 1
-        : author.followers + 1;
+        ? author.followers + 1
+        : author.followers - 1;
 
       setAuthor((prevAuthor) => ({
         ...prevAuthor,
@@ -198,7 +198,7 @@ const Author = () => {
                           className="btn-main"
                           onClick={followToggle}
                         >
-                          {following ? "Follow" : "Unfollow"}
+                          {following ? "UnFollow" : "Follow"}
                         </Link>
                       </div>
                     </div>
