@@ -26,8 +26,14 @@ const TopSellers = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Top Sellers</h2>
-              <div className="small-border bg-color-2"></div>
+              <div
+                data-aos="zoom-in"
+                data-aos-duration="500"
+                data-aos-delay="100"
+              >
+                <h2>Top Sellers</h2>
+                <div className="small-border bg-color-2"></div>
+              </div>
             </div>
           </div>
           <div className="col-md-12">
@@ -42,29 +48,37 @@ const TopSellers = () => {
                       </div>
                       <div className="author_list_info">
                         <Skeleton width={100} height={10} borderRadius={0} />
-                        <span><Skeleton width={50} height={10} borderRadius={0} /></span>
+                        <span>
+                          <Skeleton width={50} height={10} borderRadius={0} />
+                        </span>
                       </div>
                     </li>
                   ))
                 : sellers.slice(0, 12).map((sellers, index) => (
-                    <li key={index}>
-                      <div className="author_list_pp">
-                        <Link to={`/author/${sellers.authorId}`}>
-                          <img
-                            className="lazy pp-author"
-                            src={sellers.authorImage}
-                            alt=""
-                          />
-                          <i className="fa fa-check"></i>
-                        </Link>
-                      </div>
-                      <div className="author_list_info">
-                        <Link to={`/author/${sellers.authorId}`}>
-                          {sellers.authorName}
-                        </Link>
-                        <span>{`${sellers.price} ETH`}</span>
-                      </div>
-                    </li>
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-duration="800"
+                      data-aos-delay="200"
+                    >
+                      <li key={index}>
+                        <div className="author_list_pp">
+                          <Link to={`/author/${sellers.authorId}`}>
+                            <img
+                              className="lazy pp-author"
+                              src={sellers.authorImage}
+                              alt=""
+                            />
+                            <i className="fa fa-check"></i>
+                          </Link>
+                        </div>
+                        <div className="author_list_info">
+                          <Link to={`/author/${sellers.authorId}`}>
+                            {sellers.authorName}
+                          </Link>
+                          <span>{`${sellers.price} ETH`}</span>
+                        </div>
+                      </li>
+                    </div>
                   ))}
             </ol>
           </div>

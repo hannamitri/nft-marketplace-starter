@@ -49,8 +49,14 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
+              <div
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="100"
+              >
+                <h2>Hot Collections</h2>
+                <div className="small-border bg-color-2"></div>
+              </div>
             </div>
           </div>
           <OwlCarousel className="owl-carousel" {...owlCarouselOptions}>
@@ -65,7 +71,6 @@ const HotCollections = () => {
                         <div className="lazy pp-coll">
                           <Skeleton width={60} height={60} borderRadius={999} />
                         </div>
-
                       </div>
                       <div className="nft_coll_info">
                         <h4>
@@ -80,33 +85,39 @@ const HotCollections = () => {
                   </div>
                 ))
               : collections.slice(0, 6).map((collection, index) => (
-                  <div className="item" key={index}>
-                    <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link to={`/item-details/${collection.nftId}`}>
-                          <img
-                            src={collection.nftImage}
-                            className="lazy img-fluid"
-                            alt=""
-                          />
-                        </Link>
-                      </div>
-                      <div className="nft_coll_pp">
-                        <Link to={`/author/${collection.authorId}`}>
-                          <img
-                            className="lazy pp-coll"
-                            src={collection.authorImage}
-                            alt=""
-                          />
-                        </Link>
-                        <i className="fa fa-check"></i>
-                      </div>
+                  <div
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-delay="200"
+                  >
+                    <div className="item" key={index}>
+                      <div className="nft_coll">
+                        <div className="nft_wrap">
+                          <Link to={`/item-details/${collection.nftId}`}>
+                            <img
+                              src={collection.nftImage}
+                              className="lazy img-fluid"
+                              alt=""
+                            />
+                          </Link>
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Link to={`/author/${collection.authorId}`}>
+                            <img
+                              className="lazy pp-coll"
+                              src={collection.authorImage}
+                              alt=""
+                            />
+                          </Link>
+                          <i className="fa fa-check"></i>
+                        </div>
 
-                      <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>{collection.title}</h4>
-                        </Link>
-                        <span>ERC-{collection.code}</span>
+                        <div className="nft_coll_info">
+                          <Link to="/explore">
+                            <h4>{collection.title}</h4>
+                          </Link>
+                          <span>ERC-{collection.code}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
