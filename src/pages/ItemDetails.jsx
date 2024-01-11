@@ -3,8 +3,7 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
-import Skeleton from "react-loading-skeleton";
+import Skeleton from "../components/UI/Skeleton";
 const ItemDetails = () => {
   const { nftId } = useParams();
   const [details, setDetails] = useState([]);
@@ -32,41 +31,30 @@ const ItemDetails = () => {
             {loading ? (
               <div className="row">
                 <div className="col-md-6 text-center">
-                <Skeleton width={100} height={100} borderRadius={100} />
+                <Skeleton width={500} height={550} borderRadius={0} />
                 </div>
                 <div className="col-md-6">
                   <div className="item_info">
                     <h2>
-                    <Skeleton width={0} height={50} borderRadius={0} />
+                    <Skeleton width={300} height={50} borderRadius={0} />
                     </h2>
 
-                    <div className="item_info_counts">
-                      <div className="item_info_views">
-                        <i className="fa fa-eye"></i>
-                        100
-                      </div>
-                      <div className="item_info_like">
-                        <i className="fa fa-heart"></i>
-                        74
-                      </div>
+                    <div className="item_info_counts">         
+                      <Skeleton width={50} height={30} borderRadius={0} />
+                      <Skeleton width={50} height={30} borderRadius={0} />
                     </div>
                     <p>
-                      doloremque laudantium, totam rem aperiam, eaque ipsa quae
-                      ab illo inventore veritatis et quasi architecto beatae
-                      vitae dicta sunt explicabo.
+                    <Skeleton width={400} height={100} borderRadius={0} />
                     </p>
                     <div className="d-flex flex-row">
                       <div className="mr40">
-                        <h6>Owner</h6>
+                      <Skeleton width={60} height={20} borderRadius={0} />
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
-                              <img className="lazy" src={AuthorImage} alt="" />
-                              <i className="fa fa-check"></i>
-                            </Link>
+                          <Skeleton width={50} height={50} borderRadius={100} />
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">Monica Lucas</Link>
+                          <Skeleton width={60} height={20} borderRadius={0} />
                           </div>
                         </div>
                       </div>
@@ -74,24 +62,20 @@ const ItemDetails = () => {
                     </div>
                     <div className="de_tab tab_simple">
                       <div className="de_tab_content">
-                        <h6>Creator</h6>
+                        <Skeleton width={60} height={20} borderRadius={0} />
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
-                              <img className="lazy" src={AuthorImage} alt="" />
-                              <i className="fa fa-check"></i>
-                            </Link>
+                          <Skeleton width={50} height={50} borderRadius={100} />
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">Monica Lucas</Link>
+                          <Skeleton width={60} height={20} borderRadius={0} />
                           </div>
                         </div>
                       </div>
                       <div className="spacer-40"></div>
-                      <h6>Price</h6>
+                      <Skeleton width={40} height={15} borderRadius={0} />
                       <div className="nft-item-price">
-                        <img src={EthImage} alt="" />
-                        <span>1.85</span>
+                        <Skeleton width={100} height={35} borderRadius={0} />
                       </div>
                     </div>
                   </div>
