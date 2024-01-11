@@ -43,20 +43,6 @@ const HotCollections = () => {
     fetchHotCollections();
   }, []);
 
-  // useEffect(() => {
-  //   async function fetchHotCollections() {
-  //     const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-  //     setHotCollections(data)
-  //     console.log(data)
-  //   }
-
-  //   setTimeout(() => {
-  //     fetchHotCollections()
-  //     setIsLoading(false)
-  //   }, 3000)
-
-  // }, [])
-
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -70,7 +56,7 @@ const HotCollections = () => {
           <OwlCarousel className="owl-carousel" {...options}>
             {hotCollections.length === 0 && isLoading
               ? new Array(4).fill(0).map((_, index) => (
-                  <div className=" col-lg-12 col-md-12 col-xs-12" key={index}>
+                  <div className="col-lg-12 col-md-12 col-xs-12" key={index}>
                     <div className="nft_coll nft_coll--loading">
                       <div className="nft_wrap">
                         <Skeleton width="100%" height="90%" />
@@ -96,7 +82,7 @@ const HotCollections = () => {
                   <div key={hotCollection.id}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${hotCollection.nftId}`}>
                           <img
                             src={hotCollection.nftImage}
                             className="lazy img-fluid"
@@ -105,7 +91,7 @@ const HotCollections = () => {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${hotCollection.authorId}`}>
                           <img
                             className="lazy pp-coll"
                             src={hotCollection.authorImage}
