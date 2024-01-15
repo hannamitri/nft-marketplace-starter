@@ -31,7 +31,7 @@ const HotCollections = () => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "black" }}
+        style={{ ...style, display: "block", background: "gray", borderRadius: "50px" }}
         onClick={onClick}
       />
     );
@@ -85,7 +85,7 @@ const HotCollections = () => {
           <Slider {...settings}>
             {loading ? (
               new Array(4).fill(0).map((_, index) => (
-                <div className="nft_coll" key={index}>
+                <div className="px-1" key={index}>
             <div className="nft_wrap">
               <div className="skeleton-box"
                 style={{width: "100%", height: "200px"}}>
@@ -110,7 +110,7 @@ const HotCollections = () => {
               ))) : (
 
                 items.map((item, index) => (
-                  <div key={index} >
+                  <div key={index}  className="px-1">
                     <div className="nft_coll">
                       <div className="nft_wrap">
                         <Link to={`/item-details/${item.nftId}`}>

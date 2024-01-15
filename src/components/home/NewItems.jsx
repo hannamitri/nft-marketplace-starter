@@ -29,7 +29,7 @@ const NewItems = () => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "black" }}
+        style={{ ...style, display: "block", background: "gray", borderRadius: "50px" }}
         onClick={onClick}
       />
     );
@@ -83,7 +83,7 @@ const NewItems = () => {
           <Slider {...settings}>
           {loading ? (
             new Array(7).fill(0).map((_, index) => (
-              <div key={index} >
+              <div key={index} className="px-1" >
                 <div className="nft__item">
                   <div className="author_list_pp">
                   <div className="skeleton-box"
@@ -117,7 +117,7 @@ const NewItems = () => {
             ))
           ) : (
             users.map((user) => (
-              <div key={user.id} >
+              <div key={user.id} className="px-1" >
                 <ItemsCard Itemcard={user} />
               </div>
             )))}
