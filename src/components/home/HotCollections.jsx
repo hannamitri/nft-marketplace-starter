@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import Slider from "../slider/Slider"
 
 
+
 const HotCollections = () => {
-  const [hotCollections, setHotCollections] = React.useState([]);
+  const [hotCollections, setHotCollections] = useState([]);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
       .then(({ data }) => {
-        // console.log(data)
         setHotCollections(data);
+        setIsLoading(false);
       })
-  }, [])
+      .catch(error => {
+        console.error("Error fetching hot collections:", error);
+        setIsLoading(false);
+      });
+  }, []);
 
 
   return (
@@ -28,7 +34,8 @@ const HotCollections = () => {
           </div>
 
 
-          <Slider data={hotCollections} />
+          <Slider data={hotCollections} loading={loading} />
+
 
 
         </div>
