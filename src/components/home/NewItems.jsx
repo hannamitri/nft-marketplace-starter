@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
 
@@ -8,7 +7,7 @@ const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loaded, setLoaded] = useState(false);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -34,7 +33,7 @@ const NewItems = () => {
       } catch (error) {
         console.error(error.message);
       } finally {
-        setIsLoading(false);
+        setIsLoading(false); 
       }
     };
     fetchData();
@@ -102,6 +101,10 @@ const NewItems = () => {
       return `${pad(time.hours)}h ${pad(time.minutes)}m ${pad(time.seconds)}s`;
     };
 
+    if (!expiryDate || expiryDate <= 0) {
+      return null;
+    }
+
     return (
       <>
         <div>{formatTime(timeLeft)}</div>
@@ -112,27 +115,27 @@ const NewItems = () => {
   if (isLoading) {
     return (
       <section id="section-items" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp"></div>
-                <div className="nft__item_wrap">
-                  <div className="red"></div>
-                </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="text-center">
+                <h2>New Items</h2>
+                <div className="small-border bg-color-2"></div>
               </div>
             </div>
-          ))}
+            {new Array(4).fill(0).map((_, index) => (
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                <div className="nft__item">
+                  <div className="author_list_pp loading-skeleton"></div>
+                  <div className="nft__item_wrap aspect-ratio-1x1 loading-skeleton">
+                    <div className="bg-secondary"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     );
   } else {
     return (
@@ -168,9 +171,12 @@ const NewItems = () => {
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
-                      <div className="de_countdown">
-                        <CountdownTimer expiryDate={newItem.expiryDate} />
-                      </div>
+                      
+                      {newItem.expiryDate && (
+                        <div className="de_countdown">
+                          <CountdownTimer expiryDate={newItem.expiryDate} />
+                        </div>
+                      )}
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
