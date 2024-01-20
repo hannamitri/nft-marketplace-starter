@@ -13,7 +13,6 @@ const Author = ({ title }) => {
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
     );
     setAuthorDetails(data);
-    console.log(data.nftCollection, "data");
   }
 
   useEffect(() => {

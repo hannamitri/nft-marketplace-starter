@@ -14,6 +14,7 @@ function msToTime(duration) {
 }
 
 function NewItemcard({ item, index }) {
+    console.log(item, "form new item card")
     const [timeLeft, setTimeLeft] = useState(item.expiryDate);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ function NewItemcard({ item, index }) {
                 </Link>
             </div>
             {
-                timeLeft > 0 && <div className="de_countdown">{msToTime(timeLeft)}</div>
+                item.expiryDate && <div className="de_countdown">{msToTime(timeLeft)}</div>
             }
             <div className="nft__item_wrap">
                 <div className="nft__item_extra">

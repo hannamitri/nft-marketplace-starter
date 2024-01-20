@@ -9,11 +9,13 @@ import CollectionItem from '../CollectionItem';
 import { HotCollectionSkeleton } from '../UI/Skeleton';
 import NewItemcard from '../NewItem.card';
 import { NewItemSkeleton } from '../UI/Skeleton';
+import Card from '../Card';
 
 
 
 const Slider = ({ loading, data, from }) => {
     let array = from === "hotCollections" ? 6 : 7;
+    console.log(data)
 
     return (
         <>
@@ -64,7 +66,8 @@ const Slider = ({ loading, data, from }) => {
                             :
                             data.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    {from === 'hotCollections' ? <CollectionItem collection={item} /> : <NewItemcard item={item} index={index} />}
+                                    {from === 'hotCollections' ? <CollectionItem collection={item} />
+                                        : <Card item={item} index={index} />}
                                 </SwiperSlide>
                             ))
                     }

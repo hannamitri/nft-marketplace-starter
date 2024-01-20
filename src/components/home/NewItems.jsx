@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Slider from "../slider/Slider";
-import NewItemcard from "../NewItem.card";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
