@@ -7,20 +7,22 @@ import 'swiper/css/pagination';
 import "./style.css";
 import CollectionItem from '../CollectionItem';
 import { HotCollectionSkeleton } from '../UI/Skeleton';
+import NewItemcard from '../NewItem.card';
+import { NewItemSkeleton } from '../UI/Skeleton';
 
 
 
-const Slider = ({ loading, data }) => {
-    console.log(loading, "form loading ")
+const Slider = ({ loading, data, from }) => {
+    let array = from === "hotCollections" ? 6 : 7;
 
     return (
         <>
             <div className='custom-swiper-wrapper'>
                 <Swiper
-                    slidesPerView={1}
+                    slidesPerView={4}
                     spaceBetween={10}
                     loop={false}
-                    slidesPerGroup={1}
+                    // slidesPerGroup={1}
 
                     navigation={{
                         nextEl: '.swiper-button-next',
@@ -53,21 +55,21 @@ const Slider = ({ loading, data }) => {
                 >
 
                     {
-
                         loading ?
-                            new Array(6).fill(0).map((_, index) => (
+                            new Array(array).fill(0).map((_, index) => (
                                 <SwiperSlide key={index}>
-                                    <HotCollectionSkeleton />
+                                    {from === 'hotCollections' ? <HotCollectionSkeleton /> : <NewItemSkeleton />}
                                 </SwiperSlide>
                             ))
                             :
-                            data.map((collection, index) => (
+                            data.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <CollectionItem collection={collection} />
+                                    {from === 'hotCollections' ? <CollectionItem collection={item} /> : <NewItemcard item={item} index={index} />}
                                 </SwiperSlide>
                             ))
-
                     }
+
+
                     <div className="swiper-button-next swiper-custom-nav"></div>
                     <div className="swiper-button-prev swiper-custom-nav"></div>
                 </Swiper>

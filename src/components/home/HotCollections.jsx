@@ -13,6 +13,7 @@ const HotCollections = () => {
     axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
       .then(({ data }) => {
         setHotCollections(data);
+        console.log(data);
         setIsLoading(false);
       })
       .catch(error => {
@@ -34,7 +35,7 @@ const HotCollections = () => {
           </div>
 
 
-          <Slider data={hotCollections} loading={loading} />
+          <Slider data={hotCollections} loading={loading} from={"hotCollections"} />
 
 
 
