@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { Link } from 'react-router-dom'
+import CountDown from './CountDown'
 
 function Card({ item, authorImage, responsiveStyling }) {
     return (
@@ -18,7 +19,7 @@ function Card({ item, authorImage, responsiveStyling }) {
                     </Link>
                 </div>
                 {
-                    item.expiryDate && <div className="de_countdown">{123}</div>
+                    item.expiryDate && <div className="de_countdown"><CountDown expiryDate={item.expiryDate} /></div>
                 }
                 <div className="nft__item_wrap">
                     <div className="nft__item_extra">
