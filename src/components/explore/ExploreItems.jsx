@@ -27,6 +27,14 @@ const ExploreItems = () => {
     </div>
   ));
 
+  async function filterItems(filter) {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+    );
+    setItems(data);
+    setLoading(false);
+  }
 
   useEffect(() => {
     exploreItem().then(() => {
@@ -38,7 +46,8 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue=""
+          onChange={(e) => filterItems(e.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -54,12 +63,12 @@ const ExploreItems = () => {
           <Card item={item} />
         </div>
       )) : skeletonLoading
-
       }
 
-      <div className="col-md-12 text-center">
+      <div className="col-md-12 text-center" >
         {itemCount !== 16 &&
-          <Link to="" id="loadmore" className="btn-main lead" onClick={() => setItemCount(itemCount + 4)}>
+          <Link to="" id="loadmore" className="btn-main lead" onClick={() => setItemCount(itemCount + 4)}
+            data-aos="fade-up">
             Load more
           </Link>
         }
