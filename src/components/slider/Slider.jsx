@@ -32,7 +32,9 @@ const Slider = ({ loading, data, from }) => {
                     }}
                     breakpoints={{
 
-
+                        300: {
+                            slidesPerView: 1,
+                        },
                         // when window width is >= 640px
                         640: {
                             slidesPerView: 1,
