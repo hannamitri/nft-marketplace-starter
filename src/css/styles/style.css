@@ -13218,6 +13218,7 @@ a.read_more i {
 }
 
 .nft_coll {
+  margin: 0 8px;
   text-align: center;
 }
 
@@ -15145,7 +15146,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
