@@ -5,6 +5,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [newItem, setNewItem] = useState([]);
@@ -71,19 +72,19 @@ const NewItems = () => {
                           </div>
                         </div>
                       </div>
-                      <Skeleton height="60%" width="100%" borderRadius={8}/>
+                      <Skeleton height="60%" width="100%" borderRadius={8} />
                     </div>
                     <div className="nft__item_info">
                       <h4>
-                        <Skeleton height={20} width={100} borderRadius={4}/>
+                        <Skeleton height={20} width={100} borderRadius={4} />
                       </h4>
                       <div className="nft__item_price">
-                        <Skeleton height={20} width={60} borderRadius={4}/>
+                        <Skeleton height={20} width={60} borderRadius={4} />
                       </div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
                         <span>
-                          <Skeleton height={20} width={50} borderRadius={4}/>
+                          <Skeleton height={20} width={50} borderRadius={4} />
                         </span>
                       </div>
                     </div>
@@ -117,8 +118,9 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">5h 30m 32s</div>
-
+                    {item.expiryDate && (
+                      <Countdown expiryDate={item.expiryDate} />
+                    )}
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
                         <div className="nft__item_buttons">
