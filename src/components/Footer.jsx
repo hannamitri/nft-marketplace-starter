@@ -159,7 +159,7 @@ const Footer = () => {
                 <div className="de-flex-col">
                   <Link className="footer__link" to="/">
                     <img alt="" className="f-logo" src={Logo} />
-                    <span className="copy">&copy; Copyright 2022</span>
+                    <span className="copy">&copy; Copyright 2024</span>
                   </Link>
                 </div>
               </div>

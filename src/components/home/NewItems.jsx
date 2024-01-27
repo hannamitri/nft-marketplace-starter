@@ -23,6 +23,8 @@ const NewItems = () => {
     fetchUsers();
   }, []);
 
+  const skeletonArray = Array.from({ length: 12 }).fill(null);
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -34,7 +36,7 @@ const NewItems = () => {
             </div>
           </div>
           {skeleton ? (
-            new Array(1).fill(0).map((_, index) => (
+            skeletonArray.map((_, index) => (
               <OwlCarousel
                 key={index}
                 loop
