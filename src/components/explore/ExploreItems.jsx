@@ -10,18 +10,19 @@ const ExploreItems = () => {
   const [itemsToShow, setItemsToShow] = useState(8);
   const [showLoadMore, setShowLoadMore] = useState(true);
   const [skeleton, setSkeleton] = useState(true);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
-  async function fetchItems() {
-    const { data } = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-    );
-    setItem(data);
-    setSkeleton(false);
+  async function fetchItems(selectedFilter) {
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${selectedFilter}`
+      );
+      setItem(data);
+      setSkeleton(false);
   }
 
   useEffect(() => {
-    fetchItems();
-  }, []);
+    fetchItems(selectedFilter);
+  }, [selectedFilter]);
 
   const handleLoadMore = () => {
     if (itemsToShow + 4 >= item.length) {
@@ -30,10 +31,17 @@ const ExploreItems = () => {
     setItemsToShow(itemsToShow + 4);
   };
 
+  const skeletonArray = Array.from({ length: 8 }).fill(null);
+
+  const handleFilterChange = (event) => {
+    const filterValue = event.target.value;
+    setSelectedFilter(filterValue);
+  };
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -41,7 +49,7 @@ const ExploreItems = () => {
         </select>
       </div>
       {skeleton
-        ? new Array(8).fill(0).map((_, index) => (
+        ? skeletonArray.map((_, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"

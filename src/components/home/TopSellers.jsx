@@ -37,12 +37,14 @@ const TopSellers = () => {
                 ? skeletonArray.map((_, index) => (
                     <li key={index}>
                       <div className="author_list_pp">
-                        <Skeleton width={50} height={50} borderRadius={50} />
+                        <Skeleton borderRadius={50} height={50} width={50} />
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="author_list_info">
-                        <Skeleton width={100} height={20} borderRadius={4} />
-                        <Skeleton width={80} height={20} borderRadius={4} />
+                        <Skeleton height={20} width={100} borderRadius={4} />
+                        <span>
+                          <Skeleton height={20} width={60} borderRadius={4} />
+                        </span>
                       </div>
                     </li>
                   ))
