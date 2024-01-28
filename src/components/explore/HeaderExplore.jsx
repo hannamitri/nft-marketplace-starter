@@ -19,7 +19,7 @@ const HeaderExplore = () => {
               placeholder="search item here..."
               type="text"
             />{" "}
-            <a href="#" id="btn-submit">
+            <a href="../" id="btn-submit">
               <i className="fa fa-search bg-color-secondary"></i>
             </a>
             <div className="clearfix"></div>
@@ -27,7 +27,7 @@ const HeaderExplore = () => {
         </form>
 
         <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <a href="/" className="btn-selector">
             All categories
           </a>
           <ul>
