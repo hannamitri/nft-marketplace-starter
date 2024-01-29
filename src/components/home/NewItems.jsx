@@ -23,7 +23,7 @@ const NewItems = () => {
     fetchUsers();
   }, []);
 
-  const skeletonArray = Array.from({ length: 12 }).fill(null);
+  const skeletonArray = Array.from({ length: 1 }).fill(null);
 
   return (
     <section id="section-items" className="no-bottom">
