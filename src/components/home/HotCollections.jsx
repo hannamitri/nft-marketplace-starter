@@ -1,9 +1,31 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+
+const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`)
+
+
 
 const HotCollections = () => {
+  const [collections, setCollections] = useState([]);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
+              setCollections(response.data); // Assuming the data is an array
+          } catch (error) {
+              console.error("Error fetching data: ", error);
+              // Handle error
+          }
+      };
+
+      fetchData();
+  }, []); // Empty dependency array means this effect runs once after the initial render
+
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
