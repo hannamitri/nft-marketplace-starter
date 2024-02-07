@@ -1,0 +1,59 @@
+/* ShimmerEffect.css */
+.shimmer-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shimmer-image, .shimmer-text {
+  background: #f6f7f8; /* Light grey background */
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+}
+
+.shimmer-text.big {
+  width: 80%;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.shimmer-text {
+  width: 100%;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.shimmer-text.small {
+  width: 60%;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
