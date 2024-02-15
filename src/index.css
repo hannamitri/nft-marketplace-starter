@@ -10,9 +10,7 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
-@import 'swiper/css';
-@import 'swiper/css/navigation';
-@import 'swiper/css/pagination';
+
 
 
 /* Specific styles for the hotCollection component specifically relating to OwlCarousel */
@@ -21,6 +19,10 @@
   margin: 0;
   overflow: hidden;
 }
+.nft_wrap .carousel .slide {
+  background: none; /* Make sure the background of each slide is transparent or as needed */
+}
+
 
 .nft_wrap img {
   width: 100%;
