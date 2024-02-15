@@ -10,6 +10,10 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 
 /* Specific styles for the hotCollection component specifically relating to OwlCarousel */
 .nft_wrap {
