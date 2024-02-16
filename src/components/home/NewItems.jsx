@@ -91,10 +91,10 @@ const NewItems = () => {
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
         setItems(response.data);
+        setIsLoading(false); // This should be set to false after data is fetched
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
+        setIsLoading(false); // Also set to false in case of an error
       }
     };
 
@@ -118,17 +118,13 @@ const NewItems = () => {
 
   const renderShimmerPlaceholders = () => (
     <React.Fragment>
-      {[...Array(4)].map((_, index) => (
+      {[...Array(options.responsive[1200].items)].map((_, index) => (
         <div className="item" key={index}>
           <ShimmerEffect />
         </div>
       ))}
     </React.Fragment>
   );
-
-  if (isLoading) {
-    return renderShimmerPlaceholders();
-  }
 
   return (
     <section id="section-items" className="no-bottom">
@@ -142,10 +138,14 @@ const NewItems = () => {
           </div>
         </div>
         {items.length > 0 && (
-          <OwlCarousel className="owl-theme" key={items.length} {...options}>
-            {items.map((item) => (
-              <Item key={item.id} item={item} />
-            ))}
+          <OwlCarousel
+            className="owl-theme"
+            key={isLoading ? "loading" : items.length}
+            {...options}
+          >
+            {isLoading
+              ? renderShimmerPlaceholders()
+              : items.map((item) => <Item key={item.id} item={item} />)}
           </OwlCarousel>
         )}
       </div>

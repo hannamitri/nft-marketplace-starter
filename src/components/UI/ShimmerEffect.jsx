@@ -3,20 +3,15 @@ import './ShimmerEffect.css'; // Make sure this is the correct path to your CSS 
 
 const ShimmerEffect = () => (
   <div className="shimmer-wrapper">
-    {/* Simulate an image placeholder */}
-    <div className="shimmer-image shimmer"></div>
-
-    {/* Simulate the profile picture placeholder */}
     <div className="shimmer-profile-picture shimmer"></div>
-
-    {/* Simulate the main text placeholder */}
-    <div className="shimmer-text large shimmer"></div>
-
-    {/* Simulate the secondary text placeholder */}
-    <div className="shimmer-text medium shimmer"></div>
-
-    {/* Simulate the smaller text placeholder at the bottom */}
-    <div className="shimmer-text small shimmer"></div>
+    <div className="shimmer-image shimmer"></div>
+    <div className="shimmer-text-block">
+      <div className="shimmer-text large shimmer"></div>
+      <div className="shimmer-text medium shimmer"></div>
+    </div>
+    <div className="shimmer-countdown"></div>
+    <div className="shimmer-text countdown shimmer"></div>
+    <div className="shimmer-heart shimmer"></div>
   </div>
 );
 

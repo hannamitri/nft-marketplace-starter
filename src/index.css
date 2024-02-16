@@ -11,8 +11,6 @@
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
 
-
-
 /* Specific styles for the hotCollection component specifically relating to OwlCarousel */
 .nft_wrap {
   padding: 0;
@@ -22,7 +20,6 @@
 .nft_wrap .carousel .slide {
   background: none; /* Make sure the background of each slide is transparent or as needed */
 }
-
 
 .nft_wrap img {
   width: 100%;
@@ -41,4 +38,47 @@
   right: 10px;
 }
 
+.nft__item {
+  position: relative;
+}
 
+.de_countdown {
+  position: absolute;
+  top: -368px; /* Adjust as needed for spacing from the top */
+  left: 180px; /* Adjust as needed for spacing from the left */
+  z-index: 10; /* Make sure it's above other elements */
+  width: 90px;
+  height: auto;
+}
+
+@media (min-width: 600px) {
+  .de_countdown {
+    top: -368px; 
+    left: 190px; 
+    z-index: 10; 
+    width: 90px;
+    height: auto;
+  }
+}
+
+/* Large devices (desktops, 1000px and up) */
+@media (min-width: 1000px) {
+  .de_countdown {
+    top: -365px; 
+    left: 220px; 
+    z-index: 10; 
+    width: 90px;
+    height: auto;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .de_countdown {
+    top: -368px; 
+    left: 155px; 
+    z-index: 10; 
+    width: 90px;
+    height: auto;
+  }
+}
