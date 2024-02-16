@@ -48,6 +48,16 @@
   margin-bottom: 5px;
 }
 
+.shimmer-countdown {
+  top: -368px; 
+  left: 190px; 
+  z-index: 10; 
+  width: 90px;
+  height: auto;
+}
+
+
+
 /* Shimmer effect styling */
 .shimmer {
   background: #f6f7f8; /* Light grey background */
