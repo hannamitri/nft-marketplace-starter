@@ -28,8 +28,6 @@ const HotCollections = () => {
     fetchData();
   }, []);
   
-  // Debugging state values
-  console.log("isLoading:", isLoading, "Collections:", collections.length);
 
   const options = {
     loop: true,
