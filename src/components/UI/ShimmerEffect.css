@@ -7,6 +7,16 @@
   padding: 20px; /* Add some padding around the shimmer elements */
 }
 
+.shimmer_wrapper-topSeller {
+  display: flex;
+  flex-direction: row; /* Align children in a row */
+  justify-content: space-around; /* Distribute space around items */
+  align-items: center; /* Align items vertically */
+  gap: 8px; /* Space between each shimmer element */
+  padding: 20px; /* Add some padding around the shimmer elements */
+  flex-wrap: wrap; /* Allow items to wrap as needed */
+}
+
 .shimmer-image {
   width: 100%;
   height: 200px; /* Height of the main image placeholder */
@@ -60,7 +70,8 @@
 
 /* Shimmer effect styling */
 .shimmer {
-  background: #f6f7f8; /* Light grey background */
+  background: linear-gradient(to right, #eff1f3 8%, #e2e2e2 18%, #eff1f3 33%);
+  background-size: 200% 100%;
   position: relative;
   overflow: hidden;
 }
@@ -69,21 +80,19 @@
   content: '';
   position: absolute;
   top: 0;
-  left: -150%;
+  left: -100%; /* Start the gradient off the left side of the element */
   height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-  animation: shimmer 1.5s infinite;
+  width: 200%; /* Double the width for the sliding effect */
+  background: inherit; /* Use the same gradient background */
+  animation: shimmer 2s infinite linear;
 }
 
 @keyframes shimmer {
   0% {
-    left: -150%;
-  }
-  50% {
-    left: 100%;
+    left: -100%; /* Start the gradient off the left side of the element */
   }
   100% {
-    left: 100%;
+    left: 100%; /* End the gradient off the right side of the element */
   }
 }
+

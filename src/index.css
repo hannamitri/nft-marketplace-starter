@@ -82,3 +82,43 @@
     height: auto;
   }
 }
+
+
+
+/* Style the skeleton loaders */
+.skeleton {
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit; /* This will inherit the gradient background from .shimmer */
+  animation: inherit; /* This will inherit the animation from .shimmer */
+}
+
+.skeleton-circle,
+.skeleton-line {
+  background-color: #eff1f3;
+  position: relative;
+}
+
+.skeleton-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.skeleton-line {
+  height: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
