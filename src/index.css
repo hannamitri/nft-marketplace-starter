@@ -39,18 +39,17 @@
 }
 
 .nft__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjust as needed */
   position: relative;
 }
 
 .de_countdown {
   position: absolute;
-  top: -368px; /* Adjust as needed for spacing from the top */
-  left: 180px; /* Adjust as needed for spacing from the left */
-  z-index: 10; /* Make sure it's above other elements */
-  width: 90px;
   height: auto;
 }
-
+/* 
 @media (min-width: 600px) {
   .de_countdown {
     top: -368px; 
@@ -61,7 +60,6 @@
   }
 }
 
-/* Large devices (desktops, 1000px and up) */
 @media (min-width: 1000px) {
   .de_countdown {
     top: -365px; 
@@ -72,7 +70,6 @@
   }
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .de_countdown {
     top: -368px; 
@@ -81,7 +78,7 @@
     width: 90px;
     height: auto;
   }
-}
+} */
 
 
 

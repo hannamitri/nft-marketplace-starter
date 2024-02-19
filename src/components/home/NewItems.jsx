@@ -13,9 +13,11 @@ const useCountdown = (targetDate) => {
     const interval = setInterval(() => {
       const now = new Date();
       const distance = new Date(targetDate).getTime() - now.getTime();
+
       if (distance < 0) {
         clearInterval(interval);
-        setCountdown("00:00:00");
+        // Here we don't set countdown to "00:00:00", we just leave it as an empty string
+        setCountdown("");
         return;
       }
 
@@ -68,7 +70,7 @@ const Item = ({ item }) => {
             <h4>{item.title}</h4>
           </Link>
           <div className="nft__item_price">{item.price} ETH</div>
-          <div className="de_countdown">{countdown}</div>
+          {countdown && <div className="de_countdown">{countdown}</div>}
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
             <span>{item.likes}</span>
