@@ -4,57 +4,86 @@ import axios from "axios";
 import Countdown from "../UI/Countdown";
 
 const ExploreItems = () => {
-  const [exploreItems, setExploreItemss] = useState([]);
+  const [originalItems, setOriginalItems] = useState([]);
+  const [exploreItems, setExploreItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [itemLimit, setItemLimit] = useState(8); // Initial item limit set to 8
+  const [itemLimit, setItemLimit] = useState(8);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchExploreItems = async () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
         );
-        console.log("Fetched data:", response.data);
-        setExploreItemss(response.data);
-        setIsLoading(false);
+        if (isMounted) {
+          console.log("Fetched data:", response.data);
+          setOriginalItems(response.data); // Store the original fetched items
+          setExploreItems(response.data); // Set items for display
+          setIsLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching data: ", error);
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     };
 
     fetchExploreItems();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
+  useEffect(() => {
+    // Use a separate state or variable for sorted items to avoid direct modification
+    const sortedItems = sortItems(originalItems, filter);
+    setExploreItems(sortedItems); // Update the displayed items based on sorting
+  }, [filter, originalItems]);
+
   const loadMoreItems = () => {
-    setItemLimit((prevLimit) => prevLimit + 4); // Increase the item limit by 4 each time
+    setItemLimit((prevLimit) => prevLimit + 4);
+  };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const sortItems = (items, filter) => {
+    let sortedItems = [...items];
+    switch (filter) {
+      case "price_low_to_high":
+        return sortedItems.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      case "price_high_to_low":
+        return sortedItems.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      case "likes_high_to_low":
+        return sortedItems.sort((a, b) => b.likes - a.likes);
+      default:
+        return sortedItems; // Return items unsorted if no filter is selected
+    }
   };
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+      <select id="filter-items" defaultValue="" onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {exploreItems.slice(0, itemLimit).map(
-        (
-          item,
-          index // Use slice to limit items
-        ) => (
-          <div
-            key={item.id || index}
-            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-            style={{ display: "block", backgroundSize: "cover" }}
-          >
+      {Array.isArray(exploreItems) && exploreItems.slice(0, itemLimit).map(
+      (item, index) => (
+        <div key={item.id || index} className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" style={{ display: "block", backgroundSize: "cover" }}>
             <div className="nft__item">
               <div className="author_list_pp">
                 <Link
@@ -101,7 +130,7 @@ const ExploreItems = () => {
           </div>
         )
       )}
-      {itemLimit >= exploreItems.length ? null : (
+     {itemLimit < (exploreItems?.length || 0) && (
       <div className="col-md-12 text-center">
         <button onClick={loadMoreItems} id="loadmore" className="btn-main lead">
           Load more
