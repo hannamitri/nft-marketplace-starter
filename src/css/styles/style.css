@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -15251,6 +15251,35 @@ a.btn-slider:hover {
   right: 0;
   position: absolute;
   margin-top: -30px;
+}
+
+.arrow__icon {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: #242424;
+  cursor: pointer;
+  background-color: #fff;
+  z-index: 3;
+  padding: 0.9em;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  fill: rgba(255, 255, 255, 0.5);
 }
 
 .arrowdown {
@@ -16353,6 +16382,10 @@ img {
   .feature-box-image,
   .pricing-box {
     margin-bottom: 30px;
+  }
+
+  .nft_wrap {
+    height: 100px;
   }
 
   #filters li.pull-right {
