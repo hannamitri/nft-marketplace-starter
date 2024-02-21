@@ -1,10 +1,14 @@
 /* ShimmerEffect.css */
 .shimmer-wrapper {
+  width: 250px; /* Adjust width to match card width */
+  height: 300px; /* Adjust height to match card height */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Align children to the center */
   gap: 8px;
-  padding: 20px; /* Add some padding around the shimmer elements */
+  padding: 20px; /* Padding might need to be adjusted if the cards have less/more */
+  margin: 10px; /* Add some margin around the shimmer elements */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Optional: add shadow to match card style */
+  border-radius: 8px; /* Optional: if cards have rounded corners */
 }
 
 .shimmer_wrapper-topSeller {
@@ -24,22 +28,19 @@
 }
 
 .shimmer-profile-picture {
-  width: 80px; /* Adjust to match your actual profile picture size */
-  height: 80px;
-  border-radius: 50%; /* Make it circular for profile pictures */
-  margin-bottom: 10px; /* Space below the profile picture */
+  width: 50px; /* Adjust to match your actual profile picture size */
+  height: 50px;
+  right: 0%;
+  border-radius: 50%; 
+  margin-bottom: 10px; 
 }
 
-/* Text placeholders with different sizes */
-.shimmer-text.big {
-  width: 80%;
-  height: 20px;
-  margin-bottom: 5px;
-}
+
 
 .shimmer-text.large {
-  width: 70%; /* Width of the largest text */
-  height: 25px; /* Height of the largest text */
+  width: 70%; 
+  height: 25px; 
+  margin-bottom: 5px;
 }
 
 .shimmer-text.medium {
@@ -47,28 +48,8 @@
   height: 20px;
 }
 
-.shimmer-text {
-  width: 100%; /* Full width for generic text placeholders */
-  height: 20px;
-}
-
-.shimmer-text.small {
-  width: 60%; /* Width of the smallest text */
-  height: 15px; /* Height of the smallest text */
-  margin-bottom: 5px;
-}
-
-.shimmer-countdown {
-  top: -368px; 
-  left: 190px; 
-  z-index: 10; 
-  width: 90px;
-  height: auto;
-}
 
 
-
-/* Shimmer effect styling */
 .shimmer {
   background: linear-gradient(to right, #eff1f3 8%, #e2e2e2 18%, #eff1f3 33%);
   background-size: 200% 100%;

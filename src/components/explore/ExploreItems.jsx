@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Countdown from "../UI/Countdown";
+import ShimmerEffect from "../UI/ShimmerEffect";
+
 
 const ExploreItems = () => {
   const [originalItems, setOriginalItems] = useState([]);
@@ -69,7 +71,15 @@ const ExploreItems = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="row">
+        {Array.from({ length: itemLimit }, (_, index) => (
+          <div key={index} className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <ShimmerEffect />
+          </div>
+        ))}
+      </div>
+    );
   }
   return (
     <>
@@ -130,6 +140,8 @@ const ExploreItems = () => {
           </div>
         )
       )}
+        <ShimmerEffect />
+   
      {itemLimit < (exploreItems?.length || 0) && (
       <div className="col-md-12 text-center">
         <button onClick={loadMoreItems} id="loadmore" className="btn-main lead">
