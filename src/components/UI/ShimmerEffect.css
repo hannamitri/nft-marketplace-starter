@@ -1,0 +1,79 @@
+/* ShimmerEffect.css */
+.shimmer-wrapper {
+  width: 250px; /* Adjust width to match card width */
+  height: 300px; /* Adjust height to match card height */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px; /* Padding might need to be adjusted if the cards have less/more */
+  margin: 10px; /* Add some margin around the shimmer elements */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Optional: add shadow to match card style */
+  border-radius: 8px; /* Optional: if cards have rounded corners */
+}
+
+.shimmer_wrapper-topSeller {
+  display: flex;
+  flex-direction: row; /* Align children in a row */
+  justify-content: space-around; /* Distribute space around items */
+  align-items: center; /* Align items vertically */
+  gap: 8px; /* Space between each shimmer element */
+  padding: 20px; /* Add some padding around the shimmer elements */
+  flex-wrap: wrap; /* Allow items to wrap as needed */
+}
+
+.shimmer-image {
+  width: 100%;
+  height: 200px; /* Height of the main image placeholder */
+  border-radius: 8px; /* Rounded corners for the main image */
+}
+
+.shimmer-profile-picture {
+  width: 50px; /* Adjust to match your actual profile picture size */
+  height: 50px;
+  right: 0%;
+  border-radius: 50%; 
+  margin-bottom: 10px; 
+}
+
+
+
+.shimmer-text.large {
+  width: 70%; 
+  height: 25px; 
+  margin-bottom: 5px;
+}
+
+.shimmer-text.medium {
+  width: 50%; /* Width of the medium text */
+  height: 20px;
+}
+
+
+
+.shimmer {
+  background: linear-gradient(to right, #eff1f3 8%, #e2e2e2 18%, #eff1f3 33%);
+  background-size: 200% 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start the gradient off the left side of the element */
+  height: 100%;
+  width: 200%; /* Double the width for the sliding effect */
+  background: inherit; /* Use the same gradient background */
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%; /* Start the gradient off the left side of the element */
+  }
+  100% {
+    left: 100%; /* End the gradient off the right side of the element */
+  }
+}
+

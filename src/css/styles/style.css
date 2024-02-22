@@ -14141,6 +14141,7 @@ a.read_more i {
 .de_countdown {
   position: absolute;
   right: 20px;
+  /* top:-22.5rem; */
   background: #ffffff;
   padding: 1px 10px;
   border-radius: 30px;
@@ -15145,7 +15146,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
