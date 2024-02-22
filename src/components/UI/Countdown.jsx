@@ -1,6 +1,7 @@
 // Countdown.jsx
 
 import React, { useState, useEffect } from 'react';
+import '../.././index.css'
 
 const useCountdown = (targetDate) => {
   const [countdown, setCountdown] = useState('');

@@ -8,7 +8,6 @@ const ShimmerEffect = () => (
     <div className="shimmer-text-block">
       <div className="shimmer-text large shimmer"></div>
       <div className="shimmer-text medium shimmer"></div>
-      <div className="shimmer-countdown"></div>
     </div>
   </div>
 );

@@ -140,7 +140,6 @@ const ExploreItems = () => {
           </div>
         )
       )}
-        <ShimmerEffect />
    
      {itemLimit < (exploreItems?.length || 0) && (
       <div className="col-md-12 text-center">

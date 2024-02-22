@@ -62,7 +62,7 @@ const Item = ({ item }) => {
           <h4>{item.title}</h4>
         </Link>
         <div className="nft__item_price">{item.price} ETH</div>
-        <Countdown expiryDate={item.expiryDate} /> 
+        <Countdown expiryDate={item.expiryDate}  className="countdown-position"/> 
         <div className="nft__item_like">
           <i className="fa fa-heart"></i>
           <span>{item.likes}</span>
