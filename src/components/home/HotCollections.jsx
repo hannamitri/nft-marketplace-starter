@@ -14,6 +14,26 @@ const HotCollections = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024, 
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 575,
+        settings: {
+          slidesToShow: 1,
+        }
+      },
+    ]
   };
 
   const [data, setData] = useState([]);
@@ -51,6 +71,7 @@ const HotCollections = () => {
           {loading ? (
             "Loading..."
           ) : (
+            <div className="carousel-container">
             <Slider {...settings}>
               {data.map((item, index) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
@@ -84,6 +105,7 @@ const HotCollections = () => {
               </div>
               ))}
             </Slider>
+            </div>
           )}
         </div>
       </div>
