@@ -13180,6 +13180,7 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+  width: 300px;
 }
 
 .nft_coll.style-2 {
@@ -16713,4 +16714,11 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+.slick-arrow.slick-prev {
+  filter: invert(100%);
+}
+.slick-arrow.slick-next {
+  filter: invert(100%);
 }
