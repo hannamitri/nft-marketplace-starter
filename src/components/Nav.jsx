@@ -40,7 +40,7 @@ const Nav = () => {
                 <ul id="mainmenu">
                   <li className="menu-item-has-children has-child">
                     <Link to="/">
-                      HOOOMMMEEE<span></span>
+                      Home<span></span>
                     </Link>
                   </li>
                   <li className="menu-item-has-children has-child">
