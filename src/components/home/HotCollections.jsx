@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
 const API_URL = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections';
@@ -12,7 +10,6 @@ const HotCollections = () => {
   
   const fetchData = async () => {
     const { data } = await axios.get(API_URL);
-    console.log(data);
     setUserData(data)
   }
   useEffect(() => {
