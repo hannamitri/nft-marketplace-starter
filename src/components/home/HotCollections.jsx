@@ -16,7 +16,7 @@ const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
 function Next(props) {
-  const { className, style, onClick } = props;
+  const { className, onClick } = props;
   return (
     <div>
       <FontAwesomeIcon
@@ -29,7 +29,7 @@ function Next(props) {
   );
 }
 function Prev(props) {
-  const { className, style, onClick } = props;
+  const { className, onClick } = props;
   return (
     <div>
       <FontAwesomeIcon
