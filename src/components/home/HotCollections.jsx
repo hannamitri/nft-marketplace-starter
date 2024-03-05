@@ -6,6 +6,7 @@ import {
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import CustomSlider from "./CustomSlider";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,32 +16,6 @@ import "../../css/styles/skeleton.css";
 const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
-function Next(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div>
-      <FontAwesomeIcon
-        icon={faChevronRight}
-        onClick={onClick}
-        className={className}
-        id="btn"
-      />
-    </div>
-  );
-}
-function Prev(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div>
-      <FontAwesomeIcon
-        icon={faChevronLeft}
-        onClick={onClick}
-        className={className}
-        id="btn2"
-      />
-    </div>
-  );
-}
 
 const HotCollections = () => {
   const [loading, setLoading] = useState(true);
@@ -55,45 +30,6 @@ const HotCollections = () => {
     fetchData();
   }, []);
 
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    nextArrow: <Next />,
-    prevArrow: <Prev />,
-    initialSlide: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  
-
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -105,7 +41,7 @@ const HotCollections = () => {
             </div>
           </div>
           <div className="slider-container">
-            <Slider {...sliderSettings}>
+            <CustomSlider>
               {loading ? (
                 [1, 2, 3, 4].map((index) => (
                   <div className="col-lg col-md-6 col-sm-6 col-xs-12" key={index}>
@@ -149,7 +85,7 @@ const HotCollections = () => {
                   </div>
                 ))
               )}
-            </Slider>
+            </CustomSlider>
           </div>
         </div>
       </div>
