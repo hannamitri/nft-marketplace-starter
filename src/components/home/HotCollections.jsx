@@ -126,10 +126,10 @@ const HotCollections = () => {
               ) : (
                 
                 userData.map((item, index) => (
-                  <div className="col-lg col-md-6 col-sm-6 col-xs-12" key={index}>
+                  <div className="col-lg col-md-12 col-sm-12 col-xs-12" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${item.authorId}`}>
                           <img src={item.nftImage} className="lazy img-fluid" alt="" />
                         </Link>
                       </div>
