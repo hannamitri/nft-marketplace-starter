@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const NewItems = () => {
+  // did it work?
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
