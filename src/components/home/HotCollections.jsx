@@ -92,17 +92,7 @@ const HotCollections = () => {
     ],
   };
 
-  const skeletonLoader = (
-    <div className="skeleton-loading col-lg col-md col-sm-12 col-xs-12 ">
-      <div className="nft_coll">
-      <div className="nft_wrap">
-      <div className="skeleton-bar"></div>
-      <div className="skeleton-bar"></div>
-      <div className="skeleton-bar"></div>
-    </div>
-    </div>
-    </div>
-  );
+  
 
   return (
     <section id="section-collections" className="no-bottom">
