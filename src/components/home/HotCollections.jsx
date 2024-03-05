@@ -107,7 +107,6 @@ const HotCollections = () => {
           <div className="slider-container">
             <Slider {...sliderSettings}>
               {loading ? (
-                
                 [1, 2, 3, 4].map((index) => (
                   <div className="col-lg col-md-6 col-sm-6 col-xs-12" key={index}>
                     <div className="nft_coll">
