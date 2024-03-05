@@ -1,40 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../../css/styles/btn.css"
+import "../../css/styles/btn.css";
 
-const API_URL = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections';
+const API_URL =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
 function Next(props) {
   const { className, style, onClick } = props;
   return (
     <div>
-      <FontAwesomeIcon icon={faChevronRight} onClick={onClick}  className={className}  id="btn" />
-      </div>
+      <FontAwesomeIcon
+        icon={faChevronRight}
+        onClick={onClick}
+        className={className}
+        id="btn"
+      />
+    </div>
   );
 }
 function Prev(props) {
   const { className, style, onClick } = props;
   return (
     <div>
-      <FontAwesomeIcon icon={faChevronLeft} onClick={onClick}  className={className}  id="btn2" />
+      <FontAwesomeIcon
+        icon={faChevronLeft}
+        onClick={onClick}
+        className={className}
+        id="btn2"
+      />
     </div>
   );
 }
 
-
 const HotCollections = () => {
   const [userData, setUserData] = useState([]);
-  
+
   const fetchData = async () => {
     const { data } = await axios.get(API_URL);
-    setUserData(data)
-  }
+    setUserData(data);
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -47,7 +60,7 @@ const HotCollections = () => {
     slidesToScroll: 1,
     nextArrow: <Next />,
     prevArrow: <Prev />,
-    initialSlide: 0,
+    initialSlide: 1,
     responsive: [
       {
         breakpoint: 1024,
@@ -55,25 +68,25 @@ const HotCollections = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -87,33 +100,41 @@ const HotCollections = () => {
             </div>
           </div>
           <div className="slider-container">
-          <Slider {...sliderSettings}>
-          {userData.map((item, index) => (
-            <div className="col-lg col-md-6 col-sm-12 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={item.nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
+            <Slider {...sliderSettings}>
+              {userData.map((item, index) => (
+                <div className="col-lg col-md col-sm-12 col-xs-12" key={index}>
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <Link to="/item-details">
+                        <img
+                          src={item.nftImage}
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to="/author">
+                        <img
+                          className="lazy pp-coll"
+                          src={item.authorImage}
+                          alt=""
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="/explore">
+                        <h4>{item.title}</h4>
+                      </Link>
+                      <span>ERC-{item.code}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={item.authorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{item.title}</h4>
-                  </Link>
-                  <span>ERC-{item.code}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-          </Slider>
+              ))}
+            </Slider>
           </div>
-      </div>
+        </div>
       </div>
     </section>
   );
