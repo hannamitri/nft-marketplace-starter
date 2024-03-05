@@ -1,0 +1,19 @@
+#btn, #btn2{
+    position: absolute;
+    right: -0.8rem;
+    padding: 14px;
+    background-color: white;
+    border: 1px solid #08080836;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+    transition: scale 500ms ease;
+    z-index: 1;
+}
+#btn2{
+    left: -0.6rem;
+}
+#btn:hover, #btn2:hover{
+    scale: 1.1;
+    cursor: pointer;
+}
+
