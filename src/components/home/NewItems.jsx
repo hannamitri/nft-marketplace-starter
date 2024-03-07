@@ -48,7 +48,7 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {!loading && items.length > 0 ? (
+          {!loading ? (
             <OwlCarousel className="owl-carousel" {...settings}>
               {items.map((item) => (
                 <div className="nft__item" key={item.id}>
@@ -114,17 +114,17 @@ const NewItems = () => {
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft__item">
                   <div className="author_list_pp">
-                    <Skeleton width={60} height={60} borderRadius={9999} />
+                    <Skeleton width={50} height={50} borderRadius={9999} />
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft__item_wrap">
-                    <Skeleton width="100%" height="100%" />
+                    <Skeleton width="100%" height="90%" />
                   </div>
                   <div className="nft__item_info">
-                    <Skeleton width={200} height={28} />
+                    <Skeleton width="70%" height={28} />
 
                     <div className="nft__item_price">
-                      <Skeleton width={125} height={28} />
+                      <Skeleton width="40%" height={28} />
                     </div>
                     <div className="nft__item_like">
                       <Skeleton width={40} height={20} />
