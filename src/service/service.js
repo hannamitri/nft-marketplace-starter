@@ -19,6 +19,15 @@ const Service = {
       throw error;
     }
   },
+  fetchTopSellers: async () => {
+    try {
+      const response = await axios.get(`${base_url}/topSellers`);
+      return response.data;
+    } catch (error) {
+      console.error("Error requesting fetch Top Sellers", error);
+      throw error;
+    }
+  },
 };
 
 export default Service;
