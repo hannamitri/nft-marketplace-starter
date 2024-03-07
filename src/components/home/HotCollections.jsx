@@ -15,7 +15,8 @@ const HotCollections = () => {
       setLoading(false);
       setHotCollections(data);
     } catch (error) {
-      console.error("Error getting recipe categories", error);
+      console.error("Error getting hot collections", error);
+      setLoading(false);
     }
   };
 
@@ -47,8 +48,8 @@ const HotCollections = () => {
             </div>
           </div>
           {!loading && hotCollections.length > 0 ? (
-          <OwlCarousel className="owl-carousel" {...settings}>
-            {hotCollections.map((hotCollection) => (
+            <OwlCarousel className="owl-carousel" {...settings}>
+              {hotCollections.map((hotCollection) => (
                 <div className="nft_coll" key={hotCollection.id}>
                   <div className="nft_wrap">
                     <Link to={`/item-details/${hotCollection.nftId}`}>
@@ -76,15 +77,11 @@ const HotCollections = () => {
                     <span>ERC-{hotCollection.code}</span>
                   </div>
                 </div>
-       
-            ))}
-          </OwlCarousel>
+              ))}
+            </OwlCarousel>
           ) : (
             new Array(4).fill(0).map((_, index) => (
-              <div
-                className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                key={index}
-              >
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Skeleton width="100%" height="100%" />
