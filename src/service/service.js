@@ -28,6 +28,24 @@ const Service = {
       throw error;
     }
   },
+  fetchExploreItems: async () => {
+    try {
+      const response = await axios.get(`${base_url}/explore`);
+      return response.data;
+    } catch (error) {
+      console.error("Error requesting fetch explore items", error);
+      throw error;
+    }
+  },
+  fetchFilterExploreItems: async (filter) => {
+    try {
+      const response = await axios.get(`${base_url}/explore?filter=${filter}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error requesting fetch filter explore items", error);
+      throw error;
+    }
+  },
 };
 
 export default Service;
