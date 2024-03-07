@@ -47,7 +47,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {!loading ? (
+          {!loading && hotCollections.length > 0 ? (
             <OwlCarousel className="owl-carousel" {...settings}>
               {hotCollections.map((hotCollection) => (
                 <div className="nft_coll" key={hotCollection.id}>
@@ -87,7 +87,7 @@ const HotCollections = () => {
                     <Skeleton width="100%" height="100%" />
                   </div>
                   <div className="nft_coll_pp">
-                    <Skeleton width={50} height={50} borderRadius={9999} />
+                    <Skeleton width={50} height={20} borderRadius={9999} />
                   </div>
                   <div className="nft_coll_info">
                     <Skeleton width="40%" height={20} borderRadius={5} />
