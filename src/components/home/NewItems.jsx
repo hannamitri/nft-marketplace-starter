@@ -62,7 +62,7 @@ const NewItems = () => {
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft__item_wrap">
-                    <Skeleton width="100%" height="90%" borderRadius={10} />
+                    <Skeleton width="100%" height="70%" borderRadius={10} />
                   </div>
                   <div className="nft__item_info">
                     <Skeleton width="70%" height={20} />

@@ -46,6 +46,17 @@ const Service = {
       throw error;
     }
   },
+  fetchAuthor: async (authorId) => {
+    try {
+      const response = await axios.get(
+        `${base_url}/authors?author=${authorId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error requesting author details", error);
+      throw error;
+    }
+  },
 };
 
 export default Service;
