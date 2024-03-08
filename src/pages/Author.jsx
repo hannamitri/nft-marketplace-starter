@@ -71,7 +71,6 @@ const Author = () => {
                       <div className="de-flex-col">
                         <div className="profile_follower">
                           {follow ? author.followers : author.followers + 1}
-                          {author.followers}
                         </div>
                         <Link
                           to="#"
