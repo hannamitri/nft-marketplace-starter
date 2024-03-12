@@ -26,6 +26,8 @@ const NewItems = () => {
     fetchData();
   }, []);
 
+  
+
   const calculateTimeLeft = (expiryDate) => {
     if (!expiryDate) {
       return null;
@@ -114,9 +116,9 @@ const NewItems = () => {
                         </div>
                         {item.expiryDate && (
                           <div className="de_countdown">
-                            {`${formatNumber(item.timeLeft && item.timeLeft.hours)}`}:{" "}
-                            {`${formatNumber(item.timeLeft && item.timeLeft.minutes)}`}:{" "}
-                            {`${formatNumber(item.timeLeft && item.timeLeft.seconds)}`}
+                            {`${formatNumber(item.timeLeft && item.timeLeft.hours)}`}h{" "}
+                            {`${formatNumber(item.timeLeft && item.timeLeft.minutes)}`}m{" "}
+                            {`${formatNumber(item.timeLeft && item.timeLeft.seconds)}`}s
                           
                           </div>
                         )}
