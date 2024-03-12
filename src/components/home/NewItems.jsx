@@ -27,13 +27,16 @@ const NewItems = () => {
   }, []);
 
   const calculateTimeLeft = (expiryDate) => {
+    if (!expiryDate) {
+      return null;
+    }
     const diffrence = expiryDate ? +new Date(expiryDate) - +new Date() : 0;
     let timeLeft = {};
 
     if (diffrence > 0) {
       timeLeft = {
         hours: Math.floor((diffrence / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diffrence / 1000 / 60) % 24),
+        minutes: Math.floor((diffrence / (1000 * 60)) % 60),
         seconds: Math.floor((diffrence / 1000) % 60),
       };
     }
@@ -51,6 +54,10 @@ const NewItems = () => {
 
     return () => clearTimeout(timer);
   }, [newItem]);
+
+  const formatNumber = (number) => {
+    return number < 10 ? `0${number}` : number
+  }
 
   return (
     <section id="section-items" className="no-bottom">
@@ -86,7 +93,7 @@ const NewItems = () => {
                   ))
                 : newItem.map((item, index) => (
                     <div
-                      className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                      className="col-lg col-md-12 col-sm-12 col-xs-12"
                       key={index}
                     >
                       <div className="nft__item">
@@ -105,11 +112,14 @@ const NewItems = () => {
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
-                        <div className="de_countdown">
-                          {item.timeLeft && item.timeLeft.hours}:{" "}
-                          {item.timeLeft && item.timeLeft.minutes}:{" "}
-                          {item.timeLeft && item.timeLeft.seconds}
-                        </div>
+                        {item.expiryDate && (
+                          <div className="de_countdown">
+                            {`${formatNumber(item.timeLeft && item.timeLeft.hours)}`}:{" "}
+                            {`${formatNumber(item.timeLeft && item.timeLeft.minutes)}`}:{" "}
+                            {`${formatNumber(item.timeLeft && item.timeLeft.seconds)}`}
+                          
+                          </div>
+                        )}
 
                         <div className="nft__item_wrap">
                           <div className="nft__item_extra">
