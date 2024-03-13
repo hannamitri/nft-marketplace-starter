@@ -13188,31 +13188,31 @@ a.read_more i {
 }
 
 @media (max-width: 1400px) {
-  .nft_coll {
+  .nft_coll, .skeleton {
     width: 250px;
   }
 }
 
 @media (max-width: 1200px) {
-  .nft_coll {
+  .nft_coll,  .skeleton {
     width: 230px;
   }
 }
 
 @media (max-width: 980px) {
-  .nft_coll {
+  .nft_coll,  .skeleton{
     width: 210px;
   }
 }
 
 @media (max-width: 768px) {
-  .nft_coll {
+  .nft_coll,  .skeleton {
     width: 210px;
   }
 }
 
 @media (max-width: 575px) {
-  .nft_coll {
+  .nft_coll,  .skeleton {
     width: 210px;
     margin: 0 auto;
   }
@@ -16767,4 +16767,25 @@ img {
   filter: invert(100%);
   position: absolute;
   z-index: 100;
+}
+
+.skeleton {
+  height: 300px;
+  width: 300px;
+  animation: skeleton-loading 1s linear infinite alternate;
+  margin: 0 10px;
+}
+
+.skeleton-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }

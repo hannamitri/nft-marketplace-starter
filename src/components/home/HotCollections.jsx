@@ -6,6 +6,8 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from "../UI/Skeleton";
+import MediaQuery from "react-responsive";
 
 const HotCollections = () => {
   const settings = {
@@ -16,24 +18,24 @@ const HotCollections = () => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1024, 
+        breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-        }
+        },
       },
       {
         breakpoint: 767,
         settings: {
           slidesToShow: 2,
-        }
+        },
       },
       {
         breakpoint: 575,
         settings: {
           slidesToShow: 1,
-        }
+        },
       },
-    ]
+    ],
   };
 
   const [data, setData] = useState([]);
@@ -69,42 +71,58 @@ const HotCollections = () => {
             </div>
           </div>
           {loading ? (
-            "Loading..."
+            <div className="skeleton-container">
+              <MediaQuery minWidth={0}>
+                <Skeleton />
+              </MediaQuery>
+              <MediaQuery minWidth={576}>
+                <Skeleton />
+              </MediaQuery>
+              <MediaQuery minWidth={1024}>
+                <Skeleton />
+              </MediaQuery>
+              <MediaQuery minWidth={1280}>
+                <Skeleton />
+              </MediaQuery>
+            </div>
           ) : (
             <div className="carousel-container">
-            <Slider {...settings}>
-              {data.map((item, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img
-                        src={item.nftImage}
-                        className="lazy img-fluid"
-                        alt=""
-                      />
-                    </Link>
+              <Slider {...settings}>
+                {data.map((item, index) => (
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                    key={index}
+                  >
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to="/item-details">
+                          <img
+                            src={item.nftImage}
+                            className="lazy img-fluid"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img
+                            className="lazy pp-coll"
+                            src={item.authorImage}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{item.title}</h4>
+                        </Link>
+                        <span>{"ERC-" + item.code}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-coll"
-                        src={item.authorImage}
-                        alt=""
-                      />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>{item.title}</h4>
-                    </Link>
-                    <span>{"ERC-" + item.code}</span>
-                  </div>
-                </div>
-              </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
             </div>
           )}
         </div>
