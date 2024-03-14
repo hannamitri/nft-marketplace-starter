@@ -16771,14 +16771,15 @@ img {
 
 .skeleton {
   height: 300px;
-  width: 300px;
+  width: 200px;
   animation: skeleton-loading 1s linear infinite alternate;
-  margin: 0 10px;
+  margin: 0 5px;
+  border-radius: 15px;
 }
 
 .skeleton-container{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 @keyframes skeleton-loading {

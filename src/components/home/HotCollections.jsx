@@ -78,10 +78,10 @@ const HotCollections = () => {
               <MediaQuery minWidth={576}>
                 <Skeleton />
               </MediaQuery>
-              <MediaQuery minWidth={1024}>
+              <MediaQuery minWidth={768}>
                 <Skeleton />
               </MediaQuery>
-              <MediaQuery minWidth={1280}>
+              <MediaQuery minWidth={1024}>
                 <Skeleton />
               </MediaQuery>
             </div>
