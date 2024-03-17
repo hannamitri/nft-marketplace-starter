@@ -41,24 +41,43 @@ const NewItems = () => {
     ],
   };
 
-  const getData = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
-      );
-      console.log(res.data);
-      setData(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
-
   useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+        );
+        console.log(res.data);
+        setData(res.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+    
     getData();
     console.log(data);
   }, []);
+
+  function convertTime(time) {
+    let dateObj = new Date(time * 1000);
+    // Get hours from the timestamp
+    let hours = dateObj.getUTCHours();
+ 
+    // Get minutes part from the timestamp
+    let minutes = dateObj.getUTCMinutes();
+   
+    // Get seconds part from the timestamp
+    let seconds = dateObj.getUTCSeconds();
+
+    let formattedTime = hours.toString().padStart(2, '0') 
+    + ':' + minutes.toString().padStart(2, '0') 
+    + ':' + seconds.toString().padStart(2, '0');
+
+    console.log(formattedTime)
+    return formattedTime;
+  }
 
   return (
     <section id="section-items" className="no-bottom">
@@ -105,7 +124,7 @@ const NewItems = () => {
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
-                      <div className="de_countdown">5h 30m 32s</div>
+                      {item.expiryDate ? <div className="de_countdown">{convertTime(item.expiryDate)}</div> : null}
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
