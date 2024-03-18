@@ -55,7 +55,7 @@ const NewItems = () => {
         console.error("Error fetching data: ", error);
       }
     };
-    
+
     getData();
     console.log(data);
   }, []);
@@ -64,18 +64,21 @@ const NewItems = () => {
     let dateObj = new Date(time * 1000);
     // Get hours from the timestamp
     let hours = dateObj.getUTCHours();
- 
+
     // Get minutes part from the timestamp
     let minutes = dateObj.getUTCMinutes();
-   
+
     // Get seconds part from the timestamp
     let seconds = dateObj.getUTCSeconds();
 
-    let formattedTime = hours.toString().padStart(2, '0') 
-    + ':' + minutes.toString().padStart(2, '0') 
-    + ':' + seconds.toString().padStart(2, '0');
+    let formattedTime =
+      hours.toString() +
+      "h " +
+      minutes.toString().padStart(2, "0") +
+      "m " +
+      seconds.toString().padStart(2, "0") +
+      "s";
 
-    console.log(formattedTime)
     return formattedTime;
   }
 
@@ -124,7 +127,11 @@ const NewItems = () => {
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
-                      {item.expiryDate ? <div className="de_countdown">{convertTime(item.expiryDate)}</div> : null}
+                      {item.expiryDate ? (
+                        <div className="de_countdown">
+                          {convertTime(item.expiryDate)}
+                        </div>
+                      ) : null}
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
