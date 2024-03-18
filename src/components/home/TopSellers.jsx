@@ -41,7 +41,7 @@ const TopSellers = () => {
           <div className="col-md-12">
             <ol className="author_list">
               {
-                topSellers.length === 0 && loading ?
+                loading ?
                   new Array(12).fill(0).map((_, index) => (
                     <li key={index}>
                       <div className="author_list_pp">
