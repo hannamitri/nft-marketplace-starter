@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const API_URL =
@@ -13,7 +12,6 @@ const TopSellers = () => {
     try {
       const { data } = await axios.get(API_URL);
       setNewItem(data);
-      console.log(data)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
