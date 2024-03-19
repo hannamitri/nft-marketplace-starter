@@ -15,9 +15,10 @@ const HotCollections = () => {
  // Deleted Fetch funktion
 
   return (
-    <FetchData apiUrl={API_URL}>
-      {(newItems) => (
+   
     <section id="section-collections" className="no-bottom">
+       <FetchData apiUrl={API_URL}>
+      {(newItems) => (
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -30,7 +31,7 @@ const HotCollections = () => {
             <CustomSlider>
               {newItems.map((item, index) => (
                     <div
-                      className="col-lg-3 col-md-8 col-sm-10 col-xs-12"
+                      className="col-lg col-md-8 col-sm-10 col-xs-12"
                       key={index}
                     >
                       <div className="nft_coll">
@@ -66,9 +67,10 @@ const HotCollections = () => {
           </div>
         </div>
       </div>
-    </section>
-    )}
+       )}
     </FetchData>
+    </section>
+   
   );
 };
 

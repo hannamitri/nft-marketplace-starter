@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import FetchData from "./FetchData";
 import CustomSlider from "./CustomSlider";
 import "../../css/styles/btn.css";
 import "../../css/styles/skeleton.css";
@@ -9,25 +10,19 @@ const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
 const NewItems = () => {
-  const [loading, setLoading] = useState(true);
   const [newItem, setNewItem] = useState([]);
 
   const fetchData = async () => {
     try {
       const { data } = await axios.get(API_URL);
       setNewItem(data);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setLoading(false);
     }
   };
   useEffect(() => {
     fetchData();
   }, []);
-
-  
-
   const calculateTimeLeft = (expiryDate) => {
     if (!expiryDate) {
       return null;
@@ -63,6 +58,8 @@ const NewItems = () => {
 
   return (
     <section id="section-items" className="no-bottom">
+       <FetchData apiUrl={API_URL}>
+      {(newItems) => (
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -73,27 +70,7 @@ const NewItems = () => {
           </div>
           <div className="slider-container">
             <CustomSlider>
-              {loading
-                ? [1, 2, 3, 4].map((index) => (
-                    <div
-                      className="col-lg-3 col-md-6 col-sm-12 col-xs-12"
-                      key={index}
-                    >
-                      <div className="nft_coll">
-                        <div className="nft_wrap skeleton-wrap">
-                          <div className="skeleton-img"></div>
-                        </div>
-                        <div className="nft_coll_pp">
-                          <div className="skeleton-avatar"></div>
-                        </div>
-                        <div className="nft_coll_info">
-                          <div className="skeleton-text"></div>
-                          <div className="skeleton-text"></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                : newItem.map((item, index) => (
+              {newItems.map && newItem.map((item, index) => (
                     <div
                       className="col-lg col-md-12 col-sm-12 col-xs-12"
                       key={index}
@@ -169,6 +146,8 @@ const NewItems = () => {
           </div>
         </div>
       </div>
+      )}
+      </FetchData>
     </section>
   );
 };
