@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CustomSlider from "./CustomSlider";
+import CustomSlider from "../hoc/CustomSlider";
 import "../../css/styles/btn.css";
-import FetchData from "./FetchData";
+import FetchData from "../hoc/FetchData";
 
 
 const API_URL =
@@ -18,7 +18,7 @@ const HotCollections = () => {
    
     <section id="section-collections" className="no-bottom">
        <FetchData apiUrl={API_URL}>
-      {(newItems) => (
+      {(fetchedData) => (
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -29,7 +29,7 @@ const HotCollections = () => {
           </div>
           <div className="slider-container">
             <CustomSlider>
-              {newItems.map((item, index) => (
+              {fetchedData.map((item, index) => (
                     <div
                       className="col-lg col-md-8 col-sm-10 col-xs-12"
                       key={index}

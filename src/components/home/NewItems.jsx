@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import FetchData from "./FetchData";
-import CustomSlider from "./CustomSlider";
+import FetchData from "../hoc/FetchData";
+import CustomSlider from "../hoc/CustomSlider";
 import "../../css/styles/btn.css";
 import "../../css/styles/skeleton.css";
 
@@ -10,18 +10,18 @@ const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
 const NewItems = () => {
-  const [newItem, setNewItem] = useState([]);
+  const [newTime, setNewTime] = useState([]);
 
-  const fetchData = async () => {
+  const fetchTime = async () => {
     try {
       const { data } = await axios.get(API_URL);
-      setNewItem(data);
+      setNewTime(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   useEffect(() => {
-    fetchData();
+    fetchTime();
   }, []);
   const calculateTimeLeft = (expiryDate) => {
     if (!expiryDate) {
@@ -42,7 +42,7 @@ const NewItems = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setNewItem((prevItems) => {
+      setNewTime((prevItems) => {
         return prevItems.map((item) => {
           return { ...item, timeLeft: calculateTimeLeft(item.expiryDate) };
         });
@@ -50,7 +50,7 @@ const NewItems = () => {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [newItem]);
+  }, [newTime]);
 
   const formatNumber = (number) => {
     return number < 10 ? `0${number}` : number
@@ -59,7 +59,7 @@ const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
        <FetchData apiUrl={API_URL}>
-      {(newItems) => (
+      {(fetchedData) => (
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -70,7 +70,7 @@ const NewItems = () => {
           </div>
           <div className="slider-container">
             <CustomSlider>
-              {newItems.map && newItem.map((item, index) => (
+              {fetchedData.map && newTime.map((item, index) => (
                     <div
                       className="col-lg col-md-12 col-sm-12 col-xs-12"
                       key={index}
