@@ -1,38 +1,69 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import FetchData from "../hoc/FetchData";
 import Countdown from "../home/Countdown";
+import axios from "axios";
 
 const API_URL =
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+  `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
 
 const ExploreItems = () => {
 
+  const [filterValue, setFilterValue] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  const handleFilterChange = (event) => {
+    setFilterValue(event.target.value);
+  };
+
+  useEffect(() =>{
+    const fetchData = async () => {
+      try {
+        const {data} = await axios.get(`${API_URL}?filter=${filterValue}`)
+        console.log("Fetched data:", data)
+        setFilteredData(data)
+      } catch (error) {
+        console.error("Error Massage:", error)
+      }
+    }
+    fetchData()
+  },[filterValue])
+
+  const sortData = (data) => {
+    switch (filterValue) {
+      case "price_low_to_high":
+        return data.slice().sort((a, b) => a.price - b.price);
+      case "price_high_to_low":
+        return data.slice().sort((a, b) => b.price - a.price);
+      case "likes_high_to_low":
+        return data.slice().sort((a, b) => b.likes - a.likes);
+      default:
+        return data;
+    }
+  };
+  
   
 
   const loadMore = () => {
     console.log("Loading More Data");
   };
 
-  const filter = () => {
-    console.log("Filtering");
-  };
+
 
   return (
     <>
       <div>
        
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
+        <select id="filter-items" value={filterValue} onChange={handleFilterChange}>
+          <option value="all">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      <FetchData apiUrl={API_URL}>
+      <FetchData data={filteredData} apiUrl={API_URL}>
         {(fetchedData) =>
-          fetchedData.map ((item, index) => (
+          sortData(fetchedData).map ((item, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import FetchData from "../hoc/FetchData";
 import CustomSlider from "../hoc/CustomSlider";
+import Countdown from "../home/Countdown";
+
 import "../../css/styles/btn.css";
 import "../../css/styles/skeleton.css";
 
@@ -10,51 +11,7 @@ const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
 const NewItems = () => {
-  const [newTime, setNewTime] = useState([]);
 
-  const fetchTime = async () => {
-    try {
-      const { data } = await axios.get(API_URL);
-      setNewTime(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchTime();
-  }, []);
-  const calculateTimeLeft = (expiryDate) => {
-    if (!expiryDate) {
-      return null;
-    }
-    const diffrence = expiryDate ? +new Date(expiryDate) - +new Date() : 0;
-    let timeLeft = {};
-
-    if (diffrence > 0) {
-      timeLeft = {
-        hours: Math.floor((diffrence / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diffrence / (1000 * 60)) % 60),
-        seconds: Math.floor((diffrence / 1000) % 60),
-      };
-    }
-    return timeLeft;
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setNewTime((prevItems) => {
-        return prevItems.map((item) => {
-          return { ...item, timeLeft: calculateTimeLeft(item.expiryDate) };
-        });
-      });
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [newTime]);
-
-  const formatNumber = (number) => {
-    return number < 10 ? `0${number}` : number
-  }
 
   return (
     <section id="section-items" className="no-bottom">
@@ -70,7 +27,7 @@ const NewItems = () => {
           </div>
           <div className="slider-container">
             <CustomSlider>
-              {fetchedData.map && newTime.map((item, index) => (
+              {fetchedData.map((item, index) => (
                     <div
                       className="col-lg col-md-12 col-sm-12 col-xs-12"
                       key={index}
@@ -93,9 +50,7 @@ const NewItems = () => {
                         </div>
                         {item.expiryDate && (
                           <div className="de_countdown">
-                            {`${formatNumber(item.timeLeft && item.timeLeft.hours)}`}h{" "}
-                            {`${formatNumber(item.timeLeft && item.timeLeft.minutes)}`}m{" "}
-                            {`${formatNumber(item.timeLeft && item.timeLeft.seconds)}`}s
+                        <Countdown expiryDate={item.expiryDate} />
                           
                           </div>
                         )}

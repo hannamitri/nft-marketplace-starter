@@ -9,10 +9,6 @@ const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
 const HotCollections = () => {
-  // const [loading, setLoading] = useState(true);
-  // const [userData, setUserData] = useState([]);
-
- // Deleted Fetch funktion
 
   return (
    

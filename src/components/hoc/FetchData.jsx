@@ -5,9 +5,14 @@ const FetchData = ({ apiUrl, children }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    let isMounted = true;
+ 
 
+  useEffect(() => {
+    console.log("API_URL:", apiUrl)
+    let isMounted = true;
+    if(!apiUrl){
+      return null
+    }
     const fetchedData = async () => {
       try {
         const { data } = await axios.get(apiUrl);
