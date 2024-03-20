@@ -8,6 +8,10 @@ const ExploreItems = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(8);
+  const [link, setLink] = useState(
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+  );
+  const [filterValue, setFilterValue] = useState('')
 
   const handleLoadMore = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 4);
@@ -17,12 +21,10 @@ const ExploreItems = () => {
     const getData = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-        );
+        const res = await axios.get(link);
         console.log(res.data);
         setData(res.data);
-        setLoading(true);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -30,7 +32,25 @@ const ExploreItems = () => {
 
     getData();
     console.log(data);
-  }, []);
+  }, [link]);
+
+  const handleFilterChange = (event) => {
+    setFilterValue(event.target.value)
+  }
+
+  function changeLink() {
+    if (filterValue === ''){
+      setLink("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+    }
+
+    else {
+      setLink(`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`)
+    }
+  }
+
+  useEffect(() => {
+    changeLink();
+  }, [filterValue])
 
   function convertTime(time) {
     let dateObj = new Date(time * 1000);
@@ -57,11 +77,11 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
-          <option value="price_low_to_high">Price, Low to High</option>
-          <option value="price_high_to_low">Price, High to Low</option>
-          <option value="likes_high_to_low">Most liked</option>
+        <select id="filter-items" defaultValue="" onChange={handleFilterChange}>
+          <option value="" onClick={() => changeLink()}>Default</option>
+          <option value="price_low_to_high" onClick={() => changeLink()}>Price, Low to High</option>
+          <option value="price_high_to_low" onClick={() => changeLink()}>Price, High to Low</option>
+          <option value="likes_high_to_low" onClick={() => changeLink()}>Most liked</option>
         </select>
       </div>
       {loading ? (
@@ -73,7 +93,7 @@ const ExploreItems = () => {
                 margin: "15px",
                 height: "450px",
                 width: "300px",
-                flex: '1 0 250px'
+                flex: "1 0 250px",
               }}
               key={index}
             ></div>
