@@ -45,8 +45,6 @@ const ExploreItems = () => {
     fetchExploreData();
   }, []);
 
-  console.log(exploreData)
-
   return (
     <>
       <div>
@@ -97,7 +95,8 @@ const ExploreItems = () => {
           </Link>
         </ div>
         :
-        <></>
+        <>
+        </>
       }
     </>
   );
