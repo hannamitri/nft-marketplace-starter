@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import SkeletonLoader from "../explore/ExploreSkeletton";
+import SkeletonLoader from "../UI/SkeletonComponent";
 
 const FetchData = ({ apiUrl, children }) => {
   const [loading, setLoading] = useState(true);

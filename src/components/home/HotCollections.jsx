@@ -25,10 +25,10 @@ const HotCollections = () => {
       {(fetchedData) => (
           <div className="slider-container">
             <CustomSlider>
-              {fetchedData.map((item, index) => (
+              {fetchedData.map((item) => (
                     <div
                       className="col-lg col-md-8 col-sm-10 col-xs-12"
-                      key={index}
+                      key={item.id}
                     >
                       <div className="nft_coll">
                         <div className="nft_wrap">

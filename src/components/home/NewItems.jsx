@@ -28,10 +28,10 @@ const NewItems = () => {
       {(fetchedData) => (
           <div className="slider-container">
             <CustomSlider>
-              {fetchedData.map((item, index) => (
+              {fetchedData.map((item) => (
                     <div
                       className="col-lg col-md-12 col-sm-12 col-xs-12"
-                      key={index}
+                      key={item.id}
                     >
                       <div className="nft__item">
                         <div className="author_list_pp">
