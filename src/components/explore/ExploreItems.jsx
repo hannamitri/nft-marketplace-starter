@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 import FetchData from "../hoc/FetchData";
 import Countdown from "../home/Countdown";
 import axios from "axios";
+import SkeletonLoader from "./ExploreSkeletton";
 
 const API_URL = `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
 
 const ExploreItems = () => {
+  const [loading, setLoading] = useState(true)
   const [showItems, setShowItems] = useState(8);
   const [filteredData, setFilteredData] = useState([]);
 
   const fetchData = async () => {
     const { data } = await axios.get(API_URL);
     setFilteredData(data);
+    setLoading(false)
   };
 
   const filterData = async (filter) => {
@@ -49,7 +52,11 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      <FetchData apiUrl={API_URL}>
+      {loading ? (
+        <SkeletonLoader />
+      )
+    : (
+<FetchData apiUrl={API_URL}>
         {() =>
           filteredData.slice(0, showItems).map((item, index) => (
             <div
@@ -115,6 +122,7 @@ const ExploreItems = () => {
           ))
         }
       </FetchData>
+    )}
       {showItems < 16 && (
         <div className="col-md-12 text-center">
           <button className="btn-main lead" onClick={loadMore}>
