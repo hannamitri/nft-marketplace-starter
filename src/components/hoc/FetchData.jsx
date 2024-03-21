@@ -29,7 +29,11 @@ const FetchData = ({ apiUrl, children }) => {
     };
   }, [apiUrl]);
 
-  return loading ? null : children(data)
+  return loading ? (
+    <SkeletonLoader />
+  ) : (
+    children(data)
+  );
 };
 
 export default FetchData;

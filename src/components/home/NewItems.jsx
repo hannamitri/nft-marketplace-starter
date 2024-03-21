@@ -15,8 +15,7 @@ const NewItems = () => {
 
   return (
     <section id="section-items" className="no-bottom">
-       <FetchData apiUrl={API_URL}>
-      {(fetchedData) => (
+       
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -25,6 +24,8 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <FetchData apiUrl={API_URL}>
+      {(fetchedData) => (
           <div className="slider-container">
             <CustomSlider>
               {fetchedData.map((item, index) => (
@@ -99,10 +100,10 @@ const NewItems = () => {
                   ))}
             </CustomSlider>
           </div>
-        </div>
-      </div>
       )}
       </FetchData>
+        </div>
+      </div>
     </section>
   );
 };
