@@ -5,13 +5,10 @@ const FetchData = ({ apiUrl, children }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
- 
-
   useEffect(() => {
-    console.log("API_URL:", apiUrl)
     let isMounted = true;
-    if(!apiUrl){
-      return null
+    if (!apiUrl) {
+      return null;
     }
     const fetchedData = async () => {
       try {
@@ -31,16 +28,12 @@ const FetchData = ({ apiUrl, children }) => {
     };
   }, [apiUrl]);
 
-  useEffect(() => {
-    if (!loading && data.length === 0) {
-      console.log("Worked");
-    }
-  }, [loading, data]);
+ 
 
   return loading ? (
     <div className="container" id="section-collections">
       <div className="row">
-        {[1, 2, 3, 4].map((index) => (
+        {new Array(4).fill(0).map((_,index) => (
           <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
             <div className="nft_coll">
               <div className="nft_wrap skeleton-wrap">

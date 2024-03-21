@@ -4,66 +4,54 @@ import FetchData from "../hoc/FetchData";
 import Countdown from "../home/Countdown";
 import axios from "axios";
 
-const API_URL =
-  `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
+const API_URL = `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
 
 const ExploreItems = () => {
-
-  const [filterValue, setFilterValue] = useState("");
+  const [showItems, setShowItems] = useState(8);
   const [filteredData, setFilteredData] = useState([]);
 
-  const handleFilterChange = (event) => {
-    setFilterValue(event.target.value);
+  const fetchData = async () => {
+    const { data } = await axios.get(API_URL);
+    setFilteredData(data);
   };
 
-  useEffect(() =>{
-    const fetchData = async () => {
-      try {
-        const {data} = await axios.get(`${API_URL}?filter=${filterValue}`)
-        console.log("Fetched data:", data)
-        setFilteredData(data)
-      } catch (error) {
-        console.error("Error Massage:", error)
-      }
-    }
-    fetchData()
-  },[filterValue])
-
-  const sortData = (data) => {
-    switch (filterValue) {
-      case "price_low_to_high":
-        return data.slice().sort((a, b) => a.price - b.price);
-      case "price_high_to_low":
-        return data.slice().sort((a, b) => b.price - a.price);
-      case "likes_high_to_low":
-        return data.slice().sort((a, b) => b.likes - a.likes);
-      default:
-        return data;
+  const filterData = async (filter) => {
+    try {
+      const { data } = await axios.get(`${API_URL}?filter=${filter}`);
+      setFilteredData(data);
+    } catch (error) {
+      console.error("Error Message:", error);
     }
   };
-  
-  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const loadMore = () => {
-    console.log("Loading More Data");
-  };
+  useEffect(() => {
+    filterData();
+  }, [filterData]);
 
-
+  function loadMore() {
+    setShowItems(showItems + 4);
+  }
 
   return (
     <>
       <div>
-       
-        <select id="filter-items" value={filterValue} onChange={handleFilterChange}>
-          <option value="all">Default</option>
+        <select
+          id="filter-items"
+          defaultValue=""
+          onChange={(event) => filterData(event.target.value)}
+        >
+          <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      <FetchData data={filteredData} apiUrl={API_URL}>
-        {(fetchedData) =>
-          sortData(fetchedData).map ((item, index) => (
+      <FetchData apiUrl={API_URL}>
+        {() =>
+          filteredData.slice(0, showItems).map((item, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -71,7 +59,7 @@ const ExploreItems = () => {
             >
               <div className="nft__item">
                 <div className="author_list_pp">
-                               <Link
+                  <Link
                     to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
@@ -81,7 +69,9 @@ const ExploreItems = () => {
                   </Link>
                 </div>
                 {item.expiryDate && (
-                  <div className="de_countdown"><Countdown expiryDate={item.expiryDate} /></div>
+                  <div className="de_countdown">
+                    <Countdown expiryDate={item.expiryDate} />
+                  </div>
                 )}
 
                 <div className="nft__item_wrap">
@@ -125,11 +115,13 @@ const ExploreItems = () => {
           ))
         }
       </FetchData>
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
-          Load more
-        </Link>
-      </div>
+      {showItems < 16 && (
+        <div className="col-md-12 text-center">
+          <button className="btn-main lead" onClick={loadMore}>
+            Load more
+          </button>
+        </div>
+      )}
     </>
   );
 };
