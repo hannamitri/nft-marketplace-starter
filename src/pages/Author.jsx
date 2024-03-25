@@ -43,16 +43,62 @@ const Author = () => {
         ></section>
 
         {loading ? (
-          <div className="author-skeleton" style={{ flexWrap: 'wrap', maxWidth: '1200px', margin: '0 auto'}}>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-            <div className="authoritem-skeleton loading-animation"></div>
-          </div>
+          <>
+            <section
+              className="authorheader-skeleton"
+            >
+              <div className="avatar-skeleton">
+                <img
+                  className="loading-animation"
+                  style={{
+                    height: "150px",
+                    width: "150px",
+                    borderRadius: "75px",
+                    position: "relative",
+                    marginRight: "15px",
+                  }}
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    height: "100px",
+                  }}
+                >
+                  <div
+                    className="loading-animation"
+                    style={{ width: "180px", height: "20px" }}
+                  ></div>
+                  <div
+                    className="loading-animation"
+                    style={{ width: "90px", height: "15px" }}
+                  ></div>
+                  <div
+                    className="loading-animation"
+                    style={{ width: "180px", height: "15px" }}
+                  ></div>
+                </div>
+              </div>
+              <div
+                className="loading-animation"
+                style={{ width: "150px", height: "40px" }}
+              ></div>
+            </section>
+            <div
+              className="author-skeleton"
+              style={{ flexWrap: "wrap", maxWidth: "1350px", margin: "0 auto" }}
+            >
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+              <div className="authoritem-skeleton loading-animation"></div>
+            </div>
+          </>
         ) : (
           <section aria-label="section">
             <div className="container">
