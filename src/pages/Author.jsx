@@ -4,6 +4,7 @@ import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
   const { authorId } = useParams();
@@ -19,7 +20,7 @@ const Author = () => {
         );
         setAuthor(res.data);
         console.log(res.data);
-        setLoading(false);
+        setLoading(true);
       } catch (error) {
         console.error("Error fetching author data: ", error);
       }
@@ -42,7 +43,16 @@ const Author = () => {
         ></section>
 
         {loading ? (
-          "Loading..."
+          <div className="author-skeleton" style={{ flexWrap: 'wrap', maxWidth: '1200px', margin: '0 auto'}}>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+            <div className="authoritem-skeleton loading-animation"></div>
+          </div>
         ) : (
           <section aria-label="section">
             <div className="container">
@@ -82,8 +92,7 @@ const Author = () => {
                     </div>
                   </div>
                 </div>
-                
-    
+
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
                     <AuthorItems author={author} />
