@@ -87,13 +87,7 @@ const ExploreItems = () => {
         <div className="explore-skeleton">
           {new Array(8).fill(0).map((item, index) => (
             <div
-              className="skeleton loading-animation"
-              style={{
-                margin: "15px",
-                height: "450px",
-                width: "300px",
-                flex: "1 0 250px",
-              }}
+              className="exploreitem-skeleton loading-animation"
               key={index}
             ></div>
           ))}

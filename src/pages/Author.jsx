@@ -20,7 +20,7 @@ const Author = () => {
         );
         setAuthor(res.data);
         console.log(res.data);
-        setLoading(true);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching author data: ", error);
       }
