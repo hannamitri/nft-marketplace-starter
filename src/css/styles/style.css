@@ -12707,6 +12707,7 @@ a.read_more i {
 .switch {
   margin-bottom: -5px;
   -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -15145,7 +15146,10 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
+  display: inline;
+  /*
   *display: inline;
+  */
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16717,138 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #3b3939 !important;
+  font-size: 40px !important;
+  margin: -10px !important;
+}
+
+.slider-wrapper {
+  margin: 0 auto;
+  width: 95%;
+}
+
+.slider-item {
+  padding: 0 8px;
+}
+
+/* Skeleton Loading for Hot Collections */
+.hot-coll__skeleton-item {
+  width: 100%;
+}
+
+.hot-coll__skeleton-img {
+  width: 100%;
+  height: 90%;
+}
+
+.hot-coll__skeleton-pp {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.hot-coll__skeleton-title {
+  height: 20px;
+  width: 30%;
+  margin: 8px auto;
+  display: block
+}
+
+.hot-coll__skeleton-code {
+  height: 20px;
+  width: 20%;
+  display: block;
+  margin: 4px auto;
+}
+
+@media (min-width: 992px) {
+  .hot-coll__skeleton-item {
+    width: 25%;
+  }
+}
+
+@media (min-width: 576px) {
+  .hot-coll__skeleton-item {
+    width: 50%;
+  }
+}
+
+/* New Item Section */
+
+.new-item__card {
+  padding: 0 8px;
+}
+
+/* new img skeleton */
+
+.new-item__img-skel {
+  width: 100%;
+  height: 80%;
+  align-items: start;
+  margin: -4px;
+}
+
+.new-item__skel_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 400px;
+  margin: 0 8px;
+}
+
+.new-item__skel_info-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40%;
+  justify-content: flex-end;
+}
+
+.new-item__name-skel {
+  height: 20px;
+  width: 40%;
+}
+
+.new-item__price-skel {
+  height: 15px;
+  width: 30%;
+}
+
+.new-item__like-skel {
+  height: 15px;
+  width: 30px;
+}
+
+.new-item__skel_info-wrap2 {
+  display: flex;
+  margin-top: 8px;
+  justify-content: space-between;
+}
+
+/* Top Sellers */ 
+
+.skel_info_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.author_name_skel {
+  width: 100px;
+  height: 20px;
+  margin-bottom: 8px;
+}
+
+.author_price_skel {
+  width: 40px;
+  height: 20px;
+}
+
+.author_pp_skel {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
