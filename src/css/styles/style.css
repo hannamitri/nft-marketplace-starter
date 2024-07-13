@@ -16532,6 +16532,37 @@ img {
   }
 }
 
+.Container-gray{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gray{
+  margin-top: 2rem;
+  background-color: #E9E9E9;
+  width: 12rem;
+  height: 14rem;
+  animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+	0% {
+		background-color:#E9E9E9;
+	}
+
+	50% {
+		background-color: #D5D5D5;
+	}
+
+	100% {
+		background-color:#E9E9E9;
+	}
+}
+
 /* -------------------------------------------------- 
     design for 320px
     /* -------------------------------------------------- */
