@@ -1,9 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import Skeleton from "../UI/Skeleton";
+
+const options = {
+  loop: true,
+  margin: 10,
+  nav: true,
+  dots: false,
+  responsive: {
+    0: {
+      items: 1,
+    },
+    600: {
+      items: 2,
+    },
+    850: {
+      items: 3,
+    },
+    1050: {
+      items: 4,
+    },
+  },
+};
 
 const HotCollections = () => {
+  const [loading, setLoading] = useState(false);
+  const [nftApi, setNftApi] = useState([]);
+
+  async function fetchData() {
+    setLoading(true);
+    const data = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+    );
+    const result = data.data;
+    setNftApi(result);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -14,29 +55,69 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
-            </div>
-          ))}
+
+          <OwlCarousel
+            className="owl-theme owl-dot-off owl-loaded "
+            {...options} key={loading ? "loading" : "loaded"} 
+          >
+            {loading
+              ? new Array(4).fill(0).map((_, index) => (
+                  <div className="nft_wrapper" key={index}>
+                    <div className="nft_coll skele_wrapper">
+                      <div className="nft_wra">
+                        <a href="/">
+                          <Skeleton width="100%" height="200px" />
+                        </a>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <a href="/">
+                          <Skeleton
+                            width="50px"
+                            height="50px"
+                            borderRadius="50%"
+                          />
+                        </a>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <a href="/" className="">
+                          <Skeleton width="100px" height="20px" />
+                        </a>
+                        <br />
+                        <Skeleton width="60px" height="20px" />
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : nftApi.map((array, index) => (
+                  <div className="nft_wrapper" key={index}>
+                    <div className="nft_coll owl_wrapper">
+                      <div className="nft_wrap">
+                        <Link to={`./item-details/${array.nftId}`}>
+                          <img src={array.nftImage} className="lazy" alt="" />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img
+                            className="lazy pp-coll"
+                            src={array.authorImage}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{array.title}</h4>
+                        </Link>
+                        <span>ERC-{array.code}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            <div className="owl-prev owl-next"></div>
+          </OwlCarousel>
         </div>
       </div>
     </section>
