@@ -1,0 +1,68 @@
+.loading-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.loading-content--container {
+    flex: 1 1 calc(25% - 10px);
+    max-width: calc(25% - 10px);
+    box-sizing: border-box;
+}
+
+.nft_coll {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nft_wrap,
+.nft_wrap--loading {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+}
+
+.nft_wrap img,
+.nft-wrap--img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nft_coll_pp img {
+    border-radius: 50%;
+}
+
+.nft_coll_info {
+    text-align: center;
+}
+
+.shimmer {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right,
+            #f6f7f8 0%,
+            #edeef1 20%,
+            #f6f7f8 40%,
+            #f6f7f8 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
