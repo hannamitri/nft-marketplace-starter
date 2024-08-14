@@ -10,17 +10,33 @@ const Author = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  async function fetchData() {
-    const { data } =
-      await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}
-    `);
-    setData(data);
-    setLoading(false);
-  }
-
+  
   useEffect(() => {
+    let isMounted = true;
+
+    async function fetchData() {
+      try {
+        const { data } = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+        );
+        if (isMounted) {
+          setData(data);
+          setLoading(false);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setLoading(false);
+          console.error(error);
+        }
+      }
+    }
+
     fetchData();
-  });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
 
   function authorSkeleton() {
     return (
@@ -58,7 +74,7 @@ const Author = () => {
                 {loading ? (
                   authorSkeleton()
                 ) : (
-                  <div className="d_profile de-flex">
+                  <div className="d_profile de-flex" data-aos="fade-in">
                     <div className="de-flex-col">
                       <div className="profile_avatar">
                         <img src={data.authorImage} alt="" />

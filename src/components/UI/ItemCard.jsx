@@ -22,6 +22,7 @@ export default function ItemCard({
           : "new-item__card"
       }
       key={id}
+      data-aos="fade-up"
     >
       <div className="nft__item">
         <div className="author_list_pp">
