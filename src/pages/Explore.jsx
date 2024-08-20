@@ -2,6 +2,12 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
+
+
+
+
+
+
 const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -10,8 +16,6 @@ const Explore = () => {
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
-
         <section
           id="subheader"
           className="text-light"

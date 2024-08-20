@@ -12,7 +12,7 @@ const Landing = () => {
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
     >
-      <div className="v-center">
+      <div data-aos="fade-up" className="v-center">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
@@ -22,7 +22,7 @@ const Landing = () => {
                   Ultraverse Market
                 </span>
               </h6>
-              <div className="spacer-10"></div>
+              <div   className="spacer-10"></div>
               <h1>Create, sell or collect digital items.</h1>
               <p className="lead">
                 Unit of data stored on a digital ledger, called a blockchain,
