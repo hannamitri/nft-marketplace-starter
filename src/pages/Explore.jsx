@@ -1,14 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
-
+import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 const Explore = () => {
+  const [explore, setExplore] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    axios
+      .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+      .then((response) => {
+        setExplore(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div id="wrapper">
+    <div id="wrapper" data-aos="fade-up">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
 
@@ -32,7 +47,24 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems />
+              {loading ? (
+                <>
+                  <div className="skeleton-explore-wrapper">
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                  </div>
+                  <div className="skeleton-explore-wrapper">
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                  </div>
+                </>
+              ) : (
+                <ExploreItems exploreData={explore} />
+              )}
             </div>
           </div>
         </section>
