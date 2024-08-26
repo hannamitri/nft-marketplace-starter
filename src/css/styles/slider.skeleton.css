@@ -1,0 +1,58 @@
+.skeleton__wrap{
+    line-height: 1;
+}
+
+.nft_skeleton_wrap {
+    max-height: 64px;
+}
+
+.skeleton_author_list_info{
+    line-height: 1;
+}
+.skeleton_author_list_pp {
+    line-height: 1;
+}
+
+.skeleton__explore__container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skeleton__explore__wrap{
+    width: 25%;
+    padding: 0 12px;
+}
+
+.skeleton_btn_copy{
+    margin-left: 6px;
+}
+
+.skeleton_item_author {
+    line-height: 1;
+}
+.skeleton_item_info{
+    line-height: 1;
+}
+.skeleton_nft-big{
+    height: 550px;
+}
+
+@media(max-width: 991px) {
+    .skeleton__explore__wrap{
+        width: 50%;
+        padding: 0 12px;
+    }
+
+}
+@media(max-width:768px) {
+    .skeleton_nft-big{
+        height: 300px;
+    }
+}
+
+@media(max-width: 575px){
+    .skeleton__explore__wrap{
+        width: 100%;
+        padding: 0 12px;
+    }
+}
