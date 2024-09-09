@@ -4,6 +4,7 @@ import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  // Does this work
   return (
     <section
       id="section-hero"
@@ -20,6 +21,7 @@ const Landing = () => {
               <h6>
                 <span className="text-uppercase id-color-2">
                   Ultraverse Market
+                  
                 </span>
               </h6>
               <div className="spacer-10"></div>
