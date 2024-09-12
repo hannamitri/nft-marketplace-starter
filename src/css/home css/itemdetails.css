@@ -1,0 +1,140 @@
+.item__details--wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.item__details--image-wrapper {
+  width: 50%;
+  margin-right: 30px;
+}
+
+.item__details--image {
+  width: 100%;
+  height: 500px;
+  background-color: #bbbbbb;
+}
+
+.item__details--title {
+  width: 250px;
+  height: 30px;
+  background-color: #bbbbbb;
+}
+
+.likes__views-wrapper {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.item__details--likes,
+.item__details--views {
+  width: 100px;
+  height: 30px;
+  background-color: #bbbbbb;
+  margin: 0 5px;
+}
+
+.item__details--para {
+  max-width: 600px;
+  height: 20px;
+  background-color: #bbbbbb;
+  margin-bottom: 10px;
+}
+.item__details--para-num2 {
+  max-width: 500px;
+  height: 20px;
+  background-color: #bbbbbb;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.item__details--owner-name {
+  width: 100px;
+  height: 25px;
+  background-color: #bbbbbb;
+  margin: 20px 0;
+}
+
+.item__details--owner-img-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item__details--owner-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #bbbbbb;
+}
+
+.item__details--owner-text {
+  width: 120px;
+  height: 20px;
+  background-color: #bbbbbb;
+  margin-left: 20px;
+}
+
+.item__details--text-wrapper {
+  width: 50%;
+}
+
+@media (max-width: 1200px) {
+  .item__details--para {
+    width: 500px;
+  }
+
+  .item__details--para-num2 {
+    width: 350px;
+  }
+}
+
+@media (max-width: 980px) {
+  .item__details--wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .item__details--image-wrapper {
+    margin-bottom: 20px;
+    width: 70%;
+  }
+
+  .item__details--text-wrapper {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .item__details--wrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .item__details--image-wrapper {
+    width: 100%;
+  }
+
+  .item__details--text-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+    .item__details--para {
+        width: 350px;
+      }
+    
+      .item__details--para-num2 {
+        width: 150px;
+      }
+}
+
+@media (max-width: 400px) {
+    .item__details--para {
+        width: 250px;
+      }
+    
+      .item__details--para-num2 {
+        width: 100px;
+      }
+}

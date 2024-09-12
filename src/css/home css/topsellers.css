@@ -1,0 +1,31 @@
+.top__sellers--loading {
+    background-color: #bbbbbb;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.author_list_info-loading {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.author__list--text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.author__list-topsellers--name {
+    width: 120px;
+    height: 20px;
+    background-color: #bbbbbb;
+    margin-bottom: 20px;
+}
+
+.author__list-topsellers--price {
+    width: 80px;
+    height: 20px;
+    background-color: #bbbbbb;
+}
