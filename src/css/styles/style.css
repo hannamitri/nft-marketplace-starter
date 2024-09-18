@@ -12810,11 +12810,6 @@ a.read_more i {
   border: solid 1px rgba(255, 255, 255, 0.1);
 }
 
-/*
- .switch:checked {
-     background-color: blue;
-}
-*/
 .switch:checked::after {
   transform: translateX(20px);
 }
@@ -15145,7 +15140,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16708,109 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+/* Addition */
+
+/* Ensure Swiper occupies the correct height and width */
+.swiper-container {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the Swiper navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff; /* Set arrow color */
+  width: 50px;
+  height: 50px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #ccc; /* Hover effect for arrows */
+}
+
+/* Style pagination dots if needed */
+.swiper-pagination-bullet {
+  background-color: #fff; /* White dots */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #007bff; /* Active dot color */
+}
+
+/* Skeleton loader styling */
+/* Skeleton Styles */
+.skeleton {
+  background-color: #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Add some shimmer effect to skeleton */
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 200px;
+}
+
+.skeleton-author {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px auto;
+}
+
+.skeleton-info {
+  width: 80%;
+  height: 20px;
+  margin: 10px auto;
+}
+
+
+/* Owl Carousel Customization */
+.owl-theme .owl-nav [class*='owl-'] {
+  background: #fff;
+  color: #333;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.owl-theme .owl-nav [class*='owl-']:hover {
+  background: #ccc;
+  color: #fff;
+}
+
+.owl-theme .owl-dots .owl-dot {
+  background: #fff;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 5px;
+}
+
+.owl-theme .owl-dots .owl-dot.active {
+  background: #333;
 }
