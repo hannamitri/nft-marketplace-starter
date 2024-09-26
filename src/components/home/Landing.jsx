@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Landing = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <section
       id="section-hero"
@@ -11,6 +16,8 @@ const Landing = () => {
       className="no-top no-bottom vh-100"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
+      data-aos="fade-left"
+      data-aos-duration="600"
     >
       <div className="v-center">
         <div className="container">
