@@ -5,6 +5,7 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import TopSellers from "./components/home/TopSellers";
 
 function App() {
   return (
@@ -14,7 +15,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/item-details/:nftId" element={<ItemDetails />} />
+        <Route path="/author/:authorId" element={<Author />} />
+        <Route path="/nft/:id" element={<ItemDetails />} /> 
+        <Route path="/nft-image" element={<ItemDetails />} /> 
+        <Route path="/top-sellers/:top-SellersId" element={<TopSellers />} />
       </Routes>
       <Footer />
     </Router>
