@@ -10,3 +10,9 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.slick-slide > div{
+    margin: 0px 20px;
+}
+
