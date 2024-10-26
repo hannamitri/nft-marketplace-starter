@@ -1,0 +1,13 @@
+.skeleton {
+    background-color: lightgray;
+    color: lightgray;
+}
+
+.skeleton__pfp {
+    border-radius: 50%;
+}
+
+.skeleton__name {
+    width: 50%;
+    height: 24px;
+}

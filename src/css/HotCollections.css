@@ -1,0 +1,64 @@
+  .navigation-wrapper {
+    position: relative;
+  }
+  
+  .arrow {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    fill: #fff;
+    cursor: pointer;
+    border-radius: 9999px;
+    background-color: white;
+    padding: 8px;
+    border: 1px solid lightgray;
+  }
+  
+  .arrow--left {
+    left: 15px;
+  }
+  
+  .arrow--right {
+    left: auto;
+    right: 15px;
+  }
+  
+
+  .skeleton {
+    background-color: lightgray;
+  }
+
+  .pfp_skeleton {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  .skeleton__title {
+    height: 20px;
+    width: 100px;
+    background-color: lightgray;
+  }
+
+  .skeleton__sub-title {
+    height: 20px;
+    width: 60px;
+    background-color: lightgray;
+    margin-top: 12px;
+  }
+
+  .skeleton__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+  }
+
+  .nft__container {
+    padding: 8px;
+  }
+  
