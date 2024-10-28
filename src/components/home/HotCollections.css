@@ -1,0 +1,30 @@
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .nav-btn.left {
+    left: -1px; /* Adjust this value based on your layout */
+  }
+  
+  .nav-btn.right {
+    right: -1px; /* Adjust this value based on your layout */
+  }
+  
+  .nav-btn:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .nav-btn i {
+    font-size: 16px;
+    color: #333;
+  }
