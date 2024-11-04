@@ -1221,6 +1221,7 @@ section {
   position: relative;
 }
 
+
 .dark-scheme section {
   background: #161d30;
 }
@@ -16714,3 +16715,77 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+
+/* ================================================== */
+
+/* react slick */
+
+/* ================================================== */
+
+.slick-prev:before,
+.slick-next:before{
+  color: #cccccc !important;
+
+}
+.slick-slide>div{
+  margin: 0 8px;
+}
+.hot-collection__img--skeleton{
+width: 100%;
+height: 80%;
+
+}
+.hot-collection__author-img--skeleton{
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+.hot-collection__nft-title--skeleton{
+  width: 100px;
+  height: 24px;
+  border-radius: 4%;
+  margin: 0 auto;
+}
+.hot-collection__nft-code--skeleton{
+  width: 60px;
+  height: 12px;
+  border-radius: 4%;
+  margin: 0 auto;
+}
+
+
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+
+  background: rgb(204,204,204);
+  background: linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(222,222,222,1) 29%, rgba(204,204,204,1) 100%) !important;
+  margin-bottom: 8px;
+}
+.skeleton:after{
+  -webkit-animation: shimmer 2s infinite;
+  animation: shimmer 2s infinite;
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .2) 20%, hsla(0, 0%, 100%, .5) 60%, hsla(0, 0%, 100%, 0));
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+@keyframes shimmer{
+  100%{
+    transform: translateX(100%);
+  }
+}
+
+.book__title--skeleton {
+  height: 21px;
+  width: 100%;
+}
+
+
