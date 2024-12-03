@@ -1,0 +1,44 @@
+.card-skeleton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle__skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 24px;
+  right: 1px;
+  left: 1px;
+}
+
+.check-circle__skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8364e2;
+  position: absolute;
+  bottom: 24px;
+  right: 10px;
+  left: 132px;
+  z-index: 1;
+}
+
+.name__skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 26px;
+}
+
+.code__skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 26px;
+}
