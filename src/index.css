@@ -10,3 +10,10 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+@media only screen and (min-width: 400px) {
+  .owl-carousel .hotCollectionContainer {
+    max-width: unset !important;
+    width: 100%;
+  }
+}

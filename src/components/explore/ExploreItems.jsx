@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const ExploreItems = () => {
+  //does this work
   return (
     <>
       <div>
