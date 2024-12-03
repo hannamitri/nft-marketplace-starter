@@ -16532,6 +16532,52 @@ img {
   }
 }
 
+.Container-gray{
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gray-background-nameauthor{
+  background-color:#E9E9E9;
+  width: 6rem;
+  height: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.gray-background-image{
+  background-color: #E9E9E9;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  animation:pulse 2s infinite;
+}
+
+.gray{
+  margin-top: 2rem;
+  background-color: #E9E9E9;
+  width: 12rem;
+  height: 14rem;
+  animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+	0% {
+		background-color:#E9E9E9;
+	}
+
+	50% {
+		background-color: #D5D5D5;
+	}
+
+	100% {
+		background-color:#E9E9E9;
+	}
+}
+
 /* -------------------------------------------------- 
     design for 320px
     /* -------------------------------------------------- */
