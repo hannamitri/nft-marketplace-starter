@@ -13206,7 +13206,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 150px;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16648,6 +16648,64 @@ img {
     left: 0;
     top: -21px;
   }
+}
+
+.skeleton-item {
+  padding: 15px;
+  background: #ffffff;
+  padding-bottom: 10px;
+  border: solid 1px #dddddd;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.skeleton-image,
+.skeleton-avatar,
+.skeleton-title,
+.skeleton-text {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid, 6px, white;
+  position: absolute;
+  bottom: 55px;
+}
+
+.skeleton-title {
+  height: 20px;
+  margin: 10px 0;
+  width: 70%;
+  place-content: center;
+}
+
+.skeleton-text {
+  height: 15px;
+  width: 50%;
+}
+
+@keyframes loading {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .skeleton-box {
