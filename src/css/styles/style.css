@@ -16714,3 +16714,21 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+.slick-slide > div {
+   margin: 0 10px;
+}
+
+
+
+  .slick-prev:before, .slick-next:before {
+   justify-content: center !important;
+    text-align: center !important;
+    align-items: center !important; 
+    color: blue !important;
+   
+  }
+
+ 
+
+ 
+
