@@ -10,3 +10,19 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    ;
+}
+
+.slick-arrow::before{
+    background-color: black;
+   size: 100px;
+   
+}
+.slick-slide{
+    margin: px;
+}

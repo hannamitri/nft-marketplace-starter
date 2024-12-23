@@ -16713,4 +16713,18 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+  position: absolute;
 }
+
+
+@media (min-width: 900px) {
+#section-collections,
+.nft_wrap{
+  padding: 20px;
+  
+}
+  }
+
+  .slick-slide{
+    margin: px;
+  }
