@@ -1,0 +1,47 @@
+/* .slick-arrow:before{
+    width:45px;
+    height:45px;
+    font-size: 30px;
+    color: black;
+    background: #fff;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+} */
+.slick-slide img {
+    display: block;
+  }
+
+.slick-prev {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    z-index: 1;
+    border: 2px solid black;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    left: -24px;
+  }
+  
+  .slick-next {
+    width: 50px;
+    position: absolute;
+    height: 50px;
+    background-color: #fff;
+    z-index: 1;
+    border: 2px solid black;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    right: -14px;
+  }
+
+.slick-track {
+    display: flex;
+}
+
+
+.slick-slide {
+    margin-right: 10px;
+}
+
+
+
