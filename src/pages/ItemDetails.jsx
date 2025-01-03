@@ -47,7 +47,7 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to="/author/">
                             <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
