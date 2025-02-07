@@ -1,0 +1,13 @@
+.custom-arrow::before {
+    color: black; /* Change arrow color to black */
+    padding-top: 4px;
+  }
+
+.custom-arrow:hover {
+    scale: 1.1; 
+    box-shadow: 5px 5px 30px 0 rgba(0, 0, 0, .2);
+}
+
+.slider_box {
+  padding: 4px;
+}
