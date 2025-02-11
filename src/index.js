@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const Index = () => {
+  useEffect(() => {
+    // Check if jQuery is already loaded
+    if (!window.jQuery) {
+      const script = document.createElement('script');
+      script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+      script.async = true;
+      document.body.appendChild(script);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+      script.onload = () => {
+        console.log('jQuery loaded');
+        // Now you can safely use jQuery
+      };
+    }
+  }, []);
+
+  return (
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.render(<Index />, document.getElementById('root'));
+
+// Measure performance (optional)
 reportWebVitals();

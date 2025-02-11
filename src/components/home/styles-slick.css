@@ -1,0 +1,62 @@
+/* Hide the default Slick arrows */
+.slick-prev, .slick-next {
+  display: none !important;
+}
+
+/* Style for the custom navigation container */
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between; /* Push buttons to the left and right */
+  width: 100%;
+  padding: 0 10px; /* Add padding to make sure the buttons are not too close to the edges */
+  box-sizing: border-box;
+}
+
+/* Style for the buttons (circle shape, half in/out) */
+.btn-prev, .btn-next {
+  background-color: white; /* White background */
+  color: black;
+  border-radius: 50%; /* Make them circular */
+  width: 50px; /* Button size */
+  height: 50px;
+  font-size: 30px; /* Size of the arrow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid lightgray; /* Light gray border around the button */
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Position the buttons to be half in/out of the carousel */
+.btn-prev {
+  left: 0px; /* Half of the width to make it stick out */
+}
+
+.btn-next {
+  right: 0px; /* Half of the width to make it stick out */
+}
+
+/* Make sure buttons are positioned within the slider container */
+@media (max-width: 768px) {
+  .slider-controls {
+    margin-top: 15px;
+  }
+}
+
+/* Optional: Add some spacing between the items in the slider */
+.nft_coll {
+  margin: 12px;
+}
+.nft__item{
+  margin: 12px;
+
+}
