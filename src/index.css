@@ -10,3 +10,313 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.nft_coll {
+  margin: 0 4px 4px 4px;
+  padding-bottom: 8px;
+}
+
+.nft_coll.arrow__custom:hover {
+  transform: scale(1.05);
+}
+
+.skeleton__loading {
+  height: 29vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.nft_coll--loader {
+  height: 100%;
+  max-height: 300px;
+  margin: 4px;
+  border-radius: 5px;
+  border: 2px solid whitesmoke;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.nft_wrap--loader {
+  position: absolute;
+  width: 100%;
+  height: 189px;
+  top: 0px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 30%
+  );
+}
+
+.nft_wrap--loader:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(233, 233, 233),
+    rgb(221, 221, 221),
+    rgb(233, 233, 233)
+  );
+  animation: animate 5s ease infinite;
+  background-size: 500%;
+  filter: blur(1px);
+}
+
+.nft_wrap--loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(218, 218, 218),
+    rgb(255, 255, 255),
+    rgb(219, 219, 219)
+  );
+  animation: animate 5s ease infinite;
+  background-size: 500%;
+  filter: blur(5px);
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  0% {
+    background-position: 200% 0;
+  }
+}
+
+.nft_coll_pp--loader {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 50%
+  );
+  position: absolute;
+  top: 60%;
+}
+
+.nft_coll_title--loader {
+  border-radius: 3px;
+  height: 15px;
+  width: 100px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 50%
+  );
+  position: absolute;
+  bottom: 11%;
+}
+.nft_coll_code--loader {
+  border-radius: 3px;
+  height: 15px;
+  width: 50px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 50%
+  );
+  position: absolute;
+  bottom: 3%;
+}
+
+.slick-dots li button:before {
+  color: rgb(185, 185, 185);
+  opacity: 1;
+}
+
+.slick-dots {
+  z-index: 2;
+}
+
+.slick-dots li {
+  pointer-events: auto;
+}
+
+#arrows__custom {
+  border-radius: 5%;
+}
+
+#arrows__custom:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.arrow__custom {
+  border-radius: 5%;
+}
+
+.arrow__custom:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+
+New Items
+
+*/
+
+
+
+.nft__item--loader {
+  position: relative;
+  padding: 20px 20px 25px 20px;
+  border: solid 1px #ddd;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  margin: 0px 4px 25px;
+  background: #ffffff;
+}
+
+.newitems__loading {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.nft_newitems--loader {
+  height: 100%;
+  max-height: 450px;
+  margin: 4px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid whitesmoke;
+  background-color: white;
+  display: flex;
+  
+  flex-direction: column;
+  position: relative;
+}
+
+.nft_newitem_pp--loader {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 50%
+  );
+  position: absolute;
+  top: 5%;
+  left: 7%;
+  z-index: 0;
+}
+
+.nft_newitems--loader i {
+  font-size: 10px;
+  color: #ffffff;
+  background: #8364e2;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  padding: 3px;
+  position: absolute;
+  bottom: 4px;
+  right: 5px;
+}
+
+
+
+.skeleton__box {
+  width: 100%;
+  height: 346px;
+  border-radius: 1px;
+  background-color: #dddbdd;;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+.skeleton__box:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(233, 233, 233),
+    rgb(255, 255, 255)
+  );
+  animation: animate 5s ease infinite;
+  background-size: 500%;
+  filter: blur(1px);
+}
+.skeleton__box:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(218, 218, 218),
+    rgb(255, 255, 255),
+    rgb(219, 219, 219)
+  );
+  animation: animate 5s ease infinite;
+  background-size: 500%;
+  filter: blur(5px);
+}
+
+
+
+
+
+
+
+.nft_newitems__info--loader {
+  position: relative;
+}
+
+.nft_newitems__topinfo--loader {
+  width: 180px;
+  height: 30px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 30%
+  );
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  margin: 4px 0;
+}
+.nft_newitems__bottominfo--loader {
+  width: 100px;
+  height: 20px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 30%
+  );
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+.nft_newitems__likeinfo--loader {
+  width: 30px;
+  height: 15px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(253, 253, 253) 0%,
+    rgb(240, 240, 240) 30%
+  );
+  float: right;
+  position: relative;
+  bottom: -8px;
+}
