@@ -13219,6 +13219,9 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nft_coll_info {
@@ -16686,6 +16689,30 @@ img {
     transform: translateX(100%);
   }
 }
+
+.skeleton-image-fluid {
+  width: 100%;
+  height: 200px
+}
+
+.skeleton-pp-coll{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-title {
+ width: 100px;
+ height: 20px;
+ margin-bottom: 8px;
+}
+
+.skeleton-code {
+  width: 60px;
+  height: 20px;
+  margin-bottom: 16px;
+}
+
 
 .nft-image {
   height: 100%;
