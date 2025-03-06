@@ -8,5 +8,29 @@
 @import "./css/styles/magnific-popup.css";
 @import "./css/styles/jquery.countdown.css";
 @import "./css/styles/style.css";
-@import "./css/colors/scheme-01.css";
-@import "./css/styles/coloring.css";
+
+/*
+
+NEWITEMS
+
+*/
+
+.carousel-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+  
+  .slick-slide {
+    padding: 0 10px;
+  }
+  
+  .carousel-item img:not(.author-image) {
+      width: 100% !important;
+      height: 280px !important;
+      object-fit: cover !important;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    color: #b9b4b4 !important;
+  }
