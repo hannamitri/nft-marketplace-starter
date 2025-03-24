@@ -1,42 +1,153 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 const HotCollections = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  async function getData() {
+    const response = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
+    );
+    const results = response.data;
+    setItems(results);
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
+
+  function Arrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          background: "gray",
+          borderRadius: "50px",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <Arrow />,
+    prevArrow: <Arrow />,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-in" data-aos-duration="1000">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
-            </div>
-          ))}
+          <Slider {...settings}>
+            {loading
+              ? new Array(4).fill(0).map((_, index) => (
+                  <div className="px-1" key={index}>
+                    <div className="nft_wrap">
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "100%", height: "200px" }}
+                      ></div>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "50px", height: "50px" }}
+                      ></div>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "100px", height: "20px" }}
+                      ></div>
+                      <br />
+                      <div
+                        className="skeleton-box"
+                        style={{ width: "60px", height: "20px" }}
+                      ></div>
+                    </div>
+                  </div>
+                ))
+              : items.map((item, index) => (
+                  <div key={index} className="px-1">
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to={`/item-details/${item.nftId}`}>
+                          <img
+                            src={`${item.nftImage}`}
+                            className="lazy img-fluid"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to={`/author/${item.authorId}`}>
+                          <img
+                            className="lazy pp-coll"
+                            src={`${item.authorImage}`}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{`${item.title}`}</h4>
+                        </Link>
+                        <span>ERC-{`${item.code}`}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+          </Slider>
         </div>
       </div>
     </section>
