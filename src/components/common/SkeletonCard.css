@@ -1,0 +1,43 @@
+.skeleton-box {
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+  
+  .skeleton-box.round {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .skeleton-box.text-line {
+    height: 12px;
+    margin-top: 10px;
+  }
+  
+  .skeleton-box.text-line.short {
+    width: 60%;
+    height: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .nft_wrap.skeleton-box {
+    width: 100%;
+    padding-top: 100%; 
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  

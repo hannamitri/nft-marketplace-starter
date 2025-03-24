@@ -1,0 +1,46 @@
+.nav-btn {
+    position: absolute;
+    top: 56%;
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .nav-btn:hover {
+    background: #fff;
+    box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
+    transform: translateY(-50%) scale(1.05);
+  }
+  
+  .nav-btn.left {
+    left: -10px;
+  }
+  
+  .nav-btn.right {
+    right: -10px;
+  }
+
+   
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-btn.left {
+      left: 10px;
+    }
+    .nav-btn.right {
+      right: 10px;
+    }
+    .nav-btn {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  

@@ -1,0 +1,128 @@
+.nftImage {
+  width: 100%;
+  border-radius: 1rem;
+  object-fit: cover;
+  max-height: 500px;
+  transition: transform 0.3s ease;
+}
+.nftImage:hover {
+  transform: scale(1.02);
+}
+
+.itemInfo {
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.itemInfoCounts {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  color: #555;
+}
+
+.itemInfoCounts i {
+  margin-right: 0.25rem;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.authorBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.authorImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.authorName {
+  font-weight: 600;
+  color: #333;
+}
+
+.tabSimple {
+  margin-top: 2rem;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.shimmer.round {
+  border-radius: 50%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .itemInfoCounts {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .authorBlock {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .nftImage {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nftImage {
+    max-height: 250px;
+  }
+
+  .itemInfo {
+    padding: 0.75rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .price {
+    font-size: 0.95rem;
+  }
+}

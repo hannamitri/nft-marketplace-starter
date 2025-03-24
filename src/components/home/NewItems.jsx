@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
+
+const mockItems = [
+  { nftId: 17914494, title: "Pinky Ocean" },
+  { nftId: 17914495, title: "Blue Lagoon" },
+  { nftId: 17914496, title: "Crypto Art" },
+  { nftId: 17914497, title: "Pixel Dreams" },
+];
+
 const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
@@ -14,8 +22,12 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+
+          {mockItems.map((item) => (
+            <div
+              className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              key={item.nftId}
+            >
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -28,7 +40,6 @@ const NewItems = () => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -48,18 +59,18 @@ const NewItems = () => {
                       </div>
                     </div>
                   </div>
-
-                  <Link to="/item-details">
+                  <Link to={`/item/${item.nftId}`}>
                     <img
                       src={nftImage}
                       className="lazy nft__item_preview"
-                      alt=""
+                      alt={item.title}
                     />
                   </Link>
                 </div>
+
                 <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                  <Link to={`/item/${item.nftId}`}>
+                    <h4>{item.title}</h4>
                   </Link>
                   <div className="nft__item_price">3.08 ETH</div>
                   <div className="nft__item_like">

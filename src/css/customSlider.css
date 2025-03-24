@@ -1,0 +1,82 @@
+.nft_coll {
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.5s ease-in;
+  border-radius: 6px;
+  max-width: 100%; 
+  margin: 0 auto;
+}
+
+.nft_coll:hover {
+  box-shadow: 2px 2px 30px 0 rgba(20, 20, 20, 0.1);
+}
+
+.nft_wrap img,
+.nft_coll_pp img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.nft_wrap img {
+  aspect-ratio: 1 / 1; 
+}
+
+.nft_coll_pp img {
+  padding: 0;
+  z-index: 1;
+}
+
+.nft_wrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* Card padding inside carousel */
+.slick-slide > div {
+  padding: 0 12px;
+}
+
+.slick-list {
+  margin: 0 -12px;
+}
+
+/* Optional lazy img sizing fix */
+img.lazy.img-fluid {
+  height: 220px;
+}
+
+/* MOBILE */
+@media (max-width: 1024px) {
+  .nft_wrap img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .nft_wrap img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .nft_coll {
+    max-width: 90%;
+  }
+
+  .slick-slide > div {
+    padding: 0 8px;
+  }
+}
+
+/* Nav arrows */
+.nav-button {
+  left: -40px;
+  right: -40px;
+}
+
+@media (max-width: 768px) {
+  .nav-button {
+    left: 5px !important;
+    right: 5px !important;
+  }
+}
