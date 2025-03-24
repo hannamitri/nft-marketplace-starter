@@ -7609,6 +7609,15 @@ a.btn-right {
 }
 
 @media all and (max-width: 768px) {
+
+  .item_title {
+    text-align: center;
+  }
+
+  .item_info_counts {
+    justify-content: center;
+  }
+
   .all-timelines::before {
     right: unset;
     top: 0;
@@ -13172,6 +13181,22 @@ a.read_more i {
   height: auto;
 }
 
+.img-fluid {
+  width: 100%;
+  height: 100%;
+}
+
+.slider-container {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.nft_coll--wrapper {
+  padding: 0 8px;
+}
+
 .nft_coll {
   background: #ffffff;
   padding-bottom: 10px;
@@ -13620,8 +13645,13 @@ a.read_more i {
   padding-left: 70px;
 }
 
+.nft__item--wrapper {
+  padding: 0 8px;
+}
+
 .nft__item {
   position: relative;
+  max-height: 400px;
   padding: 20px;
   border: solid 1px #ddd;
   border-radius: 15px;
@@ -13657,8 +13687,22 @@ a.read_more i {
   box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
 }
 
+.nft__item_preview {
+  border-radius: 8px;
+}
+
+.lazy.nft__item_preview.explore__nft--img {
+  max-height: 272px;
+  max-width: 260px;
+}
+
 .nft__item:hover img.nft__item_preview {
-  transform: scale(1.03);
+  transform: scale(1.02);
+}
+
+.nft__item--author-img {
+  position: relative;
+  right: 4px;
 }
 
 .nft__item_wrap {
@@ -13668,7 +13712,7 @@ a.read_more i {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 350px;
+  height: 330px;
 }
 
 .nft__item_wrap a {
@@ -13678,10 +13722,7 @@ a.read_more i {
 
 .nft__item img {
   width: 100%;
-  height: auto !important;
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
+  max-height: 300px;
 }
 
 .nft__item .author_list_pp {
@@ -13696,6 +13737,7 @@ a.read_more i {
 
 .nft__item_info {
   position: relative;
+  bottom: 8px;
 }
 
 .nft__item_info a {
@@ -14140,15 +14182,19 @@ a.read_more i {
 
 .de_countdown {
   position: absolute;
+  top: 12px;
   right: 20px;
   background: #ffffff;
   padding: 1px 10px;
+  z-index: 100;
+  color: #0d0c22;
+}
+
+.de_countdown.active {
+  border: 2px solid #8364E2;
   border-radius: 30px;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
-  border: solid 2px #dddddd;
-  z-index: 100;
-  color: #0d0c22;
 }
 
 .de_countdown.bg-color-secondary {
@@ -16500,6 +16546,31 @@ img {
 
   .nft__item_lg .de_countdown {
     padding-top: 0;
+  }
+
+  .d_profile,
+  .profile_avatar,
+  #wallet,
+  #btn_copy,
+  .profile_follow,
+  .profile_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #btn_copy {
+    position: relative;
+  }
+
+  .profile_header {
+    margin: 0;
+  }
+
+  .profile_follower {
+    margin: 0;
+    text-align: center;
   }
 
   #items-carousel-big .owl-prev,
