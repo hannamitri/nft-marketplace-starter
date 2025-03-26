@@ -1,9 +1,107 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import axios from 'axios';
 
 const TopSellers = () => {
+  const [localNftData, setLocalNftData] = useState([]);
+  const [isLoading, setIsLoading] = useState([]);
+
+  useEffect(() => {
+    if (localNftData && localNftData.length > 0) {
+      setIsLoading(false);
+    }
+  }, [localNftData]);
+
+
+useEffect(() => {
+  const fetchNFTs = async () => {
+    try {
+      const response = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+      );
+      setLocalNftData(response.data);
+    } catch (error) {
+      console.error("There was an error fetching the NFT data!", error);
+    }
+  }
+  fetchNFTs();
+}, []);
+
+const Skeleton = ({
+  width = "auto",
+  height = "auto",
+  className = "skeleton-avatar",
+  isSquare = false,
+}) => {
   return (
+    <div
+      className={className}
+      style={{
+        width: width,
+        height: height,
+        borderRadius: isSquare ? "0%" : "50%",
+        backgroundColor: "#e0e0e0",
+        animation: "pulse 1.5s infinite",
+        margin: "0 auto",
+      }}
+    />
+  );
+};
+
+const SkeletonNftCard = ({
+  imageHeight = "45px",
+  titleHeight = "10px",
+  titleWidth = "55px",
+  imageWidth = "45px",
+  ercHeight = "10px",
+  ercWidth = "35px",
+  imageClass = "skeleton-image",
+  titleClass = "skeleton-title",
+  ercClass = "skeleton-erc",
+}) => {
+  return (
+    <li>
+    <div className="author_list_pp">
+    <Skeleton width="45px" height="45px" />
+    <div
+      className={`${imageClass}`}
+      style={{ height: imageHeight,
+        width: imageWidth
+       }}
+    ></div>{" "}
+      <Link to="/author">
+        <img
+          className="lazy pp-author"
+          src=""
+          alt=""
+        />
+      </Link>
+    </div>
+    <div className="author_list_info">
+      <Link to="/author">
+      <Skeleton width="55px" height="10px" isSquare={true} />
+    <div
+      className={`${titleClass}`}
+      style={{ height: titleHeight,
+        width: titleWidth
+       }}
+    ></div>{" "}
+    </Link>
+      <span>
+      <Skeleton width="35px" height="10px" isSquare={true} />
+    <div
+      className={`${ercClass}`}
+      style={{ height: ercHeight,
+        width: ercWidth
+       }}
+    ></div>{" "}
+      </span>
+    </div>
+  </li>
+  );
+}
+
+return (
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
@@ -13,28 +111,49 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+
+
+          {isLoading ? (
+            Array.from({ length: 5 }).map((_, index) => (
+              <SkeletonNftCard
+                key={index}
+                imageHeight = "45px"
+                titleHeight = "10px"
+                titleWidth = "55px"
+                imageWidth = "45px"
+                ercHeight = "10px"
+                ercWidth = "35px"
+                imageClass = "skeleton-image"
+                titleClass = "skeleton-title"
+                ercClass = "skeleton-erc"
+              />
+            ))
+          ) : (
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
+            {localNftData.length > 0 &&
+                localNftData.map((nft, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
+                    <Skeleton />
                     <Link to="/author">
                       <img
                         className="lazy pp-author"
-                        src={AuthorImage}
+                        src={nft.authorImage}
                         alt=""
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                    <Link to="/author">{nft.authorName}</Link>
+                    <span>{`${nft.price}`} ETH</span>
                   </div>
                 </li>
               ))}
             </ol>
           </div>
+          )}
         </div>
       </div>
     </section>
