@@ -22,6 +22,12 @@
   --title-font: "DM Sans", Helvetica, Arial, sans-serif;
 }
 
+.slick-slide {
+  padding: 0 8px; /* Adjust this value for larger or smaller gaps */
+}
+.slick-prev:before, .slick-next:before {
+  color: black !important;
+}
 /* ================================================== */
 
 /* body */
@@ -16655,7 +16661,7 @@ img {
   height: 1em;
   position: relative;
   overflow: hidden;
-  background-color: #dddbdd;
+  background-color: gray;
 }
 
 .skeleton-box::after {
