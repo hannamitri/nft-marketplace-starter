@@ -5,6 +5,7 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import HotCollections from "./components/home/HotCollections";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path=':id' element={<HotCollections />} />
         <Route path="/author" element={<Author />} />
         <Route path="/item-details" element={<ItemDetails />} />
       </Routes>
