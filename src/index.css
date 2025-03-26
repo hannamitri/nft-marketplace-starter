@@ -10,3 +10,65 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+.slick-slide img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  }
+
+  .nft_coll_wrapper {
+    padding: 10px;
+  }
+  
+  .nft_coll {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+  }
+  .nft_coll_hot {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nft_wrap {
+    border: none;
+  }
+
+  .nft_wrap img {
+    border-radius: 8px;
+  }
+
+  .nft__item {
+    margin: 0 15px;
+    padding: 10px;
+    background: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.author_list_pp {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.author_list_pp img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
