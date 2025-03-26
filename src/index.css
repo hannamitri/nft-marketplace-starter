@@ -10,3 +10,203 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+.slick-slide img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .slick-prev:before,
+  .slick-next:before {
+    color: black;
+  }
+
+  .nft_coll_wrapper {
+    padding: 10px;
+  }
+  
+  .nft_coll {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .nft_coll_hot {
+    background: #fff;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .nft_wrap {
+    border: none;
+  }
+
+  .nft_wrap img {
+    border-radius: 8px;
+  }
+
+  .nft__item {
+    margin: 0 15px;
+    padding: 10px;
+    background: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.author_list_pp {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.author_list_pp img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
+.author_list_pp_top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.author_list_pp_top img {
+  position: relative;
+  margin-top: 30px;
+  left: 5px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.author_list_pp_top .fa-check {
+  position: relative;
+  right: 10px;
+  top: 32px;
+  background-color: #a952db;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.author_list_info {
+  position: relative;
+  bottom: 30px;
+  left: 10px;
+}
+
+.author_name {
+  font-size: 18px;
+  color: #333;
+}
+
+.author-page-content {
+  margin-top: 100px;
+}
+
+.author_list_pp_de {
+  position: relative;
+}
+
+.author_list_pp_de img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.author_list_pp_de .fa-check {
+  position: relative;
+  right: 16px;
+  top: 20px;
+  background-color: #a952db;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.mr40 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+}
+
+@media (max-width: 979px) {
+  .nft__item {
+    margin: 0 10px;
+    padding: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .author_list_pp img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .author_list_pp_top {
+    gap: 5px; 
+  }
+
+  .author_list_pp_top img {
+    margin-top: 20px;
+    left: 0;
+    width: 40px; 
+    height: 40px;
+  }
+
+  .author_list_info {
+    bottom: 20px;
+    left: 5px;
+  }
+
+  .author_name {
+    font-size: 16px;
+  }
+
+  .author-page-content {
+    margin-top: 100px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .nft__item {
+    margin: 0 5px;
+    padding: 5px;
+  }
+
+  .author_list_pp img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .author_list_pp_top img {
+    margin-top: 15px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .author_list_info {
+    bottom: 15px;
+    left: 5px;
+  }
+
+  .author_name {
+    font-size: 14px;
+  }
+}
