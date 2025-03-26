@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
-      <div className="container">
+      <div className="container" data-aos="fade-in">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
+              <div data-aos="fade-in">
               <h2>Browse by category</h2>
+              </div>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>

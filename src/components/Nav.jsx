@@ -14,7 +14,7 @@ const Nav = () => {
 
   return (
     <header className="transparent header-light scroll-light smaller">
-      <div className="container">
+      <div className="container"  data-aos="fade-down" data-aos-duration="2000">
         <div className="row">
           <div className="col-md-12">
             <div className="de-flex sm-pt10">

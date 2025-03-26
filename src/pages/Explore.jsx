@@ -1,17 +1,22 @@
 import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    // does this work?
   }, []);
 
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-
+   
         <section
           id="subheader"
           className="text-light"
@@ -20,7 +25,7 @@ const Explore = () => {
           <div className="center-y relative text-center">
             <div className="container">
               <div className="row">
-                <div className="col-md-12 text-center">
+                <div className="col-md-12 text-center" data-aos="fade-down" data-aos-duration="2000">
                   <h1>Explore</h1>
                 </div>
                 <div className="clearfix"></div>
