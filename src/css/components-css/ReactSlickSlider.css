@@ -1,0 +1,31 @@
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev{
+background-color: #ffffff;
+height: 45px!important;
+width: 45px!important;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px, solid, gray;
+border-radius: 50%;
+height:30px;
+width:30px;
+}
+
+.slick-arrow.slick-next:hover,
+.slick-arrow.slick-prev:hover
+{
+    background-color: rgb(248, 242, 242);
+}
+
+
+.slick-prev::before,.slick-next::before{
+   display:none;
+    }
+
+.arrows{
+height:20px;
+width:20px;
+margin: 1px;
+}
