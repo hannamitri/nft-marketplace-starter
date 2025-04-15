@@ -6,7 +6,7 @@ const Skeleton = ({ width, height, borderRadius }) => {
       className="skeleton-box"
       style={{
         width,
-        height,
+        height, 
         borderRadius,
       }}
     ></div>

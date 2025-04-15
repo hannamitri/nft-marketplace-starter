@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import SimpleSlider from "../../pages/Slider";
+import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
+  const [hotCollections, setHotCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  async function fetchHotCollections() {
+    
+    const response = await axios.get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+    );
+    setLoading(false);
+    setHotCollections(response.data);
+  }
+
+  useEffect(() => {
+    fetchHotCollections();
+  }, []);
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -14,29 +31,63 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
+
+          {loading ? (
+            <SimpleSlider>
+              {/* mapping */}
+              {new Array(4).fill(0).map((_, index) => (
+                <div className="nft_coll" key={index}>
+                  <div className="nft_wrap">
+                    <Skeleton width="100%" height="100%" />
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Skeleton width={60} height={60} borderRadius={100} />
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <h4>
+                      <Skeleton height={20} width="40%" />
+                    </h4>
+                    <span>
+                      <Skeleton height={20} width="20%" />
+                    </span>
+                  </div>
                 </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
+              ))}
+            </SimpleSlider>
+          ) : (
+            <SimpleSlider>
+              {hotCollections.map((hotCollection, index) => (
+                <div className="nft_coll" key={index}>
+                  <div className="nft_wrap">
+                    <Link to="/item-details/:nftId">
+                      <img
+                        src={hotCollection.nftImage}
+                        className="lazy img-fluid"
+                        alt=""
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to={`/author/${hotCollection.authorId}`}>
+                      <img
+                        className="lazy pp-coll"
+                        src={hotCollection.authorImage}
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{hotCollection.title}</h4>
+                    </Link>
+                    <span>{hotCollection.code}</span>
+                  </div>
                 </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
-            </div>
-          ))}
+              ))}
+            </SimpleSlider>
+          )}
         </div>
       </div>
     </section>
