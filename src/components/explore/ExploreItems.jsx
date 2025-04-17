@@ -1,12 +1,19 @@
+import { useEffect } from 'react';
+
 import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const ExploreItems = () => {
+  useEffect(() => {
+    //Does this work?
+  }, [])
+  
   return (
     <>
       <div>
+        
         <select id="filter-items" defaultValue="">
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
