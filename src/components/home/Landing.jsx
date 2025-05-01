@@ -17,22 +17,30 @@ const Landing = () => {
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="spacer-single"></div>
+              <div data-aos="fade-in">
               <h6>
                 <span className="text-uppercase id-color-2">
                   Ultraverse Market
                 </span>
               </h6>
+              </div>
               <div className="spacer-10"></div>
+              <div data-aos="fade-up">      
               <h1>Create, sell or collect digital items.</h1>
+              </div>
+              <div data-aos="fade-up"> 
               <p className="lead">
                 Unit of data stored on a digital ledger, called a blockchain,
                 that certifies a digital asset to be unique and therefore not
                 interchangeable
               </p>
+              </div>
               <div className="spacer-10"></div>
+              <div data-aos="fade-in">
               <Link className="btn-main lead" to="/explore">
                 Explore
               </Link>
+              </div>
               <div className="mb-sm-30"></div>
             </div>
             <div className="col-md-6 xs-hide">
