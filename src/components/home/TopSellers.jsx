@@ -1,35 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import AuthorImage from "../../images/author_thumbnail.jpg"; // fallback image
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 
 const TopSellers = () => {
+  const [sellers, setSellers] = useState([]);
+
+  useEffect(() => {
+    AOS.init(); // Initialize AOS
+    const fetchTopSellers = async () => {
+      try {
+        const response = await fetch(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+        );
+        const data = await response.json();
+        setSellers(data);
+      } catch (error) {
+        console.error("Error fetching top sellers:", error);
+      }
+    };
+
+    fetchTopSellers();
+  }, []);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Top Sellers</h2>
+              <h2 data-aos="fade-up">Top Sellers</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
+              {sellers.map((seller, index) => (
+                <li key={index} data-aos="fade-up">
                   <div className="author_list_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${seller.authorId}`}>
                       <img
                         className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
+                        src={seller.authorImage || AuthorImage}
+                        alt={seller.authorName}
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                    <Link to={`/author/${seller.authorId}`}>
+                      {seller.authorName}
+                    </Link>
+                    <span>{seller.price} ETH</span>
                   </div>
                 </li>
               ))}
