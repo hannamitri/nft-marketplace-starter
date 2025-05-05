@@ -13222,6 +13222,10 @@ a.read_more i {
 }
 
 .nft_coll_info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding-bottom: 10px;
 }
 
@@ -13622,6 +13626,7 @@ a.read_more i {
 
 .nft__item {
   position: relative;
+  max-width: 440px;
   padding: 20px;
   border: solid 1px #ddd;
   border-radius: 15px;
@@ -13663,6 +13668,7 @@ a.read_more i {
 
 .nft__item_wrap {
   width: 100%;
+  max-width: 400px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -14149,6 +14155,14 @@ a.read_more i {
   border: solid 2px #dddddd;
   z-index: 100;
   color: #0d0c22;
+}
+
+.de_countdown-skeleton {
+  position: absolute;
+  right: 20px;
+  background: #ffffff;
+  padding: 1px 10px;
+  z-index: 100;
 }
 
 .de_countdown.bg-color-secondary {
@@ -15436,6 +15450,20 @@ img {
     transform: rotate(360deg);
   }
 }
+/* ================================================== */
+
+/* S K E L E T O N - L O A D I N G */
+
+/* ================================================== */
+
+.skeleton-wrapper {
+  z-index: 100;
+}
+
+
+
+
+
 
 /* ================================================== */
 
