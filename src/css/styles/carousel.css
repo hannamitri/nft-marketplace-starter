@@ -1,0 +1,28 @@
+.slick-prev,
+.slick-next {
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 1);
+    border: solid 1px #ccc;
+    border-radius: 60px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'FontAwesome';
+    font-weight: normal;
+    font-size: 20px;
+    color: #000;
+}
+
+.slick-prev:before {
+    content: '\f104';
+}
+
+.slick-next:before {
+    content: '\f105';
+}
