@@ -11372,6 +11372,21 @@ section.no-padding {
   border-radius: 60px !important;
 }
 
+.owl-nav i {
+  font-weight: normal !important;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  line-height: 45px;
+}
+
+.owl-nav button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
 #items-carousel-big .owl-prev,
 #items-carousel-big .owl-next {
   opacity: 0;
@@ -15145,7 +15160,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16728,43 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+.skeleton-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e2e2e2;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-countdown {
+  width: 120px;
+  height: 35px;
+  border-radius: 20px;
+  background: #e2e2e2;
+  animation: pulse 1.5s infinite ease-in-out;
+  margin: 10px 0;
+}
+
+.skeleton-text {
+  height: 10px;
+  background: #e2e2e2;
+  margin-top: 6px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text.short {
+  width: 100px;
+}
+
+.skeleton-text.tiny {
+  width: 50px;
+}
+
+@keyframes pulse {
+  0% { opacity: 1 }
+  50% { opacity: 0.4 }
+  100% { opacity: 1 }
 }
