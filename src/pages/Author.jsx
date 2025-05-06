@@ -1,69 +1,94 @@
-import React from "react";
-import AuthorBanner from "../images/author_banner.jpg";
-import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const [authorNFTs, setAuthorNFTs] = useState([]);
+  const [authorInfo, setAuthorInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchAuthorNFTs = async () => {
+      try {
+        const res = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
+        const data = await res.json();
+
+        // Filter NFTs by authorId
+        const filteredNFTs = data.filter(
+          (item) => String(item.authorId) === String(authorId)
+        );
+        setAuthorNFTs(filteredNFTs);
+
+        // Use the first NFT to extract author profile info
+        if (filteredNFTs.length > 0) {
+          const { authorImage, authorName } = filteredNFTs[0];
+          setAuthorInfo({ authorImage, authorName });
+        } else {
+          setAuthorInfo(null);
+        }
+      } catch (error) {
+        console.error("Error fetching author data:", error);
+      }
+    };
+
+    fetchAuthorNFTs();
+  }, [authorId]);
+
+  if (!authorInfo) {
+    return (
+      <section className="container mt-5">
+        <h2 className="text-center">Author not found or no items available</h2>
+      </section>
+    );
+  }
+
   return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
+    <section className="container mt-5">
+      {/* Author Header */}
+      <div className="text-center mb-4">
+        <img
+          src={authorInfo.authorImage}
+          alt={authorInfo.authorName}
+          className="rounded-circle"
+          width="150"
+          height="150"
+        />
+        <h2 className="mt-3">{authorInfo.authorName}</h2>
+      </div>
 
-        <section
-          id="profile_banner"
-          aria-label="section"
-          className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
-        ></section>
-
-        <section aria-label="section">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
-
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
-                </div>
+      {/* Author's NFTs */}
+      <div className="row">
+        {authorNFTs.map((item) => (
+          <div className="col-md-4 mb-4" key={item.nftId}>
+            <div className="card">
+              <img src={item.nftImage} className="card-img-top" alt={item.title} />
+              <div className="card-body">
+                <h5 className="card-title">{item.title}</h5>
+                <p className="card-text">{item.price} ETH</p>
+                <p className="card-text">{item.likes} Likes</p>
+                <p className="card-text">
+                  Expires: {new Date(item.expiryDate).toLocaleString()}
+                </p>
+                <Link
+                  to={`/item-details/${item.nftId}`}
+                  state={{ collection: item }}
+                  className="btn btn-primary"
+                >
+                  View Details
+                </Link>
               </div>
             </div>
           </div>
-        </section>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Author;
+
+
+
+
+
+
+

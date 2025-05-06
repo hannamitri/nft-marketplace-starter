@@ -14,3 +14,5 @@ const Skeleton = ({ width, height, borderRadius }) => {
 };
 
 export default Skeleton;
+
+
