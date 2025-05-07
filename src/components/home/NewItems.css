@@ -1,0 +1,220 @@
+/* Timer badge */
+.de_countdown-wrapper {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.de_countdown {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #8000ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.slick-arrow.custom-arrow-button::before {
+  content: "" !important;
+  display: none !important;
+}
+
+.custom-arrow-button {
+  background: white !important;
+  color: black !important;
+  border: 1px solid #ccc !important;
+  padding: 0 !important;
+  font: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px !important;
+  line-height: 1;
+
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.1s ease; 
+  z-index: 100;
+}
+
+.custom-arrow-button:hover {
+  background-color: #f0f0f0 !important;
+  border-color: #bbb !important;
+  color: #333 !important;
+}
+
+.custom-arrow-button:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.custom-arrow-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.slick-next.custom-arrow-button:hover,
+.slick-prev.custom-arrow-button:hover {
+  background-color: #f0f0f0 !important;
+  color: #333 !important;
+  border-color: #bbb !important;
+}
+
+.slick-next.custom-arrow-button:active,
+.slick-prev.custom-arrow-button:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.nft__item.skeleton-item {
+  position: relative;
+  overflow: hidden; 
+  background-color: #fff; 
+  border: 1px solid #eee; 
+  border-radius: 8px; 
+  padding-bottom: 15px; 
+}
+
+
+/* Basic skeleton placeholder styles */
+.skeleton-avatar,
+.skeleton-badge,
+.skeleton-image,
+.skeleton-text,
+.skeleton-price,
+.skeleton-likes {
+  background-color: #e0e0e0; 
+  border-radius: 4px; 
+  position: relative;
+  overflow: hidden; 
+}
+
+/* --- Specific placeholder dimensions and positions --- */
+
+
+.skeleton-avatar {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%; 
+  position: absolute;
+  top: 15px; 
+  left: 15px; 
+  z-index: 2; 
+}
+
+.skeleton-badge {
+  width: 80px; 
+  height: 25px; 
+  border-radius: 20px; 
+  
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.skeleton-image {
+  width: 100%; 
+  height: 250px; 
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px;
+  margin-bottom: 10px; 
+}
+
+.skeleton-text {
+  height: 16px; 
+  margin: 0 auto 8px auto; 
+}
+
+.skeleton-title {
+  width: 70%; 
+  margin-bottom: 10px; 
+}
+
+.skeleton-price {
+   height: 18px; 
+   width: 40%; 
+   margin: 0 auto 8px auto;
+}
+
+.skeleton-likes {
+   height: 16px;
+   width: 30%; 
+   margin: 0 0 0 auto; 
+}
+
+
+/* --- Shimmer Animation --- */
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-avatar::after,
+.skeleton-badge::after,
+.skeleton-image::after,
+.skeleton-text::after,
+.skeleton-price::after,
+.skeleton-likes::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.4) 20%, transparent 40%);
+  animation: shimmer 1.5s infinite linear; 
+}
+
+
+.slick-track {
+    display: flex !important;
+}
+
+.slick-slide {
+    float: left; /* Slick uses float by default */
+    height: 100%;
+    min-height: 1px;
+    width: calc(100% / 4) !important; 
+}
+
+@media (max-width: 1200px) {
+    .slick-slide {
+        width: calc(100% / 3) !important;
+    }
+}
+@media (max-width: 992px) {
+    .slick-slide {
+        width: calc(100% / 2) !important; 
+    }
+}
+@media (max-width: 600px) {
+    .slick-slide {
+        width: calc(100% / 1) !important;
+    }
+}
+
+.slick-slide .item {
+  padding: 0 15px; 
+  box-sizing: border-box;
+}
+
+.skeleton-item {
+  width: 100%;
+  height: 100%; 
+}
