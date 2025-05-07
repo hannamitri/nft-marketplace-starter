@@ -1191,6 +1191,15 @@ header.header-mobile.header-light #menu-btn {
 
 /* ================================================== */
 
+.carousel-item-wrapper {
+  margin-right: 20px; /* Adjust the spacing as needed */
+}
+
+/* Remove margin from the last item to avoid extra space at the end */
+.carousel-item-wrapper:last-child {
+  margin-right: 0;
+}
+
 #content {
   width: 100%;
   background: #fff;
@@ -15145,7 +15154,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
