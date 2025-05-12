@@ -1,0 +1,51 @@
+.skeleton-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .skeleton-line {
+    background-color: #e0e0e0;
+    height: 1em;
+    margin-bottom: 0.5em;
+  }
+  
+  .skeleton-line.short {
+    width: 80px;
+  }
+  
+  .skeleton-line.very-short {
+      width: 50px;
+  }
+  
+  .skeleton-line.long {
+    width: 250px;
+  }
+  
+  .skeleton-button {
+    background-color: #e0e0e0;
+    height: 40px;
+    width: 100px;
+    border-radius: 4px;
+  }
+  
+  @keyframes pulse {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f0f0f0;
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
+  
+  .skeleton-avatar,
+  .skeleton-line,
+  .skeleton-button {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  

@@ -1,0 +1,100 @@
+/* Basic styling for the skeleton components */
+.skeleton-box {
+    background-color: #e0e0e0; /* Light grey background */
+    animation: pulse 1.5s infinite ease-in-out; /* Pulsing animation */
+    border-radius: 4px; /* Slightly rounded corners */
+  }
+  
+  /* Animation for the pulsing effect */
+  @keyframes pulse {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f5f5f5; /* Lighter grey in the middle */
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
+  
+  /* Wrapper to mimic the main layout structure */
+  .item-details-skeleton-wrapper {
+    display: flex; /* Use flexbox to arrange image and info side-by-side */
+    padding: 20px;
+    gap: 30px; /* Space between image and info */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  }
+  
+  .item-details-skeleton-image {
+    width: 100%; /* Full width on small screens */
+    height: 300px; /* Placeholder height */
+    flex: 1; /* Allow it to grow */
+    min-width: 300px; /* Minimum width before wrapping */
+  }
+  
+  .item-details-skeleton-info {
+    flex: 1; /* Allow it to grow */
+    min-width: 300px; /* Minimum width before wrapping */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between info sections */
+  }
+  
+  .skeleton-title {
+    height: 30px; /* Placeholder height for title */
+    width: 70%; /* Title is usually shorter */
+  }
+  
+  .item-details-skeleton-counts {
+    display: flex;
+    gap: 20px; /* Space between views and likes */
+  }
+  
+  .skeleton-views,
+  .skeleton-likes {
+    height: 20px; /* Placeholder height */
+    width: 80px; /* Placeholder width */
+  }
+  
+  .skeleton-description-line {
+    height: 15px; /* Placeholder height for text line */
+    width: 100%; /* Full width */
+  }
+  
+  .skeleton-description-line.short {
+    width: 60%; /* Shorter line for the last line of description */
+  }
+  
+  .item-details-skeleton-author-section,
+  .item-details-skeleton-creator-section {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Space between avatar and name */
+  }
+  
+  .skeleton-avatar {
+    width: 40px; /* Placeholder size for avatar */
+    height: 40px; /* Placeholder size for avatar */
+    border-radius: 50%; /* Make it round */
+  }
+  
+  .skeleton-author-name {
+    height: 20px; 
+    width: 150px; /* Placeholder width for name */
+  }
+  
+  .skeleton-price {
+    height: 25px; 
+    width: 100px; 
+  }
+  
+  @media (min-width: 768px) {
+    .item-details-skeleton-wrapper {
+      flex-direction: row; 
+    }
+     .item-details-skeleton-image {
+      width: auto; 
+     }
+  }
+  
