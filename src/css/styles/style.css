@@ -15431,6 +15431,109 @@ img {
   animation: anim4 900ms linear infinite;
 }
 
+/* ================================================== */
+
+/* Hot Collections Keen-Slider*/
+
+/* ================================================== */
+
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; 
+  height: 40px; 
+  background-color: white; 
+  border: 1px solid #ccc; 
+  border-radius: 50%; 
+  font-size: 20px;
+  font-weight: bold; 
+  color: black; 
+  cursor: pointer; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s, color 0.3s; 
+  z-index: 10;
+}
+
+.arrow:hover {
+  background-color: #f0f0f0;
+  color: #333; 
+}
+
+.arrow-left {
+  left: -10px;
+}
+
+.arrow-right {
+  right: -10px;
+}
+
+/* ================================================== */
+
+/* Hot Collections skeleton loading state*/
+
+/* ================================================== */
+
+.skeleton-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 150px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-info {
+  width: 100%;
+}
+
+.skeleton-title,
+.skeleton-subtitle {
+  height: 15px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-title {
+  width: 70%;
+}
+
+.skeleton-subtitle {
+  width: 50%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
 @keyframes anim4 {
   to {
     transform: rotate(360deg);
