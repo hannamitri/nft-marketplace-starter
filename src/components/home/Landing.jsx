@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
-    <section
+    <section data-aos="fade-up"
       id="section-hero"
       aria-label="section"
       className="no-top no-bottom vh-100"
@@ -23,7 +23,7 @@ const Landing = () => {
                 </span>
               </h6>
               <div className="spacer-10"></div>
-              <h1>Create, sell or collect digital items.</h1>
+              <h1 >Create, sell or collect digital items.</h1>
               <p className="lead">
                 Unit of data stored on a digital ledger, called a blockchain,
                 that certifies a digital asset to be unique and therefore not

@@ -1,16 +1,13 @@
-import React from "react";
 
-const Skeleton = ({ width, height, borderRadius }) => {
+const Skeleton = ({ height, width }) => {
   return (
     <div
-      className="skeleton-box"
+      className="skeleton"
       style={{
-        width,
-        height,
-        borderRadius,
+        height: height || "100px",
+        width: width || "100%",
       }}
     ></div>
   );
 };
-
 export default Skeleton;
