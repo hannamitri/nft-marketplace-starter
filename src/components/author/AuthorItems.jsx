@@ -1,63 +1,60 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import ItemSkeleton from "../UI/ItemSkeleton";
+import Counter from "../Counter";
+import ItemCard from "../ItemCard";
 
 const AuthorItems = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const authorId = queryParams.get("author");
+
+  const [loading, setLoading] = useState(true);
+  const [authorNft, setAuthorNft] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(8);
+
+  const fetchAuthorNft = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching Author NFTs", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const loadAuthorNft = async () => {
+      setLoading(true);
+      const data = await fetchAuthorNft(authorId);
+      if (data && data.nftCollection) {
+        const enrichedItems = data.nftCollection.map((item) => ({
+          ...item,
+          authorImage: data.authorImage,
+          authorID: data.authorId,
+          // expiryDate: item.expiryDate || new Date(Date.now() +3600 * 1000).toISOString(), *NOT INCLUDED IN AUTHOR API*
+        }));
+        setAuthorNft(enrichedItems);
+      }
+      setLoading(false);
+    };
+    loadAuthorNft();
+  }, [authorId]);
+
   return (
-    <div className="de_tab_content">
-      <div className="tab-1">
-        <div className="row">
-          {new Array(8).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">2.52 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>97</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="row">
+      {loading
+        ? Array(16)
+            .fill(0)
+            .map((_, i) => <ItemSkeleton key={i} />)
+        : authorNft
+            .slice(0, visibleCount)
+            .map((item, index) => <ItemCard key={index} item={item} />)}
     </div>
   );
 };
