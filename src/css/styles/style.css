@@ -15069,6 +15069,14 @@ a.btn-slider:hover {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  border-radius: 2px;
+  padding: 0, 0, 0, 0,;
+}
+
+.slick-arrow.slick-prev::before {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .prev-slider i:hover,
@@ -15078,7 +15086,9 @@ a.btn-slider:hover {
   background: #333;
 }
 
-
+.slick-arrow.slick-next.slick-prev::before {
+  max-width: 100%;
+}
 
 .project-carousel ul.slides,
 .project-carousel-3-col ul.slides {

@@ -11,6 +11,16 @@ import Slider from "react-slick";
 
 
 const HotCollections = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+     // Simulate data loading
+     setTimeout(() => {
+        setData({ /* your data */ });
+        setIsLoading(false);
+     }, 2000);
+  }, []);
 
   const [collections, setCollections] = useState([]);
 
@@ -38,6 +48,27 @@ const HotCollections = () => {
 
     const sliderRef = useRef(null);
 
+    function SampleNextArrow(props) {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className}
+          style={{ ...style, display: "circle", background: "black" }}
+          onClick={onClick}
+        />
+      );
+    }
+
+    function SamplePrevArrow(props) {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className}
+          style={{ ...style, display: "", background: "black" }}
+          onClick={onClick}
+        />
+      );
+    }
 
     const settings = {
       dots: true,
@@ -45,8 +76,8 @@ const HotCollections = () => {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
-      nextArrow: <CustomNextArrow className="slick-slick-prev pull-left fa fa-angle-left"  onClick={() => sliderRef.current.slickNext()} />,
-      prevArrow: <CustomPrevArrow className="slick-next pull-right fa fa-angle-right" onClick={() => sliderRef.current.slickPrev()} />,
+      nextArrow: <SampleNextArrow className="slick-slick-prev pull-left fa fa-angle-left"  onClick={() => sliderRef.current.slickNext()} />,
+      prevArrow: <SamplePrevArrow className="slick-next pull-right fa fa-angle-right" onClick={() => sliderRef.current.slickPrev()} />,
     };
   
 
