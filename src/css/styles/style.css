@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16713,193 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+.col-lg-3 {
+  width: 100%;
+  max-width: 400px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 30px !important;
+}
+
+.skeleton__wrapper {
+  display: flex;
+}
+
+.nft__coll--skeleton {
+  width: 100%;
+  max-width: 290px;
+  height: 309px;
+  margin: 0 18px;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+}
+
+.nft__wrap--skeleton {
+  width: 100%;
+  max-width: 290px;
+  height: 206px;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.nft__wrap--img--skeleton {
+  width: 100%;
+  max-width: 290px;
+  height: 166px;
+  background-color: darkgray;
+
+}
+
+.nft__coll--pp--skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 500px;
+  background-color: darkgray;
+  position: absolute;
+  bottom: 75px;
+  left: 120px;
+}
+
+.nft__coll--name--skeleton {
+  width: 110px;
+  height: 14px;
+  background-color: darkgray;
+  position: absolute;
+  bottom: 40px;
+  left: 88px;
+}
+.nft__coll--code--skeleton {
+  width: 80px;
+  height: 14px;
+  background-color: darkgray;
+  position: absolute;
+  bottom: 18px;
+  left: 102px;
+}
+
+.skeleton {
+  width: 100%;
+  max-width: 290px;
+  height: 420px;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.item__wrap--skeleton {
+  width: 100%;
+  max-width: 240px;
+  height: 380px;
+  background: white;
+  position: relative;
+}
+
+.pfp__skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 500px;
+  background-color: lightgray;
+  position: relative;
+}
+
+.fa-check {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: purple;
+  padding: 1px;
+  border-radius: 500px;
+  color: white;
+  background-color: #8264e2;
+}
+
+.countdown__skeleton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 80px;
+  height: 16px;
+  background-color: lightgray;
+}
+
+.background__skeleton {
+  width: 100%;
+  max-width: 240px;
+  height: 200px;
+  background-color: lightgray;
+  position: absolute;
+  bottom: 92px;
+}
+
+.title__skeleton {
+  width: 100%;
+  max-width: 140px;
+  height: 14px;
+  background-color: lightgray;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+}
+.price-likes__skeleton {
+  width: 100%;
+  max-width: 260px;
+  height: 14px;
+  background-color: lightgray;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+
+.de_countdown {
+  display: flex;
+}
+
+.TS__skeleton {
+  width: 100%;
+  max-width: 280px;
+  height: 40px;
+  background-color: white;
+  position: relative;
+}
+
+.TS__pfp--skeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 500px;
+  background-color: lightgray;
+  position: absolute;
+  left: 10px;
+}
+
+.TS__name--skeleton {
+  width: 100%;
+  max-width: 100px;
+  height: 14px;
+  background-color: lightgray;
+  position: absolute;
+  left: 70px;
+  top: 8px;
+}
+.TS__price--skeleton {
+  width: 100%;
+  max-width: 60px;
+  height: 14px;
+  background-color: lightgray;
+  position: absolute;
+  left: 70px;
+  top: 30px;
 }
