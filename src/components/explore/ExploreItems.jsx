@@ -5,18 +5,21 @@ import Loading from "../UI/Loading";
 
 const ExploreItems = () => {
   const [post, setPost] = useState([]);
+  const [visible, setVisible] = useState(8);
   const [loading, setLoading] = useState(true);
   const [tick, setTick] = useState(0);
+
+  function showMorePosts() {
+    setVisible((prev) => prev + 4);
+  }
 
   function filterPosts(filter) {
     if (filter === "price_low_to_high") {
       setPost(post.sort((a, b) => a.price - b.price));
-    }
-    else if (filter === "price_high_to_low") {
-      setPost(post.sort((a, b) => b.price - a.price))
-    }
-    else if (filter === "likes_high_to_low") {
-      setPost(post.sort((a, b) => b.likes - a.likes))
+    } else if (filter === "price_high_to_low") {
+      setPost(post.sort((a, b) => b.price - a.price));
+    } else if (filter === "likes_high_to_low") {
+      setPost(post.sort((a, b) => b.likes - a.likes));
     }
   }
 
@@ -64,7 +67,7 @@ const ExploreItems = () => {
         </select>
       </div>
 
-      {post.slice(0, 8).map((posts, index) => (
+      {post.slice(0, visible).map((posts, index) => (
         <>
           {loading ? (
             <Loading />
@@ -131,7 +134,13 @@ const ExploreItems = () => {
         </>
       ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        <Link
+          to=""
+          id="loadmore"
+          className="btn-main lead"
+          onClick={showMorePosts}
+          
+        >
           Load more
         </Link>
       </div>
