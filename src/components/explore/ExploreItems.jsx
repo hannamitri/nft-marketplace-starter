@@ -25,7 +25,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(post).map((posts, index) => (
+      {post.slice(0, 8).map((posts, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
