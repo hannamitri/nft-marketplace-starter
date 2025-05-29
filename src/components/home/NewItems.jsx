@@ -4,6 +4,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
+import Loading from "../UI/Loading";
 
 const NewItems = () => {
   const [post, setPost] = useState([]);
@@ -61,17 +62,7 @@ const NewItems = () => {
             {post.map((posts) => (
               <>
                 {loading ? (
-                  <div className="skeleton" key={posts.id}>
-                    <div className="item__wrap--skeleton">
-                      <div className="pfp__skeleton">
-                        <i className="fa fa-check"></i>
-                      </div>
-                      <div className="countdown__skeleton"></div>
-                      <div className="background__skeleton"></div>
-                      <div className="title__skeleton"></div>
-                      <div className="price-likes__skeleton"></div>
-                    </div>
-                  </div>
+                 <Loading />
                 ) : (
                   <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div className="nft__item">

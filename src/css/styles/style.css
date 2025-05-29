@@ -10185,6 +10185,7 @@ i.bg-color-secondary {
 
 .d-item {
   display: none;
+  width: 320px !important;
 }
 
 .v-center {
@@ -16902,4 +16903,8 @@ img {
   position: absolute;
   left: 70px;
   top: 30px;
+}
+
+.explore--skeleton {
+  margin: 0 24px 24px 8px; 
 }
