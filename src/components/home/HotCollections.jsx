@@ -45,7 +45,7 @@ const HotCollections = () => {
                   {loading ? (
                     <div className="skeleton-box" />
                   ) : (
-                    <Link to={`/item-detail${item.nftId}`}>
+                    <Link to={`/item-detail/${item.nftId}`}>
                       <img
                         src={item.nftImage}
                         className="lazy img-fluid"
@@ -57,7 +57,7 @@ const HotCollections = () => {
 
                 <div className="nft_coll_pp">
                   {loading ? (
-                    <div className="skeleton-avatar" />
+                    <div className="skeleton skeleton-avatar" />
                   ) : (
                     <Link to={`/author/${item.authorId}`}>
                       <img
@@ -73,8 +73,8 @@ const HotCollections = () => {
                 <div className="nft_coll_info">
                   {loading ? (
                     <>
-                      <div className="skeleton-line long" />
-                      <div className="skeleton-line short" />
+                      <div className="skeleton skeleton-line long" />
+                      <div className="skeleton skeleton-line short" />
                     </>
                   ) : (
                     <>

@@ -1,3 +1,39 @@
+*{
+  box-sizing: border-box;
+}
+
+/* Skeleton */
+.skeleton {
+  background-color: #e0e0e0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  height: 100%;
+  width: 150%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/*  Hot Collections Skeleton  */
 .skeleton-wrapper {
   display: flex;
   gap: 20px;
@@ -8,9 +44,9 @@
 .skeleton-card {
   width: 250px;
   padding: 15px;
-  background: white;
+  background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -21,45 +57,155 @@
   width: 100%;
   height: 160px;
   border-radius: 10px;
-  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
   margin-bottom: 15px;
 }
 
 .skeleton-avatar {
   width: 50px;
   height: 50px;
-  background-color: #ccc;
   border-radius: 50%;
-  animation: shimmer 1.5s infinite;
   margin: 10px auto;
 }
 
 .skeleton-line {
   height: 12px;
   border-radius: 6px;
-  background-color: #ccc;
-  animation: shimmer 1.5s infinite;
   margin: 6px auto;
 }
 
-.skeleton-line.long {
-  width: 50%;
+.skeleton-line.long { width: 50%; }
+.skeleton-line.short { width: 30%; }
+
+/*  New Items Skeleton  */
+.skeleton-author {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
-.skeleton-line.short {
-  width: 30%;
+.skeleton-countdown {
+  width: 80px;
+  height: 20px;
+  margin: 10px 0;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+.skeleton-button {
+  width: 100px;
+  height: 35px;
+  margin: 10px 0;
+  border-radius: 5px;
 }
 
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
 
+.skeleton-title {
+  width: 160px;
+  height: 20px;
+  margin-bottom: 10px;
+}
 
+.skeleton-price {
+  width: 70px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+.skeleton-likes-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.skeleton-likes {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+/*  Item Details Skeleton  */
+.item-skeleton {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  margin-top: 60px;
+}
+
+.item-skeleton__container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  gap: 50px;
+}
+
+.item-skeleton__image {
+  width: 400px;
+  height: 400px;
+  border-radius: 12px;
+}
+
+.item-skeleton__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+}
+
+.item-skeleton__title {
+  width: 70%;
+  height: 32px;
+}
+
+.item-skeleton__stats {
+  display: flex;
+  gap: 20px;
+}
+
+.item-skeleton__stat {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.item-skeleton__desc {
+  width: 100%;
+  height: 100px;
+}
+
+.item-skeleton__section {
+  margin-top: 20px;
+}
+
+.item-skeleton__label {
+  width: 100px;
+  height: 16px;
+  margin-bottom: 10px;
+}
+
+.item-skeleton__user {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.item-skeleton__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.item-skeleton__name {
+  width: 150px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.item-skeleton__price {
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+}
