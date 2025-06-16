@@ -3338,3 +3338,14 @@
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
+
+.fade-special {
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSpecial {
+  to {
+    opacity: 1;
+  }
+}
