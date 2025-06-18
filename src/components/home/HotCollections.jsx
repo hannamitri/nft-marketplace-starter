@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
@@ -8,13 +9,16 @@ import '../../css/styles/style.css'
 import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [collections, setCollections] = useState([]);
-  
+
+  useEffect(() => {
     async function getCollections() {
-      setLoading(true); 
+      setLoading(true);
       try {
-        const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`);
+        const { data } = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
+        );
         setCollections(data);
       } catch (err) {
         console.error("Error fetching collections", err);
@@ -76,7 +80,7 @@ const settings = {
   ], 
 };
 
-
+ 
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
