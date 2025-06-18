@@ -93,7 +93,6 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-
           {loading ? (
             [...Array(4)].map((_, index) => (
               <div key={index} style={{ padding: "15px" }}>
