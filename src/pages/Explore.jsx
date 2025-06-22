@@ -1,10 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import axios from "axios";
 
 const Explore = () => {
+  const [exploreData, setExploreData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const fetchExploreData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+        );
+        setExploreData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching explore data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchExploreData();
   }, []);
 
   return (
@@ -32,7 +54,7 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems />
+              <ExploreItems exploreData={exploreData} loading={loading} />
             </div>
           </div>
         </section>
