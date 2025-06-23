@@ -19,7 +19,7 @@ const Explore = () => {
         >
           <div className="center-y relative text-center">
             <div className="container">
-              <div className="row">
+              <div className="row wow fadeIn">
                 <div className="col-md-12 text-center">
                   <h1>Explore</h1>
                 </div>
