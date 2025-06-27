@@ -80,6 +80,32 @@ const HotCollections = () => {
       slidesToScroll: 1,
       nextArrow: <SampleNextArrow className="slick-slick-prev pull-left fa fa-angle-left"  onClick={() => sliderRef.current.slickNext()} />,
       prevArrow: <SamplePrevArrow className="slick-next pull-right fa fa-angle-right" onClick={() => sliderRef.current.slickPrev()} />,
+      responsive: [
+        {
+          breakpoint: 1200, // lg
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 992, // md
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 768, // sm
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
     };
   
 
@@ -108,10 +134,8 @@ const HotCollections = () => {
           {collections.slice(0, 4).map((collection, index) => (
 
             <div data-aos="fade-up" className="sslick-arrow px-1" key={index}>
-              <div className="nft__item">
 
-              <div className="nft_coll">
-
+<div className="nft__item">
                 <div className="nft_wrap">
 
                   <Link to={`/item-details/${collection.nftId}`}>
@@ -147,8 +171,6 @@ const HotCollections = () => {
                 </div>
 
               </div>
-
-            </div>
 </div>
           ))}
 </Slider>

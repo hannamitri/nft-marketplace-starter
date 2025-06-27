@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import AuthorItems from "../components/author/AuthorItems";
 import 'aos/dist/aos.css';
 
-const Author = () => {
+const Author = ({ userId }) => {
  
   const [collections, setCollections] = useState([]);
   const { authorId } = useParams();
@@ -24,6 +24,18 @@ const Author = () => {
     fetchUserData();
     window.scrollTo(0, 0);
   }, []);
+
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followers, setFollowers] = useState();
+
+  const handleFollowToggle = () => {
+    setIsFollowing(!isFollowing);
+        if (isFollowing) {
+          setFollowers(followers - 1); 
+        } else {
+          setFollowers(followers + 1); 
+        }
+      };
 
   return (
     <div id="wrapper">
@@ -64,13 +76,11 @@ const Author = () => {
                   </div>
                   <div data-aos="fade-up" className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div data-aos="fade-up" className="profile_follower">{collections.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <div data-aos="fade-up" className="profile_follower">{collections.followers + isFollowing} followers</div>
+                      <Link onClick={handleFollowToggle} to="#" className="btn-main">
+                      {isFollowing ? 'Unfollow' : 'Follow'}
                       </Link>
-                   
                     </div> 
-                      
                   </div>
                 </div>
               </div>

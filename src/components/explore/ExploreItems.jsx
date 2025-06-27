@@ -152,7 +152,7 @@ const ExploreItems = () => {
           <div className="col-md-12 text-center">
             {/* This Link and map inside it seem misplaced and might cause issues. 
                 The Load More button should be directly inside the div. */}
-            <div id="loadmore" className="btn-main lead"> 
+            <div id="loadmore" > 
                 {visibleCount < allData.length && (
                 <button onClick={handleLoadMore}>Load More</button>
                 )}
