@@ -10,3 +10,28 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+/* Make sure arrows get rendered */
+.slick-arrow {
+    display: block !important;    /* override any display:none */
+    opacity: 1 !important;        /* ensure they’re not transparent */
+  }
+  
+  /* Position them */
+  .slick-prev, .slick-next {
+    position: absolute !important; 
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 2 !important;
+  }
+  
+  /* Optional: custom sizing/color so you can spot them */
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 2rem !important;
+    color: #333 !important;
+  }
+  
+  /* If you need them outside the carousel container */
+  .slick-prev { left: -30px !important; }
+  .slick-next { right: -30px !important; }
+  
