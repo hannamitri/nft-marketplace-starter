@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./HotCollections.css"; // Make sure this file exists
+import "./HotCollections.css"; 
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -20,7 +20,6 @@ const HotCollections = () => {
         const data = await response.json();
         setCollections(data.slice(0, 6));
       } catch (error) {
-        // handle error if needed
       }
     }
 

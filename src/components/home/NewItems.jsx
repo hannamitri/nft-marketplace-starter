@@ -1,10 +1,8 @@
-// src/components/NewItems.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Countdown from "react-countdown";
 
-// Slick CSS (make sure these paths resolve in your build)
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -59,6 +57,16 @@ const NewItems = () => {
                     <Link
                       to={`/author/${item.authorId}`}
                       title={`Creator: ${item.authorName}`}
+                      state={{
+                        authorId: item.authorId,
+                        authorName: item.authorName,
+                        authorImage: item.authorImage,
+                        
+                        tag: item.tag,
+                        followers: item.followers,
+                        banner: item.banner,
+
+                      }}
                     >
                       <img
                         className="lazy"
