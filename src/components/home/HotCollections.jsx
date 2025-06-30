@@ -3,12 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./HotCollections.css"; 
+import "./HotCollections.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +19,7 @@ const HotCollections = () => {
         const data = await response.json();
         setCollections(data.slice(0, 6));
       } catch (error) {
+        console.error("Failed to fetch collections", error);
       }
     }
 
@@ -42,18 +42,10 @@ const HotCollections = () => {
     autoplaySpeed: 3000,
   };
 
-  const handleImageClick = () => {
+  const handleImageClick = (item) => {
     setIsLoading(true);
-    setTimeout(() => {
-      setRedirect(true);
-    }, 500);
+    navigate(`/item-details/${item.id}`, { state: item });
   };
-
-  useEffect(() => {
-    if (redirect) {
-      navigate("/item-details");
-    }
-  }, [redirect, navigate]);
 
   if (isLoading) {
     return (
@@ -80,7 +72,7 @@ const HotCollections = () => {
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <button
-                    onClick={handleImageClick}
+                    onClick={() => handleImageClick(item)}
                     style={{ border: "none", background: "none", padding: 0 }}
                   >
                     <img
@@ -97,7 +89,7 @@ const HotCollections = () => {
                   </button>
                 </div>
                 <div className="nft_coll_pp">
-                  <Link to="/author">
+                  <Link to={`/author/${item.authorId}`} state={item}>
                     <img
                       className="lazy pp-coll"
                       src={item.authorImage}
@@ -114,7 +106,7 @@ const HotCollections = () => {
                   <i className="fa fa-check"></i>
                 </div>
                 <div className="nft_coll_info">
-                  <Link to="/explore">
+                  <Link to={`/item-details/${item.id}`} state={item}>
                     <h4>{item.title}</h4>
                   </Link>
                   <span>{item.code || "ERC-192"}</span>
