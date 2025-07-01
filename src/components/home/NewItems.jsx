@@ -1,156 +1,146 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import Countdown from "react-countdown";
+import React from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./NewItems.css"; // Create this CSS file for shimmer styles
-
+import "../../css/styles/style.css";
+import Skeleton from "../UI/Skeleton";
+import { NFTCard } from "../UI/NFTCard";
+import "aos/dist/aos.css";
 const NewItems = () => {
-  const [items, setItems] = useState([]);
+  const [fetchedData, setFetchedData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const displaycount = Array(7).fill(null);
   useEffect(() => {
-    const fetchItems = async () => {
+    async function fetchCollections() {
       try {
-        const res = await axios.get(
+        const response = await axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
-        setItems(res.data);
-      } catch (err) {
-        console.error("Failed to fetch items", err);
-      } finally {
+        const fetchData = response.data;
+        setFetchedData(fetchData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
-    };
+    }
 
-    fetchItems();
+    fetchCollections();
   }, []);
+
+  const PrevArrow = ({ className, style, onClick }) => {
+    return (
+      <button
+        className={className}
+        style={{ ...style, display: "flex" }}
+        onClick={onClick}
+      >
+        Previous
+      </button>
+    );
+  };
+  const NextArrow = ({ className, style, onClick }) => {
+    return (
+      <button
+        className={className}
+        onClick={onClick}
+        style={{ ...style, display: "flex" }}
+      >
+        Next
+      </button>
+    );
+  };
 
   const settings = {
     dots: false,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
-      { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 480, settings: { slidesToShow: 1 } },
+      {
+        breakpoint: 1399,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 460,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
-
-  const SkeletonCard = () => (
-    <div className="px-2">
-      <div className="nft__item skeleton">
-        <div className="author_list_pp shimmer-circle" />
-        <div className="nft__item_wrap shimmer-rect" style={{ height: "200px" }} />
-        <div className="nft__item_info">
-          <div className="shimmer-line short" />
-          <div className="shimmer-line tiny" />
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="text-center mb-4">
-          <h2>New Items</h2>
-          <div className="small-border bg-color-2"></div>
-        </div>
-
-        {loading ? (
-          <Slider {...settings}>
-            {Array(4)
-              .fill()
-              .map((_, i) => (
-                <SkeletonCard key={i} />
-              ))}
-          </Slider>
-        ) : (
-          <Slider {...settings}>
-            {items.map((item) => (
-              <div key={item.id} className="px-2">
-                <div className="nft__item">
-                  <div className="author_list_pp">
-                    <Link
-                      to={`/author/${item.authorId}`}
-                      title={`Creator: ${item.authorName}`}
-                    >
-                      <img
-                        className="lazy"
-                        src={item.authorImage}
-                        alt={item.authorName}
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-
-                  <div className="de_countdown">
-                    <Countdown
-                      date={new Date(item.expiryDate)}
-                      renderer={({ hours, minutes, seconds, completed }) =>
-                        completed ? (
-                          <span>Ended</span>
-                        ) : (
-                          <span>
-                            {hours}h {minutes}m {seconds}s
-                          </span>
-                        )
-                      }
-                    />
-                  </div>
-
-                  <div className="nft__item_wrap">
-                    <div className="nft__item_extra">
-                      <div className="nft__item_buttons">
-                        <button>Buy Now</button>
-                        <div className="nft__item_share">
-                          <h4>Share</h4>
-                          <a href="#" target="_blank" rel="noreferrer">
-                            <i className="fa fa-facebook fa-lg"></i>
-                          </a>
-                          <a href="#" target="_blank" rel="noreferrer">
-                            <i className="fa fa-twitter fa-lg"></i>
-                          </a>
-                          <a href="#">
-                            <i className="fa fa-envelope fa-lg"></i>
-                          </a>
-                        </div>
+        <div data-aos="fade-in" data-aos-delay="500" className="row">
+          <div className="col-lg-12">
+            <div className="text-center">
+              <h2>New Items</h2>
+              <div className="small-border bg-color-2"></div>
+            </div>
+          </div>
+          {loading && (
+            <>
+              <Slider {...settings}>
+                {displaycount.map((_, index) => (
+                  <div key={index}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Skeleton width={282} height={270} />
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Skeleton width={50} height={50} borderRadius={99} />
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <h4>
+                          <Skeleton height={20} width="40%" />
+                        </h4>
+                        <span>
+                          <Skeleton height={20} width="20%" />
+                        </span>
                       </div>
                     </div>
-
-                    <Link to={`/item-details/${item.id}`}>
-                      <img
-                        src={item.nftImage}
-                        className="lazy nft__item_preview"
-                        alt={item.nftName}
-                      />
-                    </Link>
                   </div>
-
-                  <div className="nft__item_info">
-                    <Link to={`/item-details/${item.id}`}>
-                      <h4>{item.nftName}</h4>
-                    </Link>
-                    <div className="nft__item_price">{item.price} ETH</div>
-                    <div className="nft__item_like">
-                      <i className="fa fa-heart"></i>
-                      <span>{item.likes}</span>
-                    </div>
-                  </div>
+                ))}
+              </Slider>
+            </>
+          )}
+          {!loading && (
+            <Slider {...settings}>
+              {fetchedData.map((nft) => (
+                <div key={nft.id}>
+                  <NFTCard nft={nft} />
                 </div>
-              </div>
-            ))}
-          </Slider>
-        )}
+              ))}
+            </Slider>
+          )}
+        </div>
       </div>
     </section>
   );
