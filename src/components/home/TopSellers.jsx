@@ -10,7 +10,7 @@ const TopSellers = () => {
     const fetchSellers = async () => {
       try {
         const res = await fetch(
-  `https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
+  `/topSellers`
 );
 
         

@@ -13,7 +13,7 @@ const NewItems = () => {
     const fetchItems = async () => {
       try {
         const res = await fetch(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+          `/newItems`
         );
         const data = await res.json();
         setItems(data);

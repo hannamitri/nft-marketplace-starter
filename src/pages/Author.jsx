@@ -22,9 +22,9 @@ const Author = () => {
         });
 
         // fetch Monica's items
-        const res = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authorItems?author=${id}`
-        );
+        const res = await fetch(`/authorItems?author=${id}`);
+
+        
 
         if (!res.ok) throw new Error("Failed to fetch author items");
         const data = await res.json();
