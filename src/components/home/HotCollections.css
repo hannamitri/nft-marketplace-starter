@@ -1,0 +1,57 @@
+/* Shimmer base */
+.shimmer-circle,
+.shimmer-rect,
+.shimmer-line {
+  background: #e2e2e2;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.shimmer-circle::after,
+.shimmer-rect::after,
+.shimmer-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #f0f0f0, transparent);
+  animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
+.shimmer-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 15px auto;
+}
+
+.shimmer-rect {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.shimmer-line {
+  height: 16px;
+  margin: 6px auto;
+  border-radius: 4px;
+  background: #e2e2e2;
+}
+
+.shimmer-line.short {
+  width: 60%;
+}
+
+.shimmer-line.tiny {
+  width: 30%;
+}
