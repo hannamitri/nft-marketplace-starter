@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./TopSellers.css";
+import axios from "axios";
 
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -10,7 +11,7 @@ const TopSellers = () => {
     const fetchSellers = async () => {
       try {
         const res = await fetch(
-  `/topSellers`
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
 );
 
         

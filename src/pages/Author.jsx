@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Author = () => {
-  const { id } = useParams(); // gets authorId from URL
+  const { authorId } = useParams(); // gets authorId from URL
   const [seller, setSeller] = useState(null); // author info
   const [items, setItems] = useState([]); // author’s NFTs
   const [loading, setLoading] = useState(true); // loading state
@@ -11,34 +11,46 @@ const Author = () => {
   useEffect(() => {
     const fetchAuthorData = async () => {
       try {
-        // fake author info (hardcoded or fallback)
-        setSeller({
-          authorName: "Monica Lucas",
-          authorImage: "https://nft-place.web.app/static/media/author-1.04ee784f53cbe427d362.jpg",
-          banner: "/images/author_banner.jpg",
-          tag: "monicaNFTs",
-          wallet: "0x1234...5678",
-          followers: 312,
-        });
-
-        // fetch Monica's items
-        const res = await fetch(`/authorItems?author=${id}`);
-
-        
-
-        if (!res.ok) throw new Error("Failed to fetch author items");
+        const res = await fetch(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authorItems?author=${authorId}`
+        );
         const data = await res.json();
+  
+        const firstItem = data[0];
+  
+        if (firstItem && firstItem.authorName) {
+          setSeller({
+            authorName: firstItem.authorName,
+            authorImage: firstItem.authorImage,
+            banner: firstItem.banner || "/images/author_banner.jpg",
+            tag: firstItem.tag,
+            wallet: firstItem.wallet,
+            followers: firstItem.followers,
+          });
+        } else {
+          setSeller({
+            authorName: "Monica Lucas",
+            authorImage: "https://example.com/monica.jpg",
+            banner: "/images/author_banner.jpg",
+            tag: "monicaNFTs",
+            wallet: "0x1234...5678",
+            followers: 312,
+          });
+        }
+  
         setItems(data);
       } catch (err) {
+        console.error("❌ Error fetching author:", err);
         setError("Could not load items for this author.");
-        console.error("❌ Error:", err);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchAuthorData();
-  }, [id]);
+  }, [authorId]);
+  
+  
 
   if (loading) return <p style={{ textAlign: "center" }}>Loading author info…</p>;
   if (error) return <p style={{ textAlign: "center", color: "red" }}>{error}</p>;
@@ -124,4 +136,4 @@ const Author = () => {
   );
 };
 
-export default Author;
+export default  Author;
