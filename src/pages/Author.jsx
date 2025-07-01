@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const Author = () => {
   const { authorId } = useParams(); // gets authorId from URL
@@ -8,32 +8,33 @@ const Author = () => {
   const [loading, setLoading] = useState(true); // loading state
   const [error, setError] = useState(""); // error message
 
+  console.log("Navigated to authorId:", authorId);
   useEffect(() => {
     const fetchAuthorData = async () => {
       try {
-        // 1. Fetch author info
+        // 1. Fetch author profile info
         const authorRes = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+          `/api/author?author=${authorId}`
         );
         const authorData = await authorRes.json();
-        console.log("👤 Author info:", authorData);
-  
+        
+
         setSeller({
           authorName: authorData.authorName,
           authorImage: authorData.authorImage,
-          banner: authorData.banner,
+          banner: authorData.banner || "/images/author_banner.jpg",
           tag: authorData.tag,
           wallet: authorData.wallet,
           followers: authorData.followers,
+          nftCollection: authorData.nftCollection || [],
         });
-  
-        // 2. Fetch author's NFTs
+
+        // 2. Fetch author's NFT items
         const itemsRes = await fetch(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012"
+          `/api/authorItems?author=${authorId}`
         );
         const itemsData = await itemsRes.json();
-        console.log("🖼️ Author's items:", itemsData);
-  
+
         setItems(itemsData);
       } catch (err) {
         console.error("❌ Error loading author:", err);
@@ -42,12 +43,9 @@ const Author = () => {
         setLoading(false);
       }
     };
-  
+
     fetchAuthorData();
   }, [authorId]);
-  
-  
-  
 
   if (loading) return <p style={{ textAlign: "center" }}>Loading author info…</p>;
   if (error) return <p style={{ textAlign: "center", color: "red" }}>{error}</p>;
@@ -55,6 +53,7 @@ const Author = () => {
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
+        {/* Author Banner */}
         <section
           id="profile_banner"
           className="text-light"
@@ -100,7 +99,9 @@ const Author = () => {
                       <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
                         <div className="nft__item">
                           <div className="author_list_pp">
-                            <img src={item.authorImage} alt={item.authorName} />
+                            <Link to={`/author/${item.authorId}`}>
+                              <img src={item.authorImage} alt={item.authorName} />
+                            </Link>
                           </div>
                           <div className="nft__item_wrap">
                             <img
@@ -133,4 +134,4 @@ const Author = () => {
   );
 };
 
-export default  Author;
+export default Author;
