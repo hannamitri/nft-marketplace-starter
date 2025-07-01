@@ -1,129 +1,125 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import AuthorBanner from "../images/author_banner.jpg";
+import AuthorItems from "../components/author/AuthorItems";
+import { Link } from "react-router-dom";
+import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Skeleton from "../components/UI/Skeleton";
+const API = `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=`;
 const Author = () => {
-  const { authorId } = useParams(); // gets authorId from URL
-  const [seller, setSeller] = useState(null); // author info
-  const [items, setItems] = useState([]); // author’s NFTs
-  const [loading, setLoading] = useState(true); // loading state
-  const [error, setError] = useState(""); // error message
+  const { authorId } = useParams();
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  console.log("Navigated to authorId:", authorId);
   useEffect(() => {
-    const fetchAuthorData = async () => {
+    async function fetchCollections() {
       try {
-        // 1. Fetch author profile info
-        const authorRes = await fetch(
-          `/api/author?author=${authorId}`
-        );
-        const authorData = await authorRes.json();
-        
-
-        setSeller({
-          authorName: authorData.authorName,
-          authorImage: authorData.authorImage,
-          banner: authorData.banner || "/images/author_banner.jpg",
-          tag: authorData.tag,
-          wallet: authorData.wallet,
-          followers: authorData.followers,
-          nftCollection: authorData.nftCollection || [],
-        });
-
-        // 2. Fetch author's NFT items
-        const itemsRes = await fetch(
-          `/api/authorItems?author=${authorId}`
-        );
-        const itemsData = await itemsRes.json();
-
-        setItems(itemsData);
-      } catch (err) {
-        console.error("❌ Error loading author:", err);
-        setError("Could not load this author's profile.");
-      } finally {
+        const { data } = await axios.get(`${API}${authorId}`);
+        setUser(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
-    };
-
-    fetchAuthorData();
+    }
+    setTimeout(() => {
+      setLoading(true);
+      fetchCollections();
+    }, 2000);
   }, [authorId]);
-
-  if (loading) return <p style={{ textAlign: "center" }}>Loading author info…</p>;
-  if (error) return <p style={{ textAlign: "center", color: "red" }}>{error}</p>;
-
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
-        {/* Author Banner */}
+        <div id="top"></div>
+
         <section
           id="profile_banner"
+          aria-label="section"
           className="text-light"
-          style={{
-            background: `url(${seller.banner}) top center / cover no-repeat`,
-          }}
+          data-bgimage="url(images/author_banner.jpg) top"
+          style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
 
-        <section>
+        <section aria-label="section">
           <div className="container">
             <div className="row">
-              {/* Author Profile Info */}
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={seller.authorImage} alt={seller.authorName} />
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          {seller.authorName}
-                          <span className="profile_username">@{seller.tag}</span>
-                          <span className="profile_wallet">{seller.wallet}</span>
-                          <button id="btn_copy">Copy</button>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">{seller.followers} followers</div>
-                      <button className="btn-main">Follow</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* NFT Items */}
-              <div className="col-md-12">
-                <div className="row">
-                  {items.length > 0 ? (
-                    items.map((item, index) => (
-                      <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
-                        <div className="nft__item">
-                          <div className="author_list_pp">
-                            <Link to={`/author/${item.authorId}`}>
-                              <img src={item.authorImage} alt={item.authorName} />
-                            </Link>
-                          </div>
-                          <div className="nft__item_wrap">
-                            <img
-                              src={item.nftImage}
-                              alt={item.nftName}
-                              className="lazy nft__item_preview"
-                            />
-                          </div>
-                          <div className="nft__item_info">
-                            <h4>{item.nftName}</h4>
-                            <div className="nft__item_price">{item.price} ETH</div>
-                            <div className="nft__item_like">
-                              <i className="fa fa-heart"></i>
-                              <span>{item.likes}</span>
-                            </div>
+              {loading ? (
+                <div>
+                  <div className="col-md-12">
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_avatar">
+                          <Skeleton
+                            width={150}
+                            height={150}
+                            borderRadius={99}
+                          />
+                          <i className="fa fa-check"></i>
+                          <div className="profile_name">
+                            <h4>
+                              <span className="profile_username">
+                                <Skeleton width={200} height={30} />
+                              </span>
+                              <span id="wallet" className="profile_wallet">
+                                <Skeleton width={75} height={22} />
+                              </span>
+                            </h4>
                           </div>
                         </div>
                       </div>
-                    ))
-                  ) : (
-                    <p style={{ textAlign: "center" }}>No items found for this author.</p>
-                  )}
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <div className="profile_follower">
+                            <Skeleton width={100} height={24} />
+                          </div>
+                          <Skeleton width={125} height={35} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <img src={user.authorImage} alt="" />
+
+                        <i className="fa fa-check"></i>
+                        <div className="profile_name">
+                          <h4>
+                            {user.authorName}
+                            <span className="profile_username">
+                              @{user.tag}
+                            </span>
+                            <span id="wallet" className="profile_wallet">
+                              {user.address}
+                            </span>
+                            <button id="btn_copy" title="Copy Text">
+                              Copy
+                            </button>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_follower">
+                          {user.followers} followers
+                        </div>
+                        <Link to="#" className="btn-main">
+                          Follow
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="col-md-12">
+                <div className="de_tab tab_simple">
+                  <AuthorItems user={user} loading={loading} />
                 </div>
               </div>
             </div>
