@@ -5,6 +5,9 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import TopSellers from "./components/home/TopSellers";  
+
+
 
 function App() {
   return (
@@ -13,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/author/:authorId" element={<Author />} />
+        <Route path="/item-details/:nftid" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
