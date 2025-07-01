@@ -11,37 +11,33 @@ const Author = () => {
   useEffect(() => {
     const fetchAuthorData = async () => {
       try {
-        const res = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authorItems?author=${authorId}`
+        // 1. Fetch author info
+        const authorRes = await fetch(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
         );
-        const data = await res.json();
+        const authorData = await authorRes.json();
+        console.log("👤 Author info:", authorData);
   
-        const firstItem = data[0];
+        setSeller({
+          authorName: authorData.authorName,
+          authorImage: authorData.authorImage,
+          banner: authorData.banner,
+          tag: authorData.tag,
+          wallet: authorData.wallet,
+          followers: authorData.followers,
+        });
   
-        if (firstItem && firstItem.authorName) {
-          setSeller({
-            authorName: firstItem.authorName,
-            authorImage: firstItem.authorImage,
-            banner: firstItem.banner || "/images/author_banner.jpg",
-            tag: firstItem.tag,
-            wallet: firstItem.wallet,
-            followers: firstItem.followers,
-          });
-        } else {
-          setSeller({
-            authorName: "Monica Lucas",
-            authorImage: "https://example.com/monica.jpg",
-            banner: "/images/author_banner.jpg",
-            tag: "monicaNFTs",
-            wallet: "0x1234...5678",
-            followers: 312,
-          });
-        }
+        // 2. Fetch author's NFTs
+        const itemsRes = await fetch(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012"
+        );
+        const itemsData = await itemsRes.json();
+        console.log("🖼️ Author's items:", itemsData);
   
-        setItems(data);
+        setItems(itemsData);
       } catch (err) {
-        console.error("❌ Error fetching author:", err);
-        setError("Could not load items for this author.");
+        console.error("❌ Error loading author:", err);
+        setError("Could not load this author's profile.");
       } finally {
         setLoading(false);
       }
@@ -49,6 +45,7 @@ const Author = () => {
   
     fetchAuthorData();
   }, [authorId]);
+  
   
   
 

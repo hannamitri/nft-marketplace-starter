@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
-import "./ExploreItems.css"; // <-- Add this if your shimmer CSS is there
+import "./ExploreItems.css"; 
 
-// Skeleton loading card
 const SkeletonCard = () => {
   return (
     <div className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" style={{ display: "block" }}>
@@ -22,8 +21,8 @@ const SkeletonCard = () => {
 };
 
 const ExploreItems = () => {
-  const [items, setItems] = useState([]); // visible (filtered/sorted)
-  const [masterItems, setMasterItems] = useState([]); // original unmodified API list
+  const [items, setItems] = useState([]); 
+  const [masterItems, setMasterItems] = useState([]); 
   const [filter, setFilter] = useState("");
   const [visibleCount, setVisibleCount] = useState(4);
   const [loading, setLoading] = useState(true);
@@ -36,7 +35,7 @@ const ExploreItems = () => {
         );
         const data = await res.json();
         setItems(data);
-        setMasterItems(data); // save original
+        setMasterItems(data); 
       } catch (error) {
         console.error("Error fetching items:", error);
       } finally {
@@ -51,8 +50,7 @@ const ExploreItems = () => {
     const selected = e.target.value;
     setFilter(selected);
 
-    let sortedItems = [...masterItems]; // copy from original list
-
+    let sortedItems = [...masterItems]; 
     if (selected === "price_low_to_high") {
       sortedItems.sort((a, b) => a.price - b.price);
     } else if (selected === "price_high_to_low") {
@@ -62,7 +60,7 @@ const ExploreItems = () => {
     }
 
     setItems(sortedItems);
-    setVisibleCount(4); // reset shown items
+    setVisibleCount(4); 
   };
 
   const handleLoadMore = () => {
