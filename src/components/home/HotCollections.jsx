@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./HotCollections.css"; // your shimmer styles
+import "./HotCollections.css"; 
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -15,8 +15,9 @@ const HotCollections = () => {
         const res = await fetch(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         );
-        await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated delay
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated delay
         const data = await res.json();
+        console.log("🔥 Hot Collections:", data);
         setCollections(data);
       } catch (err) {
         console.error("Failed to fetch hot collections", err);

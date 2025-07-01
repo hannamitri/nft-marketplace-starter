@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Countdown from "react-countdown";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./NewItems.css"; // Create this CSS file for shimmer styles
@@ -13,12 +14,11 @@ const NewItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await fetch(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems" 
+        const res = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
         await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
-        const data = await res.json();
-        setItems(data);
+        setItems(res.data);
       } catch (err) {
         console.error("Failed to fetch items", err);
       } finally {
@@ -83,14 +83,6 @@ const NewItems = () => {
                     <Link
                       to={`/author/${item.authorId}`}
                       title={`Creator: ${item.authorName}`}
-                      state={{
-                        authorId: item.authorId,
-                        authorName: item.authorName,
-                        authorImage: item.authorImage,
-                        tag: item.tag,
-                        followers: item.followers,
-                        banner: item.banner,
-                      }}
                     >
                       <img
                         className="lazy"

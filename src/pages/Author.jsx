@@ -6,6 +6,7 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Skeleton from "../components/UI/Skeleton";
+
 const API = `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=`;
 const Author = () => {
   const { authorId } = useParams();

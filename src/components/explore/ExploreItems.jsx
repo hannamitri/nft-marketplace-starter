@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
-import "./ExploreItems.css"; 
+import axios from "axios";
+import "./ExploreItems.css";
 
 const SkeletonCard = () => {
   return (
     <div className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" style={{ display: "block" }}>
       <div className="nft__item">
-        <div className="author_list_pp skeleton skeleton-img"></div>
-        <div className="nft__item_wrap">
-          <div className="skeleton skeleton-img"></div>
-        </div>
+        <div className="author_list_pp shimmer-circle"></div>
+        <div className="nft__item_wrap shimmer-rect" style={{ height: "200px" }}></div>
         <div className="nft__item_info">
-          <div className="skeleton skeleton-text"></div>
-          <div className="skeleton skeleton-small"></div>
+          <div className="shimmer-line short" />
+          <div className="shimmer-line tiny" />
         </div>
       </div>
     </div>
@@ -21,8 +20,8 @@ const SkeletonCard = () => {
 };
 
 const ExploreItems = () => {
-  const [items, setItems] = useState([]); 
-  const [masterItems, setMasterItems] = useState([]); 
+  const [items, setItems] = useState([]);
+  const [masterItems, setMasterItems] = useState([]);
   const [filter, setFilter] = useState("");
   const [visibleCount, setVisibleCount] = useState(4);
   const [loading, setLoading] = useState(true);
@@ -30,12 +29,12 @@ const ExploreItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await fetch(
+        const res = await axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
-        const data = await res.json();
-        setItems(data);
-        setMasterItems(data); 
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay
+        setItems(res.data);
+        setMasterItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);
       } finally {
@@ -50,7 +49,8 @@ const ExploreItems = () => {
     const selected = e.target.value;
     setFilter(selected);
 
-    let sortedItems = [...masterItems]; 
+    let sortedItems = [...masterItems];
+
     if (selected === "price_low_to_high") {
       sortedItems.sort((a, b) => a.price - b.price);
     } else if (selected === "price_high_to_low") {
@@ -60,7 +60,7 @@ const ExploreItems = () => {
     }
 
     setItems(sortedItems);
-    setVisibleCount(4); 
+    setVisibleCount(4); // Reset when new filter is applied
   };
 
   const handleLoadMore = () => {
@@ -110,7 +110,7 @@ const ExploreItems = () => {
                     <img
                       src={item.nftImage}
                       className="lazy nft__item_preview"
-                      alt=""
+                      alt={item.title}
                     />
                   </Link>
                 </div>
