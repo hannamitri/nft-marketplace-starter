@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/Ultraverse.png";
-
+import AOS from "aos";
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // You can customize this
+      once: true, // Animate only once
+    });
+  }, []);
   return (
-    <footer className="footer-light">
+    <footer className="footer-light"  >
       <div className="container">
-        <div className="row">
-          <div className="col-md-3 col-sm-6 col-xs-1">
-            <div className="widget">
+        <div className="row" data-aos="fade-left">
+          <div className="col-md-3 col-sm-6 col-xs-1"  >
+            <div className="widget" >
               <h5>Marketplace</h5>
-              <ul>
+              <ul >
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to="#" className="no-cursor"  >
                     All NFTs
                   </Link>
                 </li>
@@ -21,8 +27,8 @@ const Footer = () => {
                     Art
                   </Link>
                 </li>
-                <li>
-                  <Link to="#" className="no-cursor">
+                <li >
+                  <Link to="#" className="no-cursor"  >
                     Music
                   </Link>
                 </li>
@@ -31,8 +37,8 @@ const Footer = () => {
                     Domain Names
                   </Link>
                 </li>
-                <li>
-                  <Link to="#" className="no-cursor">
+                <li >
+                  <Link to="#" className="no-cursor"> 
                     Virtual World
                   </Link>
                 </li>
@@ -49,7 +55,7 @@ const Footer = () => {
               <h5>Resources</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to="#" className="no-cursor" >
                     Help Center
                   </Link>
                 </li>

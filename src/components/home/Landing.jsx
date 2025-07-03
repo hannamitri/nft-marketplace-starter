@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
 const Landing = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // You can customize this
+      once: true, // Animate only once
+    });
+  }, []);
   return (
     <section
       id="section-hero"
@@ -22,9 +29,9 @@ const Landing = () => {
                   Ultraverse Market
                 </span>
               </h6>
-              <div className="spacer-10"></div>
-              <h1>Create, sell or collect digital items.</h1>
-              <p className="lead">
+              <div className="spacer-10"  ></div>
+              <h1 data-aos="fade-up">Create, sell or collect digital items.</h1>
+              <p className="lead"  data-aos="fade-up">
                 Unit of data stored on a digital ledger, called a blockchain,
                 that certifies a digital asset to be unique and therefore not
                 interchangeable
@@ -36,7 +43,7 @@ const Landing = () => {
               <div className="mb-sm-30"></div>
             </div>
             <div className="col-md-6 xs-hide">
-              <img src={NFT} className="lazy img-fluid" alt="" />
+              <img src={NFT} className="lazy img-fluid" alt="" data-aos="fade-down" />
             </div>
           </div>
         </div>
