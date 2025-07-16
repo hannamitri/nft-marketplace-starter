@@ -23,6 +23,8 @@ const Home = () => {
         <BrowseByCategory />
       </div>
     </div>
+    
+    
   );
 };
 
