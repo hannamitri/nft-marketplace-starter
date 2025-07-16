@@ -5,9 +5,9 @@ const Skeleton = ({ width, height, borderRadius }) => {
     <div
       className="skeleton-box"
       style={{
-        width,
-        height,
-        borderRadius,
+        width: width,
+        height: height,
+        borderRadius: borderRadius,
       }}
     ></div>
   );
