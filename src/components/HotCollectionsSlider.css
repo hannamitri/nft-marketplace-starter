@@ -1,0 +1,138 @@
+.slider-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 20px auto;
+  overflow: visible;
+  padding: 0 0px;
+  background-color: transparent;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slides-container {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  width: 100%;
+  justify-content: center;
+}
+
+.slide {
+  flex: 0 0 22%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 0;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.slide:hover {
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.nft_coll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px 16px;
+}
+
+.nft_wrap img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.nft_coll_pp img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-top: -20px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
+}
+
+.nft_coll_info h4 {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.nft_coll_info span {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.9);
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.slider-btn:hover {
+  background-color: #6c63ff;
+  color: white;
+  border-color: #6c63ff;
+}
+
+.prev-btn {
+  left: -20px;
+}
+
+.next-btn {
+  right: -20px;
+}
+
+@media (max-width: 1199px) {
+  .slider-wrapper {
+    max-width: 700px;
+  }
+  .slide {
+    flex: 0 0 24%;
+  }
+}
+
+@media (max-width: 991px) {
+  .slider-wrapper {
+    max-width: 500px;
+  }
+  .slide {
+    flex: 0 0 32%;
+  }
+}
+
+@media (max-width: 767px) {
+  .slider-wrapper {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  .slide {
+    flex: 0 0 48%;
+  }
+}
