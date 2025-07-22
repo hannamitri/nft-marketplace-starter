@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import KeenSliderDemo from "../components/KeenSliderDemo";
 
 const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Does this work?
   }, []);
 
   return (
@@ -33,6 +35,7 @@ const Explore = () => {
           <div className="container">
             <div className="row">
               <ExploreItems />
+              <KeenSliderDemo />
             </div>
           </div>
         </section>

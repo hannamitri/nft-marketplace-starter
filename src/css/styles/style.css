@@ -16508,6 +16508,24 @@ img {
   }
 }
 
+/* SKELETON */
+
+.skeleton {
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+
 /* -------------------------------------------------- 
     design for 480px
     /* -------------------------------------------------- */
