@@ -1,75 +1,100 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+
+const skeletonArray = [1, 2, 3, 4];
+
+// Helper to format time
+function formatTime(ms) {
+  if (ms <= 0) return "00h 00m 00s";
+  const totalSeconds = Math.floor(ms / 1000);
+  const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+  const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+  const s = String(totalSeconds % 60).padStart(2, "0");
+  return `${h}h ${m}m ${s}s`;
+}
 
 const NewItems = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [now, setNow] = useState(Date.now());
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    slides: { perView: 4, spacing: 16 },
+  });
+
+  useEffect(() => {
+    fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  // Update the timer every second
+  useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="section-items" className="no-bottom">
+    <section id="section-new-items" className="no-bottom">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
+          <div className="col-lg-12 text-center">
+            <h2>New Items</h2>
+            <div className="small-border bg-color-2"></div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
+          <div ref={sliderRef} className="keen-slider">
+            {loading
+              ? skeletonArray.map((_, idx) => (
+                  <div className="keen-slider__slide" key={idx}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <div className="skeleton skeleton-img" style={{ width: "100%", height: "200px", borderRadius: "8px" }}></div>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <div className="skeleton skeleton-avatar" style={{ width: "50px", height: "50px", borderRadius: "50%" }}></div>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <div className="skeleton skeleton-title" style={{ width: "60%", height: "20px", marginBottom: "8px" }}></div>
+                        <div className="skeleton skeleton-code" style={{ width: "40%", height: "16px" }}></div>
                       </div>
                     </div>
                   </div>
-
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
+                ))
+              : items.map((item, idx) => (
+                  <div className="keen-slider__slide" key={idx}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to="/item-details">
+                          <img src={item.nftImage} className="lazy img-fluid" alt="" />
+                        </Link>
+                        {/* Countdown Timer */}
+                        <div className="de_countdown">
+                          {formatTime(item.expiryDate - now)}
+                        </div>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img className="lazy pp-coll" src={item.authorImage} alt="" />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{item.title}</h4>
+                        </Link>
+                        <span>{item.code}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          ))}
+                ))}
+          </div>
         </div>
       </div>
     </section>
