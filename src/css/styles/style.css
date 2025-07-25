@@ -16714,3 +16714,17 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+@media (max-width: 768px) {
+  .profile_follow {
+    position: static !important;       /* ⛓ Rejoins normal flow */
+    margin-top: 20px;
+    justify-content: center;
+    flex-direction: column !important; /* ⬇️ Stack followers and button */
+    align-items: center !important;
+  }
+
+  .profile_follow button {
+    min-width: 120px;
+    width: 80%;                        /* 📏 More fluid sizing */
+  }
+}
