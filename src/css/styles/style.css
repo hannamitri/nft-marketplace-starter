@@ -1597,11 +1597,11 @@ header.header-light .logo-2 {
   border-left: solid 1px rgba(255, 255, 255, 0.1);
 }
 
-#topbar:not(.topbar-noborder) .tb-light .topbar-left .topbar-widget {
+#topbar:not(.topbar-noborder) .topbar-left .topbar-widget {
   border-right: solid 1px #eeeeee;
 }
 
-#topbar:not(.topbar-noborder) .tb-light .topbar-left span:first-child {
+#topbar:not(.topbar-noborder) .topbar-left span:first-child {
   border-left: solid 1px #eeeeee;
 }
 
@@ -1913,7 +1913,7 @@ header.header-light .logo-2 {
 }
 
 .dark-scheme #blog-comment li li {
-  border-top-color: rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.2);
 }
 
 #blog-comment li li .avatar {
@@ -6383,20 +6383,6 @@ i.font60 {
   border: none;
 }
 
-.de_tab.tab_methods.style-2 .de_tab_content {
-  border: none;
-}
-
-.de_tab.tab_simple .de_nav li {
-  min-width: 80px;
-  text-align: center;
-}
-
-.de_tab.tab_simple .de_nav li span {
-  padding: 8px 15px;
-  border: none;
-}
-
 .de_tab.tab_simple .de_nav li.active span {
   color: #ffffff;
 }
@@ -7292,16 +7278,6 @@ a.btn-right {
 .timeline > li:first-child {
   position: relative;
   margin-top: 0px;
-}
-
-.timeline > li:before,
-.timeline > li:after {
-  content: " ";
-  display: table;
-}
-
-.timeline > li:after {
-  clear: both;
 }
 
 .timeline > li:before,
@@ -9268,7 +9244,7 @@ a:hover,
 
 .project-info .details {
   padding: 20px;
-  border: solid 1px rgba(255, 255, 255, 0.2);
+  border: solid 1px #e5e5e5;
   background: rgba(0, 0, 0, 0.5);
   margin-bottom: 30px;
 }
@@ -12000,10 +11976,6 @@ a.read_more i {
   margin-left: 8px;
 }
 
-.text-light a.read_more {
-  color: #fff;
-}
-
 .text-black {
   color: #222;
 }
@@ -12707,6 +12679,7 @@ a.read_more i {
 .switch {
   margin-bottom: -5px;
   -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -13629,6 +13602,8 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 .nft__item.style-2,
@@ -13667,8 +13642,8 @@ a.read_more i {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   height: 350px;
+  position: relative;
 }
 
 .nft__item_wrap a {
@@ -15145,7 +15120,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -15183,14 +15158,6 @@ a.btn-slider:hover {
 
 .size20 {
   font-size: 20px;
-}
-
-.size30 {
-  font-size: 30px;
-}
-
-.size40 {
-  font-size: 40px;
 }
 
 .size50 {
@@ -15808,7 +15775,6 @@ img {
     border-top: solid 1px #eee;
     top: auto;
     width: auto;
-    height: auto;
     position: inherit;
     visibility: visible;
     opacity: 1;
@@ -16714,3 +16680,5 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+
