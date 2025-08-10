@@ -15,7 +15,6 @@ body.dark-scheme.de-grey #content,
 .dark-scheme.de-grey header.header-mobile,
 .dark-scheme.de-grey .dropdown li span,
 .dark-scheme.de-grey .dropdown li span:hover,
-.dark-scheme .owl-prev, .dark-scheme .owl-next,
 .dark-scheme.de-grey .modal-content{
     background: #212428;
 }
@@ -51,7 +50,6 @@ body.dark-scheme.de-grey #content,
 .dark-scheme.de-grey .activity-list li:after,
 .dark-scheme.de-grey .nft_img_preview,
 .dark-scheme.de-grey .activity-list img,
-.dark-scheme.de-grey .owl-prev, .dark-scheme .owl-next,
 .dark-scheme.de-grey .nft__item_lg img,
 .dark-scheme.de-grey .de-submenu{
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.3);
