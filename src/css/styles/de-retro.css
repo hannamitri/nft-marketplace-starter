@@ -44,8 +44,7 @@ body.de-retro,
 .de-retro header.header-light,
 .de-retro header.scroll-light,
 .de-retro #content,
-#mainmenu ul,
-.owl-prev, .owl-next, .d-nav-left, .d-nav-right{
+#mainmenu ul{
 background: #FAF6F1;
 }
 

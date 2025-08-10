@@ -1,78 +1,134 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useState, useEffect } from "react";
+import NFTCard from "../UI/NFTCard";
+import Toast from "../UI/Toast";
 
 const ExploreItems = () => {
+  const [nftItems, setNftItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('default');
+  const [displayedCount, setDisplayedCount] = useState(8);
+  const [error, setError] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+  // Fetch data based on filter
+  const fetchNFTItems = async (filterValue) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const url = filterValue === 'default' 
+        ? 'https://us-central1-nft-cloud-functions.cloudfunctions.net/explore'
+        : `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filterValue}`;
+      
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Failed to fetch NFT items');
+      }
+      
+      const data = await response.json();
+      setNftItems(data);
+      
+      // Maintain current display count when switching filters
+      // Don't reset displayedCount - user keeps their current view
+      
+    } catch (err) {
+      setError(err.message);
+      setToastMessage('Filter failed. Please try again.');
+      setShowToast(true);
+      console.error('Error fetching NFT items:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Initial data fetch
+  useEffect(() => {
+    fetchNFTItems(filter);
+  }, []);
+
+  // Handle filter change
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+    fetchNFTItems(newFilter);
+  };
+
+  // Handle load more
+  const handleLoadMore = () => {
+    const newCount = Math.min(displayedCount + 4, nftItems.length);
+    setDisplayedCount(newCount);
+  };
+
+  // Close toast
+  const closeToast = () => {
+    setShowToast(false);
+    setToastMessage('');
+  };
+
   return (
     <>
+      {/* Filter Dropdown */}
       <div>
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
+        <select 
+          id="filter-items" 
+          value={filter}
+          onChange={(e) => handleFilterChange(e.target.value)}
+        >
+          <option value="default">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
-        <div
-          key={index}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block", backgroundSize: "cover" }}
-        >
-          <div className="nft__item">
-            <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={AuthorImage} alt="" />
-                <i className="fa fa-check"></i>
-              </Link>
-            </div>
-            <div className="de_countdown">5h 30m 32s</div>
 
-            <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
-              </Link>
+      {/* NFT Items Grid */}
+      <div className="row">
+        {loading ? (
+          // Show skeleton loading for current display count
+          Array.from({ length: displayedCount }).map((_, index) => (
+            <div
+              key={`skeleton-${index}`}
+              className="d-item col-lg-3 col-md-4 col-sm-6 col-xs-12"
+              style={{ display: "block" }}
+            >
+              <NFTCard loading={true} />
             </div>
-            <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
-              </Link>
-              <div className="nft__item_price">1.74 ETH</div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>69</span>
-              </div>
+          ))
+        ) : (
+          // Show actual NFT items
+          nftItems.slice(0, displayedCount).map((item) => (
+            <div
+              key={item.id}
+              className="d-item col-lg-3 col-md-4 col-sm-6 col-xs-12"
+              style={{ display: "block" }}
+            >
+              <NFTCard nftData={item} loading={false} />
             </div>
-          </div>
-        </div>
-      ))}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+          ))
+        )}
       </div>
+
+      {/* Load More Button - only show if there are more items */}
+      {displayedCount < nftItems.length && (
+        <div className="col-md-12 text-center">
+          <button 
+            onClick={handleLoadMore} 
+            id="loadmore" 
+            className="btn-main lead"
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Load more'}
+          </button>
+        </div>
+      )}
+
+      {/* Toast Notification */}
+      <Toast 
+        message={toastMessage}
+        type="error"
+        show={showToast}
+        onClose={closeToast}
+      />
     </>
   );
 };
