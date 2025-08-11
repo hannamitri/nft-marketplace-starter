@@ -1,10 +1,38 @@
-import React from "react";
-import AuthorBanner from "../images/author_banner.jpg";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import axios from "axios";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const [author, setAuthor] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAuthor = async () => {
+      try {
+        const response = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+        );
+        setAuthor(response.data);
+      } catch (error) {
+        console.error("Error fetching author:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAuthor();
+  }, [authorId]);
+
+  if (loading || !author) {
+    return (
+      <div className="container text-center mt-5">
+        <h3>Loading author profile...</h3>
+      </div>
+    );
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -14,8 +42,7 @@ const Author = () => {
           id="profile_banner"
           aria-label="section"
           className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
+          style={{ background: `url(${author.authorBanner}) top` }}
         ></section>
 
         <section aria-label="section">
@@ -25,26 +52,37 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
-
+                      <img src={author.authorImage} alt={author.authorName} />
                       <i className="fa fa-check"></i>
+
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                          {author.authorName}
+                          <span className="profile_username">
+                            @{author.tag}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <span id="wallet" className="profile_wallet">
+                            {author.walletAddress}
+                          </span>
+                          <button
+                            id="btn_copy"
+                            title="Copy Wallet"
+                            onClick={() =>
+                              navigator.clipboard.writeText(author.walletAddress)
+                            }
+                          >
                             Copy
                           </button>
                         </h4>
                       </div>
                     </div>
                   </div>
+
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">
+                        {author.followers} followers
+                      </div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -55,7 +93,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems authorId={authorId} />
                 </div>
               </div>
             </div>
