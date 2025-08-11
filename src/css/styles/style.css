@@ -16714,3 +16714,13 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* Hot collections */
+
+.nftItem {
+  max-width: 440px;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
