@@ -1,0 +1,107 @@
+/* Custom styles to make react-slick look like owl carousel */
+
+/* Hide default slick dots and arrows */
+.slick-dots {
+  display: none !important;
+}
+
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+/* Custom owl-style navigation */
+.custom-carousel-container {
+  position: relative;
+}
+
+.custom-carousel-container .owl-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  pointer-events: none;
+}
+
+.custom-carousel-container .owl-prev,
+.custom-carousel-container .owl-next {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  color: #333;
+}
+
+.custom-carousel-container .owl-prev:hover,
+.custom-carousel-container .owl-next:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-carousel-container .owl-prev {
+  left: -20px;
+}
+
+.custom-carousel-container .owl-next {
+  right: -20px;
+}
+
+/* Custom owl-style dots */
+.custom-carousel-container .owl-dots {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.custom-carousel-container .owl-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-carousel-container .owl-dot.active,
+.custom-carousel-container .owl-dot:hover {
+  background: #007bff;
+}
+
+/* Ensure proper spacing between slides */
+.slick-slide > div {
+  padding: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+/* Remove any default slick styling that conflicts */
+.slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.slick-slide {
+  height: auto;
+}
+
+.slick-slide > div {
+  height: 100%;
+}
+
+.slick-slide .nft_coll {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
