@@ -878,6 +878,25 @@ header:not(.header-mobile) #mainmenu > li:hover ul.mega {
   color: white;
 }
 
+.slick-next:before,
+.slick-prev:before {
+  color: rgb(154, 2, 154) !important;
+  font-size: 20px !important;
+}
+
+.slick-slide {
+  margin: 0 12px;
+}
+
+.slick-track {
+  margin: 0;
+  display: flex !important;
+}
+
+.link__navigate {
+  cursor: pointer;
+}
+
 @media (max-width: 991px) {
   #mainmenu {
     display: none;
