@@ -12,7 +12,7 @@ const Footer = () => {
               <h5>Marketplace</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to="/Home" className="no-cursor">
                     All NFTs
                   </Link>
                 </li>
