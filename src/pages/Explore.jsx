@@ -16,12 +16,15 @@ const Explore = () => {
           id="subheader"
           className="text-light"
           style={{ background: `url("${SubHeader}") top` }}
+          data-aos="fade-in"
         >
           <div className="center-y relative text-center">
             <div className="container">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <h1>Explore</h1>
+                  <h1 data-aos="fade-in" data-aos-delay="100">
+                    Explore
+                  </h1>
                 </div>
                 <div className="clearfix"></div>
               </div>
@@ -29,7 +32,7 @@ const Explore = () => {
           </div>
         </section>
 
-        <section aria-label="section">
+        <section aria-label="section" data-aos="fade-in">
           <div className="container">
             <div className="row">
               <ExploreItems />

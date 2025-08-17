@@ -17,7 +17,7 @@ const NewItems = () => {
         const response = await axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
-        console.log("New Items API Response:", response.data);
+
         setItems(response.data);
       } catch (error) {
         console.error("Error fetching new items:", error);
@@ -126,12 +126,14 @@ const NewItems = () => {
   );
 
   return (
-    <section id="section-items" className="no-bottom">
+    <section id="section-items" className="no-bottom" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Items</h2>
+              <h2 data-aos="fade-up" data-aos-delay="100">
+                New Items
+              </h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>

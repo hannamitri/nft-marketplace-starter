@@ -19,7 +19,7 @@ const ItemDetails = () => {
         const response = await axios.get(
           `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
         );
-        console.log("Item Details API Response:", response.data);
+
         setNftData(response.data);
       } catch (error) {
         console.error("Error fetching NFT data:", error);

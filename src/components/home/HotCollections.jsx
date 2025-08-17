@@ -15,7 +15,7 @@ const HotCollections = () => {
         const response = await axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         );
-        console.log("Hot Collections API Response:", response.data);
+
         setCollections(response.data);
       } catch (error) {
         console.error("Error fetching hot collections:", error);
@@ -129,12 +129,14 @@ const HotCollections = () => {
   );
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" className="no-bottom" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2 data-aos="fade-up" data-aos-delay="100">
+                Hot Collections
+              </h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>

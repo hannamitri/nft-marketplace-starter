@@ -22,7 +22,7 @@ const ExploreItems = () => {
       const url = filter ? `${baseUrl}?filter=${filter}` : baseUrl;
 
       const response = await axios.get(url);
-      console.log("Explore API Response:", response.data);
+
       setItems(response.data);
       setDisplayedItems(8);
       setHasMore(response.data.length > 8);
@@ -67,7 +67,14 @@ const ExploreItems = () => {
       {loading ? (
         <ExploreSkeletonList />
       ) : (
-        itemsToShow.map((item) => <NFTItem key={item.id} item={item} />)
+        itemsToShow.map((item, index) => (
+          <NFTItem
+            key={item.id}
+            item={item}
+            data-aos="fade-in"
+            data-aos-delay={index * 100}
+          />
+        ))
       )}
       {!loading && hasMore && (
         <div className="col-md-12 text-center">
