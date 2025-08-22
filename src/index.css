@@ -10,3 +10,152 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+:after{
+    box-sizing: border-box;
+}
+
+.nft__coll {
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.fa-check {
+  background: #8364e2;
+  border-radius: 100%;
+  bottom: 4px;
+  color: #fff;
+  font-size: 10px;
+  padding: 3px;
+  right: 5px;
+  position: absolute;
+}
+
+.arrow-left {
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 60px !important;
+  color: #000 !important;
+  cursor: pointer;
+  height: 45px;
+  position: absolute;
+  top: 40%;
+  width: 45px;
+  z-index: 100;
+  left: -12px;
+  outline: none;
+  transition: 0.2s ease;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.arrow-right {
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 60px !important;
+  color: #000 !important;
+  cursor: pointer;
+  height: 45px;
+  position: absolute;
+  top: 40%;
+  width: 45px;
+  z-index: 100;
+  right: -12px;
+  outline: none;
+  transition: 0.2s ease;
+  padding: 0 !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.arrow-right:hover,
+.arrow-left:hover {
+  box-shadow: 5px 5px 30px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.nft_coll--pp {
+  display: block;
+  margin: -30px auto 10px;
+  position: relative;
+  width: 60px;
+}
+
+.nft_coll--pp img {
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 100%;
+  height: auto;
+  width: 60px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+.nft_wrap {
+  overflow: hidden;
+  height: 200%;
+  position: relative;
+  width: 100%;
+}
+
+.navigation-wrapper {
+  position: relative;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  section {
+    background-size: auto 100%;
+  }
+}
+
+.skeleton-box {
+    background-color: #dddbdd;
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+    position: relative;
+}
+
+.skeleton-box:after {
+    animation: shimmer 2s infinite;
+    background-image: linear-gradient(90deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.2) 20%,hsla(0,0%,100%,.5) 60%,hsla(0,0%,100%,0));
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(-100%);
+}
+
+.de_countdown{
+    padding: 1px 10px;
+    height: 30px;
+}
+
+
+.img-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.img-wrapper .fa-check {
+  position: absolute;
+  bottom: 5px;
+  font-size: 15px;
+}
+
