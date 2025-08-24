@@ -1,8 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import TopSeller from "./top-sellers/TopSeller";
+import TopSellerSkeleton from "./top-sellers/TopSellerSkeleton";
 
 const TopSellers = () => {
+  const [topSellers, setTopSellers] = useState([]);
+      const [loading, setLoading] = useState(false);
+      
+    
+      async function getData() {
+        const { data } = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+        );
+        setTopSellers(data);
+        setLoading(false);
+      }
+    
+      useEffect(() => {
+        setLoading(true);
+        getData();
+      }, []);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,24 +33,9 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))}
+              {loading ? (new Array(12).fill(0).map((_, index) => <TopSellerSkeleton key={index} />)) : (
+                            topSellers.map((topSeller, index) => <TopSeller topSeller={topSeller} key={index} />)
+                          )}
             </ol>
           </div>
         </div>
