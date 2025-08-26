@@ -1,0 +1,86 @@
+/* I limit overall width and center the slider */
+.carousel-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* I give each slide some inner padding so cards don't stick together */
+.slick-slide > div {
+  padding: 10px;
+}
+
+/* I keep arrows above slides */
+.slick-arrow {
+  z-index: 3;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: #fff;
+  font-size: 20px;
+  line-height: 36px; /* yo centro el símbolo dentro del botón */
+}
+
+.slick-prev .arrow-icon,
+.slick-next .arrow-icon {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* I make the arrows easy to see and clickable */
+.slick-prev,
+.slick-next {
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 999px;
+}
+.slick-prev:hover,
+.slick-next:hover {
+  border-color: #aaa;
+}
+
+/* I keep them above the slides */
+.slick-arrow {
+  z-index: 3;
+}
+
+/* I nudge them inward a bit */
+.slick-prev {
+  left: 12px !important;
+}
+.slick-next {
+  right: 12px !important;
+}
+
+/* I hide theme’s :before since I’m using actual characters */
+.slick-prev:before,
+.slick-next:before {
+  display: none;
+}
+
+/* ==== DEBUG SOLO PARA PROBAR ==== */
+.debug-box {
+  height: 180px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111;
+  background: linear-gradient(135deg, #ffe08b, #ffd0d7);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* por si algún CSS global me oculta el slider, yo lo fuerzo visible */
+.slick-slider {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: '' !important;
+}

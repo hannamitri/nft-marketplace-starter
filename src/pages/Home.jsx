@@ -1,29 +1,20 @@
-import React, { useEffect } from "react";
-import BrowseByCategory from "../components/home/BrowseByCategory";
-import HotCollections from "../components/home/HotCollections";
+import React from "react";
 import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
+import BrowseByCategory from "../components/home/BrowseByCategory";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+import HotCollections from "../components/home/HotCollections"; // yo uso solo esta
 
-const Home = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+export default function Home() {
   return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
-        <Landing />
-        <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
-        <BrowseByCategory />
-      </div>
-    </div>
+    <>
+      <Landing />
+      <LandingIntro />
+      <HotCollections />   {/* yo muestro “Hot Collections” aquí */}
+      <BrowseByCategory />
+      <NewItems />
+      <TopSellers />
+    </>
   );
-};
-
-export default Home;
+}
