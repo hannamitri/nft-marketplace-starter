@@ -1,0 +1,58 @@
+.author_list_pp {
+  position: relative;
+  display: inline-block;
+}
+
+.author_list_pp img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.author_list_pp i {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white; /* Color del ícono */
+  background: #c39cf6; /* Fondo violeta */
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 12px;
+}
+
+.nft__item {
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  background: #fff;
+  margin: 10px;
+  position: relative;
+}
+
+.de_countdown {
+  font-size: 13px;
+  background: #e0c7ff;
+  color: #6d42b1;
+  border-radius: 5px;
+  padding: 4px 8px;
+  display: inline-block;
+  margin-top: 10px;
+  float: right;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 20px;
+  line-height: 32px;
+}

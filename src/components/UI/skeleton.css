@@ -1,0 +1,60 @@
+/* src/components/UI/skeleton.css */
+
+/* yo activo un shimmer genérico */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #e9eef3;
+}
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* yo doy forma a la tarjeta placeholder para que tenga tamaño similar */
+.nft__item.skeleton {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding-bottom: 10px;
+}
+
+.skeleton-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin: 12px;
+}
+
+.skeleton-media {
+  width: calc(100% - 24px);
+  margin: 0 12px;
+  aspect-ratio: 4/3;
+  border-radius: 10px;
+}
+
+.skeleton-lines {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 999px;
+}
