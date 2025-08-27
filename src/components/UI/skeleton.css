@@ -1,0 +1,114 @@
+.nft-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.nft-image-wrap {
+  aspect-ratio: 4 / 3;
+}
+.nft-info {
+  padding: 12px 14px 16px;
+}
+.nft-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.author-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+/* I build the shimmer effect */
+.skel-shimmer {
+  position: relative;
+  background: #eee;
+  overflow: hidden;
+}
+.skel-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes sk-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* I draw "text lines" */
+.skel-line {
+  height: 12px;
+  border-radius: 6px;
+}
+
+/* I use a simple grid to mimic 4/2/1 slides while loading */
+
+.skeleton .sk-box,
+.skeleton .sk-line,
+.skeleton .sk-avatar {
+  background: linear-gradient(90deg, #eee 25%, #f6f6f6 37%, #eee 63%);
+  background-size: 400% 100%;
+  animation: sk-shimmer 1.2s infinite linear;
+  border-radius: 8px;
+}
+
+.sk-media {
+  width: 100%;
+  height: 0;
+  padding-top: 75%;
+} /* 4:3 */
+.sk-title {
+  height: 16px;
+  width: 70%;
+  margin-top: 10px;
+}
+.sk-subtitle {
+  height: 12px;
+  width: 40%;
+  margin-top: 8px;
+}
+.sk-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.sk-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* responsive para el grid del skeleton */
+@media (max-width: 1024px) {
+  .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+}
