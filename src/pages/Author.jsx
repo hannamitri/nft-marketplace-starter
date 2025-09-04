@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const Author = () => {
+
+   const [loading, setLoading] = useState()
+  const [api, setApi] = useState([]);
+  const {id} = useParams(api.authorId)
+  const [follow, setFollow] = useState(false)
+
+
+function handleFollow(){
+setFollow(true)
+
+}
+
+
+ useEffect(() => {
+        fetchApi();
+    }, []);
+    
+
+    async function fetchApi() {
+    setLoading(true)
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+    );
+    setApi(data);
+    
+    setLoading(false)
+  }
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +53,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={api.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {api.authorName}
+                          <span className="profile_username">{api.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                           {api.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,10 +72,17 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
+                      {follow? <div className="profile_follower">{api.followers +1} followers</div>
+                      :
+                      <div className="profile_follower">{api.followers} followers</div>}
+                     { follow ?
+                      <button className="btn-main">
+                        Unfollow
+                      </button>
+                     :
+                     <button onClick={()=> handleFollow()} className="btn-main">
                         Follow
-                      </Link>
+                      </button>}
                     </div>
                   </div>
                 </div>

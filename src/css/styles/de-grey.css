@@ -86,6 +86,7 @@ body.dark-scheme.de-grey #content,
 .dark-scheme.de-grey .nft__item img.nft__item_preview,
 .dark-scheme.de-grey .nft_wrap,
 .author_list_pp img,
+.author_list_pp_skelly img,
 .profile_avatar img,
 .d_coll .profile_avatar img{
     box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);

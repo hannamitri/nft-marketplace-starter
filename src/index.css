@@ -10,3 +10,169 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+
+.skelton-box{
+    height: 200px;
+    width: 100%;
+ background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+}
+
+.skelton-title{
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+    height: 20px;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.skelton-code{
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+    height: 20px;
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.wrapper{
+    max-width: calc(100%/4);
+}
+
+
+.skelton-pp{
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+    width: 10%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 50%;
+    
+}
+
+.pp-skelly{
+    display: flex;
+    position: relative;
+}
+
+.fa-check-hotloading{
+    position: absolute;
+    right: 45%;
+    bottom: 5%;
+    color: white;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.fa-check-toploading{
+    position: absolute;
+    right: 45%;
+    bottom: 5%;
+    color: white;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+
+@keyframes shimmer {
+   to {
+      background-position-x: 0%
+   }
+}
+
+.skelton-top_title{
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+    height: 20px;
+    width: 60%;
+}
+
+.skelton-top_price{
+       background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+    height: 20px;
+    width: 40%;
+    margin-top: 10px;
+}
+
+
+.fa-check_top-loading{
+    margin-right: 0;
+}
+
+.skelton-pp-top{
+       background: black;
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+    width: 10%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+
+.items_skely{
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+
+}
+
+.items_skely-title{
+    height: 20px;
+    width: 40%;
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+   margin-bottom: 10px;
+}
+
+.items_skely-desc{
+    height:30vh;
+    width: 70%;
+    background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+}
+
+.items_author-titles{
+      background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+   height: 10px;
+   width: 15vw;
+}
+
+.item-skelly-icon{
+      background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+   background-size: 300%;
+   background-position-x: 100%;
+   animation: shimmer 1s infinite linear;
+   height: 60px;
+   width: 60px;
+   border-radius: 100%;
+   gap: 10px;
+}

@@ -5,7 +5,9 @@ const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
       <div className="container">
-        <div className="row">
+        <div className="row"  data-aos="fade-left"
+         data-aos-easing="ease-in-out"
+              data-aos-duration="800">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Browse by category</h2>
@@ -46,6 +48,8 @@ const BrowseByCategory = () => {
             <Link to="/explore" className="icon-box style-2 rounded">
               <i className="fa fa-th"></i>
               <span>Collectibles</span>
+
+              {/* any comment */}
             </Link>
           </div>
         </div>
