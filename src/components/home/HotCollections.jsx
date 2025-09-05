@@ -68,7 +68,7 @@ const HotCollections = () => {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [])
+  }, []);
 
   return (
     <section id="section-collections" className="no-bottom">
