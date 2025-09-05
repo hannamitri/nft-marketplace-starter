@@ -1,65 +1,89 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSearchParams, Link } from "react-router-dom";
 import nftImage from "../../images/nftImage.jpg";
 
-const AuthorItems = () => {
+export default function AuthorItems() {
+  const [sp] = useSearchParams();
+  const authorId = sp.get("authorId");
+
+  const [author, setAuthor] = useState(null);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function fetch() {
+      if (!authorId) {
+        setError("Missing authorId—use `/author?authorId=123`");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const { data } = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors",
+          { params: { author: authorId } }
+        );
+        setAuthor(data);
+        setItems(Array.isArray(data.nftCollection) ? data.nftCollection : []);
+      } catch (e) {
+        console.error("Failed to fetch author data:", e);
+        setError("Could not load author data.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetch();
+  }, [authorId]);
+
+  if (loading) return <div>Loading author...</div>;
+  if (error) return <div style={{ color: "red" }}>{error}</div>;
+  if (!author) return <div>Author not found.</div>;
+
+  const { name, authorName, avatar, username, wallet, followers } = author;
+
   return (
-    <div className="de_tab_content">
-      <div className="tab-1">
-        <div className="row">
-          {new Array(8).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
+    <div id="wrapper">
+      <div className="no-bottom no-top" id="content">
+        <section>
+          <div className="container" style={{ padding: "20px 0" }}>
+            {items.length === 0 ? (
+              <div>No items for this author.</div>
+            ) : (
+              <div className="row" style={{ gap: 12 }}>
+                {items.map((it, idx) => (
+                  <div
+                    key={it.nftId ?? idx}
+                    style={{ flex: "1 1 calc(25% - 12px)" }}
+                  >
+                    <div className="nft__item">
+                      <Link to={`/item-details?nftId=${it.nftId}`}>
+                        <img
+                          src={it.nftImage || nftImage}
+                          alt={it.title || ""}
+                          style={{ width: "100%", borderRadius: 8 }}
+                        />
+                      </Link>
+                      <Link to={`/item-details?nftId=${it.nftId}`}>
+                        <h4 style={{ margin: "8px 0 4px" }}>
+                          {it.title || "Untitled"}
+                        </h4>
+                      </Link>
+                      <div style={{ fontSize: 14 }}>
+                        {typeof it.price === "number" ? `${it.price} ETH` : "—"}
+                      </div>
+                      <div style={{ fontSize: 12, color: "#666" }}>
+                        <i className="fa fa-heart" /> {it.likes ?? 0}
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">2.52 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>97</span>
-                  </div>
-                </div>
+                ))}
               </div>
-            </div>
-          ))}
-        </div>
+            )}
+          </div>
+        </section>
       </div>
     </div>
   );
-};
-
-export default AuthorItems;
+}
