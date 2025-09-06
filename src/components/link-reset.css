@@ -1,0 +1,10 @@
+/* I make a button look like a plain link/icon without default button chrome */
+.link-reset {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit; /* I keep typography consistent */
+}
