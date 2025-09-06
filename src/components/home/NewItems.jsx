@@ -159,7 +159,7 @@ const NewItems = () => {
   useEffect(() => {
     const interval = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [])
 
   return (
     <section id="section-new-items" className="no-bottom">
