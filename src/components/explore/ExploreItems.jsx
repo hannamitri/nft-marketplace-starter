@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Helper to format time
 function formatTime(ms) {
   if (ms <= 0) return "00h 00m 00s";
   const totalSeconds = Math.floor(ms / 1000);
