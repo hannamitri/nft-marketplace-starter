@@ -1,16 +1,39 @@
-/* ================================================== */
+/* Keen Slider Arrow Custom Styles */
+.keen-arrow {
+  border: 2px solid #b071e3;
+  background: #b071e3;
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.keen-arrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #b071e3;
+}
+.keen-arrow:hover {
+  background: #a05ed6;
+  color: #fff;
+}
+
 
 /* import custom fonts */
 
-/* ================================================== */
+
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800&display=swap");
 
-/* ================================================== */
+
 
 /* import fonts icon */
 
-/* ================================================== */
+
 
 @import url("../fonts/font-awesome/css/font-awesome.css");
 @import url("../fonts/elegant_font/HTML_CSS/style.css");
@@ -22,11 +45,9 @@
   --title-font: "DM Sans", Helvetica, Arial, sans-serif;
 }
 
-/* ================================================== */
 
 /* body */
 
-/* ================================================== */
 
 html {
   overflow-x: hidden;
@@ -96,11 +117,9 @@ a.a-underline:hover span {
   width: 100%;
 }
 
-/* ================================================== */
 
 /*  header  */
 
-/* ================================================== */
 
 header {
   width: 100%;
@@ -538,11 +557,9 @@ header .header-col.mid .social-icons {
   min-height: 360px;
 }
 
-/* ================================================== */
 
 /* navigation */
 
-/* ================================================== */
 
 #mainmenu {
   font-family: var(--title-font);
@@ -1185,11 +1202,9 @@ header.header-mobile.header-light #menu-btn {
   border-top-color: rgba(255, 255, 255, 0.1);
 }
 
-/* ================================================== */
 
 /* content */
 
-/* ================================================== */
 
 #content {
   width: 100%;
@@ -1210,11 +1225,9 @@ header.header-mobile.header-light #menu-btn {
   background: #161d30;
 }
 
-/* ================================================== */
 
 /* section */
 
-/* ================================================== */
 
 section {
   padding: 90px 0 90px 0;
@@ -1287,11 +1300,9 @@ section.no-bg,
   align-items: center;
 }
 
-/* ================================================== */
 
 /* footer */
 
-/* ================================================== */
 
 footer {
   /*background:url('../images/logo-big.png') -50% center no-repeat var(--primary-color) !important;*/
@@ -1710,11 +1721,9 @@ header.header-light .logo-2 {
   padding: 0px;
 }
 
-/* ================================================== */
 
 /* blog */
 
-/* ================================================== */
 
 .blog-list {
   margin: 0;
@@ -2226,11 +2235,9 @@ header.header-light .logo-2 {
   color: #ffffff;
 }
 
-/* ================================================== */
 
 /* products */
 
-/* ================================================== */
 
 .products {
   padding: 0;
@@ -2273,11 +2280,9 @@ header.header-light .logo-2 {
   margin: 5px 0 5px 0;
 }
 
-/* ================================================== */
 
 /* contact form */
 
-/* ================================================== */
 
 .error {
   clear: both;
@@ -2556,11 +2561,9 @@ footer:not(.footer-light) #form_subscribe.form-dark input[type="text"] {
   border-bottom: solid 1px #ff0000 !important;
 }
 
-/* ================================================== */
 
 /* coming soon page */
 
-/* ================================================== */
 
 .coming-soon .logo {
   margin: 0;
@@ -2629,11 +2632,9 @@ footer:not(.footer-light) #form_subscribe.form-dark input[type="text"] {
   margin: 0 0 0 -8px;
 }
 
-/* ================================================== */
 
 /* elements */
 
-/* ================================================== */
 
 /* address */
 
@@ -5170,7 +5171,6 @@ i.font60 {
 
 /* pricing table */
 
-/* ================================================== */
 
 .pricing-box {
   color: #888;
@@ -5785,7 +5785,6 @@ i.font60 {
 
 /* preloader */
 
-/* ================================================== */
 
 #preloader {
   display: table;
@@ -5839,7 +5838,6 @@ i.font60 {
 
 /* progress bar */
 
-/* ================================================== */
 
 .de-progress {
   width: 100%;
@@ -5889,7 +5887,6 @@ i.font60 {
 
 /* social-icons */
 
-/* ================================================== */
 
 .social-icons {
   display: inline-block;
@@ -5994,7 +5991,6 @@ i.font60 {
   margin-top: 22px;
 }
 
-/* ================================================== */
 /* accordion
 ------------------------------ */
 
@@ -6788,7 +6784,7 @@ a.btn-right {
 }
 
 /* team
-    /* ================================================== */
+  
 
 .team {
   margin-bottom: 30px;
@@ -6921,7 +6917,7 @@ a.btn-right {
 }
 
 /* testimonial
-    /* ================================================== */
+  
 
 .de_testi {
   display: block;
@@ -8071,11 +8067,9 @@ a.btn-right {
   z-index: 1000;
 }
 
-/* ================================================== */
 
 /* anim */
 
-/* ================================================== */
 
 header,
 de_tab .de_nav li span,
@@ -8366,11 +8360,9 @@ header.header-mobile #mainmenu > li > span {
   animation-name: widthInFade;
 }
 
-/* ================================================== */
 
 /* video */
 
-/* ================================================== */
 
 video,
 object {
@@ -8433,11 +8425,9 @@ object {
   color: #eceff3;
 }
 
-/* ================================================== */
 
 /* map */
 
-/* ================================================== */
 
 /* --------------- map --------------- */
 
@@ -8463,11 +8453,11 @@ object {
   width: 100%;
 }
 
-/* ================================================== */
+
 
 /* 1A1C26 to action */
 
-/* ================================================== */
+
 
 .call-to-action-box {
   background: #f6f6f6;
@@ -8544,11 +8534,11 @@ object {
   color: #eceff3;
 }
 
-/* ================================================== */
+
 
 /* overide bootstrap */
 
-/* ================================================== */
+
 
 .dark-scheme .modal-header,
 .nav-tabs {
@@ -8984,11 +8974,11 @@ blockquote.s1:before {
   height: 32px;
 }
 
-/* ================================================== */
+
 
 /* image position */
 
-/* ================================================== */
+
 
 .img-left {
   float: left;
@@ -9000,11 +8990,11 @@ blockquote.s1:before {
   margin: 5px 0 15px 15px;
 }
 
-/* ================================================== */
+
 
 /* flickr */
 
-/* ================================================== */
+
 
 #flickr-photo-stream img {
   width: 48px;
@@ -9030,11 +9020,11 @@ hr.blank {
   margin: 20px 0 20px 0;
 }
 
-/* ================================================== */
+
 
 /* font awesome icons */
 
-/* ================================================== */
+
 
 i {
   display: inline-block;
@@ -9088,11 +9078,11 @@ i.circle-icon {
   margin: 0 auto;
 }
 
-/* ================================================== */
+
 
 /* transition */
 
-/* ================================================== */
+
 
 a,
 a:hover,
@@ -9119,11 +9109,11 @@ a:hover,
   margin: 0 auto;
 }
 
-/* ================================================== */
+
 
 /* gallery */
 
-/* ================================================== */
+
 
 #gallery-carousel .item {
   text-align: center;
@@ -9668,11 +9658,11 @@ a.img-icon-zoom {
   padding: 0;
 }
 
-/* ================================================== */
+
 
 /* widget */
 
-/* ================================================== */
+
 
 #sidebar {
   padding-left: 30px;
@@ -10054,11 +10044,11 @@ i.bg-color-secondary {
   width: 100%;
 }
 
-/* ================================================== */
+
 
 /* misc */
 
-/* ================================================== */
+
 
 /* box-url */
 
@@ -14441,11 +14431,9 @@ a.read_more i {
   -webkit-border-radius: 10px;
 }
 
-/* ================================================== */
 
 /* quick-search */
 
-/* ================================================== */
 
 #quick_search {
   margin-left: 30px;
@@ -14693,11 +14681,9 @@ header:not(.header-light) #quick_search::-webkit-input-placeholder {
   margin-left: 10px;
 }
 
-/* ================================================== */
 
 /* review */
 
-/* ================================================== */
 
 .de_review {
   text-align: center;
@@ -14925,11 +14911,9 @@ a.btn-slider:hover {
   border-bottom: solid 1px rgba(255, 255, 255, 0.3);
 }
 
-/* ================================================== */
 
 /* isotope */
 
-/* ================================================== */
 
 .isotope,
 .isotope .isotope-item {
@@ -15437,11 +15421,7 @@ img {
   }
 }
 
-/* ================================================== */
-
 /* R E S P O N S I V E */
-
-/* ================================================== */
 
 @media (min-width: 980px) and (max-width: 1199px) {
   #mainmenu li a:after {
@@ -15465,7 +15445,7 @@ img {
 
 /* -------------------------------------------------- 
     design for 768px
-    /* ================================================== */
+    /*  */
 
 @media (min-width: 768px) and (max-width: 979px) {
   .slider_text {
