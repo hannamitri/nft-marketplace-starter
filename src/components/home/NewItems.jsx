@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
@@ -197,6 +198,7 @@ const NewItems = () => {
           </div>
         </div>
       </div>
+  {/* ItemDetailsInline modal removed; navigation now handled by Link */}
     </section>
   );
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
-const skeletonArray = [1, 2, 3, 4];
+const skeletonArray = [1, 2, 3, 4]
 
 function CollectionSlide({ item }) {
   return (
