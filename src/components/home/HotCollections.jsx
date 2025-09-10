@@ -101,7 +101,7 @@ const HotCollections = () => {
                 ? skeletonArray.map((_, index) => (
                     <SkeletonSlide key={index} index={index} />
                   ))
-                : collections.slice(0, 4).map((item, index) => (
+                : collections.map((item, index) => (
                     <CollectionSlide key={index} item={item} />
                   ))}
             </div>

@@ -190,7 +190,7 @@ const NewItems = () => {
                 ? skeletonArray.map((_, idx) => (
                     <SkeletonSlide key={idx} index={idx} />
                   ))
-                : items.slice(0, 4).map((item, idx) => (
+                : items.map((item, idx) => (
                     <ItemSlide key={idx} item={item} now={now} />
                   ))}
             </div>
