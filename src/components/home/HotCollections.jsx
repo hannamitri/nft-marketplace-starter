@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "keen-slider/keen-slider.min.css";
@@ -102,7 +101,7 @@ const HotCollections = () => {
                 ? skeletonArray.map((_, index) => (
                     <SkeletonSlide key={index} index={index} />
                   ))
-                : collections.slice(0, 4).map((item, index) => (
+                : collections.map((item, index) => (
                     <CollectionSlide key={index} item={item} />
                   ))}
             </div>

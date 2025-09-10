@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
@@ -191,14 +190,13 @@ const NewItems = () => {
                 ? skeletonArray.map((_, idx) => (
                     <SkeletonSlide key={idx} index={idx} />
                   ))
-                : items.slice(0, 4).map((item, idx) => (
+                : items.map((item, idx) => (
                     <ItemSlide key={idx} item={item} now={now} />
                   ))}
             </div>
           </div>
         </div>
       </div>
-  {/* ItemDetailsInline modal removed; navigation now handled by Link */}
     </section>
   );
 };
