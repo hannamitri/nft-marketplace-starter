@@ -1,0 +1,135 @@
+/* Let arrows sit on top of the slider */
+.carousel-wrapper {
+  position: relative;
+}
+
+/* Make slide images responsive */
+.img-fluid {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Optional: give slides a little breathing room */
+.keen-slider__slide {
+  padding: 0.25rem;
+}
+
+/* Arrow buttons */
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+  font-size: 18px;
+  line-height: 44px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* Keep them close to the images */
+.left-arrow  { left: 6px; }
+.right-arrow { right: 6px; }
+
+.arrow-button:hover  { box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+.arrow-button:active { transform: translateY(-50%) scale(0.98); }
+.arrow-button:focus  { outline: 2px solid #4a90e2; outline-offset: 2px; }
+
+/* Smaller arrows on small phones */
+@media (max-width: 480px) {
+  .arrow-button {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    line-height: 36px;
+  }
+  .left-arrow  { left: 4px; }
+  .right-arrow { right: 4px; }
+}
+
+/* Slightly bigger on desktop */
+@media (min-width: 1024px) {
+  .arrow-button {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 48px;
+  }
+  .left-arrow  { left: 10px; }
+  .right-arrow { right: 10px; }
+}
+
+
+/* Skeleton Container */
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Skeleton Elements */
+.skeleton-img {
+  width: 100%;
+  padding-top: 75%; /* keeps aspect ratio like image */
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f0f0f0 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 8px;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f0f0f0 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200% 100%;
+}
+
+.skeleton-text {
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f0f0f0 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200% 100%;
+  margin-top: 6px;
+}
+
+.skeleton-text.title {
+  width: 60%;
+  height: 16px;
+}
+
+.skeleton-text.subtitle {
+  width: 40%;
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
