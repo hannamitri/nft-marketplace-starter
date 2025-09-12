@@ -36,7 +36,6 @@ const HotCollections = () => {
             </div>
           </div>
 
-          
           {collections.length > 0 && (
             <div className="col-12">
               <ReactOwlCarousel
@@ -45,7 +44,6 @@ const HotCollections = () => {
                 margin={10}
                 nav
                 items={4}
-                responsive={{ 0: { items: 1 }, 600: { items: 2 }, 992: { items: 3 }, 1200: { items: 4 } }}
               >
                 {collections.map((item, index) => (
                   <div className="item" key={item.id || index}>
@@ -53,9 +51,15 @@ const HotCollections = () => {
                       <div className="nft_coll">
                         <div className="nft_wrap">
                           <Link to="/item-details">
-                            <div className="position-relative" style={{ width: '100%' }}>
+                            <div
+                              className="position-relative"
+                              style={{ width: "100%" }}
+                            >
                               {!loadedImages.main[index] && (
-                                <div className="skeleton-box" style={{ width: '100%', paddingTop: '100%' }}></div>
+                                <div
+                                  className="skeleton-box"
+                                  style={{ width: "100%", paddingTop: "100%" }}
+                                ></div>
                               )}
                               <img
                                 src={item?.nftImage || nftImage}
@@ -67,16 +71,30 @@ const HotCollections = () => {
                                     main: { ...prev.main, [index]: true },
                                   }))
                                 }
-                                style={{ display: loadedImages.main[index] ? 'block' : 'none' }}
+                                style={{
+                                  display: loadedImages.main[index]
+                                    ? "block"
+                                    : "none",
+                                }}
                               />
                             </div>
                           </Link>
                         </div>
                         <div className="nft_coll_pp">
                           <Link to="/author">
-                            <div className="position-relative" style={{ width: 50, height: 50 }}>
+                            <div
+                              className="position-relative"
+                              style={{ width: 50, height: 50 }}
+                            >
                               {!loadedImages.author[index] && (
-                                <div className="skeleton-box" style={{ width: '100%', height: '100%', borderRadius: '50%' }}></div>
+                                <div
+                                  className="skeleton-box"
+                                  style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    borderRadius: "50%",
+                                  }}
+                                ></div>
                               )}
                               <img
                                 className="lazy pp-coll"
@@ -88,7 +106,11 @@ const HotCollections = () => {
                                     author: { ...prev.author, [index]: true },
                                   }))
                                 }
-                                style={{ display: loadedImages.author[index] ? 'block' : 'none' }}
+                                style={{
+                                  display: loadedImages.author[index]
+                                    ? "block"
+                                    : "none",
+                                }}
                               />
                             </div>
                           </Link>
@@ -107,7 +129,6 @@ const HotCollections = () => {
               </ReactOwlCarousel>
             </div>
           )}
-        
         </div>
       </div>
     </section>
