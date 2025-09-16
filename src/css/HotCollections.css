@@ -1,0 +1,124 @@
+/* Force Slick arrows to be visible */
+
+
+.slick-arrow {
+    display: block !important;
+    z-index: 20;
+    background: #333;
+
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    opacity: 1 !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slick-prev {
+    left: 20px;
+    font-display: none;
+
+}
+
+.slick-next {
+    right: 20px;
+    font-display: none;
+
+
+}
+
+.slider__container {
+    position: relative;
+}
+
+/* tried overriding Slick arrow text w/ custom components and CSS - fallback text still shows on mobile view */
+
+
+
+
+
+@media (max-width: 768px) {
+    .nft_coll {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .nft_wrap img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .nft_coll_pp {
+        margin-top: 10px;
+    }
+
+    .pp-coll {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .nft_coll_info h4 {
+        font-size: 16px;
+        margin: 8px 0 4px;
+    }
+
+    .nft_coll_info span {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .slick-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .slick-prev {
+        left: 10px;
+        font-display: none;
+    }
+
+    .slick-next {
+        right: 10px;
+        font-display: none;
+    }
+
+    .slick-prev::before,
+    .slick-next::before {
+        display: block;
+        font-display: none;
+        opacity: 1 !important;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+
+    .nft_coll_info h4 {
+        font-size: 14px;
+    }
+
+    .nft_coll_info span {
+        font-size: 12px;
+    }
+
+    .slick-prev {
+        left: 10px;
+        font-display: none;
+    }
+
+    .slick-next {
+        right: 10px;
+        font-display: none;
+    }
+
+
+
+}
