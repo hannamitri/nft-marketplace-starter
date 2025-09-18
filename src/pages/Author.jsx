@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Author = () => {
+  const [data, setData] = React.useState([]);
+  const [following, setFollowing] = useState(false);
+
+  const { authorId } = useParams();
+
+  async function getData() {
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+    );
+    setData(data);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  function addFollower() {
+    setData((prevData) => ({
+      ...prevData,
+      followers: prevData.followers + 1,
+    }));
+    setFollowing(true);
+  }
+
+  function unfollow() {
+    setData((prevData) => ({
+      ...prevData,
+      followers: prevData.followers - 1,
+    }));
+    setFollowing(false);
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +57,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={data.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {data.authorName}
+                          <span className="profile_username">@{data.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {data.authorId}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,18 +76,34 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <div className="profile_follower">
+                        {data.followers} followers
+                      </div>
+
+                      {following ? (
+                        <Link
+                          to="#"
+                          className="btn-main"
+                          onClick={unfollow}
+                        >
+                          Unfollow
+                        </Link>
+                      ) : (
+                        <Link to="#" className="btn-main" onClick={addFollower}>
+                          Follow
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
+                <div className="de_tab tab_simple" data-aos="fade-up" data-aos-duration="1000">
+                  <AuthorItems
+                    nftCollection={data.nftCollection}
+                    authorImage={data.authorImage}
+                  />
                 </div>
               </div>
             </div>
