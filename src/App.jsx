@@ -5,16 +5,30 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/author/:id" element={<Author />} />
+        <Route path="/item-details/:id" element={<ItemDetails />} />
+
       </Routes>
       <Footer />
     </Router>
@@ -22,3 +36,4 @@ function App() {
 }
 
 export default App;
+
