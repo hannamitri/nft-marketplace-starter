@@ -13206,7 +13206,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 200%;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
@@ -13222,6 +13222,9 @@ a.read_more i {
 }
 
 .nft_coll_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-bottom: 10px;
 }
 
@@ -13272,6 +13275,10 @@ a.read_more i {
   position: absolute;
   bottom: 4px;
   right: 5px;
+}
+
+.nft_coll_info .skeleton-box + .skeleton-box {
+  margin-top: 6px;
 }
 
 .author_list {
