@@ -9,9 +9,7 @@ const HotCollections = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-      );
+      const res = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
       const data = await res.json();
       setItems(Array.isArray(data) ? data.slice(0, 6) : []);
     } catch {
@@ -21,14 +19,12 @@ const HotCollections = () => {
     }
   }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  useEffect(() => { fetchData(); }, [fetchData]);
 
   const prev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const next = useCallback(() => embla && embla.scrollNext(), [embla]);
 
-  const list = loading ? new Array(4).fill(null) : items;
+  const list = loading ? new Array(6).fill(null) : items;
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -43,79 +39,47 @@ const HotCollections = () => {
 
           <div className="col-lg-12">
             <div className="hot-collections">
-              {/* Embla viewport */}
               <div ref={viewportRef} className="embla" style={{ overflow: "hidden" }}>
-                <div className="embla__container" style={{ display: "flex", gap: "24px" }}>
-                  {list.map((n, index) => {
+                <div className="embla__container" style={{ display: "flex" }}>
+                  {list.map((n, i) => {
                     if (loading) {
                       return (
-                        <div
-                          className="col-lg-3 col-md-6 col-sm-6 col-xs-12 embla__slide"
-                          style={{ flex: "0 0 25%" }}
-                          key={index}
-                        >
+                        <div key={`s-${i}`} className="embla__slide col-lg-3 col-md-4 col-sm-6 col-12">
                           <div className="nft_coll">
                             <div className="nft_wrap">
-                              <div
-                                className="lazy img-fluid"
-                                style={{
-                                  width: "100%",
-                                  paddingTop: "100%",
-                                  background: "#eee",
-                                  borderRadius: "10px",
-                                }}
-                              />
+                              <div className="skeleton-box sk-cover" />
                             </div>
                             <div className="nft_coll_pp">
-                              <div
-                                className="lazy pp-coll"
-                                style={{
-                                  width: 50,
-                                  height: 50,
-                                  background: "#eee",
-                                  borderRadius: "50%",
-                                }}
-                              />
+                              <div className="skeleton-box sk-avatar" />
                             </div>
                             <div className="nft_coll_info">
-                              <h4>&nbsp;</h4>
-                              <span>&nbsp;</span>
+                              <div className="skeleton-box sk-line sk-title" />
+                              <div className="skeleton-box sk-line sk-sub" />
                             </div>
                           </div>
                         </div>
                       );
                     }
 
-                    const toItem = `/item-details/${n.nftId}`;
-                    const toAuthor = `/author/${n.authorId}`;
-                    const coverSrc = n.nftImage || "";
-                    const avatarSrc = n.authorImage || "";
-                    const title = n.title || "Collection";
-                    const code = n.code ? `ERC-${n.code}` : "ERC-192";
-
                     return (
-                      <div
-                        className="col-lg-3 col-md-6 col-sm-6 col-xs-12 embla__slide"
-                        style={{ flex: "0 0 25%" }}
-                        key={n.id ?? index}
-                      >
+                      <div key={n.id ?? i} className="embla__slide col-lg-3 col-md-4 col-sm-6 col-12">
                         <div className="nft_coll">
                           <div className="nft_wrap">
-                            <Link to={toItem}>
-                              <img src={coverSrc} className="lazy img-fluid" alt="" />
+                            <Link to={`/item-details/${n.nftId}`}>
+                              <img src={n.nftImage || ""} className="lazy img-fluid" alt="" />
                             </Link>
                           </div>
                           <div className="nft_coll_pp">
-                            <Link to={toAuthor}>
-                              <img className="lazy pp-coll" src={avatarSrc} alt="" />
+                            <Link to={`/author/${n.authorId}`}>
+                              <img className="lazy pp-coll" src={n.authorImage || ""} alt="" />
                             </Link>
                             <i className="fa fa-check"></i>
                           </div>
                           <div className="nft_coll_info">
-                            <Link to={toItem}>
-                              <h4>{title}</h4>
+                            <Link to={`/item-details/${n.nftId}`}>
+                              <h4>{n.title || "Collection"}</h4>
                             </Link>
-                            <span>{code}</span>
+                            <span>{n.code ? `ERC-${n.code}` : "ERC-192"}</span>
                           </div>
                         </div>
                       </div>
@@ -124,23 +88,8 @@ const HotCollections = () => {
                 </div>
               </div>
 
-              {/* Side arrows (outside the cards) */}
-              <button
-                type="button"
-                onClick={prev}
-                aria-label="Previous"
-                className="carousel-nav prev"
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                aria-label="Next"
-                className="carousel-nav next"
-              >
-                ›
-              </button>
+              <button type="button" onClick={prev} aria-label="Previous" className="carousel-nav prev">‹</button>
+              <button type="button" onClick={next} aria-label="Next" className="carousel-nav next">›</button>
             </div>
           </div>
         </div>
@@ -150,3 +99,5 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+
+

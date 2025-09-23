@@ -12707,13 +12707,15 @@ a.read_more i {
 .switch {
   margin-bottom: -5px;
   -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
   border-radius: 60px;
   position: relative;
-  cursor: poInter;
+  cursor: pointer;
 }
+
 
 .switch::after {
   content: "";
@@ -15145,7 +15147,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16749,5 +16751,24 @@ img {
   .hot-collections .carousel-nav{
     width: 36px; height: 36px; line-height: 36px;
   }
+
+.hot-collections .embla{overflow:hidden}
+.hot-collections .embla__container{display:flex}
+.hot-collections .embla__slide{flex:0 0 auto}
+
+.hot-collections .sk-cover{width:100%;aspect-ratio:16/9;border-radius:10px}
+.hot-collections .sk-avatar{width:50px;height:50px;border-radius:50%}
+.hot-collections .sk-line{height:18px;border-radius:6px}
+.hot-collections .sk-title{width:60%;margin-top:8px}
+.hot-collections .sk-sub{width:40%;margin-top:10px}
+
+.item-details .itemd-cover{width:100%;aspect-ratio:1/1;border-radius:12px}
+.item-details .sk-title{height:32px;width:60%;border-radius:10px;margin-bottom:10px}
+.item-details .sk-price{height:24px;width:120px;border-radius:8px;margin:12px 0}
+.item-details .sk-line{height:16px;width:100%;border-radius:6px;margin-top:10px}
+.item-details .sk-button{display:inline-block;height:44px;width:160px;border-radius:12px;margin-right:12px}
+.item-details .sk-avatar{width:48px;height:48px;border-radius:50%}
+
+
 }
 
