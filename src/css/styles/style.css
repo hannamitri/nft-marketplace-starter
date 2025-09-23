@@ -16714,3 +16714,40 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* HotCollections carousel arrows */
+.hot-collections{
+  position: relative;
+  padding: 0 56px;          
+}
+
+.hot-collections .embla{ overflow: hidden; } 
+
+.hot-collections .carousel-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  cursor: pointer;
+  line-height: 42px;
+  text-align: center;
+  user-select: none;
+}
+
+.hot-collections .carousel-nav.prev { left: 8px; }
+.hot-collections .carousel-nav.next { right: -6px; }
+
+/* Mobile: tighter gutters and smaller buttons if you want */
+@media (max-width: 768px){
+  .hot-collections{ padding: 0 40px; }
+  .hot-collections .carousel-nav{
+    width: 36px; height: 36px; line-height: 36px;
+  }
+}
+
