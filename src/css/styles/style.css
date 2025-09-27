@@ -60,7 +60,7 @@ body.boxed {
   border: solid 1px #eee;
 }
 
-body .owl-stage .owl-item {
+body .slick-track .slick-slide {
   margin-bottom: 15px;
 }
 
@@ -635,7 +635,7 @@ header .header-col.mid .social-icons {
   margin-top: 5px;
 }
 
-#mainmenu a.active span {
+#mainmenu a.slick-active span {
   width: 100%;
   margin-left: 0%;
 }
@@ -2776,7 +2776,7 @@ address span strong {
   text-decoration: none;
 }
 
-.crumb li .active {
+.crumb li .slick-active {
   font-weight: bold;
 }
 
@@ -8131,7 +8131,7 @@ i.btn-action-hide,
 .feature-box:hover .inner i,
 .error_input,
 .de_tab.tab_methods.style-2 .de_nav li.active .arrow,
-.owl-item.active.center div blockquote,
+.slick-slide.active.center div blockquote,
 .mask *,
 .mask .cover,
 .mask:hover .cover,
@@ -10717,29 +10717,29 @@ i.big {
   position: relative;
   margin-top: -5px;
   bottom: -5px;
-  margin-bottom: -15px;
+  margin-bottom: 0;
 }
 
-.owl-stage-outer .feature-box-type-2 {
+.slick-track-outer .feature-box-type-2 {
   overflow: none;
   margin: 30px 0 30px 0;
 }
 
-.owl-item.active.center .feature-box-type-2 {
+.slick-slide.active.center .feature-box-type-2 {
   transform: scale(1.05);
 }
 
-.owl-item.active.center .feature-box-type-2,
-.owl-item.active.center .feature-box-type-2 h4,
-.owl-item.active.center .feature-box-type-2 i {
+.slick-slide.active.center .feature-box-type-2,
+.slick-slide.active.center .feature-box-type-2 h4,
+.slick-slide.active.center .feature-box-type-2 i {
   color: #ffffff;
 }
 
-.owl-carousel.owl-center .owl-stage-outer {
+.owl-carousel.ow.slick-track-outer {
   padding: 3% 0;
 }
 
-.owl-carousel.owl-center .owl-item.active.center {
+.owl-carousel.owl-center .slick-slide.active.center {
   position: relative;
   z-index: 101;
   -webkit-transform: scale(1.2);
@@ -10749,13 +10749,13 @@ i.big {
   box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0calc ());
 }
 
-.owl-carousel.owl-center .owl-item .nft_pic_title,
-.owl-carousel.owl-center .owl-item .nft_pic_by {
+.owl-carousel.owl-center .slick-slide .nft_pic_title,
+.owl-carousel.owl-center .slick-slide .nft_pic_by {
   opacity: 0;
 }
 
-.owl-carousel.owl-center .owl-item.active.center .nft_pic_title,
-.owl-carousel.owl-center .owl-item.active.center .nft_pic_by {
+.owl-carousel.owl-center .slick-slide.active.center .nft_pic_title,
+.owl-carousel.owl-center .slick-slide.active.center .nft_pic_by {
   opacity: 1;
 }
 
@@ -10764,7 +10764,7 @@ i.big {
   direction: ltr;
 }
 
-.rtl .owl-carousel .owl-item {
+.rtl .owl-carousel .slick-slide {
   direction: rtl;
 }
 
@@ -12197,7 +12197,7 @@ a.read_more i {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.owl-item.active div blockquote {
+.slick-slide.active div blockquote {
   background: rgba(var(--secondary-color-rgb), 0.1);
   position: relative;
   overflow: hidden;
@@ -12206,20 +12206,19 @@ a.read_more i {
   -webkit-border-radius: 3px;
 }
 
-.owl-item.active div blockquote,
-.owl-item.active div blockquote .de_testi_by {
+.slick-slide.active div blockquote,
+.slick-slide.active div blockquote .de_testi_by {
   opacity: 1;
 }
 
-.owl-item.active div blockquote:before {
+.slick-slide.active div blockquote:before {
   position: absolute;
   top: 0;
   left: 0;
   color: #fff;
-  border-radius: 0 0 15px 0;
+  border-radius: 0 0 15;
 }
-
-.owl-stage {
+.slick-track {
   overflow: none;
 }
 
@@ -15145,7 +15144,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
