@@ -10,3 +10,53 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+#section-collections .hot-collections-slider .slick-list {
+  margin: 0 -1.5px; 
+}
+#section-collections .hot-collections-slider .slick-slide > div,
+#section-collections .hot-collections-slider .slide-gutter {
+  padding: 0 1.5px; 
+}
+
+#section-collections .hot-collections-slider .slick-prev:before,
+#section-collections .hot-collections-slider .slick-next:before {
+  content: none !important;
+}
+#section-collections .hot-collections-slider .slick-prev,
+#section-collections .hot-collections-slider .slick-next {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+#section-collections .sk,
+#section-collections .skeleton-box {
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 8px;
+}
+#section-collections .sk::after,
+#section-collections .skeleton-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.55) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: sk-shimmer 1.6s infinite;
+}
+@keyframes sk-shimmer { to { transform: translateX(100%); } }
+
+#section-collections .sk-img       { width: 100%; aspect-ratio: 16/10; border-radius: 12px 12px 0 0; }
+#section-collections .sk-avatar    { width: 52px; height: 52px; border-radius: 9999px; margin-top: -26px; border: 4px solid #fff; }
+#section-collections .sk-title     { height: 16px; width: 60%; margin: 10px auto 8px;  border-radius: 6px; }
+#section-collections .sk-sub       { height: 12px; width: 40%; margin: 0 auto 12px;   border-radius: 6px; opacity: .9; }
