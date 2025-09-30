@@ -1,44 +1,154 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import "./HotCollections.css";
 
 const HotCollections = () => {
+  const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const fullArray = [1, 2, 3, 4];
+  const [visibleItems, setVisibleItems] = useState(fullArray);
+
+  async function getCollections() {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections`
+    );
+    setTimeout(() => {
+      setCollections(data);
+      setLoading(false);
+    }, 2000);
+  }
+
+  useEffect(() => {
+    getCollections();
+  }, []);
+
+  useEffect(() => {
+    const updateVisibleItems = () => {
+      const width = window.innerWidth;
+
+      if (width >= 1200) setVisibleItems(fullArray.slice(0, 4));
+      else if (width >= 768) setVisibleItems(fullArray.slice(0, 3));
+      else if (width >= 480) setVisibleItems(fullArray.slice(0, 2));
+      else setVisibleItems(fullArray.slice(0, 1));
+    };
+    updateVisibleItems();
+    window.addEventListener("resize", updateVisibleItems);
+
+    return() => window.removeEventListener("resize", updateVisibleItems);
+  }, []);
+
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <section id="section-collections" className="no-bottom">
-      <div className="container">
-        <div className="row">
+      {loading ? (
+        <div className="skeleton__loading">
+          <div className="skeleton-title"></div>
+          <div className="small-border bg-color-2"></div>
+          <div className="skeleton-tiles">
+            {visibleItems.map((item, i) => (
+              <div className="skeleton__tile" key={i}>
+                <div className="skeleton__tile-img"></div>
+                <div className="skeleton__tile-author"></div>
+                <div className="skeleton__tile-name"></div>
+                <div className="skeleton__tile-code"></div>
+              </div>
+             ))} 
+          </div>
+        </div>
+      ) : (
+        <div className="container">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
+          <div className="carousel-wrapper">
+            {<Slider {...settings}>
+              {collections.map((collection, index) => (
+                <div className="px-2" key={index}>
+                  <div style={{ width: "100%" }}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to={`/item-details/${collection.nftId}`}>
+                          <img
+                            src={collection.nftImage}
+                            className="lazy img-fluid"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img
+                            className="lazy pp-coll"
+                            src={collection.authorImage}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{collection.title}</h4>
+                        </Link>
+                        <span>ERC-{collection.code}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
-            </div>
-          ))}
+              ))}
+            </Slider>}
+          </div>
+          <style>{`.slick-prev:before,
+          .slick-next:before {
+          color: black;    
+          font-size: 40px;
+          opacity: 1;     
+          } .slick-prev, .slick-next {
+          width: 48px;
+          height: 48px;
+          z-index: 5; 
+          border-radius: 50%;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          opacity: 1 !important; 
+        }`}</style>
         </div>
-      </div>
+      )}
     </section>
   );
 };
