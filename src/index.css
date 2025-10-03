@@ -10,3 +10,142 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+:root {
+  --slider-gutter: 1.5px;  
+}
+
+#section-collections .hot-collections-slider .slick-list,
+#section-items .new-items-slider .slick-list {
+  margin: 0 calc(var(--slider-gutter) * -1);
+}
+#section-collections .hot-collections-slider .slick-slide > div,
+#section-collections .hot-collections-slider .slide-gutter,
+#section-items .new-items-slider .slick-slide > div,
+#section-items .new-items-slider .slide-gutter {
+  padding: 0 var(--slider-gutter);
+}
+
+#section-collections .hot-collections-slider .slick-prev:before,
+#section-collections .hot-collections-slider .slick-next:before,
+#section-items .new-items-slider .slick-prev:before,
+#section-items .new-items-slider .slick-next:before {
+  content: none !important;
+}
+
+/* Keep arrow buttons centered inside the round circle */
+#section-collections .hot-collections-slider .slick-prev,
+#section-collections .hot-collections-slider .slick-next,
+#section-items .new-items-slider .slick-prev,
+#section-items .new-items-slider .slick-next {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+
+#section-items .nft__item_wrap .nft__item_extra,
+#section-collections .nft__item_wrap .nft__item_extra {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: none !important; 
+  z-index: 2;
+}
+#section-items .nft__item:hover .nft__item_wrap .nft__item_extra,
+#section-collections .nft__item:hover .nft__item_wrap .nft__item_extra {
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+
+#section-collections .sk,
+#section-items .sk,
+#section-collections .skeleton-box,
+#section-items .skeleton-box {
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 8px;
+}
+#section-collections .sk::after,
+#section-items .sk::after,
+#section-collections .skeleton-box::after,
+#section-items .skeleton-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: sk-shimmer 1.6s infinite;
+}
+@keyframes sk-shimmer { to { transform: translateX(100%); } }
+
+#section-collections .sk-img,
+#section-items .sk-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px 12px 0 0; 
+}
+#section-collections .sk-avatar,
+#section-items .sk-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 9999px;
+  margin-top: -26px;
+  border: 4px solid #fff;
+}
+#section-collections .sk-title,
+#section-items .sk-title {
+  height: 16px;
+  width: 60%;
+  margin: 10px auto 8px;
+  border-radius: 6px;
+}
+#section-collections .sk-sub,
+#section-items .sk-sub {
+  height: 12px;
+  width: 40%;
+  margin: 0 auto 12px;
+  border-radius: 6px;
+  opacity: .9;
+}
+
+#section-items .sk-img {
+  aspect-ratio: 4 / 3;   
+  border-radius: 12px;   
+}
+
+#section-items .sk-avatar {
+  margin-top: 0;         
+}
+
+#section-items .sk-title {
+  margin: 14px auto 8px;
+  width: 58%;
+}
+#section-items .sk-sub {
+  margin: 0 auto 14px;
+  width: 36%;
+}
+
+#section-items .nft__item_info { text-align: left; } 
+
+#section-items .sk-title,
+#section-items .sk-sub {
+  margin-left: 0;    
+  margin-right: 0;
+}
+
+#section-items .sk-title { width: 58%; }  
+#section-items .sk-sub   { width: 36%; }
