@@ -13,7 +13,7 @@ const Nav = () => {
   };
 
   return (
-    <header className="transparent header-light scroll-light smaller">
+    <header className="transparent header-light scroll-light smaller" data-aos="fade-down">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -37,7 +37,7 @@ const Nav = () => {
                 </div>
               </div>
               <div className="de-flex-col header-col-mid">
-                <ul id="mainmenu">
+                <ul id="mainmenu" style={{ display: "flex", alignItems: "center", gap: "20px" }}>
                   <li className="menu-item-has-children has-child">
                     <Link to="/">
                       Home<span></span>
@@ -48,13 +48,23 @@ const Nav = () => {
                       Explore<span></span>
                     </Link>
                   </li>
-                  <li>
+                  <li style={{ marginLeft: "10px" }}>
                     <Link
                       to="#"
                       className="btn-main connect-wallet"
                       onClick={() =>
                         alert("This feature has not been implemented yet")
                       }
+                      style={{ 
+                        display: "inline-block",
+                        padding: "8px 16px",
+                        background: "linear-gradient(45deg, #667eea 0%, #764ba2 100%)",
+                        color: "white",
+                        textDecoration: "none",
+                        borderRadius: "4px",
+                        fontSize: "14px",
+                        fontWeight: "500"
+                      }}
                     >
                       Connect wallet
                     </Link>
