@@ -1,0 +1,37 @@
+[33m0f1290a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mAuthorItems[m[33m)[m Update AuthorItems.jsx component
+[33m4ec4ecf[m[33m ([m[1;32mtop-sellers[m[33m, [m[1;32mnew-items[m[33m, [m[1;32mitem-details[m[33m, [m[1;32mhot-collections[m[33m, [m[1;32mheader-section[m[33m, [m[1;32mfeature/item-details-implementation[m[33m, [m[1;32mauthor[m[33m, [m[1;32manimations[m[33m)[m Initial implementation with AOS animations and Owner/Creator image fixes
+[33m4b32839[m[33m ([m[1;32mfeature/hot-collections-implementation[m[33m)[m Add internship rules to gitignore
+[33m5ad72f7[m Complete Hot Collections and Item Details implementation with API integration, carousel, skeleton loading, and dynamic routing
+[33m024aadb[m Implement Hot Collections with API integration, carousel, and skeleton loading
+[33mb7d08ef[m[33m ([m[1;32mfeature/hot-collections-section[m[33m)[m bug fix
+[33m29dd756[m starter code
+[33m1718fc2[m starter code
+[33m340c772[m starter code
+[33ma1289da[m first commit
+
+                   SSUUMMMMAARRYY OOFF LLEESSSS CCOOMMMMAANNDDSS
+
+      Commands marked with * may be preceded by a number, _N.
+      Notes in parentheses indicate the behavior if _N is given.
+      A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
+
+  h  H                 Display this help.
+  q  :q  Q  :Q  ZZ     Exit.
+ ---------------------------------------------------------------------------
+
+                           MMOOVVIINNGG
+
+  e  ^E  j  ^N  CR  *  Forward  one line   (or _N lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line   (or _N lines).
+  f  ^F  ^V  SPACE  *  Forward  one window (or _N lines).
+  b  ^B  ESC-v      *  Backward one window (or _N lines).
+  z                 *  Forward  one window (and set window to _N).
+  w                 *  Backward one window (and set window to _N).
+  ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
+  d  ^D             *  Forward  one half-window (and set half-window to _N).
+  u  ^U             *  Backward one half-window (and set half-window to _N).
+  ESC-)  RightArrow *  Right one half screen width (or _N positions).
+  ESC-(  LeftArrow  *  Left  one half screen width (or _N positions).
+  ESC-}  ^RightArrow   Right to last column displayed.
+  ESC-{  ^LeftArrow    Left  to first column.
+  F                    Forward forever; like "tail -f".
