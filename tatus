@@ -1,0 +1,10 @@
+[33m0f1290a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mAuthorItems[m[33m)[m Update AuthorItems.jsx component
+[33m4ec4ecf[m[33m ([m[1;32mtop-sellers[m[33m, [m[1;32mnew-items[m[33m, [m[1;32mitem-details[m[33m, [m[1;32mhot-collections[m[33m, [m[1;32mheader-section[m[33m, [m[1;32mfeature/item-details-implementation[m[33m, [m[1;32mauthor[m[33m, [m[1;32manimations[m[33m)[m Initial implementation with AOS animations and Owner/Creator image fixes
+[33m4b32839[m[33m ([m[1;32mfeature/hot-collections-implementation[m[33m)[m Add internship rules to gitignore
+[33m5ad72f7[m Complete Hot Collections and Item Details implementation with API integration, carousel, skeleton loading, and dynamic routing
+[33m024aadb[m Implement Hot Collections with API integration, carousel, and skeleton loading
+[33mb7d08ef[m[33m ([m[1;32mfeature/hot-collections-section[m[33m)[m bug fix
+[33m29dd756[m starter code
+[33m1718fc2[m starter code
+[33m340c772[m starter code
+[33ma1289da[m first commit
