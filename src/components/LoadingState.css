@@ -1,0 +1,269 @@
+.skeleton__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.skeleton-tiles-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.skeleton__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px solid #777;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: #777;
+  min-height: 250px;
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+.skeleton__tile-img {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #aaa 25%, #bbb 50%, #aaa 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton__tile-author {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #aaa 25%, #bbb 50%, #aaa 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton__tile-name,
+.skeleton__tile-code {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #aaa 25%, #bbb 50%, #aaa 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton__tile-name {
+  width: 60%;
+}
+
+.skeleton__tile-code {
+  width: 40%;
+}
+
+/* showTitle */
+
+.skeleton-title {
+  height: 32px;
+  width: 30%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #777 25%, #888 50%, #777 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* showAuthor */
+
+.skeleton {
+  background: linear-gradient(90deg, #777 25%, #888 50%, #777 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-banner {
+  width: 100%;
+  height: 350px; 
+  margin-bottom: 20px;
+}
+
+.skeleton-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 120px;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+
+.skeleton-text.name {
+  width: 180px;
+  height: 32px;
+}
+
+.skeleton-text.address {
+  width: 180px;
+}
+
+.skeleton-follow {
+  width: 134px;
+  height: 46px;
+  border-radius: 6px;
+  margin-top: 24px;
+}
+
+/* Item Details Page */
+
+.skeleton__item-wrapper {
+  display: flex;
+  margin: 180px 80px;
+}
+
+.skeleton__item-left {
+  height: 700px;
+  width: 700px;
+}
+
+.skeleton__item-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.skeleton__item-title {
+  height: 48px;
+  width: 300px;
+  border-radius: 4px;
+}
+
+.skeleton__item-block-wrapper {
+  display: flex;
+  margin-top: 12px;
+}
+
+.skeleton__item-block {
+  height: 32px;
+  width: 86px;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+.skeleton__item-para {
+  height: 68px;
+  width: 600px;
+  margin-top: 12px;
+  border-radius: 4px;
+}
+
+.skeleton__item-people {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.skeleton__item-artist {
+  height: 16px;
+  width: 64px;
+  margin: 12px 0;
+  border-radius: 4px;
+}
+
+.skeleton__item-artist-info {
+  display: flex;
+}
+
+.skeleton__item-artist-pic {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+}
+
+.skeleton__item-artist-name {
+  height: 20px;
+  width: 150px;
+  margin: 12px 0 0 24px;
+  border-radius: 4px;
+}
+
+.skeleton__item-price-title {
+  height: 16px;
+  width: 64px;
+  margin: 12px 0;
+  border-radius: 4px;
+}
+
+.skeleton__item-price {
+  height: 48px;
+  width: 92px;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 1200px){
+  .skeleton__item-left {
+    height: 450px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .skeleton__item-left {
+    height: 450px;
+    width: 400px
+  }
+
+  .skeleton__item-title {
+  height: 48px;
+  width: 200px;
+}
+
+.skeleton__item-para {
+  height: 68px;
+  width: 200px;
+}
+}
+
+@media screen and (max-width: 768px) {
+  .skeleton__item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .skeleton__item-left {
+  height: 500px;
+  width: 500px;
+  margin-bottom: 24px;
+}
+
+.skeleton__item-title {
+  height: 48px;
+  width: 300px;
+}
+
+.skeleton__item-para {
+  height: 68px;
+  width: 400px;
+}
+}
+
+@media screen and (max-width: 575px) {
+  .skeleton__item-left {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

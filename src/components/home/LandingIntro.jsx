@@ -4,7 +4,7 @@ const LandingIntro = () => {
   return (
     <section id="section-intro" className="no-top no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-4 col-md-6 mb-sm-30">
             <div className="feature-box f-boxed style-3">
               <i className="bg-color-2 i-boxed icon_wallet"></i>
