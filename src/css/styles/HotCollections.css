@@ -1,0 +1,35 @@
+
+.slick-prev:before, .slick-next:before{
+    color: #8364e2;
+    transition: all 300ms ease;
+    font-size: 30px;
+    opacity: .8;
+}
+
+.item{
+    padding: 4px;
+}
+.nft_wrap{
+    height: 100%;
+    img {
+        width: 100%;
+    }
+}
+.slick-next:before:hover, .slick-prev:before:hover{
+    opacity: 1;
+}
+.slick-slider{
+    width: 100%;
+}
+
+@media (max-width:576px) {
+.slick-prev:before, .slick-next:before{
+    font-size: 20px;
+}
+.slick-prev{
+    left: -6px;
+}
+.slick-next{
+    right: -9px;
+}
+}
