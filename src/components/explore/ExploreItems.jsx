@@ -4,6 +4,37 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 
+const Countdown = ({ endTime }) => {
+  const [timeLeft, setTimeLeft] = useState(0);
+
+  useEffect(() => {
+    if (!endTime) return;
+
+    const update = () => {
+      const remaining = Math.max(0, endTime - Date.now());
+      setTimeLeft(remaining);
+    };
+
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, [endTime]);
+
+  if (!endTime) return <span>—</span>;
+
+  const totalSeconds = Math.floor(timeLeft / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const parts = [];
+  if (days > 0) parts.push(`${days}d`);
+  parts.push(`${hours}h`, `${minutes}m`, `${seconds}s`);
+
+  return <span>{parts.join(" ")}</span>;
+};
+
 const ExploreItems = () => {
   const API_URL =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -11,6 +42,7 @@ const ExploreItems = () => {
   const [explore, setExplore] = useState([]);
   const [loadedImages, setLoadedImages] = useState({ main: {}, author: {} });
   const [loading, setLoading] = useState(true);
+  const [visibleItems, setVisibleItems] = useState(8);
 
   useEffect(() => {
     axios
@@ -24,6 +56,18 @@ const ExploreItems = () => {
         setLoading(false);
       });
   }, []);
+
+  const getEndTime = (item) => {
+    if (!item) return null;
+    if (item.expiryDate) return new Date(item.expiryDate).getTime();
+    if (item.expiry) return new Date(item.expiry).getTime();
+    if (typeof item.endingIn === "number") return Date.now() + item.endingIn * 1000;
+    return null;
+  };
+
+  const loadMore = () => {
+    setVisibleItems(prev => prev + 4);
+  };
   return (
     <>
       <div>
@@ -34,7 +78,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {(loading ? new Array(8).fill({}) : explore).map((item, index) => {
+      {(loading ? new Array(8).fill({}) : explore.slice(0, visibleItems)).map((item, index) => {
         const hasMain = Boolean(item && item.nftImage);
         const hasAuthor = Boolean(item && item.authorImage);
         const isMainImageLoaded = Boolean(loadedImages.main[index]);
@@ -95,11 +139,11 @@ const ExploreItems = () => {
                 </Link>
               </div>
               
-              {item.expiryDate && (
+              {getEndTime(item) ? (
                 <div className="de_countdown">
-                  {loading ? "" : "5h 30m 32s"}
+                  <Countdown endTime={getEndTime(item)} />
                 </div>
-              )}
+              ) : null}
 
               <div className="nft__item_wrap">
                 <div className="nft__item_extra">
@@ -167,10 +211,22 @@ const ExploreItems = () => {
           </div>
         );
       })}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+      <div className="col-md-12 text-center" style={{ marginTop: '30px' }}>
+        {loading ? (
+          <div className="btn-main lead">Loading...</div>
+        ) : (
+          <button 
+            onClick={loadMore}
+            className="btn-main lead"
+            disabled={visibleItems >= explore.length}
+            style={{ 
+              cursor: visibleItems >= explore.length ? 'not-allowed' : 'pointer',
+              opacity: visibleItems >= explore.length ? 0.6 : 1
+            }}
+          >
+            {visibleItems >= explore.length ? "All items loaded" : "Load more"}
+          </button>
+        )}
       </div>
     </>
   );
