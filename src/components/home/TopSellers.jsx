@@ -111,5 +111,4 @@ const TopSellers = () => {
     </section>
   );
 };
-
 export default TopSellers;
