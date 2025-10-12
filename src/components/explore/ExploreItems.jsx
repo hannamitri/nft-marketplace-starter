@@ -24,7 +24,6 @@ const ExploreItems = () => {
         setLoading(false);
       });
   }, []);
-
   return (
     <>
       <div>
