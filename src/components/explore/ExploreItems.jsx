@@ -43,6 +43,7 @@ const ExploreItems = () => {
   const [loadedImages, setLoadedImages] = useState({ main: {}, author: {} });
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(8);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     axios
@@ -68,17 +69,51 @@ const ExploreItems = () => {
   const loadMore = () => {
     setVisibleItems(prev => prev + 4);
   };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+    setVisibleItems(8);
+  };
+
+  const getSortedItems = () => {
+    if (!filter || filter === "") return explore;
+    
+    const sorted = [...explore];
+    
+    switch (filter) {
+      case "price_low_to_high":
+        return sorted.sort((a, b) => {
+          const priceA = parseFloat(a.price) || 0;
+          const priceB = parseFloat(b.price) || 0;
+          return priceA - priceB;
+        });
+      case "price_high_to_low":
+        return sorted.sort((a, b) => {
+          const priceA = parseFloat(a.price) || 0;
+          const priceB = parseFloat(b.price) || 0;
+          return priceB - priceA;
+        });
+      case "likes_high_to_low":
+        return sorted.sort((a, b) => {
+          const likesA = parseInt(a.likes) || 0;
+          const likesB = parseInt(b.likes) || 0;
+          return likesB - likesA;
+        });
+      default:
+        return explore;
+    }
+  };
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={filter} onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {(loading ? new Array(8).fill({}) : explore.slice(0, visibleItems)).map((item, index) => {
+      {(loading ? new Array(8).fill({}) : getSortedItems().slice(0, visibleItems)).map((item, index) => {
         const hasMain = Boolean(item && item.nftImage);
         const hasAuthor = Boolean(item && item.authorImage);
         const isMainImageLoaded = Boolean(loadedImages.main[index]);
@@ -218,13 +253,13 @@ const ExploreItems = () => {
           <button 
             onClick={loadMore}
             className="btn-main lead"
-            disabled={visibleItems >= explore.length}
+            disabled={visibleItems >= getSortedItems().length}
             style={{ 
-              cursor: visibleItems >= explore.length ? 'not-allowed' : 'pointer',
-              opacity: visibleItems >= explore.length ? 0.6 : 1
+              cursor: visibleItems >= getSortedItems().length ? 'not-allowed' : 'pointer',
+              opacity: visibleItems >= getSortedItems().length ? 0.6 : 1
             }}
           >
-            {visibleItems >= explore.length ? "All items loaded" : "Load more"}
+            {visibleItems >= getSortedItems().length ? "All items loaded" : "Load more"}
           </button>
         )}
       </div>
