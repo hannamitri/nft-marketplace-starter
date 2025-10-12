@@ -90,7 +90,7 @@ const TopSellers = () => {
                       </div>
                       <div className="author_list_info">
                         <Link to="/author">
-                          {item.author || (loading ? "" : "Monica Lucas")}
+                          {item.authorName || (loading ? "" : "Monica Lucas")}
                         </Link>
                         <span>
                           {item.price
