@@ -10,3 +10,193 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* =========================
+   Layout & slider polish
+   ========================= */
+:root {
+  --slider-gutter: 1.5px;
+}
+
+#section-collections .hot-collections-slider .slick-list,
+#section-items .new-items-slider .slick-list {
+  margin: 0 calc(var(--slider-gutter) * -1);
+}
+#section-collections .hot-collections-slider .slick-slide > div,
+#section-collections .hot-collections-slider .slide-gutter,
+#section-items .new-items-slider .slick-slide > div,
+#section-items .new-items-slider .slide-gutter {
+  padding: 0 var(--slider-gutter);
+}
+
+/* remove default slick arrows */
+#section-collections .hot-collections-slider .slick-prev:before,
+#section-collections .hot-collections-slider .slick-next:before,
+#section-items .new-items-slider .slick-prev:before,
+#section-items .new-items-slider .slick-next:before {
+  content: none !important;
+}
+
+/* center custom arrow buttons in their circles */
+#section-collections .hot-collections-slider .slick-prev,
+#section-collections .hot-collections-slider .slick-next,
+#section-items .new-items-slider .slick-prev,
+#section-items .new-items-slider .slick-next {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+/* hover extras on cards */
+#section-items .nft__item_wrap .nft__item_extra,
+#section-collections .nft__item_wrap .nft__item_extra {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: none !important;
+  z-index: 2;
+}
+#section-items .nft__item:hover .nft__item_wrap .nft__item_extra,
+#section-collections .nft__item:hover .nft__item_wrap .nft__item_extra {
+  opacity: 1 !important;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+/* =========================
+   Global Skeleton System
+   ========================= */
+.sk {
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 8px;
+}
+.sk::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: sk-shimmer 1.2s infinite;
+}
+@keyframes sk-shimmer { 100% { transform: translateX(100%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sk::after { animation: none; }
+}
+
+.sk-avatar { width: 40px; height: 40px; border-radius: 50%; }
+.sk-img    { width: 100%; padding-top: 100%; border-radius: 12px; }
+.sk-title  { height: 18px; width: 60%; margin-top: 12px; border-radius: 6px; }
+.sk-sub    { height: 14px; width: 40%; margin-top: 8px;  border-radius: 6px; }
+.sk-pill   { height: 28px; width: 110px; border-radius: 9999px; }
+
+.nft__item .sk-img { margin-top: 8px; }
+.nft__item .sk-title,
+.nft__item .sk-sub { margin-left: 4px; }
+
+#filter-items:disabled { opacity: .6; cursor: not-allowed; }
+
+/* =========================
+   Section-specific skeleton 
+   ========================= */
+
+#section-collections .sk-img,
+#section-items .sk-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px 12px 0 0;
+}
+#section-collections .sk-avatar,
+#section-items .sk-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 9999px;
+  margin-top: -26px;
+  border: 4px solid #fff;
+}
+#section-collections .sk-title,
+#section-items .sk-title {
+  height: 16px;
+  width: 60%;
+  margin: 10px auto 8px;
+  border-radius: 6px;
+}
+#section-collections .sk-sub,
+#section-items .sk-sub {
+  height: 12px;
+  width: 40%;
+  margin: 0 auto 12px;
+  border-radius: 6px;
+  opacity: .9;
+}
+
+#section-items .sk-img    { aspect-ratio: 4 / 3; border-radius: 12px; }
+#section-items .sk-avatar { margin-top: 0; }
+#section-items .sk-title  { margin: 14px auto 8px; width: 58%; }
+#section-items .sk-sub    { margin: 0 auto 14px; width: 36%; }
+#section-items .nft__item_info { text-align: left; }
+#section-items .sk-title, #section-items .sk-sub {
+  margin-left: 0; margin-right: 0;
+}
+
+/* =========================
+   Top Sellers skeleton 
+   ========================= */
+#section-popular ol.author_list.loading {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 30px;
+  row-gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#section-popular ol.author_list.loading > li {
+  list-style: none !important;
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#section-popular .sk { position: relative; overflow: hidden; background: #eee; border-radius: 8px; }
+#section-popular .sk::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 100%);
+  animation: sk-shimmer 1.6s infinite;
+}
+#section-popular .ts-skel { display: flex; align-items: center; gap: 12px; min-height: 56px; }
+#section-popular .ts-num  { color: #E5E5E5; font-size: 14px; width: 28px; text-align: right; margin-right: 8px; }
+#section-popular .ts-avatar-wrap { position: relative; }
+#section-popular .ts-avatar { width: 48px; height: 48px; border-radius: 9999px; }
+#section-popular .ts-badge {
+  position: absolute; right: -4px; bottom: -2px; width: 16px; height: 16px; border-radius: 9999px;
+  background: #8364e2; color: #fff; font-size: 10px; line-height: 16px; text-align: center; border: 2px solid #fff;
+}
+#section-popular .ts-text { flex: 1; }
+#section-popular .ts-line { height: 12px; border-radius: 6px; margin-bottom: 6px; }
+#section-popular .ts-line:last-child { height: 10px; margin-bottom: 0; opacity: .95; }
+#section-popular .ts-w-28 { width: 112px; }
+#section-popular .ts-w-16 { width: 64px; }
+
+@media (prefers-color-scheme: dark) {
+  .sk { background: #2a2a2a; }
+  .sk::after {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.15) 50%,
+      rgba(255,255,255,0) 100%
+    );
+  }
+}
