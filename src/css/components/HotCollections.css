@@ -1,0 +1,184 @@
+.slick-slide {
+  padding: 10px;
+  width: 100%;
+  position: relative;
+}
+
+.nft_coll {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.nft_coll:hover {
+  transform: translateY(-5px);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #333;
+}
+
+
+/* SKELETON LOADING STATE */
+
+.skeleton__nft_wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.skeleton__background--img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #d3d3d3 25%,
+    #eaeaea 50%,
+    #d3d3d3 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 3s infinite linear;
+  border-radius: 12px;
+}
+
+.skeleton__author-bubble {
+    background: linear-gradient(
+    90deg,
+    #d3d3d3 25%,
+    #eaeaea 50%,
+    #d3d3d3 75%
+  );
+    background-size: 200% 100%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+.skeleton__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.skeleton__name {
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(
+    90deg,
+    #d3d3d3 25%,
+    #eaeaea 50%,
+    #d3d3d3 75%
+  );
+    background-size: 200% 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+.skeleton__code {
+    width: 64px;
+    height: 20px;
+    background: linear-gradient(
+    90deg,
+    #d3d3d3 25%,
+    #eaeaea 50%,
+    #d3d3d3 75%
+  );
+    background-size: 200% 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+.skeleton-slider-wrapper {
+  position: relative;
+}
+
+.skeleton__arrow.prev {
+  left: 8px;
+}
+
+.skeleton__arrow.next {
+  right: 8px;
+}
+
+.skeleton__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: lightgray;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  z-index: 5;
+  opacity: 0.9;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* FORWARD AND BACKWARDS ARROW */ 
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: white;
+  color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-arrow:hover {
+  background-color: rgb(222, 222, 222);
+}
+
+.custom-arrow.prev {
+  left: 8px;
+  position: absolute;
+}
+
+.custom-arrow.next {
+  right: 8px;
+  position: absolute;
+}
+
+@media (max-width: 768px) {
+  .custom-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .custom-arrow.prev {
+    left: -10px;
+  }
+
+  .custom-arrow.next {
+    right: -10px;
+  }
+}
