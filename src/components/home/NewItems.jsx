@@ -1,75 +1,211 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const NewItems = () => {
+  const [items, setItems] = useState([]);
+  const [now, setNow] = useState(Date.now());
+  const [loading, setLoading] = useState(true);
+  const draggingRef = useRef(false);
+
+  useEffect(() => {
+    axios
+      .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
+      .then((res) => setItems(Array.isArray(res.data) ? res.data : []))
+      .catch(() => setItems([]))
+      .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    const i = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(i);
+  }, []);
+
+  const [sliderRef, instanceRef] = useKeenSlider({
+    loop: true,
+    mode: "free-snap",
+    rubberband: false,
+    slides: { perView: 4, spacing: 24 },
+    breakpoints: {
+      "(max-width: 1199.98px)": { slides: { perView: 3, spacing: 20 } },
+      "(max-width: 978px)": { slides: { perView: 2, spacing: 18 } },
+      "(max-width: 575.98px)": { slides: { perView: 1, spacing: 12 } },
+    },
+    created(s) {
+      s.on("dragStarted", () => (draggingRef.current = true));
+      s.on("dragEnded", () => (draggingRef.current = false));
+      s.on("animationEnded", () => (draggingRef.current = false));
+    },
+  });
+
+  const formatCountdown = (end) => {
+    if (!end) return null;
+    const t = typeof end === "number" ? end : Date.parse(end);
+    if (Number.isNaN(t)) return null;
+    const ms = Math.max(0, t - now);
+    if (ms === 0) return "Ended";
+    const s = Math.floor(ms / 1000);
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    return `${h}h ${m}m ${sec}s`;
+  };
+
+  const data = loading ? new Array(4).fill(null) : items;
+
+  const handleNavigate = (e, it) => {
+    if (draggingRef.current) {
+      e.preventDefault();
+      return;
+    }
+    if (it) {
+      try {
+        sessionStorage.setItem("nft:selectedItem", JSON.stringify(it));
+      } catch {}
+    }
+  };
+
   return (
     <section id="section-items" className="no-bottom">
+      <style>{`
+        @keyframes hcShimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+        .hc-skeleton { background: linear-gradient(90deg, #e9ecef 0%, #f8f9fa 40%, #e9ecef 80%); background-size: 200% 100%; animation: hcShimmer 1.2s linear infinite; }
+        .hc-radius { border-radius: 8px; }
+        .hc-round { border-radius: 50%; }
+        .keen-slider { overflow: hidden; padding-left: 0 !important; margin-left: 0 !important; }
+        .keen-slider__slide { min-width: calc(25% - 24px) !important; box-sizing: border-box; }
+        @media (max-width: 1199.98px) { .keen-slider__slide { min-width: calc(33.333% - 20px) !important; } }
+        @media (max-width: 978px) { .keen-slider__slide { min-width: calc(50% - 18px) !important; } }
+        @media (max-width: 575.98px) { .keen-slider__slide { min-width: 100% !important; } }
+      `}</style>
+
       <div className="container">
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
+        </div>
 
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
+        <div className="slider-wrapper d-flex align-items-center" style={{ overflow: "hidden", width: "100%" }}>
+          <button
+            onClick={() => instanceRef.current?.prev()}
+            aria-label="Previous"
+            className="btn btn-outline-secondary rounded-circle me-2"
+            style={{ width: 40, height: 40, padding: 0, lineHeight: "38px", textAlign: "center" }}
+            disabled={loading}
+          >
+            ❮
+          </button>
+
+          <div ref={sliderRef} className="keen-slider" style={{ width: "100%" }}>
+            {data.map((it, index) => {
+              const isSkeleton = !it;
+              const creator = it?.author || it?.creator || it?.authorId || "Unknown";
+              const avatar = it?.authorImage || it?.avatar || AuthorImage;
+              const preview = it?.nftImage || it?.image || nftImage;
+              const title = it?.title || it?.name || "Pinky Ocean";
+              const price = it?.price ? `${it.price} ETH` : "3.08 ETH";
+              const likes = typeof it?.likes === "number" ? it.likes : 69;
+              const countdown = it
+                ? formatCountdown(it.expiryDate || it.endAt || it.deadline || it.ending || it.countdown)
+                : null;
+
+              return (
+                <div className="keen-slider__slide" key={index}>
+                  <div className="nft__item">
+                    <div className="author_list_pp">
+                      {isSkeleton ? (
+                        <div className="hc-skeleton hc-round" style={{ width: 50, height: 50 }} />
+                      ) : (
+                        <Link
+                          to="/author"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title={`Creator: ${creator}`}
+                          onClick={(e) => handleNavigate(e, it)}
+                        >
+                          <img className="lazy" src={avatar} alt="" />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      )}
+                    </div>
+
+                    {isSkeleton ? (
+                      <div className="hc-skeleton hc-radius" style={{ height: 24, width: 120, marginBottom: 12 }} />
+                    ) : countdown ? (
+                      <div className="de_countdown">{countdown}</div>
+                    ) : null}
+
+                    <div className="nft__item_wrap">
+                      <div className="nft__item_extra">
+                        <div className="nft__item_buttons">
+                          <button disabled={isSkeleton}>Buy Now</button>
+                          <div className="nft__item_share">
+                            <h4>Share</h4>
+                            <a href="" target="_blank" rel="noreferrer">
+                              <i className="fa fa-facebook fa-lg"></i>
+                            </a>
+                            <a href="" target="_blank" rel="noreferrer">
+                              <i className="fa fa-twitter fa-lg"></i>
+                            </a>
+                            <a href="">
+                              <i className="fa fa-envelope fa-lg"></i>
+                            </a>
+                          </div>
+                        </div>
                       </div>
+
+                      {isSkeleton ? (
+                        <div className="hc-skeleton hc-radius" style={{ width: "100%", height: 260 }} />
+                      ) : (
+                        <Link to="/item-details" state={{ item: it }} onClick={(e) => handleNavigate(e, it)}>
+                          <img src={preview} className="lazy nft__item_preview" alt="" loading="lazy" />
+                        </Link>
+                      )}
+                    </div>
+
+                    <div className="nft__item_info">
+                      {isSkeleton ? (
+                        <>
+                          <div className="hc-skeleton hc-radius" style={{ height: 18, width: "70%", marginBottom: 10 }} />
+                          <div className="hc-skeleton hc-radius" style={{ height: 16, width: "40%", marginBottom: 10 }} />
+                          <div className="hc-skeleton hc-radius" style={{ height: 16, width: 60 }} />
+                        </>
+                      ) : (
+                        <>
+                          <Link to="/item-details" state={{ item: it }} onClick={(e) => handleNavigate(e, it)}>
+                            <h4>{title}</h4>
+                          </Link>
+                          <div className="nft__item_price">{price}</div>
+                          <div className="nft__item_like">
+                            <i className="fa fa-heart"></i>
+                            <span>{likes}</span>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
+                </div>
+              );
+            })}
+          </div>
 
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          <button
+            onClick={() => instanceRef.current?.next()}
+            aria-label="Next"
+            className="btn btn-outline-secondary rounded-circle ms-2"
+            style={{ width: 40, height: 40, padding: 0, lineHeight: "38px", textAlign: "center" }}
+            disabled={loading}
+          >
+            ❯
+          </button>
         </div>
       </div>
     </section>
