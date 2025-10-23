@@ -8238,6 +8238,43 @@ header.header-mobile #mainmenu > li > span {
   outline: none;
 }
 
+.keen-slider__prev.custom-arrow,
+.keen-slider__next.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: 1.4px solid #dddddd;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0d0c22;
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+}
+
+.keen-slider__prev.custom-arrow {
+  left: 12px;
+}
+
+.keen-slider__next.custom-arrow {
+  right: -6px;
+}
+
+.keen-slider__prev.custom-arrow i,
+.keen-slider__next.custom-arrow i {
+  font-size: 14px;
+}
+
+.keen-slider {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 @-webkit-keyframes scaleIn {
   from {
     opacity: 1;
