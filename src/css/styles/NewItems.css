@@ -1,0 +1,12 @@
+@media (max-width:980px){
+    .de_countdown{
+        right: 15%;
+        top: 20%;
+    }
+}
+@media (max-width:576px){
+    .de_countdown{
+        right: 6%;
+        top: 5%;
+    }
+}
