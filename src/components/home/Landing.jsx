@@ -4,6 +4,8 @@ import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  
+
   return (
     <section
       id="section-hero"
@@ -12,7 +14,7 @@ const Landing = () => {
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
     >
-      <div className="v-center">
+      <div data-aos="fadeInUp">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
