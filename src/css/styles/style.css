@@ -12706,7 +12706,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  /* display: inline; */
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16506,7 +16506,13 @@ img {
   #items-carousel-big .owl-next {
     top: 22.5%;
   }
+
+  .skeleton-wrapper1 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
+
 
 /* -------------------------------------------------- 
     design for 480px
@@ -16650,41 +16656,64 @@ img {
   }
 }
 
-.skeleton-box {
-  display: inline-block;
-  height: 1em;
-  position: relative;
-  overflow: hidden;
-  background-color: #dddbdd;
+/*
+
+ ALL LOADING STATES
+ adding this note so pull request can be made
+
+*/
+
+@keyframes shimmer {
+  0% {
+      background-position: -1000px 0;
+  }
+  100% {
+      background-position: 1000px 0;
+  }
 }
 
-.skeleton-box::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateX(-100%);
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.5) 60%,
-    rgba(255, 255, 255, 0)
-  );
-  -webkit-animation: shimmer 2s infinite;
-  animation: shimmer 2s infinite;
+.skeleton-wrapper1 {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+  margin: 8px 0;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 20px;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 15px;
+}
+
+.skeleton::after {
   content: "";
-}
-@-webkit-keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 1s infinite;
 }
 
 .nft-image {
@@ -16713,4 +16742,19 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+.skeleton-explore-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 96px;
+}
+.skeleton-explore {
+  width: 264px;
+  height: 264px;
+  margin: 0 6px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
 }
