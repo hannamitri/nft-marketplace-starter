@@ -1,66 +1,100 @@
-import React from "react";
-import AuthorBanner from "../images/author_banner.jpg";
-import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "../css/styles/style.css";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const [author, setAuthor] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init({ duration: 1000 });
+
+    const fetchAuthor = async () => {
+      try {
+        const res = await fetch(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+        );
+        const data = await res.json();
+        setAuthor(data);
+      } catch (err) {
+        console.error("Error fetching author:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAuthor();
+  }, [authorId]);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(author.address);
+    alert("Wallet address copied!");
+  };
+
+  if (loading) {
+    return (
+      <div className="container text-center mt-5">
+        <div className="author-skeleton">
+          <div className="skeleton-circle mb-3" style={{ width: "120px", height: "120px", borderRadius: "50%" }} />
+          <div className="skeleton-line mb-2" style={{ width: "40%", height: "20px" }} />
+          <div className="skeleton-line mb-2" style={{ width: "30%", height: "15px" }} />
+          <div className="skeleton-line mb-2" style={{ width: "50%", height: "15px" }} />
+          <div className="skeleton-line mb-2" style={{ width: "60%", height: "15px" }} />
+        </div>
+      </div>
+    );
+  }
+
+  if (!author) {
+    return (
+      <div className="container text-center mt-5">
+        <p className="text-danger">Author not found.</p>
+      </div>
+    );
+  }
+
   return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
+    <div className="author-page container">
+      <div className="author-profile text-center" data-aos="fade-down">
+        <img
+          src={author.authorImage}
+          alt={author.authorName}
+          className="author-avatar"
+        />
+        <h2>
+          {author.authorName}
+          {author.isVerified && (
+            <span className="verified-badge" title="Verified">✔️</span>
+          )}
+        </h2>
+        <p className="author-tag">@{author.tag}</p>
+        <div className="author-wallet">
+          <span>{author.address.slice(0, 20)}...</span>
+          <button onClick={copyToClipboard}>Copy</button>
+        </div>
+        <p className="author-followers">{author.followers} followers</p>
+        <button className="btn btn-primary follow-btn">Follow</button>
+      </div>
 
-        <section
-          id="profile_banner"
-          aria-label="section"
-          className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
-        ></section>
-
-        <section aria-label="section">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
-
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
-                    </div>
-                  </div>
+      <div className="nft-gallery row mt-4" data-aos="fade-up">
+        {author.nftCollection?.map((nft, index) => (
+          <div key={index} className="nft-card col-md-4 mb-4">
+            <Link to={`/item-details/${nft.nftId}`} className="nft-link">
+              <div className="nft-image-wrapper">
+                <img src={nft.nftImage} alt={nft.title} className="nft-image" />
+                <div className="nft-overlay">
+                  <p>{nft.title}</p>
+                  <p>Price: {nft.price} ETH</p>
+                  <p>{nft.likes}</p>
                 </div>
               </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
-                </div>
-              </div>
-            </div>
+            </Link>
           </div>
-        </section>
+        ))}
       </div>
     </div>
   );

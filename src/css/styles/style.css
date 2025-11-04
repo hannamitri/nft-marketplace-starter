@@ -5168,6 +5168,122 @@ i.font60 {
   color: #ffffff;
 }
 
+
+
+
+/* === HotCollections Styles === */
+
+.hot-collections-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 1rem;
+  background-color: #f7f1f1; 
+  z-index: 1;
+}
+
+.hot-collections-slider {
+  position: relative;
+  padding: 2rem 0;
+  z-index: 1;
+}
+
+.hot-collections-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.collection-card {
+  min-width: 250px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 2rem; 
+  color: #000;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.collection-card:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* === Slick Arrow Overrides === */
+
+.hot-collections-slider .slick-arrow {
+  z-index: 10;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #969090;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+.hot-collections-slider .slick-arrow:hover {
+  background-color: rgba(80, 69, 69, 0.932);
+}
+
+.hot-collections-slider .slick-prev {
+  left: 10px;
+}
+
+.hot-collections-slider .slick-next {
+  right: 10px;
+}
+
+.hot-collections-slider .slick-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* === HotCollections Skeleton Loader Styling === */
+
+.skeleton {
+  animation: shimmer 1.5s infinite linear;
+  background: linear-gradient(to right, #c2baba 8%, #b6aeae 18%, #c0b5b5 33%);
+  background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+
+/* === Responsive Fixes === */
+
+@media (max-width: 576px) {
+  .hot-collections-slider .slick-prev,
+  .hot-collections-slider .slick-next {
+    top: auto;
+    bottom: 10px;
+    transform: none;
+  }
+
+  .collection-card {
+    margin-bottom: 3rem;
+  }
+}
+
+
+
+
+
 /* pricing table */
 
 /* ================================================== */
@@ -12706,7 +12822,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -15132,6 +15248,121 @@ a.btn-slider:hover {
   display: none;
 }
 
+/* === Swiper Styles for NewItems Section === */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #6c63ff;
+}
+
+.swiper-slide {
+  padding: 10px;
+}
+
+/*pagination dots */
+.swiper-pagination-bullet {
+  background: #6c63ff;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Skeleton loader styling */
+.nft_item.skeleton {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Countdown */
+.countdown {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #6c63ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+
+/* === Countdown Badge for Explore Cards === */
+.countdown {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #6c63ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* === Load More Button === */
+.btn-primary {
+  background-color: #6c63ff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #584ed2;
+}
+
+/* === Skeleton Loader === */
+.nft_item.skeleton {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.skeleton-img {
+  height: 200px;
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.skeleton-line {
+  background: #eee;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.skeleton-line.short {
+  height: 20px;
+  width: 80%;
+}
+
+.skeleton-line.thinner {
+  height: 15px;
+  width: 60%;
+  margin-top: 5px;
+}
+
+/* === Hover Effect on Cards === */
+.nft_item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
+
+/* === Responsive Countdown Badge === */
+@media (max-width: 576px) {
+  .countdown {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}
+
+
+
 /* Control Nav */
 
 .testi-slider .flex-control-nav {
@@ -15145,7 +15376,6 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16706,6 +16936,18 @@ img {
   margin-bottom: 24px;
 }
 
+.filter-box {
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.filter-box select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
 .connect-wallet {
   margin-left: 18px;
   color: white !important;
@@ -16713,4 +16955,170 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+
+
+
+/* === New Items Layout Fix: Uniform Card Sizes === */
+
+.nft_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px; /* consistent card height */
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.nft_image {
+  height: 250px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.nft_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.nft_info {
+  margin-top: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.nft_info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.nft_info span {
+  font-size: 14px;
+  color: #333;
+}
+
+.nft_info .likes {
+  font-size: 13px;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.countdown-wrapper {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Skeleton Loader Consistency */
+.nft_item.skeleton {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nft_item {
+    min-height: 380px;
+  }
+
+  .nft_image {
+    height: 200px;
+  }
+}
+
+
+
+/* === Link Hover Enhancements for Explore Page === */
+
+.nft_image a:hover img,
+.author a:hover span {
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+
+
+/* === Author Page Enhancements === */
+
+.author-profile {
+  margin-top: 40px;
+}
+
+.author-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.verified-badge {
+  margin-left: 8px;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.author-wallet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.follow-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+.nft-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+
+
+
+/* === Skeleton Loader Enhancements === */
+
+.skeleton-box,
+.skeleton-line,
+.skeleton-circle {
+  background: linear-gradient(to right, #c2baba 8%, #b6aeae 18%, #c0b5b5 33%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.author-skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* === Author Page Layout Fix === */
+
+.author-page {
+  padding-top: 100px; /* Will Adjust if navbar height is different */
 }

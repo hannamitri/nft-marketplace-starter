@@ -1,76 +1,95 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import CountDown from "../CountDown"; // Live CountDown
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const NewItems = () => {
-  return (
-    <section id="section-items" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchTime, setFetchTime] = useState(0);
 
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
+  useEffect(() => {
+    const startTime = performance.now();
+
+    fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
+      .then((res) => res.json())
+      .then((data) => {
+        const endTime = performance.now();
+        setFetchTime(((endTime - startTime) / 1000).toFixed(2));
+        setItems(data);
+        setLoading(false);
+        console.log("Fetched New Items:", data);
+      })
+      .catch((err) => {
+        console.error("API fetch error:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  const renderSkeletons = (count) =>
+    new Array(count).fill(0).map((_, index) => (
+      <SwiperSlide key={index}>
+        <div className="nft_item skeleton">
+          <div className="skeleton-img" />
+          <div className="skeleton-line short" />
+          <div className="skeleton-line thinner" />
+        </div>
+      </SwiperSlide>
+    ));
+
+  return (
+    <section id="section-new-items" className="no-bottom">
+      <div className="container">
+        <div className="text-center mb-4">
+          <h2>New Items</h2>
+          <p className="fetch-time">Fetch Time: {fetchTime} seconds</p>
+          <div className="small-border bg-color-2"></div>
+        </div>
+
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            576: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            992: { slidesPerView: 4 },
+          }}
+        >
+          {loading
+            ? renderSkeletons(4)
+            : items.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="nft_item">
+                    <div className="nft_image position-relative">
+                      <Link to={`/item-details/${item.nftId}`}>
+                        <img
+                          src={item.nftImage}
+                          alt={item.title}
+                          className="img-fluid"
+                        />
+                      </Link>
+                      {item.expiryDate && (
+                        <CountDown expiryDate={item.expiryDate} />
+                      )}
+                    </div>
+                    <div className="nft_info text-center mt-3">
+                      <h4>{item.title}</h4>
+                      <span>
+                        {item.price ? `${item.price} ETH` : "Price not listed"}
+                      </span>
+                      <div className="likes">{item.likes || 0}</div>
                     </div>
                   </div>
-
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                </SwiperSlide>
+              ))}
+        </Swiper>
       </div>
     </section>
   );
