@@ -1,65 +1,98 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSearchParams, Link } from "react-router-dom";
 
-const AuthorItems = () => {
+export default function AuthorItems() {
+  const [sp] = useSearchParams();
+  const authorId = sp.get("authorId");
+
+  const [author, setAuthor] = useState(null);
+  const [items, setItems] = useState([]);
+  const [loadingAuthor, setLoadingAuthor] = useState(true);
+  const [loadingItems, setLoadingItems] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!authorId) {
+      setError("Missing authorId in URL (use /author?authorId=YOUR_ID).");
+      setLoadingAuthor(false);
+      setLoadingItems(false);
+      return;
+    }
+
+    (async () => {
+      try {
+        const { data } = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/author",
+          { params: { authorId } }
+        );
+        setAuthor(data ?? null);
+      } catch (e) {
+        console.error("author fetch failed:", e);
+        setAuthor(null);
+        setError("Failed to fetch author.");
+      } finally {
+        setLoadingAuthor(false);
+      }
+    })();
+
+    (async () => {
+      try {
+        const { data } = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/authorMoreNFTs",
+          { params: { authorId } }
+        );
+        setItems(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.warn("authorMoreNFTs failed, falling back to explore:", e);
+        try {
+          const res = await axios.get(
+            "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+          );
+          const all = Array.isArray(res.data) ? res.data : [];
+          setItems(all.filter((x) => String(x.authorId) === String(authorId)));
+        } catch (err) {
+          console.error("explore fallback failed:", err);
+          setItems([]);
+        }
+      } finally {
+        setLoadingItems(false);
+      }
+    })();
+  }, [authorId]);
+
+  if (error && !author && items.length === 0) return <div>{error}</div>;
+  if (loadingAuthor || loadingItems) return <div>Loading author & items…</div>;
+
   return (
-    <div className="de_tab_content">
-      <div className="tab-1">
-        <div className="row">
-          {new Array(8).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">2.52 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>97</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+    <div>
+      <h2>Author</h2>
+      {!author ? (
+        <div>Author not found.</div>
+      ) : (
+        <div>
+          <div><strong>{author.name || author.authorName || "Unknown Author"}</strong></div>
+          <img
+            src={author.authorImage || "/images/author_thumbnail.jpg"}
+            alt={author.name || "Author"}
+            style={{ width: 96, height: 96, borderRadius: "50%", objectFit: "cover", marginTop: 8 }}
+          />
         </div>
-      </div>
+      )}
+
+      <h3 style={{ marginTop: 16 }}>Items</h3>
+      {items.length === 0 ? (
+        <div>No items for this author.</div>
+      ) : (
+        <ul>
+          {items.map((it, i) => (
+            <li key={it.nftId ?? i}>
+              <Link to={`/item-details?nftId=${it.nftId}`}>{it.title || "Untitled"}</Link>
+              {" — "}{typeof it.price === "number" ? `${it.price} ETH` : "—"}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
-};
-
-export default AuthorItems;
+}
