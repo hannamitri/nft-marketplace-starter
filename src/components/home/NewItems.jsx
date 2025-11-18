@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-
 // Skeleton loader while fetching
 const NewItemsSkeleton = () => {
   return (
@@ -29,7 +28,7 @@ const NewItemsSkeleton = () => {
   );
 };
 
-const NewItems = () => {
+const NewItemsCarousel = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -107,11 +106,15 @@ const NewItems = () => {
                   </div>
 
                   {/* Countdown */}
-                  <div className="de_countdown">{item.expiration || "5h 30m 32s"}</div>
+                  {item.expiryDate ? (
+                    <div className="de_countdown">
+                      {new Date(item.expiryDate).toLocaleString()}
+                    </div>
+                  ) : null}
 
                   {/* NFT Thumbnail */}
                   <div className="nft__item_wrap">
-                    <Link to={`/item-details/${item.nftId}`}>
+                    <Link to={`/new-item-details/${item.nftId}`}>
                       <img
                         src={item.nftImage}
                         className="lazy nft__item_preview"
@@ -125,10 +128,12 @@ const NewItems = () => {
 
                   {/* Info */}
                   <div className="nft__item_info">
-                    <Link to={`/item-details/${item.nftId}`}>
+                    <Link to={`/new-item-details/${item.nftId}`}>
                       <h4>{item.title}</h4>
                     </Link>
-                    <div className="nft__item_price">{item.price || "N/A"} ETH</div>
+                    <div className="nft__item_price">
+                      {item.price || "N/A"} ETH
+                    </div>
                     <div className="nft__item_like">
                       <i className="fa fa-heart"></i>
                       <span>{item.likes || 0}</span>
@@ -143,7 +148,7 @@ const NewItems = () => {
           <div
             ref={paginationRef}
             className="swiper-pagination mt-3"
-            style={{ textAlign: "center" }}
+            // style={{ textAlign: "center" }}
           ></div>
         </div>
       </div>
@@ -151,5 +156,6 @@ const NewItems = () => {
   );
 };
 
-export default NewItems;
+export default NewItemsCarousel;
+
 

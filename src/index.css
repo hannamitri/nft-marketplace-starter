@@ -59,9 +59,11 @@
   transition: background-color 0.3s, transform 0.3s;
 }
 
-.external-swiper-pagination .swiper-pagination-bullet-active {
+.external-swiper-pagination .swiper-pagination-bullet-active  {
   background-color: rgba(0, 0, 0, 0.6);
   transform: scale(1.2);
 }
+
+
 
 
