@@ -116,7 +116,7 @@ const HotCollectionsCarousel = () => {
           ))}
         </Swiper>
 
-        <div className="external-swiper-pagination text-center mt-4"></div>
+        {/* <div className="external-swiper-pagination text-center mt-4"></div> */}
       </div>
     </section>
   );

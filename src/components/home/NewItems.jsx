@@ -144,12 +144,7 @@ const NewItemsCarousel = () => {
             ))}
           </Swiper>
 
-          {/* External pagination */}
-          <div
-            ref={paginationRef}
-            className="swiper-pagination mt-3"
-            // style={{ textAlign: "center" }}
-          ></div>
+          {/* <div className="external-swiper-pagination text-center mt-4"></div> */}
         </div>
       </div>
     </section>
