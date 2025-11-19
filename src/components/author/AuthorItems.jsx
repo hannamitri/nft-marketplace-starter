@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImageFallback from "../../images/author_thumbnail.jpg";
 import nftImageFallback from "../../images/nftImage.jpg";
 
 const AuthorItems = ({ nftCollection }) => {
@@ -15,16 +14,8 @@ const AuthorItems = ({ nftCollection }) => {
           {nftCollection.map((item) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.nftId}>
               <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link to={`/author/${item.authorId}`}>
-                    <img
-                      className="lazy"
-                      src={item.authorImage || AuthorImageFallback}
-                      alt={item.authorName}
-                    />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
+
+                {/* Removed the author avatar/icon */}
 
                 <div className="nft__item_wrap">
                   <Link to={`/item-details/${item.nftId}`}>
@@ -46,6 +37,7 @@ const AuthorItems = ({ nftCollection }) => {
                     <span>{item.likes}</span>
                   </div>
                 </div>
+
               </div>
             </div>
           ))}
@@ -56,6 +48,9 @@ const AuthorItems = ({ nftCollection }) => {
 };
 
 export default AuthorItems;
+
+
+
 
 
 
