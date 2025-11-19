@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 ReactDOM.render(
   <React.StrictMode>
