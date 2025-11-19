@@ -89,19 +89,18 @@ const NewItemsCarousel = () => {
                 <div className="nft__item">
                   {/* Author */}
                   <div className="author_list_pp">
-                    <Link
-                      to={`/author/${item.authorId}`}
-                      title={`Creator: ${item.authorName || "Unknown"}`}
-                    >
+                    <Link to={`/author/${item.authorId}`}>
                       <img
                         className="lazy"
                         src={item.authorImage}
-                        alt={item.authorName || "Author"}
-                        onError={(e) =>
-                          (e.currentTarget.src = "/fallback-author.png")
-                        }
+                        alt={item.authorName}
                       />
                       <i className="fa fa-check"></i>
+                    </Link>
+                  </div>
+                  <div className="author_list_info">
+                    <Link to={`/author/${item.authorId}`}>
+                      {item.authorName}
                     </Link>
                   </div>
 
