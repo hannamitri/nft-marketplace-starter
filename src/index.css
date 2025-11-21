@@ -185,3 +185,34 @@ External pagination bullets
   background-color: #ccc;
   border-radius: 12px;
 }
+
+
+
+
+.explore-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explore-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0px 12px 26px rgba(0, 0, 0, 0.18);
+}
+
+.nft__item_preview {
+  transition: transform 0.4s ease;
+}
+
+.explore-card:hover .nft__item_preview {
+  transform: scale(1.06);
+}
+
+.explore-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.nft__item {
+  border-radius: 14px;
+  overflow: hidden;
+}

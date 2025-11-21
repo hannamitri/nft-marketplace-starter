@@ -86,7 +86,11 @@ const NewItemsCarousel = () => {
           >
             {items.map((item) => (
               <SwiperSlide key={item.nftId}>
-                <div className="nft__item">
+                <div
+                  className="nft__item"
+                  data-aos="fade-up"
+                  data-aos-duration="600"
+                >
                   {/* Author */}
                   <div className="author_list_pp">
                     <Link to={`/author/${item.authorId}`}>

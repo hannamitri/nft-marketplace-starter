@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import EthImage from "../images/ethereum.svg";
 import AuthorImageFallback from "../images/author_thumbnail.jpg";
 
 // Skeleton loader while fetching
 const NewItemsDetailsSkeleton = () => {
   return (
-    <div className="container my-5">
+    <div className="container my-5" data-aos="fade-in">
       <div className="row">
         <div className="col-md-6">
           <div style={{ width: "100%", height: "400px", background: "#eee" }}></div>
@@ -29,17 +32,24 @@ const NewItemsDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    AOS.init({
+      duration: 900,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
+
+  useEffect(() => {
     const fetchItem = async () => {
       setLoading(true);
       try {
-        // Fetch all NFTs
         const nftRes = await axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         );
+
         const foundItem = nftRes.data.find((i) => Number(i.nftId) === Number(nftId));
         setItem(foundItem || null);
 
-        // Fetch author dynamically using authorId
         if (foundItem) {
           const authorRes = await axios.get(
             `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${foundItem.authorId}`
@@ -61,7 +71,6 @@ const NewItemsDetails = () => {
   if (loading) return <NewItemsDetailsSkeleton />;
   if (!item) return <p className="text-center mt-5">Item not found.</p>;
 
-  // Format expiry date
   const expiryDate = item.expiryDate
     ? new Date(item.expiryDate).toLocaleString()
     : "N/A";
@@ -70,11 +79,18 @@ const NewItemsDetails = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
+
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
+
             <div className="row">
+
               {/* NFT Image */}
-              <div className="col-md-6 text-center">
+              <div
+                className="col-md-6 text-center"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
                 <img
                   src={item.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
@@ -84,11 +100,22 @@ const NewItemsDetails = () => {
               </div>
 
               {/* NFT Info */}
-              <div className="col-md-6">
+              <div
+                className="col-md-6"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
                 <div className="item_info">
-                  <h2>{item.title}</h2>
 
-                  <div className="item_info_counts">
+                  <h2 data-aos="fade-right" data-aos-delay="300">
+                    {item.title}
+                  </h2>
+
+                  <div
+                    className="item_info_counts"
+                    data-aos="fade-right"
+                    data-aos-delay="400"
+                  >
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i> {item.views || 0}
                     </div>
@@ -97,13 +124,19 @@ const NewItemsDetails = () => {
                     </div>
                   </div>
 
-                  <p>{item.description || "No description available."}</p>
+                  <p data-aos="fade-in" data-aos-delay="500">
+                    {item.description || "No description available."}
+                  </p>
 
-                  <div className="d-flex flex-row mb-3">
-                    {/* Author */}
+                  <div
+                    className="d-flex flex-row mb-3"
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                  >
                     {author && (
                       <div className="mr-4">
                         <h6>Owner</h6>
+
                         <div className="item_author">
                           <div className="author_list_pp">
                             <Link to={`/author/${author.authorId}`}>
@@ -115,6 +148,7 @@ const NewItemsDetails = () => {
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
+
                           <div className="author_list_info">
                             <Link to={`/author/${author.authorId}`}>
                               {author.authorName}
@@ -130,7 +164,11 @@ const NewItemsDetails = () => {
                     </div>
                   </div>
 
-                  <div className="de_tab tab_simple">
+                  <div
+                    className="de_tab tab_simple"
+                    data-aos="fade-up"
+                    data-aos-delay="700"
+                  >
                     <div className="de_tab_content">
                       <h6>Creator</h6>
                       {author && (
@@ -145,6 +183,7 @@ const NewItemsDetails = () => {
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
+
                           <div className="author_list_info">
                             <Link to={`/author/${author.authorId}`}>
                               {author.authorName}
@@ -155,18 +194,22 @@ const NewItemsDetails = () => {
                     </div>
 
                     <div className="spacer-40"></div>
+
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
                       <span>{item.price || "N/A"}</span>
                     </div>
                   </div>
+
                 </div>
               </div>
 
             </div>
+
           </div>
         </section>
+
       </div>
     </div>
   );
