@@ -77,6 +77,8 @@ const HotCollectionsCarousel = () => {
             <SwiperSlide key={item.nftId}>
               <div
                 className="nft_coll p-2"
+                data-aos="fade-up"
+                data-aos-duration="600"
                 style={{
                   borderRadius: "12px",
                   background: "#fff",
