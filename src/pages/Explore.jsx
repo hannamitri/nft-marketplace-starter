@@ -2,9 +2,26 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+
+    const handleLoad = () => {
+      AOS.refresh();
+    };
+
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
   }, []);
 
   return (
@@ -20,7 +37,11 @@ const Explore = () => {
           <div className="center-y relative text-center">
             <div className="container">
               <div className="row">
-                <div className="col-md-12 text-center">
+                <div
+                  className="col-md-12 text-center"
+                  data-aos="fade-down"
+                  data-aos-delay="200"
+                >
                   <h1>Explore</h1>
                 </div>
                 <div className="clearfix"></div>
@@ -31,7 +52,7 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
+            <div className="row" data-aos="fade-up">
               <ExploreItems />
             </div>
           </div>
