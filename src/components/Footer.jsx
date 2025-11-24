@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/Ultraverse.png";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+
+    const handleLoad = () => {
+      AOS.refresh();
+    };
+
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
+  }, []);
+
   return (
     <footer className="footer-light">
       <div className="container">
@@ -131,7 +148,11 @@ const Footer = () => {
                 method="post"
                 name="form_subscribe"
               >
-                <div className="col text-center">
+                <div
+                  className="col text-center"
+                  data-aos="fade-left"
+                  data-aos-delay="500"
+                >
                   <input
                     className="form-control"
                     id="txt_subscribe"

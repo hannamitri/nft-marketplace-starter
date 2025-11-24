@@ -11366,8 +11366,10 @@ section.no-padding {
   z-index: 100;
   width: 45px;
   height: 45px;
-  background-color: rgba(255, 255, 255, 1) !important;
-  border: solid 1px #ccc !important;
+  /* background-color: rgba(255, 255, 255, 1) !important; */
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  /* background-color: #8364e2 !important; */
+  text-align: center;
   color: #000 !important;
   border-radius: 60px !important;
 }
@@ -12706,7 +12708,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  -webkit-appearance-: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -15145,7 +15147,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
