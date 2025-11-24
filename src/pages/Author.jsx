@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const Author = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+
+    const handleLoad = () => {
+      AOS.refresh();
+    };
+
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
+  }, []);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -23,9 +40,18 @@ const Author = () => {
             <div className="row">
               <div className="col-md-12">
                 <div className="d_profile de-flex">
-                  <div className="de-flex-col">
+                  <div
+                    className="de-flex-col"
+                    data-aos="fade-right"
+                    data-aos-delay="100"
+                  >
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img
+                        src={AuthorImage}
+                        alt=""
+                        data-aos="flip-right"
+                        data-aos-delay="100"
+                      />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
@@ -43,7 +69,11 @@ const Author = () => {
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
+                    <div
+                      className="de-flex-col"
+                      data-aos="fade-left"
+                      data-aos-delay="100"
+                    >
                       <div className="profile_follower">573 followers</div>
                       <Link to="#" className="btn-main">
                         Follow
