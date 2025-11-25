@@ -11366,10 +11366,11 @@ section.no-padding {
   z-index: 100;
   width: 45px;
   height: 45px;
-  background-color: rgba(255, 255, 255, 1) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
   border: solid 1px #ccc !important;
   color: #000 !important;
   border-radius: 60px !important;
+  text-align: center;
 }
 
 #items-carousel-big .owl-prev,
@@ -11516,6 +11517,9 @@ section.no-padding {
   height: 8px;
   margin: 0 5px;
   border-radius: 30px;
+
+  display: none;
+  visibility: hidden;
 }
 
 .owl-theme .owl-dots .owl-dot span {
@@ -12051,6 +12055,7 @@ a.read_more i {
 .owl-custom-nav .btn-next,
 .owl-custom-nav .btn-prev {
   opacity: 0;
+  color: white;
 }
 
 .owl-custom-nav .btn-next {
@@ -12076,6 +12081,7 @@ a.read_more i {
 .owl-custom-nav .btn-next:before,
 .owl-custom-nav .btn-prev:before {
   font-size: 18px;
+  color: white;
 }
 
 .owl-custom-nav .btn-next:before {
@@ -12175,6 +12181,15 @@ a.read_more i {
   position: absolute;
   left: -40px;
   top: -13px;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: visible;
+}
+.owl-carousel,
+.owl-stage-outer {
+  overflow: visible !important;
 }
 
 .owl-dots {
@@ -12706,7 +12721,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  -webkit-appearance-: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -12899,7 +12914,7 @@ a.read_more i {
   right: 0;
   top: 25%;
   padding: 5px;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 #selector .opt {
@@ -15145,7 +15160,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
