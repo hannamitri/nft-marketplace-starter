@@ -544,6 +544,58 @@ header .header-col.mid .social-icons {
 
 /* ================================================== */
 
+/* BLACK arrow icons */
+.slick-prev:before,
+.slick-next:before {
+  color: #000 !important;        /* 🔥 pure black arrow icon */
+  font-size: 18px !important;    /* smaller size */
+  opacity: 1 !important;
+}
+
+/* White circular arrow buttons */
+.slick-prev,
+.slick-next {
+  width: 34px;                   /* button size */
+  height: 34px;
+  z-index: 15;
+}
+
+/* Position arrows outside slider */
+.slick-prev {
+  left: -20px;
+}
+
+.slick-next {
+  right: -20px;
+}
+
+/* Circle + matching border */
+.slick-prev:before,
+.slick-next:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  background: #fff;               /* white circle */
+  border-radius: 50%;  
+  border: 1px solid #e5e7eb;      /* identical border to NFT squares */
+}
+
+/* Hover effect */
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  background: #f3f3f3;
+  border-color: #d1d5db;         /* slightly darker on hover */
+}
+
+
+
+
+
+
 #mainmenu {
   font-family: var(--title-font);
   font-weight: 600;
@@ -878,6 +930,8 @@ header:not(.header-mobile) #mainmenu > li:hover ul.mega {
   color: white;
 }
 
+
+
 @media (max-width: 991px) {
   #mainmenu {
     display: none;
@@ -895,6 +949,122 @@ header:not(.header-mobile) #mainmenu > li:hover ul.mega {
     display: none;
   }
 }
+
+.slick-slide > div{
+  padding: 0 15px;
+}
+
+.slick-list {
+  margin: 0 -15px;
+}
+
+/* Reset default slick arrows */
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important; /* remove default arrow */
+}
+
+/* Outer circular button */
+.slick-prev,
+.slick-next {
+  width: 40px !important;
+  height: 40px !important;
+  background: #ffffff !important; /* white background */
+  border-radius: 50% !important; /* make circle */
+  border: 2px solid #e5e5e5 !important; /* match NFT card border */
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  z-index: 20 !important;
+  cursor: pointer;
+}
+
+/* Position arrows */
+.slick-prev {
+  left: -10px !important;
+}
+
+.slick-next {
+  right: -10px !important;
+}
+
+/* Custom inner arrow */
+.slick-prev:after,
+.slick-next:after {
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Left arrow */
+.slick-prev:after {
+  content: "‹";
+}
+
+/* Right arrow */
+.slick-next:after {
+  content: "›";
+}
+
+
+/* Skeleton shimmer animation */
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e3e3e3;
+  }
+  100% {
+    background-color: #d1d1d1;
+  }
+}
+
+/* Wrapper for skeleton cards */
+.skeleton-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+/* Each skeleton placeholder card */
+.skeleton-card {
+  width: 100%;
+  max-width: 240px;
+}
+
+/* Main NFT image placeholder */
+.skeleton-img {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  animation: skeleton-loading 1.2s linear infinite alternate;
+  margin-bottom: 15px;
+}
+
+/* Circular author image placeholder */
+.skeleton-author {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  animation: skeleton-loading 1.2s linear infinite alternate;
+  margin-bottom: 15px;
+}
+
+/* Title placeholder */
+.skeleton-title {
+  width: 70%;
+  height: 18px;
+  border-radius: 8px;
+  animation: skeleton-loading 1.2s linear infinite alternate;
+  margin-bottom: 10px;
+}
+
+/* Code placeholder */
+.skeleton-code {
+  width: 40%;
+  height: 16px;
+  border-radius: 8px;
+  animation: skeleton-loading 1.2s linear infinite alternate;
+}
+
+
 
 /* menu toggle for mobile */
 
@@ -15145,7 +15315,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16883,75 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+/* Skeleton wrapper grid spacing */
+.skeleton-card {
+  background: #eee;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: skeleton-loading 1.5s infinite linear;
+}
+
+/* Skeleton image placeholder */
+.skeleton-img {
+  width: 100%;
+  height: 220px;
+  background: #ddd;
+  border-radius: 12px;
+}
+
+/* Skeleton title */
+.skeleton-title {
+  width: 60%;
+  height: 18px;
+  background: #ddd;
+  border-radius: 6px;
+}
+
+/* Skeleton author line */
+.skeleton-author {
+  width: 40%;
+  height: 14px;
+  background: #ddd;
+  border-radius: 6px;
+}
+
+/* Smooth shimmer animation */
+@keyframes skeleton-loading {
+  0% {
+    background-color: #eeeeee;
+  }
+  50% {
+    background-color: #dddddd;
+  }
+  100% {
+    background-color: #eeeeee;
+  }
+}
+
+/* FOR TOP SELLERS ROW SKELETONS */
+.skeleton-author-row {
+  width: 100%;
+  height: 65px;
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  animation: skeleton-loading 1.5s infinite linear;
+.author_list_info a {
+  text-decoration: none !important;
+  color: #000;   /* keep text color same as design */
+  font-weight: 600;
+}
+}
+
+.author_list_info a:hover {
+  text-decoration: underline; /* optional */
+  color: #8b5cf6; /* light purple hover like the template */
 }
