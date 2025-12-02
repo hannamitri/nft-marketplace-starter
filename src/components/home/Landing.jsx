@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
+    <div data-aos="fade-up">
     <section
       id="section-hero"
       aria-label="section"
@@ -42,6 +43,7 @@ const Landing = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

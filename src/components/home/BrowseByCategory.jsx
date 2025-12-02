@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const BrowseByCategory = () => {
   return (
+    <div data-aos="fade-left" data-aos-delay="200">
     <section id="section-category" className="no-top">
       <div className="container">
         <div className="row">
@@ -51,6 +52,7 @@ const BrowseByCategory = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

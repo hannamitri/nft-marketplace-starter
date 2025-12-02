@@ -2,6 +2,7 @@ import React from "react";
 
 const LandingIntro = () => {
   return (
+    <div data-aos="fade-up">
     <section id="section-intro" className="no-top no-bottom">
       <div className="container">
         <div className="row">
@@ -47,6 +48,7 @@ const LandingIntro = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 
