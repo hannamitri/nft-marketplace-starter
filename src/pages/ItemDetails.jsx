@@ -1,13 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
 
 const ItemDetails = () => {
+
+  const {id} = useParams();
+
+  const [item, setItem] = useState(null)
+
+  async function fetchItem() {
+    try {
+      const res = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
+      const data = res.data
+      setItem(data.find(n => +n.nftId === +id))
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
+    fetchItem()
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
+
+
+
 
   return (
     <div id="wrapper">
@@ -25,7 +46,7 @@ const ItemDetails = () => {
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
+                  <h2>{item ? `${item.title} #${item.code}` : 'Loading...'}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
