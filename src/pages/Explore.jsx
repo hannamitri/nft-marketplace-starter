@@ -20,7 +20,7 @@ const Explore = () => {
           <div className="center-y relative text-center">
             <div className="container">
               <div className="row">
-                <div className="col-md-12 text-center">
+                <div data-aos="fade" className="col-md-12 text-center">
                   <h1>Explore</h1>
                 </div>
                 <div className="clearfix"></div>
