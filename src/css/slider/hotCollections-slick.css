@@ -1,0 +1,6 @@
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 28px;
+  opacity: 1;
+}

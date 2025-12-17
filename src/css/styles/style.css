@@ -14205,7 +14205,10 @@ a.read_more i {
 .profile_avatar img,
 .profile_name {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
 .d_coll .profile_avatar img,
