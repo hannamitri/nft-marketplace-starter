@@ -16714,3 +16714,221 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* Hot collections and newItems section styles */
+.item-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 5px;
+}
+
+.nft_wrap {
+  height: 100%;
+}
+
+.nft_wrap a {
+  display: block;
+  height: 100%;
+}
+
+/* Skeleton for hot collections */
+.skeleton-wrap {
+  width: 100%;
+  height: 200px;
+}
+
+.skeleton, .skeleton-img, .skeleton-wrap, .skeleton-title {
+  background-color: #DDDBDD;
+  color: #DDDBDD;
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.skeleton-profile-img {
+  width: 150px;
+  height: 150px;
+}
+
+.skeleton-title {
+  padding-top: 4px;
+  display: inline-block;
+  margin: 5px auto;
+}
+
+.skeleton-padded {
+  padding-top: 20px;
+  margin-right: 20px;
+}
+
+.skeleton-margin {
+  margin-bottom: 80px;
+}
+
+.author__skeleton--container {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.taller-skeleton {
+  height: 350px;
+}
+
+.nft__price-skeleton {
+  margin-top: -6px;
+}
+
+.nft__likes-skeleton {
+  margin-top: 20px;
+  padding: 0
+}
+
+.skeleton__explore {
+  height: 420px;
+}
+
+.skeleton-authorname {
+  padding: 0px;
+  margin: 0;
+}
+
+.skeleton-tag {
+  font-size: .6em;
+  margin: 4px 0;
+}
+
+.skeleton-thinner {
+  margin-top: 4px;
+  font-size: .90em;
+  padding-right: 18px;
+}
+
+
+#items__carousel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#items__carousel .item-container {
+  width: 25%;
+}
+
+.top__seller--title {
+  padding-top: 0;
+  margin-bottom: -5px;
+}
+
+.skeleton__profilepic {
+  position: static;
+  margin-top: -15px;
+}
+
+.item_author .skeleton-title {
+  margin-left: 70px;
+  margin-top: -40px;
+  width: 120px;
+  height: 20px;
+}
+
+.nft-item-price .skeleton-title {
+  height: 20px;
+}
+
+.skeleton-margin {
+  margin-left: 10px;
+}
+
+/* Skeleton Carousel Responsiveness */
+#items__carousel {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
+#items__carousel .item-container {
+  width: 100%;
+  display: none;
+  padding: 10px;
+}
+
+#items__carousel .item-container:nth-child(1) {
+  display: block; 
+}
+
+@media (min-width: 480px) {
+  #items__carousel .item-container {
+    width: 50%; 
+  }
+  #items__carousel .item-container:nth-child(-n+2) {
+    display: block; 
+  }
+}
+
+@media (min-width: 850px) {
+  #items__carousel .item-container {
+    width: 33.33%;
+  }
+  #items__carousel .item-container:nth-child(-n+3) {
+    display: block; 
+  }
+}
+
+@media (min-width: 1150px) {
+  #items__carousel .item-container {
+    width: 25%; 
+  }
+  #items__carousel .item-container:nth-child(-n+4) {
+    display: block; 
+  }
+}
+
+/* Skeleton Shimmer animation effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.icon-shimmer {
+  height: 30px;
+}
+
+.icon-shimmer,
+.skeleton, 
+.skeleton-wrap,
+.skeleton-img,
+.skeleton-title {
+  position: relative;
+  overflow: hidden;
+  background-color: #DEDCDC;
+}
+
+.icon-shimmer::after,
+.skeleton::after,
+.skeleton-wrap::after,
+.skeleton-img::after,
+.skeleton-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsla(0, 0%, 100%, 0.2) 20%,
+    hsla(0, 0%, 100%, 0.5) 60%,
+    hsla(0, 0%, 100%, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
