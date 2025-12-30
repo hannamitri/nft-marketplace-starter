@@ -16714,3 +16714,35 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+/* Hot Collections Slider Arrows */
+.hot-collections-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.hot-collections-arrow-next {
+  right: -25px;
+}
+
+.hot-collections-arrow-prev {
+  left: -25px;
+}
+
+.hot-collections-arrow i {
+  color: #555;
+  font-size: 14px;
+  margin: 0 auto;
+}

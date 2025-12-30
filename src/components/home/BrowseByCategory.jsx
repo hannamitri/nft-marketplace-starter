@@ -5,7 +5,17 @@ const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
       <div className="container">
-        <div className="row">
+        <div
+          data-aos="fade-up"
+          data-aos-offset="50"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="true"
+          data-aos-anchor-placement="top-center"
+          className="row"
+        >
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Browse by category</h2>

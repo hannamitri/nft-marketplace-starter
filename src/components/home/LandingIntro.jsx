@@ -4,7 +4,17 @@ const LandingIntro = () => {
   return (
     <section id="section-intro" className="no-top no-bottom">
       <div className="container">
-        <div className="row">
+        <div
+          data-aos="fade-up"
+          data-aos-offset="50"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="true"
+          data-aos-anchor-placement="top-center"
+          className="row"
+        >
           <div className="col-lg-4 col-md-6 mb-sm-30">
             <div className="feature-box f-boxed style-3">
               <i className="bg-color-2 i-boxed icon_wallet"></i>
