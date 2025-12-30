@@ -1,61 +1,94 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import NftItem from "../UI/NftItem";
 
-const AuthorItems = () => {
+const AuthorItems = ({ authorId, authorImage, nftCollection }) => {
+  const [authorItems, setAuthorItems] = useState([]);
+  const [countdowns, setCountdowns] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (nftCollection) {
+      // Use passed nftCollection if available
+      const itemsWithAuthorImage = nftCollection.map((item) => ({
+        ...item,
+        authorImage: authorImage || item.authorImage,
+        authorId: authorId || item.authorId,
+      }));
+      setAuthorItems(itemsWithAuthorImage);
+      setLoading(false);
+    } else if (authorId) {
+      // Fallback to fetching if nftCollection not passed
+      const fetchAuthorItems = async () => {
+        try {
+          setLoading(true);
+          const response = await axios.get(
+            `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+          );
+          const items = response.data.nftCollection || [];
+          const itemsWithAuthorImage = items.map((item) => ({
+            ...item,
+            authorImage: response.data.authorImage || item.authorImage,
+            authorId: authorId || item.authorId,
+          }));
+          setAuthorItems(itemsWithAuthorImage);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching author items:", error);
+          setLoading(false);
+        }
+      };
+
+      fetchAuthorItems();
+    }
+  }, [authorId, authorImage, nftCollection]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newCountdowns = {};
+      authorItems.forEach((item) => {
+        const now = Date.now();
+        const timeLeft = item.expiryDate - now;
+
+        if (timeLeft > 0) {
+          const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+          const minutes = Math.floor(
+            (timeLeft % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+          newCountdowns[item.nftId] = `${hours}h ${minutes}m ${seconds}s`;
+        } else {
+          newCountdowns[item.nftId] = "Expired";
+        }
+      });
+      setCountdowns(newCountdowns);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [authorItems]);
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-          {new Array(8).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
+          {loading
+            ? new Array(8).fill(0).map((_, index) => (
+                <div
+                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                  key={index}
+                >
+                  <div>Loading...</div>
                 </div>
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
+              ))
+            : authorItems.map((item) => (
+                <div
+                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                  key={item.nftId}
+                >
+                  <NftItem item={item} countdown={countdowns[item.nftId]} />
                 </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">2.52 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>97</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+              ))}
         </div>
       </div>
     </div>
