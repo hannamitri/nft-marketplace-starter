@@ -4,6 +4,9 @@ import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+
+  //FROM MAIN!!! DO NOT REMOVE
+
   return (
     <section
       id="section-hero"
