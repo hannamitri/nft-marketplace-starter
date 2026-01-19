@@ -1,11 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const fetchExploreItems = async () => {
+      try {
+        setLoading(true);
+        const url = filter
+          ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+          : 'https://us-central1-nft-cloud-functions.cloudfunctions.net/explore';
+        const response = await axios.get(url);
+        setItems(response.data || []);
+      } catch (error) {
+        console.error("Error fetching explore items:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExploreItems();
+  }, [filter]);
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
 
   return (
     <div id="wrapper">
@@ -32,7 +60,7 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems />
+              <ExploreItems items={items} loading={loading} filter={filter} onFilterChange={handleFilterChange} />
             </div>
           </div>
         </section>

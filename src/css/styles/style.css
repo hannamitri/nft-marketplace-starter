@@ -12707,6 +12707,7 @@ a.read_more i {
 .switch {
   margin-bottom: -5px;
   -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -15145,7 +15146,6 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16713,66 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+/* ================================================== */
+/* Skeleton Loading Shimmer Effect */
+/* ================================================== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0px,
+    #e0e0e0 40px,
+    #f0f0f0 80px
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-title {
+  width: 80%;
+  height: 20px;
+  margin-top: 16px;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  width: 60%;
+  height: 16px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+/* ================================================== */
+/* Hot Collections Slider Spacing */
+/* ================================================== */
+
+.section-collections .slick-slide {
+  padding: 0 5px;
+}
+
+.section-collections .slick-slide > div {
+  height: 100%;
 }

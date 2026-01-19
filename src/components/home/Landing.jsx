@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import the AOS CSS file
 
 const Landing = () => {
+  useEffect(() => {
+  AOS.init({
+      duration: 1000, // Global animation duration
+      once: false,    // Whether animation should happen only once - while scrolling down
+    });
+    // AOS.refresh() can be called here if you are dynamically loading content
+  }, []); // Empty dependency array ensures this runs once when the component mounts
   return (
     <section
       id="section-hero"
       aria-label="section"
-      className="no-top no-bottom vh-100"
+      className="no-top no-bottom vh-100" 
+      data-aos="fade-in"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
     >
       <div className="v-center">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6">
+            <div className="col-md-6" data-aos="fade-up">
               <div className="spacer-single"></div>
               <h6>
                 <span className="text-uppercase id-color-2">
