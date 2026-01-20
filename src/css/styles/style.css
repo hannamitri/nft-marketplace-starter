@@ -13628,6 +13628,7 @@ a.read_more i {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
+  margin: 0 5px;
   background: #ffffff;
 }
 
