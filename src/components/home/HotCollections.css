@@ -1,0 +1,13 @@
+.nft_wrap {
+    padding: 0 5px;
+    border-radius: 10px;
+}
+
+.nft_coll_info {
+    text-align: center;
+}
+
+
+.slick-prev:before, .slick-next:before {
+    color: purple;
+}
