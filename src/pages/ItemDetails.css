@@ -1,0 +1,58 @@
+.ids-skel-img {
+  width: 100%;
+  max-width: 520px;
+  height: 420px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ids-skel-title {
+  height: 32px;
+  width: 70%;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.07);
+  margin-bottom: 16px;
+}
+
+.ids-skel-pill {
+  height: 22px;
+  width: 90px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.07);
+  margin-right: 12px;
+}
+
+.ids-skel-line {
+  height: 14px;
+  width: 100%;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.07);
+  margin: 10px 0;
+}
+
+.ids-skel-line.short {
+  width: 70%;
+}
+
+.ids-skel-subtitle {
+  height: 14px;
+  width: 90px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.07);
+  margin-bottom: 10px;
+}
+
+.ids-skel-author {
+  height: 42px;
+  width: 220px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ids-skel-price {
+  height: 44px;
+  width: 140px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.07);
+}

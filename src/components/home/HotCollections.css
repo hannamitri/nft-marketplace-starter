@@ -1,0 +1,63 @@
+.hot-collections-carousel {
+  position: relative;
+}
+
+.hc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Left/right placement */
+.hc-arrow--left {
+  left: -18px; 
+}
+
+.hc-arrow--right {
+  right: -18px; 
+}
+
+
+.hc-arrow:hover {
+  border-color: #bbb;
+}
+
+.hot-collections-skeleton{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.hc-skel-card{
+  height: 260px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.06);
+}
+
+@media (max-width: 1200px){
+  .hot-collections-skeleton{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 992px){
+  .hot-collections-skeleton{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 576px){
+  .hot-collections-skeleton{ grid-template-columns: repeat(1, 1fr); }
+}
