@@ -10,3 +10,82 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* Force arrows to appear */
+.slick-prev,
+.slick-next {
+  display: block !important;
+  z-index: 9999 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 40px !important;
+  color: #000 !important; /* try white if background is dark */
+  opacity: 1 !important;
+}
+
+.slick-slide {
+  padding: 6px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 35px;
+  color: #fff;
+}
+
+.slick-track {
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+
+.shadow-arrow {
+  width: 50px !important;
+  height: 50px !important;
+  z-index: 9999 !important;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
+  box-shadow: 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.shadow-arrow:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.7);
+}
+
+.shadow-arrow-left:before {
+  content: "◀";
+  color: white;
+  font-size: 28px;
+  position: relative;
+  left: 16px;
+  top: 10px;
+}
+
+.shadow-arrow-right:before {
+  content: "▶";
+  color: white;
+  font-size: 28px;
+  position: relative;
+  left: 18px;
+  top: 10px;
+}
+
+@media (max-width: 768px) {
+  .slick-slide {
+    padding: 10px;
+  }
+}
+
+.slick-slide {
+  padding: 0 8px;
+}
+
+.slick-list {
+  margin: 0 -8px;
+}
