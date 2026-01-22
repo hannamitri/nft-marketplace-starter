@@ -1,99 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 
-const HeaderExplore = () => {
+const HeaderExplore = ({
+  onSearch,
+  onCategoryChange,
+  onBuyTypeChange,
+  onItemTypeChange,
+}) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
   return (
     <div className="col-lg-12">
       <div className="items_filter">
-        <form
-          action="blank.php"
-          className="row form-dark"
-          id="form_quick_search"
-          method="post"
-          name="form_quick_search"
-        >
+
+        {/* SEARCH BAR */}
+        <form className="row form-dark" onSubmit={handleSearchSubmit}>
           <div className="col text-center">
             <input
               className="form-control"
-              id="name_1"
-              name="name_1"
               placeholder="search item here..."
               type="text"
-            />{" "}
-            <a href="#" id="btn-submit">
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            <button type="submit" id="btn-submit">
               <i className="fa fa-search bg-color-secondary"></i>
-            </a>
+            </button>
+
             <div className="clearfix"></div>
           </div>
         </form>
 
+        {/* CATEGORY DROPDOWN */}
         <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
-            All categories
-          </a>
+          <button className="btn-selector">All categories</button>
           <ul>
-            <li className="active">
-              <span>All categories</span>
-            </li>
-            <li>
-              <span>Art</span>
-            </li>
-            <li>
-              <span>Music</span>
-            </li>
-            <li>
-              <span>Domain Names</span>
-            </li>
-            <li>
-              <span>Virtual World</span>
-            </li>
-            <li>
-              <span>Trading Cards</span>
-            </li>
-            <li>
-              <span>Collectibles</span>
-            </li>
-            <li>
-              <span>Sports</span>
-            </li>
-            <li>
-              <span>Utility</span>
-            </li>
+            {[
+              "All categories",
+              "Art",
+              "Music",
+              "Domain Names",
+              "Virtual World",
+              "Trading Cards",
+              "Collectibles",
+              "Sports",
+              "Utility",
+            ].map((cat) => (
+              <li key={cat} onClick={() => onCategoryChange(cat)}>
+                <span>{cat}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* BUY TYPE DROPDOWN */}
         <div id="buy_category" className="dropdown">
-          <a href="#" className="btn-selector">
-            Buy Now
-          </a>
+          <button className="btn-selector">Buy Type</button>
           <ul>
-            <li className="active">
-              <span>Buy Now</span>
-            </li>
-            <li>
-              <span>On Auction</span>
-            </li>
-            <li>
-              <span>Has Offers</span>
-            </li>
+            {["Buy Now", "On Auction", "Has Offers"].map((type) => (
+              <li key={type} onClick={() => onBuyTypeChange(type)}>
+                <span>{type}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
+        {/* ITEM TYPE DROPDOWN */}
         <div id="items_type" className="dropdown">
-          <a href="#" className="btn-selector">
-            All Items
-          </a>
+          <button className="btn-selector">All Items</button>
           <ul>
-            <li className="active">
-              <span>All Items</span>
-            </li>
-            <li>
-              <span>Single Items</span>
-            </li>
-            <li>
-              <span>Bundles</span>
-            </li>
+            {["All Items", "Single Items", "Bundles"].map((type) => (
+              <li key={type} onClick={() => onItemTypeChange(type)}>
+                <span>{type}</span>
+              </li>
+            ))}
           </ul>
         </div>
+
       </div>
     </div>
   );
