@@ -4,6 +4,43 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const HotCollections = () => {
+  const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
+
+  const fetchHotCollections = async () => {
+    setLoading(true);
+    setFetchError(false);
+    try {
+      const response = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+      );
+      setCollections(response.data || []);
+      if (!response.data || response.data.length === 0) setFetchError(true);
+    } catch (error) {
+      console.error("Error fetching hot collections:", error);
+      setFetchError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHotCollections();
+  }, []);
+
+  const options = {
+    loop: true,
+    margin: 30,
+    nav: true,
+    dots: false,
+    responsive: {
+      0: { items: 1 },
+      768: { items: 2 },
+      1024: { items: 4 }
+    }
+  };
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -38,6 +75,15 @@ const HotCollections = () => {
             </div>
           ))}
         </div>
+
+        {fetchError && !loading && (
+          <div style={{ textAlign: 'center', padding: '12px', color: 'var(--text-muted, #6c757d)' }}>
+            Hot Collections are unavailable right now.
+            <div style={{ marginTop: 8 }}>
+              <button className="btn-main" onClick={fetchHotCollections}>Retry</button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
