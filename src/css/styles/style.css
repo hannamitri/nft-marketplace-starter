@@ -13206,7 +13206,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  max-height: 200px;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
@@ -15437,6 +15437,46 @@ img {
   }
 }
 
+.slider-container {
+  position: relative;
+}
+
+.row_carousel {
+  max-height: 500px;
+  height: 100%;
+}
+
+.carousel-btn {
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  z-index: 1;
+  top: 40%;
+  background-color: #ffffff;
+  transition: all 300ms ease;
+
+}
+
+.chevronLeft {
+  left: 0%;
+}
+
+.chevronRight {
+  right: 0%;
+}
+
+.carousel-btn:hover {
+  cursor: pointer;
+  scale: 1.1;
+  box-shadow: 0 0 40px 5px lightgray;
+}
+
+.row_newItems {
+  height: 100%;
+}
+
 /* ================================================== */
 
 /* R E S P O N S I V E */
@@ -15462,6 +15502,26 @@ img {
     min-width: 95%;
   }
 }
+
+/* -------------------------------------------------- 
+    design for 980px - 992px
+    /* ================================================== */
+
+@media (min-width: 980px) and (max-width: 992px) {
+  .nft__item_wrap {
+    height: 460px;
+  }
+}
+
+/* -------------------------------------------------- 
+    design for 768px - 979px
+    /* ================================================== */
+
+    @media (max-width: 767px) {
+      .nft__item_wrap {
+        height: 480px;
+      }
+    }
 
 /* -------------------------------------------------- 
     design for 768px
@@ -16685,6 +16745,19 @@ img {
   100% {
     transform: translateX(100%);
   }
+}
+
+.author-image-placeholder {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background-color: #dddbdd;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
 }
 
 .nft-image {
