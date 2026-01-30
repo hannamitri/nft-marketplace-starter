@@ -12,7 +12,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div id="wrapper">
+    <div id="wrapper" data-aos="fade-in" data-aos-duration="1000">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <Landing />
