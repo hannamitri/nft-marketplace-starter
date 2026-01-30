@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "../api/axios";
+import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const [author, setAuthor] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAuthor() {
+      try {
+        setLoading(true);
+        const [response] = await Promise.all([
+          axios.get(`/authors?authorId=${authorId}`),
+          new Promise((resolve) => setTimeout(resolve, 3000)),
+        ]);
+        setAuthor(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    }
+    fetchAuthor();
+  }, [authorId]);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +48,37 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      {loading ? (
+                        <Skeleton
+                          width="150px"
+                          height="150px"
+                          borderRadius="50%"
+                        />
+                      ) : (
+                        <img src={author.authorImage} alt="" />
+                      )}
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {loading ? (
+                            <Skeleton width="200px" height="30px" />
+                          ) : (
+                            author.authorName
+                          )}
+                          <span className="profile_username">
+                            {loading ? (
+                              <Skeleton width="100px" height="20px" />
+                            ) : (
+                              `@${author.tag}`
+                            )}
+                          </span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {loading ? (
+                              <Skeleton width="250px" height="20px" />
+                            ) : (
+                              author.address
+                            )}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,7 +89,13 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">
+                        {loading ? (
+                          <Skeleton width="150px" height="40px" />
+                        ) : (
+                          `${author.followers} followers`
+                        )}
+                      </div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -55,7 +106,11 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems
+                    items={author.nftCollection}
+                    loading={loading}
+                    author={author}
+                  />
                 </div>
               </div>
             </div>
