@@ -1,0 +1,81 @@
+.hc-skel {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+.hc-skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  animation: hcShimmer 1.15s infinite;
+}
+
+@keyframes hcShimmer {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+
+.hc-skel-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.hc-skel-card .nft_wrap {
+  position: relative;
+}
+
+.hc-skel-card .hc-skel-img {
+  width: 100%;
+  height: 120px;              
+  border-radius: 0;           
+}
+
+.hc-skel-card .nft_coll_pp {
+  position: relative;
+  height: 0;                  
+  text-align: center;         
+}
+
+.hc-skel-card .hc-skel-avatar {
+  width: 56px;                
+  height: 56px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: -28px;                 
+  transform: translateX(-50%);
+  border: 3px solid #fff;     
+}
+
+.hc-skel-card .nft_coll_info {
+  text-align: center;
+  padding-top: 44px;         
+  padding-bottom: 18px;
+}
+
+.hc-skel-card .hc-skel-title {
+  height: 16px;
+  width: 60%;
+  margin: 0 auto;             
+  border-radius: 6px;
+}
+
+.hc-skel-card .hc-skel-sub {
+  height: 12px;
+  width: 38%;
+  margin: 10px auto 0;       
+  border-radius: 6px;
+}

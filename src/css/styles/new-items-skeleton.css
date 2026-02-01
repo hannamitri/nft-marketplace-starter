@@ -1,0 +1,92 @@
+/* ===== Skeleton Base ===== */
+.ni-skel {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ni-skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: ni-shimmer 1.2s infinite;
+}
+
+@keyframes ni-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ni-skel-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.ni-skel-countdown {
+  width: 110px;
+  height: 28px;
+  border-radius: 999px;
+  margin-left: auto;
+  margin-top: -10px;
+}
+
+
+.ni-skel-img {
+  width: 100%;
+  height: 240px; /* match your nft image height */
+  border-radius: 16px;
+}
+
+
+.ni-skel-title {
+  width: 60%;
+  height: 16px;
+  border-radius: 8px;
+  margin-top: 14px;
+}
+
+.ni-skel-price {
+  width: 35%;
+  height: 14px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+
+.ni-skel-like-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ni-skel-heart {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+}
+
+.ni-skel-likes {
+  width: 36px;
+  height: 14px;
+  border-radius: 8px;
+}
+
+
+.nft__item .ni-skel-avatar {
+  margin-bottom: 10px;
+}
+
+.nft__item_wrap .ni-skel-img {
+  margin-bottom: 12px;
+}
