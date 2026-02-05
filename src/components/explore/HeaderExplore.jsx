@@ -2,7 +2,7 @@ import React from "react";
 
 const HeaderExplore = () => {
   return (
-    <div className="col-lg-12">
+    <div className="col-lg-12" data-aos="fadeInUp">
       <div className="items_filter">
         <form
           action="blank.php"

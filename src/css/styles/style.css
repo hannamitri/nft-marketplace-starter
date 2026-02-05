@@ -13611,6 +13611,21 @@ a.read_more i {
   margin-bottom: 15px;
 }
 
+.item_views_likes {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.dark-scheme .item_views_likes {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .item_author .author_list_pp {
   margin-left: 0;
 }
