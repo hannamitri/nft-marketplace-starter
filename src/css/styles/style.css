@@ -33,6 +33,7 @@ html {
   padding: 0;
   margin: 0;
   background: #fff;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -1208,6 +1209,99 @@ header.header-mobile.header-light #menu-btn {
 
 .dark-scheme #content {
   background: #161d30;
+}
+
+
+/* ================================================== */
+
+/* carousel */
+
+/* ================================================== */
+
+.carousel-wrapper {
+  position: relative;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: white;
+  color: black;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+/* ================================================== */
+
+/* new items */
+
+/* ================================================== */
+
+
+.carousel-wrapper {
+  position: relative;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: white;
+  color: black;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: 0.3s ease;
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
 }
 
 /* ================================================== */
