@@ -7,6 +7,9 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
 function App() {
+
+  //added to trigger PR
+
   return (
     <Router>
       <Nav />

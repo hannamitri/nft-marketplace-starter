@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import Skeleton from '../components/UI/Skeleton.jsx'
 
-const ItemDetails = () => {
+
+const ItemDetails = ({ collections, setCollections, loading, setLoading }) => {
+
+  const id  = useParams()
+  const collection = collections.find((collection) => collection.nftId === id);
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,11 +24,13 @@ const ItemDetails = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6 text-center">
-                <img
-                  src={nftImage}
+                {loading ? 
+                  <Skeleton width="100%" height="200px" borderRadius="8px" />
+                : <img
+                  src={collection.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
-                />
+                />}
               </div>
               <div className="col-md-6">
                 <div className="item_info">
