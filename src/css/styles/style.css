@@ -578,6 +578,13 @@ header .header-col.mid .social-icons {
   position: relative;
 }
 
+.flex {
+  margin-top: 20px;
+}
+
+.expired {
+  display: none;
+}
 /* #mainmenu li.has-child:after {
     font-family: FontAwesome;
     content: "\f078";
@@ -13225,6 +13232,13 @@ a.read_more i {
   padding-bottom: 10px;
 }
 
+.nft_coll_info-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .nft_coll h4 {
   font-size: 16px;
   margin-bottom: 0px;
@@ -15145,7 +15159,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16658,6 +16672,7 @@ img {
   background-color: #dddbdd;
 }
 
+
 .skeleton-box::after {
   position: absolute;
   top: 0;
@@ -16675,6 +16690,12 @@ img {
   -webkit-animation: shimmer 2s infinite;
   animation: shimmer 2s infinite;
   content: "";
+}
+
+.loading__img {
+  position: relative;
+  width: 360px;
+  height: 203px;
 }
 @-webkit-keyframes shimmer {
   100% {
