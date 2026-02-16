@@ -9,6 +9,7 @@
     "aos": "^2.3.4",
     "axios": "^1.13.5",
     "bootstrap": "^5.3.8",
+    "countdown": "^2.6.0",
     "firebase": "^9.8.4",
     "jquery": "^4.0.0",
     "react": "^17.0.2",
