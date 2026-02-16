@@ -14,7 +14,7 @@ const Countdown = ({ expiryDate }) => {
   if (timeLeft <= 0) {
     return <span>Expired</span>;
   }
-
+// Calculate days, hours, minutes, and seconds
   const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
