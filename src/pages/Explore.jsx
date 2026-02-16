@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Explore = () => {
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+  AOS.init({
+    once: true,
+  });
+}, []);
 
   return (
     <div id="wrapper">
@@ -31,7 +40,7 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
+            <div className="row" data-aos="fade-down" data-aos-easing="ease-in-out" data-aos-duration="500">
               <ExploreItems />
             </div>
           </div>
