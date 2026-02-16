@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Countdown from "./Countdown"; // Adjust the import based on your file structure
+import Countdown from "./Countdown"; 
 import Skeleton from "../UI/Skeleton";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
