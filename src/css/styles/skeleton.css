@@ -1,0 +1,69 @@
+/* ================= SKELETON SHIMMER ================= */
+
+.skeleton-box {
+  background-color: #dddbdd;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.skeleton-box::after {
+  animation: shimmer 2s infinite;
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.2) 20%,
+    hsla(0, 0%, 100%, 0.5) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ================= HORIZONTAL LOADING STRIP ================= */
+
+.skeleton-strip {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+
+/* match owl carousel breakpoints (1/2/3/4 across) */
+.skeleton-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 576px) {
+  .skeleton-slide {
+    flex-basis: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .skeleton-slide {
+    flex-basis: 33.3333%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .skeleton-slide {
+    flex-basis: 25%;
+  }
+}
+

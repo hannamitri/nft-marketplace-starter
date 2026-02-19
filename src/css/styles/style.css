@@ -10130,7 +10130,9 @@ i.bg-color-secondary {
 }
 
 .soft-shadow {
-  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 5%), 0 1.5rem 2.2rem rgb(0 0 0 / 10%);
+  box-shadow:
+    0 0.25rem 0.5rem rgb(0 0 0 / 5%),
+    0 1.5rem 2.2rem rgb(0 0 0 / 10%);
 }
 
 .tooltip-inner {
@@ -10160,7 +10162,9 @@ i.bg-color-secondary {
 .tooltip.bs-tooltip-bottom .tooltip-arrow::before,
 .tooltip.bs-tooltip-start .tooltip-arrow::before,
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
-  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 5%), 0 1.5rem 2.2rem rgb(0 0 0 / 10%);
+  box-shadow:
+    0 0.25rem 0.5rem rgb(0 0 0 / 5%),
+    0 1.5rem 2.2rem rgb(0 0 0 / 10%);
 }
 
 #item-carousel-big {
@@ -12706,13 +12710,14 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
+  appearance: none;
   -webkit-appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
   border-radius: 60px;
   position: relative;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .switch::after {
@@ -13246,7 +13251,7 @@ a.read_more i {
   width: 60px;
   display: block;
   margin: 0 auto;
-  margin-top: -30px;
+  margin-top: -60px;
   margin-bottom: 10px;
   position: relative;
 }
@@ -14408,26 +14413,34 @@ a.read_more i {
 
 @-webkit-keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1em rgba(255, 255, 255, 0.3), 0 0 0 3em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
       0 0 0 5em rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 0 1em rgba(255, 255, 255, 0.3),
-      0 0 0 3em rgba(255, 255, 255, 0.3), 0 0 0 5em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
+      0 0 0 5em rgba(255, 255, 255, 0.3),
       0 0 0 8em rgba(255, 255, 255, 0);
   }
 }
 
 @keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1em rgba(255, 255, 255, 0.3), 0 0 0 3em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
       0 0 0 5em rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 0 1em rgba(255, 255, 255, 0.3),
-      0 0 0 3em rgba(255, 255, 255, 0.3), 0 0 0 5em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
+      0 0 0 5em rgba(255, 255, 255, 0.3),
       0 0 0 8em rgba(255, 255, 255, 0);
   }
 }
@@ -15145,7 +15158,6 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16725,10 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+/* =============  testing ??? =============== */
+
+body {
+  outline: 10px solid lime !important;
 }
