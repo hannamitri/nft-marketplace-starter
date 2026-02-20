@@ -1,0 +1,38 @@
+.skeleton-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite ease-in-out;
+    margin: auto;
+  }
+  
+  .skeleton-line {
+    height: 16px;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin: 6px 0;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .skeleton-line.short {
+    width: 80px;
+  }
+  
+  .skeleton-line.thin {
+    width: 50px;
+    height: 12px;
+  }
+  
+  @keyframes pulse {
+    0% {
+      background-color: #eee;
+    }
+    50% {
+      background-color: #e0e0e0;
+    }
+    100% {
+      background-color: #eee;
+    }
+  }
+  
