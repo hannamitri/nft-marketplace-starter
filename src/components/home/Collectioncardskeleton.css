@@ -1,0 +1,119 @@
+.collection-card-skeleton {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Skeleton Image */
+.skeleton-image {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e8e8e8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Skeleton Info Container */
+.skeleton-info {
+  padding: 20px;
+  padding-top: 40px;
+  position: relative;
+}
+
+/* Skeleton Avatar */
+.skeleton-avatar {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e8e8e8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Skeleton Title */
+.skeleton-title {
+  height: 20px;
+  width: 70%;
+  margin: 0 auto 12px auto;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e8e8e8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Skeleton Code */
+.skeleton-code {
+  height: 16px;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e8e8e8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  animation-delay: 0.1s;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skeleton-image {
+    height: 240px;
+  }
+
+  .skeleton-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .skeleton-info {
+    padding: 16px;
+    padding-top: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-image {
+    height: 220px;
+  }
+
+  .skeleton-avatar {
+    width: 45px;
+    height: 45px;
+  }
+}

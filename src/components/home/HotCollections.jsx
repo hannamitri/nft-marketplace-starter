@@ -1,43 +1,109 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React from 'react';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
+import { useHotCollections } from '../../hooks/useHotCollections';
+import CollectionsCard from './CollectionsCard';
+import './HotCollections.css';
+
 
 const HotCollections = () => {
-  return (
-    <section id="section-collections" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
-            </div>
-          ))}
+  const { collections, loading, error } = useHotCollections();
+
+  const [sliderRef, instanceRef] = useKeenSlider({
+    initial: 0,
+    loop: true,
+    slides: {
+      perView: 4,
+      spacing: 20,
+    },
+    breakpoints: {
+      '(max-width: 1024px)': {
+        slides: { perView: 3, spacing: 15 },
+      },
+      '(max-width: 768px)': {
+        slides: { perView: 2, spacing: 10 },
+      },
+      '(max-width: 480px)': {
+        slides: { perView: 1, spacing: 10 },
+      },
+    },
+  });
+
+  if (loading) {
+    return (
+      <section className="hot-collections">
+        <h2 className="section-title">Hot Collections</h2>
+        <div className="loading-state" role="status" aria-live="polite">
+          <p>Loading collections...</p>
         </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="hot-collections">
+        <h2 className="section-title">Hot Collections</h2>
+        <div className="error-state" role="alert">
+          <p>Error loading collections: {error}</p>
+          <button onClick={() => window.location.reload()}>Retry</button>
+        </div>
+      </section>
+    );
+  }
+
+  if (collections.length === 0) {
+    return (
+      <section className="hot-collections">
+        <h2 className="section-title">Hot Collections</h2>
+        <div className="empty-state">
+          <p>No collections available at this time.</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="hot-collections">
+      <h2 className="section-title">Hot Collections</h2>
+
+      <div className="carousel-wrapper">
+        {/* Left Arrow - Overlapping */}
+        <button
+          onClick={() => instanceRef.current?.prev()}
+          className="carousel-arrow carousel-arrow-left"
+          aria-label="Previous collections"
+        >
+          ←
+        </button>
+
+        {/* Carousel Container */}
+        <div className="carousel-container">
+          <div ref={sliderRef} className="keen-slider">
+            {collections.map((collection) => (
+              <div key={collection.id} className="keen-slider__slide">
+                <CollectionsCard
+                  id={collection.id}
+                  title={collection.title}
+                  nftImage={collection.nftImage}
+                  authorImage={collection.authorImage}
+                  code={collection.code}
+                  authorId={collection.authorId}
+                  nftId={collection.nftId}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Arrow - Overlapping */}
+        <button
+          onClick={() => instanceRef.current?.next()}
+          className="carousel-arrow carousel-arrow-right"
+          aria-label="Next collections"
+        >
+          →
+        </button>
       </div>
     </section>
   );

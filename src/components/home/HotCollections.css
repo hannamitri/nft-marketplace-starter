@@ -1,0 +1,293 @@
+.hot-collections {
+  padding: 80px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 auto 50px auto;
+  color: #1a1a1a;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #8a4fff;
+  border-radius: 2px;
+}
+
+/* Carousel Wrapper - Contains arrows and carousel */
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Overlapping Arrows - Positioned over carousel edges */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ffffff;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-arrow:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Left Arrow - Overlapping left side */
+.carousel-arrow-left {
+  left: -20px;
+}
+
+/* Right Arrow - Overlapping right side */
+.carousel-arrow-right {
+  right: -20px;
+}
+
+/* Carousel Container */
+.carousel-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Keen Slider */
+.keen-slider {
+  overflow: visible !important;
+}
+
+.keen-slider__slide {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* Loading/Error/Empty States */
+.loading-state,
+.error-state,
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.loading-state p,
+.error-state p,
+.empty-state p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.error-state button {
+  padding: 12px 30px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.error-state button:hover {
+  background: #333;
+}
+
+/* Skeleton Grid - For Loading State */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .hot-collections {
+    padding: 60px 30px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .carousel-arrow {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+
+  .carousel-arrow-left {
+    left: -20px;
+  }
+
+  .carousel-arrow-right {
+    right: -20px;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hot-collections {
+    padding: 40px 20px;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 30px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .carousel-arrow-left {
+    left: -20px;
+  }
+
+  .carousel-arrow-right {
+    right: -20px;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hot-collections {
+    padding: 30px 15px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+    border-width: 1.5px;
+  }
+
+  .carousel-arrow-left {
+    left: -20px;
+  }
+
+  .carousel-arrow-right {
+    right: -20px;
+  }
+
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

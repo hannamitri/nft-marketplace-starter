@@ -1,0 +1,27 @@
+.countdown-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  font-family: monospace;
+}
+
+.countdown-timer.expired {
+  color: #999;
+  background: #f5f5f5;
+}
+
+.time-value {
+  font-weight: 700;
+}
+
+.time-separator {
+  color: #999;
+  font-weight: 400;
+}
