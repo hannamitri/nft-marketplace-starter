@@ -31,6 +31,7 @@ const HotCollections = () => {
                 <div className="nft_coll_info">
                   <Link to="/explore">
                     <h4>Pinky Ocean</h4>
+                    <h4>TESTING</h4>
                   </Link>
                   <span>ERC-192</span>
                 </div>
