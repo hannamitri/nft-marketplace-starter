@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import Countdown from "../home/Countdown";
 import axios from "axios";
 import { useEffect } from "react";
@@ -123,13 +121,13 @@ const ExploreItems = () => {
                     <button>Buy Now</button>
                     <div className="nft__item_share">
                       <h4>Share</h4>
-                      <a href="" target="_blank" rel="noreferrer">
+                      <a href="#!" target="_blank" rel="noreferrer">
                         <i className="fa fa-facebook fa-lg"></i>
                       </a>
-                      <a href="" target="_blank" rel="noreferrer">
+                      <a href="#!" target="_blank" rel="noreferrer">
                         <i className="fa fa-twitter fa-lg"></i>
                       </a>
-                      <a href="">
+                      <a href="#!">
                         <i className="fa fa-envelope fa-lg"></i>
                       </a>
                     </div>
@@ -159,7 +157,7 @@ const ExploreItems = () => {
       {visibleCount < data.length && (
         <div className="col-md-12 text-center">
           <a
-            href="#"
+            href="#!"
             id="loadmore"
             className="btn-main lead"
             onClick={handleLoadMore}
