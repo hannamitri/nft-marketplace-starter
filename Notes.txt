@@ -1,0 +1,51 @@
+
+
+When working on a project you never wanted to work on the main branch because it is usually a security risk and it is the production branch
+
+NOTE; when using terminal in VS code when creating a new branch...
+you need to say "git checkout -b <name>"
+when you wanted to SWITCH branches then its 
+"git checkout <name>"
+so for main/master branch it is...
+"git checkout main" or master depending on the name of your main branch
+when you switched then you can pull from that branch with...
+git pull
+when using "git pull" on any branch or main/master then you are pulling changes from everyone that touched the branch
+**Usually when pulling you wanted to pull from most recent or main so you can work on newer features**
+**You want to switch and pull from main usually when working on a new feature**
+
+
+2. Pull Request: when making a pull request add a title and a description
+
+Title: Dynamic Hot Collections Feature
+
+Descrption:
+**Task**
+
+main task of the feature
+
+**Why**(optional for internship)
+Why did you developed this....
+THis is important because other might have a better solution than what you came up with
+
+**How**
+...
+INCLUDES SCREENSHOTS
+Show in screen SCREENSHOTS
+make some boxes and arrows to show what changed
+
+
+3. before you click on Create a Pull request
+you need to check your code and see if there are any console.log or comments or anything that shouldn't be in your code when you chck it in
+4. once done then you can make a pull request is made, you can then have someone check your code by sending them the link
+IE for onboarding...
+https://github.com/jpoon1111/jason-internship/pull/1
+5. You then need to merge Pull request (click on merge pull request)
+what this does is you merge yours with all other deveoes code into main
+
+Title and description, once that is done then you click
+
+6. once you have everything click on "Confirm merge"
+you will see "merged and closed"
+ which means that everything is merged and will be the code that will be pushed to production
+
