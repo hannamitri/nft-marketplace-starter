@@ -26,17 +26,24 @@ const HotCollections = () => {
 
   useEffect(() => {
     async function getData() {
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching hot collections:", error);
-      } finally {
+      setLoading(true);
+
+      const startTime = Date.now();
+
+      const { data } = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+      );
+
+      setData(data);
+
+      // Ensure skeleton shows at least 1 second
+      const elapsedTime = Date.now() - startTime;
+      const minimumLoadTime = 1000; // 1 second
+      const remainingTime = minimumLoadTime - elapsedTime;
+
+      setTimeout(() => {
         setLoading(false);
-      }
+      }, remainingTime > 0 ? remainingTime : 0);
     }
 
     getData();
@@ -45,82 +52,66 @@ const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row" data-aos="fade-up" data-aos-duration="1000">
+        <div className="row">
           <div className="col-lg-12 text-center">
             <h2>Hot Collections</h2>
             <div className="small-border bg-color-2"></div>
 
-            <div className="slider-container mr-10">
-              <OwlCarousel {...settings}>
-                {loading
-                  ? new Array(4).fill(0).map((_, index) => (
-                      <div
-                        className="mx-auto item"
-                        key={index}
-                        style={{ width: "300px" }}
-                      >
-                        <div className="nft_coll">
-                          <div className="nft_wrap">
-                            <Skeleton width={"100%"} height={250} />
-                          </div>
-                          <div className="nft_coll_pp">
-                            <Skeleton
-                              width={60}
-                              height={60}
-                              borderRadius={1000}
+            <OwlCarousel {...settings}>
+              {loading
+                ? new Array(4).fill(0).map((_, index) => (
+                    <div className="mx-auto item" key={index}>
+                      <div className="nft_coll">
+                        <div className="nft_wrap">
+                          <Skeleton width="100%" height="200px" />
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Skeleton
+                            width={60}
+                            height={60}
+                            borderRadius={1000}
+                          />
+                        </div>
+                        <div className="nft_coll_info">
+                          <Skeleton width="40%" height={20} />
+                          <Skeleton width="20%" height={20} />
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                : data.map((elem, index) => (
+                    <div className="mx-auto item" key={index}>
+                      <div className="nft_coll">
+                        <div className="nft_wrap">
+                          <Link to={`/item-details/${elem.nftId}`}>
+                            <img
+                              src={elem.nftImage}
+                              className="img-fluid"
+                              alt=""
                             />
-                            <i className="fa fa-check"></i>
-                          </div>
-                          <div className="nft_coll_info">
-                            <h4>
-                              <Skeleton width={"40%"} height={20} />
-                            </h4>
-                            <span>
-                              <Skeleton width={"20%"} height={20} />
-                            </span>
-                          </div>
+                          </Link>
+                        </div>
+
+                        <div className="nft_coll_pp">
+                          <Link to={`/author/${elem.authorId}`}>
+                            <img
+                              className="pp-coll"
+                              src={elem.authorImage}
+                              alt=""
+                            />
+                          </Link>
+                        </div>
+
+                        <div className="nft_coll_info">
+                          <Link to="/explore">
+                            <h4>{elem.title}</h4>
+                          </Link>
+                          <span>{elem.code}</span>
                         </div>
                       </div>
-                    ))
-                  : data.map((elem, index) => (
-                      <div
-                        className="mx-auto item"
-                        key={index}
-                        style={{ width: "300px" }}
-                      >
-                        <div className="nft_coll">
-                          <div className="nft_wrap">
-                            <Link to={`/item-details/${elem.nftId}`}>
-                              <img
-                                src={elem.nftImage}
-                                className="lazy img-fluid"
-                                alt={elem.title}
-                              />
-                            </Link>
-                          </div>
-
-                          <div className="nft_coll_pp">
-                            <Link to={`/author/${elem.authorId}`}>
-                              <img
-                                className="lazy pp-coll"
-                                src={elem.authorImage}
-                                alt=""
-                              />
-                            </Link>
-                            <i className="fa fa-check"></i>
-                          </div>
-
-                          <div className="nft_coll_info">
-                            <Link to="/explore">
-                              <h4>{elem.title}</h4>
-                            </Link>
-                            <span>{elem.code}</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-              </OwlCarousel>
-            </div>
+                    </div>
+                  ))}
+            </OwlCarousel>
           </div>
         </div>
       </div>
