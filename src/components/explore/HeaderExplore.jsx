@@ -19,79 +19,49 @@ const HeaderExplore = () => {
               placeholder="search item here..."
               type="text"
             />{" "}
-            <a href="#" id="btn-submit">
+            <button type="submit" id="btn-submit" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
               <i className="fa fa-search bg-color-secondary"></i>
-            </a>
+            </button>
             <div className="clearfix"></div>
           </div>
         </form>
 
         <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <button className="btn-selector" style={{ background: "none", border: "none", cursor: "pointer" }}>
             All categories
-          </a>
+          </button>
           <ul>
-            <li className="active">
-              <span>All categories</span>
-            </li>
-            <li>
-              <span>Art</span>
-            </li>
-            <li>
-              <span>Music</span>
-            </li>
-            <li>
-              <span>Domain Names</span>
-            </li>
-            <li>
-              <span>Virtual World</span>
-            </li>
-            <li>
-              <span>Trading Cards</span>
-            </li>
-            <li>
-              <span>Collectibles</span>
-            </li>
-            <li>
-              <span>Sports</span>
-            </li>
-            <li>
-              <span>Utility</span>
-            </li>
+            <li className="active"><span>All categories</span></li>
+            <li><span>Art</span></li>
+            <li><span>Music</span></li>
+            <li><span>Domain Names</span></li>
+            <li><span>Virtual World</span></li>
+            <li><span>Trading Cards</span></li>
+            <li><span>Collectibles</span></li>
+            <li><span>Sports</span></li>
+            <li><span>Utility</span></li>
           </ul>
         </div>
 
         <div id="buy_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <button className="btn-selector" style={{ background: "none", border: "none", cursor: "pointer" }}>
             Buy Now
-          </a>
+          </button>
           <ul>
-            <li className="active">
-              <span>Buy Now</span>
-            </li>
-            <li>
-              <span>On Auction</span>
-            </li>
-            <li>
-              <span>Has Offers</span>
-            </li>
+            <li className="active"><span>Buy Now</span></li>
+            <li><span>On Auction</span></li>
+            <li><span>Has Offers</span></li>
           </ul>
         </div>
 
         <div id="items_type" className="dropdown">
-          <a href="#" className="btn-selector">
+          <button className="btn-selector" style={{ background: "none", border: "none", cursor: "pointer" }}>
             All Items
-          </a>
+          </button>
           <ul>
-            <li className="active">
-              <span>All Items</span>
-            </li>
-            <li>
-              <span>Single Items</span>
-            </li>
-            <li>
-              <span>Bundles</span>
-            </li>
+            <li className="active"><span>All Items</span></li>
+            <li><span>Single Items</span></li>
+            <li><span>Bundles</span></li>
           </ul>
         </div>
       </div>
