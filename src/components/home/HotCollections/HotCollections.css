@@ -1,0 +1,87 @@
+.slider-wrapper {
+  position: relative;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  cursor: pointer;
+}
+
+.slider-btn.prev {
+  font-size: 35px;
+  left: -10px;
+}
+
+.slider-btn.next {
+  font-size: 35px;
+  right: -10px;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e5e7eb 25%,
+    #f3f4f6 37%,
+    #e5e7eb 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  border-radius: 8px;
+}
+
+.skeleton-card {
+  width: 100%;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.skeleton-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
+}
+
+.skeleton-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  margin: -26px auto 0;
+  border: 4px solid white;
+  position: relative;
+  z-index: 2;
+}
+
+.skeleton-title {
+  width: 40%;
+  height: 18px;
+  margin: 16px auto 10px;
+}
+
+.skeleton-text {
+  width: 25%;
+  height: 14px;
+  margin: 0 auto;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
