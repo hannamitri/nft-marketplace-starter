@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import $ from 'jquery';
+import "./css/styles/skeleton.css";
+import "./css/styles/style.css";
+
+// eslint-disable-next-line import/first
+require("owl.carousel");
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>
