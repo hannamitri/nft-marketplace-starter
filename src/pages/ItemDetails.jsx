@@ -4,7 +4,23 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const ItemDetails = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+
+    const handleLoad = () => {
+      AOS.refresh();
+    };
+
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
+  }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -16,15 +32,25 @@ const ItemDetails = () => {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 text-center">
+              <div
+                className="col-md-6 text-center"
+                data-aos="fade-right"
+                data-aos-delay="200"
+              >
                 <img
                   src={nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
+                  data-aos="flip-right"
+                  data-aos-delay="100"
                 />
               </div>
               <div className="col-md-6">
-                <div className="item_info">
+                <div
+                  className="item_info"
+                  data-aos="fade-left"
+                  data-aos-delay="100"
+                >
                   <h2>Rainbow Style #194</h2>
 
                   <div className="item_info_counts">
