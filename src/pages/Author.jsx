@@ -1,10 +1,21 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+  const { id: routeId } = useParams();
+  const [searchParams] = useSearchParams();
+  const authorId = routeId || searchParams.get("id") || "";
+
+  const copy = () => {
+    if (!authorId) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(authorId).catch(() => {});
+    }
+  };
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -26,16 +37,15 @@ const Author = () => {
                   <div className="de-flex-col">
                     <div className="profile_avatar">
                       <img src={AuthorImage} alt="" />
-
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
                           Monica Lucas
                           <span className="profile_username">@monicaaaa</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {authorId}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <button id="btn_copy" title="Copy Text" onClick={copy}>
                             Copy
                           </button>
                         </h4>
@@ -55,7 +65,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems authorId={authorId} />
                 </div>
               </div>
             </div>
