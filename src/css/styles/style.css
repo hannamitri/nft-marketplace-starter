@@ -13293,14 +13293,17 @@ a.read_more i {
   position: absolute;
   display: inline-block;
   width: 50px;
-  height: auto;
+  height: 50px;
   margin-left: 10px;
   z-index: 10;
+  overflow: hidden;
 }
 
 .author_list_pp img {
-  width: 100%;
+  width: 100% !important;
   border-radius: 100% !important;
+  object-fit: cover;
+  display: block;
   -moz-border-radius: 100% !important;
   -webkit-border-radius: 100% !important;
   position: relative;
@@ -15145,7 +15148,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16716,37 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+.slider-wrapper {
+  position: relative;
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.slider-button.left {
+  left: 10px;
+}
+
+.slider-button.right {
+  right: 10px;
+}
+
+.arrow {
+  width: 40px;
+  height: 40px;
+}
+
+.arrow:hover {
+  background-color:  rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
 }
