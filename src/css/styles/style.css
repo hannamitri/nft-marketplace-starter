@@ -13206,6 +13206,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
+    /* height was originally 200px */
   height: 200px;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
