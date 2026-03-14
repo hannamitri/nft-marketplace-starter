@@ -1,8 +1,10 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
+import React from "react"
+
 
 const BrowseByCategory = () => {
-  return (
+   return (
     <section id="section-category" className="no-top">
       <div className="container">
         <div className="row">
@@ -10,6 +12,7 @@ const BrowseByCategory = () => {
             <div className="text-center">
               <h2>Browse by category</h2>
               <div className="small-border bg-color-2"></div>
+              
             </div>
           </div>
           <div className="col-md-2 col-sm-4 col-6 mb-sm-30">
@@ -51,7 +54,9 @@ const BrowseByCategory = () => {
         </div>
       </div>
     </section>
+
   );
 };
+
 
 export default BrowseByCategory;

@@ -5,7 +5,7 @@ const LandingIntro = () => {
     <section id="section-intro" className="no-top no-bottom">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4 col-md-6 mb-sm-30">
+          <div className="col-lg-4 col-md-6 mb-sm-30" data-aos="fade-in">
             <div className="feature-box f-boxed style-3">
               <i className="bg-color-2 i-boxed icon_wallet"></i>
               <div className="text">
@@ -15,7 +15,7 @@ const LandingIntro = () => {
                   accusantium doloremque laudantium, totam rem.
                 </p>
               </div>
-              <i className="wm icon_wallet"></i>
+              <i className="wm icon_wallet" data-aos="fade-in"></i>
             </div>
           </div>
           <div className="col-lg-4 col-md-6 mb-sm-30">
@@ -51,3 +51,4 @@ const LandingIntro = () => {
 };
 
 export default LandingIntro;
+
