@@ -11,10 +11,18 @@ const ItemDetails = () => {
 
     const fetchItem = async () => {
       try {
-        const url =
-          type === "new"
-            ? "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
-            : "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
+        let url = "";
+
+        if (type === "new") {
+          url =
+            "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
+        } else if (type === "explore") {
+          url =
+            "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+        } else {
+          url =
+            "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
+        }
 
         const response = await fetch(url);
         const data = await response.json();
@@ -39,26 +47,60 @@ const ItemDetails = () => {
   const detailNumber =
     type === "new"
       ? [173, 495, 942, 129, 334, 221, 567][item.id - 1] || item.id
-      : [194, 661, 164, 112, 68, 316][item.id - 1] || item.id;
+      : type === "hot"
+      ? [194, 661, 164, 112, 68, 316][item.id - 1] || item.id
+      : item.id;
 
   const ownerName =
     type === "new"
-      ? ["Monica Lucas", "Kayla Brown", "Steven Doe", "Chris Cole", "Mia Lopez", "Anna Smith", "Leo Park"][item.id - 1] ||
-        "Collection Owner"
-      : ["Monica Lucas", "Gayle Hicks", "Jimmy Wright", "Anna Smith", "Chris Cole", "Mia Lopez"][item.id - 1] ||
-        "Collection Owner";
+      ? [
+          "Monica Lucas",
+          "Kayla Brown",
+          "Steven Doe",
+          "Chris Cole",
+          "Mia Lopez",
+          "Anna Smith",
+          "Leo Park",
+        ][item.id - 1] || "Collection Owner"
+      : type === "hot"
+      ? [
+          "Monica Lucas",
+          "Gayle Hicks",
+          "Jimmy Wright",
+          "Anna Smith",
+          "Chris Cole",
+          "Mia Lopez",
+        ][item.id - 1] || "Collection Owner"
+      : item.title;
 
   const creatorName =
     type === "new"
-      ? ["Nicholas Daniels", "Jimmy Wright", "Gayle Hicks", "Chris Cole", "Mia Lopez", "Anna Smith", "Leo Park"][item.id - 1] ||
-        "Collection Creator"
-      : ["Monica Lucas", "Jimmy Wright", "Gayle Hicks", "Anna Smith", "Chris Cole", "Mia Lopez"][item.id - 1] ||
-        "Collection Creator";
+      ? [
+          "Nicholas Daniels",
+          "Jimmy Wright",
+          "Gayle Hicks",
+          "Chris Cole",
+          "Mia Lopez",
+          "Anna Smith",
+          "Leo Park",
+        ][item.id - 1] || "Collection Creator"
+      : type === "hot"
+      ? [
+          "Monica Lucas",
+          "Jimmy Wright",
+          "Gayle Hicks",
+          "Anna Smith",
+          "Chris Cole",
+          "Mia Lopez",
+        ][item.id - 1] || "Collection Creator"
+      : item.title;
 
   const views =
     type === "new"
       ? [450, 120, 886, 310, 220, 540, 199][item.id - 1] || 100
-      : [100, 886, 452, 321, 210, 543][item.id - 1] || 100;
+      : type === "hot"
+      ? [100, 886, 452, 321, 210, 543][item.id - 1] || 100
+      : (item.likes || 70) + 30;
 
   const likes = item.likes || 74;
   const price = item.price || "1.85";
