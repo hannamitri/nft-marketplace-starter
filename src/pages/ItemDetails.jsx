@@ -3,49 +3,65 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 
 const ItemDetails = () => {
-  const { id } = useParams();
+  const { type, id } = useParams();
   const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const fetchItem = async () => {
       try {
-        const response = await fetch(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-        );
+        const url =
+          type === "new"
+            ? "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+            : "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
+
+        const response = await fetch(url);
         const data = await response.json();
 
         const selectedItem = data.find(
-          (collection) => String(collection.id) === String(id)
+          (item) => String(item.id) === String(id)
         );
 
         setItem(selectedItem || null);
       } catch (error) {
         console.log("DETAIL PAGE ERROR:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchItem();
-  }, [id]);
+  }, [type, id]);
 
-  if (loading) {
+  if (!item) {
     return <div className="container pt-5 mt-5">Loading...</div>;
   }
 
-  if (!item) {
-    return <div className="container pt-5 mt-5">Item not found.</div>;
-  }
+  const detailNumber =
+    type === "new"
+      ? [173, 495, 942, 129, 334, 221, 567][item.id - 1] || item.id
+      : [194, 661, 164, 112, 68, 316][item.id - 1] || item.id;
 
-  const detailNumber = [194, 661, 942, 112, 68, 316][item.id - 1] || item.id;
-  const ownerName = ["Monica Lucas", "Gayle Hicks", "Jimmy Wright", "Anna Smith", "Chris Cole", "Mia Lopez"][item.id - 1] || "Monica Lucas";
-  const creatorName = ["Monica Lucas", "Jimmy Wright", "Gayle Hicks", "Anna Smith", "Chris Cole", "Mia Lopez"][item.id - 1] || "Jimmy Wright";
-  const views = [100, 886, 452, 321, 210, 543][item.id - 1] || 100;
-  const likes = [74, 68, 92, 51, 39, 80][item.id - 1] || 74;
-  const price = ["1.85", "0.29", "2.10", "0.75", "1.20", "3.00"][item.id - 1] || "1.85";
+  const ownerName =
+    type === "new"
+      ? ["Monica Lucas", "Kayla Brown", "Steven Doe", "Chris Cole", "Mia Lopez", "Anna Smith", "Leo Park"][item.id - 1] ||
+        "Collection Owner"
+      : ["Monica Lucas", "Gayle Hicks", "Jimmy Wright", "Anna Smith", "Chris Cole", "Mia Lopez"][item.id - 1] ||
+        "Collection Owner";
+
+  const creatorName =
+    type === "new"
+      ? ["Nicholas Daniels", "Jimmy Wright", "Gayle Hicks", "Chris Cole", "Mia Lopez", "Anna Smith", "Leo Park"][item.id - 1] ||
+        "Collection Creator"
+      : ["Monica Lucas", "Jimmy Wright", "Gayle Hicks", "Anna Smith", "Chris Cole", "Mia Lopez"][item.id - 1] ||
+        "Collection Creator";
+
+  const views =
+    type === "new"
+      ? [450, 120, 886, 310, 220, 540, 199][item.id - 1] || 100
+      : [100, 886, 452, 321, 210, 543][item.id - 1] || 100;
+
+  const likes = item.likes || 74;
+  const price = item.price || "1.85";
 
   return (
     <div id="wrapper">

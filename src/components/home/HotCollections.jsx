@@ -64,7 +64,6 @@ const HotCollections = () => {
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         );
         const data = await response.json();
-        console.log("API DATA:", data);
         setCollections(data);
       } catch (error) {
         console.log("Fetch error:", error);
@@ -77,7 +76,43 @@ const HotCollections = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <section id="section-collections" className="no-bottom">
+        <div className="container">
+          <div className="row">
+            {new Array(4).fill(0).map((_, index) => (
+              <div className="col-lg-3 col-md-6 col-sm-6" key={index}>
+                <div className="nft_coll">
+                  <div
+                    style={{
+                      background: "#eee",
+                      height: "200px",
+                      borderRadius: "8px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      background: "#ddd",
+                      height: "20px",
+                      width: "60%",
+                      marginTop: "10px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      background: "#ddd",
+                      height: "14px",
+                      width: "40%",
+                      marginTop: "6px",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -98,7 +133,7 @@ const HotCollections = () => {
                   <div className="px-2">
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to={`/item-details/${collection.id}`}>
+                        <Link to={`/item-details/hot/${collection.id}`}>
                           <img
                             src={collection.nftImage}
                             className="lazy img-fluid"
@@ -119,10 +154,13 @@ const HotCollections = () => {
                       </div>
 
                       <div className="nft_coll_info">
-                        <Link to="/explore">
+                        <Link to={`/item-details/hot/${collection.id}`}>
                           <h4>{collection.title}</h4>
                         </Link>
-<span>{[192, 661, 164, 112, 68, 316][index] || collection.id}</span>                      </div>
+                        <span>
+                          {[192, 661, 164, 112, 68, 316][index] || collection.id}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
