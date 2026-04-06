@@ -15437,6 +15437,85 @@ img {
   }
 }
 
+
+/*                 Carousel                */
+
+
+.button.owl-next {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 50;
+}
+
+.button.owl-prev {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  z-index: 50;
+}
+
+/* base shimmer */
+.skeleton-box,
+.skeleton-text,
+.skeleton-circle {
+  background: linear-gradient(
+    90deg,
+    #eee 25%,
+    #ddd 37%,
+    #eee 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+/* shapes */
+.skeleton-box {
+  height: 200px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.skeleton-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.skeleton-text {
+  height: 16px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.skeleton-text.small {
+  width: 60%;
+}
+
+/* animation */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+
 /* ================================================== */
 
 /* R E S P O N S I V E */
@@ -16714,3 +16793,5 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+
