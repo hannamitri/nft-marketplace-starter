@@ -1,88 +1,179 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
 
 const ItemDetails = () => {
+  const { nftId } = useParams();
+  const [item, setItem] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+
+    axios
+      .get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
+      )
+      .then((response) => {
+        const data = Array.isArray(response.data)
+          ? response.data[0]
+          : response.data;
+
+        setTimeout(() => {
+          setItem(data || null);
+        }, 1200); // 👈 lets you SEE skeleton
+      })
+      .catch((error) => {
+        console.error(error);
+        setItem(null);
+      });
+  }, [nftId]);
 
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
-        <section aria-label="section" className="mt90 sm-mt-0">
+        <section className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
+
+              {/* LEFT IMAGE */}
               <div className="col-md-6 text-center">
-                <img
-                  src={nftImage}
-                  className="img-fluid img-rounded mb-sm-30 nft-image"
-                  alt=""
-                />
+                {item ? (
+                  <img
+                    src={item.nftImage || nftImage}
+                    className="img-fluid img-rounded mb-sm-30 nft-image"
+                    alt=""
+                  />
+                ) : (
+                  <div className="skeleton-box" style={{ height: "400px" }}></div>
+                )}
               </div>
+
+              {/* RIGHT SIDE */}
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
 
+                  {/* TITLE */}
+                  {item ? (
+                    <h2>{item.title}</h2>
+                  ) : (
+                    <div className="skeleton-text" style={{ height: "30px", width: "70%" }}></div>
+                  )}
+
+                  {/* COUNTS */}
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      100
+                      {item ? item.views : <span className="skeleton-text small"></span>}
                     </div>
+
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      74
+                      {item ? item.likes : <span className="skeleton-text small"></span>}
                     </div>
                   </div>
-                  <p>
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                    illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
-                  </p>
+
+                  {/* DESCRIPTION */}
+                  {item ? (
+                    <p>{item.description}</p>
+                  ) : (
+                    <>
+                      <div className="skeleton-text"></div>
+                      <div className="skeleton-text"></div>
+                      <div className="skeleton-text small"></div>
+                    </>
+                  )}
+
+                  {/* OWNER */}
                   <div className="d-flex flex-row">
                     <div className="mr40">
                       <h6>Owner</h6>
+
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
+                          {item ? (
+                            <Link to={`/author/${item.ownerId}`}>
+                              <img
+                                className="lazy"
+                                src={item.ownerImage || AuthorImage}
+                                alt=""
+                              />
+                              <i className="fa fa-check"></i>
+                            </Link>
+                          ) : (
+                            <div className="skeleton-circle"></div>
+                          )}
                         </div>
+
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          {item ? (
+                            <Link to={`/author/${item.ownerId}`}>
+                              {item.ownerName}
+                            </Link>
+                          ) : (
+                            <div className="skeleton-text small"></div>
+                          )}
                         </div>
                       </div>
                     </div>
-                    <div></div>
                   </div>
+
+                  {/* CREATOR */}
                   <div className="de_tab tab_simple">
                     <div className="de_tab_content">
+
                       <h6>Creator</h6>
+
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
+                          {item ? (
+                            <Link to={`/author/${item.creatorId}`}>
+                              <img
+                                className="lazy"
+                                src={item.creatorImage || AuthorImage}
+                                alt=""
+                              />
+                              <i className="fa fa-check"></i>
+                            </Link>
+                          ) : (
+                            <div className="skeleton-circle"></div>
+                          )}
                         </div>
+
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          {item ? (
+                            <Link to={`/author/${item.creatorId}`}>
+                              {item.creatorName}
+                            </Link>
+                          ) : (
+                            <div className="skeleton-text small"></div>
+                          )}
                         </div>
                       </div>
+
                     </div>
+
                     <div className="spacer-40"></div>
+
+                    {/* PRICE */}
                     <h6>Price</h6>
+
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      {item ? (
+                        <span>{item.price}</span>
+                      ) : (
+                        <span className="skeleton-text small"></span>
+                      )}
                     </div>
+
                   </div>
+
                 </div>
               </div>
+
             </div>
           </div>
         </section>
