@@ -14,7 +14,7 @@ const Landing = () => {
     >
       <div className="v-center">
         <div className="container">
-          <div className="row align-items-center">
+          <div className="row align-items-center" data-aos="fade-up">
             <div className="col-md-6">
               <div className="spacer-single"></div>
               <h6>
