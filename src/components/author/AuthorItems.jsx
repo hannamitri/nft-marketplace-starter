@@ -1,63 +1,82 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const AuthorItems = () => {
+  const { id } = useParams();
+
+  const [author, setAuthor] = useState(null);
+  const [nfts, setNfts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+        );
+
+        const data = res.data?.data || res.data || [];
+
+       
+        const foundAuthor = data.find(
+          (seller) => String(seller.authorId) === String(id)
+        );
+
+        setAuthor(foundAuthor);
+
+      
+        const filtered = data.filter(
+          (item) => String(item.authorId) === String(id)
+        );
+
+        setNfts(filtered);
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
+
+  if (!author) return <div>No author found</div>;
+
   return (
     <div className="de_tab_content">
-      <div className="tab-1">
-        <div className="row">
-          {new Array(8).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">2.52 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>97</span>
-                  </div>
-                </div>
+      
+      
+      <div className="text-center mb-4">
+        <img
+          className="pp-author"
+          src={author.authorImage}
+          alt={author.authorName}
+          style={{ width: "100px", borderRadius: "50%" }}
+        />
+        <h2>{author.authorName}</h2>
+        <p>{author.price} ETH</p>
+      </div>
+
+      
+      <div className="row">
+        {nfts.map((item) => (
+          <div
+            className="col-lg-3 col-md-6 col-sm-6"
+            key={item.id}
+          >
+            <div className="nft__item">
+              <div className="nft__item_info">
+                <h4>{item.authorName}</h4>
+                <div>{item.price} ETH</div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+
     </div>
   );
 };
