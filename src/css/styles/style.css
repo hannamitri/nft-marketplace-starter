@@ -16650,15 +16650,42 @@ img {
   }
 }
 
+/* ── Skeleton Loading (shared: HotCollections + NewItems) ──────────── */
 .skeleton-box {
-  display: inline-block;
-  height: 1em;
+  display: block;
+  width: 100%;
+  background-color: #dddbdd;
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
-  background-color: #dddbdd;
-}
-
-.skeleton-box::after {
+  }
+  /* image placeholder */
+  .nft_wrap .skeleton-box {
+  height: 200px;
+  }
+  .nft_wrap img,
+  .nft_wrap .skeleton-box {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  }
+  /* profile picture — HotCollections uses 40px, NewItems uses 50px */
+  .nft_coll_pp .skeleton-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  }
+  .nft__item .nft_coll_pp .skeleton-box {
+  width: 50px;
+  height: 50px;
+  }
+  /* text lines */
+  .nft_coll_info .skeleton-box {
+  height: 12px;
+  margin-bottom: 8px;
+  }
+  /* shimmer sweep */
+  .skeleton-box::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -16666,30 +16693,72 @@ img {
   left: 0;
   transform: translateX(-100%);
   background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.5) 60%,
-    rgba(255, 255, 255, 0)
-  );
+  90deg,
+  rgba(255, 255, 255, 0) 0,
+  rgba(255, 255, 255, 0.2) 20%,
+  rgba(255, 255, 255, 0.5) 60%,
+  rgba(255, 255, 255, 0)
+    );
   -webkit-animation: shimmer 2s infinite;
   animation: shimmer 2s infinite;
   content: "";
-}
-@-webkit-keyframes shimmer {
-  100% {
-    transform: translateX(100%);
   }
-}
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
+  @-webkit-keyframes shimmer {
+    100% {
+  transform: translateX(100%);
+    }
   }
-}
+  @keyframes shimmer {
+    100% {
+  transform: translateX(100%);
+    }
+  }
+  
+  /* ── Skeleton Loading (ItemDetails) ───────────────────────────────── */
+  .item-details-skeleton-image {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+  }
+  .item-details-skeleton-title {
+    width: 60%;
+    height: 36px;
+    margin-bottom: 16px;
+  }
+  .item-details-skeleton-counts {
+    width: 30%;
+    height: 20px;
+    margin-bottom: 16px;
+  }
+  .item-details-skeleton-description {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+  .item-details-skeleton-owner {
+    width: 40%;
+    height: 20px;
+    margin-bottom: 8px;
+  }
+  .item-details-skeleton-creator {
+    width: 40%;
+    height: 20px;
+    margin-bottom: 24px;
+  }
+  .item-details-skeleton-price {
+    width: 20%;
+    height: 24px;
+  }
+
+/* ── Misc shared ───────────────────────────────────────────────────── */
 
 .nft-image {
   height: 100%;
   width: 100%;
+}
+
+.nft-image .skeleton-box {
+  height: 100%;
 }
 
 #filter-items {
