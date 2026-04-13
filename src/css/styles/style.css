@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16658,7 +16658,55 @@ img {
   background-color: #dddbdd;
 }
 
-.skeleton-box::after {
+.skeleton-image {
+  width: 100%;
+  height: 180px;
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  margin-top: -20px;
+  margin-left: 10px;
+}
+
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.skeleton-text.title {
+  height: 16px;
+  width: 70%;
+  background: #e0e0e0;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+.skeleton-text.subtitle {
+  height: 14px;
+  width: 40%;
+  background: #e0e0e0;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.skeleton-image,
+.skeleton-avatar,
+.skeleton-text {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-box::after,
+.skeleton-image::after,
+.skeleton-avatar::after,
+.skeleton-text::after {
   position: absolute;
   top: 0;
   right: 0;
