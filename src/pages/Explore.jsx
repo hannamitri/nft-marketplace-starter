@@ -1,10 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import { fetchNewItems } from "../api/nftApi";
 
 const Explore = () => {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [now, setNow] = useState(() => Date.now());
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const load = async () => {
+      try {
+        setIsLoading(true);
+        setError("");
+        const data = await fetchNewItems(controller.signal);
+        setItems(data);
+      } catch (fetchError) {
+        if (fetchError.name !== "AbortError") {
+          setError("Unable to load new items right now.");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    load();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (
@@ -32,7 +73,12 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems />
+              <ExploreItems
+                items={items}
+                isLoading={isLoading}
+                error={error}
+                now={now}
+              />
             </div>
           </div>
         </section>
