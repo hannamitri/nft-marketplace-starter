@@ -3,62 +3,71 @@ import { Link, useParams } from "react-router-dom";
 
 const Author = () => {
   const { id } = useParams();
-  const [authorItems, setAuthorItems] = useState([]);
+  const [author, setAuthor] = useState(null);
+  const [followers, setFollowers] = useState(0);
+  const [isFollowing, setIsFollowing] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const fetchAuthorItems = async () => {
+    const fetchAuthor = async () => {
       try {
         const response = await fetch(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-        );
-        const data = await response.json();
-
-        const filteredItems = data.filter(
-          (item) => String(item.authorId) === String(id)
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
         );
 
-        setAuthorItems(filteredItems);
+        const text = await response.text();
+
+        if (!text) {
+          setAuthor(null);
+          return;
+        }
+
+        const data = JSON.parse(text);
+        const authorData = Array.isArray(data) ? data[0] : data;
+
+        setAuthor(authorData || null);
+        setFollowers(authorData?.followers || 0);
       } catch (error) {
-        console.log("AUTHOR PAGE ERROR:", error);
+        console.log("AUTHOR ERROR:", error);
+        setAuthor(null);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAuthorItems();
+    fetchAuthor();
   }, [id]);
+
+  const toggleFollow = () => {
+    if (isFollowing) {
+      setFollowers((prev) => prev - 1);
+    } else {
+      setFollowers((prev) => prev + 1);
+    }
+    setIsFollowing(!isFollowing);
+  };
 
   if (loading) {
     return <div className="container pt-5 mt-5">Loading...</div>;
   }
 
-  if (!authorItems.length) {
+  if (!author) {
     return <div className="container pt-5 mt-5">Author not found.</div>;
   }
 
-  const author = authorItems[0];
-  const followerCount =
-    [573, 421, 812, 299, 654, 387, 902, 478, 525, 610, 734, 455][
-      Number(id) - 1
-    ] || 573;
+  const authorNfts = author.nftCollection || [];
 
   return (
     <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
+      <div id="content" className="no-bottom no-top">
         <div id="top"></div>
 
         <section
           id="profile_banner"
           aria-label="section"
           className="text-light"
-          style={{
-            backgroundImage: `url(${author.nftImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
         ></section>
 
         <section aria-label="section">
@@ -68,16 +77,25 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={author.authorImage} alt={author.title} />
+                      <img src={author.authorImage} alt={author.authorName} />
                       <i className="fa fa-check"></i>
+
                       <div className="profile_name">
                         <h4>
-                          {author.title}
-                          <span className="profile_username">@{author.title.toLowerCase().replace(/\s+/g, "")}</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7e...
+                          {author.authorName}
+                          <span className="profile_username">
+                            @{author.tag}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <span id="wallet" className="profile_wallet">
+                            {author.address}
+                          </span>
+                          <button
+                            id="btn_copy"
+                            title="Copy Text"
+                            onClick={() =>
+                              navigator.clipboard.writeText(author.address)
+                            }
+                          >
                             Copy
                           </button>
                         </h4>
@@ -86,29 +104,31 @@ const Author = () => {
                   </div>
 
                   <div className="profile_follower">
-                    {followerCount} followers
+                    {followers} followers
                   </div>
 
                   <div className="de-flex-col">
                     <div className="profile_follow">
-                      <button className="btn-main">Follow</button>
+                      <button className="btn-main" onClick={toggleFollow}>
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {authorItems.map((item) => (
+              {authorNfts.map((nft) => (
                 <div
-                  key={item.id}
+                  key={nft.id}
                   className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 >
                   <div className="nft__item">
                     <div className="author_list_pp">
-                      <Link to={`/author/${item.authorId}`}>
+                      <Link to={`/author/${id}`}>
                         <img
-                          className="lazy"
-                          src={item.authorImage}
-                          alt={item.title}
+                          className="lazy pp-author"
+                          src={author.authorImage}
+                          alt={author.authorName}
                         />
                         <i className="fa fa-check"></i>
                       </Link>
@@ -133,23 +153,23 @@ const Author = () => {
                         </div>
                       </div>
 
-                      <Link to={`/item-details/explore/${item.id}`}>
+                      <Link to={`/item-details/explore/${nft.nftId}`}>
                         <img
-                          src={item.nftImage}
+                          src={nft.nftImage}
                           className="lazy nft__item_preview"
-                          alt={item.title}
+                          alt={nft.title}
                         />
                       </Link>
                     </div>
 
                     <div className="nft__item_info">
-                      <Link to={`/item-details/explore/${item.id}`}>
-                        <h4>{item.title}</h4>
+                      <Link to={`/item-details/explore/${nft.nftId}`}>
+                        <h4>{nft.title}</h4>
                       </Link>
-                      <div className="nft__item_price">{item.price} ETH</div>
+                      <div className="nft__item_price">{nft.price} ETH</div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                        <span>{item.likes}</span>
+                        <span>{nft.likes}</span>
                       </div>
                     </div>
                   </div>

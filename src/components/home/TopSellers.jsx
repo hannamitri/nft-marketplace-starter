@@ -24,6 +24,7 @@ const TopSellers = () => {
     fetchTopSellers();
   }, []);
 
+  // 🔄 LOADING STATE
   if (loading) {
     return (
       <section id="section-popular" className="pb-5">
@@ -40,14 +41,7 @@ const TopSellers = () => {
               <ol className="author_list">
                 {new Array(12).fill(0).map((_, index) => (
                   <li key={index}>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "12px",
-                        marginBottom: "20px",
-                      }}
-                    >
+                    <div style={{ display: "flex", gap: "12px" }}>
                       <div
                         style={{
                           width: "50px",
@@ -63,7 +57,6 @@ const TopSellers = () => {
                             height: "16px",
                             background: "#eee",
                             marginBottom: "8px",
-                            borderRadius: "4px",
                           }}
                         ></div>
                         <div
@@ -71,7 +64,6 @@ const TopSellers = () => {
                             width: "70px",
                             height: "14px",
                             background: "#eee",
-                            borderRadius: "4px",
                           }}
                         ></div>
                       </div>
@@ -86,6 +78,7 @@ const TopSellers = () => {
     );
   }
 
+  // ✅ REAL DATA
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -101,8 +94,10 @@ const TopSellers = () => {
             <ol className="author_list">
               {sellers.map((seller) => (
                 <li key={seller.id}>
+                  
+                  {/* 👇 IMAGE CLICK */}
                   <div className="author_list_pp">
-                    <Link to={`/author/${seller.id}`}>
+                    <Link to={`/author/${seller.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={seller.authorImage}
@@ -112,10 +107,14 @@ const TopSellers = () => {
                     </Link>
                   </div>
 
+                  {/* 👇 NAME CLICK */}
                   <div className="author_list_info">
-                    <Link to={`/author/${seller.id}`}>{seller.authorName}</Link>
+                    <Link to={`/author/${seller.authorId}`}>
+                      {seller.authorName}
+                    </Link>
                     <span>{seller.price} ETH</span>
                   </div>
+
                 </li>
               ))}
             </ol>
