@@ -1,9 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useEffect, useState } from "react";
+import NftCardSkeleton from "../common/NftCardSkeleton";
+import NftItemCard from "../explore/NftItemCard";
+import {
+  EXPLORE_API_URL,
+  SKELETON_MIN_MS,
+} from "../../constants/exploreApi";
+import { withMinDelay } from "../../utils/withMinDelay";
+
+const HOME_NEW_ITEMS_COUNT = 4;
 
 const NewItems = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await withMinDelay(
+          SKELETON_MIN_MS,
+          (async () => {
+            const res = await fetch(EXPLORE_API_URL);
+            if (!res.ok) {
+              throw new Error(`Request failed (${res.status})`);
+            }
+            const json = await res.json();
+            if (!Array.isArray(json)) {
+              throw new Error("Invalid response shape");
+            }
+            return json;
+          })()
+        );
+        if (cancelled) return;
+        setItems(data.slice(0, HOME_NEW_ITEMS_COUNT));
+      } catch (e) {
+        if (!cancelled) {
+          setError(e.message || "Failed to load new items");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    };
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,62 +64,39 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
-                  </div>
-                </div>
+          {loading &&
+            Array.from({ length: HOME_NEW_ITEMS_COUNT }, (_, index) => (
+              <div
+                className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                key={`skeleton-${index}`}
+              >
+                <NftCardSkeleton />
               </div>
+            ))}
+          {error && (
+            <div className="col-md-12 text-center py-4 text-danger">
+              {error}
             </div>
-          ))}
+          )}
+          {!loading &&
+            !error &&
+            items.map((item) => (
+              <div
+                className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                key={item.id}
+              >
+                <NftItemCard
+                  authorImage={item.authorImage}
+                  nftImage={item.nftImage}
+                  title={item.title}
+                  price={item.price}
+                  likes={item.likes}
+                  expiryDate={item.expiryDate}
+                  nftId={item.nftId}
+                  authorId={item.authorId}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </section>
