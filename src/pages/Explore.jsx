@@ -15,6 +15,7 @@ const Explore = () => {
         <section
           id="subheader"
           className="text-light"
+          data-aos="zoom-out"
           style={{ background: `url("${SubHeader}") top` }}
         >
           <div className="center-y relative text-center">
@@ -30,7 +31,7 @@ const Explore = () => {
         </section>
 
         <section aria-label="section">
-          <div className="container">
+          <div className="container" data-aos="fade-in" data-aos-delay="120">
             <div className="row">
               <ExploreItems />
             </div>
