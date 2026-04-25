@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
+function HotCollections() {
+  const [collections, setCollections] = useState([]);
+
+  async function fetchHotCollections() {
+    const res = await fetch('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
+    const data = await res.json();
+    setCollections(data);
+  }
+
+  useEffect(() => {
+    fetchHotCollections();
+  }, []);
+   return (
+    <div>
+      {collections.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
+
+export default HotCollections;
+  
 const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
