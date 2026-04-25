@@ -1,0 +1,254 @@
+@keyframes nft-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes nft-skeleton-card-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.52;
+  }
+}
+
+.nft-skeleton__shimmer {
+  background: linear-gradient(
+    90deg,
+    #2f2f2f 0%,
+    #4d4d4d 45%,
+    #2f2f2f 100%
+  );
+  background-size: 200% 100%;
+  animation: nft-skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+/* Card root uses both classes on the same element (see NftItemCardSkeleton) */
+.nft__item.nft-skeleton {
+  pointer-events: none;
+  animation: nft-skeleton-card-pulse 1.6s ease-in-out infinite;
+}
+
+.nft-skeleton__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.nft-skeleton__countdown {
+  height: 28px;
+  width: 100px;
+  margin-top: 8px;
+}
+
+.nft-skeleton__preview {
+  width: 100%;
+  min-height: 220px;
+  margin-top: 12px;
+  border-radius: 8px;
+}
+
+.nft-skeleton__title {
+  height: 20px;
+  width: 70%;
+  margin-top: 16px;
+}
+
+.nft-skeleton__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.nft-skeleton__price {
+  height: 16px;
+  width: 40%;
+}
+
+.nft-skeleton__like {
+  height: 16px;
+  width: 48px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nft-skeleton__shimmer {
+    background: linear-gradient(
+      90deg,
+      #252525 0%,
+      #4a4a4a 45%,
+      #252525 100%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+/* Hot Collections card skeleton */
+.nft_coll.nft-skeleton-hot-coll {
+  pointer-events: none;
+  animation: nft-skeleton-card-pulse 1.6s ease-in-out infinite;
+}
+
+.nft-skeleton-hot-coll__image {
+  width: 100%;
+  min-height: 180px;
+  border-radius: 8px;
+}
+
+.nft-skeleton-hot-coll__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.nft-skeleton-hot-coll__title {
+  height: 18px;
+  width: 75%;
+  margin-top: 10px;
+}
+
+.nft-skeleton-hot-coll__sub {
+  height: 14px;
+  width: 42%;
+  margin-top: 8px;
+}
+
+/* Top Sellers list row skeleton */
+ol.author_list .nft-skeleton-top-seller__row {
+  pointer-events: none;
+  animation: nft-skeleton-card-pulse 1.6s ease-in-out infinite;
+}
+
+.nft-skeleton-top-seller__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.nft-skeleton-top-seller__name {
+  height: 14px;
+  width: 120px;
+}
+
+.nft-skeleton-top-seller__eth {
+  height: 12px;
+  width: 64px;
+  margin-top: 6px;
+}
+
+/* Item details page skeleton */
+.item-details-skeleton-wrap .item-details-skeleton {
+  pointer-events: none;
+  animation: nft-skeleton-card-pulse 1.6s ease-in-out infinite;
+}
+
+.item-details-skeleton__hero {
+  width: 100%;
+  max-width: 520px;
+  min-height: 380px;
+  border-radius: 12px;
+}
+
+.item-details-skeleton__title {
+  height: 32px;
+  width: 85%;
+}
+
+.item-details-skeleton__pill {
+  height: 28px;
+  width: 80px;
+}
+
+.item-details-skeleton__line {
+  height: 14px;
+  width: 100%;
+}
+
+.item-details-skeleton__line--lg {
+  height: 16px;
+}
+
+.item-details-skeleton__line--sm {
+  width: 55%;
+}
+
+.item-details-skeleton__label {
+  height: 12px;
+  width: 72px;
+}
+
+.item-details-skeleton__owner-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.item-details-skeleton__owner-name {
+  height: 14px;
+  width: 140px;
+}
+
+.item-details-skeleton__price {
+  height: 28px;
+  width: 120px;
+}
+
+.nft-item-card__root {
+  color: inherit;
+}
+
+.nft-item-card__root:hover,
+.nft-item-card__root:focus {
+  color: inherit;
+}
+
+.author-skeleton__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.author-skeleton__title {
+  height: 28px;
+  width: 220px;
+}
+
+.author-skeleton__sub {
+  height: 18px;
+  width: 140px;
+}
+
+.author-skeleton__wallet {
+  height: 14px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.author-skeleton__followers {
+  height: 20px;
+  width: 120px;
+}
+
+.author-skeleton__btn {
+  height: 40px;
+  width: 100px;
+  border-radius: 6px;
+}
+
+.author-skeleton__card {
+  width: 100%;
+  min-height: 280px;
+  border-radius: 8px;
+}
+
+.profile_avatar .nft-skeleton__shimmer,
+.profile_follow .nft-skeleton__shimmer {
+  animation: nft-skeleton-shimmer 1.4s ease-in-out infinite,
+    nft-skeleton-card-pulse 1.6s ease-in-out infinite;
+}

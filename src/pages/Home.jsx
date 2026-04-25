@@ -5,6 +5,7 @@ import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+import { ExploreNftsProvider } from "../context/ExploreNftsContext";
 
 const Home = () => {
   useEffect(() => {
@@ -17,9 +18,11 @@ const Home = () => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
+        <ExploreNftsProvider>
+          <HotCollections />
+          <NewItems />
+          <TopSellers />
+        </ExploreNftsProvider>
         <BrowseByCategory />
       </div>
     </div>
