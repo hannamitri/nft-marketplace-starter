@@ -12706,13 +12706,13 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
   border-radius: 60px;
   position: relative;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .switch::after {
@@ -13669,6 +13669,7 @@ a.read_more i {
   justify-content: center;
   position: relative;
   height: 350px;
+  overflow: hidden;
 }
 
 .nft__item_wrap a {
@@ -15145,7 +15146,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16714,3 +16715,17 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 28px !important;
+  font-style: normal !important;
+}
+
+.slick-prev {
+  left: -35px !important;
+}
+
+
+
