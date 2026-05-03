@@ -1,0 +1,217 @@
+/* Carousel item spacing */
+.collections-carousel .slick-slide {
+  padding: 0 15px;
+  height: auto;
+}
+
+.collections-carousel .slick-slide > div {
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* COUNTDOWN TIMER */
+
+
+/* SKELETON LOADING STATE */
+
+.newitems__nftImage--skeleton {
+  width: 100%;
+  height: 200px;
+  background-color: #e5e5e5;
+  border-radius: 8px;
+}
+
+.newitems__authorImage--skeleton {
+  width: 50px;
+  height: 50px;
+  background-color: #e5e5e5;
+  border-radius: 50%;
+}
+
+.newitems__title--skeleton {
+  width: 70%;
+  height: 20px;
+  background-color: #e5e5e5;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.newitems__code--skeleton {
+  width: 40%;
+  height: 16px;
+  background-color: #e5e5e5;
+  border-radius: 4px;
+}
+/* SKELETON LOADING STATE */
+
+/* Center mode styling for mobile */
+.collections-carousel .slick-center .nft_coll {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  .collections-carousel .slick-slide {
+    padding: 0 20px;
+  }
+
+  .collections-carousel .slick-slide > div {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .collections-carousel .slick-slide {
+    padding: 0 10px;
+  }
+
+  .collections-carousel .slick-slide > div {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* Ensure proper sizing for carousel items */
+.collections-carousel .slick-track {
+  display: flex;
+}
+
+.collections-carousel .slick-list {
+  overflow: hidden;
+  margin: 0 -15px;
+}
+
+/* NFT Collection item styling */
+.nft_coll {
+  margin: 0;
+  width: 100%;
+  min-width: 280px !important;
+  max-width: 320px !important;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.nft_coll img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Force proper sizing on mobile */
+@media (max-width: 768px) {
+  .collections-carousel .slick-slide {
+    width: 100% !important;
+    min-width: 300px !important;
+  }
+
+  .nft_coll {
+    min-width: 280px !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .collections-carousel .slick-slide {
+    min-width: 260px !important;
+  }
+
+  .nft_coll {
+    min-width: 250px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* Fix initial load issue */
+.collections-carousel {
+  width: 100%;
+  margin: 0 -15px;
+}
+
+.collections-carousel .slick-slide img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Navigation arrows styling */
+.collections-carousel .slick-prev,
+.collections-carousel .slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #f70d1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  color: #f70d1a;
+}
+
+.collections-carousel .slick-prev {
+  left: -25px;
+}
+
+.collections-carousel .slick-next {
+  right: -25px;
+}
+
+.slick-prev,
+.slick-prev:before,
+.slick-next,
+.slick-next:before {
+  color: black;
+  border: none !important;
+}
+
+.slick-arrow .fa-angle-left,
+.slick-arrow .fa-angle-right {
+  display: none !important;
+}
+
+.collections-carousel .slick-prev:hover,
+.collections-carousel .slick-next:hover {
+  /* background: #f70d1a; */
+  color: white;
+  border-color: #f70d1a;
+}
+
+.collections-carousel .slick-prev i,
+.collections-carousel .slick-next i {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Hide arrows on smaller screens */
+@media (max-width: 1200px) {
+  .collections-carousel .slick-prev {
+    left: 10px;
+  }
+
+  .collections-carousel .slick-next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .collections-carousel .slick-prev,
+  .collections-carousel .slick-next {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .collections-carousel .slick-prev i,
+  .collections-carousel .slick-next i {
+    font-size: 12px;
+  }
+}

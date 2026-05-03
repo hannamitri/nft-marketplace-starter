@@ -60,7 +60,7 @@ body.boxed {
   border: solid 1px #eee;
 }
 
-body .owl-stage .owl-item {
+body .owl-stage .owl-item {  
   margin-bottom: 15px;
 }
 
@@ -13170,7 +13170,7 @@ a.read_more i {
 .img-fullwidth {
   width: 100%;
   height: auto;
-}
+}  
 
 .nft_coll {
   background: #ffffff;
@@ -13180,7 +13180,7 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
-}
+} 
 
 .nft_coll.style-2 {
   border: none;
@@ -13201,6 +13201,22 @@ a.read_more i {
 .text-light .nft_coll {
   background: rgba(255, 255, 255, 0.04);
   border: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+.nft_wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.owl-carousel .owl-item {
+  min-height: 250px;
+}
+
+.nft_wrap a {
+  display: block;
+  width: 100%;
 }
 
 .nft_wrap {
@@ -15459,7 +15475,7 @@ img {
   .container-lg,
   .container-md,
   .container-sm {
-    min-width: 95%;
+   min-width: 95%;
   }
 }
 
