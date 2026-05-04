@@ -10130,7 +10130,9 @@ i.bg-color-secondary {
 }
 
 .soft-shadow {
-  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 5%), 0 1.5rem 2.2rem rgb(0 0 0 / 10%);
+  box-shadow:
+    0 0.25rem 0.5rem rgb(0 0 0 / 5%),
+    0 1.5rem 2.2rem rgb(0 0 0 / 10%);
 }
 
 .tooltip-inner {
@@ -10160,7 +10162,9 @@ i.bg-color-secondary {
 .tooltip.bs-tooltip-bottom .tooltip-arrow::before,
 .tooltip.bs-tooltip-start .tooltip-arrow::before,
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
-  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 5%), 0 1.5rem 2.2rem rgb(0 0 0 / 10%);
+  box-shadow:
+    0 0.25rem 0.5rem rgb(0 0 0 / 5%),
+    0 1.5rem 2.2rem rgb(0 0 0 / 10%);
 }
 
 #item-carousel-big {
@@ -10713,59 +10717,34 @@ i.big {
   display: table-cell;
 }
 
-.owl-carousel {
-  position: relative;
-  margin-top: -5px;
-  bottom: -5px;
-  margin-bottom: -15px;
+.swiper {
+  --swiper-navigation-color: rgb(64, 63, 131) !important;
 }
 
-.owl-stage-outer .feature-box-type-2 {
-  overflow: none;
-  margin: 30px 0 30px 0;
+.swiper-button-next,
+.swiper-button-prev {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(3px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.25s ease;
 }
 
-.owl-item.active.center .feature-box-type-2 {
-  transform: scale(1.05);
-}
-
-.owl-item.active.center .feature-box-type-2,
-.owl-item.active.center .feature-box-type-2 h4,
-.owl-item.active.center .feature-box-type-2 i {
-  color: #ffffff;
-}
-
-.owl-carousel.owl-center .owl-stage-outer {
-  padding: 3% 0;
-}
-
-.owl-carousel.owl-center .owl-item.active.center {
-  position: relative;
-  z-index: 101;
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
-  -webkit-box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0calc ());
-  -moz-box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0calc ());
-  box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0calc ());
-}
-
-.owl-carousel.owl-center .owl-item .nft_pic_title,
-.owl-carousel.owl-center .owl-item .nft_pic_by {
-  opacity: 0;
-}
-
-.owl-carousel.owl-center .owl-item.active.center .nft_pic_title,
-.owl-carousel.owl-center .owl-item.active.center .nft_pic_by {
-  opacity: 1;
-}
-
-.rtl .owl-carousel,
-.rtl .bx-wrapper {
-  direction: ltr;
-}
-
-.rtl .owl-carousel .owl-item {
-  direction: rtl;
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(131, 100, 226);
+  border-color: transparent;
+  transform: scale(1.1);
 }
 
 .schedule-item {
@@ -12706,7 +12685,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  webkit-appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -13274,6 +13253,12 @@ a.read_more i {
   right: 5px;
 }
 
+.author_list .author_list_info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .author_list {
   -moz-column-count: 4;
   -moz-column-gap: 20px;
@@ -13281,11 +13266,17 @@ a.read_more i {
   -webkit-column-gap: 20px;
   column-count: 4;
   column-gap: 20px;
+  list-style: none;
+  padding-left: 0;
 }
 
 .author_list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
+  width: 100%;
 }
 
 .author_list_pp {
@@ -13343,6 +13334,9 @@ a.read_more i {
 }
 
 .author_list_info {
+  display: flex;
+  flex-direction: column;
+  gap:6px;
   font-weight: bold;
   padding-left: 70px;
 }
@@ -13622,13 +13616,26 @@ a.read_more i {
 
 .nft__item {
   position: relative;
-  padding: 20px;
+  padding: 0px 0px 16px;
   border: solid 1px #ddd;
   border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   background: #ffffff;
+
+}
+
+.pp-item {
+  border: solid 5px #ffffff;
+  border-radius: 50%;
+  width: 60px;
+  display: block;
+  margin: 0 auto;
+  top: 180px;
+  left: 125px;
+  margin-inline: calc(50% * max-width);
+  position: relative;
 }
 
 .nft__item.style-2,
@@ -13650,25 +13657,29 @@ a.read_more i {
   border: solid 1px rgba(255, 255, 255, 0.1);
 }
 
-.nft__item:hover,
-.opt-create:hover {
-  -webkit-box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
-  -moz-box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
-  box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
-}
 
-.nft__item:hover img.nft__item_preview {
-  transform: scale(1.03);
+.img-fluid {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.nft__item:hover {
+  .pp-item,
+  .img-fluid {
+    transform: scale(1.05);
+    transition: 700ms ease;
+  }
 }
 
 .nft__item_wrap {
-  width: 100%;
-  text-align: center;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   position: relative;
-  height: 350px;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -webkit-border-radius: 10px 10px 0 0;
 }
 
 .nft__item_wrap a {
@@ -13678,7 +13689,6 @@ a.read_more i {
 
 .nft__item img {
   width: 100%;
-  height: auto !important;
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -13695,6 +13705,10 @@ a.read_more i {
 }
 
 .nft__item_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
@@ -13725,6 +13739,7 @@ a.read_more i {
 
 .nft__item_like {
   position: relative;
+  right: 8px;
   bottom: 22px;
   font-size: 14px;
   color: #ddd;
@@ -14140,15 +14155,18 @@ a.read_more i {
 
 .de_countdown {
   position: absolute;
+  top: 10px;
   right: 20px;
-  background: #ffffff;
+  background: transparent;
+  backdrop-filter: blur(8px);
   padding: 1px 10px;
   border-radius: 30px;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
   border: solid 2px #dddddd;
   z-index: 100;
-  color: #0d0c22;
+  color: rgb(64, 63, 131);
+  font-weight: 700;
 }
 
 .de_countdown.bg-color-secondary {
@@ -14406,28 +14424,60 @@ a.read_more i {
   animation: ripple 0.7s linear infinite;
 }
 
+.carousel__arrows button {
+  width: 35px;
+  height: 35px;
+  border-radius: 15%;
+  border: none;
+  background: #222;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #fff;
+  border: solid 1px #ddd;
+}
+
+.carousel__arrows {
+  display: flex;
+  justify-content: right;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.font__arrows {
+  color: #ddd;
+}
+
 @-webkit-keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1em rgba(255, 255, 255, 0.3), 0 0 0 3em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
       0 0 0 5em rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 0 1em rgba(255, 255, 255, 0.3),
-      0 0 0 3em rgba(255, 255, 255, 0.3), 0 0 0 5em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
+      0 0 0 5em rgba(255, 255, 255, 0.3),
       0 0 0 8em rgba(255, 255, 255, 0);
   }
 }
 
 @keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1em rgba(255, 255, 255, 0.3), 0 0 0 3em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
       0 0 0 5em rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 0 1em rgba(255, 255, 255, 0.3),
-      0 0 0 3em rgba(255, 255, 255, 0.3), 0 0 0 5em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
+      0 0 0 5em rgba(255, 255, 255, 0.3),
       0 0 0 8em rgba(255, 255, 255, 0);
   }
 }
@@ -15145,7 +15195,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16648,6 +16698,14 @@ img {
     left: 0;
     top: -21px;
   }
+}
+
+
+.skeleton_list li {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .skeleton-box {
