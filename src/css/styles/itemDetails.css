@@ -1,0 +1,63 @@
+*{
+    box-sizing: border-box;
+}
+
+.item__img--loading{
+    width: 630px;
+    height: 500px;
+}
+
+.item__title--loading{
+    width: 350px;
+    height: 50px;
+}
+
+.item__views--loading,
+.item__likes--loading{
+    width: 20px;
+    height: 10px;
+}
+
+.item_info_views,
+.item_info_like{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+}
+
+.item__desc--loading{
+    width: 400px;
+    height: 100px;
+}
+
+.owner__img--loading{
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.owner__name--loading{
+    width: 100px;
+    height: 25px;
+}
+
+.item__price--loading{
+    width: 60px;
+    height: 30px;
+}
+
+.label__loading{
+    width: 50px;
+    height: 15px;
+}
+
+.price__icon--loading{
+    width: 30px;
+    height: 30px;
+}
+
+.nft-item-price--loading{
+    display: flex;
+    gap: 5px;
+}

@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+}
+
+.skeleton{
+    background-color: rgba(0,0,0,.5);
+    animation: shimmer 2s infinite linear;
+}
+
+.profile__img--loading{
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+}
+.author__name--loading{
+    width: 100px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+.profile_username--loading{
+    width: 75px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+.profile_wallet--loading{
+    width: 150px;
+    height: 20px;
+}
+.profile_follower--loading, .btn__copy--loading{
+    width: 35px;
+    height: 20px;
+}
+
+.nft__item--loading{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.item__title--loading{
+    width: 100px;
+    height: 20px;
+}
+
+.nft__item_price--loading{
+    width: 75px;
+    height: 15px;
+}
+
+.item__likes--loading{
+    width: 75px;
+    height: 15px;
+}

@@ -9,7 +9,7 @@ const Explore = () => {
 
   return (
     <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
+      <div className="no-bottom no-top" id="content" data-aos="fade-up" data-aos-delay="100">
         <div id="top"></div>
 
         <section

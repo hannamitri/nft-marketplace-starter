@@ -1,0 +1,103 @@
+*{
+    box-sizing: border-box;
+}
+
+.slider__wrapper{
+    position: relative;
+}
+
+.keen__slider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading__state--container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+}
+
+.skeleton{
+    background-color: rgba(211,211,211,1);
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer{
+    0%{
+        opacity: 1;
+        transform: translateX(-1)
+    }
+    50%{
+        opacity: .5;
+        transform: translateX(1)
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(-1)
+    }
+}   
+
+.author__img--loading{
+    padding: 25px;
+    border-radius: 50px;
+}
+
+.nft__img--loading{
+    padding: 110px 125px;
+    border-radius: 10px;
+}
+
+.nft__title--loading{
+    width: 20px;
+    /* position: absolute; */
+    /* left: 0; */
+    /* top: -40px; */
+    border-radius: 2px;
+    padding: 10px 40px;
+    margin-bottom: 2px;
+}
+
+.nft__price--loading{
+    width: 10px;
+    /* position: absolute; */
+    /* top: -15px; */
+    /* left: 0; */
+    border-radius: 2px;
+    padding: 10px 20px;   
+}
+
+.nft__likes--loading{
+    padding: 0 7.5px;
+}
+
+.arrows{
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    font-size: 75px;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.left__arrow{
+    right: 98%;
+    transform: rotate(180deg)
+}
+
+.right__arrow{
+    left: 98%;
+}
+
+.empty-state{
+    text-align: center;
+    font-size: 16px;
+    padding: 20px 0;
+}
