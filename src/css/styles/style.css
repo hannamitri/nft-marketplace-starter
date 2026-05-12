@@ -13172,6 +13172,15 @@ a.read_more i {
   height: auto;
 }
 
+.slick-prev:before, .slick-next:before {
+    color: var(--bs-primary) !important; 
+    opacity: 0.75;
+}
+
+.slick-dots li.slick-active button:before {
+    color: var(--bs-primary) !important;
+}
+
 .nft_coll {
   background: #ffffff;
   padding-bottom: 10px;
