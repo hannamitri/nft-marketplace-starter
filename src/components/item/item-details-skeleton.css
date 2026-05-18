@@ -1,0 +1,91 @@
+.item-details-skeleton {
+  pointer-events: none;
+}
+
+.item-details-skeleton__hero {
+  display: inline-block;
+  width: 100%;
+  max-width: 520px;
+  height: 420px;
+  border-radius: 12px;
+}
+
+.item-details-skeleton__title {
+  display: block;
+  height: 40px;
+  width: 88%;
+  margin-bottom: 22px;
+}
+
+.item-details-skeleton__counts {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.item-details-skeleton__pill {
+  width: 88px;
+  height: 22px;
+}
+
+.item-details-skeleton__line {
+  display: block;
+  height: 14px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.item-details-skeleton__line--mid {
+  width: 96%;
+}
+
+.item-details-skeleton__line--short {
+  width: 72%;
+  margin-bottom: 28px;
+}
+
+.item-details-skeleton__authors {
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.item-details-skeleton__author-block {
+  min-width: 200px;
+}
+
+.item-details-skeleton__label {
+  display: block;
+  height: 14px;
+  width: 64px;
+  margin-bottom: 12px;
+}
+
+.item-details-skeleton__author-block .item_author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-details-skeleton__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.item-details-skeleton__name {
+  height: 18px;
+  width: 140px;
+}
+
+.item-details-skeleton__price-block {
+  padding-top: 8px;
+}
+
+.item-details-skeleton__price {
+  display: block;
+  height: 32px;
+  width: 120px;
+  margin-top: 12px;
+}

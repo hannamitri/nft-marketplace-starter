@@ -1,12 +1,21 @@
 import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import { useScrollRestoration } from "../hooks/useScrollRestoration";
 
 const Explore = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const notice = location.state?.notice || "";
+  useScrollRestoration();
 
+  useEffect(() => {
+    if (!notice) {
+      return;
+    }
+    navigate(location.pathname, { replace: true, state: {} });
+  }, [notice, navigate, location.pathname]);
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -32,7 +41,7 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems />
+              <ExploreItems notice={notice} />
             </div>
           </div>
         </section>

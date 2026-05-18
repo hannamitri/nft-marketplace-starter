@@ -11,6 +11,7 @@ const HeaderExplore = () => {
           method="post"
           name="form_quick_search"
         >
+          {/* FROM MAIN!!! DO NOT REMOVE */}
           <div className="col text-center">
             <input
               className="form-control"
@@ -19,17 +20,17 @@ const HeaderExplore = () => {
               placeholder="search item here..."
               type="text"
             />{" "}
-            <a href="#" id="btn-submit">
+            <button type="button" id="btn-submit" aria-label="Search">
               <i className="fa fa-search bg-color-secondary"></i>
-            </a>
+            </button>
             <div className="clearfix"></div>
           </div>
         </form>
 
         <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <button type="button" className="btn-selector">
             All categories
-          </a>
+          </button>
           <ul>
             <li className="active">
               <span>All categories</span>
@@ -62,9 +63,9 @@ const HeaderExplore = () => {
         </div>
 
         <div id="buy_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <button type="button" className="btn-selector">
             Buy Now
-          </a>
+          </button>
           <ul>
             <li className="active">
               <span>Buy Now</span>
@@ -79,9 +80,9 @@ const HeaderExplore = () => {
         </div>
 
         <div id="items_type" className="dropdown">
-          <a href="#" className="btn-selector">
+          <button type="button" className="btn-selector">
             All Items
-          </a>
+          </button>
           <ul>
             <li className="active">
               <span>All Items</span>
