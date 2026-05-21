@@ -19,7 +19,6 @@ const HotCollections = () => {
         }
         const result = await response.json();
         setData(result);
-        console.log(result[0].id)
       } catch (err) {
         console.log(err.message);
       } finally {
