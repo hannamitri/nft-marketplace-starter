@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+}
+
+/*
+
+LOADING STATE
+
+*/
+
+.top__sellers {
+    display: flex;
+}
+
+.skeleton__authorImage--topSellers {
+    background: linear-gradient(
+    90deg, 
+    #f0f0f0 25%, 
+    #e5e5e5 50%, 
+    #f0f0f0 75%
+  );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    margin-bottom: 20px;
+    margin-right: 8px;
+}
+
+.skeleton__authorName--topSellers,
+.skeleton__authorPrice--topSellers {
+    background: linear-gradient(
+    90deg, 
+    #f0f0f0 25%, 
+    #e5e5e5 50%, 
+    #f0f0f0 75%
+  );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+    background-color: #e5e5e5;
+     width: 56%;
+    height: 14px;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.skeleton__authorPrice--topSellers {
+    margin-top: 22px;
+}
+
+
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
