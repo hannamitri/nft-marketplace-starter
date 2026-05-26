@@ -222,6 +222,10 @@
 }
 .fa-check:before {
   content: "\f00c";
+  background-color: #8364E2;
+  border-radius: 50%;
+  color: white;
+  padding: 2px;
 }
 .fa-remove:before,
 .fa-close:before,

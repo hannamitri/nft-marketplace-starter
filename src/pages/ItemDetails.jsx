@@ -1,16 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 
 const ItemDetails = () => {
+
+  const { nftId } = useParams();
+  console.log(nftId)
+  const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      console.log(nftId)
+      try {
+        const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/item-details?id=${nftId}`);
+        setItem(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData()
+  }, [nftId])
+
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+  if (!item) return <div>No item found!</div>
 
   return (
-    <div id="wrapper">
+    <div id="wrapper" key={item.nftId}>
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
@@ -18,7 +42,7 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={nftImage}
+                  src={item.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
@@ -48,7 +72,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={item.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
@@ -65,7 +89,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={item.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
@@ -90,5 +114,6 @@ const ItemDetails = () => {
     </div>
   );
 };
+
 
 export default ItemDetails;
