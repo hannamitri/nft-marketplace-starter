@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Slider from 'react-slick';
 import Skeleton from "../UI/Skeleton";
+import TimeLeft from "../UI/TimeLeft";
 
 
 function experationData(date) {
@@ -21,7 +22,7 @@ function experationData(date) {
 const NewItems = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [countdowns, setCountdowns] = useState({});
+  // const [countdowns, setCountdowns] = useState({});
   
   useEffect(() => {
     const fetchData = async () => {
@@ -42,26 +43,26 @@ const NewItems = () => {
     fetchData();
   },[])
 
-  // Timer
-  useEffect(() => {
-  if (data.length === 0) return;
+  // // Timer
+  // useEffect(() => {
+  // if (data.length === 0) return;
 
-  const updateTimers = () => {
-    const updatedCountdowns = {};
-    data.forEach((item) => {
-      if (item.expiryDate) {
-        updatedCountdowns[item.id] = experationData(item.expiryDate);
-      }
-    });
-    setCountdowns(updatedCountdowns);
-  };
+  // const updateTimers = () => {
+  //   const updatedCountdowns = {};
+  //   data.forEach((item) => {
+  //     if (item.expiryDate) {
+  //       updatedCountdowns[item.id] = experationData(item.expiryDate);
+  //     }
+  //   });
+  //   setCountdowns(updatedCountdowns);
+  // };
 
-  updateTimers();
+  // updateTimers();
 
-  const intervalId = setInterval(updateTimers, 1000);
+  // const intervalId = setInterval(updateTimers, 1000);
 
-  return () => clearInterval(intervalId);
-  }, [data]);
+  // return () => clearInterval(intervalId);
+  // }, [data]);
 
     function NextArrow(props) {
     const { className, style, onClick } = props;
@@ -216,13 +217,7 @@ const NewItems = () => {
                       </Link>
                     </div>
 
-                    {item.expiryDate ? (
-                      <div className="de_countdown">
-                        {countdowns[item.id] || "Calculating..."}
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
+                    {item.expiryDate && <TimeLeft expiryDate={item.expiryDate} />}
 
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
