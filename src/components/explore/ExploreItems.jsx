@@ -7,7 +7,8 @@ const ExploreItems = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [fulldata, setFullData] = useState([]);
-  const [limit, setlimit] = useState(8)
+  const [limit, setlimit] = useState(8);
+  const [filter, setFilter] = useState('')
 
   function loadMore() {
     if(limit < 16){
@@ -18,23 +19,19 @@ const ExploreItems = () => {
   }
 
   function filterData(value) {
-    let sortedData = [...data]
-
     if (value === 'price_low_to_high') {
-      sortedData.sort((a, b) => a.price - b.price)
+      setFilter('?filter=price_low_to_high')
     } else if (value === 'price_high_to_low') {
-      sortedData.sort((a, b) => b.price - a.price)
+      setFilter('?filter=price_high_to_low')
     } else {
-      sortedData.sort((a, b) => b.likes - a.likes)
+      setFilter('?filter=likes_high_to_low')
     }
-    
-    setData(sortedData)
   }
 
   useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore");
+          const response = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore${filter}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
@@ -49,7 +46,7 @@ const ExploreItems = () => {
       }
       
       fetchData();
-    },[])
+    },[filter])
 
   return (
     <>
