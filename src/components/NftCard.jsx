@@ -6,7 +6,7 @@ const NftCard = ({ item }) => {
 
 
     return (
-        <div className="p-2" key={item.id}>
+        <div data-aos="fade-up" data-aos-duration="800" className="p-2" key={item.id}>
             <div className="nft__item">
                 <div className="author_list_pp">
                     <Link
