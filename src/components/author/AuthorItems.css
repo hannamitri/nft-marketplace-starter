@@ -1,0 +1,36 @@
+.skeleton-nft-card {
+  background: #222;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.skeleton-nft-image {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  background: #333;
+  margin-bottom: 12px;
+}
+
+.skeleton-nft-title {
+  width: 70%;
+  height: 16px;
+  border-radius: 6px;
+  background: #333;
+  margin-bottom: 10px;
+}
+
+.skeleton-nft-price {
+  width: 40%;
+  height: 14px;
+  border-radius: 6px;
+  background: #333;
+}
+
+.skeleton-nft-like {
+  width: 30%;
+  height: 14px;
+  border-radius: 6px;
+  background: #333;
+  margin-top: 10px;
+}

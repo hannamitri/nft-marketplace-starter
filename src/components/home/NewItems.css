@@ -1,0 +1,9 @@
+.slider-item {
+    padding: 10px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 30px;
+}

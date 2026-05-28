@@ -1,0 +1,28 @@
+.skeleton-author-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.skeleton-author-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.skeleton-author-name {
+  width: 120px;
+  height: 18px;
+  border-radius: 6px;
+  background: #333;
+  margin-bottom: 10px;
+}
+
+.skeleton-author-price {
+  width: 80px;
+  height: 14px;
+  border-radius: 6px;
+  background: #333;
+}
