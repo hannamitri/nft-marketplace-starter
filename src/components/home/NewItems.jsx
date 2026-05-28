@@ -1,23 +1,10 @@
 import React, {useEffect, useState} from "react";
-import { Link } from "react-router-dom";
 import Slider from 'react-slick';
 import Skeleton from "../UI/Skeleton";
-import TimeLeft from "../UI/TimeLeft";
 import NftCard from "../NftCard";
 
 
-function experationData(date) {
-  const totalTimeLeft = date - Date.now();
-  
-  if (totalTimeLeft <= 0) return;
 
-  const totalSeconds = Math.floor(totalTimeLeft / 1000);
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
-  return `${hours}h ${minutes}m ${seconds}s` 
-}
 
 
 const NewItems = () => {
