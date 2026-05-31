@@ -1,10 +1,80 @@
-import React from "react";
+import {useCallback, useState, useEffect} from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const Author = () => {
+
+  const [authorData, setAuthorData] = useState([]);
+  const { id } = useParams();
+  const author = authorData.find(a => a.authorId === Number(id));
+
+
+  const getAuthordata = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`);
+
+      setAuthorData(data)
+      console.log(data)
+    }
+    catch (error) {
+      console.log("Error fetching authorData", error)
+    }
+
+  });
+
+  useEffect(() => {
+    getAuthordata();
+  }, []);
+
+
+  function renderAuthorData(author) {
+    return (
+       <div className="row">
+        <div className="col-md-12">
+          <div className="d_profile de-flex">
+            <div className="de-flex-col">
+              <div className="profile_avatar">
+                <img src={author.authorImage} alt="" />
+
+                <i className="fa fa-check"></i>
+                <div className="profile_name">
+                  <h4>
+                    {author.authorName}
+                    <span className="profile_username">@monicaaaa</span>
+                    <span id="wallet" className="profile_wallet">
+                      UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                    </span>
+                    <button id="btn_copy" title="Copy Text">
+                      Copy
+                    </button>
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div className="profile_follow de-flex">
+              <div className="de-flex-col">
+                <div className="profile_follower">573 followers</div>
+                <Link to="#" className="btn-main">
+                  Follow
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-12">
+          <div className="de_tab tab_simple">
+            <AuthorItems />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -20,45 +90,7 @@ const Author = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
-
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
-                </div>
-              </div>
-            </div>
+            {author && renderAuthorData(author)}
           </div>
         </section>
       </div>
