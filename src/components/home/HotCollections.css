@@ -1,0 +1,228 @@
+
+/* ----------------------------------------------- */
+/* Arrow Buttons */
+/* ----------------------------------------------- */
+
+.btn_container {
+  position: relative;
+  top: -50%;
+  left: -2%;
+  width: 104%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider_btn {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------- */
+/* Skeleton Loader Styles */
+/* ----------------------------------------------- */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: skeleton-gloss 1.5s infinite linear;
+}
+
+@keyframes skeleton-gloss {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.skeleton-img {
+  width: 100%;
+  height: clamp(190px, 18vw, 240px);
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 20px;
+}
+
+.skeleton-text {
+  width: 80%;
+  height: 16px;
+}
+
+.nft_coll_skeleton {
+  height: 100%;
+  margin: 4px 0 12px;
+  padding: 0 0 12px;
+  overflow: hidden;
+  background: #ffffff;
+  border: solid 1px #dddddd;
+  border-radius: 10px;
+}
+
+.nft_coll_skeleton .skeleton-avatar,
+.nft_coll_skeleton .skeleton-title,
+.nft_coll_skeleton .skeleton-text {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+/* ----------------------------------------------- */
+/* Hot Collections Slider */
+/* ----------------------------------------------- */
+
+
+
+.hot_collections-slider {
+  width: 100%;
+}
+
+.hot_collections-slider .slick-list {
+  margin: 0 -10px;
+}
+
+.hot_collections-slider .slick-track {
+  display: flex;
+}
+
+.hot_collections-slider .slick-slide {
+  height: auto;
+}
+
+.hot_collections-slider .slick-slide > div {
+  height: 100%;
+  padding: 0 10px;
+}
+
+/* ----------------------------------------------- */
+/* NFT Collection */
+/* ----------------------------------------------- */
+.nft_coll {
+  height: 100%;
+  margin: 4px 0 12px;
+  overflow: hidden;
+}
+
+.nft_coll .nft_wrap {
+  height: clamp(190px, 18vw, 240px);
+}
+
+.nft_coll .nft_wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nft_coll_info {
+  min-height: 58px;
+  padding: 0 12px 12px;
+}
+
+.nft_coll_info h4 {
+  overflow-wrap: anywhere;
+}
+
+/* =============================================== */
+
+/* Responsive Design Adjustments */
+
+/* =============================================== */
+
+/* ---------------------------------- */
+/* Laptop Responsive */
+/* ---------------------------------- */
+
+@media (max-width: 1199px) {
+  .nft_coll .nft_wrap,
+  .skeleton-img {
+    height: clamp(180px, 22vw, 220px);
+  }
+}
+
+/* ------------------------------*/
+/* Tablet Responsive */
+/* ----------------------------- */
+@media (max-width: 991px) {
+  .hot_collections-slider .slick-list {
+    margin: 0 -8px;
+  }
+
+  .hot_collections-slider .slick-slide > div {
+    padding: 0 8px;
+  }
+
+  .nft_coll .nft_wrap,
+  .skeleton-img {
+    height: clamp(180px, 34vw, 230px);
+  }
+}
+
+/* ---------------------------------- */
+/* Cellphone Responsive */
+/* ---------------------------------- */
+@media (max-width: 575px) {
+  .hot_collections-slider .slick-list {
+    margin: 0;
+  }
+
+  .hot_collections-slider .slick-slide > div {
+    padding: 0 6px;
+  }
+
+  .nft_coll .nft_wrap,
+  .skeleton-img {
+    height: clamp(210px, 64vw, 260px);
+  }
+
+  .nft_coll_info {
+    min-height: 64px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .btn_container {
+    margin-top: 24px;
+    gap: 14px;
+  }
+
+  .slider {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+}

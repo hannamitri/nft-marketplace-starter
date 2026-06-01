@@ -1,9 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import {useState, useEffect, useCallback} from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios"
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const HotCollections = () => {
+
+  const [newItemsData, setNewItemsData] = useState([])
+  const { id } = useParams();
+
+  const getNewItemsData = useCallback( async () => {
+    try {
+     const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems`);
+     console.log(data)
+    }
+    catch (error) {
+      console.log("Error fetching newItemsData", error)
+    }
+  },[])
+
+useEffect(() => {
+  getNewItemsData();
+},[])
+
+
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">

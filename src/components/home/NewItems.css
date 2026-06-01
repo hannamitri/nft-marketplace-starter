@@ -1,0 +1,162 @@
+.row {
+    position: relative;
+}
+
+
+/* =========================== */
+/* Slider Buttons */
+/* =========================== */
+
+.button__container {
+   position: absolute;
+   padding: 0px;
+   bottom: 40%;
+   left: 0;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   z-index: 10;
+}
+
+.bttn {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+/* ----------------------------------------------- */
+/* Skeleton Loader*/
+/* ----------------------------------------------- */
+
+.newItemSkeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.newItemSkeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: skeleton-gloss 1.5s infinite linear;
+}
+
+@keyframes skeleton-gloss {
+  0%   { left: -150px; }
+  100% { left: 100%; }
+}
+
+.skeleton-img {
+  width: 100%;
+  height: clamp(190px, 18vw, 240px);
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 20px;
+}
+
+.skeleton-text {
+  width: 80%;
+  height: 16px;
+}
+
+
+/* ========================================= */
+/* Responsivness */
+/* ==========================================*/
+
+/* ---------------------------------- */
+/* Laptop */
+/* ---------------------------------- */
+@media (max-width: 1199px) {
+  .slider_container {
+    padding: 0 10px;
+  }
+
+  .skeleton-img {
+    height: clamp(180px, 22vw, 220px);
+  }
+}
+
+/* ---------------------------------- */
+/* Tablet */
+/* ---------------------------------- */
+@media (max-width: 991px) {
+  .slider_container {
+    padding: 0 8px;
+  }
+
+  .button__container {
+    bottom: 38%;
+  }
+
+  .bttn {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .skeleton-img {
+    height: clamp(180px, 34vw, 230px);
+  }
+}
+
+/* ---------------------------------- */
+/* Cellphone  */
+/* ---------------------------------- */
+@media (max-width: 575px) {
+  .slider_container {
+    padding: 0;
+  }
+
+
+  .button__container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .bttn {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .skeleton-img {
+    height: clamp(210px, 64vw, 260px);
+  }
+
+  .newItems__Slider {
+    margin-bottom: 16px;
+  }
+}
