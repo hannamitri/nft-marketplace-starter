@@ -1,0 +1,123 @@
+*{
+    box-sizing: border-box;
+}
+
+/*
+
+LOADING STATE
+
+*/
+
+.skeleton__container {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.skeleton__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skeleton__authorInfo {
+    display: flex;
+}
+
+.skeleton__authorImage--authorInfo {
+    background: linear-gradient(
+    90deg, 
+    #f0f0f0 25%, 
+    #e5e5e5 50%, 
+    #f0f0f0 75%
+  );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    margin-bottom: 52px;
+    margin-right: 8px;
+}
+
+.skeleton__authorName--authorInfo,
+.skeleton__authorTag--authorInfo,
+.skeleton__authorAddress--authorInfo,
+.skeleton__followAuthor {
+    background: linear-gradient(
+    90deg, 
+    #f0f0f0 25%, 
+    #e5e5e5 50%, 
+    #f0f0f0 75%
+  );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+    background-color: #e5e5e5;
+    width: 200px;
+    height: 24px;
+    border-radius: 4px;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.skeleton__authorName--authorInfo {
+    margin-top: 24px;
+}
+
+.skeleton__authorTag--authorInfo {
+    height: 16px;
+    width: 120px;
+}
+
+.skeleton__authorAddress--authorInfo {
+    height: 18px;
+    width: 200px;
+}
+
+.skeleton__followAuthor {
+    padding: 8px 40px;
+    border-radius: 6px;
+    height: 44px;
+    width: 140px;
+    margin-top: 48px;
+}
+
+
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 768px) {
+    .skeleton__container {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .skeleton__row,
+    .skeleton__authorInfo {
+        flex-direction: column;
+    }
+
+    .skeleton__authorImage--authorInfo {
+        margin-bottom: 40px;
+    }
+
+    .skeleton__authorName--authorInfo {
+        margin-top: 0;
+    }
+
+    .skeleton__followAuthor {
+        margin-top: 20px;
+        margin-bottom: 48px;
+    }
+
+    .skeleton__authorName--authorInfo,
+    .skeleton__authorTag--authorInfo,
+    .skeleton__authorAddress--authorInfo,
+    .skeleton__followAuthor {
+        margin-left: 0;
+    }
+}
