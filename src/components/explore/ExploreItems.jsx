@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const ExploreItems = () => {
+  const { id } = useParams();
+
   return (
     <>
       <div>
@@ -23,7 +25,7 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${id}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
