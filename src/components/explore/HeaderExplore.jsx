@@ -19,17 +19,21 @@ const HeaderExplore = () => {
               placeholder="search item here..."
               type="text"
             />{" "}
-            <a href="#" id="btn-submit">
-              <i className="fa fa-search bg-color-secondary"></i>
-            </a>
+            <a href="/" id="btn-submit" onClick={(e) => e.preventDefault()}>
+  <i className="fa fa-search bg-color-secondary"></i>
+</a>
             <div className="clearfix"></div>
           </div>
         </form>
 
         <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
-            All categories
-          </a>
+          <a
+  href="/"
+  className="btn-selector"
+  onClick={(e) => e.preventDefault()}
+>
+  All categories
+</a>
           <ul>
             <li className="active">
               <span>All categories</span>
@@ -61,11 +65,15 @@ const HeaderExplore = () => {
           </ul>
         </div>
 
-        <div id="buy_category" className="dropdown">
-          <a href="#" className="btn-selector">
-            Buy Now
-          </a>
-          <ul>
+      <div id="buy_category" className="dropdown">
+  <a
+    href="/"
+    className="btn-selector"
+    onClick={(e) => e.preventDefault()}
+  >
+    Buy Now
+  </a>
+  <ul>
             <li className="active">
               <span>Buy Now</span>
             </li>
@@ -79,10 +87,14 @@ const HeaderExplore = () => {
         </div>
 
         <div id="items_type" className="dropdown">
-          <a href="#" className="btn-selector">
-            All Items
-          </a>
-          <ul>
+  <a
+    href="/"
+    className="btn-selector"
+    onClick={(e) => e.preventDefault()}
+  >
+    All Items
+  </a>
+  <ul>
             <li className="active">
               <span>All Items</span>
             </li>
