@@ -13,8 +13,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        
+        {/* 1. Added /:authorId to match dynamic creator clicks */}
+        <Route path="/author/:authorId" element={<Author />} />
+        
+        {/* 2. Added /:nftId to match dynamic item clicks */}
+        <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
