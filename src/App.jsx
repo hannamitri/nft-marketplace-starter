@@ -5,19 +5,17 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop"; // 1. Import the utility
 
 function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* 2. Drop it right here above your Nav bar */}
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        
-        {/* 1. Added /:authorId to match dynamic creator clicks */}
         <Route path="/author/:authorId" element={<Author />} />
-        
-        {/* 2. Added /:nftId to match dynamic item clicks */}
         <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
       <Footer />
