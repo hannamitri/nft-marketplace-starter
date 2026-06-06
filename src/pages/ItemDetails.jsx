@@ -5,11 +5,14 @@ import { Link, useParams } from "react-router-dom";
 const ItemDetails = () => {
   const { type, id } = useParams();
   const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const fetchItem = async () => {
+      setLoading(true);
+
       try {
         let url = "";
 
@@ -34,15 +37,98 @@ const ItemDetails = () => {
         setItem(selectedItem || null);
       } catch (error) {
         console.log("DETAIL PAGE ERROR:", error);
+        setItem(null);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchItem();
   }, [type, id]);
 
-  if (!item) {
-    return <div className="container pt-5 mt-5">Loading...</div>;
+  if (loading) {
+    return (
+      <div id="wrapper">
+        <div className="no-bottom no-top" id="content">
+          <div id="top"></div>
+
+          <section aria-label="section" className="mt90 sm-mt-0">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 text-center">
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "500px",
+                      background: "#eee",
+                      borderRadius: "12px",
+                    }}
+                  ></div>
+                </div>
+
+                <div className="col-md-6">
+                  <div
+                    style={{
+                      width: "70%",
+                      height: "40px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                    }}
+                  ></div>
+
+                  <div
+                    style={{
+                      width: "180px",
+                      height: "25px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                      marginBottom: "25px",
+                    }}
+                  ></div>
+
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "90px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                      marginBottom: "30px",
+                    }}
+                  ></div>
+
+                  <div
+                    style={{
+                      width: "220px",
+                      height: "55px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                      marginBottom: "30px",
+                    }}
+                  ></div>
+
+                  <div
+                    style={{
+                      width: "160px",
+                      height: "35px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    );
   }
+
+  if (!item) {
+    return <div className="container pt-5 mt-5">Item not found.</div>;
+  }
+
+  const authorId = item.authorId || item.author || item.id;
 
   const detailNumber =
     type === "new"
@@ -140,9 +226,9 @@ const ItemDetails = () => {
 
                   <p>
                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                    quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
+                    accusantium doloremque laudantium, totam rem aperiam, eaque
+                    ipsa quae ab illo inventore veritatis et quasi architecto
+                    beatae vitae dicta sunt explicabo.
                   </p>
 
                   <div className="d-flex flex-row">
@@ -150,17 +236,17 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${authorId}`}>
                             <img
                               className="lazy"
                               src={item.authorImage}
-                              alt={item.title}
+                              alt={ownerName}
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{ownerName}</Link>
+                          <Link to={`/author/${authorId}`}>{ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -171,17 +257,17 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${authorId}`}>
                             <img
                               className="lazy"
                               src={item.authorImage}
-                              alt={item.title}
+                              alt={creatorName}
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{creatorName}</Link>
+                          <Link to={`/author/${authorId}`}>{creatorName}</Link>
                         </div>
                       </div>
                     </div>

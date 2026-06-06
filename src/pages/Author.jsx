@@ -12,26 +12,18 @@ const Author = () => {
     window.scrollTo(0, 0);
 
     const fetchAuthor = async () => {
+      setLoading(true);
+
       try {
         const response = await fetch(
           `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
         );
 
-        const text = await response.text();
-        console.log("RAW AUTHOR RESPONSE:", text);
-
-        if (!text || text.trim() === "") {
-          setAuthor(null);
-          return;
-        }
-
-        const data = JSON.parse(text);
+        const data = await response.json();
         const authorData = Array.isArray(data) ? data[0] : data;
 
-        console.log("PARSED AUTHOR DATA:", authorData);
-
         setAuthor(authorData);
-        setFollowers(authorData.followers || 0);
+        setFollowers(authorData?.followers || 0);
       } catch (error) {
         console.log("AUTHOR PAGE ERROR:", error);
         setAuthor(null);
@@ -53,7 +45,134 @@ const Author = () => {
   };
 
   if (loading) {
-    return <div style={{ padding: "40px" }}>Loading...</div>;
+    return (
+      <div>
+        <section
+          style={{
+            minHeight: "360px",
+            backgroundImage:
+              "url('https://nft-marketplacee.web.app/static/media/profile_banner.44cde9e5.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></section>
+
+        <section style={{ padding: "60px 0" }}>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1200px",
+              margin: "0 auto",
+              padding: "0 24px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                marginBottom: "50px",
+              }}
+            >
+              <div
+                style={{
+                  width: "150px",
+                  height: "150px",
+                  borderRadius: "50%",
+                  background: "#eee",
+                }}
+              ></div>
+
+              <div>
+                <div
+                  style={{
+                    width: "260px",
+                    height: "42px",
+                    background: "#eee",
+                    borderRadius: "8px",
+                    marginBottom: "12px",
+                  }}
+                ></div>
+                <div
+                  style={{
+                    width: "160px",
+                    height: "20px",
+                    background: "#eee",
+                    borderRadius: "8px",
+                    marginBottom: "12px",
+                  }}
+                ></div>
+                <div
+                  style={{
+                    width: "320px",
+                    height: "18px",
+                    background: "#eee",
+                    borderRadius: "8px",
+                  }}
+                ></div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+                gap: "24px",
+              }}
+            >
+              {new Array(4).fill(0).map((_, index) => (
+                <div
+                  key={index}
+                  style={{
+                    border: "1px solid #ddd",
+                    borderRadius: "15px",
+                    background: "#fff",
+                    padding: "20px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%",
+                      background: "#eee",
+                      marginBottom: "12px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "260px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                      marginBottom: "16px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "70%",
+                      height: "20px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                      marginBottom: "12px",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      width: "40%",
+                      height: "18px",
+                      background: "#eee",
+                      borderRadius: "8px",
+                    }}
+                  ></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    );
   }
 
   if (!author) {
@@ -221,7 +340,7 @@ const Author = () => {
             {author.nftCollection &&
               author.nftCollection.map((nft) => (
                 <div
-                  key={nft.id}
+                  key={nft.nftId || nft.id}
                   style={{
                     border: "1px solid #ddd",
                     borderRadius: "15px",
@@ -248,7 +367,7 @@ const Author = () => {
                     </Link>
 
                     <div style={{ paddingTop: "28px" }}>
-                      <Link to={`/item-details/explore/${nft.nftId}`}>
+                      <Link to={`/item-details/hot/${nft.nftId || nft.id}`}>
                         <img
                           src={nft.nftImage}
                           alt={nft.title}
@@ -265,7 +384,7 @@ const Author = () => {
 
                   <div>
                     <Link
-                      to={`/item-details/explore/${nft.nftId}`}
+                      to={`/item-details/hot/${nft.nftId || nft.id}`}
                       style={{
                         textDecoration: "none",
                         color: "#111",
@@ -288,7 +407,10 @@ const Author = () => {
                     >
                       <span style={{ fontWeight: "600" }}>{nft.price} ETH</span>
                       <span style={{ color: "#888" }}>
-                        <i className="fa fa-heart" style={{ marginRight: "6px" }}></i>
+                        <i
+                          className="fa fa-heart"
+                          style={{ marginRight: "6px" }}
+                        ></i>
                         {nft.likes}
                       </span>
                     </div>

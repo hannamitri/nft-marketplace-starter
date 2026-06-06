@@ -18,7 +18,6 @@ const ExploreItems = () => {
           }`
         );
         const data = await response.json();
-        console.log("EXPLORE DATA:", data);
         setItems(data);
       } catch (error) {
         console.log("EXPLORE ERROR:", error);
@@ -42,7 +41,7 @@ const ExploreItems = () => {
     const distance = expiryDate - timeNow;
 
     if (distance <= 0) {
-      return "Ended";
+      return "";
     }
 
     const hours = Math.floor(distance / (1000 * 60 * 60));
@@ -76,54 +75,11 @@ const ExploreItems = () => {
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           >
             <div className="nft__item" data-aos="fade-up">
-              <div
-                style={{
-                  background: "#eee",
-                  width: "50px",
-                  height: "50px",
-                  borderRadius: "50%",
-                  marginBottom: "12px",
-                }}
-              ></div>
-
-              <div
-                style={{
-                  background: "#eee",
-                  width: "100px",
-                  height: "28px",
-                  borderRadius: "8px",
-                  marginBottom: "12px",
-                }}
-              ></div>
-
-              <div
-                style={{
-                  background: "#eee",
-                  width: "100%",
-                  height: "250px",
-                  borderRadius: "8px",
-                  marginBottom: "12px",
-                }}
-              ></div>
-
-              <div
-                style={{
-                  background: "#eee",
-                  width: "60%",
-                  height: "22px",
-                  borderRadius: "4px",
-                  marginBottom: "8px",
-                }}
-              ></div>
-
-              <div
-                style={{
-                  background: "#eee",
-                  width: "40%",
-                  height: "18px",
-                  borderRadius: "4px",
-                }}
-              ></div>
+              <div style={{ background: "#eee", width: "50px", height: "50px", borderRadius: "50%", marginBottom: "12px" }}></div>
+              <div style={{ background: "#eee", width: "100px", height: "28px", borderRadius: "8px", marginBottom: "12px" }}></div>
+              <div style={{ background: "#eee", width: "100%", height: "250px", borderRadius: "8px", marginBottom: "12px" }}></div>
+              <div style={{ background: "#eee", width: "60%", height: "22px", borderRadius: "4px", marginBottom: "8px" }}></div>
+              <div style={{ background: "#eee", width: "40%", height: "18px", borderRadius: "4px" }}></div>
             </div>
           </div>
         ))}
@@ -134,11 +90,7 @@ const ExploreItems = () => {
   return (
     <div className="row">
       <div className="col-md-12 mb30">
-        <select
-          id="filter-items"
-          value={filter}
-          onChange={handleFilterChange}
-        >
+        <select id="filter-items" value={filter} onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -146,80 +98,77 @@ const ExploreItems = () => {
         </select>
       </div>
 
-      {items.slice(0, visibleCount).map((item) => (
-        <div
-          key={item.id}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block" }}
-        >
-          <div className="nft__item">
-            <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title={`Creator: ${item.title}`}
-              >
-                <img
-                  className="lazy"
-                  src={item.authorImage}
-                  alt={item.title}
-                />
-                <i className="fa fa-check"></i>
-              </Link>
-            </div>
+      {items.slice(0, visibleCount).map((item) => {
+        const countdown = getCountdown(item.expiryDate);
+        const authorId = item.authorId || item.author || item.id;
 
-            <div className="de_countdown">{getCountdown(item.expiryDate)}</div>
-
-            <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="/" onClick={(e) => e.preventDefault()}>
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="/" onClick={(e) => e.preventDefault()}>
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="/" onClick={(e) => e.preventDefault()}>
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
-                </div>
+        return (
+          <div
+            key={item.id}
+            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+            style={{ display: "block" }}
+          >
+            <div className="nft__item" data-aos="fade-up">
+              <div className="author_list_pp">
+                <Link
+                  to={`/author/${authorId}`}
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title={`Creator: ${item.title}`}
+                >
+                  <img className="lazy" src={item.authorImage} alt={item.title} />
+                  <i className="fa fa-check"></i>
+                </Link>
               </div>
 
-              <Link to={`/item-details/explore/${item.id}`}>
-                <img
-                  src={item.nftImage}
-                  className="lazy nft__item_preview"
-                  alt={item.title}
-                />
-              </Link>
-            </div>
+              {countdown && <div className="de_countdown">{countdown}</div>}
 
-            <div className="nft__item_info">
-              <Link to={`/item-details/explore/${item.id}`}>
-                <h4>{item.title}</h4>
-              </Link>
-              <div className="nft__item_price">{item.price} ETH</div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>{item.likes}</span>
+              <div className="nft__item_wrap">
+                <div className="nft__item_extra">
+                  <div className="nft__item_buttons">
+                    <button>Buy Now</button>
+                    <div className="nft__item_share">
+                      <h4>Share</h4>
+                      <a href="/" onClick={(e) => e.preventDefault()}>
+                        <i className="fa fa-facebook fa-lg"></i>
+                      </a>
+                      <a href="/" onClick={(e) => e.preventDefault()}>
+                        <i className="fa fa-twitter fa-lg"></i>
+                      </a>
+                      <a href="/" onClick={(e) => e.preventDefault()}>
+                        <i className="fa fa-envelope fa-lg"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <Link to={`/item-details/explore/${item.id}`}>
+                  <img
+                    src={item.nftImage}
+                    className="lazy nft__item_preview"
+                    alt={item.title}
+                  />
+                </Link>
+              </div>
+
+              <div className="nft__item_info">
+                <Link to={`/item-details/explore/${item.id}`}>
+                  <h4>{item.title}</h4>
+                </Link>
+                <div className="nft__item_price">{item.price} ETH</div>
+                <div className="nft__item_like">
+                  <i className="fa fa-heart"></i>
+                  <span>{item.likes}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {visibleCount < items.length && (
         <div className="col-md-12 text-center">
-          <button
-            id="loadmore"
-            className="btn-main lead"
-            onClick={handleLoadMore}
-          >
+          <button id="loadmore" className="btn-main lead" onClick={handleLoadMore}>
             Load more
           </button>
         </div>

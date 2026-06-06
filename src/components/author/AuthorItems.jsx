@@ -12,19 +12,14 @@ const Author = () => {
     window.scrollTo(0, 0);
 
     const fetchAuthor = async () => {
+      setLoading(true);
+
       try {
         const response = await fetch(
           `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
         );
 
-        const text = await response.text();
-
-        if (!text) {
-          setAuthor(null);
-          return;
-        }
-
-        const data = JSON.parse(text);
+        const data = await response.json();
         const authorData = Array.isArray(data) ? data[0] : data;
 
         setAuthor(authorData || null);
@@ -41,16 +36,95 @@ const Author = () => {
   }, [id]);
 
   const toggleFollow = () => {
-    if (isFollowing) {
-      setFollowers((prev) => prev - 1);
-    } else {
-      setFollowers((prev) => prev + 1);
-    }
+    setFollowers((prev) => (isFollowing ? prev - 1 : prev + 1));
     setIsFollowing(!isFollowing);
   };
 
   if (loading) {
-    return <div className="container pt-5 mt-5">Loading...</div>;
+    return (
+      <div id="wrapper">
+        <div id="content" className="no-bottom no-top">
+          <div id="top"></div>
+
+          <section
+            id="profile_banner"
+            aria-label="section"
+            className="text-light"
+          ></section>
+
+          <section aria-label="section">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <div
+                          style={{
+                            width: "150px",
+                            height: "150px",
+                            borderRadius: "50%",
+                            background: "#eee",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {new Array(8).fill(0).map((_, index) => (
+                  <div
+                    key={index}
+                    className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                  >
+                    <div className="nft__item">
+                      <div
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "50%",
+                          background: "#eee",
+                          marginBottom: "12px",
+                        }}
+                      ></div>
+
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "250px",
+                          borderRadius: "8px",
+                          background: "#eee",
+                          marginBottom: "12px",
+                        }}
+                      ></div>
+
+                      <div
+                        style={{
+                          width: "70%",
+                          height: "22px",
+                          borderRadius: "4px",
+                          background: "#eee",
+                          marginBottom: "8px",
+                        }}
+                      ></div>
+
+                      <div
+                        style={{
+                          width: "40%",
+                          height: "18px",
+                          borderRadius: "4px",
+                          background: "#eee",
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    );
   }
 
   if (!author) {
@@ -119,7 +193,7 @@ const Author = () => {
 
               {authorNfts.map((nft) => (
                 <div
-                  key={nft.id}
+                  key={nft.nftId || nft.id}
                   className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 >
                   <div className="nft__item">
@@ -153,7 +227,7 @@ const Author = () => {
                         </div>
                       </div>
 
-                      <Link to={`/item-details/explore/${nft.nftId}`}>
+                      <Link to={`/item-details/hot/${nft.nftId || nft.id}`}>
                         <img
                           src={nft.nftImage}
                           className="lazy nft__item_preview"
@@ -163,7 +237,7 @@ const Author = () => {
                     </div>
 
                     <div className="nft__item_info">
-                      <Link to={`/item-details/explore/${nft.nftId}`}>
+                      <Link to={`/item-details/hot/${nft.nftId || nft.id}`}>
                         <h4>{nft.title}</h4>
                       </Link>
                       <div className="nft__item_price">{nft.price} ETH</div>

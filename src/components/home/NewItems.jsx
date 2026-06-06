@@ -87,7 +87,7 @@ const NewItems = () => {
     const distance = expiryDate - timeNow;
 
     if (distance <= 0) {
-      return "Ended";
+return "";
     }
 
     const hours = Math.floor(distance / (1000 * 60 * 60));
@@ -187,12 +187,12 @@ const NewItems = () => {
                   <div className="px-2">
                     <div className="nft__item">
                       <div className="author_list_pp">
-                        <Link
-                          to="/author"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title={`Creator: ${item.title}`}
-                        >
+                       <Link
+  to={`/author/${item.authorId || item.author || item.id}`}
+  data-bs-toggle="tooltip"
+  data-bs-placement="top"
+  title={`Creator: ${item.title}`}
+>
                           <img
                             className="lazy"
                             src={item.authorImage}
@@ -202,9 +202,11 @@ const NewItems = () => {
                         </Link>
                       </div>
 
-                      <div className="de_countdown">
-                        {getCountdown(item.expiryDate)}
-                      </div>
+{getCountdown(item.expiryDate) && (
+  <div className="de_countdown">
+    {getCountdown(item.expiryDate)}
+  </div>
+)}
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
