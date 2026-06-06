@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Skeleton from "../UI/Skeleton"; // Adjust relative route mapping as needed
+import { Link, useParams } from "react-router-dom"; // Added useParams here!
+import Skeleton from "../UI/Skeleton"; 
 
 const AuthorItems = ({ nftCollection, authorImage, loading }) => {
+  const { authorId } = useParams(); // Extract the authorId from the URL path!
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -33,10 +35,12 @@ const AuthorItems = ({ nftCollection, authorImage, loading }) => {
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={nft.id}>
                 <div className="nft__item">
                   
-                  {/* Creator PFP circle avatar */}
+                  {/* Creator PFP circle avatar linked dynamically */}
                   <div className="author_list_pp">
-                    <img className="lazy" src={authorImage} alt="Author miniature profile" />
-                    <i className="fa fa-check"></i>
+                    <Link to={`/author/${authorId}`}>
+                      <img className="lazy" src={authorImage} alt="Author miniature profile" />
+                      <i className="fa fa-check"></i>
+                    </Link>
                   </div>
 
                   <div className="nft__item_wrap">
@@ -58,8 +62,8 @@ const AuthorItems = ({ nftCollection, authorImage, loading }) => {
                       </div>
                     </div>
                     
-                    {/* Link to specific NFT detail sub-page */}
-                    <Link to={`/item-details/${nft.nftId}`}>
+                    {/* Fallback utility for item details page */}
+                    <Link to={`/item-details/${nft.nftId || nft.id}`}>
                       <img
                         src={nft.nftImage}
                         className="lazy nft__item_preview"
@@ -68,9 +72,9 @@ const AuthorItems = ({ nftCollection, authorImage, loading }) => {
                     </Link>
                   </div>
 
-                  {/* Card Description Data Column Footer block */}
+                  {/* Card Description Data */}
                   <div className="nft__item_info">
-                    <Link to={`/item-details/${nft.nftId}`}>
+                    <Link to={`/item-details/${nft.nftId || nft.id}`}>
                       <h4>{nft.title}</h4>
                     </Link>
                     <div className="nft__item_price">{nft.price} ETH</div>

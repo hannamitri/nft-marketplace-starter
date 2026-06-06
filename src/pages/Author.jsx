@@ -1,52 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuthorItems from "../components/author/AuthorItems"; 
-import Skeleton from "../components/UI/Skeleton"; // Clean loader proxy
+import Skeleton from "../components/UI/Skeleton"; 
 
 const Author = () => {
   const { authorId } = useParams(); 
-  console.log("Current Author ID from URL path:", authorId);
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  // 1. DYNAMIC FOLLOW TRACKING STATE
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followersCount, setFollowersCount] = useState(0);
 
-useEffect(() => {
-  const fetchAuthorProfile = async () => {
-    try {
-      setLoading(true);
-      console.log("Fetching data for ID:", authorId);
-      
-      // Change from: .../authors?authorId=${authorId}
-// Change to: .../authors/${authorId}
-
-const response = await fetch(
-  `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
-);
-      const data = await response.json();
-      
-      console.log("Raw API Response data:", data); // Check what this prints!
-      
-      // If the API returns an array instead of a single object, unpack it safely
-      if (Array.isArray(data)) {
-        setAuthorData(data[0]);
-      } else {
+  useEffect(() => {
+    const fetchAuthorProfile = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+        );
+        if (!response.ok) throw new Error("Failed to fetch author data");
+        const data = await response.json();
+        
         setAuthorData(data);
+        // Initialize the base follower count straight from the API data stream
+        setFollowersCount(data.followers || 0);
+        setIsFollowing(false); // Reset tracking state if changing profiles
+      } catch (error) {
+        console.error("Error pulling author profile metrics:", error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Error pulling author profile metrics:", error);
-    } finally {
-      setLoading(false);
+    };
+
+    if (authorId) {
+      fetchAuthorProfile();
     }
+  }, [authorId]);
+
+  // 2. TOGGLE ACTION LOGIC
+  const toggleFollow = () => {
+    if (isFollowing) {
+      setFollowersCount((prev) => prev - 1);
+    } else {
+      setFollowersCount((prev) => prev + 1);
+    }
+    setIsFollowing(!isFollowing);
   };
 
-  if (authorId) {
-    fetchAuthorProfile();
-  }
-}, [authorId]);
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         
-        {/* Profile Banner */}
         <section 
           id="profile_banner" 
           className="text-light" 
@@ -87,10 +92,40 @@ const response = await fetch(
                       </div>
                     </div>
                   </div>
+
+                  {/* 3. DYNAMIC FOLLOWER COUNT AND TOGGLE BUTTON */}
+                  <div className="profile_follow de-flex-col">
+                    <div className="de-flex-col" style={{ paddingRight: "20px", textAlign: "right" }}>
+                      {loading ? (
+                        <Skeleton width="80px" height="20px" borderRadius="4px" />
+                      ) : (
+                        <span className="profile_follower" style={{ fontSize: "16px", fontWeight: "600" }}>
+                          {followersCount} followers
+                        </span>
+                      )}
+                    </div>
+                    {!loading && (
+                      <button 
+                        className={`btn-main ${isFollowing ? "btn-unfollow" : ""}`}
+                        onClick={toggleFollow}
+                        style={{
+                          backgroundColor: isFollowing ? "#727272" : "#8364e2",
+                          color: "#fff",
+                          border: "none",
+                          padding: "8px 24px",
+                          borderRadius: "6px",
+                          fontWeight: "bold",
+                          transition: "all 0.3s ease"
+                        }}
+                      >
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
+                    )}
+                  </div>
+
                 </div>
               </div>
 
-              {/* 1. Pass down the live arrays and the profile pfp to the items layout */}
               <div className="col-md-12" key={authorData?.id || "loading"}>
                 <AuthorItems 
                   nftCollection={authorData?.nftCollection} 
@@ -104,7 +139,6 @@ const response = await fetch(
         </section>
       </div>
     </div>
-    
   );
 };
 
