@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import BrowseByCategory from "../components/home/BrowseByCategory";
-import HotCollections from "../components/home/HotCollections";
-import Landing from "../components/home/Landing";
-import LandingIntro from "../components/home/LandingIntro";
-import NewItems from "../components/home/NewItems";
-import TopSellers from "../components/home/TopSellers";
+import React, { Suspense, lazy, useEffect } from "react";
+const BrowseByCategory = lazy(() => import("../components/home/BrowseByCategory"));
+const HotCollections = lazy(() => import("../components/home/HotCollections"));
+const Landing = lazy(() => import("../components/home/Landing"));
+const LandingIntro = lazy(() => import("../components/home/LandingIntro"));
+const NewItems = lazy(() => import("../components/home/NewItems"));
+const TopSellers = lazy(() => import("../components/home/TopSellers"));
 
 const Home = () => {
   useEffect(() => {
@@ -15,12 +15,24 @@ const Home = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-        <Landing />
-        <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
-        <BrowseByCategory />
+        <Suspense fallback={<div style={{ padding: 24 }}>Loading...</div>}>
+          <Landing />
+        </Suspense>
+        <Suspense fallback={<div style={{ padding: 24 }}>Loading...</div>}>
+          <LandingIntro />
+        </Suspense>
+        <Suspense fallback={<div style={{ padding: 24 }}>Loading collections...</div>}>
+          <HotCollections />
+        </Suspense>
+        <Suspense fallback={<div style={{ padding: 24 }}>Loading items...</div>}>
+          <NewItems />
+        </Suspense>
+        <Suspense fallback={<div style={{ padding: 24 }}>Loading sellers...</div>}>
+          <TopSellers />
+        </Suspense>
+        <Suspense fallback={<div style={{ padding: 24 }}>Loading categories...</div>}>
+          <BrowseByCategory />
+        </Suspense>
       </div>
     </div>
   );

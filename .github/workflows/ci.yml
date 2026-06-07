@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - mark-merge
+      - main
+      - master
+  pull_request:
+
+jobs:
+  test:
+    name: Test and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest tests
+        run: CI=true npm test -- --watchAll=false
+
+      - name: Build
+        run: npm run build

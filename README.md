@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+[![CI](https://github.com/markwaldron7string/ultraverse/actions/workflows/ci.yml/badge.svg?branch=mark-merge)](https://github.com/markwaldron7string/ultraverse/actions/workflows/ci.yml)
+[![CD](https://github.com/markwaldron7string/ultraverse/actions/workflows/cd.yml/badge.svg?branch=mark-merge)](https://github.com/markwaldron7string/ultraverse/actions/workflows/cd.yml)
+![E2E](https://github.com/markwaldron7string/ultraverse/actions/workflows/cypress.yml/badge.svg?branch=mark-merge)
+[![React](https://img.shields.io/badge/React-17-61dafb?logo=react&logoColor=black)](https://react.dev)
+[![Jest](https://img.shields.io/badge/Tested-Jest-C21325?logo=jest&logoColor=white)](https://jestjs.io)
+[![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?logo=vercel&logoColor=white)](YOUR_LIVE_URL)
+# Ultraverse NFT World
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ultraverse NFT World is a React marketplace UI for browsing NFT collections, featured items, authors, and item details. It includes a polished landing page, responsive navigation, carousel sections, and placeholder wallet-connection behavior ready for a future integration.
 
-## Available Scripts
+![Ultraverse NFT World homepage](docs/ultraverse-preview.png)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Marketplace landing page with Ultraverse branding and NFT-focused hero content.
+- Explore, author, and item-detail routes powered by React Router.
+- Responsive navigation with desktop and mobile menu states.
+- Carousel-driven collection and item sections.
+- Jest and React Testing Library smoke coverage for the app shell.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React 17
+- Create React App / React Scripts
+- React Router 6
+- Jest and React Testing Library
+- AOS animations
+- Owl Carousel and Slick Carousel assets
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install dependencies:
 
-### `npm run build`
+```sh
+pnpm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Start the local development server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+pnpm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run the Jest test suite:
 
-### `npm run eject`
+```sh
+pnpm test --watchAll=false
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a production build:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+pnpm build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## CI/CD Validation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The `mark-merge` branch has passing CI/CD validation. The CI workflow installs dependencies with `pnpm install --frozen-lockfile`, runs the Jest suite, and creates a production build. The CD workflow builds the deployable artifact, serves the generated `build/` directory, smoke-tests the HTML and static assets over HTTP, and uploads the build artifact.

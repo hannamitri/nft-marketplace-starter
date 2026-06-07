@@ -1,0 +1,92 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - mark-merge
+      - main
+      - master
+  pull_request:
+
+jobs:
+  delivery-smoke-test:
+    name: Validate deploy artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build deploy artifact
+        run: npm run build
+
+      - name: Smoke test static artifact
+        run: |
+          python3 - <<'PY'
+          import http.server
+          import os
+          import re
+          import socketserver
+          import threading
+          import time
+          import urllib.request
+
+          root = os.path.abspath("build")
+          port = 4173
+
+          class ReusableTCPServer(socketserver.TCPServer):
+              allow_reuse_address = True
+
+          class Handler(http.server.SimpleHTTPRequestHandler):
+              def __init__(self, *args, **kwargs):
+                  super().__init__(*args, directory=root, **kwargs)
+
+              def log_message(self, format, *args):
+                  pass
+
+          with ReusableTCPServer(("127.0.0.1", port), Handler) as server:
+              thread = threading.Thread(target=server.serve_forever, daemon=True)
+              thread.start()
+              base = f"http://127.0.0.1:{port}"
+              for _ in range(50):
+                  try:
+                      with urllib.request.urlopen(base, timeout=1) as response:
+                          html = response.read().decode("utf-8")
+                      break
+                  except Exception:
+                      time.sleep(0.1)
+              else:
+                  raise SystemExit("CD smoke test failed: server did not respond")
+
+              if '<div id="root"></div>' not in html:
+                  raise SystemExit("CD smoke test failed: app root missing from index.html")
+
+              assets = re.findall(r"/(static/(?:js|css)/[^\"']+)", html)
+              if not assets:
+                  raise SystemExit("CD smoke test failed: no static JS/CSS assets found")
+
+              for asset in assets:
+                  with urllib.request.urlopen(f"{base}/{asset}", timeout=3) as response:
+                      body = response.read()
+                      if response.status != 200 or not body:
+                          raise SystemExit(f"CD smoke test failed: {asset} returned {response.status}")
+
+              server.shutdown()
+
+          print(f"CD smoke test passed: verified {len(assets)} static assets.")
+          PY
+
+      - name: Upload deploy artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ultraverse-build
+          path: build

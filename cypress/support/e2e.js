@@ -1,0 +1,1 @@
+// Cypress support file — runs before every E2E spec.

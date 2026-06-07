@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "authorId": "101",
+    "authorImage": "https://example.com/author1.jpg",
+    "authorName": "Test Author One",
+    "nftId": "501",
+    "nftImage": "https://example.com/nft1.jpg",
+    "title": "Cosmic Ape #1",
+    "price": "2.5",
+    "likes": 42,
+    "expiryDate": 0
+  },
+  {
+    "id": "2",
+    "authorId": "102",
+    "authorImage": "https://example.com/author2.jpg",
+    "authorName": "Test Author Two",
+    "nftId": "502",
+    "nftImage": "https://example.com/nft2.jpg",
+    "title": "Neon Tiger #2",
+    "price": "1.8",
+    "likes": 17,
+    "expiryDate": 0
+  }
+]
