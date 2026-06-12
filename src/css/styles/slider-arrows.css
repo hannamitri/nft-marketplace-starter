@@ -1,0 +1,28 @@
+.slick-slider { 
+    position: relative; 
+}
+
+.slick-slide > div {
+    padding: 0 10px;
+}
+
+.nft-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 20px;
+  color: #0d0c22;
+}
+
+.nft-prev { left: -20px; }
+.nft-next { right: -20px; }

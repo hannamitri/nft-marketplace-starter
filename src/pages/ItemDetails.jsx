@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ItemDetails = () => {
+  const { cardId } = useParams()
+  const { nftId } = useParams()   
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [cardId]);
 
   return (
     <div id="wrapper">

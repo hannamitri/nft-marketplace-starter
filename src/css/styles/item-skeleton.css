@@ -1,0 +1,30 @@
+.nft__item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    position: relative;
+}
+
+.nft__item_wrap {
+    align-items: center;
+    display: flex;
+    height: 350px;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.nft__item_info {
+    position: relative;
+}
+
+.nft__item_like {
+    bottom: 22px;
+    color: #ddd;
+    float: right;
+    font-size: 14px;
+    position: relative;
+}
