@@ -6,7 +6,10 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
+    "axios": "^1.18.0",
     "firebase": "^9.8.4",
+    "keen-slider": "^6.8.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -37,5 +40,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "allowScripts": {
+    "core-js@3.6.5": true,
+    "core-js@3.21.1": true,
+    "core-js-pure@3.21.1": true,
+    "protobufjs@6.11.3": true
   }
 }
