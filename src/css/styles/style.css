@@ -15145,7 +15145,6 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16709,6 +16708,45 @@ img {
 .connect-wallet {
   margin-left: 18px;
   color: white !important;
+}
+
+#d-coll-carousel .skeleton-box {
+  display: block;
+}
+
+#d-coll-carousel .nft_wrap .skeleton-box {
+  min-height: 200px;
+}
+
+#d-coll-carousel .nft_coll_pp .skeleton-box {
+  margin: 0 auto;
+  border: solid 5px #ffffff;
+  background-color: #dddbdd;
+}
+
+#d-coll-carousel .nft_coll_info .skeleton-box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+}
+
+#d-coll-carousel .skeleton-box::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: hotCollectionsShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes hotCollectionsShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .no-cursor {
