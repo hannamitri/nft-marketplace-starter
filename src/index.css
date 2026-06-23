@@ -10,3 +10,86 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+#section-collections .slick-prev,
+#section-collections .slick-next,
+#section-items .slick-prev,
+#section-items .slick-next {
+  width: 54px;
+  height: 54px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border: 1px solid #d6d6de;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: none;
+  transform: translateY(-50%);
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+#section-collections .slick-prev,
+#section-items .slick-prev {
+  left: -18px;
+}
+
+#section-collections .slick-next,
+#section-items .slick-next {
+  right: -18px;
+}
+
+#section-collections .slick-prev:before,
+#section-collections .slick-next:before,
+#section-items .slick-prev:before,
+#section-items .slick-next:before {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  color: #111111;
+  font-size: 34px;
+  line-height: 1;
+  opacity: 1;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  transform: translateY(-2px);
+}
+
+#section-collections .slick-prev:before,
+#section-items .slick-prev:before {
+  content: "‹";
+}
+
+#section-collections .slick-next:before,
+#section-items .slick-next:before {
+  content: "›";
+}
+
+#section-collections .slick-prev:hover,
+#section-collections .slick-next:hover,
+#section-items .slick-prev:hover,
+#section-items .slick-next:hover {
+  background: #ffffff;
+  border-color: #c7c7d1;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  transform: translateY(-50%) scale(1.04);
+}
+
+#section-collections .slick-prev:hover:before,
+#section-collections .slick-next:hover:before,
+#section-items .slick-prev:hover:before,
+#section-items .slick-next:hover:before {
+  color: #111111;
+  background: none;
+}
+
+#section-items .de_countdown {
+  top: 25px;
+  right: 20px;
+  min-width: 90px;
+  white-space: nowrap;
+}

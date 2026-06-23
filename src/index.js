@@ -1,14 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+AOS.init({
+  duration: 800,
+  once: true,
+  offset: 80,
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root"),
 );
 
 // If you want to start measuring performance in your app, pass a function
