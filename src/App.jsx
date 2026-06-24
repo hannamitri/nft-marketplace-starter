@@ -14,8 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
-      </Routes>
+<Route path="/item-details/:nftId" element={<ItemDetails />} />      </Routes>
       <Footer />
     </Router>
   );
