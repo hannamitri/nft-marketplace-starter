@@ -15,7 +15,7 @@ const Landing = () => {
       <div className="v-center">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6">
+            <div data-aos="fade-up" className="col-md-6">
               <div className="spacer-single"></div>
               <h6>
                 <span className="text-uppercase id-color-2">
@@ -35,7 +35,7 @@ const Landing = () => {
               </Link>
               <div className="mb-sm-30"></div>
             </div>
-            <div className="col-md-6 xs-hide">
+            <div data-aos="fade-in" className="col-md-6 xs-hide">
               <img src={NFT} className="lazy img-fluid" alt="" />
             </div>
           </div>
