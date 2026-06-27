@@ -10,3 +10,57 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.hot-collections-arrow {
+	align-items: center;
+	background: #fff !important;
+	border: 1px solid #fff !important;
+	border-radius: 999px;
+	color: #111 !important;
+	cursor: pointer;
+	display: inline-flex !important;
+	height: 40px !important;
+	justify-content: center;
+	line-height: 1 !important;
+	padding: 0 !important;
+	position: absolute !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+	width: 40px !important;
+	z-index: 10;
+}
+
+.hot-collections-arrow:hover {
+	background: #111 !important;
+	border-color: #111 !important;
+	color: #fff !important;
+}
+
+.hot-collections-arrow:focus-visible {
+	outline: 2px solid #fbc50b;
+	outline-offset: 2px;
+}
+
+.hot-collections-arrow.slick-disabled {
+	cursor: not-allowed;
+	opacity: 0.45;
+}
+
+.hot-collections-arrow i {
+	font-size: 20px;
+}
+
+.hot-collections-arrow.slick-prev:before,
+.hot-collections-arrow.slick-next:before {
+	content: "";
+}
+
+.hot-collections-arrow.slick-prev {
+	left: 8px;
+}
+
+.hot-collections-arrow.slick-next {
+	right: 8px;
+}
+
