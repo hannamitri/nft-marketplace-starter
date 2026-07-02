@@ -15,7 +15,10 @@ const Home = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-        <Landing />
+        {/* You can wrap sections here if they don't have their own internal containers */}
+        <div data-aos="fade-down" data-aos-duration="1500">
+           <Landing />
+        </div>
         <LandingIntro />
         <HotCollections />
         <NewItems />

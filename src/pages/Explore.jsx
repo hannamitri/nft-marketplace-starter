@@ -16,6 +16,10 @@ const Explore = () => {
           id="subheader"
           className="text-light"
           style={{ background: `url("${SubHeader}") top` }}
+          // Apply the animation here, on the actual section
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
         >
           <div className="center-y relative text-center">
             <div className="container">
@@ -23,7 +27,6 @@ const Explore = () => {
                 <div className="col-md-12 text-center">
                   <h1>Explore</h1>
                 </div>
-                <div className="clearfix"></div>
               </div>
             </div>
           </div>

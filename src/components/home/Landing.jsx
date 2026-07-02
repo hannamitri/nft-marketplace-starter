@@ -2,9 +2,11 @@ import React from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
+import aos from "aos";
 
 const Landing = () => {
   return (
+    
     <section
       id="section-hero"
       aria-label="section"
@@ -14,8 +16,19 @@ const Landing = () => {
     >
       <div className="v-center">
         <div className="container">
+           
           <div className="row align-items-center">
             <div className="col-md-6">
+              <div
+          className="container"
+          data-aos="fade-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+        >
+          
+
+
+        </div>
               <div className="spacer-single"></div>
               <h6>
                 <span className="text-uppercase id-color-2">
