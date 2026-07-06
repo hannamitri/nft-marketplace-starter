@@ -12223,6 +12223,50 @@ a.read_more i {
   overflow: none;
 }
 
+
+/* hot collections */
+
+.skeleton {
+  background: linear-gradient(90deg, #eceff1 40%, #f6f7f8 50%, #eceff1 60%);
+  transition: none;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+
+.carousel__image--skeleton {
+ position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  height: 200px;
+  overflow: hidden;
+}
+
+
+.carousel__authorImage--skeleton {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+margin: 0 auto;
+}
+
+.carousel__title--skeleton {
+width: 150px;
+height: 19px;
+margin: 0 auto;
+}
+
+.carousel__id--skeleton {
+width: 80px;
+height: 19px;
+margin: 0 auto;
+}
+
 /* new table */
 
 .de_table {
