@@ -92,6 +92,90 @@ a.a-underline span {
   width: 0;
 }
 
+.slick-prev:before, .slick-next:before {
+  color: black !important;
+}
+
+.slick-track {
+  display: flex !important;
+  gap: 24px;
+}
+
+/* SKELETON LOADING STATE */
+
+.skeleton {
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 6px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px; /* match your real nft image height */
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-text {
+  height: 16px;
+  margin: 8px auto;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+.skeleton-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.nft__item_wrap .skeleton-image {
+  width: 100%;
+  height: 350px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  display: block;
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: 4px;
+  margin: 8px 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-line.short { width: 60%; }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+
+
+
+
 a.a-underline:hover span {
   width: 100%;
 }
@@ -13819,6 +13903,17 @@ a.read_more i {
   visibility: hidden;
 }
 
+.nft__item_extra {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nft__item:hover .nft__item_extra {
+  visibility: visible;
+  opacity: 0.5;
+}
+
 .dark-scheme .nft__item_extra {
   background: rgba(22, 29, 48, 0.8);
 }
@@ -13848,6 +13943,7 @@ a.read_more i {
   border-color: rgba(255, 255, 255, 0);
   color: #ffffff;
 }
+
 
 .nft__item_share {
   margin-top: 20px;
@@ -15145,7 +15241,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
