@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+
+li{
+    list-style:none;
+}
+
+.author_list_pp{
+    display: flex;
+}
+
+.loading{
+    animation: shimmer 2s infinite linear;
+}
+
+.author__img--loading{
+    width: 100px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 50px;
+}
+
+.author__name--loading{
+    width: 100px;
+    height: 20px;
+    background-color: gray;
+    margin-bottom: 5px;
+}
+
+.author__price--loading{
+    width: 60px;
+    height: 10px;
+    background-color: gray;
+}
+
+@keyframes shimmer{
+    0%{
+        opacity: 1;
+        transform: translateX(1)
+    }
+    50%{
+        opacity: .65;
+        transform: translateX(0)
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(-1)
+    }
+}

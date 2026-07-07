@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
 
 const AuthorItems = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchSellers = async () => {
+      const getSellers = await axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers",
+      );
+      setUsers(getSellers.data);
+    };
+    fetchSellers();
+  }, []);
+  
+  /* {new Array(8).fill(0).map((_, index) => ( */
+  /* ))} */
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-          {new Array(8).fill(0).map((_, index) => (
+          {users.map((user, index) => (
+
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={user.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
