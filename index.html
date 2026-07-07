@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultraverse NFT Marketplace</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+  <style>
+    :root {
+      --primary:   #403f83;
+      --secondary: #8364E2;
+      --font:      'DM Sans', Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
+    body  { font-family: var(--font); font-size: 16px; color: #727272; line-height: 26px; margin: 0; padding: 0; }
+    a, a:hover { text-decoration: none; color: inherit; }
+    img   { max-width: 100%; height: auto; display: block; }
+    h1,h2,h3,h4,h5,h6 { font-family: var(--font); color: #0d0c22; }
+    section { padding: 90px 0; }
+    .no-top    { padding-top:    0 !important; }
+    .no-bottom { padding-bottom: 0 !important; }
+    .spacer-10 { display: block; height: 10px; }
+    .spacer-20 { display: block; height: 20px; }
+    .spacer-40 { display: block; height: 40px; }
+    .v-center  { min-height: 100vh; display: flex; align-items: center; }
+    .de-flex   { display: flex; justify-content: space-between; align-items: center; }
+    .de-flex > .de-flex-col { display: flex; align-items: center; }
+
+    /* ── SMALL BORDER ── */
+    .small-border {
+      width: 50px; height: 3px;
+      background: var(--secondary);
+      display: block; margin: 0 auto 30px;
+      border-radius: 2px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-main, a.btn-main, button.btn-main {
+      display: inline-block;
+      background: var(--secondary); color: #fff;
+      border-radius: 6px; border: none; outline: 0;
+      font-weight: 800; font-size: 14px;
+      padding: 10px 40px; cursor: pointer;
+      transition: .3s;
+    }
+    .btn-main:hover { background: #6a4fc7; color: #fff; }
+    header a.btn-main { padding: 8px 20px !important; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      z-index: 1000; background: #fff;
+      border-bottom: solid 1px #eee;
+      box-shadow: 0 2px 20px rgba(0,0,0,.06);
+    }
+    .header-inner { min-height: 70px; padding: 0; gap: 20px; }
+    #logo img { height: 40px; cursor: pointer; }
+    #quick_search {
+      border: solid 1px #ddd; border-radius: 20px;
+      padding: 6px 16px; font-size: 14px; width: 220px; outline: none;
+    }
+    #mainmenu { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; align-items: center; }
+    #mainmenu li { display: inline-block; }
+    #mainmenu a, #mainmenu button {
+      font-weight: 800; font-size: 14px; color: #222;
+      padding: 24px 16px; display: inline-block;
+      background: none; border: none; cursor: pointer;
+      transition: .2s;
+    }
+    #mainmenu a:hover, #mainmenu button:hover { color: var(--secondary); }
+    .connect-wallet {
+      background: var(--secondary) !important; color: #fff !important;
+      border-radius: 6px; padding: 8px 20px !important;
+    }
+    .connect-wallet:hover { background: #6a4fc7 !important; }
+
+    /* ── PAGE SECTIONS ── */
+    .page { display: none; }
+    .page.active { display: block; }
+    #wrapper { padding-top: 70px; }
+
+    /* ── HERO ── */
+    #section-hero {
+      min-height: 100vh; background-size: cover; background-position: bottom;
+      display: flex; align-items: center; padding: 0;
+    }
+    #section-hero h1 { font-size: 48px; font-weight: 800; line-height: 1.2em; color: #fff; }
+    #section-hero h6 { letter-spacing: 4px; font-size: 13px; font-weight: 700; color: var(--secondary); }
+    #section-hero p.lead { color: rgba(255,255,255,.8); }
+
+    /* ── FEATURE BOXES ── */
+    .feature-box.f-boxed.style-3 {
+      position: relative; overflow: hidden;
+      padding: 40px; background: rgba(131,100,226,.1);
+      border-radius: 6px; margin-bottom: 30px; transition: .4s;
+    }
+    .feature-box.f-boxed.style-3:hover { box-shadow: 2px 2px 20px rgba(0,0,0,.08); }
+    .feature-box.f-boxed.style-3 > i.bg-color-2 {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 28px; color: #fff; width: 56px; height: 56px;
+      border-radius: 5px; background: var(--secondary); margin-bottom: 20px;
+    }
+    .feature-box.f-boxed.style-3 h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-box.f-boxed.style-3 p  { font-size: 14px; margin: 0; }
+    .feature-box.f-boxed.style-3 i.wm {
+      position: absolute; font-size: 200px; color: rgba(131,100,226,.12);
+      right: -20px; bottom: -40px; z-index: 0; line-height: 1;
+    }
+    .feature-box.f-boxed.style-3 .text { position: relative; z-index: 1; }
+
+    /* ── NFT COLLECTION ── */
+    .nft_coll {
+      background: #fff; border: solid 1px #ddd; border-radius: 10px;
+      margin-bottom: 10px; text-align: center; transition: .3s;
+    }
+    .nft_coll:hover { box-shadow: 2px 2px 20px rgba(0,0,0,.1); }
+    .nft_wrap { position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 10px 10px 0 0; }
+    .nft_wrap img { width: 100%; height: 100%; object-fit: cover; transition: .4s; }
+    .nft_coll:hover .nft_wrap img { transform: scale(1.05); }
+    .nft_coll_pp {
+      width: 60px; display: block; margin: -30px auto 10px; position: relative;
+    }
+    .nft_coll_pp img { width: 60px; height: 60px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; }
+    .nft_coll_pp i {
+      font-size: 10px; color: #fff; background: var(--secondary);
+      border-radius: 50%; padding: 3px; position: absolute; bottom: 4px; right: 5px;
+    }
+    .nft_coll_info { padding: 0 10px 12px; }
+    .nft_coll h4 { font-size: 16px; font-weight: 800; margin: 0; color: #0d0c22; }
+    .nft_coll span { font-size: 13px; color: #727272; }
+
+    /* ── NFT ITEM CARD ── */
+    .nft__item {
+      position: relative; padding: 20px;
+      border: solid 1px #ddd; border-radius: 15px;
+      margin-bottom: 25px; background: #fff; transition: .3s;
+    }
+    .nft__item:hover { box-shadow: 2px 2px 30px rgba(20,20,20,.1); }
+    .nft__item .author_list_pp {
+      position: relative; display: inline-block;
+      width: 50px; height: 50px; margin-bottom: 10px;
+    }
+    .nft__item .author_list_pp img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; cursor: pointer; }
+    .nft__item .author_list_pp i {
+      font-size: 10px; color: #fff; background: var(--secondary);
+      border-radius: 50%; padding: 3px; position: absolute; bottom: 0; right: 0;
+    }
+    .de_countdown {
+      display: inline-block; background: var(--secondary); color: #fff;
+      border-radius: 4px; padding: 2px 10px; font-size: 13px; font-weight: 600;
+      margin-left: 8px; margin-bottom: 10px;
+    }
+    .nft__item_wrap {
+      width: 100%; text-align: center; display: flex;
+      align-items: center; justify-content: center;
+      position: relative; height: 200px; overflow: hidden;
+    }
+    .nft__item_wrap a { display: block; width: 100%; cursor: pointer; }
+    .nft__item_preview { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; transition: .4s; }
+    .nft__item:hover .nft__item_preview { transform: scale(1.03); }
+    .nft__item_extra {
+      position: absolute; opacity: 0; width: 100%; height: 100%; z-index: 3;
+      background: rgba(255,255,255,.85); border-radius: 8px; left: 0;
+      display: table; transition: .3s; visibility: hidden;
+      backdrop-filter: blur(4px);
+    }
+    .nft__item_wrap:hover .nft__item_extra { opacity: 1; visibility: visible; }
+    .nft__item_buttons { display: table-cell; vertical-align: middle; text-align: center; }
+    .nft__item_extra button {
+      width: 80%; display: block; background: none;
+      margin: 5px auto; border: solid 1px rgba(0,0,0,.3);
+      font-weight: 700; border-radius: 5px; font-size: 13px;
+      padding: 6px 0; cursor: pointer; transition: .2s;
+    }
+    .nft__item_extra button:hover { background: var(--secondary); color: #fff; border-color: transparent; }
+    .nft__item_share { margin-top: 14px; }
+    .nft__item_share h4 { font-size: 13px; margin-bottom: 6px; }
+    .nft__item_share a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--secondary); color: #fff; font-size: 13px; margin: 0 2px;
+    }
+    .nft__item_info { position: relative; margin-top: 10px; }
+    .nft__item h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: #0d0c22; cursor: pointer; }
+    .nft__item_price { font-size: 14px; font-weight: 600; display: block; color: #0d0c22; }
+    .nft__item_like { position: absolute; bottom: 0; right: 0; font-size: 14px; color: #ccc; }
+    .nft__item_like span { color: #808080; margin-left: 4px; font-size: 12px; }
+    .nft__item_like:hover i { color: #ec7498; }
+
+    /* ── TOP SELLERS ── */
+    .author_list {
+      column-count: 4; column-gap: 20px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    @media(max-width:991px){ .author_list { column-count: 2; } }
+    @media(max-width:576px){ .author_list { column-count: 1; } }
+    .author_list li { position: relative; margin-bottom: 30px; break-inside: avoid; }
+    .author_list_pp {
+      position: absolute; display: inline-block;
+      width: 50px; height: 50px; margin-left: 10px; z-index: 10;
+    }
+    .author_list_pp img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; cursor: pointer; }
+    .author_list_pp i {
+      font-size: 10px; color: #fff; background: var(--secondary);
+      border-radius: 50%; padding: 3px; position: absolute; bottom: 0; right: 0; z-index: 2;
+    }
+    .author_list_info { font-weight: 700; padding-left: 70px; }
+    .author_list_info a { color: #1a1b1e; font-size: 15px; cursor: pointer; }
+    .author_list_info a:hover { color: var(--secondary); }
+    .author_list_info span { display: block; font-size: 13px; font-weight: 400; color: #727272; }
+
+    /* ── CATEGORY BOXES ── */
+    .icon-box.style-2.rounded {
+      display: block; text-align: center; padding: 20px 0;
+      background: rgba(131,100,226,.1); border-radius: 10px;
+      transition: .3s; margin-bottom: 20px; cursor: pointer;
+    }
+    .icon-box.style-2.rounded i   { display: block; font-size: 36px; color: var(--secondary); margin-bottom: 8px; }
+    .icon-box.style-2.rounded span { display: block; font-weight: 700; font-size: 14px; color: #606060; }
+    .icon-box.style-2.rounded:hover { background: var(--secondary); box-shadow: 5px 5px 30px rgba(64,63,131,.3); }
+    .icon-box.style-2.rounded:hover i,
+    .icon-box.style-2.rounded:hover span { color: #fff; }
+
+    /* ── SUBHEADER ── */
+    #subheader {
+      text-align: center; padding: 70px 0 100px;
+      background-size: cover; background-position: top;
+    }
+    #subheader h1 { margin-top: 80px; color: #fff; }
+
+    /* ── EXPLORE FILTER ── */
+    #filter-items {
+      border: solid 1px #ddd; border-radius: 6px;
+      padding: 8px 16px; font-size: 14px; cursor: pointer;
+      background: #fff; outline: none; margin-bottom: 20px;
+    }
+
+    /* ── AUTHOR PROFILE ── */
+    #profile_banner { min-height: 360px; background-size: cover; background-position: top; }
+    .profile_avatar { display: flex; align-items: flex-end; gap: 20px; margin-bottom: 20px; }
+    .profile_avatar > img {
+      width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+      border: 5px solid #fff; box-shadow: 0 0 0 4px var(--secondary);
+    }
+    .profile_avatar i.fa-check {
+      font-size: 12px; color: #fff; background: var(--secondary);
+      border-radius: 50%; padding: 4px; margin-left: -20px; margin-bottom: 12px;
+    }
+    .profile_name h4 { font-size: 22px; font-weight: 800; margin: 0; color: #0d0c22; }
+    .profile_username { display: block; font-size: 14px; color: var(--secondary); font-weight: 400; }
+    .profile_wallet { display: block; font-size: 11px; color: #aaa; word-break: break-all; max-width: 340px; margin-top: 4px; }
+    #btn_copy { border: solid 1px #ddd; border-radius: 4px; background: none; font-size: 12px; padding: 2px 10px; cursor: pointer; margin-top: 6px; }
+    .profile_follower { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #0d0c22; }
+
+    /* ── ITEM DETAILS ── */
+    .item_info h2 { font-size: 30px; font-weight: 800; margin-bottom: 10px; }
+    .item_info_counts { display: flex; gap: 16px; margin-bottom: 16px; }
+    .item_info_views, .item_info_like { font-size: 14px; color: #aaa; }
+    .item_info_views i, .item_info_like i { margin-right: 4px; }
+    .item_author { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .item_author .author_list_pp { position: relative; flex-shrink: 0; }
+    .item_author .author_list_info { padding-left: 0; }
+    .item_author .author_list_info a { font-weight: 700; color: #0d0c22; cursor: pointer; }
+    .item_author .author_list_info a:hover { color: var(--secondary); }
+    .nft-item-price { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 800; color: #0d0c22; }
+    .nft-item-price img { width: 20px; height: 20px; }
+    h6 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #aaa; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer.footer-light { padding: 60px 0 0; background: #fff; border-top: solid 1px #eee; }
+    footer .widget h5 { font-size: 16px; font-weight: 700; color: #0d0c22; margin-bottom: 20px; }
+    footer .widget ul { list-style: none; padding: 0; margin: 0; }
+    footer .widget ul li { margin-bottom: 8px; }
+    footer .widget ul li a { color: #727272; font-size: 14px; transition: .2s; }
+    footer .widget ul li a:hover { color: var(--secondary); }
+    footer .widget p { font-size: 14px; }
+    footer input[type="text"] {
+      border: solid 1px #ddd; border-radius: 6px;
+      padding: 8px 14px; font-size: 14px; width: 100%; outline: none; margin-bottom: 10px;
+    }
+    footer small { font-size: 12px; color: #aaa; }
+    .subfooter { border-top: solid 1px #eee; padding: 20px 0; margin-top: 40px; }
+    .footer__link { display: flex; align-items: center; gap: 12px; }
+    .f-logo { height: 36px; }
+    .copy { font-size: 13px; color: #aaa; }
+
+    /* ── SKELETON ── */
+    @keyframes skeleton-pulse {
+      0%   { background-position: -400px 0; }
+      100% { background-position: calc(400px + 100%) 0; }
+    }
+    .skeleton {
+      display: block;
+      background: linear-gradient(90deg, #e8e8e8 25%, #f5f5f5 50%, #e8e8e8 75%);
+      background-size: 800px 100%;
+      animation: skeleton-pulse 1.4s ease infinite;
+      border-radius: 4px;
+    }
+
+    /* ── OWL NAV ── */
+    .owl-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; pointer-events: none; }
+    .owl-prev, .owl-next {
+      position: absolute; pointer-events: all;
+      width: 36px !important; height: 36px !important; border-radius: 50% !important;
+      background: var(--secondary) !important;
+      display: flex !important; align-items: center; justify-content: center;
+      color: #fff !important; font-size: 14px !important;
+    }
+    .owl-prev { left: -18px; }
+    .owl-next { right: -18px; }
+    .owl-carousel { position: relative; }
+    .owl-dot.active span { background: var(--secondary) !important; }
+
+    @media(max-width:768px) {
+      #section-hero h1 { font-size: 32px; }
+      #quick_search { width: 140px; }
+    }
+    @media(max-width:576px) { #quick_search { display: none; } }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="container">
+    <div class="de-flex header-inner">
+      <div class="de-flex-col" style="gap:20px;">
+        <div id="logo">
+          <img src="src/images/Ultraverse.png" alt="Ultraverse" onclick="navigate('home')" />
+        </div>
+        <input id="quick_search" type="text" placeholder="search item here..." />
+      </div>
+      <ul id="mainmenu">
+        <li><button onclick="navigate('home')">Home</button></li>
+        <li><button onclick="navigate('explore')">Explore</button></li>
+        <li>
+          <button class="btn-main connect-wallet"
+            onclick="alert('This feature has not been implemented yet')">
+            Connect wallet
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div id="wrapper">
+
+  <!-- ======================================================
+       PAGE: HOME
+  ====================================================== -->
+  <div id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section id="section-hero" style="background:url('src/images/bg-shape-1.jpg') bottom/cover;">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <span class="spacer-10"></span>
+            <h6>ULTRAVERSE MARKET</h6>
+            <span class="spacer-10"></span>
+            <h1>Create, sell or collect digital items.</h1>
+            <p class="lead">Unit of data stored on a digital ledger, called a blockchain, that certifies a digital asset to be unique and therefore not interchangeable.</p>
+            <span class="spacer-10"></span>
+            <button class="btn-main lead" onclick="navigate('explore')">Explore</button>
+          </div>
+          <div class="col-md-6 d-none d-md-block">
+            <img src="src/images/nft.png" alt="NFT" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDING INTRO -->
+    <section id="section-intro" style="padding:90px 0;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="0">
+            <div class="feature-box f-boxed style-3">
+              <i class="bg-color-2 fa fa-credit-card"></i>
+              <div class="text">
+                <h4>Set up your wallet</h4>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+              </div>
+              <i class="wm fa fa-credit-card"></i>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-box f-boxed style-3">
+              <i class="bg-color-2 fa fa-cloud-upload"></i>
+              <div class="text">
+                <h4>Add your NFT's</h4>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+              </div>
+              <i class="wm fa fa-cloud-upload"></i>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-box f-boxed style-3">
+              <i class="bg-color-2 fa fa-tags"></i>
+              <div class="text">
+                <h4>Sell your NFT's</h4>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
+              </div>
+              <i class="wm fa fa-tags"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOT COLLECTIONS -->
+    <section id="section-collections" class="no-bottom" style="padding:0 0 90px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-center" data-aos="fade-up">
+              <h2>Hot Collections</h2>
+              <div class="small-border"></div>
+            </div>
+          </div>
+          <div class="col-lg-12" data-aos="fade-up">
+            <div id="hot-collections-carousel" class="owl-carousel owl-theme">
+              <div class="nft_coll"><div class="nft_wrap"><div class="skeleton" style="height:200px;border-radius:10px 10px 0 0;"></div></div><div class="nft_coll_pp"><div class="skeleton" style="width:60px;height:60px;border-radius:50%;"></div></div><div class="nft_coll_info" style="padding:10px;"><div class="skeleton" style="height:16px;width:80%;margin:0 auto 6px;"></div><div class="skeleton" style="height:12px;width:50%;margin:0 auto;"></div></div></div>
+              <div class="nft_coll"><div class="nft_wrap"><div class="skeleton" style="height:200px;border-radius:10px 10px 0 0;"></div></div><div class="nft_coll_pp"><div class="skeleton" style="width:60px;height:60px;border-radius:50%;"></div></div><div class="nft_coll_info" style="padding:10px;"><div class="skeleton" style="height:16px;width:80%;margin:0 auto 6px;"></div><div class="skeleton" style="height:12px;width:50%;margin:0 auto;"></div></div></div>
+              <div class="nft_coll"><div class="nft_wrap"><div class="skeleton" style="height:200px;border-radius:10px 10px 0 0;"></div></div><div class="nft_coll_pp"><div class="skeleton" style="width:60px;height:60px;border-radius:50%;"></div></div><div class="nft_coll_info" style="padding:10px;"><div class="skeleton" style="height:16px;width:80%;margin:0 auto 6px;"></div><div class="skeleton" style="height:12px;width:50%;margin:0 auto;"></div></div></div>
+              <div class="nft_coll"><div class="nft_wrap"><div class="skeleton" style="height:200px;border-radius:10px 10px 0 0;"></div></div><div class="nft_coll_pp"><div class="skeleton" style="width:60px;height:60px;border-radius:50%;"></div></div><div class="nft_coll_info" style="padding:10px;"><div class="skeleton" style="height:16px;width:80%;margin:0 auto 6px;"></div><div class="skeleton" style="height:12px;width:50%;margin:0 auto;"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW ITEMS -->
+    <section id="section-items" class="no-bottom" style="padding:0 0 90px;">
+      <div class="container">
+        <div class="row" id="new-items-row">
+          <div class="col-lg-12">
+            <div class="text-center" data-aos="fade-up"><h2>New Items</h2><div class="small-border"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP SELLERS -->
+    <section id="section-popular" style="padding:0 0 90px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-center" data-aos="fade-up"><h2>Top Sellers</h2><div class="small-border"></div></div>
+          </div>
+          <div class="col-md-12" data-aos="fade-up">
+            <ol id="top-sellers-list" class="author_list">
+              <li><div class="author_list_pp"><div class="skeleton" style="width:50px;height:50px;border-radius:50%;"></div></div><div class="author_list_info"><div class="skeleton" style="height:14px;width:100px;margin-bottom:6px;"></div><div class="skeleton" style="height:12px;width:60px;"></div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BROWSE BY CATEGORY -->
+    <section id="section-category" class="no-top" style="padding:0 0 90px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-center" data-aos="fade-up"><h2>Browse by category</h2><div class="small-border"></div></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-6 mb-3" data-aos="fade-up" data-aos-delay="0">
+            <div class="icon-box style-2 rounded" onclick="navigate('explore')"><i class="fa fa-image"></i><span>Art</span></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-6 mb-3" data-aos="fade-up" data-aos-delay="50">
+            <div class="icon-box style-2 rounded" onclick="navigate('explore')"><i class="fa fa-music"></i><span>Music</span></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-6 mb-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box style-2 rounded" onclick="navigate('explore')"><i class="fa fa-search"></i><span>Domain Names</span></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-6 mb-3" data-aos="fade-up" data-aos-delay="150">
+            <div class="icon-box style-2 rounded" onclick="navigate('explore')"><i class="fa fa-globe"></i><span>Virtual Worlds</span></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-6 mb-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box style-2 rounded" onclick="navigate('explore')"><i class="fa fa-id-card"></i><span>Trading Cards</span></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-6 mb-3" data-aos="fade-up" data-aos-delay="250">
+            <div class="icon-box style-2 rounded" onclick="navigate('explore')"><i class="fa fa-th"></i><span>Collectibles</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ======================================================
+       PAGE: EXPLORE
+  ====================================================== -->
+  <div id="page-explore" class="page">
+
+    <section id="subheader" class="text-light" style="background:url('src/images/subheader.jpg') top/cover;">
+      <div class="container"><div class="row"><div class="col-md-12 text-center"><h1>Explore</h1></div></div></div>
+    </section>
+
+    <section style="padding:60px 0 90px;">
+      <div class="container">
+        <div class="row" id="explore-items-container">
+          <div class="col-12 mb-3">
+            <select id="filter-items" onchange="filterExplore(this.value)">
+              <option value="">Default</option>
+              <option value="price_low_to_high">Price, Low to High</option>
+              <option value="price_high_to_low">Price, High to Low</option>
+              <option value="likes_high_to_low">Most liked</option>
+            </select>
+          </div>
+          <div id="explore-items-grid" class="row g-3"></div>
+          <div class="col-12 text-center mt-4" id="loadmore-wrap" style="display:none;">
+            <button class="btn-main" id="loadmore-btn" onclick="loadMoreExplore()">Load more</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-explore -->
+
+
+  <!-- ======================================================
+       PAGE: AUTHOR
+  ====================================================== -->
+  <div id="page-author" class="page">
+
+    <section id="profile_banner" style="background:url('src/images/author_banner.jpg') top/cover;"></section>
+
+    <section style="padding:40px 0 90px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="d_profile de-flex flex-wrap gap-4">
+              <div id="author-profile-left" class="profile_avatar">
+                <div class="skeleton" style="width:150px;height:150px;border-radius:50%;"></div>
+                <div>
+                  <div class="skeleton" style="height:22px;width:180px;margin-bottom:8px;"></div>
+                  <div class="skeleton" style="height:14px;width:120px;margin-bottom:8px;"></div>
+                  <div class="skeleton" style="height:12px;width:280px;"></div>
+                </div>
+              </div>
+              <div id="author-profile-right" class="d-flex flex-column align-items-start">
+                <div class="skeleton" style="height:16px;width:100px;margin-bottom:12px;"></div>
+                <div class="skeleton" style="height:38px;width:120px;border-radius:6px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 mt-4">
+            <div class="row g-3" id="author-nft-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-author -->
+
+
+  <!-- ======================================================
+       PAGE: ITEM DETAILS
+  ====================================================== -->
+  <div id="page-item-details" class="page">
+    <section style="padding:60px 0 90px; margin-top:30px;">
+      <div class="container">
+        <div class="row" id="item-details-content">
+          <div class="col-md-6 text-center" data-aos="fade-right">
+            <div class="skeleton" style="width:100%;height:400px;border-radius:10px;"></div>
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <div class="item_info">
+              <div class="skeleton" style="height:34px;width:60%;margin-bottom:14px;"></div>
+              <div class="item_info_counts">
+                <div class="skeleton" style="height:16px;width:60px;"></div>
+                <div class="skeleton" style="height:16px;width:60px;"></div>
+              </div>
+              <div class="skeleton" style="height:72px;width:100%;margin-bottom:20px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-item-details -->
+
+</div><!-- #wrapper -->
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="widget">
+          <h5>Marketplace</h5>
+          <ul>
+            <li><a href="#">All NFTs</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">Domain Names</a></li>
+            <li><a href="#">Virtual World</a></li>
+            <li><a href="#">Collectibles</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="widget">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Suggestions</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">Docs</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="widget">
+          <h5>Community</h5>
+          <ul>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Brand Assets</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Mailing List</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="widget">
+          <h5>Newsletter</h5>
+          <p>Signup for our newsletter to get the latest news in your inbox.</p>
+          <input type="text" placeholder="enter your email" />
+          <button class="btn-main" style="font-size:13px;padding:8px 24px;">Subscribe</button>
+          <div class="spacer-10"></div>
+          <small>Your email is safe with us. We don't spam.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="subfooter">
+    <div class="container">
+      <div class="de-flex footer__wrapper">
+        <div class="de-flex-col">
+          <span class="footer__link" onclick="navigate('home')" style="cursor:pointer;">
+            <img class="f-logo" src="src/images/Ultraverse.png" alt="Ultraverse" />
+            <span class="copy">&copy; Copyright 2022</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+/* =========================================================
+   GLOBALS
+========================================================= */
+const API = 'https://us-central1-nft-cloud-functions.cloudfunctions.net';
+let exploreAllItems  = [];
+let exploreVisible   = 8;
+let countdownTimers  = [];
+
+/* =========================================================
+   AOS
+========================================================= */
+AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+function navigate(page, params) {
+  // hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  window.scrollTo(0, 0);
+
+  // clear running countdown timers
+  countdownTimers.forEach(clearInterval);
+  countdownTimers = [];
+
+  if (page === 'author')       loadAuthor(params && params.authorId);
+  if (page === 'item-details') loadItemDetails(params && params.nftId);
+  if (page === 'explore')      initExplore();
+
+  AOS.refresh();
+}
+
+/* =========================================================
+   COUNTDOWN HELPER
+========================================================= */
+function startCountdown(el, expiryDate) {
+  if (!expiryDate) { el.style.display = 'none'; return; }
+  function tick() {
+    const diff = expiryDate - Date.now();
+    if (diff <= 0) { el.textContent = 'Expired'; clearInterval(id); return; }
+    const h = Math.floor(diff / 3_600_000);
+    const m = Math.floor((diff % 3_600_000) / 60_000);
+    const s = Math.floor((diff % 60_000) / 1_000);
+    el.textContent = `${h}h ${m}m ${s}s`;
+  }
+  tick();
+  const id = setInterval(tick, 1000);
+  countdownTimers.push(id);
+}
+
+/* =========================================================
+   NFT ITEM CARD HTML
+========================================================= */
+function nftItemCardHTML(item, isAuthorCard) {
+  const countdown = item.expiryDate
+    ? `<div class="de_countdown" data-expiry="${item.expiryDate}">...</div>` : '';
+
+  const authorSection = isAuthorCard ? '' : `
+    <div class="author_list_pp">
+      <span onclick="navigate('author',{authorId:'${item.authorId}'})">
+        <img src="${item.authorImage}" alt="" loading="lazy" />
+        <i class="fa fa-check"></i>
+      </span>
+    </div>`;
+
+  return `
+    <div class="nft__item">
+      ${authorSection}
+      ${countdown}
+      <div class="nft__item_wrap">
+        <div class="nft__item_extra">
+          <div class="nft__item_buttons">
+            <button>Buy Now</button>
+            <div class="nft__item_share">
+              <h4>Share</h4>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        <span onclick="navigate('item-details',{nftId:'${item.nftId}'})">
+          <img src="${item.nftImage}" class="nft__item_preview" alt="${item.title}" loading="lazy" />
+        </span>
+      </div>
+      <div class="nft__item_info">
+        <h4 onclick="navigate('item-details',{nftId:'${item.nftId}'})">${item.title}</h4>
+        <div class="nft__item_price">${item.price} ETH</div>
+        <div class="nft__item_like"><i class="fa fa-heart"></i><span>${item.likes}</span></div>
+      </div>
+    </div>`;
+}
+
+function activateCountdowns(container) {
+  container.querySelectorAll('.de_countdown[data-expiry]').forEach(el => {
+    startCountdown(el, +el.dataset.expiry);
+  });
+}
+
+/* =========================================================
+   HOME: HOT COLLECTIONS
+========================================================= */
+fetch(`${API}/hotCollections`)
+  .then(r => r.json())
+  .then(data => {
+    const carousel = document.getElementById('hot-collections-carousel');
+    carousel.innerHTML = data.map(item => `
+      <div class="nft_coll">
+        <div class="nft_wrap">
+          <span onclick="navigate('item-details',{nftId:'${item.nftId}'})">
+            <img src="${item.nftImage}" alt="${item.title}" loading="lazy" />
+          </span>
+        </div>
+        <div class="nft_coll_pp">
+          <span onclick="navigate('author',{authorId:'${item.authorId}'})">
+            <img src="${item.authorImage}" alt="" loading="lazy" />
+          </span>
+          <i class="fa fa-check"></i>
+        </div>
+        <div class="nft_coll_info">
+          <h4 onclick="navigate('explore')">${item.title}</h4>
+          <span>ERC-${item.code}</span>
+        </div>
+      </div>`).join('');
+
+    $(carousel).owlCarousel({
+      loop: true, margin: 10, nav: true, dots: true,
+      autoplay: true, autoplayTimeout: 3000, autoplayHoverPause: true,
+      navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+      responsive: { 0:{items:1}, 576:{items:2}, 768:{items:3}, 1200:{items:4} }
+    });
+    AOS.refresh();
+  });
+
+/* =========================================================
+   HOME: NEW ITEMS
+========================================================= */
+fetch(`${API}/newItems`)
+  .then(r => r.json())
+  .then(data => {
+    const row = document.getElementById('new-items-row');
+    data.forEach(item => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-3 col-md-6 col-sm-6 col-xs-12';
+      col.setAttribute('data-aos', 'fade-up');
+      col.innerHTML = nftItemCardHTML(item, false);
+      row.appendChild(col);
+    });
+    activateCountdowns(row);
+    AOS.refresh();
+  });
+
+/* =========================================================
+   HOME: TOP SELLERS
+========================================================= */
+fetch(`${API}/topSellers`)
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('top-sellers-list').innerHTML = data.map(s => `
+      <li>
+        <div class="author_list_pp">
+          <span onclick="navigate('author',{authorId:'${s.authorId}'})">
+            <img src="${s.authorImage}" alt="${s.authorName}" loading="lazy" />
+            <i class="fa fa-check"></i>
+          </span>
+        </div>
+        <div class="author_list_info">
+          <a onclick="navigate('author',{authorId:'${s.authorId}'})">${s.authorName}</a>
+          <span>${s.price} ETH</span>
+        </div>
+      </li>`).join('');
+    AOS.refresh();
+  });
+
+/* =========================================================
+   EXPLORE
+========================================================= */
+let exploreInitialised = false;
+
+function initExplore() {
+  if (exploreInitialised) return;
+  exploreInitialised = true;
+  fetchExplore('');
+}
+
+function filterExplore(filter) {
+  exploreVisible = 8;
+  fetchExplore(filter);
+}
+
+function fetchExplore(filter) {
+  const grid = document.getElementById('explore-items-grid');
+  grid.innerHTML = Array(8).fill(0).map(() => `
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="nft__item">
+        <div class="author_list_pp"><div class="skeleton" style="width:50px;height:50px;border-radius:50%;"></div></div>
+        <div class="nft__item_wrap"><div class="skeleton" style="width:100%;height:200px;border-radius:8px;"></div></div>
+        <div class="nft__item_info" style="margin-top:10px;">
+          <div class="skeleton" style="height:18px;width:70%;margin-bottom:6px;"></div>
+          <div class="skeleton" style="height:14px;width:40%;"></div>
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('loadmore-wrap').style.display = 'none';
+
+  const url = filter
+    ? `${API}/explore?filter=${filter}`
+    : `${API}/explore`;
+
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      exploreAllItems = data;
+      exploreVisible  = 8;
+      renderExploreItems();
+    });
+}
+
+function renderExploreItems() {
+  const grid = document.getElementById('explore-items-grid');
+  const slice = exploreAllItems.slice(0, exploreVisible);
+  grid.innerHTML = slice.map(item => `
+    <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up">
+      ${nftItemCardHTML(item, false)}
+    </div>`).join('');
+  activateCountdowns(grid);
+
+  const wrap = document.getElementById('loadmore-wrap');
+  wrap.style.display = exploreVisible < exploreAllItems.length ? 'block' : 'none';
+  AOS.refresh();
+}
+
+function loadMoreExplore() {
+  exploreVisible += 4;
+  renderExploreItems();
+}
+
+/* =========================================================
+   AUTHOR PAGE
+========================================================= */
+function loadAuthor(authorId) {
+  if (!authorId) authorId = '83937449';
+
+  const left  = document.getElementById('author-profile-left');
+  const right = document.getElementById('author-profile-right');
+  const grid  = document.getElementById('author-nft-grid');
+
+  // reset to skeleton
+  left.innerHTML = `
+    <div class="skeleton" style="width:150px;height:150px;border-radius:50%;flex-shrink:0;"></div>
+    <div>
+      <div class="skeleton" style="height:22px;width:180px;margin-bottom:8px;"></div>
+      <div class="skeleton" style="height:14px;width:120px;margin-bottom:8px;"></div>
+      <div class="skeleton" style="height:12px;width:280px;"></div>
+    </div>`;
+  right.innerHTML = `
+    <div class="skeleton" style="height:16px;width:100px;margin-bottom:12px;"></div>
+    <div class="skeleton" style="height:38px;width:120px;border-radius:6px;"></div>`;
+  grid.innerHTML = Array(8).fill(0).map(() => `
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="nft__item">
+        <div class="nft__item_wrap"><div class="skeleton" style="width:100%;height:200px;border-radius:8px;"></div></div>
+        <div class="nft__item_info" style="margin-top:10px;">
+          <div class="skeleton" style="height:18px;width:70%;margin-bottom:6px;"></div>
+          <div class="skeleton" style="height:14px;width:40%;"></div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  fetch(`${API}/authors?author=${authorId}`)
+    .then(r => r.json())
+    .then(author => {
+      let copied = false;
+
+      left.innerHTML = `
+        <img src="${author.authorImage}" alt="${author.authorName}" style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 0 0 4px var(--secondary);" />
+        <i class="fa fa-check" style="font-size:12px;color:#fff;background:var(--secondary);border-radius:50%;padding:4px;margin-left:-20px;margin-bottom:12px;align-self:flex-end;"></i>
+        <div>
+          <h4 style="font-size:22px;font-weight:800;color:#0d0c22;">${author.authorName}</h4>
+          <span class="profile_username">@${author.tag}</span>
+          <span class="profile_wallet" id="wallet-addr">${author.address}</span>
+          <button id="btn_copy" onclick="copyWallet('${author.address}')">Copy</button>
+        </div>`;
+
+      right.innerHTML = `
+        <div class="profile_follower">${author.followers} followers</div>
+        <button class="btn-main">Follow</button>`;
+
+      grid.innerHTML = author.nftCollection.map(nft => `
+        <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up">
+          <div class="nft__item">
+            <div class="nft__item_wrap">
+              <div class="nft__item_extra">
+                <div class="nft__item_buttons">
+                  <button>Buy Now</button>
+                  <div class="nft__item_share">
+                    <h4>Share</h4>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-envelope"></i></a>
+                  </div>
+                </div>
+              </div>
+              <span onclick="navigate('item-details',{nftId:'${nft.nftId}'})">
+                <img src="${nft.nftImage}" class="nft__item_preview" alt="${nft.title}" loading="lazy" />
+              </span>
+            </div>
+            <div class="nft__item_info">
+              <h4 onclick="navigate('item-details',{nftId:'${nft.nftId}'})">${nft.title}</h4>
+              <div class="nft__item_price">${nft.price} ETH</div>
+              <div class="nft__item_like"><i class="fa fa-heart"></i><span>${nft.likes}</span></div>
+            </div>
+          </div>
+        </div>`).join('');
+
+      AOS.refresh();
+    });
+}
+
+function copyWallet(addr) {
+  navigator.clipboard.writeText(addr).catch(() => {});
+  const btn = document.getElementById('btn_copy');
+  if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); }
+}
+
+/* =========================================================
+   ITEM DETAILS PAGE
+========================================================= */
+function loadItemDetails(nftId) {
+  if (!nftId) nftId = '17914494';
+
+  const content = document.getElementById('item-details-content');
+  content.innerHTML = `
+    <div class="col-md-6 text-center" data-aos="fade-right">
+      <div class="skeleton" style="width:100%;height:400px;border-radius:10px;"></div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+      <div class="skeleton" style="height:34px;width:60%;margin-bottom:14px;"></div>
+      <div style="display:flex;gap:16px;margin-bottom:16px;">
+        <div class="skeleton" style="height:16px;width:60px;"></div>
+        <div class="skeleton" style="height:16px;width:60px;"></div>
+      </div>
+      <div class="skeleton" style="height:72px;width:100%;margin-bottom:20px;border-radius:4px;"></div>
+    </div>`;
+
+  fetch(`${API}/itemDetails?nftId=${nftId}`)
+    .then(r => r.json())
+    .then(item => {
+      content.innerHTML = `
+        <div class="col-md-6 text-center" data-aos="fade-right">
+          <img src="${item.nftImage}" class="img-fluid" style="border-radius:10px;" alt="${item.title}" />
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <div class="item_info">
+            <h2>${item.title} #${item.tag}</h2>
+            <div class="item_info_counts">
+              <div class="item_info_views"><i class="fa fa-eye"></i>${item.views}</div>
+              <div class="item_info_like"><i class="fa fa-heart"></i>${item.likes}</div>
+            </div>
+            <p>${item.description}</p>
+
+            <h6>Owner</h6>
+            <div class="item_author">
+              <div class="author_list_pp">
+                <span onclick="navigate('author',{authorId:'${item.ownerId}'})">
+                  <img src="${item.ownerImage}" alt="${item.ownerName}" loading="lazy" />
+                  <i class="fa fa-check"></i>
+                </span>
+              </div>
+              <div class="author_list_info">
+                <a onclick="navigate('author',{authorId:'${item.ownerId}'})">${item.ownerName}</a>
+              </div>
+            </div>
+
+            <div class="spacer-40"></div>
+
+            <h6>Creator</h6>
+            <div class="item_author">
+              <div class="author_list_pp">
+                <span onclick="navigate('author',{authorId:'${item.creatorId}'})">
+                  <img src="${item.creatorImage}" alt="${item.creatorName}" loading="lazy" />
+                  <i class="fa fa-check"></i>
+                </span>
+              </div>
+              <div class="author_list_info">
+                <a onclick="navigate('author',{authorId:'${item.creatorId}'})">${item.creatorName}</a>
+              </div>
+            </div>
+
+            <div class="spacer-40"></div>
+            <h6>Price</h6>
+            <div class="nft-item-price">
+              <img src="src/images/ethereum.svg" alt="ETH" />
+              <span>${item.price}</span>
+            </div>
+          </div>
+        </div>`;
+      AOS.refresh();
+    });
+}
+</script>
+
+</body>
+</html>
