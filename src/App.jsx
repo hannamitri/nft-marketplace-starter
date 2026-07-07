@@ -5,18 +5,26 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-
+import axios from "axios";
+import { useEffect } from "react";
 function App() {
+  async function collections(){
+    const response= await axios.get ("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
+   const data= response.data;
+   console.log(data);  
+  } 
+  useEffect((
+   )=>{collections()});
   return (
     <Router>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/author/:authorId" element={<Author />} />
+        <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
-      <Footer />
+      <Footer />zzz
     </Router>
   );
 }

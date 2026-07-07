@@ -1,15 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link , useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import axios from "axios";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+
+
 
 const ItemDetails = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const { nftId } = useParams();
+  const [item, setItem] = useState(null);
 
+  useEffect(() => {
+    AOS.init({
+    duration: 1000,
+  })},[]);
+  useEffect(()=>{
+Promise.all([
+  axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"),
+  axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"),
+]).then(([hot, newest]) => {
+  const allItems = [...hot.data, ...newest.data];
+  const selectedItem = allItems.find(
+    (item) => String(item.nftId) === nftId
+  );
+  setItem(selectedItem);
+})
+.catch((error)=>{ console.error('Erroe fetching item details:', error)})
+},[nftId]);
+  if (!item) return null;
+  
   return (
+    <div data-aos="fade-up">
+
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -18,23 +43,23 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={nftImage}
+                  src={item.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
+                  <h2>{item.title}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      100
+                      {item.count}
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      74
+                      {item.likes}
                     </div>
                   </div>
                   <p>
@@ -48,12 +73,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                            <img className="lazy" src={item.authorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{item.authorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -70,7 +95,7 @@ const ItemDetails = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{item.authorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -78,7 +103,7 @@ const ItemDetails = () => {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      <span>{item.price}</span>
                     </div>
                   </div>
                 </div>
@@ -88,7 +113,7 @@ const ItemDetails = () => {
         </section>
       </div>
     </div>
+    </div>
   );
-};
-
+}
 export default ItemDetails;
