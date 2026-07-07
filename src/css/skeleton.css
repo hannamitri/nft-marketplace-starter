@@ -1,0 +1,69 @@
+@keyframes shimmer {
+  0% {
+    background-position: -450px 0;
+  }
+  100% {
+    background-position: 450px 0;
+  }
+}
+
+@keyframes nft-skeleton-card-pulse {
+  0% {
+    opacity: 0.52;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.52;
+  }
+}
+
+.nft-skeleton-card {
+  animation: nft-skeleton-card-pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #4b4b4b 25%, #606060 37%, #4b4b4b 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+.skeleton-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.skeleton-pill {
+  width: 110px;
+  height: 24px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 22px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.skeleton-row {
+  width: 80%;
+  height: 16px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.item-details-skeleton-image {
+  min-height: 460px;
+}

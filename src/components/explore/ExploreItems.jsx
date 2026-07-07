@@ -1,78 +1,116 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useEffect, useMemo, useState } from "react";
+import AOS from "aos";
+import useExploreNfts from "../../hooks/useExploreNfts";
+import NftItemCard from "../common/NftItemCard";
+import NftItemCardSkeleton from "../common/NftItemCardSkeleton";
 
-const ExploreItems = () => {
+const INITIAL_VISIBLE_COUNT = 8;
+const LOAD_MORE_INCREMENT = 4;
+
+const ExploreItems = ({ notice = "" }) => {
+  const [filter, setFilter] = useState("");
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const { uniqueItems, loading, error } = useExploreNfts({ filter });
+
+  useEffect(() => {
+    setVisibleCount(
+      uniqueItems.length > 0
+        ? Math.min(INITIAL_VISIBLE_COUNT, uniqueItems.length)
+        : INITIAL_VISIBLE_COUNT
+    );
+  }, [filter, uniqueItems]);
+
+  const visibleItems = useMemo(
+    () => uniqueItems.slice(0, visibleCount),
+    [uniqueItems, visibleCount]
+  );
+
+  const showLoadMore = !loading && !error && uniqueItems.length > visibleCount;
+
+  const handleLoadMore = () => {
+    setVisibleCount((current) =>
+      Math.min(current + LOAD_MORE_INCREMENT, uniqueItems.length)
+    );
+  };
+
+  useEffect(() => {
+    const id = window.requestAnimationFrame(() => {
+      AOS.refreshHard();
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [loading, error, visibleCount, visibleItems.length, filter]);
+
   return (
     <>
-      <div>
-        <select id="filter-items" defaultValue="">
+      {notice && (
+        <div
+          className="col-md-12 text-center mb-3"
+          data-aos="fade-up"
+          data-aos-duration="1100"
+          data-aos-easing="ease-out"
+        >
+          <p>{notice}</p>
+        </div>
+      )}
+      <div
+        className="mb-4"
+        data-aos="fade-up"
+        data-aos-duration="1100"
+        data-aos-easing="ease-out"
+        data-aos-delay="80"
+      >
+        <select
+          id="filter-items"
+          value={filter}
+          onChange={(event) => setFilter(event.target.value)}
+        >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {loading &&
+        new Array(INITIAL_VISIBLE_COUNT).fill(0).map((_, index) => (
+          <NftItemCardSkeleton key={`loading-${index}`} />
+        ))}
+      {error && (
         <div
-          key={index}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block", backgroundSize: "cover" }}
+          className="col-md-12 text-center"
+          data-aos="fade-up"
+          data-aos-duration="1100"
+          data-aos-easing="ease-out"
         >
-          <div className="nft__item">
-            <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={AuthorImage} alt="" />
-                <i className="fa fa-check"></i>
-              </Link>
-            </div>
-            <div className="de_countdown">5h 30m 32s</div>
-
-            <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
-              </Link>
-            </div>
-            <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
-              </Link>
-              <div className="nft__item_price">1.74 ETH</div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>69</span>
-              </div>
-            </div>
-          </div>
+          <p>{error}</p>
         </div>
-      ))}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+      )}
+      {!loading &&
+        !error &&
+        visibleItems.map((item, index) => (
+          <NftItemCard
+            key={item.id ?? item.nftId ?? index}
+            item={item}
+            enableAos
+            aosDelay={Math.min(index * 100, 700)}
+          />
+        ))}
+      {showLoadMore && (
+        <div
+          className="col-md-12 text-center"
+          data-aos="fade-up"
+          data-aos-duration="1100"
+          data-aos-easing="ease-out"
+        >
+          <button
+            type="button"
+            id="loadmore"
+            className="btn-main lead"
+            onClick={handleLoadMore}
+          >
+            Load more
+          </button>
+        </div>
+      )}
     </>
   );
 };
