@@ -49,20 +49,27 @@ const Nav = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to="#"
+                    <button
+                      type="button"
                       className="btn-main connect-wallet"
                       onClick={() =>
                         alert("This feature has not been implemented yet")
                       }
                     >
                       Connect wallet
-                    </Link>
+                    </button>
                   </li>
                 </ul>
 
                 <div className="menu_side_area">
-                  <span onClick={() => openNav()} id="menu-btn"></span>
+                  <button
+                    type="button"
+                    id="menu-btn"
+                    className="menu-btn"
+                    aria-label="Open menu"
+                    aria-controls="dropdown__wrapper"
+                    onClick={openNav}
+                  ></button>
                 </div>
               </div>
             </div>
