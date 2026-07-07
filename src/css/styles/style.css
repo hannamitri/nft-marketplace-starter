@@ -12706,7 +12706,6 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -13219,6 +13218,7 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
+  padding: 20px;
 }
 
 .nft_coll_info {
@@ -13243,26 +13243,26 @@ a.read_more i {
 }
 
 .nft_coll_pp {
-  width: 60px;
+  width: 50px;
   display: block;
   margin: 0 auto;
-  margin-top: -30px;
+  margin-top: -15px;
   margin-bottom: 10px;
   position: relative;
 }
 
 .nft_coll_pp img {
-  width: 60px;
+  width: 50px;
   height: auto;
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
-  border: solid 5px #ffffff;
+  border: solid 3px #ffffff;
   background: #ffffff;
 }
 
 .nft_coll_pp i {
-  font-size: 10px;
+  font-size: 8px;
   color: #ffffff;
   background: #333;
   border-radius: 100%;
@@ -13272,6 +13272,37 @@ a.read_more i {
   position: absolute;
   bottom: 4px;
   right: 5px;
+}
+
+/* NewItems specific positioning */
+.new-items-section .nft_coll {
+  position: relative;
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+.new-items-section .nft_coll_pp {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin: 0;
+  z-index: 10;
+  display: block;
+}
+
+.nft_coll_nI_wrap {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.Timer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  color: white;
+  text-decoration: bold;
 }
 
 .author_list {
@@ -13793,6 +13824,101 @@ a.read_more i {
   color: #ffffff;
 }
 
+/* ================================================== */
+/* Custom Carousel Navigation Arrows */
+/* ================================================== */
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.slick-slider {
+  position: relative;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  font-family: 'FontAwesome';
+  font-size: 18px;
+  color: #fff;
+}
+
+.slick-prev::before {
+  content: '\f053';
+}
+
+.slick-next::before {
+  content: '\f054';
+}
+
+.slick-prev {
+  left: -70px !important;
+}
+
+.slick-next {
+  right: -70px !important;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.dark-scheme .slick-prev,
+.dark-scheme .slick-next {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark-scheme .slick-prev:hover,
+.dark-scheme .slick-next:hover {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    font-size: 14px;
+  }
+
+  .slick-prev {
+    left: -50px !important;
+  }
+
+  .slick-next {
+    right: -50px !important;
+  }
+}
+
 .nft__item_click span:hover:after {
   background: rgba(0, 0, 0, 0.1);
 }
@@ -14149,6 +14275,8 @@ a.read_more i {
   border: solid 2px #dddddd;
   z-index: 100;
   color: #0d0c22;
+  width: 100px;
+  height: 60px;
 }
 
 .de_countdown.bg-color-secondary {
@@ -14205,7 +14333,6 @@ a.read_more i {
 .profile_avatar img,
 .profile_name {
   display: flex;
-  align-items: center;
 }
 
 .d_coll .profile_avatar img,
@@ -14242,6 +14369,8 @@ a.read_more i {
 
 .profile_name {
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .rtl .profile_name {
@@ -15145,7 +15274,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16684,6 +16813,66 @@ img {
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+/* ================================================== */
+/* Skeleton Loading States */
+/* ================================================== */
+
+.skeleton-slider {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.skeleton-item {
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.skeleton-nft-item {
+  opacity: 0.8;
+}
+
+.skeleton-nft-item .skeleton-author {
+  margin-bottom: 10px;
+}
+
+.skeleton-nft-item .skeleton-countdown {
+  margin: 10px 0;
+}
+
+.skeleton-author-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.skeleton-author-item .skeleton-avatar {
+  margin-right: 20px;
+}
+
+.skeleton-author-item .author_list_info {
+  flex: 1;
+}
+
+.dark-scheme .skeleton-slider,
+.dark-scheme .skeleton-item,
+.dark-scheme .skeleton-nft-item {
+  background-color: #0d0c22;
+}
+
+.dark-scheme .skeleton-author-item {
+  border-bottom-color: #333;
+}
+
+@media (max-width: 768px) {
+  .skeleton-slider {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
