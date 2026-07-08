@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import { useParams } from "react-router-dom";
+
+const Author = () => {
+  const { authorId } = useParams();
+};
 
 const AuthorItems = () => {
   return (
