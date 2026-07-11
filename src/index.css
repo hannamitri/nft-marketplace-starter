@@ -10,3 +10,36 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+#section-items .nft__item {
+  min-height: 445px;
+}
+
+#section-items .nft__item_wrap {
+  height: 250px;
+  overflow: hidden;
+}
+
+#section-items .nft__item_wrap a,
+#section-items .nft__item_preview {
+  height: 100%;
+}
+
+#section-items .nft__item img.nft__item_preview {
+  height: 100% !important;
+  object-fit: cover;
+}
+
+#section-items .nft__item_info {
+  min-height: 70px;
+}
+
+#section-items .nft__item_info h4 {
+  min-height: 36px;
+}
+
+#section-items .de_countdown {
+  border-color: #8364e2;
+  box-shadow: 0 10px 24px rgba(131, 100, 226, 0.16);
+  font-weight: 700;
+}
