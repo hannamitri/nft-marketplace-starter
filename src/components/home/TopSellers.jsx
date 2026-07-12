@@ -1,8 +1,46 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const TopSellers = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+     // Simulate data loading
+     setTimeout(() => {
+        setData({ data });
+        setIsLoading(false);
+     }, 2000);
+  }, []);
+
+  const [collections, setCollections] = useState([]);
+
+  async function getData() {
+
+    try {
+
+      const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers');
+
+      setCollections(response.data);
+
+    } catch (error) {
+
+      console.error('Error fetching data:', error);
+
+    }
+
+  }
+
+  useEffect(() => {
+
+    getData();
+
+  }, []);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,21 +53,21 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
+            {collections && collections.map((collection, index)  => (
                 <li key={index}>
                   <div className="author_list_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${collection.authorId}`}>
                       <img
                         className="lazy pp-author"
-                        src={AuthorImage}
+                        src={collection.authorImage}
                         alt=""
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                    <Link to={`/author/${collection.authorId}`}>{collection.authorName}</Link>
+                    <span>{collection.price} ETH</span>
                   </div>
                 </li>
               ))}
