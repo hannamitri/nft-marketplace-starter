@@ -48,6 +48,11 @@ const Nav = () => {
                       Explore<span></span>
                     </Link>
                   </li>
+                  <li className="menu-item-has-children has-child">
+                    <Link to="/authors">
+                      Authors<span></span>
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       to="#"
@@ -79,6 +84,11 @@ const Nav = () => {
         <li className="dropdown__list">
           <Link to="/explore" onClick={() => closeNav()}>
             Explore
+          </Link>
+        </li>
+        <li className="dropdown__list">
+          <Link to="/authors" onClick={() => closeNav()}>
+            Authors
           </Link>
         </li>
         <li className="close__button">
