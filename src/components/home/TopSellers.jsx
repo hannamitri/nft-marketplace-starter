@@ -1,8 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
+import axios from "axios";
+
 
 const TopSellers = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
+  useEffect(() => {
+    async function fetchTopSellers() {
+      const response = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers?userId=${id}`,
+      );
+      setPosts(response.data);
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
+    fetchTopSellers();
+  }, [id]);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,24 +34,61 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))}
+              {loading
+                ? new Array(12).fill(0).map((_, index) => (
+                    <li key={`skeleton-${index}`}>
+                      <div className="author_list_pp">
+                        <div
+                          className="lazy pp-author skeleton-loading"
+                          style={{
+                            width: 50,
+                            height: 50,
+                            borderRadius: "50%",
+                            backgroundColor: "#eee",
+                          }}
+                        ></div>
+                      </div>
+                      <div className="author_list_info">
+                        <div
+                          className="skeleton-loading"
+                          style={{
+                            width: 100,
+                            height: 15,
+                            backgroundColor: "#eee",
+                            marginBottom: 5,
+                          }}
+                        ></div>
+                        <div
+                          className="skeleton-loading"
+                          style={{
+                            width: 50,
+                            height: 12,
+                            backgroundColor: "#eee",
+                          }}
+                        ></div>
+                      </div>
+                    </li>
+                  ))
+                : posts.map((post) => (
+                    <li key={post.id || post.authorId}>
+                      <div className="author_list_pp">
+                        <Link to={`/author/${post.authorId || id}`}>
+                          <img
+                            className="lazy pp-author"
+                            src={post.authorImage || AuthorImage}
+                            alt={post.authorName || "Author"}
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
+                      <div className="author_list_info">
+                        <Link to={`/author/${post.authorId || id}`}>
+                          {post.authorName || "Monica Lucas"}
+                        </Link>
+                        <span>{post.price} ETH</span>
+                      </div>
+                    </li>
+                  ))}
             </ol>
           </div>
         </div>
