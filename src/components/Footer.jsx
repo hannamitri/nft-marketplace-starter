@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/Ultraverse.png";
+import 'aos/dist/aos.css';
 
 const Footer = () => {
   return (
     <footer className="footer-light">
-      <div className="container">
+      <div data-aos="fade-up" className="container">
         <div className="row">
           <div className="col-md-3 col-sm-6 col-xs-1">
             <div className="widget">

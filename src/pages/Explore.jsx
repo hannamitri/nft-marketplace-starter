@@ -18,7 +18,7 @@ const Explore = () => {
           style={{ background: `url("${SubHeader}") top` }}
         >
           <div className="center-y relative text-center">
-            <div className="container">
+            <div data-aos="fade-up" className="container">
               <div className="row">
                 <div className="col-md-12 text-center">
                   <h1>Explore</h1>
