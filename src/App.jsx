@@ -1,3 +1,6 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Explore from "./pages/Explore";
@@ -7,13 +10,26 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      easing: "ease-out-cubic",
+      offset: 80,
+      once: true,
+      disable: () =>
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    });
+  }, []);
+
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/author/:authorId" element={<Author />} />
         <Route path="/author" element={<Author />} />
+        <Route path="/item-details/:nftId" element={<ItemDetails />} />
         <Route path="/item-details" element={<ItemDetails />} />
       </Routes>
       <Footer />
