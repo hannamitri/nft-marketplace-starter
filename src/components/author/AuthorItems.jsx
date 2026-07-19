@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import { useParams } from "react-router-dom";
 
 const AuthorItems = () => {
+
+const { authorId } = useParams(); 
+
+const [authorItems, setAuthorItems] = useState([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems/author/${authorId}`)
+  console.log(authorId)
+}, [])
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
