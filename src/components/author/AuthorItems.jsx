@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
-const AuthorItems = () => {
+const AuthorItems = ({ authorId }) => {
+  console.log("Load NFTs for author:", authorId)
   return (
     <div className="de_tab_content">
       <div className="tab-1">
