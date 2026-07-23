@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <section
-      id="section-hero"
-      aria-label="section"
-      className="no-top no-bottom vh-100"
-      data-bgimage="url(images/bg-shape-1.jpg) bottom"
-      style={{ background: `url(${backgroundImage}) bottom / cover` }}
-    >
+  id="section-hero"
+  aria-label="section"
+  className="no-top no-bottom vh-100"
+  data-aos="fade-up"
+  data-bgimage="url(images/bg-shape-1.jpg) bottom"
+  style={{ background: `url(${backgroundImage}) bottom / cover` }}
+>
       <div className="v-center">
         <div className="container">
           <div className="row align-items-center">
