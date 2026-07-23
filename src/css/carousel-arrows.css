@@ -1,0 +1,110 @@
+
+
+/* ARROWS */
+.slick-prev:before,
+.slick-next:before {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+}
+
+.slick-prev:before {
+    content: '‹';
+}
+[dir='rtl'] .slick-prev:before {
+    content: '›';
+}
+
+.slick-next:before{
+    content: '›';
+}
+[dir='rtl'] .slick-next:before{
+    content: '‹';
+}
+
+
+
+
+/* SLIDE ADJUSTMENTS */
+
+.slide__wrap {
+    display: inline-block;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+}
+
+
+
+
+
+/* LOADING STATE - SKELETONS */
+
+.skeleton {
+    background-color: #DDDBDD;
+}
+
+.nft__skeleton {
+    position: static;
+    height: 140px;
+    /* background-color: blue; */
+
+}
+
+.img__skeleton--wrapper {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+
+.check__skeleton--wrap {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+}
+
+.skeleton__text--wrap {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.skeleton__text {
+    height: 15px;
+    width: 50px;
+    margin-bottom: 8px;
+}
+
+.longer-text__skeleton{
+    width: 80px;
+}
+
+
+
+
+/* LOADING STATE - ANIMATION */
+
+.skeleton {  
+    /* Alternative Gradient */
+    /* background: linear-gradient(90deg, #DDDBDD, rgb(240, 239, 239), #DDDBDD); */
+    background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, .2) 20%, hsla(0, 0%, 100%, .5) 60%, hsla(0, 0%, 100%, 0));
+    background-size: 200% 200%;
+    animation: moveGradient 3s ease infinite ;
+}
+
+@keyframes moveGradient {
+    0% { 
+        background-position: right; 
+    }
+
+    100% {
+        background-position: left;
+    }
+}
+
+
