@@ -242,6 +242,7 @@ a.btn-line.hover,
 .de-switch input[type=checkbox]:checked + label,
 .nft__item_extra button:hover,
 .nft__item_share a,
+.nft__item_share button,
 #de-click-menu-notification .d-count,
 .play-pause {
     background: var(--secondary-color);
@@ -363,7 +364,8 @@ a.btn-border.btn-invert,
 .form-border select:focus,
 #quick_search:hover,
 .items_filter .dropdown:hover,
-.nft__item_share a:hover{
+.nft__item_share a:hover,
+.nft__item_share button:hover{
     -webkit-box-shadow: 0px 0px 0px 4px rgba(var(--secondary-color-rgb), .3);
     -moz-box-shadow: 0px 0px 0px 4px rgba(var(--secondary-color-rgb), .3);
     box-shadow: 0px 0px 0px 4px rgba(var(--secondary-color-rgb), .3);

@@ -19,17 +19,17 @@ const HeaderExplore = () => {
               placeholder="search item here..."
               type="text"
             />{" "}
-            <a href="#" id="btn-submit">
+            <button type="button" id="btn-submit">
               <i className="fa fa-search bg-color-secondary"></i>
-            </a>
+            </button>
             <div className="clearfix"></div>
           </div>
         </form>
 
         <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <span className="btn-selector">
             All categories
-          </a>
+          </span>
           <ul>
             <li className="active">
               <span>All categories</span>
@@ -62,9 +62,9 @@ const HeaderExplore = () => {
         </div>
 
         <div id="buy_category" className="dropdown">
-          <a href="#" className="btn-selector">
+          <span className="btn-selector">
             Buy Now
-          </a>
+          </span>
           <ul>
             <li className="active">
               <span>Buy Now</span>
@@ -79,9 +79,9 @@ const HeaderExplore = () => {
         </div>
 
         <div id="items_type" className="dropdown">
-          <a href="#" className="btn-selector">
+          <span className="btn-selector">
             All Items
-          </a>
+          </span>
           <ul>
             <li className="active">
               <span>All Items</span>

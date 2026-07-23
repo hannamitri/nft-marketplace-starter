@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx react-scripts *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(node *)",
+      "Bash(npx playwright *)",
+      "Bash(npx puppeteer *)",
+      "Bash(curl -s \"https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"%{http_code}\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(len\\(d\\), 'items'\\)\")",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(rm -f /private/tmp/claude-501/-Users-shavonnewhiffin-Desktop-shavonne-internship/4bb92f41-681b-4b5f-bafc-5b247a50993a/scratchpad/npmstart.log)",
+      "Bash(nohup npm start)",
+      "Bash(disown)",
+      "Bash(echo \"started pid $!\")",
+      "Bash(rsync -a --exclude 'node_modules' /Users/shavonnewhiffin/Desktop/shavonne-internship/ /Users/shavonnewhiffin/Developer/shavonne-internship/)",
+      "Bash(echo \"rsync exit: $?\")",
+      "Read(//Users/shavonnewhiffin/Developer/**)",
+      "Bash(kill -9 30517 30518 31290 31291)",
+      "Bash(sample 31407 2 -mayDie)",
+      "Bash(kill -9 31406 31407)",
+      "Bash(pkill -f \"react-scripts start\")",
+      "Bash(curl -s \"https://us-central1-nft-cloud-functions.cloudfunctions.net/explore\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(len\\(d\\)\\)\")",
+      "Bash(jobs)",
+      "Bash(BROWSER=none npm start *)",
+      "Bash(curl -s \"https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=1\")",
+      "Bash(curl *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Skill(run)",
+      "Bash(BROWSER=none npm start)",
+      "Bash(echo \"started with pid $!\")",
+      "Bash(lsof -i :3000 -sTCP:LISTEN)",
+      "Bash(awk -F: '$1 < 12460 && $1 > 11900')",
+      "Bash(awk -F: '$1 >= 12200 && $1 <= 12500')"
+    ]
+  }
+}
