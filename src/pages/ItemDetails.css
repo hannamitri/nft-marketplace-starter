@@ -1,0 +1,58 @@
+.details__skeleton--image{
+    background-color: lightgray;
+    display: block; 
+    height: inherit;
+}
+
+.details__skeleton--title{
+    background-color: lightgray;
+    width: 42%;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.details__skeleton--counts{
+    width: 20%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.details__skeleton--counts{
+    background-color: lightgray;
+    width: 20%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.details__skeleton--desc{
+    background-color: lightgray;
+    width: 80%;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.details__skeleton--headshot{
+    background-color: lightgray;
+    height: 50px;
+    width: 50px;
+    display: block;
+    border-radius: 50%;
+}
+
+.details__skeleton--author{
+    background-color: lightgray;
+    height: 30px;
+    width: 100px;
+    display: block;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px){
+    .details__skeleton--image{
+        height: 250px;
+        margin-bottom: 20px;
+    }
+}
+

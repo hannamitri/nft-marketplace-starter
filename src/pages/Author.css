@@ -1,0 +1,41 @@
+.author__skeleton--image{
+    width: 100px;
+    height: 100px;
+    background-color: lightgrey;
+    border-radius: 50%;
+}
+
+.author__skeleton--nameContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.author__skeleton--name{
+    width: 200px;
+    height: 20px;
+    margin-bottom: 10px;
+    background-color: lightgray;
+}
+
+.author__skeleton--username{
+    width: 100px;
+    height: 10px;
+    margin-bottom: 10px;
+    background-color: lightgray;
+    display: inherit;
+}
+
+.author__skeleton--wallet{
+    width: 200px;
+    height: 10px;
+    margin-bottom: 10px;
+    background-color: lightgray;
+}
+
+.author__skeleton--followers{
+    width: 150px;
+    height: 30px;
+    background-color: lightgray;
+}

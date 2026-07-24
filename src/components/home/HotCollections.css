@@ -1,0 +1,28 @@
+.skeleton__image{
+    background-color: lightgray;
+    width: 100%; 
+    display: block; 
+    height: inherit;
+}
+
+#skeleton__author{
+    background-color: lightgray;
+    width: 60px;
+    height: 60px; 
+    border-radius: 100%;
+}
+
+.skeleton__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skeleton__info--link{
+    background-color: lightgray; 
+    width: 50%; 
+    display: block; 
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}

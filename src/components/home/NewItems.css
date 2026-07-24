@@ -1,0 +1,30 @@
+.newItems__skeleton--headshot{
+    background-color: lightgray;
+    height: 50px;
+    width: 50px;
+    display: block;
+    border-radius: 50%;
+}
+
+.newItems__skeleton--image{
+    background-color: lightgray;
+    display: block; 
+    height: inherit;
+}
+
+.newItems__skeleton--title{
+    background-color: lightgray;
+    width: 42%;
+    height: 30px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.newItems__skeleton--counts{
+    background-color: lightgray;
+    width: 20%;
+    height: 30px;
+    margin-bottom: 10px;
+}
