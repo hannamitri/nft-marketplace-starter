@@ -10,3 +10,266 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.slick-prev {
+  left: -10px !important;
+  z-index: 10;
+}
+
+.slick-next {
+  right: 0px !important;
+  z-index: 10;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #8364e2 !important;
+  font-size: 32px !important;
+}
+
+.skeleton-box {
+  position: relative;
+  overflow: hidden;
+  background-color: #e2e2e2;
+  border-radius: 6px;
+}
+
+.skeleton-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 180px;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-title {
+  width: 75%;
+  height: 18px;
+  margin: 12px auto 10px;
+}
+
+.skeleton-code {
+  width: 45%;
+  height: 14px;
+  margin: 0 auto 16px;
+}
+
+
+/* Skeleton for ItemDetails */
+.skeleton-detail-image {
+  width: 100%;
+  height: 560px;
+  border-radius: 12px;
+}
+
+.skeleton-detail-title {
+  width: 65%;
+  height: 38px;
+  margin-bottom: 24px;
+}
+
+.skeleton-pill {
+  width: 70px;
+  height: 18px;
+  border-radius: 8px;
+}
+
+.skeleton-detail-line {
+  width: 100%;
+  height: 16px;
+  margin-bottom: 12px;
+}
+
+.skeleton-detail-line.short {
+  width: 65%;
+  margin-bottom: 32px;
+}
+
+.skeleton-name {
+  width: 120px;
+  height: 18px;
+  margin-top: 10px;
+}
+
+.skeleton-price {
+  width: 80px;
+  height: 22px;
+  border-radius: 6px;
+}
+
+.item_author {
+  display: flex;
+  align-items: center;
+}
+
+/* New Items skeleton loading */
+.skeleton-countdown{
+    width: 100px;
+    height: 34px;
+    border-radius: 18px;
+}
+.skeleton-de-countdown {
+  border: none !important;
+  background: transparent !important;
+  padding: 0;
+  box-shadow: none;
+}
+.de_countdown{
+    display:flex;
+    justify-content:flex-end;
+}
+
+
+.author_list_pp .skeleton-avatar{
+    margin-top: 8px;
+}
+
+.skeleton-heart{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+}
+
+.skeleton-like-text{
+    width:24px;
+    height:14px;
+}
+
+.nft__item_like{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+/* Top Sellers */
+/* Top Sellers Skeleton */
+
+.skeleton {
+  background: #e8e8e8;
+  background-image: linear-gradient(
+    90deg,
+    #e8e8e8 0px,
+    #f5f5f5 40px,
+    #e8e8e8 80px
+  );
+  background-size: 300px;
+  animation: skeleton-loading 1.2s infinite linear;
+}
+
+.skeleton-text {
+  width: 120px;
+  height: 14px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text-small {
+  width: 70px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -300px;
+  }
+
+  100% {
+    background-position: 300px;
+  }
+}
+
+/* Author id Skeleton */
+.author-skeleton-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+
+.author-skeleton-name {
+  width: 220px;
+  height: 28px;
+  margin: 0;
+}
+
+.author-skeleton-username {
+  width: 140px;
+  height: 18px;
+  margin: 0;
+}
+
+.author-skeleton-wallet {
+  width: 180px;
+  height: 18px;
+  margin: 0;
+}
+
+.author-skeleton-button {
+  width: 110px;
+  height: 32px;
+  border-radius: 8px;
+ 
+  
+}
+
+.author-skeleton-card {
+  width: 100%;
+  aspect-ratio: 1;
+ border: none;
+  margin-bottom: 16px;
+}
+
+.author-skeleton-title {
+  width: 80%;
+  height: 18px;
+  margin-bottom: 10px;
+}
+
+.author-skeleton-profile {
+  margin-top: 30px;
+}
+
+.author-skeleton-profile-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.author-skeleton-avatar-wrapper {
+  position: relative;
+}
+
+.author-skeleton-avatar-wrapper .fa-check {
+  position: absolute;
+  bottom: 8px;
+  right: 240px;
+
+}
