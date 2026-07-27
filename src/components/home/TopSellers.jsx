@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import { buildTopSellers, fetchTopSellers } from "../../data/marketplaceApi";
 
 const TopSellers = () => {
+  const [apiSellers, setApiSellers] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadTopSellers = async () => {
+      try {
+        const loadedSellers = await fetchTopSellers();
+        if (isMounted) {
+          setApiSellers(loadedSellers);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setApiSellers([]);
+        }
+      }
+    };
+
+    loadTopSellers();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sellers = buildTopSellers(apiSellers);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,21 +42,21 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
+              {sellers.map((seller, index) => (
+                <li key={seller.id} data-aos="fade-up" data-aos-delay={Math.min(index * 40, 240)}>
                   <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
+                    <Link to={`/author/${seller.id}`}>
+                      <img className="lazy pp-author" src={seller.image} alt={seller.name} />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                    <Link to={`/author/${seller.id}`}>{seller.name}</Link>
+                    <span>
+                      {typeof seller.price === "number"
+                        ? `${seller.price.toFixed(1)} ETH`
+                        : `${seller.followers} followers`}
+                    </span>
                   </div>
                 </li>
               ))}

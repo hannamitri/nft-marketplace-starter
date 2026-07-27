@@ -1,9 +1,11 @@
 import React from "react";
 import Logo from "../images/Ultraverse.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 const Nav = () => {
+  const { pathname } = useLocation();
+
   const openNav = () => {
     document.body.classList += "menu__open";
   };
@@ -50,11 +52,8 @@ const Nav = () => {
                   </li>
                   <li>
                     <Link
-                      to="#"
+                      to={pathname}
                       className="btn-main connect-wallet"
-                      onClick={() =>
-                        alert("This feature has not been implemented yet")
-                      }
                     >
                       Connect wallet
                     </Link>

@@ -65,6 +65,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
+## GitHub Pages Deployment
+
+This project is configured to deploy to:
+
+- https://dross7278-star.github.io/david-internship
+
+Use these commands:
+
+### `npm run deploy`
+
+Builds the app and publishes the `build` folder to the `gh-pages` branch.
+
+If this is your first deployment, ensure GitHub Pages is enabled in repository settings and set the source branch to `gh-pages`.
+
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

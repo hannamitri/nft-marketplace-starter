@@ -9,6 +9,7 @@ const Landing = () => {
       id="section-hero"
       aria-label="section"
       className="no-top no-bottom vh-100"
+      data-aos="fade-up"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
     >
@@ -19,7 +20,7 @@ const Landing = () => {
               <div className="spacer-single"></div>
               <h6>
                 <span className="text-uppercase id-color-2">
-                  Ultraverse Market
+                  Gigaland Market
                 </span>
               </h6>
               <div className="spacer-10"></div>

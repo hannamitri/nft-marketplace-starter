@@ -1,11 +1,13 @@
 {
   "name": "nft-marketplace",
   "version": "0.1.0",
+  "homepage": "https://dross7278-star.github.io/david-internship",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
     "firebase": "^9.8.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -17,6 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build --add",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

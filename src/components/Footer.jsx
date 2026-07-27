@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../images/Ultraverse.png";
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
   return (
     <footer className="footer-light">
       <div className="container">
@@ -12,32 +14,32 @@ const Footer = () => {
               <h5>Marketplace</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     All NFTs
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Art
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Music
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Domain Names
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Virtual World
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Collectibles
                   </Link>
                 </li>
@@ -49,32 +51,32 @@ const Footer = () => {
               <h5>Resources</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Help Center
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Partners
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Suggestions
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Discord
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Docs
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Newsletter
                   </Link>
                 </li>
@@ -86,32 +88,32 @@ const Footer = () => {
               <h5>Community</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Community
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Documentation
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Brand Assets
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Forum
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <Link to={pathname} className="no-cursor">
                     Mailing List
                   </Link>
                 </li>
@@ -139,7 +141,7 @@ const Footer = () => {
                     placeholder="enter your email"
                     type="text"
                   />
-                  <Link to="#" className="no-cursor" id="btn-subscribe">
+                  <Link to={pathname} className="no-cursor" id="btn-subscribe">
                     <i className="arrow_right bg-color-secondary"></i>
                   </Link>
                   <div className="clearfix"></div>

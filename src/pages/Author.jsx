@@ -1,10 +1,63 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import { findAuthorById, getItemsForAuthor } from "../data/marketplaceData";
+import { fetchAuthorProfile } from "../data/marketplaceApi";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const fallbackAuthor = findAuthorById(authorId);
+  const [authorProfile, setAuthorProfile] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAuthorData = async () => {
+      try {
+        const loadedProfile = await fetchAuthorProfile(authorId);
+        if (isMounted) {
+          setAuthorProfile(loadedProfile);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setAuthorProfile(null);
+        }
+      }
+    };
+
+    loadAuthorData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [authorId]);
+
+  const author = authorProfile
+    ? {
+        ...fallbackAuthor,
+        ...authorProfile,
+      }
+    : fallbackAuthor;
+
+  const authorItems = useMemo(() => {
+    if (Array.isArray(authorProfile?.nftCollection) && authorProfile.nftCollection.length > 0) {
+      return authorProfile.nftCollection;
+    }
+
+    return getItemsForAuthor(author.id);
+  }, [author.id, authorProfile]);
+
+  const profileImage = authorProfile?.image || authorItems[0]?.authorImage || author.image;
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(author.wallet);
+    } catch (error) {
+      // No-op: keep behavior aligned with production UI.
+    }
+  };
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,17 +78,17 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={profileImage} alt={author.name} />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {author.name}
+                          <span className="profile_username">{author.username}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {author.wallet}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <button id="btn_copy" title="Copy Text" type="button" onClick={handleCopy}>
                             Copy
                           </button>
                         </h4>
@@ -44,8 +97,8 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
+                      <div className="profile_follower">{author.followers} followers</div>
+                      <Link to={`/author/${author.id}`} className="btn-main">
                         Follow
                       </Link>
                     </div>
@@ -55,7 +108,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems items={authorItems} />
                 </div>
               </div>
             </div>
