@@ -11,6 +11,7 @@
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
 
+//* Trying to create a css file in the styles folder and import it here instead of having it in the index.css file *//
 .hot-collections-slider {
 	padding: 0;
 } 
