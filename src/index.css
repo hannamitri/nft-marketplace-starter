@@ -132,6 +132,69 @@
   margin-bottom: 17px;
 }
 
+.nft-item-skeleton {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nft-item-skeleton .skeleton-box {
+  display: block;
+}
+
+.nft-item-skeleton .author_list_pp .skeleton-box {
+  box-sizing: border-box;
+  border: 3px solid #ffffff;
+}
+
+.nft-item-skeleton-countdown {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+.nft-item-skeleton-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding-top: 8px;
+}
+
+.nft-item-skeleton-info .skeleton-box:last-child {
+  align-self: flex-end;
+}
+
+.author-skeleton-banner {
+  height: 350px;
+  padding: 0;
+}
+
+.author-skeleton-banner .skeleton-box {
+  display: block;
+}
+
+.author-skeleton-profile {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: -75px 0 45px;
+  position: relative;
+  z-index: 1;
+}
+
+.author-skeleton-profile > .skeleton-box {
+  box-sizing: border-box;
+  border: 5px solid #ffffff;
+  flex: 0 0 auto;
+}
+
+.author-skeleton-profile > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 @keyframes skeleton-shimmer {
   from {
     background-position: 200% 0;
