@@ -41,7 +41,7 @@ const TopSellers = () => {
   }, []);
 
   return (
-    <section id="section-popular" className="pb-5">
+    <section id="section-popular" className="pb-5" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -67,8 +67,12 @@ const TopSellers = () => {
                 ? Array.from({ length: 12 }, (_, index) => (
                     <TopSellerSkeleton key={index} />
                   ))
-                : sellers.map((seller) => (
-                    <li key={seller.id}>
+                : sellers.map((seller, index) => (
+                    <li
+                      key={seller.id}
+                      data-aos="fade-up"
+                      data-aos-delay={(index % 4) * 50}
+                    >
                       <div className="author_list_pp">
                         <Link to={`/author/${seller.authorId}`}>
                           <img

@@ -6,10 +6,12 @@ const AuthorItems = ({ items }) => (
     <div className="tab-1">
       <div className="row">
         {items.length > 0 ? (
-          items.map((item) => (
+          items.map((item, index) => (
             <div
               className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
               key={item.nftId}
+              data-aos="fade-up"
+              data-aos-delay={(index % 4) * 50}
             >
               <NftCard item={item} />
             </div>

@@ -55,7 +55,7 @@ const ExploreItems = () => {
 
   return (
     <>
-      <div>
+      <div data-aos="fade-up">
         <select
           id="filter-items"
           value={filter}
@@ -92,11 +92,13 @@ const ExploreItems = () => {
       )}
 
       {!loading &&
-        visibleItems.map((item) => (
+        visibleItems.map((item, index) => (
           <div
             key={item.id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
+            data-aos="fade-up"
+            data-aos-delay={(index % 4) * 50}
           >
             <NftCard item={item} />
           </div>

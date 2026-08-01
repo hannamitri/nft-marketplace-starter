@@ -141,9 +141,10 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           style={{ background: `url(${AuthorBanner}) top / cover` }}
+          data-aos="fade-up"
         ></section>
 
-        <section aria-label="section">
+        <section aria-label="section" data-aos="fade-up">
           <div className="container">
             <div className="row">
               <div className="col-md-12">
