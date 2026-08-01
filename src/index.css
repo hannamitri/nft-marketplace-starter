@@ -10,3 +10,229 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.hot-collections-slider {
+  padding: 0 12px;
+}
+
+.hot-collections-slider .slick-list {
+  margin: 0 -8px;
+}
+
+.hot-collections-slider .slick-slide > div {
+  padding: 0 8px;
+}
+
+.hot-collections-slider .slick-prev,
+.hot-collections-slider .slick-next {
+  z-index: 1;
+  width: 52px;
+  height: 52px;
+  background: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hot-collections-slider .slick-prev:hover,
+.hot-collections-slider .slick-prev:focus,
+.hot-collections-slider .slick-next:hover,
+.hot-collections-slider .slick-next:focus {
+  background: #ffffff;
+  border-color: #bfbfbf;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hot-collections-slider .slick-prev {
+  left: -12px;
+}
+
+.hot-collections-slider .slick-next {
+  right: -12px;
+}
+
+.hot-collections-slider .slick-prev::before,
+.hot-collections-slider .slick-next::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  content: "";
+  border-right: 2px solid #111111;
+  border-bottom: 2px solid #111111;
+  opacity: 1;
+}
+
+.hot-collections-slider .slick-prev::before {
+  transform: translate(-35%, -50%) rotate(135deg);
+}
+
+.hot-collections-slider .slick-next::before {
+  transform: translate(-65%, -50%) rotate(-45deg);
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, #e7e5e5 25%, #f1efef 50%, #e7e5e5 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.hot-collection-skeleton {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hot-collection-skeleton .nft_coll_pp {
+  margin-top: -30px;
+}
+
+.hot-collection-skeleton .nft_coll_pp .skeleton-box {
+  box-sizing: border-box;
+  border: 5px solid #ffffff;
+}
+
+.hot-collection-skeleton-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 0 0 13px;
+}
+
+.item-details-skeleton-artwork {
+  width: 100%;
+  height: 545px;
+}
+
+.item-details-skeleton-artwork .skeleton-box,
+.item-details-skeleton-content .skeleton-box {
+  display: block;
+}
+
+.item-details-skeleton-counts {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0 22px;
+}
+
+.item-details-skeleton-section {
+  margin-top: 9px;
+}
+
+.item-details-skeleton-section h6 {
+  margin-bottom: 15px;
+}
+
+.item-details-skeleton-author {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  margin-bottom: 17px;
+}
+
+.nft-item-skeleton {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nft-item-skeleton .skeleton-box {
+  display: block;
+}
+
+.nft-item-skeleton .author_list_pp .skeleton-box {
+  box-sizing: border-box;
+  border: 3px solid #ffffff;
+}
+
+.nft-item-skeleton-countdown {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+.nft-item-skeleton-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding-top: 8px;
+}
+
+.nft-item-skeleton-info .skeleton-box:last-child {
+  align-self: flex-end;
+}
+
+.author-skeleton-banner {
+  height: 350px;
+  padding: 0;
+}
+
+.author-skeleton-banner .skeleton-box {
+  display: block;
+}
+
+.author-skeleton-profile {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: -75px 0 45px;
+  position: relative;
+  z-index: 1;
+}
+
+.author-skeleton-profile > .skeleton-box {
+  box-sizing: border-box;
+  border: 5px solid #ffffff;
+  flex: 0 0 auto;
+}
+
+.author-skeleton-profile > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top-seller-skeleton .skeleton-box {
+  display: block;
+}
+
+.top-seller-skeleton .author_list_pp .skeleton-box {
+  box-sizing: border-box;
+  border: 3px solid #ffffff;
+}
+
+.top-seller-skeleton .author_list_info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-box {
+    animation: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .item-details-skeleton-artwork {
+    height: min(90vw, 545px);
+    margin-bottom: 30px;
+  }
+
+  .item-details-skeleton-content {
+    padding-left: 0;
+  }
+}
