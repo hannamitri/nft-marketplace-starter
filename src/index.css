@@ -195,6 +195,11 @@
   gap: 10px;
 }
 
+.author-skeleton-profile > .author-skeleton-follow {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
 .top-seller-skeleton .skeleton-box {
   display: block;
 }

@@ -21,9 +21,14 @@ const AuthorPageSkeleton = () => (
         <div className="container">
           <div className="author-skeleton-profile">
             <Skeleton width="150px" height="150px" borderRadius="50%" />
-            <div>
+            <div className="author-skeleton-details">
               <Skeleton width="190px" height="24px" borderRadius="2px" />
               <Skeleton width="130px" height="16px" borderRadius="2px" />
+              <Skeleton width="200px" height="16px" borderRadius="2px" />
+            </div>
+            <div className="author-skeleton-follow">
+              <Skeleton width="95px" height="16px" borderRadius="2px" />
+              <Skeleton width="90px" height="38px" borderRadius="3px" />
             </div>
           </div>
           <div className="row">
@@ -48,6 +53,8 @@ const Author = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("Copy");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,90 +65,28 @@ const Author = () => {
       return;
     }
 
+    setLoading(true);
+    setError("");
+
     const fetchAuthor = async () => {
       try {
-        const [
-          { data: newItems },
-          { data: hotCollections },
-          { data: topSellers },
-          { data: exploreItems },
-        ] =
-          await Promise.all([
-            axios.get(`${API_BASE}/newItems`),
-            axios.get(`${API_BASE}/hotCollections`),
-            axios.get(`${API_BASE}/topSellers`),
-            axios.get(`${API_BASE}/explore`),
-          ]);
+        const { data } = await axios.get(`${API_BASE}/authors`, {
+          params: { author: authorId },
+        });
 
-        const seller = topSellers.find(
-          (entry) => String(entry.authorId) === String(authorId)
-        );
-
-        const matchingItems = [
-          ...newItems,
-          ...hotCollections,
-          ...exploreItems,
-        ].filter((item) => String(item.authorId) === String(authorId));
-        const uniqueItems = Array.from(
-          new Map(matchingItems.map((item) => [item.nftId, item])).values()
-        );
-
-        if (uniqueItems.length === 0 && !seller) {
+        if (!data || !data.authorId) {
           throw new Error("Author not found");
         }
 
-        if (uniqueItems.length === 0) {
-          setAuthor({
-            id: Number(authorId),
-            name: seller.authorName,
-            image: seller.authorImage,
-          });
-          setItems([]);
-          return;
-        }
-
-        const itemDetails = (
-          await Promise.all(
-            uniqueItems.map(({ nftId }) =>
-              axios
-                .get(`${API_BASE}/itemDetails`, { params: { nftId } })
-                .then(({ data }) => data)
-                .catch(() => null)
-            )
-          )
-        ).filter(Boolean);
-
-        if (itemDetails.length === 0) {
-          throw new Error("Author items not found");
-        }
-
-        const authorIdNumber = Number(authorId);
-        const profileItem = itemDetails.find(
-          (item) =>
-            item.ownerId === authorIdNumber || item.creatorId === authorIdNumber
-        );
-
-        if (!profileItem) {
-          throw new Error("Author profile not found");
-        }
-
-        const isOwner = profileItem.ownerId === authorIdNumber;
-        const profile = {
-          id: authorIdNumber,
-          name:
-            seller?.authorName ||
-            (isOwner ? profileItem.ownerName : profileItem.creatorName),
-          image:
-            seller?.authorImage ||
-            (isOwner ? profileItem.ownerImage : profileItem.creatorImage),
-        };
-
-        setAuthor(profile);
+        setAuthor(data);
+        setIsFollowing(false);
+        setCopyStatus("Copy");
         setItems(
-          itemDetails.map((item) => ({
+          (data.nftCollection || []).map((item) => ({
             ...item,
-            authorId: profile.id,
-            authorImage: profile.image,
+            authorId: data.authorId,
+            authorImage: data.authorImage,
+            ownerName: data.authorName,
           }))
         );
       } catch (requestError) {
@@ -154,6 +99,20 @@ const Author = () => {
 
     fetchAuthor();
   }, [authorId]);
+
+  const handleFollowToggle = () => {
+    setIsFollowing((currentlyFollowing) => !currentlyFollowing);
+  };
+
+  const handleCopyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(author.address);
+      setCopyStatus("Copied");
+    } catch (copyError) {
+      console.error("Unable to copy wallet address:", copyError);
+      setCopyStatus("Copy failed");
+    }
+  };
 
   if (loading) return <AuthorPageSkeleton />;
 
@@ -169,6 +128,8 @@ const Author = () => {
       </section>
     );
   }
+
+  const followerCount = (Number(author.followers) || 0) + (isFollowing ? 1 : 0);
 
   return (
     <div id="wrapper">
@@ -189,18 +150,43 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={author.image} alt={author.name} />
+                      <img src={author.authorImage} alt={author.authorName} />
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
-                        <h4>{author.name}</h4>
+                        <h4>
+                          {author.authorName}
+                          <span className="profile_username">
+                            @{author.tag}
+                          </span>
+                          <span id="wallet" className="profile_wallet">
+                            {author.address}
+                          </span>
+                          <button
+                            id="btn_copy"
+                            type="button"
+                            title="Copy wallet address"
+                            className={copyStatus === "Copied" ? "clicked" : ""}
+                            onClick={handleCopyAddress}
+                          >
+                            {copyStatus}
+                          </button>
+                        </h4>
                       </div>
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <div className="profile_follower">
+                        {followerCount.toLocaleString()}{" "}
+                        {followerCount === 1 ? "follower" : "followers"}
+                      </div>
+                      <button
+                        type="button"
+                        className="btn-main"
+                        onClick={handleFollowToggle}
+                      >
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
                 </div>
