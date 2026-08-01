@@ -60,11 +60,20 @@ const Author = () => {
 
     const fetchAuthor = async () => {
       try {
-        const [{ data: newItems }, { data: hotCollections }] =
+        const [
+          { data: newItems },
+          { data: hotCollections },
+          { data: topSellers },
+        ] =
           await Promise.all([
             axios.get(`${API_BASE}/newItems`),
             axios.get(`${API_BASE}/hotCollections`),
+            axios.get(`${API_BASE}/topSellers`),
           ]);
+
+        const seller = topSellers.find(
+          (entry) => String(entry.authorId) === String(authorId)
+        );
 
         const matchingItems = [...newItems, ...hotCollections].filter(
           (item) => String(item.authorId) === String(authorId)
@@ -73,8 +82,18 @@ const Author = () => {
           new Map(matchingItems.map((item) => [item.nftId, item])).values()
         );
 
-        if (uniqueItems.length === 0) {
+        if (uniqueItems.length === 0 && !seller) {
           throw new Error("Author not found");
+        }
+
+        if (uniqueItems.length === 0) {
+          setAuthor({
+            id: Number(authorId),
+            name: seller.authorName,
+            image: seller.authorImage,
+          });
+          setItems([]);
+          return;
         }
 
         const itemDetails = (
@@ -105,8 +124,12 @@ const Author = () => {
         const isOwner = profileItem.ownerId === authorIdNumber;
         const profile = {
           id: authorIdNumber,
-          name: isOwner ? profileItem.ownerName : profileItem.creatorName,
-          image: isOwner ? profileItem.ownerImage : profileItem.creatorImage,
+          name:
+            seller?.authorName ||
+            (isOwner ? profileItem.ownerName : profileItem.creatorName),
+          image:
+            seller?.authorImage ||
+            (isOwner ? profileItem.ownerImage : profileItem.creatorImage),
         };
 
         setAuthor(profile);
