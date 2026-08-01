@@ -64,20 +64,24 @@ const Author = () => {
           { data: newItems },
           { data: hotCollections },
           { data: topSellers },
+          { data: exploreItems },
         ] =
           await Promise.all([
             axios.get(`${API_BASE}/newItems`),
             axios.get(`${API_BASE}/hotCollections`),
             axios.get(`${API_BASE}/topSellers`),
+            axios.get(`${API_BASE}/explore`),
           ]);
 
         const seller = topSellers.find(
           (entry) => String(entry.authorId) === String(authorId)
         );
 
-        const matchingItems = [...newItems, ...hotCollections].filter(
-          (item) => String(item.authorId) === String(authorId)
-        );
+        const matchingItems = [
+          ...newItems,
+          ...hotCollections,
+          ...exploreItems,
+        ].filter((item) => String(item.authorId) === String(authorId));
         const uniqueItems = Array.from(
           new Map(matchingItems.map((item) => [item.nftId, item])).values()
         );
