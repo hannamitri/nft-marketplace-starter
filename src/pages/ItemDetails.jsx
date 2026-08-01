@@ -63,20 +63,28 @@ const ItemDetailsSkeleton = () => (
 const ItemDetails = () => {
   const { nftId } = useParams();
   const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    let isCurrentRequest = true;
 
     if (!nftId) {
+      setItem(null);
       setError("No NFT was selected.");
-      return;
+      setLoading(false);
+      return () => {
+        isCurrentRequest = false;
+      };
     }
+
+    setLoading(true);
+    setError("");
+    setItem(null);
 
     const fetchItemDetails = async () => {
       try {
-        setError("");
-        setItem(null);
         const { data } = await axios.get(ITEM_DETAILS_URL, {
           params: { nftId },
         });
@@ -85,15 +93,31 @@ const ItemDetails = () => {
           throw new Error("NFT not found");
         }
 
-        setItem(data);
+        if (isCurrentRequest) {
+          setItem(data);
+        }
       } catch (requestError) {
-        console.error("Unable to fetch NFT details:", requestError);
-        setError("Unable to load this NFT. Please try again later.");
+        if (isCurrentRequest) {
+          console.error("Unable to fetch NFT details:", requestError);
+          setError("Unable to load this NFT. Please try again later.");
+        }
+      } finally {
+        if (isCurrentRequest) {
+          setLoading(false);
+        }
       }
     };
 
     fetchItemDetails();
+
+    return () => {
+      isCurrentRequest = false;
+    };
   }, [nftId]);
+
+  if (loading) {
+    return <ItemDetailsSkeleton />;
+  }
 
   if (error) {
     return (
@@ -106,10 +130,6 @@ const ItemDetails = () => {
         </div>
       </section>
     );
-  }
-
-  if (!item) {
-    return <ItemDetailsSkeleton />;
   }
 
   return (
