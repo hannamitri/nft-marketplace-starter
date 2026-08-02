@@ -20,6 +20,7 @@ const HotCollections = () => {
   useEffect(() => {
     async function fetchData() {
       const { data } = await axios.get(API_URL);
+      await new Promise((resolve) => setTimeout(resolve, 3000))
       setCollections(data);
       setLoading(false);
     }
@@ -49,8 +50,8 @@ const HotCollections = () => {
             </div>
           </div>
 
-          {loading ? (
-            <div style={{ display: "flex", gap: "10px", overflow: "hidden" }}>
+          {loading ? (    
+            <OwlCarousel key="skeleton" className="owl-theme" {...options}>
               {new Array(4).fill(0).map((_, index) => (
                 <div className="skeleton-item" key={index}>
                   <div className="nft_coll">
@@ -66,7 +67,7 @@ const HotCollections = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </OwlCarousel>
           ) : (
             collections.length > 0 && (
               <OwlCarousel className="owl-theme" {...options}>

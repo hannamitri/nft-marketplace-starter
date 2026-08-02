@@ -13207,10 +13207,10 @@ a.read_more i {
 
 .skeleton {
   background: #ddd;
-  animation: pulse 2s infinite;
+  animation: pulse 1.5s infinite;
 }
 .skeleton-item {
-  flex: 0 0 23%;
+  flex: 0 0 35%;
 }
 .skeleton-image {
   width: 100%;
@@ -13260,6 +13260,25 @@ a.read_more i {
 }
 
 /* ------------------ */
+
+/* NEW ITEMS LOADING STATE */
+.skeleton-pic {
+  height: 200px;
+  border-radius: 10px;
+  width: 100%;
+}
+.skeleton_title {
+  height: 20px;
+  width: 80%;
+  margin: 15px 8px;
+}
+.skeleton_subtitle {
+  height: 15px;
+  width: 50%;
+  margin: 0px 8px;
+}
+
+/*-------------------- */
 
 .nft_wrap {
   position: relative;
