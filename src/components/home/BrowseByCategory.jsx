@@ -5,10 +5,10 @@ const BrowseByCategory = () => {
   return (
     <section id="section-category" className="no-top">
       <div className="container">
-        <div className="row">
+        <div data-aos="fade-left" className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Browse by category</h2>
+              <h2  data-aos="fade-up">Browse by category</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
