@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Redirecting...</title>
+    <script>
+      const path = window.location.pathname.replace(/\/+$/, '');
+      const repoBase = '/Trevan-Internship';
+      const redirectUrl = repoBase + path + window.location.search + window.location.hash;
+      window.location.replace(redirectUrl);
+    </script>
+  </head>
+  <body>Redirecting...</body>
+</html>
