@@ -5,6 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import CountdownTimer from "../UI/CountdownTimer";
+import Skeleton from "../UI/Skeleton";
 
 
 const API_URL =
@@ -51,28 +52,17 @@ const NewItems = () => {
           {loading ? (
             <OwlCarousel key='skeleton' className="owl-theme" {...options}>
               {new Array(4).fill(0).map((_, index) => (
-               
-                  <div className="nft__item" key={index} >
-                    <div className="author_list_pp">
-                      <div className="skeleton skeleton-avatar" />
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft__item_wrap ">
-                      <div className="skeleton skeleton-pic" />
-                    </div>
-                    <div className="nft__item_info">
-                      <div className="item-details skeleton skeleton_title"/>
-                      <div className="nft__item_price skeleton skeleton_subtitle "/>
-                    </div>
-                  </div>
-               
+                <div key={index}>
+                  <Skeleton/>
+                </div>             
               ))}
             </OwlCarousel>
+
           ) : (
+            
             itemsSection.length > 0 && (
               <OwlCarousel key='real' className="owl-theme" {...options}>
                 {itemsSection.map((item) => (
-                  
                     <div className="nft__item" key={item.id}>
                       <div className="author_list_pp">
                         <Link

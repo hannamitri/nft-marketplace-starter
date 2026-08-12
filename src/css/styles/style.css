@@ -13280,6 +13280,29 @@ a.read_more i {
 
 /*-------------------- */
 
+/* TOP SELLERS LOADING STATE */
+
+.skeleton-picture {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+.skeleton-name {
+  width: 100px;
+  height: 20px;
+  margin-bottom: 6px;
+  margin-top: 4px;
+}
+.skeleton-price {
+  width: 60px;
+  height: 14px;
+  margin-top: 8px;
+}
+
+/*_________________ */
+
+
 .nft_wrap {
   position: relative;
   width: 100%;
@@ -14224,7 +14247,7 @@ a.read_more i {
   border-radius: 30px;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
-  border: solid 2px #dddddd;
+  border: solid 2px #dddddd ;
   z-index: 100;
   color: #0d0c22;
 }
