@@ -1,12 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Countdown from "react-countdown";
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
+const settings = {
+  dots: false,
+  nav: true,
+  loop: true,
+  margin: 20,
+  items: 4,
+  responsive: {
+    0: {
+      items: 1,
+    },
+    768: {
+      items: 2,
+    },
+    992: {
+      items: 4,
+    },
+  },
+};
+
 const NewItems = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        nicole_hotcollections
+        console.log(data);
+         main
+        setItems(data);
+      } catch (error) {
+        console.error("Failed to fetch new items:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItems();
+  }, []);
+ nicole_hotcollections
+
+  if (loading) return <div>Loading...</div>;
+  main
   return (
     <section id="section-items" className="no-bottom">
-      <div className="container">
+  <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
@@ -14,64 +69,57 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
+          <OwlCarousel className="owl-theme" {...settings}>
+                    
+{items.map((item) => (
+  <div className="nft__item" key={item.id}>
+    <div className="author_list_pp">
+ nicole_hotcollections
+      <Link to="/author" data-bs-toggle="tooltip" data-bs-placement="top" title={`Creator: ${item.author || 'Unknown'}`}>
 
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+      <Link
+  to="/author"
+  data-bs-toggle="tooltip"
+  data-bs-placement="top"
+  title={`Creator ID: ${item.authorId}`}
+  main
+        <img className="lazy" src={item.authorImage || AuthorImage} alt="" />
+        <i className="fa fa-check"></i>
+      </Link>
+    </div>
+ nicole_hotcollections
 
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    {item.expiration && <div className="de_countdown">{item.expiration}</div>}
+
+
+{item.expiryDate && (
+  <div className="de_countdown">
+    <Countdown date={item.expiryDate} />
+  </div>
+)}
+main
+    <div className="nft__item_wrap">
+      <Link to="/item-details">
+        <img src={item.nftImage || nftImage} className="lazy nft__item_preview" alt="" />
+      </Link>
+    </div>
+
+    <div className="nft__item_info">
+      <Link to="/item-details">
+        <h4>{item.title || 'Untitled'}</h4>
+      </Link>
+      <div className="nft__item_price">{item.price ? `${item.price} ETH` : '—'}</div>
+      <div className="nft__item_like">
+        <i className="fa fa-heart"></i>
+        <span>{item.likes || 0}</span>
       </div>
+    </div>
+  </div>
+))}
+          </OwlCarousel>
+          </div>
+          </div>
+        
     </section>
   );
 };

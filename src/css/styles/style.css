@@ -13255,13 +13255,21 @@ a.read_more i {
   width: 60px;
   height: auto;
   border-radius: 100%;
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
-  border: solid 5px #ffffff;
-  background: #ffffff;
+}
+.author_list_info {
+  padding-left: 70px;
+  min-height: 50px;
 }
 
-.nft_coll_pp i {
+
+.author_list_info a {
+  white-space: nowrap;
+}
+.author_list_info span {
+  display: block;
+}
+
+.nft_coll_pp img {
   font-size: 10px;
   color: #ffffff;
   background: #333;
@@ -13285,7 +13293,8 @@ a.read_more i {
 
 .author_list li {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+
 }
 
 .author_list_pp {
@@ -13293,9 +13302,14 @@ a.read_more i {
   position: absolute;
   display: inline-block;
   width: 50px;
-  height: auto;
+  height: 50px;
   margin-left: 10px;
   z-index: 10;
+}
+.author_list_pp i {
+  position: absolute;
+  right: -3px;
+  bottom: 0;
 }
 
 .author_list_pp img {
@@ -13345,6 +13359,15 @@ a.read_more i {
 .author_list_info {
   font-weight: bold;
   padding-left: 70px;
+}
+.author_list_info {
+  padding-left: 70px;
+  min-height: 50px;
+}
+
+.author_list_info a,
+.author_list_info span {
+  display: block;
 }
 
 .rtl .author_list_info {
