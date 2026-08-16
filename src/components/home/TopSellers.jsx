@@ -13,7 +13,7 @@ const TopSellers = () => {
   useEffect(() => {
     async function FecthData() {
       const { data } = await axios.get(API_URL);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
       setTopSellersItem(data);
       setLoading(false)
     }
@@ -54,7 +54,7 @@ const TopSellers = () => {
                 {topSellersItem.map((item) => (
                   <li key={item.id}>
                     <div className="author_list_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${item.authorId}`}>
                         <img
                           className="lazy pp-author"
                           src={item.authorImage}

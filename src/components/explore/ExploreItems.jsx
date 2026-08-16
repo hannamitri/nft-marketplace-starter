@@ -21,10 +21,9 @@ const ExploreItems = () => {
       setLoading(true)
       const url = filter ? `${API_filter_URL}${filter}` : API_URL
       const {data} = await axios.get(url)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // await new Promise((resolve) => setTimeout(resolve, 2000))
       setExploreItems(data)
       setLoading(false)
-      console.log('fetching', data)
     }
     fetchData()
    }, [filter])
@@ -67,7 +66,7 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${item.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >

@@ -13302,6 +13302,43 @@ a.read_more i {
 
 /*_________________ */
 
+/* AUTHOR ITEMS LOADING STATE*/
+
+.skeleton_author {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  position: relative;
+
+  display: block;
+}
+.skeleton_author i {
+  position: absolute;
+  padding: 10px;
+  border-radius: 100%;
+  bottom: 0;
+  right: 0;
+}
+.skeleton_username {
+  width: 50%;
+  height: 30px;
+  margin-bottom: 20px;
+
+}
+.skeleton_wallet {
+  width: 30%;
+  height: 30px;
+}
+.skeleton_follower {
+  width: 30%;
+  height: 30px;
+}
+.skeleton_btn {
+  width: 40%;
+  height: 50px;
+}
+
+/* _______________*/
 
 .nft_wrap {
   position: relative;
