@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import CountdownTimer from "../UI/CountdownTimer";
 import Skeleton from "../UI/Skeleton";
@@ -21,7 +19,6 @@ const ExploreItems = () => {
       setLoading(true)
       const url = filter ? `${API_filter_URL}${filter}` : API_URL
       const {data} = await axios.get(url)
-      // await new Promise((resolve) => setTimeout(resolve, 2000))
       setExploreItems(data)
       setLoading(false)
     }
@@ -94,7 +91,7 @@ const ExploreItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <img src={item.nftImage} className="lazy nft__item_preview" alt="" />
               </Link>
             </div>

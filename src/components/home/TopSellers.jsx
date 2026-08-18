@@ -13,7 +13,7 @@ const TopSellers = () => {
   useEffect(() => {
     async function FecthData() {
       const { data } = await axios.get(API_URL);
-      // await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       setTopSellersItem(data);
       setLoading(false)
     }

@@ -13340,6 +13340,52 @@ a.read_more i {
 
 /* _______________*/
 
+/* ITEM DETAILS LOADING STATE */
+
+.skeleton-nftImage {
+  width: 100%;
+  height: 500px;
+}
+.skeleton--title {
+  width: 80%;
+  height: 40px;
+  margin-bottom: 16px;
+}
+.skeleton_views {
+  width: 50%;
+  height: 30px;
+  animation: pulse 1.5s infinite;
+}
+.skeleton_para {
+  width: 80%;
+  height: 80px;
+  margin-bottom: 16px;
+}
+.skeleton_owner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.skeleton_owner-info {
+  width: 120px;
+  height: 20px;
+}
+.skeleton_creator {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.skeleton_creator-info {
+  width: 120px;
+  height: 20px;
+}
+.skeleton_price {
+  width: 80px;
+  height: 20px;
+}
+
+/* */
+
 .nft_wrap {
   position: relative;
   width: 100%;
