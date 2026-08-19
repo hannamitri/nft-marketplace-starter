@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -15434,6 +15434,166 @@ img {
 @keyframes anim4 {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.collections-slider-wrapper {
+  position: relative;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.collections-slider-wrapper:hover .carousel-arrow {
+  opacity: 1;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-arrow-left {
+  left: 5px;
+}
+
+.carousel-arrow-right {
+  right: 5px;
+}
+
+.carousel-arrow i {
+  font-size: 14px;
+}
+
+/* ==============================
+   Collection Skeleton
+   ============================== */
+
+.skeleton-collection {
+  overflow: hidden;
+}
+
+.skeleton-image,
+.skeleton-avatar,
+.skeleton-title,
+.skeleton-subtitle {
+  position: relative;
+  overflow: hidden;
+  background: #2a2a2a;
+}
+
+.skeleton-image::after,
+.skeleton-avatar::after,
+.skeleton-title::after,
+.skeleton-subtitle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 3px;
+}
+
+.skeleton-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-text {
+  flex: 1;
+}
+
+.skeleton-title {
+  height: 16px;
+  width: 65%;
+  border-radius: 4px;
+  margin-bottom: 9px;
+}
+
+.skeleton-subtitle {
+  height: 12px;
+  width: 40%;
+  border-radius: 4px;
+}
+
+.skeleton-slider {
+  display: flex;
+  gap: 20px;
+}
+
+.skeleton-slide {
+  flex: 1;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    left: -150%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .skeleton-slider {
+    gap: 15px;
+  }
+
+  .skeleton-slide:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+  .skeleton-slide:nth-child(n + 2) {
+    display: none;
   }
 }
 
