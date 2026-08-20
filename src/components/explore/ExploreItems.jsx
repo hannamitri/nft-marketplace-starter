@@ -4,17 +4,25 @@ import { Link } from "react-router-dom";
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import Countdown from "../UI/Countdown";
 
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("");
+  const [visibleCount, setVisibleCount] = useState(8);
 
   useEffect(() => {
     const fetchItems = async () => {
+      setLoading(true);
+
       try {
-        const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
-        );
+        const url =
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+
+        const response = await axios.get(url, {
+          params: filter ? { filter } : {},
+        });
 
         setItems(response.data);
       } catch (error) {
@@ -25,12 +33,27 @@ const ExploreItems = () => {
     };
 
     fetchItems();
-  }, []);
+  }, [filter]);
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+
+    // Start back at 8 whenever the filter changes
+    setVisibleCount(8);
+  };
+
+  const handleLoadMore = (event) => {
+    event.preventDefault();
+
+    setVisibleCount((previousCount) => previousCount + 4);
+  };
+
+  const visibleItems = items.slice(0, visibleCount);
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={filter} onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -43,7 +66,10 @@ const ExploreItems = () => {
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{ display: "block", backgroundSize: "cover" }}
+              style={{
+                display: "block",
+                backgroundSize: "cover",
+              }}
             >
               <div className="nft__item skeleton-nft-item">
                 <div className="skeleton skeleton-author"></div>
@@ -57,11 +83,14 @@ const ExploreItems = () => {
               </div>
             </div>
           ))
-        : items.map((item) => (
+        : visibleItems.map((item) => (
             <div
               key={item.nftId}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{ display: "block", backgroundSize: "cover" }}
+              style={{
+                display: "block",
+                backgroundSize: "cover",
+              }}
             >
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -76,11 +105,12 @@ const ExploreItems = () => {
                       src={item.authorImage || AuthorImage}
                       alt={item.title || "Author"}
                     />
+
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
 
-                <div className="de_countdown">5h 30m 32s</div>
+                <Countdown expiryDate={item.expiryDate} />
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -130,9 +160,14 @@ const ExploreItems = () => {
             </div>
           ))}
 
-      {!loading && (
+      {!loading && visibleCount < items.length && (
         <div className="col-md-12 text-center">
-          <Link to="" id="loadmore" className="btn-main lead">
+          <Link
+            to="#"
+            id="loadmore"
+            className="btn-main lead"
+            onClick={handleLoadMore}
+          >
             Load more
           </Link>
         </div>

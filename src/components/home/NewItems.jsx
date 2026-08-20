@@ -6,6 +6,7 @@ import "keen-slider/keen-slider.min.css";
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -161,9 +162,7 @@ const NewItems = () => {
                           </Link>
                         </div>
 
-                        <div className="de_countdown">
-                          {timeLeft[item.id] || "Loading..."}
-                        </div>
+                        <Countdown expiryDate={item.expiryDate} />
 
                         <div className="nft__item_wrap">
                           <div className="nft__item_extra">
