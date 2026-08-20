@@ -72,14 +72,14 @@ const HotCollections = () => {
                       key={index}
                     >
                       <div className="nft_coll skeleton-collection">
-                        <div className="skeleton-image"></div>
+                        <div className="skeleton skeleton-image"></div>
 
                         <div className="skeleton-info">
-                          <div className="skeleton-avatar"></div>
+                          <div className="skeleton skeleton-avatar"></div>
 
                           <div className="skeleton-text">
-                            <div className="skeleton-title"></div>
-                            <div className="skeleton-subtitle"></div>
+                            <div className="skeleton skeleton-title"></div>
+                            <div className="skeleton skeleton-subtitle"></div>
                           </div>
                         </div>
                       </div>
@@ -107,7 +107,7 @@ const HotCollections = () => {
                     >
                       <div className="nft_coll">
                         <div className="nft_wrap">
-                          <Link to="/item-details">
+                          <Link to={`/item-details/${collection.nftId}`}>
                             <img
                               src={collection.nftImage || nftImage}
                               className="lazy img-fluid"
@@ -117,7 +117,7 @@ const HotCollections = () => {
                         </div>
 
                         <div className="nft_coll_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${collection.authorId}`}>
                             <img
                               className="lazy pp-coll"
                               src={collection.authorImage || AuthorImage}
@@ -129,10 +129,10 @@ const HotCollections = () => {
                         </div>
 
                         <div className="nft_coll_info">
-                          <Link to="/explore">
+                          <Link to={`/item-details/${collection.nftId}`}>
                             <h4>{collection.title}</h4>
                           </Link>
-                          <span>{collection.authorId}</span>
+                          <span>ERC-{collection.code}</span>
                         </div>
                       </div>
                     </div>

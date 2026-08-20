@@ -15488,26 +15488,16 @@ img {
 }
 
 /* ==============================
-   Collection Skeleton
+   Shared Skeleton
    ============================== */
 
-.skeleton-collection {
-  overflow: hidden;
-}
-
-.skeleton-image,
-.skeleton-avatar,
-.skeleton-title,
-.skeleton-subtitle {
+.skeleton {
   position: relative;
   overflow: hidden;
   background: #2a2a2a;
 }
 
-.skeleton-image::after,
-.skeleton-avatar::after,
-.skeleton-title::after,
-.skeleton-subtitle::after {
+.skeleton::after {
   content: "";
   position: absolute;
   top: 0;
@@ -15521,6 +15511,25 @@ img {
     transparent
   );
   animation: skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    left: -150%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+
+/* ==============================
+   Collection Skeleton
+   ============================== */
+
+.skeleton-collection {
+  overflow: hidden;
 }
 
 .skeleton-image {
@@ -15560,6 +15569,63 @@ img {
   border-radius: 4px;
 }
 
+
+/* ==============================
+   New Items Skeleton
+   ============================== */
+
+.skeleton-nft-item {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.skeleton-author {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.skeleton-countdown {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 90px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.skeleton-nft-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+}
+
+.skeleton-nft-info {
+  padding-top: 15px;
+}
+
+.skeleton-nft-title {
+  width: 60%;
+  height: 18px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.skeleton-nft-price {
+  width: 35%;
+  height: 14px;
+  border-radius: 4px;
+}
+
+
+/* ==============================
+   Skeleton Slider
+   ============================== */
+
 .skeleton-slider {
   display: flex;
   gap: 20px;
@@ -15569,17 +15635,9 @@ img {
   flex: 1;
 }
 
-@keyframes skeleton-shimmer {
-  0% {
-    left: -150%;
-  }
-
-  100% {
-    left: 150%;
-  }
-}
 
 /* Tablet */
+
 @media (max-width: 991px) {
   .skeleton-slider {
     gap: 15px;
@@ -15590,7 +15648,9 @@ img {
   }
 }
 
+
 /* Mobile */
+
 @media (max-width: 575px) {
   .skeleton-slide:nth-child(n + 2) {
     display: none;
