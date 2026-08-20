@@ -15,18 +15,21 @@ const Author = () => {
   useEffect(() => {
     const fetchAuthor = async () => {
       try {
+        // Get author information independently of their NFT items
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers",
         );
 
-        const authorItem = response.data.find(
-          (item) => String(item.authorId) === String(authorId),
+        const authorData = response.data.find(
+          (seller) => String(seller.authorId) === String(authorId),
         );
 
-        if (authorItem) {
+        if (authorData) {
           setAuthor({
-            authorId: authorItem.authorId,
-            authorImage: authorItem.authorImage,
+            authorId: authorData.authorId,
+            authorName: authorData.authorName,
+            authorImage: authorData.authorImage,
+            price: authorData.price,
           });
         }
       } catch (error) {
@@ -48,7 +51,9 @@ const Author = () => {
           id="profile_banner"
           aria-label="section"
           className="text-light"
-          style={{ background: `url(${AuthorBanner}) top` }}
+          style={{
+            background: `url(${AuthorBanner}) top`,
+          }}
         ></section>
 
         <section aria-label="section">
@@ -60,16 +65,23 @@ const Author = () => {
                     <div className="profile_avatar">
                       <img
                         src={author?.authorImage || AuthorImage}
-                        alt="Author"
+                        alt={author?.authorName || "Author"}
                       />
 
                       <i className="fa fa-check"></i>
 
                       <div className="profile_name">
                         <h4>
-                          {loading ? "Loading..." : `Author ${authorId}`}
+                          {loading
+                            ? "Loading..."
+                            : author?.authorName || `Author ${authorId}`}
 
-                          <span className="profile_username">@{authorId}</span>
+                          <span className="profile_username">
+                            @
+                            {author?.authorName
+                              ?.replace(/\s+/g, "")
+                              .toLowerCase() || authorId}
+                          </span>
 
                           <span id="wallet" className="profile_wallet">
                             {authorId}
