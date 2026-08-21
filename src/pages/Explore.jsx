@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -17,7 +13,7 @@ const Explore = () => {
           className="text-light"
           style={{ background: `url("${SubHeader}") top` }}
         >
-          <div className="center-y relative text-center">
+          <div className="center-y relative text-center" data-aos="fade-down">
             <div className="container">
               <div className="row">
                 <div className="col-md-12 text-center">
@@ -29,7 +25,7 @@ const Explore = () => {
           </div>
         </section>
 
-        <section aria-label="section">
+        <section aria-label="section" data-aos="fade-up">
           <div className="container">
             <div className="row">
               <ExploreItems />

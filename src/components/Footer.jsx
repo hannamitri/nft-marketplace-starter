@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import Logo from "../images/Ultraverse.png";
 
 const Footer = () => {
+  const handleSubscribe = (event) => {
+    event.preventDefault();
+    alert("This feature has not been implemented yet");
+  };
+
   return (
-    <footer className="footer-light">
+    <footer className="footer-light" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-md-3 col-sm-6 col-xs-1">
@@ -12,34 +17,34 @@ const Footer = () => {
               <h5>Marketplace</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     All NFTs
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Art
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Music
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Domain Names
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Virtual World
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Collectibles
-                  </Link>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -49,34 +54,34 @@ const Footer = () => {
               <h5>Resources</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Help Center
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Partners
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Suggestions
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Discord
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Docs
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Newsletter
-                  </Link>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -86,34 +91,34 @@ const Footer = () => {
               <h5>Community</h5>
               <ul>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Community
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Documentation
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Brand Assets
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Blog
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Forum
-                  </Link>
+                  </span>
                 </li>
                 <li>
-                  <Link to="#" className="no-cursor">
+                  <span className="no-cursor">
                     Mailing List
-                  </Link>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -125,11 +130,10 @@ const Footer = () => {
                 Signup for our newsletter to get the latest news in your inbox.
               </p>
               <form
-                action="blank.php"
                 className="row form-dark"
                 id="form_subscribe"
-                method="post"
                 name="form_subscribe"
+                onSubmit={handleSubscribe}
               >
                 <div className="col text-center">
                   <input
@@ -139,9 +143,14 @@ const Footer = () => {
                     placeholder="enter your email"
                     type="text"
                   />
-                  <Link to="#" className="no-cursor" id="btn-subscribe">
+                  <button
+                    type="submit"
+                    className="no-cursor"
+                    id="btn-subscribe"
+                    aria-label="Subscribe"
+                  >
                     <i className="arrow_right bg-color-secondary"></i>
-                  </Link>
+                  </button>
                   <div className="clearfix"></div>
                 </div>
               </form>
@@ -158,7 +167,7 @@ const Footer = () => {
               <div className="de-flex footer__wrapper">
                 <div className="de-flex-col">
                   <Link className="footer__link" to="/">
-                    <img alt="" className="f-logo" src={Logo} />
+                    <img alt="Ultraverse" className="f-logo" src={Logo} />
                     <span className="copy">&copy; Copyright 2022</span>
                   </Link>
                 </div>

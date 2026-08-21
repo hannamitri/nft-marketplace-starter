@@ -1,19 +1,31 @@
-import React from "react";
-import Logo from "../images/Ultraverse.png";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
-const Nav = () => {
-  const openNav = () => {
-    document.body.classList += "menu__open";
-  };
+import Logo from "../images/Ultraverse.png";
 
-  const closeNav = () => {
-    document.body.classList.remove("menu__open");
-  };
+const Nav = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // Keep the <body> class in sync with state instead of mutating classList
+  // directly, and always clean up when the component unmounts.
+  useEffect(() => {
+    document.body.classList.toggle("menu__open", menuOpen);
+
+    return () => document.body.classList.remove("menu__open");
+  }, [menuOpen]);
+
+  // Close the mobile menu whenever the route changes.
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  const notImplemented = () =>
+    alert("This feature has not been implemented yet");
 
   return (
-    <header className="transparent header-light scroll-light smaller">
+    <header className="transparent header-light scroll-light smaller" data-aos="fade-right">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -22,10 +34,11 @@ const Nav = () => {
                 <div className="de-flex-col">
                   <div id="logo">
                     <Link to="/">
-                      <img alt="" className="logo-2" src={Logo} />
+                      <img alt="Ultraverse" className="logo-2" src={Logo} />
                     </Link>
                   </div>
                 </div>
+
                 <div className="de-flex-col">
                   <input
                     id="quick_search"
@@ -36,33 +49,40 @@ const Nav = () => {
                   />
                 </div>
               </div>
+
               <div className="de-flex-col header-col-mid">
                 <ul id="mainmenu">
                   <li className="menu-item-has-children has-child">
-                    <Link to="/">
+                    <NavLink to="/" end>
                       Home<span></span>
-                    </Link>
+                    </NavLink>
                   </li>
+
                   <li className="menu-item-has-children has-child">
-                    <Link to="/explore">
+                    <NavLink to="/explore">
                       Explore<span></span>
-                    </Link>
+                    </NavLink>
                   </li>
+
                   <li>
-                    <Link
-                      to="#"
+                    <button
+                      type="button"
                       className="btn-main connect-wallet"
-                      onClick={() =>
-                        alert("This feature has not been implemented yet")
-                      }
+                      onClick={notImplemented}
                     >
                       Connect wallet
-                    </Link>
+                    </button>
                   </li>
                 </ul>
 
                 <div className="menu_side_area">
-                  <span onClick={() => openNav()} id="menu-btn"></span>
+                  <span
+                    onClick={() => setMenuOpen(true)}
+                    id="menu-btn"
+                    role="button"
+                    aria-label="Open menu"
+                    aria-expanded={menuOpen}
+                  ></span>
                 </div>
               </div>
             </div>
@@ -72,17 +92,23 @@ const Nav = () => {
 
       <ul id="dropdown__wrapper">
         <li className="dropdown__list">
-          <Link to="/" onClick={() => closeNav()}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
             Home
           </Link>
         </li>
+
         <li className="dropdown__list">
-          <Link to="/explore" onClick={() => closeNav()}>
+          <Link to="/explore" onClick={() => setMenuOpen(false)}>
             Explore
           </Link>
         </li>
+
         <li className="close__button">
-          <button onClick={() => closeNav()}>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
             <FaTimes />
           </button>
         </li>
