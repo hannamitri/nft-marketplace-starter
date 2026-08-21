@@ -1,13 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+
+const API_URL = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId='
 
 const ItemDetails = () => {
+  const {nftId} = useParams()
+  const [detailsInfo, setDetailsInfo] = useState({})
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
+    async function fetchData() {
+      const {data} = await axios.get(`${API_URL}${nftId}`)
+      setDetailsInfo(data)
+      setLoading(false)
+    }
+    fetchData()
     window.scrollTo(0, 0);
-  }, []);
+  }, [nftId]);
 
   return (
     <div id="wrapper">
@@ -15,75 +26,129 @@ const ItemDetails = () => {
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
-            <div className="row">
-              <div className="col-md-6 text-center">
-                <img
-                  src={nftImage}
-                  className="img-fluid img-rounded mb-sm-30 nft-image"
-                  alt=""
-                />
-              </div>
-              <div className="col-md-6">
-                <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
 
-                  <div className="item_info_counts">
-                    <div className="item_info_views">
-                      <i className="fa fa-eye"></i>
-                      100
+          { loading ? (
+              <div className="row">
+                <div className="col-md-6 text-center">
+                  <div className="skeleton skeleton-nftImage" />
+                </div>
+                <div className="col-md-6">
+                  <div className="item_info">
+                    <div className="skeleton skeleton--title"/>
+                    <div className="item_info_counts">
+                      <div className="item_info_views"> 
+                        <div className="skeleton_views"/>
+                      </div>
+                      <div className="item_info_like"> </div>
+                        
                     </div>
-                    <div className="item_info_like">
-                      <i className="fa fa-heart"></i>
-                      74
-                    </div>
-                  </div>
-                  <p>
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                    illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
-                  </p>
-                  <div className="d-flex flex-row">
-                    <div className="mr40">
-                      <h6>Owner</h6>
-                      <div className="item_author">
-                        <div className="author_list_pp">
-                          <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-                        <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                    <div className="skeleton skeleton_para"/>
+                    <div className="d-flex flex-row">
+                      <div className="mr40">
+                        <h6>Owner</h6>
+                        <div className="item_author">
+                          <div className="author_list_pp">
+                            <div className="skeleton skeleton_owner"/>
+                          </div>
+                          <div className="author_list_info">
+                            <div className="skeleton skeleton_owner-info"/>
+                          </div>
                         </div>
                       </div>
+                      <div></div>
                     </div>
-                    <div></div>
-                  </div>
-                  <div className="de_tab tab_simple">
-                    <div className="de_tab_content">
-                      <h6>Creator</h6>
-                      <div className="item_author">
-                        <div className="author_list_pp">
-                          <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-                        <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                    <div className="de_tab tab_simple">
+                      <div className="de_tab_content">
+                        <h6>Creator</h6>
+                        <div className="item_author">
+                          <div className="author_list_pp">
+                            <div className="skeleton skeleton_creator"/>
+                          </div>
+                          <div className="author_list_info">
+                            <div className="skeleton skeleton_creator-info"/>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div className="spacer-40"></div>
                     <h6>Price</h6>
                     <div className="nft-item-price">
+                      <div className="skeleton skeleton_price"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          ) : (
+
+            <div className="row">
+              <div className="col-md-6 text-center" >
+                <img 
+                  src={detailsInfo.nftImage}
+                  className="img-fluid img-rounded mb-sm-30 nft-image"
+                  data-aos='fade-up'
+                  alt=""
+                />
+              </div>
+              <div className="col-md-6" >
+                <div className="item_info">
+                  <h2 data-aos='fade-up'>{detailsInfo.title}</h2>
+
+                  <div className="item_info_counts">
+                    <div className="item_info_views" data-aos='fade-up'>
+                      <i className="fa fa-eye"></i>
+                      {detailsInfo.views}
+                    </div>
+                    <div className="item_info_like" data-aos='fade-up'>
+                      <i className="fa fa-heart"></i>
+                      {detailsInfo.likes}
+                    </div>
+                  </div>
+                  <p data-aos='fade-up'>
+                 {detailsInfo.description}
+                  </p>
+                  <div className="d-flex flex-row">
+                    <div data-aos='fade-up' className="mr40">
+                      <h6>Owner</h6>
+                      <div className="item_author">
+                        <div className="author_list_pp">
+                          <Link to={`/author/${detailsInfo.ownerId}`}>
+                            <img className="lazy" src={detailsInfo.ownerImage} alt="" />
+                            <i className="fa fa-check"></i>
+                          </Link>
+                        </div>
+                        <div className="author_list_info">
+                          <Link to="/author">{detailsInfo.ownerName}</Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div className="de_tab tab_simple">
+                    <div className="de_tab_content" data-aos='fade-up'>
+                      <h6>Creator</h6>
+                      <div className="item_author">
+                        <div className="author_list_pp">
+                          <Link to={`/author/${detailsInfo.creatorId}`}>
+                            <img className="lazy" src={detailsInfo.creatorImage} alt="" />
+                            <i className="fa fa-check"></i>
+                          </Link>
+                        </div>
+                        <div className="author_list_info">
+                          <Link to="/author">{detailsInfo.creatorName}</Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="spacer-40" ></div>
+                    <h6 data-aos='fade-up'>Price</h6>
+                    <div className="nft-item-price" data-aos='fade-up'>
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      <span>{detailsInfo.price}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+             )}
           </div>
         </section>
       </div>
