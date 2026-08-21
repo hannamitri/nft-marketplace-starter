@@ -1,43 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import ItemShareButtons from "../UI/ItemShareButtons";
 
-const AuthorItems = ({ authorId }) => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      if (!authorId) {
-        setItems([]);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
-        );
-
-        const authorItems = response.data.filter(
-          (item) => String(item.authorId) === String(authorId),
-        );
-
-        setItems(authorItems);
-      } catch (error) {
-        console.error("Error fetching author items:", error);
-        setItems([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchItems();
-  }, [authorId]);
-
+const AuthorItems = ({
+  authorId,
+  items = [],
+  loading,
+  authorImage,
+  authorName,
+}) => {
   return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -47,7 +21,6 @@ const AuthorItems = ({ authorId }) => {
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft__item skeleton-nft-item">
                   <div className="skeleton skeleton-author"></div>
-
                   <div className="skeleton skeleton-nft-image"></div>
 
                   <div className="skeleton-nft-info">
@@ -57,46 +30,30 @@ const AuthorItems = ({ authorId }) => {
                 </div>
               </div>
             ))
-          ) : items.length > 0 ? (
+          ) : items.length === 0 ? (
+            <div className="col-lg-12 text-center">
+              <h4>This author hasn't listed any NFTs yet.</h4>
+            </div>
+          ) : (
             items.map((item) => (
               <div
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 key={item.nftId}
               >
-                <div className="nft__item">
+                <div className="nft__item" data-aos="fade-up">
                   <div className="author_list_pp">
-                    <Link to={`/author/${item.authorId}`}>
+                    <Link to={`/author/${authorId}`}>
                       <img
                         className="lazy"
-                        src={item.authorImage || AuthorImage}
-                        alt={item.title || "Author"}
+                        src={authorImage || AuthorImage}
+                        alt={authorName || "Author"}
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
 
                   <div className="nft__item_wrap">
-                    <div className="nft__item_extra">
-                      <div className="nft__item_buttons">
-                        <button>Buy Now</button>
-
-                        <div className="nft__item_share">
-                          <h4>Share</h4>
-
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-facebook fa-lg"></i>
-                          </a>
-
-                          <a href="" target="_blank" rel="noreferrer">
-                            <i className="fa fa-twitter fa-lg"></i>
-                          </a>
-
-                          <a href="">
-                            <i className="fa fa-envelope fa-lg"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
+                    <ItemShareButtons />
 
                     <Link to={`/item-details/${item.nftId}`}>
                       <img
@@ -122,10 +79,6 @@ const AuthorItems = ({ authorId }) => {
                 </div>
               </div>
             ))
-          ) : (
-            <div className="col-lg-12 text-center">
-              <p>No items found for this author.</p>
-            </div>
           )}
         </div>
       </div>

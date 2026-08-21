@@ -1,51 +1,48 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Countdown from "../UI/Countdown";
+import ItemShareButtons from "../UI/ItemShareButtons";
+import { getExploreItems } from "../../api/nft";
+
+const PAGE_SIZE = 8;
+const LOAD_MORE_STEP = 4;
 
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("");
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchItems = async () => {
       setLoading(true);
 
       try {
-        const url =
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
-
-        const response = await axios.get(url, {
-          params: filter ? { filter } : {},
-        });
-
-        setItems(response.data);
+        const data = await getExploreItems(filter);
+        if (!cancelled) setItems(data);
       } catch (error) {
         console.error("Error fetching explore items:", error);
+        if (!cancelled) setItems([]);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     fetchItems();
+
+    return () => {
+      cancelled = true;
+    };
   }, [filter]);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
-
-    // Start back at 8 whenever the filter changes
-    setVisibleCount(8);
-  };
-
-  const handleLoadMore = (event) => {
-    event.preventDefault();
-
-    setVisibleCount((previousCount) => previousCount + 4);
+    setVisibleCount(PAGE_SIZE);
   };
 
   const visibleItems = items.slice(0, visibleCount);
@@ -62,18 +59,14 @@ const ExploreItems = () => {
       </div>
 
       {loading
-        ? new Array(8).fill(0).map((_, index) => (
+        ? new Array(PAGE_SIZE).fill(0).map((_, index) => (
             <div
               key={index}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{
-                display: "block",
-                backgroundSize: "cover",
-              }}
+              style={{ display: "block", backgroundSize: "cover" }}
             >
               <div className="nft__item skeleton-nft-item">
                 <div className="skeleton skeleton-author"></div>
-
                 <div className="skeleton skeleton-nft-image"></div>
 
                 <div className="skeleton-nft-info">
@@ -87,10 +80,7 @@ const ExploreItems = () => {
             <div
               key={item.nftId}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{
-                display: "block",
-                backgroundSize: "cover",
-              }}
+              style={{ display: "block", backgroundSize: "cover" }}
             >
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -98,14 +88,13 @@ const ExploreItems = () => {
                     to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
-                    title={`Creator: ${item.authorId}`}
+                    title="View author"
                   >
                     <img
                       className="lazy"
                       src={item.authorImage || AuthorImage}
-                      alt={item.title || "Author"}
+                      alt="Author"
                     />
-
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -113,27 +102,7 @@ const ExploreItems = () => {
                 <Countdown expiryDate={item.expiryDate} />
 
                 <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <ItemShareButtons />
 
                   <Link to={`/item-details/${item.nftId}`}>
                     <img
@@ -162,14 +131,14 @@ const ExploreItems = () => {
 
       {!loading && visibleCount < items.length && (
         <div className="col-md-12 text-center">
-          <Link
-            to="#"
+          <button
+            type="button"
             id="loadmore"
             className="btn-main lead"
-            onClick={handleLoadMore}
+            onClick={() => setVisibleCount((count) => count + LOAD_MORE_STEP)}
           >
             Load more
-          </Link>
+          </button>
         </div>
       )}
     </>

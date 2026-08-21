@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -7,42 +6,20 @@ import "keen-slider/keen-slider.min.css";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Countdown from "../UI/Countdown";
+import ItemShareButtons from "../UI/ItemShareButtons";
+import { sliderOptions } from "../UI/sliderOptions";
+import { getNewItems } from "../../api/nft";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [timeLeft, setTimeLeft] = useState({});
 
-  const [sliderRef, slider] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: 4,
-      spacing: 20,
-    },
-    breakpoints: {
-      "(max-width: 991px)": {
-        slides: {
-          perView: 2,
-          spacing: 15,
-        },
-      },
-      "(max-width: 575px)": {
-        slides: {
-          perView: 1,
-          spacing: 15,
-        },
-      },
-    },
-  });
+  const [sliderRef, slider] = useKeenSlider(sliderOptions);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
-        );
-
-        setItems(response.data);
+        setItems(await getNewItems());
       } catch (error) {
         console.error("Error fetching new items:", error);
       } finally {
@@ -53,48 +30,8 @@ const NewItems = () => {
     fetchItems();
   }, []);
 
-  useEffect(() => {
-    if (!items.length) return;
-
-    const updateCountdowns = () => {
-      const now = Date.now();
-
-      const updatedTimes = {};
-
-      items.forEach((item) => {
-        const difference = item.expiryDate - now;
-
-        if (difference <= 0) {
-          updatedTimes[item.id] = "Expired";
-          return;
-        }
-
-        const totalSeconds = Math.floor(difference / 1000);
-
-        const days = Math.floor(totalSeconds / 86400);
-        const hours = Math.floor((totalSeconds % 86400) / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-
-        if (days > 0) {
-          updatedTimes[item.id] = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        } else {
-          updatedTimes[item.id] = `${hours}h ${minutes}m ${seconds}s`;
-        }
-      });
-
-      setTimeLeft(updatedTimes);
-    };
-
-    updateCountdowns();
-
-    const interval = setInterval(updateCountdowns, 1000);
-
-    return () => clearInterval(interval);
-  }, [items]);
-
   return (
-    <section id="section-items" className="no-bottom">
+    <section id="section-items" className="no-bottom" data-aos="fade-right">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -115,9 +52,7 @@ const NewItems = () => {
                     >
                       <div className="nft__item skeleton-nft-item">
                         <div className="skeleton skeleton-author"></div>
-
                         <div className="skeleton skeleton-countdown"></div>
-
                         <div className="skeleton skeleton-nft-image"></div>
 
                         <div className="skeleton-nft-info">
@@ -134,6 +69,7 @@ const NewItems = () => {
             <div className="col-lg-12">
               <div className="collections-slider-wrapper">
                 <button
+                  type="button"
                   className="carousel-arrow carousel-arrow-left"
                   onClick={() => slider.current?.prev()}
                   aria-label="Previous item"
@@ -143,21 +79,20 @@ const NewItems = () => {
 
                 <div ref={sliderRef} className="keen-slider">
                   {items.map((item) => (
-                    <div className="keen-slider__slide" key={item.id}>
+                    <div className="keen-slider__slide" key={item.nftId}>
                       <div className="nft__item">
                         <div className="author_list_pp">
                           <Link
                             to={`/author/${item.authorId}`}
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
-                            title={`Creator: ${item.authorId}`}
+                            title="View author"
                           >
                             <img
                               className="lazy"
                               src={item.authorImage || AuthorImage}
-                              alt={item.title || "Creator"}
+                              alt="Author"
                             />
-
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
@@ -165,27 +100,7 @@ const NewItems = () => {
                         <Countdown expiryDate={item.expiryDate} />
 
                         <div className="nft__item_wrap">
-                          <div className="nft__item_extra">
-                            <div className="nft__item_buttons">
-                              <button>Buy Now</button>
-
-                              <div className="nft__item_share">
-                                <h4>Share</h4>
-
-                                <a href="" target="_blank" rel="noreferrer">
-                                  <i className="fa fa-facebook fa-lg"></i>
-                                </a>
-
-                                <a href="" target="_blank" rel="noreferrer">
-                                  <i className="fa fa-twitter fa-lg"></i>
-                                </a>
-
-                                <a href="">
-                                  <i className="fa fa-envelope fa-lg"></i>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
+                          <ItemShareButtons />
 
                           <Link to={`/item-details/${item.nftId}`}>
                             <img
@@ -216,6 +131,7 @@ const NewItems = () => {
                 </div>
 
                 <button
+                  type="button"
                   className="carousel-arrow carousel-arrow-right"
                   onClick={() => slider.current?.next()}
                   aria-label="Next item"

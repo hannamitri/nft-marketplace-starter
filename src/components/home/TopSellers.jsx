@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
+import { getTopSellers } from "../../api/nft";
 
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -11,11 +11,7 @@ const TopSellers = () => {
   useEffect(() => {
     const fetchSellers = async () => {
       try {
-        const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers",
-        );
-
-        setSellers(response.data);
+        setSellers(await getTopSellers());
       } catch (error) {
         console.error("Error fetching top sellers:", error);
       } finally {
@@ -27,7 +23,7 @@ const TopSellers = () => {
   }, []);
 
   return (
-    <section id="section-popular" className="pb-5">
+    <section id="section-popular" className="pb-5" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -59,6 +55,7 @@ const TopSellers = () => {
                             src={seller.authorImage || AuthorImage}
                             alt={seller.authorName || "Author"}
                           />
+
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
