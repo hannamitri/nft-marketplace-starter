@@ -5,10 +5,20 @@ import Author from "./pages/Author";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-
+import AOS from 'aos'
+import { useEffect } from "react";
 
 
 function App() {
+
+  useEffect(() => {
+    AOS.init({
+      duration:800,
+      once: true
+    })
+  }, [])
+
+
   return (
     <Router>
       <Nav />

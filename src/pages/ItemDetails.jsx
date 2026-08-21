@@ -83,32 +83,33 @@ const ItemDetails = () => {
           ) : (
 
             <div className="row">
-              <div className="col-md-6 text-center">
-                <img
+              <div className="col-md-6 text-center" >
+                <img 
                   src={detailsInfo.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
+                  data-aos='fade-up'
                   alt=""
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" >
                 <div className="item_info">
-                  <h2>{detailsInfo.title}</h2>
+                  <h2 data-aos='fade-up'>{detailsInfo.title}</h2>
 
                   <div className="item_info_counts">
-                    <div className="item_info_views">
+                    <div className="item_info_views" data-aos='fade-up'>
                       <i className="fa fa-eye"></i>
                       {detailsInfo.views}
                     </div>
-                    <div className="item_info_like">
+                    <div className="item_info_like" data-aos='fade-up'>
                       <i className="fa fa-heart"></i>
                       {detailsInfo.likes}
                     </div>
                   </div>
-                  <p>
+                  <p data-aos='fade-up'>
                  {detailsInfo.description}
                   </p>
                   <div className="d-flex flex-row">
-                    <div className="mr40">
+                    <div data-aos='fade-up' className="mr40">
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
@@ -125,7 +126,7 @@ const ItemDetails = () => {
                     <div></div>
                   </div>
                   <div className="de_tab tab_simple">
-                    <div className="de_tab_content">
+                    <div className="de_tab_content" data-aos='fade-up'>
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
@@ -139,9 +140,9 @@ const ItemDetails = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="spacer-40"></div>
-                    <h6>Price</h6>
-                    <div className="nft-item-price">
+                    <div className="spacer-40" ></div>
+                    <h6 data-aos='fade-up'>Price</h6>
+                    <div className="nft-item-price" data-aos='fade-up'>
                       <img src={EthImage} alt="" />
                       <span>{detailsInfo.price}</span>
                     </div>

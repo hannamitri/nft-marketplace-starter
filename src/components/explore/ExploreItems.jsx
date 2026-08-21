@@ -54,11 +54,13 @@ const ExploreItems = () => {
 
       ) : (
         
-      exploreItems.slice(0, visibleCount).map((item) => (
+      exploreItems.slice(0, visibleCount).map((item, index) => (
         <div
           key={item.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
         >
           <div className="nft__item">
             <div className="author_list_pp">

@@ -23,7 +23,7 @@ const TopSellers = () => {
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="slide-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>
