@@ -1,0 +1,49 @@
+/* Skeleton container */
+.author_list__skeleton {
+  pointer-events: none;
+}
+
+/* Base skeleton styling */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #2a2a2a 25%,
+    #3a3a3a 50%,
+    #2a2a2a 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Profile image skeleton */
+.skeleton__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* Author name skeleton */
+.skeleton__name {
+  width: 120px;
+  height: 16px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* Price skeleton */
+.skeleton__price {
+  width: 70px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+/* Moving loading effect */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
