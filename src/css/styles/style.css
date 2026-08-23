@@ -15568,7 +15568,7 @@ img {
   .header-col-right {
     padding-top: 16px;
   }
-
+  
   .header-col-mid #mainmenu {
     position: absolute;
     top: 90px;
@@ -16714,3 +16714,4 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
