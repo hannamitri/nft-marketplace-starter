@@ -13620,6 +13620,16 @@ a.read_more i {
   padding-left: 70px;
 }
 
+.nft__item wrap {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
 .nft__item {
   position: relative;
   padding: 20px;
@@ -13668,7 +13678,6 @@ a.read_more i {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 350px;
 }
 
 .nft__item_wrap a {
@@ -15568,7 +15577,7 @@ img {
   .header-col-right {
     padding-top: 16px;
   }
-
+  
   .header-col-mid #mainmenu {
     position: absolute;
     top: 90px;
@@ -16714,3 +16723,4 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
