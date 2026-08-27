@@ -2,6 +2,8 @@ import React from "react";
 import Logo from "../images/Ultraverse.png";
 import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const Nav = () => {
   const openNav = () => {
@@ -12,7 +14,12 @@ const Nav = () => {
     document.body.classList.remove("menu__open");
   };
 
+    AOS.init();
+
+
   return (
+         <div data-aos="fade-up">
+
     <header className="transparent header-light scroll-light smaller">
       <div className="container">
         <div className="row">
@@ -88,6 +95,7 @@ const Nav = () => {
         </li>
       </ul>
     </header>
+    </div>
   );
 };
 

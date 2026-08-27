@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/Ultraverse.png";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const Footer = () => {
+      AOS.init();
+
   return (
+         <div data-aos="fade-up">
+
     <footer className="footer-light">
       <div className="container">
         <div className="row">
@@ -168,6 +174,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </div>
   );
 };
 

@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const BrowseByCategory = () => {
+      AOS.init();
   return (
+    <div data-aos="fade-up">
     <section id="section-category" className="no-top">
       <div className="container">
         <div className="row">
@@ -51,6 +55,7 @@ const BrowseByCategory = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

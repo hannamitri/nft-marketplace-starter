@@ -1,9 +1,41 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import React, { useEffect, useState } from "react";
+import "./TopSellers.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
 
 const TopSellers = () => {
+  const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+      async function fetchCollections() {
+        try {
+          setLoading(true);
+  
+          const response = await fetch(
+            "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+          );
+  
+          const data = await response.json();
+  
+          setCollections(data);
+        } catch (error) {
+          console.error("Error fetching collections:", error);
+        } finally {
+          setLoading(false);
+        }
+      }
+  
+      fetchCollections();
+    }, []);
+
+        AOS.init();
+
+
   return (
+         <div data-aos="fade-up">
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
@@ -15,29 +47,46 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
-                  </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))}
-            </ol>
+  {loading
+    ? Array(8)
+        .fill(0)
+        .map((_, index) => (
+          <li key={index} className="author_list__skeleton">
+            <div className="author_list_pp">
+              <div className="skeleton skeleton__image"></div>
+            </div>
+
+            <div className="author_list_info">
+              <div className="skeleton skeleton__name"></div>
+              <div className="skeleton skeleton__price"></div>
+            </div>
+          </li>
+        ))
+    : collections.map((data, index) => (
+        <li key={index}>
+          <div className="author_list_pp">
+            <Link to={`/author/${data.authorId}`} data-bs-toggle="tooltip" data-bs-placement="top" > 
+              <img
+                className="lazy pp-author"
+                src={data.authorImage}
+                alt={data.authorName}
+              />
+              <i className="fa fa-check"></i>
+            </Link>
+          </div>
+
+          <div className="author_list_info">
+            <Link to="/author">{data.authorName}</Link>
+            <span>{data.price} ETH</span>
+          </div>
+        </li>
+      ))}
+</ol>
           </div>
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

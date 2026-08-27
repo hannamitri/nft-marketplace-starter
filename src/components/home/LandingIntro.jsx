@@ -1,7 +1,12 @@
 import React from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const LandingIntro = () => {
+      AOS.init();
+
   return (
+     <div data-aos="fade-up">
     <section id="section-intro" className="no-top no-bottom">
       <div className="container">
         <div className="row">
@@ -47,6 +52,7 @@ const LandingIntro = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 
