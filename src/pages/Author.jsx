@@ -1,10 +1,100 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import AuthorSkeleton from "../components/author/AuthorSkeleton";
+import NewItemCard from "../components/home/NewItemCard";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const [author, setAuthor] = useState(null);
+  const [authorItems, setAuthorItems] = useState([]);
+  const [loading, setLoading] = useState(Boolean(authorId));
+
+  useEffect(() => {
+    if (!authorId) {
+      return;
+    }
+
+    setLoading(true);
+
+    Promise.all([
+      axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers",
+      ),
+      axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
+      ),
+      axios.get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
+      ),
+    ])
+      .then(async ([sellersResponse, itemsResponse, collectionsResponse]) => {
+        const selectedAuthor = sellersResponse.data.find(
+          (seller) => String(seller.authorId) === authorId,
+        );
+
+        const matchingNewItems = itemsResponse.data.filter(
+          (item) => String(item.authorId) === authorId,
+        );
+
+        const matchingCollections = collectionsResponse.data.filter(
+          (collection) => String(collection.authorId) === authorId,
+        );
+
+        const collectionItems = await Promise.all(
+          matchingCollections.map(async (collection) => {
+            const detailsResponse = await axios.get(
+              "https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails",
+              {
+                params: {
+                  nftId: collection.nftId,
+                },
+              },
+            );
+
+            return {
+              ...detailsResponse.data,
+              id: `collection-${collection.id}`,
+              authorId: collection.authorId,
+              authorImage: collection.authorImage,
+              nftId: collection.nftId,
+              nftImage: collection.nftImage,
+              title: collection.title,
+              expiryDate: null,
+            };
+          }),
+        );
+
+        const allItems = [...matchingNewItems, ...collectionItems].filter(
+          (item, index, items) =>
+            index ===
+            items.findIndex((candidate) => candidate.nftId === item.nftId),
+        );
+
+        setAuthor(selectedAuthor || null);
+        setAuthorItems(allItems);
+      })
+      .catch((error) => {
+        console.error("Unable to load author:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [authorId]);
+  if (authorId && loading) {
+    return <AuthorSkeleton />;
+  }
+
+  if (authorId && !author) {
+    return (
+      <div className="container mt90">
+        <p>Author could not be found.</p>
+      </div>
+    );
+  }
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,26 +115,39 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img
+                        src={author?.authorImage || AuthorImage}
+                        alt={author?.authorName || "Monica Lucas"}
+                      />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                          {author?.authorName || "Monica Lucas"}
+                          <span className="profile_username">
+                            {author
+                              ? `Top seller · ${Number(author.price).toFixed(1)} ETH`
+                              : "@monicaaaa"}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
+                          {!author && (
+                            <>
+                              <span id="wallet" className="profile_wallet">
+                                UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                              </span>
+                              <button id="btn_copy" title="Copy Text">
+                                Copy
+                              </button>
+                            </>
+                          )}
                         </h4>
                       </div>
                     </div>
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">
+                        {author ? "Top Seller" : "573 followers"}
+                      </div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -53,11 +156,36 @@ const Author = () => {
                 </div>
               </div>
 
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
+              {authorId ? (
+                <div className="col-md-12">
+                  <div className="de_tab tab_simple">
+                    <div className="de_tab_content">
+                      <div className="row">
+                        {authorItems.length > 0 ? (
+                          authorItems.map((item) => (
+                            <div
+                              className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                              key={item.id}
+                            >
+                              <NewItemCard item={item} />
+                            </div>
+                          ))
+                        ) : (
+                          <div className="col-md-12">
+                          <p>No items were found for this author.</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="col-md-12">
+                  <div className="de_tab tab_simple">
+                    <AuthorItems />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
