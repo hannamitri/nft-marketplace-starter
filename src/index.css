@@ -10,3 +10,72 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+
+/*
+
+GLOBAL CAROUSEL STYLING
+
+*/
+
+.hot-collections-slider {
+	margin: 0 -10px;
+}
+
+.hot-collections-slider .slick-slide {
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+.new-item-slide {
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+.hot-collections-slider {
+	position: relative;
+}
+
+.slider-arrow {
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #ffffff;
+	color: #333333;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transform: translateY(-50%);
+}
+
+.slider-arrow:hover {
+	background: #333333;
+	color: #ffffff;
+}
+
+.slider-arrow-left {
+	left: -20px;
+}
+
+.slider-arrow-right {
+	right: -20px;
+}
+
+@media (max-width: 767px) {
+	.slider-arrow-left {
+		left: 0;
+	}
+
+	.slider-arrow-right {
+		right: 0;
+	}
+}
