@@ -5,6 +5,7 @@ import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+import FadeIn from "../components/UI/FadeIn";
 
 const Home = () => {
   useEffect(() => {
@@ -15,12 +16,29 @@ const Home = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-        <Landing />
-        <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
-        <BrowseByCategory />
+        <FadeIn delay={100}>
+          <Landing />
+        </FadeIn>
+
+        <FadeIn>
+          <LandingIntro />
+        </FadeIn>
+
+        <FadeIn>
+          <HotCollections />
+        </FadeIn>
+
+        <FadeIn>
+          <NewItems />
+        </FadeIn>
+
+        <FadeIn>
+          <TopSellers />
+        </FadeIn>
+
+        <FadeIn>
+          <BrowseByCategory />
+        </FadeIn>
       </div>
     </div>
   );

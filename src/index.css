@@ -10,3 +10,35 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.scroll-fade-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+}
