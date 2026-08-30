@@ -10130,7 +10130,9 @@ i.bg-color-secondary {
 }
 
 .soft-shadow {
-  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 5%), 0 1.5rem 2.2rem rgb(0 0 0 / 10%);
+  box-shadow:
+    0 0.25rem 0.5rem rgb(0 0 0 / 5%),
+    0 1.5rem 2.2rem rgb(0 0 0 / 10%);
 }
 
 .tooltip-inner {
@@ -10160,7 +10162,9 @@ i.bg-color-secondary {
 .tooltip.bs-tooltip-bottom .tooltip-arrow::before,
 .tooltip.bs-tooltip-start .tooltip-arrow::before,
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
-  box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 5%), 0 1.5rem 2.2rem rgb(0 0 0 / 10%);
+  box-shadow:
+    0 0.25rem 0.5rem rgb(0 0 0 / 5%),
+    0 1.5rem 2.2rem rgb(0 0 0 / 10%);
 }
 
 #item-carousel-big {
@@ -14408,26 +14412,34 @@ a.read_more i {
 
 @-webkit-keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1em rgba(255, 255, 255, 0.3), 0 0 0 3em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
       0 0 0 5em rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 0 1em rgba(255, 255, 255, 0.3),
-      0 0 0 3em rgba(255, 255, 255, 0.3), 0 0 0 5em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
+      0 0 0 5em rgba(255, 255, 255, 0.3),
       0 0 0 8em rgba(255, 255, 255, 0);
   }
 }
 
 @keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
-      0 0 0 1em rgba(255, 255, 255, 0.3), 0 0 0 3em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
       0 0 0 5em rgba(255, 255, 255, 0.3);
   }
   100% {
-    box-shadow: 0 0 0 1em rgba(255, 255, 255, 0.3),
-      0 0 0 3em rgba(255, 255, 255, 0.3), 0 0 0 5em rgba(255, 255, 255, 0.3),
+    box-shadow:
+      0 0 0 1em rgba(255, 255, 255, 0.3),
+      0 0 0 3em rgba(255, 255, 255, 0.3),
+      0 0 0 5em rgba(255, 255, 255, 0.3),
       0 0 0 8em rgba(255, 255, 255, 0);
   }
 }
@@ -16648,6 +16660,16 @@ img {
     left: 0;
     top: -21px;
   }
+}
+
+.skeleton-card {
+  min-height: 280px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
 }
 
 .skeleton-box {
