@@ -21,8 +21,10 @@ const Home = () => {
         <NewItems />
         <TopSellers />
         <BrowseByCategory />
+ 
       </div>
     </div>
+    
   );
 };
 
