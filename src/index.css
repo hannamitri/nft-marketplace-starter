@@ -10,3 +10,435 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.collections-container {
+  position: relative;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.collection-card {
+  position: relative;
+  margin: 0 10px;
+  padding-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: visible;
+  text-align: center;
+  background: white;
+}
+
+.nft-image-wrapper {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+
+.nft-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Slight image enlargement */
+.collection-card:hover .nft-image {
+  transform: scale(1.03);
+}
+
+/* Glossy shimmer */
+.nft-image-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+/* Shimmer moves left to right on hover */
+.collection-card:hover .nft-image-wrapper::after {
+  animation: glossy-shimmer 0.8s ease forwards;
+}
+
+@keyframes glossy-shimmer {
+  from {
+    left: -120%;
+  }
+
+  to {
+    left: 160%;
+  }
+}
+
+/* Author image */
+
+.author-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  display: block;
+  margin: -40px auto 10px;
+  border: 4px solid white;
+  z-index: 2;
+}
+
+/* Collection title */
+
+.collection-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+/* Carousel arrows */
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-arrow-left {
+  left: -20px;
+}
+
+.carousel-arrow-right {
+  right: -20px;
+}
+
+/* Purple circular loading indicator */
+
+.loading-container {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  animation: spin 1.2s linear infinite;
+}
+
+.loading-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: purple;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: rotate(calc(var(--i) * 45deg)) translateY(-28px);
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive carousel */
+
+@media (max-width: 480px) {
+  .collections-container {
+    width: 85%;
+  }
+
+  .collection-card {
+    margin: 0 5px;
+  }
+
+  .nft-image,
+  .nft-image-wrapper {
+    height: 220px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 28px;
+  }
+
+  .carousel-arrow-left {
+    left: -15px;
+  }
+
+  .carousel-arrow-right {
+    right: -15px;
+  }
+}
+
+/* =================================
+   TOP SELLERS
+================================= */
+
+.top-sellers-section {
+  width: 90%;
+  margin: 80px auto;
+}
+
+.top-sellers-list {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 35px 30px;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* =================================
+   TOP SELLER ITEM
+================================= */
+
+.top-seller-item {
+  display: flex;
+
+  align-items: center;
+
+  min-width: 0;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+/* =================================
+   NUMBER
+================================= */
+
+.top-seller-number {
+  flex-shrink: 0;
+
+  width: 25px;
+
+  margin-right: 10px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #777;
+
+  text-align: left;
+}
+
+/* =================================
+   AUTHOR IMAGE
+================================= */
+
+.top-seller-image-link {
+  display: block;
+
+  flex-shrink: 0;
+
+  width: 60px;
+  height: 60px;
+
+  margin-right: 12px;
+}
+
+.top-seller-image {
+  display: block;
+
+  width: 60px;
+  height: 60px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+/* =================================
+   AUTHOR INFORMATION
+================================= */
+
+.top-seller-info {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.top-seller-name {
+  display: block;
+
+  max-width: 100%;
+
+  margin: 0 0 5px;
+
+  color: #222;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.top-seller-name:hover {
+  text-decoration: none;
+}
+
+.top-seller-price {
+  display: block;
+
+  color: #777;
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 1.2;
+}
+
+/* =================================
+   SKELETON
+================================= */
+
+.skeleton-seller-image {
+  flex-shrink: 0;
+
+  width: 60px;
+  height: 60px;
+
+  margin-right: 12px;
+
+  border-radius: 50%;
+
+  background: #e5e5e5;
+
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+}
+
+.skeleton-seller-name {
+  width: 90px;
+  height: 16px;
+
+  margin-bottom: 7px;
+
+  border-radius: 4px;
+
+  background: #e5e5e5;
+
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+}
+
+.skeleton-seller-price {
+  width: 55px;
+  height: 13px;
+
+  border-radius: 4px;
+
+  background: #e5e5e5;
+
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 1024px) {
+  .top-sellers-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-sellers-section {
+    width: 90%;
+  }
+
+  .top-sellers-list {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px 20px;
+  }
+
+  .top-seller-image-link,
+  .top-seller-image,
+  .skeleton-seller-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .top-seller-name {
+    font-size: 14px;
+  }
+
+  .top-seller-price {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-sellers-section {
+    width: 85%;
+  }
+
+  .top-sellers-list {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+}
+
+.top-seller-image-link,
+.top-seller-name {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+}
