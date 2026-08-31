@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <section
-      id="section-hero"
+      id="section-hero" data-aos="fade-up"
       aria-label="section"
       className="no-top no-bottom vh-100"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"

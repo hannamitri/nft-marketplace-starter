@@ -1,0 +1,47 @@
+/* Portfolio presentation polish
+ * Keep the starter theme intact and layer project-specific refinements here.
+ */
+
+a.btn-main:not(.btn-fullwidth),
+button.btn-main:not(.btn-fullwidth),
+input[type="button"].btn-main:not(.btn-fullwidth) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
+  min-height: 42px;
+  padding: 8px 18px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+#section-hero a.btn-main {
+  min-width: 116px;
+}
+
+header .connect-wallet {
+  min-width: 0;
+  padding: 7px 16px !important;
+  white-space: nowrap;
+}
+
+a.btn-main:focus-visible,
+button.btn-main:focus-visible {
+  outline: 3px solid rgba(131, 100, 226, 0.35);
+  outline-offset: 3px;
+}
+
+@media (max-width: 650px) {
+  a.btn-main:not(.btn-fullwidth),
+  button.btn-main:not(.btn-fullwidth),
+  input[type="button"].btn-main:not(.btn-fullwidth) {
+    min-height: 40px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  #section-hero a.btn-main {
+    min-width: 108px;
+  }
+}

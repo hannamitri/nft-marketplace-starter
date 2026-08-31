@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Ultraverse NFT Marketplace — Frontend Simplified Internship Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A responsive React marketplace interface completed as part of my Frontend Simplified internship work.
 
-## Available Scripts
+**Live project:** https://ultraverse.rebeccaiaaland.com  
+**Portfolio:** https://www.rebeccaiaaland.com
 
-In the project directory, you can run:
+## Project context
 
-### `npm start`
+Frontend Simplified provided the starter project, visual direction, assets, API endpoints, and project requirements. My work focused on turning those requirements into a working responsive application and troubleshooting the behavior across the different views.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a learning and implementation project, not an original marketplace product or visual-design claim.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Notes
 
-### `npm test`
+The repository is a fork of the Frontend Simplified NFT marketplace starter. Some marketplace actions, such as connecting a real crypto wallet or purchasing an NFT, are demonstration-only and are not implemented as real transactions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What I implemented
 
-### `npm run build`
+- Responsive React pages and reusable marketplace components
+- API-driven Hot Collections, New Items, Top Sellers, Explore, author, and item-detail experiences
+- Loading and skeleton states while remote data is being requested
+- Responsive `react-slick` carousels with custom navigation and desktop/tablet/mobile breakpoints
+- Live countdown timers for expiring NFT listings
+- Explore-page sorting through API filters and incremental “Load more” behavior
+- React Router navigation between marketplace, author, and item-detail views
+- Responsive card, image, spacing, and button refinements across screen sizes
+- Deployment through Vercel
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technical focus
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**React · JavaScript · React Router · Axios · react-slick · CSS · Responsive Design · REST APIs · Loading States · Vercel**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+One of the most useful parts of this project was learning how multiple frontend concerns work together: asynchronous data, loading feedback, reusable UI, routing, timers, carousels, and responsive behavior rather than building a single static page.
 
-### `npm run eject`
+## Running locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+npm run dev
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project uses Vite for local development and production builds.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Testing, Accessibility & CI
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Automated testing
 
-### Code Splitting
+Added automated tests with Vitest and React Testing Library for key Explore-page interactions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Search input rendering and user typing
+- API sorting by price
+- Incremental "Load more" behavior
 
-### Analyzing the Bundle Size
+The current test suite contains 4 passing tests across 2 test files.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm test -- --run
+```
+### Accessibility
 
-### Making a Progressive Web App
+Audited the Explore page with Lighthouse and improved the Accessibility score from 82 to 100.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Changes included:
 
-### Advanced Configuration
+- Added accessible form labeling
+- Improved image alternative text
+- Corrected heading hierarchy
+- Added semantic `<main>` structure
+- Improved text color contrast
+- Added an accessible label to the newsletter icon link
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Performance
 
-### Deployment
+Audited the live Explore page with Lighthouse using a desktop Incognito session.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Initial Performance baseline: 95
+- Identified oversized externally hosted images and legacy starter-project render-blocking resources
+- Tested native image lazy loading
+- Re-measured after the change and found a performance regression
+- Reverted the change rather than keeping an optimization that performed worse
+- Final verification remained in Lighthouse's green performance range
 
-### `npm run build` fails to minify
+Larger image-delivery and legacy-resource changes were intentionally left unchanged because they are tied to the provided internship API and starter-project architecture.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Continuous integration
+
+Added a GitHub Actions CI workflow that automatically runs on pushes and pull requests to `main`.
+
+The workflow:
+
+- Checks out the repository
+- Sets up Node.js
+- Installs dependencies with `npm ci`
+- Runs the automated test suite
+- Verifies the production build
+
+Deployment continues through Vercel.
