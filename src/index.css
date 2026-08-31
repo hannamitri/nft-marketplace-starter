@@ -10,3 +10,151 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.nft_coll {
+  position: relative;
+}
+
+.collection-card {
+  padding: 0 10px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 30px !important;
+}
+
+.skeleton-card {
+  height: 370px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #f7f7f7 50%,
+    #eeeeee 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite;
+}
+
+.skeleton-banner {
+  height: 175px;
+  width: 100%;
+}
+
+.skeleton-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin: -29px auto 20px;
+}
+
+.skeleton-title {
+  width: 110px;
+  height: 18px;
+  border-radius: 6px;
+  margin: 0 auto 12px;
+}
+
+.skeleton-text {
+  width: 75px;
+  height: 16px;
+  border-radius: 6px;
+  margin: 0 auto;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #f6f6f6 50%,
+    #eeeeee 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.detail-skeleton-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+}
+
+.detail-skeleton-title {
+  width: 70%;
+  height: 48px;
+  margin-bottom: 25px;
+}
+
+.detail-skeleton-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.detail-skeleton-stat {
+  width: 90px;
+  height: 40px;
+}
+
+.detail-skeleton-text {
+  width: 100%;
+  height: 18px;
+  margin-bottom: 12px;
+}
+
+.detail-skeleton-text.short {
+  width: 70%;
+}
+
+.detail-skeleton-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.detail-skeleton-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.detail-skeleton-name {
+  width: 140px;
+  height: 18px;
+}
+
+.detail-skeleton-price {
+  width: 120px;
+  height: 36px;
+  margin-top: 35px;
+}

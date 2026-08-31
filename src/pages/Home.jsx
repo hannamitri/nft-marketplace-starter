@@ -17,8 +17,14 @@ const Home = () => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections />
-        <NewItems />
+
+        <div data-aos="fade-up">
+          <HotCollections />
+        </div>
+
+        <div data-aos="fade-left">
+          <NewItems />
+        </div>
         <TopSellers />
         <BrowseByCategory />
       </div>
