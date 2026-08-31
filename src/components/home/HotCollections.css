@@ -1,0 +1,28 @@
+.slick-prev,
+.slick-next {
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  font-size: 40px;
+  color: #8364e8;
+  opacity: 1;
+}
+
+.skeleton { 
+  background: #e0e0e0;
+  border-radius: 6px;
+  height: 200px;
+  width: 100%; 
+}
