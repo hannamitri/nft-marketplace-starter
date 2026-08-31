@@ -5,6 +5,8 @@
 @import "./css/styles/owl.carousel.css";
 @import "./css/styles/owl.theme.css";
 @import "./css/styles/owl.transitions.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 @import "./css/styles/magnific-popup.css";
 @import "./css/styles/jquery.countdown.css";
 @import "./css/styles/style.css";

@@ -3801,8 +3801,7 @@ h2 .small-border {
 h2 {
   margin-top: 0;
   margin-bottom: 10px;
-  font-size: 36px;
-  line-height: 46px;
+  font-size: 16px;
 }
 
 h2.style-2 {
@@ -4059,7 +4058,7 @@ h2.s2 {
 }
 
 h2.s3 {
-  font-size: 36px;
+  font-size: 16px;
   margin-bottom: 20px;
 }
 

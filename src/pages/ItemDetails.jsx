@@ -1,12 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+function ProfileCard({ isLoading, data }) {
+  if( isLoading ) {
+    return (
+    <div className="card">
+      <Skeleton circle width={50} height={50} />
+      <h2><Skeleton width={150} /></h2>
+      <p><Skeleton count={3} /></p>
+    </div>
+    );
+  }
+
+return (
+  <div className="card">
+  <img src={data.avatar} alt={data.name} style={{ width: 50, height: 50, borderRadius: '50%'}} />
+  <h2>{data.name}</h2>
+  <p>{data.bio}</p>
+  </div> 
+);
+}
 
 const ItemDetails = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
+
+  const { id } = useParams();
+  const [itemDetails, setItemDetails] = useState({});
+
+  useEffect(() => { 
+  window.scrollTo(0, 0);
+
+
+ const fetchItemDetails = async () => {
+
+const response = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`);
+
+const data = await response.json();
+setItemDetails(data);
+
+
+console.log(data); 
+
+};
+
+fetchItemDetails();
+
   }, []);
 
   return (
@@ -44,7 +86,7 @@ const ItemDetails = () => {
                   </p>
                   <div className="d-flex flex-row">
                     <div className="mr40">
-                      <h6>Owner</h6>
+                      <h6 data-aos="zoom-in">Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
