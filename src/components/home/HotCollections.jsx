@@ -1,46 +1,166 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import { DataContext } from "../context/DataContext";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import "../../css/styles/skeleton.css";
 
 const HotCollections = () => {
-  return (
-    <section id="section-collections" className="no-bottom">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
+    //set the variables
+    const { hotCollections, setSelectedItemId, setSelectedAuthor, loading } = useContext(DataContext);
+    
+
+    // Custom Previous Arrow Component
+    function PrevArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{
+                    ...style,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#333",
+                    borderRadius: "50%",
+                    padding: "10px",
+                    zIndex: 2,
+                    left: "0px", // move arrow to border
+                }}
+                onClick={onClick}
+            >
+                <FaArrowLeft color="#fff" />
             </div>
-          </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
+        );
+    }
+
+    // Custom Next Arrow Component
+    function NextArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{
+                    ...style,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#333",
+                    borderRadius: "50%",
+                    padding: "10px",
+                    zIndex: 2,
+                    right: "0px", // move arrow to border
+                }}
+                onClick={onClick}
+            >
+                <FaArrowRight color="#fff" />
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+        );
+    }
+
+    // Slider settings
+    const settings = {
+        dots: true, // Show navigation dots
+        infinite: true, // Infinite loop
+        speed: 500, // Transition speed in ms
+        slidesToShow: 4, // Number of slides visible
+        slidesToScroll: 1, // Number of slides to scroll at once
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        responsive: [
+            // Responsive breakpoints
+            {
+                breakpoint: 1024,
+                settings: { slidesToShow: 3 },
+            },
+            {
+                breakpoint: 840,
+                settings: { slidesToShow: 2 },
+            },
+            {
+                breakpoint: 540,
+                settings: { slidesToShow: 1 },
+            },
+        ],
+    };
+
+    return (
+        <section id="section-collections" className="no-bottom">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="text-center">
+                            <h2>Hot Collections</h2>
+                            <div className="small-border bg-color-2"></div>
+                        </div>
+                    </div>
+
+                    {loading ? (
+                        <Slider {...settings}>
+                            {Array.from({ length: 4 }).map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className="skeleton skeleton-img nft_wrap"
+                                >
+                                    Collecting the data
+                                </div>
+                            ))}
+                        </Slider>
+                    ) : (
+                        <Slider {...settings}>
+                            {hotCollections.map((item) => (
+                                <div key={item.id}>
+                                    <div
+                                    // className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                                    >
+                                        <div className="nft_coll">
+                                            <div className="nft_wrap">
+                                                <Link
+                                                    to={`/item-details/${item.nftId}`}
+                                                >
+                                                    <img
+                                                        src={item.nftImage}
+                                                        className="lazy img-fluid"
+                                                        alt=""
+                                                        onClick={() =>
+                                                            setSelectedItemId(
+                                                                item.nftId,
+                                                            )
+                                                        }
+                                                    />
+                                                </Link>
+                                            </div>
+                                            <div className="nft_coll_pp">
+                                                <Link
+                                                    to={`/author/${item.authorId}`}
+                                                >
+                                                    <img
+                                                        className="lazy pp-coll"
+                                                        src={item.authorImage}
+                                                        alt=""
+                                                        onClick={ () => {setSelectedAuthor(item.authorId)}}
+                                                    />
+                                                </Link>
+                                                <i className="fa fa-check"></i>
+                                            </div>
+                                            <div className="nft_coll_info">
+                                                <Link to="/explore">
+                                                    <h4>{item.title}</h4>
+                                                </Link>
+                                                <span>ERC-{item.code}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </Slider>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default HotCollections;
