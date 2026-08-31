@@ -39,13 +39,13 @@ const ExploreItems = () => {
                   <button>Buy Now</button>
                   <div className="nft__item_share">
                     <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
+                    <a href="https://example.com" target="_blank" rel="noreferrer">
                       <i className="fa fa-facebook fa-lg"></i>
                     </a>
-                    <a href="" target="_blank" rel="noreferrer">
+                    <a href="https://example.com" target="_blank" rel="noreferrer">
                       <i className="fa fa-twitter fa-lg"></i>
                     </a>
-                    <a href="">
+                    <a href="https://example.com" target="_blank" rel="noreferrer">
                       <i className="fa fa-envelope fa-lg"></i>
                     </a>
                   </div>
@@ -69,10 +69,10 @@ const ExploreItems = () => {
         </div>
       ))}
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+  <button id="loadmore" className="btn-main lead" type="button">
+    Load more
+  </button>
+</div>
     </>
   );
 };
