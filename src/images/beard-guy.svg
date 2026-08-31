@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#111827"/>
+  <path d="M130 480c70-120 270-120 330 0" fill="none" stroke="url(#rainbow)" stroke-width="70" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="rainbow" x1="120" y1="480" x2="480" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="25%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fde68a"/>
+      <stop offset="75%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <circle cx="300" cy="232" r="102" fill="#f2c38b"/>
+  <path d="M220 226c0-50 36-90 80-90s80 40 80 90c0 18-6 36-16 50l-36 36-28 14-28-14-36-36c-10-14-16-32-16-50Z" fill="#2b1d16"/>
+  <path d="M232 214c10-36 38-58 68-58s58 22 68 58c-16 10-35 16-54 16-19 0-38-6-54-16Z" fill="#41271b"/>
+  <path d="M244 274c14 16 38 16 52 0" stroke="#8b4a2f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M216 302c18-12 42-18 66-18 24 0 46 6 64 18" fill="none" stroke="#d08947" stroke-width="18" stroke-linecap="round"/>
+  <path d="M242 324c16 16 52 16 68 0" fill="#5b3a24"/>
+  <path d="M248 324c6 26 24 44 52 44s46-18 52-44" fill="none" stroke="#3f291a" stroke-width="10" stroke-linecap="round"/>
+</svg>

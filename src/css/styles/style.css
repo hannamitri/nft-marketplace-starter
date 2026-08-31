@@ -65,7 +65,8 @@ body .owl-stage .owl-item {
 }
 
 #wrapper {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .de-navbar-left #wrapper {
