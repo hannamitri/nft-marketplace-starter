@@ -11464,6 +11464,11 @@ section.no-padding {
   display: block;
 }
 
+.hot-collections_carousel .owl-prev,
+.hot-collections_carousel .owl-next {
+  top: 120px;
+}
+
 .owl-arrow .next:before {
   content: "\f178";
 }
@@ -13206,11 +13211,16 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   -webkit-border-radius: 10px 10px 0 0;
+}
+
+.nft_wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .nft_coll:hover img {
