@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import { DataContext } from "../../components/context/DataContext";
+import "../../css/styles/skeleton.css";
 
 const AuthorItems = () => {
+
+    const { topSellers, selectedItemId } = useContext(DataContext);
+
+    if (!selectedItemId) return <p>Please select an item to see details.</p>;
+
+    const item = topSellers.find((i) => i.authorId === selectedItemId);
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -13,7 +22,7 @@ const AuthorItems = () => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link to="">
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={item.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
