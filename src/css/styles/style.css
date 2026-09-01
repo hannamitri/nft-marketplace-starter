@@ -16714,3 +16714,56 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.home-carousel {
+  position: relative;
+}
+
+.home-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #dcdcdc;
+  background: #ffffff;
+  color: #111111;
+  font-size: 30px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.home-carousel-arrow:hover {
+  border-color: #8364e2;
+  color: #8364e2;
+}
+
+.home-carousel-arrow-left {
+  left: -22px;
+}
+
+.home-carousel-arrow-right {
+  right: -22px;
+}
+
+@media (max-width: 767px) {
+  .home-carousel-arrow-left {
+    left: 5px;
+  }
+
+  .home-carousel-arrow-right {
+    right: 5px;
+  }
+
+  .home-carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}
