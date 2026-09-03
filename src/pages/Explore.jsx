@@ -4,6 +4,7 @@ import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
 
@@ -31,7 +32,7 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
+            <div className="row" data-aos="fade-in">
               <ExploreItems />
             </div>
           </div>
