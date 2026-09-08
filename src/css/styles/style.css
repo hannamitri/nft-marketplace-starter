@@ -16714,3 +16714,197 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+
+/* Hot Collections Carousel */
+
+.collection-slide {
+  padding: 0 10px;
+}
+
+
+
+#section-collections .nft_coll_pp {
+  position: relative;
+  width: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#section-collections .nft_coll_pp img {
+  display: block;
+  width: 60px;
+}
+
+#section-collections .nft_coll_pp i {
+  position: absolute;
+  right: -2px;
+  bottom: 0;
+  margin: 0;
+  z-index: 2;
+}
+
+/* Carousel arrows */
+
+#section-collections .slick-prev,
+#section-collections .slick-next {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+}
+
+#section-collections .slick-prev {
+  left: -35px;
+}
+
+#section-collections .slick-next {
+  right: -35px;
+}
+
+#section-collections .slick-prev:before,
+#section-collections .slick-next:before {
+  color: #8364e2;
+  font-size: 35px;
+  opacity: 1;
+}
+
+@media (max-width: 1200px) {
+  .collection-slide {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .collection-slide {
+    padding: 0 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .collection-slide {
+    padding: 0 4px;
+  }
+}
+
+/* Skeleton Loading */
+
+.skeleton-box {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background-color: #dddddd;
+}
+
+.skeleton-box::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: "";
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-card {
+  padding-bottom: 20px;
+}
+
+
+.skeleton-nft-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.skeleton-profile .skeleton-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: block;
+  margin: 0;
+}
+
+
+.skeleton-profile i {
+  position: absolute;
+  right: -2px;
+  bottom: 0;
+  margin: 0;
+  z-index: 2;
+}
+
+
+.skeleton-title {
+  width: 55%;
+  height: 18px;
+  display: block;
+  margin: 12px auto 8px;
+  border-radius: 4px;
+}
+
+
+.skeleton-code {
+  width: 30%;
+  height: 14px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.skeleton-collections {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.skeleton-item {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .skeleton-collections {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skeleton-item:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .skeleton-collections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skeleton-item:nth-child(3),
+  .skeleton-item:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .skeleton-collections {
+    grid-template-columns: 1fr;
+  }
+
+  .skeleton-item:nth-child(2),
+  .skeleton-item:nth-child(3),
+  .skeleton-item:nth-child(4) {
+    display: none;
+  }
+}
