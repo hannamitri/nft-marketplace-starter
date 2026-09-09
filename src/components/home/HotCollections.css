@@ -1,0 +1,53 @@
+.slider-wrapper {
+  position: relative;
+  padding: 0 60px;
+}
+
+.hc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: lightgray;
+  color: #081225;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.hc-arrow:hover {
+  transform: translateY(-50%) scale(1.06);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.18);
+}
+
+.hc-arrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(2, 120, 255, 0.12);
+}
+
+.hc-prev { left: -22px; }
+.hc-next { right: -22px; }
+
+.hc-arrow svg { width: 18px; height: 18px; fill: currentColor; }
+
+.keen-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.keen-slider__slide {
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.nft_coll {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

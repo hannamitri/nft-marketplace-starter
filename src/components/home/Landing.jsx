@@ -2,8 +2,9 @@ import React from "react";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
 
-const Landing = () => {
+const Landing = ({ searchTerm, setSearchTerm}) => {
   return (
     <section
       id="section-hero"
@@ -30,10 +31,23 @@ const Landing = () => {
                 interchangeable
               </p>
               <div className="spacer-10"></div>
-              <Link className="btn-main lead" to="/explore">
+              <div className="d-flex align-items-center flex-wrap">
+                <Link className="btn-main lead me-3" to="/explore">
                 Explore
-              </Link>
-              <div className="mb-sm-30"></div>
+                </Link>
+                </div>
+              <div className="spacer-20"></div>
+              <div className="search-box">
+                <FiSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search item here..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button>Search</button>
+              </div>
+              <div className="mb-sn-30"></div>
             </div>
             <div className="col-md-6 xs-hide">
               <img src={NFT} className="lazy img-fluid" alt="" />
