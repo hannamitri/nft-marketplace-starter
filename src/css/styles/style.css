@@ -15145,7 +15145,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16652,13 +16652,14 @@ img {
 
 .skeleton-box {
   display: inline-block;
-  height: 1em;
+  width: 100%;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
   background-color: #dddbdd;
 }
 
-.skeleton-box::after {
+.skeleton-box::after, .skeleton-circle::after, .skeleton-line.tiny::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -16685,6 +16686,35 @@ img {
   100% {
     transform: translateX(100%);
   }
+}
+.skeleton-grid {
+  display: block;
+  width: 100%;
+  height: auto;
+  gap: 20px;
+}
+.skeleton-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #dddbdd;
+  overflow: hidden;
+  position: relative;
+}
+.skeleton-line {
+  height: 14px;
+  border-radius: 4px;
+  margin-top: 8px;
+  background-color: #dddbdd;
+  position: relative;
+  display: flex;
+}
+.skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton-line.tiny {
+  width: 40%;
 }
 
 .nft-image {
