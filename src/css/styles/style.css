@@ -16714,3 +16714,8 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.slick-slide > div {
+  padding: 0 8px;
+  gap: 16px
+}
