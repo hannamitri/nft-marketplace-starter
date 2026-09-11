@@ -29,13 +29,11 @@ const Explore = () => {
           </div>
         </section>
 
-        <section aria-label="section">
-          <div className="container">
-            <div className="row">
-              <ExploreItems />
-            </div>
-          </div>
-        </section>
+       <section aria-label="section">
+  <div className="container">
+    <ExploreItems />
+  </div>
+</section>
       </div>
     </div>
   );
