@@ -1,0 +1,113 @@
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e5e5e5 25%,
+    #f5f5f5 50%,
+    #e5e5e5 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-banner {
+  width: 100%;
+  height: 360px;
+}
+
+.skeleton-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 65px 0;
+}
+
+.skeleton-profile-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.skeleton-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.skeleton-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-name {
+  width: 180px;
+  height: 28px;
+  border-radius: 5px;
+}
+
+.skeleton-username {
+  width: 120px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.skeleton-wallet {
+  width: 250px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+.skeleton-follow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.skeleton-followers {
+  width: 100px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.skeleton-button {
+  width: 100px;
+  height: 45px;
+  border-radius: 6px;
+}
+
+.skeleton-nft-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.skeleton-card-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.skeleton-card-title {
+  width: 70%;
+  height: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.skeleton-card-price {
+  width: 40%;
+  height: 16px;
+  border-radius: 5px;
+}
