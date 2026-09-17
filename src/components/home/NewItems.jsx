@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import Countdown from "../UI/Countdown";
+import { API_URLS } from "../../api/nftApi";
+import useApiList from "../../hooks/useApiList";
+import useResponsiveCarousel from "../../hooks/useResponsiveCarousel";
+import { NftGridSkeleton } from "../UI/LoadingSkeletons";
 
 const NewItems = () => {
+  const { data: items, loading, error } = useApiList(
+    API_URLS.newItems,
+    "Unable to load new items. Please try again later."
+  );
+  const { currentSlide, slider, sliderRef } = useResponsiveCarousel(items.length);
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,62 +23,60 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
+          {loading && <NftGridSkeleton count={4} label="Loading new items" />}
+          {error && <p className="col-12" role="alert">{error}</p>}
+          {!loading && !error && items.length === 0 && (
+            <p className="col-12">No new items available.</p>
+          )}
+          {!loading && !error && items.length > 0 && (
+            <div className="col-12">
+              <div className="new-items-carousel">
+                <div ref={sliderRef} className="keen-slider new-items-slider" aria-label="New items carousel">
+                  {items.map((item) => (
+              <div className="keen-slider__slide" key={item.id}>
+                <div className="nft_coll new-item-card">
+                  <Countdown expiryDate={item.expiryDate} />
+                  <div className="nft_wrap">
+                    <Link to={`/item-details/${item.nftId}`}>
+                      <img
+                        src={item.nftImage}
+                        className="lazy img-fluid"
+                        alt={item.title}
+                      />
+                    </Link>
                   </div>
-
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
+                  <div className="nft_coll_pp">
+                    <Link to={`/${item.authorId}/author`} title={`View creator of ${item.title}`}>
+                      <img className="lazy pp-coll" src={item.authorImage} alt={`Creator of ${item.title}`} />
+                    </Link>
+                    <i className="fa fa-check" aria-hidden="true"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to={`/item-details/${item.nftId}`}><h4>{item.title}</h4></Link>
+                    <div className="new-item-price">{Number(item.price).toFixed(2)} ETH</div>
+                    <div className="new-item-like">
+                      <i className="fa fa-heart" aria-hidden="true"></i>
+                      <span>{item.likes}</span>
+                    </div>
                   </div>
                 </div>
               </div>
+                  ))}
+                </div>
+                {items.length > 1 && (
+                  <div className="new-items-controls">
+                    <button type="button" aria-label="Previous new item" onClick={() => slider.current?.prev()}>&#8249;</button>
+                    <button type="button" aria-label="Next new item" onClick={() => slider.current?.next()}>&#8250;</button>
+                  </div>
+                )}
+              </div>
+              {items.length > 1 && (
+                <p className="new-items-position" aria-live="polite">
+                  {currentSlide + 1} / {items.length}
+                </p>
+              )}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </section>

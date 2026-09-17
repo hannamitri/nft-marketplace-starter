@@ -12,6 +12,11 @@ const Nav = () => {
     document.body.classList.remove("menu__open");
   };
 
+  const connectWallet = () => {
+    closeNav();
+    alert("This feature has not been implemented yet");
+  };
+
   return (
     <header className="transparent header-light scroll-light smaller">
       <div className="container">
@@ -52,11 +57,9 @@ const Nav = () => {
                     <Link
                       to="#"
                       className="btn-main connect-wallet"
-                      onClick={() =>
-                        alert("This feature has not been implemented yet")
-                      }
+                      onClick={connectWallet}
                     >
-                      Connect wallet
+                      Connect Wallet
                     </Link>
                   </li>
                 </ul>
@@ -80,6 +83,15 @@ const Nav = () => {
           <Link to="/explore" onClick={() => closeNav()}>
             Explore
           </Link>
+        </li>
+        <li className="dropdown__list dropdown-wallet-item">
+          <button
+            type="button"
+            className="mobile-connect-wallet"
+            onClick={connectWallet}
+          >
+            Connect Wallet
+          </button>
         </li>
         <li className="close__button">
           <button onClick={() => closeNav()}>
