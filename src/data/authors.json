@@ -1,0 +1,141 @@
+[
+  {
+    "authorId": 1,
+    "authorName": "Monica Lucas",
+    "authorImage": "/img/authors/author-1.jpg",
+    "authorBanner": "/img/banners/banner-1.jpg",
+    "authorUsername": "monicalucas",
+    "authorWallet": "0xA1B2C3D4E5F6",
+    "authorFollowers": 12800,
+    "nfts": [
+      { "id": 101, "title": "Cosmic Dreams", "image": "/img/items/item-1.jpg", "price": 1.2 },
+      { "id": 102, "title": "Nebula Skies", "image": "/img/items/item-2.jpg", "price": 2.1 },
+      { "id": 103, "title": "Galactic Pulse", "image": "/img/items/item-3.jpg", "price": 3.4 }
+    ]
+  },
+  {
+    "authorId": 2,
+    "authorName": "Lori Hart",
+    "authorImage": "/img/authors/author-2.jpg",
+    "authorBanner": "/img/banners/banner-2.jpg",
+    "authorUsername": "lorihart",
+    "authorWallet": "0xB7C8D9E0F1A2",
+    "authorFollowers": 9400,
+    "nfts": [
+      { "id": 104, "title": "Silent Horizon", "image": "/img/items/item-4.jpg", "price": 0.9 },
+      { "id": 105, "title": "Eternal Bloom", "image": "/img/items/item-5.jpg", "price": 1.7 },
+      { "id": 106, "title": "Crystal Garden", "image": "/img/items/item-6.jpg", "price": 2.3 }
+    ]
+  },
+  {
+    "authorId": 3,
+    "authorName": "Gayle Hicks",
+    "authorImage": "/img/authors/author-3.jpg",
+    "authorBanner": "/img/banners/banner-3.jpg",
+    "authorUsername": "gaylehicks",
+    "authorWallet": "0xC3D4E5F6A7B8",
+    "authorFollowers": 7200,
+    "nfts": [
+      { "id": 107, "title": "Ocean Whispers", "image": "/img/items/item-7.jpg", "price": 1.1 },
+      { "id": 108, "title": "Deep Blue", "image": "/img/items/item-8.jpg", "price": 2.0 },
+      { "id": 109, "title": "Tidal Echo", "image": "/img/items/item-9.jpg", "price": 2.8 }
+    ]
+  },
+  {
+    "authorId": 4,
+    "authorName": "Stacy Long",
+    "authorImage": "/img/authors/author-4.jpg",
+    "authorBanner": "/img/banners/banner-4.jpg",
+    "authorUsername": "stacylong",
+    "authorWallet": "0xD1E2F3A4B5C6",
+    "authorFollowers": 5600,
+    "nfts": [
+      { "id": 110, "title": "Golden Hour", "image": "/img/items/item-10.jpg", "price": 1.5 },
+      { "id": 111, "title": "Sunset Mirage", "image": "/img/items/item-11.jpg", "price": 2.4 },
+      { "id": 112, "title": "Radiant Field", "image": "/img/items/item-12.jpg", "price": 3.1 }
+    ]
+  },
+  {
+    "authorId": 5,
+    "authorName": "Thomas Nguyen",
+    "authorImage": "/img/authors/author-5.jpg",
+    "authorBanner": "/img/banners/banner-5.jpg",
+    "authorUsername": "thomasnguyen",
+    "authorWallet": "0xE4F5A6B7C8D9",
+    "authorFollowers": 4800,
+    "nfts": [
+      { "id": 113, "title": "Digital Forest", "image": "/img/items/item-13.jpg", "price": 1.9 }
+    ]
+  },
+  {
+    "authorId": 6,
+    "authorName": "Jessica Chen",
+    "authorImage": "/img/authors/author-6.jpg",
+    "authorBanner": "/img/banners/banner-6.jpg",
+    "authorUsername": "jessicachen",
+    "authorWallet": "0xF7A8B9C0D1E2",
+    "authorFollowers": 5100,
+    "nfts": []
+  },
+  {
+    "authorId": 7,
+    "authorName": "Daniel Roberts",
+    "authorImage": "/img/authors/author-7.jpg",
+    "authorBanner": "/img/banners/banner-7.jpg",
+    "authorUsername": "danielroberts",
+    "authorWallet": "0xA9B0C1D2E3F4",
+    "authorFollowers": 3900,
+    "nfts": []
+  },
+  {
+    "authorId": 8,
+    "authorName": "Sarah Johnson",
+    "authorImage": "/img/authors/author-8.jpg",
+    "authorBanner": "/img/banners/banner-8.jpg",
+    "authorUsername": "sarahjohnson",
+    "authorWallet": "0xB1C2D3E4F5A6",
+    "authorFollowers": 6100,
+    "nfts": []
+  },
+  {
+    "authorId": 9,
+    "authorName": "Michael Lee",
+    "authorImage": "/img/authors/author-9.jpg",
+    "authorBanner": "/img/banners/banner-9.jpg",
+    "authorUsername": "michaellee",
+    "authorWallet": "0xC4D5E6F7A8B9",
+    "authorFollowers": 4500,
+    "nfts": []
+  },
+  {
+    "authorId": 10,
+    "authorName": "Emily Davis",
+    "authorImage": "/img/authors/author-10.jpg",
+    "authorBanner": "/img/banners/banner-10.jpg",
+    "authorUsername": "emilydavis",
+    "authorWallet": "0xD6E7F8A9B0C1",
+    "authorFollowers": 5300,
+    "nfts": []
+  },
+  {
+    "authorId": 11,
+    "authorName": "Robert King",
+    "authorImage": "/img/authors/author-11.jpg",
+    "authorBanner": "/img/banners/banner-11.jpg",
+    "authorUsername": "robertking",
+    "authorWallet": "0xE8F9A0B1C2D3",
+    "authorFollowers": 4700,
+    "nfts": []
+  },
+  {
+    "authorId": 12,
+    "authorName": "Anna Thompson",
+    "authorImage": "/img/authors/author-12.jpg",
+    "authorBanner": "/img/banners/banner-12.jpg",
+    "authorUsername": "annathompson",
+    "authorWallet": "0xF0A1B2C3D4E5",
+    "authorFollowers": 5200,
+    "nfts": []
+  }
+]
+
