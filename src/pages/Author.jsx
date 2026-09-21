@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+    const { id } = useParams();
+  const [author, setAuthor] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    axios
+      .get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+      )
+      .then((response) => {
+        const selectedAuthor = response.data.find(
+          (seller) => seller.authorId === Number(id)
+        );
+
+        setAuthor(selectedAuthor);
+      })
+      .catch((error) => {
+        console.error("Error fetching author:", error);
+      });
+  }, [id]);
+
+  if (!author) {
+  return <div>Loading...</div>;
+}
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,12 +52,12 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                     <img src={author.authorImage} alt={author.authorName} />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
+                         {author.authorName}
                           <span className="profile_username">@monicaaaa</span>
                           <span id="wallet" className="profile_wallet">
                             UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
@@ -55,7 +82,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                 <AuthorItems authorId={author.authorId} />
                 </div>
               </div>
             </div>
