@@ -1,10 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { useParams } from "react-router-dom";
+import Skeleton from "../components/UI/Skeleton";
+
 
 const Author = () => {
+  const { id } = useParams();
+  const [author, setAuthor] = useState(null);
+  const [followers, setFollowers] = useState(0);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { 
+    setLoading(true);
+  axios
+    .get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+    )
+ .then((response) => {
+  console.log("Author Data:", response.data);
+  setAuthor(response.data);
+  setFollowers(response.data.followers);
+  setLoading(false);
+})
+    .catch((error) => {
+      console.error("Error fetching author:", error);
+       setLoading(false);
+    });
+}, [id]);
+
+const handleFollow = () => {
+  if (isFollowing) {
+    setFollowers((prev) => prev - 1);
+  } else {
+    setFollowers((prev) => prev + 1);
+  }
+
+  setIsFollowing((prev) => !prev);
+};
+
+if (loading || !author) {
+  return (
+    <div className="container" style={{ paddingTop: "200px" }}>
+      <Skeleton width="100%" height="400px" borderRadius="10px" />
+    </div>
+  );
+}
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +68,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                     <img src={author.authorImage} alt={author.authorName} />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {author.authorName}
+                          <span className="profile_username">@{author.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {author.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,10 +87,10 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                     <div className="profile_follower">{followers} followers</div>
+                    <button className="btn-main" onClick={handleFollow}>
+                      {isFollowing ? "Unfollow" : "Follow"}
+                        </button>
                     </div>
                   </div>
                 </div>
@@ -55,7 +98,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems items={author.nftCollection} authorImage={author.authorImage} />
                 </div>
               </div>
             </div>
