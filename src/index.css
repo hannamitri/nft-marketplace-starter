@@ -10,3 +10,96 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.hot-collections-slider .keen-slider__slide {
+  min-width: 0;
+}
+
+.hot-collections-slider .nft_coll {
+  height: calc(100% - 10px);
+}
+
+.hot-collections-slider .nft_wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hot-collections-carousel {
+  position: relative;
+}
+
+.hot-collections-controls {
+  position: absolute;
+  top: 79px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.hot-collections-controls button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .72);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.hot-collections-controls button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.hot-collections-position {
+  text-align: center;
+  margin: 12px 0 0;
+}
+
+.hot-collections-skeleton {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.hot-collection-placeholder {
+  overflow: hidden;
+}
+
+.hot-collection-placeholder > .skeleton-box {
+  display: block;
+}
+
+.hot-collection-placeholder-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 12px 18px;
+}
+
+.hot-collection-placeholder-info .skeleton-box:first-child {
+  margin-top: -30px;
+  border: 5px solid #fff;
+  box-sizing: content-box;
+}
+
+@media (max-width: 991px) {
+  .hot-collections-skeleton { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hot-collection-placeholder:nth-child(n+3) { display: none; }
+}
+
+@media (max-width: 575px) {
+  .hot-collections-skeleton { grid-template-columns: 1fr; }
+  .hot-collection-placeholder:nth-child(n+2) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hot-collections-skeleton .skeleton-box::after { animation: none; }
+}
