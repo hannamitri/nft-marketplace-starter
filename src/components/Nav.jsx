@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../images/Ultraverse.png";
 import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 const Nav = () => {
   const openNav = () => {
-    document.body.classList += "menu__open";
+    document.body.classList.add("menu__open");
   };
 
   const closeNav = () => {
     document.body.classList.remove("menu__open");
   };
+
+  const connectWallet = () => {
+    closeNav();
+    alert("This feature has not been implemented yet");
+  };
+
+  useEffect(() => () => document.body.classList.remove("menu__open"), []);
 
   return (
     <header className="transparent header-light scroll-light smaller">
@@ -49,20 +56,23 @@ const Nav = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to="#"
+                    <button
+                      type="button"
                       className="btn-main connect-wallet"
-                      onClick={() =>
-                        alert("This feature has not been implemented yet")
-                      }
+                      onClick={connectWallet}
                     >
-                      Connect wallet
-                    </Link>
+                      Connect Wallet
+                    </button>
                   </li>
                 </ul>
 
                 <div className="menu_side_area">
-                  <span onClick={() => openNav()} id="menu-btn"></span>
+                  <button
+                    type="button"
+                    onClick={openNav}
+                    id="menu-btn"
+                    aria-label="Open navigation menu"
+                  ></button>
                 </div>
               </div>
             </div>
@@ -81,8 +91,17 @@ const Nav = () => {
             Explore
           </Link>
         </li>
+        <li className="dropdown__list dropdown-wallet-item">
+          <button
+            type="button"
+            className="mobile-connect-wallet"
+            onClick={connectWallet}
+          >
+            Connect Wallet
+          </button>
+        </li>
         <li className="close__button">
-          <button onClick={() => closeNav()}>
+          <button type="button" onClick={closeNav} aria-label="Close navigation menu">
             <FaTimes />
           </button>
         </li>
