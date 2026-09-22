@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
 const NewItems = () => {
+  const ItemDetails = () => {
+  const [item, setItem] = useState(null);
+  useEffect(() => {
+  window.scrollTo(0, 0);
+
+  axios
+    .get(
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=17914494"
+    )
+    .then((response) => {
+  console.log("Item Details:", response.data);
+  setItem(response.data);
+})
+    .catch((error) => {
+      console.error("Error fetching item details:", error);
+    });
+}, []);
+if (!item) {
+  return <div>Loading...</div>;
+}
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -49,9 +70,9 @@ const NewItems = () => {
                     </div>
                   </div>
 
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
-                      src={nftImage}
+                      src={item.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
@@ -59,7 +80,9 @@ const NewItems = () => {
                 </div>
                 <div className="nft__item_info">
                   <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                    <h2>
+                    {item.title} #{item.tag}
+                    </h2>
                   </Link>
                   <div className="nft__item_price">3.08 ETH</div>
                   <div className="nft__item_like">
@@ -74,6 +97,7 @@ const NewItems = () => {
       </div>
     </section>
   );
+}
 };
 
 export default NewItems;
