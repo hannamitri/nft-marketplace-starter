@@ -1,0 +1,14 @@
+{
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.tabCompletion": "on",
+  "editor.acceptSuggestionOnEnter": "on",
+  "javascript.suggest.completeFunctionCalls": true,
+  "javascript.suggest.autoImports": true,
+  "editor.suggest.showFunctions": true,
+  "editor.suggest.showKeywords": true
+}
