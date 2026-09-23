@@ -1,44 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import useExploreItems from "../hooks/useExploreItems";
 
 const Explore = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const [filter, setFilter] = useState("");
+  const { items, loading, visibleCount, showMore } = useExploreItems(filter);
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
+  };
 
   return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
+    <div className="explore">
+      {/* Subheader */}
+      <section className="jumbotron breadcumb no-bg">
+        <div className="mainbreadcumb">
+          <img src={SubHeader} alt="Subheader" />
+          <h1 className="text-center">Explore</h1>
+        </div>
+      </section>
 
-        <section
-          id="subheader"
-          className="text-light"
-          style={{ background: `url("${SubHeader}") top` }}
-        >
-          <div className="center-y relative text-center">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <h1>Explore</h1>
-                </div>
-                <div className="clearfix"></div>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Filters */}
+      <section className="container">
+        <div className="row mb-4">
+          <div className="col-md-3">
+          <select className="form-select" onChange={handleFilterChange}>
+           <option value="">Default</option>
+           <option value="price_low_to_high">Price: Low to High</option>
+           <option value="price_high_to_low">Price: High to Low</option>
+           <option value="likes_high_to_low">Likes: High to Low</option>
+         </select>
 
-        <section aria-label="section">
-          <div className="container">
-            <div className="row">
-              <ExploreItems />
-            </div>
           </div>
-        </section>
-      </div>
+        </div>
+
+        {/* Items */}
+        <div className="row">
+          <ExploreItems
+            items={items}
+            loading={loading}
+            visibleCount={visibleCount}
+            onReachBottom={showMore}
+          />
+        </div>
+      </section>
     </div>
   );
 };
 
 export default Explore;
+
