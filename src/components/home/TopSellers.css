@@ -1,0 +1,88 @@
+.author_list {
+  list-style: none;
+  counter-reset: author-rank;
+  padding-left: 0;
+}
+
+.author_list li {
+  counter-increment: author-rank;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 28px;
+}
+
+.author_list li::before {
+  content: counter(author-rank) "." !important;
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  width: 20px;
+  text-align: center;
+}
+
+.top-seller-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 37%,
+    rgba(0, 0, 0, 0.06) 63%
+  );
+  background-size: 400% 100%;
+  animation: top-seller-skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes top-seller-skeleton-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.author_list li .top-seller-skeleton-wrap{
+  position: relative;
+  flex-shrink: 0;
+}
+
+.top-seller-skeleton-author {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.top-seller-skeleton-check {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.12);
+  opacity: 0.6;
+}
+
+.author_list li .author_list_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.skeleton-author-name {
+  width: 70%;
+  height: 14px;
+}
+
+.skeleton-author-price {
+  width: 40%;
+  height: 12px;
+}
+
+.skeleton-info {
+  padding-left: 10px;
+}
