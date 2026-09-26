@@ -24,6 +24,11 @@
 
 /* ================================================== */
 
+.carousel__item,
+.carousel__item .nft_coll {
+  width: 100%;
+}
+
 /* body */
 
 /* ================================================== */
@@ -13172,6 +13177,8 @@ a.read_more i {
   height: auto;
 }
 
+
+
 .nft_coll {
   background: #ffffff;
   padding-bottom: 10px;
@@ -13629,6 +13636,7 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+  width: 100%;
 }
 
 .nft__item.style-2,
@@ -15145,7 +15153,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16608,6 +16616,9 @@ img {
     background-size: auto 100%;
     background-attachment: scroll;
   }
+  .img-fluid {
+    height: 100%
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -16648,6 +16659,7 @@ img {
     left: 0;
     top: -21px;
   }
+
 }
 
 .skeleton-box {
