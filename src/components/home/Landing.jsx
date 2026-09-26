@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 import NFT from "../../images/nft.png";
 import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  useEffect(() => {
+    // Small timeout ensures the DOM layout is fully computed before AOS evaluates visibility
+    const timer = setTimeout(() => {
+      AOS.refresh();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="section-hero"
@@ -14,7 +24,13 @@ const Landing = () => {
     >
       <div className="v-center">
         <div className="container">
-          <div className="row align-items-center">
+          <div
+            className="row align-items-center"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-once="true"
+            data-aos-anchor-placement="top-bottom"
+          >
             <div className="col-md-6">
               <div className="spacer-single"></div>
               <h6>
