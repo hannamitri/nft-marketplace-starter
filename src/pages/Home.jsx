@@ -15,12 +15,36 @@ const Home = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-        <Landing />
-        <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
-        <BrowseByCategory />
+
+        {/* Landing */}
+        <div data-aos="fade-up">
+          <Landing />
+        </div>
+
+        {/* Landing Intro */}
+        <div data-aos="fade-up" data-aos-delay="100">
+          <LandingIntro />
+        </div>
+
+        {/* Hot Collections */}
+        <div data-aos="fade-up" data-aos-delay="150">
+          <HotCollections />
+        </div>
+
+        {/* New Items */}
+        <div data-aos="fade-up" data-aos-delay="200">
+          <NewItems />
+        </div>
+
+        {/* Top Sellers */}
+        <div data-aos="fade-up" data-aos-delay="250">
+          <TopSellers />
+        </div>
+
+        {/* Browse By Category */}
+        <div data-aos="fade-up" data-aos-delay="300">
+          <BrowseByCategory />
+        </div>
       </div>
     </div>
   );
