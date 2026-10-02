@@ -16,14 +16,31 @@ const ItemDetails = () => {
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
+<<<<<<< HEAD
               <div className="col-md-6 text-center">
                 <img
                   src={nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
+=======
+              <div className="col-md-6 text-center" data-aos="fade-up" data-aos-duration="500">
+                {loading ? (
+                  <Skeleton
+                    width="100%"
+                    height="500px"
+                    borderRadius="10px"
+                  />
+                ) : (
+                  <img
+                    src={nft?.nftImage}
+                    className="img-fluid img-rounded mb-sm-30 nft-image"
+                    alt=""
+                  />
+                )}
+>>>>>>> 59f0076 (add AOS animations)
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" data-aos="fade-up" data-aos-duration="500">
                 <div className="item_info">
                   <h2>Rainbow Style #194</h2>
 

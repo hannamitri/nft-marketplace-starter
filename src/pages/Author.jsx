@@ -22,7 +22,7 @@ const Author = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <div className="d_profile de-flex">
+                <div className="d_profile de-flex" data-aos="fade-up" data-aos-duration="500">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
                       <img src={AuthorImage} alt="" />
@@ -54,8 +54,13 @@ const Author = () => {
               </div>
 
               <div className="col-md-12">
+<<<<<<< HEAD
                 <div className="de_tab tab_simple">
                   <AuthorItems />
+=======
+                <div className="de_tab tab_simple" data-aos="fade-up">
+                  <AuthorItems author={author}/>
+>>>>>>> 59f0076 (add AOS animations)
                 </div>
               </div>
             </div>
