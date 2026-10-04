@@ -1,0 +1,24 @@
+.hot-collections-slider .slick-prev {
+  left: 10px !important;
+  z-index: 20;
+}
+
+.hot-collections-slider .slick-next {
+  right: 10px !important;
+  z-index: 20;
+}
+
+.hot-collections-slider .slick-prev:before,
+.hot-collections-slider .slick-next:before {
+  color: black !important;
+  opacity: 1 !important;
+}
+
+.hot-collections-slider .slick-list {
+  overflow: visible !important;
+}
+
+.hot-collections-slider .nft_coll_pp {
+  position: relative;
+  z-index: 20;
+}
