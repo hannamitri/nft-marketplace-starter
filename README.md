@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+This React NFT marketplace application provides a polished interface for discovering digital collectibles, exploring curated NFT collections, viewing item details, and browsing creator profiles. Built with React, React Router, Axios, and reusable UI components, it includes a responsive home page with featured collections, new items, top sellers, category browsing, countdown displays, and dedicated exploration and author pages.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Demo: https://ryan-internship-iota.vercel.app/
+
+<img width="1917" height="917" alt="NFT" src="https://github.com/user-attachments/assets/cf5c652d-8d74-4d83-838f-5306d1a0273f" />
+
+Tech stack: React 19 with Create React App, React Router DOM for client-side routing, Axios for API requests, React Icons and Font Awesome for icons, React Owl Carousel for carousel-based content, and Bootstrap/custom CSS for responsive styling. The app consumes NFT data from cloud-function API endpoints.
+
+Main features:
+
+• NFT marketplace home page featuring collections, new items, top sellers, categories, and countdowns
+• Explore page with NFT sorting by price or likes and a “load more” experience
+• Individual NFT detail pages with image, price, views, likes, owner, and creator information
+• Dynamic creator profile pages with wallet details, follower counts, follow/unfollow controls, and NFT collections
+• Responsive navigation, mobile menu, search input, and footer
+• Skeleton loading states while marketplace, author, and NFT data is being fetched
+
 
 ## Available Scripts
 
@@ -28,43 +42,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
