@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Ultraverse — NFT Marketplace Interface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React frontend concept for an NFT marketplace, featuring collectible cards, collection showcases, an Explore page, an author profile, and an item details page.
 
-## Available Scripts
+The project focuses on component-based page construction, visual styling, and navigation using sample NFT content.
 
-In the project directory, you can run:
+## Live Demo
 
-### `npm start`
+[View Ultraverse](https://dylan-internship.vercel.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Interface Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Homepage sections for new items, collections, sellers, and categories
+- Explore page displaying sample NFT cards
+- Author profile and item details page components
+- Desktop and mobile navigation
+- React Router links between marketplace sections
+- Bootstrap-based layout classes and custom CSS
+- Local artwork, illustrations, and icon assets
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- JavaScript and JSX
+- React Router
+- CSS and Bootstrap styles
+- React Icons
+- Create React App
+- Vercel for the linked demo
 
-### `npm run build`
+## Project Scope
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This is a frontend interface concept using static sample content.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The inspected source does not implement:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- NFT purchases or blockchain transactions
+- Wallet connection
+- Working search or sorting
+- Dynamic NFT data
+- Functional loading of additional items
 
-### `npm run eject`
+Prices, countdowns, likes, and author information are sample display content.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Run Locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The current source copy is missing the `App` module imported by `src/index.js`. Restore the application's root component and route configuration before running it.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Once the complete source is available:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm ci
+npm start
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Available Commands
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Command | Purpose |
+| --- | --- |
+| `npm start` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm test` | Start the configured test runner |
 
-### Code Splitting
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```text
+src/
+├── components/   # Navigation, footer, and marketplace sections
+├── pages/        # Home, Explore, Author, and ItemDetails
+├── images/       # Local image assets
+├── css/          # Stylesheets and bundled fonts
+├── index.css     # Application styles
+└── index.js      # React entry point
 
-### Analyzing the Bundle Size
+public/           # HTML template and public assets
+image-credits.txt # Included image credits
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Credits
 
-### Making a Progressive Web App
+This project includes third-party design assets and styling resources. See `image-credits.txt` and the relevant asset files for attribution.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The marketplace content is illustrative and does not represent real transactions.
