@@ -2,9 +2,35 @@ import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 
 const Author = () => {
+
+  const [ authors, setAuthors ] = useState({});
+  
+    const [followers, setFollowers] = useState(0);
+
+    const [ isFollowing, setIsFollowing ] = useState(false);
+
+    const { authorId } = useParams();
+  
+    useEffect(function () {
+      fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setTimeout(function () {
+          setAuthors(data);
+        setFollowers(data.followers);
+        
+      }, 2000);
+    });
+    }, [authorId]);
+  
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +51,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={authors.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {authors.authorName}
+                          <span className="profile_username">{authors.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {authors.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,9 +70,16 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <div className="profile_follower">{followers}</div>
+                      <Link to="#" 
+                      className="btn-main" 
+                      onClick={() => {
+                      setFollowers((previousFollowers) =>
+                      isFollowing ? previousFollowers - 1 : previousFollowers + 1 );
+                      setIsFollowing(!isFollowing);
+                    }}
+                      >
+                        {isFollowing ? "Unfollow" : "Follow"}
                       </Link>
                     </div>
                   </div>
@@ -55,7 +88,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems authorId={authorId} />
                 </div>
               </div>
             </div>

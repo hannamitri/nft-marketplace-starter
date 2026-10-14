@@ -9,6 +9,7 @@ const Landing = () => {
       id="section-hero"
       aria-label="section"
       className="no-top no-bottom vh-100"
+      data-aos="fade-up"
       data-bgimage="url(images/bg-shape-1.jpg) bottom"
       style={{ background: `url(${backgroundImage}) bottom / cover` }}
     >
