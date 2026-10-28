@@ -1,0 +1,107 @@
+#section-items .new-items-slider,
+#section-items .new-items-skeletons {
+  margin: 0 22px;
+}
+
+#section-items .new-items-slide { padding: 0 12px; }
+#section-items .nft__item { margin-top: 4px; }
+
+#section-items .new-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 50px;
+  margin-bottom: 16px;
+}
+
+#section-items .nft__item .new-item-author {
+  width: 50px;
+  height: 50px !important;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#section-items .de_countdown {
+  position: static;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#section-items .nft__item_wrap {
+  height: auto;
+  aspect-ratio: 1;
+  margin-bottom: 16px;
+}
+
+#section-items .nft__item_wrap a { height: 100%; }
+#section-items .nft__item_wrap img {
+  height: 100% !important;
+  object-fit: cover;
+}
+
+#section-items .nft__item_info h4 {
+  overflow-wrap: anywhere;
+  min-height: 36px;
+}
+
+#section-items .new-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#section-items .nft__item_like { float: none; bottom: auto; }
+#section-items .new-items-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #8364e2;
+  color: #fff;
+  font-size: 28px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+#section-items .new-items-arrow--previous { left: -22px; }
+#section-items .new-items-arrow--next { right: -22px; }
+#section-items a:focus-visible,
+#section-items button:focus-visible,
+.new-item-details a:focus-visible {
+  outline: 2px solid #403f83;
+  outline-offset: 3px;
+}
+
+#section-items .new-items-skeletons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#section-items .skeleton-box { display: block; }
+.new-item-details .item_info { overflow-wrap: anywhere; }
+.new-item-details .new-item-details-countdown { display: block; margin-bottom: 16px; }
+
+@media (max-width: 991px) {
+  #section-items .new-items-skeletons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #section-items .new-items-skeletons > :nth-child(n + 3) { display: none; }
+}
+
+@media (max-width: 575px) {
+  #section-items .new-items-skeletons { grid-template-columns: minmax(0, 1fr); }
+  #section-items .new-items-skeletons > :nth-child(n + 2) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #section-items .skeleton-box::after,
+  .new-item-details .skeleton-box::after { animation: none; }
+}

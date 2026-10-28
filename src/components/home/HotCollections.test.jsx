@@ -39,12 +39,15 @@ test("handles an empty collection response", async () => {
 test("renders the API title, images, and code", async () => {
   global.fetch = jest.fn().mockResolvedValue({
     ok: true,
-    json: async () => [{ id: 1, title: "Abstraction", code: 192,
+    json: async () => [{ id: 1, nftId: 39924405, title: "Abstraction", code: 192,
       nftImage: "https://example.com/art.jpg", authorImage: "https://example.com/author.jpg" }],
   });
   renderCollections();
   expect(await screen.findByText("Abstraction")).toBeTruthy();
   expect(screen.getByText("ERC-192")).toBeTruthy();
+  screen.getAllByRole("link", { name: "Abstraction" }).forEach((link) => {
+    expect(link.getAttribute("href")).toBe("/item-details/39924405");
+  });
   expect(screen.queryByRole("status")).toBeNull();
   expect(screen.getByAltText("Abstraction").getAttribute("src")).toBe("https://example.com/art.jpg");
 });
