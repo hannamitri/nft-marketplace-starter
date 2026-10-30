@@ -1,0 +1,31 @@
+.new-items .new-items-carousel { position: relative; margin: 0 -12px; }
+.new-items .new-items-slide { padding: 0 12px; min-width: 0; }
+.new-items .nft__item { min-width: 0; }
+.new-items .nft__item_info h4 { white-space: normal; overflow-wrap: anywhere; }
+.new-items .nft__item_info { padding-right: 35px; }
+.new-items .nft__item_like { position: absolute; right: 0; bottom: 0; float: none; }
+.new-items .de_countdown { top: 46px; right: 15px; max-width: calc(100% - 30px); font-size: 12px; }
+.new-items .nft__item_wrap { height: 300px; margin-top: 10px; }
+.new-items .nft__item_preview { max-height: 290px; object-fit: contain; }
+.new-items .new-items-arrow { position: absolute; z-index: 1; top: 42%; width: 36px; height: 36px; padding: 0; border: 1px solid #ddd; border-radius: 50%; background: #fff; color: #0d0c22; font-size: 30px; line-height: 30px; cursor: pointer; box-shadow: 0 2px 8px #0001; }
+.new-items .new-items-arrow-prev { left: -6px; }
+.new-items .new-items-arrow-next { right: -6px; }
+.new-items a:focus-visible, .new-items button:focus-visible { outline: 3px solid #8364e2; outline-offset: 3px; }
+.new-items-skeletons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 -12px; }
+.new-items-skeleton-price { margin-top: 10px; }
+.new-items-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 1199px) {
+  .new-items-skeletons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .new-items-skeletons .new-items-slide:nth-child(n+4) { display: none; }
+}
+@media (max-width: 991px) {
+  .new-items-skeletons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .new-items-skeletons .new-items-slide:nth-child(n+3) { display: none; }
+}
+@media (max-width: 575px) {
+  .new-items-skeletons { grid-template-columns: minmax(0, 1fr); }
+  .new-items-skeletons .new-items-slide:nth-child(n+2) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .new-items .skeleton-box::after { animation: none; }
+}
