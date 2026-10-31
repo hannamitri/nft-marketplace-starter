@@ -3,14 +3,9 @@ import { useState, useEffect } from "react";
 
 const AuthorItems = ({ authors, loading}) => {
   const { authorId } = useParams();
-  const [author, setAuthor] = useState(null);
-  const [nfts, setNfts] = useState([]);
+  const author = authors;
+  const nfts = authors?.nftCollection ?? [];
   const [likedNfts, setLikedNfts] = useState([]);
-    
-      useEffect(() => {
-        setAuthor(authors);
-        setNfts(authors?.nftCollection ?? []);
-      }, [authors]);
 
       const showPlaceholders = loading || !author || author.length === 0;
       
