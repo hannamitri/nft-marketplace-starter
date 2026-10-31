@@ -150,7 +150,70 @@
   min-height: 50px;
 }
 
+.nft__item_like {
+  cursor: pointer;
+}
 
+.nft__item_like.liked i {
+  color: #ff3b6b;
+}
+
+/* Author profile skeleton loading state */
+
+.profile_avatar > .skeleton-avatar {
+  display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+/* Author name */
+.profile_name .skeleton-title {
+  display: block;
+  width: 180px;
+  height: 24px;
+  margin: 0 0 12px;
+}
+
+/* Username */
+.profile_name .skeleton-subtitle {
+  display: block;
+  width: 120px;
+  height: 16px;
+  margin: 0 0 12px;
+}
+
+/* Wallet */
+.profile_wallet .skeleton-text {
+  display: block;
+  width: 220px;
+  height: 16px;
+}
+
+/* Copy button */
+.profile_name > .skeleton-button {
+  display: block;
+  width: 65px;
+  height: 30px;
+  margin-top: 12px;
+  border-radius: 6px;
+}
+
+/* Follower count */
+.profile_follower .skeleton-text {
+  display: block;
+  width: 110px;
+  height: 16px;
+}
+
+/* Follow button */
+.profile_follow .skeleton-button {
+  display: block;
+  width: 100px;
+  height: 36px;
+  margin-top: 12px;
+  border-radius: 6px;
+}
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {

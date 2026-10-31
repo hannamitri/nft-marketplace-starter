@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -62,7 +61,7 @@ const TopSellers = () => {
                 : topSellers.map((seller, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
-                    <Link to={`/author/${seller.authorId}`}>
+                    <Link to={`/author/${seller.authorId}`} >
                       <img
                         className="lazy pp-author"
                         src={seller.authorImage}

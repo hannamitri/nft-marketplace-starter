@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
 function App() {
+
   return (
     <>
       <link rel="stylesheet" href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author" element={<Author />} />
+        <Route path="/author/:authorId" element={<Author />} />
         <Route path="/item-details" element={<ItemDetails />} />
       </Routes>
       <Footer />
