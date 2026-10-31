@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 
 const AuthorItems = ({ authors, loading}) => {
   const { authorId } = useParams();
+  const [likedNfts, setLikedNfts] = useState([]);
   const author = authors;
   const nfts = authors?.nftCollection ?? [];
-  const [likedNfts, setLikedNfts] = useState([]);
 
-      const showPlaceholders = loading || !author || author.length === 0;
+      const showPlaceholders = loading;
       
       const toggleLike = (nftId) => {
         setLikedNfts(prevLikedNfts =>
