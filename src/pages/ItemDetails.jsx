@@ -113,16 +113,16 @@ const ItemDetails = () => {
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>{item.title ?? "Rainbow Style #194"}</h2>
+                  <h2>{item.title + ' #' + item.tag}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      {item.views ?? 100}
+                      {item.views}
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      {item.likes ?? 74}
+                      {item.likes}
                     </div>
                   </div>
                   <p>
@@ -134,12 +134,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to={`/author/${item.ownerId ?? "authorId"}`}>
-                            <img className="lazy" src={item.ownerImage ?? AuthorImage} alt="" />
+                            <img className="lazy" src={item.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${item.ownerId ?? "authorId"}`}>{item.ownerName ?? "Monica Lucas"}</Link>
+                          <Link to={`/author/${item.ownerId ?? "authorId"}`}>{item.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -151,12 +151,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to={`/author/${item.creatorId ?? "authorId"}`}>
-                            <img className="lazy" src={item.creatorImage ?? AuthorImage} alt="" />
+                            <img className="lazy" src={item.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${item.creatorId ?? "authorId"}`}>{item.creatorName ?? "Monica Lucas"}</Link>
+                          <Link to={`/author/${item.creatorId}`}>{item.creatorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -164,7 +164,7 @@ const ItemDetails = () => {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>{item.price ?? 1.85} </span>
+                      <span>{item.price} </span>
                     </div>
                   </div>
                 </div>
