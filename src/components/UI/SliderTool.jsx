@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ItemCards from "./ItemCards";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -27,7 +26,7 @@ function SamplePrevArrow(props) {
 }
 
 
-const SliderTool = () => {
+const SliderTool = ({ children }) => {
   const settings = {
     dots: false,          
     infinite: true,      
@@ -40,7 +39,7 @@ const SliderTool = () => {
 
   return (
     <Slider {...settings}>
-      <ItemCards />
+      {children}
     </Slider>
   );
 };
