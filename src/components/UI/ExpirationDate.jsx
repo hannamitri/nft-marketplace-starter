@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react'
 
 const ExpirationDate = ({ expiryDate }) => {
-  const expiringIn = document.querySelector('.de_countdown')
   
-  let time
   let timeLeft
   let expirationTime = '0h 0m 0s'
   
   function getTimeLeft(expiryDate) {    
-    time = Date.now()
+    let time = Date.now()
     timeLeft = expiryDate - time
-
     if (timeLeft <= 0) {
       return (
-        expiringIn.style.display= 'none',
         clearInterval(getTimeLeft)
       )  
     } 
@@ -46,8 +42,11 @@ const ExpirationDate = ({ expiryDate }) => {
   useEffect(() => {
     setInterval(() => {
       getTimeLeft(expiryDate)
-  }, 1000)
-}, [])
+    }, 1000)
+  // eslint-disable-next-line
+  }, [])
+
+  if(timeLeft <= 0 ) return null
   
   return <span>{expirationTime}</span> 
 }
