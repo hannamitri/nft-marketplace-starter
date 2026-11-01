@@ -36,11 +36,8 @@ const AuthorItems = ({ items, loading, authorImage, authorId }) => {
                       
                     </div>
                     <div className="nft__item_info">
-                      
-                      
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
-                       
                       </div>
                     </div>
                   </div>
