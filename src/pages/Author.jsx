@@ -9,6 +9,7 @@ const Author = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { authorId } = useParams();
+  const [isFollowing, setIsFollowing] = useState(false);
 
   async function fetchAuthor() {
     try {
@@ -34,7 +35,7 @@ const Author = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="text-center">
-                <h2>Item Details</h2>
+                <h2>Author Details</h2>
                 <div className="small-border bg-color-2"></div>
               </div>
 
@@ -54,6 +55,10 @@ const Author = () => {
   if (!data || typeof data !== "object") {
     return <div className="container">Item not found.</div>;
   }
+
+  const handleFollowToggle = () => {
+    setIsFollowing((prev) => !prev); 
+  };
 
   return (
     <div id="wrapper">
@@ -94,10 +99,10 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{data.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <div className="profile_follower">{isFollowing ? data.followers + 1 : data.followers} followers</div>
+                      <button onClick={handleFollowToggle} className="btn-main">
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
                 </div>

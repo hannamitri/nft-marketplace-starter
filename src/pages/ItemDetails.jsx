@@ -97,7 +97,7 @@ console.log(data);
 
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${data.authorId}`}>
+                          <Link to={`/author/${data.ownerId}`}>
                             <img
                               className="lazy"
                               src={data.ownerImage || AuthorImage}
@@ -108,7 +108,7 @@ console.log(data);
                         </div>
 
                         <div className="author_list_info">
-                          <Link to={`/author/${data.authorId}`}>
+                          <Link to={`/author/${data.ownerId}`}>
                             {data.ownerName || "Monica Lucas"}
                           </Link>
                         </div>
@@ -122,7 +122,7 @@ console.log(data);
 
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${data.authorId}`}>
+                          <Link to={`/author/${data.creatorId}`}>
                             <img
                               className="lazy"
                               src={data.creatorImage || AuthorImage}
@@ -133,7 +133,7 @@ console.log(data);
                         </div>
 
                         <div className="author_list_info">
-                          <Link to={`/author/${data.authorId}`}>
+                          <Link to={`/author/${data.creatorId}`}>
                             {data.creatorName || "Monica Lucas"}
                           </Link>
                         </div>
