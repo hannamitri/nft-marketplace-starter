@@ -4,6 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import Aos from "aos";
+import 'aos/dist/aos.css';
+
 const Author = () => {
   const { authorId } = useParams();
 
@@ -12,6 +15,15 @@ const Author = () => {
   const [isFollowed, setIsFollowed] = useState(false);
 
   useEffect(() => {
+    if (!loading) {
+      requestAnimationFrame(() => {
+        Aos.refreshHard();
+      });
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    Aos.init();
     let active = true;
 
     setLoading(true);
@@ -71,7 +83,7 @@ const Author = () => {
                   <div className="col-md-12">
                     <div className="d_profile de-flex">
                       <div className="de-flex-col">
-                        <div className="profile_avatar">
+                        <div className="profile_avatar" data-aos="zoom-in">
 
                           {/* Avatar */}
                           <div className="skeleton skeleton-avatar" />
@@ -82,14 +94,14 @@ const Author = () => {
                           <div className="profile_name">
                             <h4>
                               {/* Author name */}
-                              <span className="skeleton skeleton-title" />
+                              <span className="skeleton skeleton-title" data-aos="fade-left" />
 
                               {/* Username */}
-                              <span className="profile_username skeleton skeleton-subtitle" />
+                              <span className="profile_username skeleton skeleton-subtitle" data-aos="fade-left" />
 
                               {/* Wallet address */}
                               <span id="wallet" className="profile_wallet">
-                                <span className="skeleton skeleton-text" />
+                                <span className="skeleton skeleton-text" data-aos="fade-left" />
                               </span>
 
                               {/* Copy button */}
@@ -100,6 +112,7 @@ const Author = () => {
                                 className="skeleton skeleton-button"
                                 disabled
                                 aria-label="Loading wallet copy button"
+                                data-aos="fade-right"
                               />
                             </h4>
                           </div>
@@ -108,7 +121,7 @@ const Author = () => {
                       </div>
 
                       {/* Followers and Follow button */}
-                      <div className="profile_follow de-flex">
+                      <div className="profile_follow de-flex" data-aos="fade-right">
                         <div className="de-flex-col">
 
                           {/* Follower count */}
@@ -133,24 +146,24 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={parentAuthor?.authorImage} alt="" />
+                      <img src={parentAuthor?.authorImage} alt="" data-aos="zoom-in"/>
 
                       <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
+                      <div className="profile_name" data-aos="fade-left">
+                        <h4 data-aos="fade-left">
                           {parentAuthor?.authorName}
-                          <span className="profile_username">@{parentAuthor?.authorName}</span>
-                          <span id="wallet" className="profile_wallet">
+                          <span className="profile_username" data-aos="fade-left">@{parentAuthor?.authorName}</span>
+                          <span id="wallet" className="profile_wallet" data-aos="fade-left">
                             {parentAuthor?.address}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <button id="btn_copy" title="Copy Text" data-aos="fade-right">
                             Copy
                           </button>
                         </h4>
                       </div>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
+                  <div className="profile_follow de-flex" data-aos="fade-right">
                     <div className="de-flex-col">
                       <div className="profile_follower">{parentAuthor?.followers + (isFollowed ? 1 : 0)} followers</div>
                       {isFollowed ? (

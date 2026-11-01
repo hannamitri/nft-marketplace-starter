@@ -2,7 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import Aos from "aos";
+import 'aos/dist/aos.css';
+
 const TopSellers = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   const [topSellers, setTopSellers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,12 +39,20 @@ const TopSellers = () => {
 
   console.log(topSellers);
 
+  function animateIndex (index) {
+    if (index % 2 === 0) {
+      return "fade-up";
+    } else {
+      return "fade-down";
+    }
+  }
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up">
               <h2>Top Sellers</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -47,7 +61,7 @@ const TopSellers = () => {
             <ol className="author_list">
               {showPlaceholders
                 ? Array(12).fill(0).map((_, index) => (
-                <li key={index}>
+                <li key={index} data-aos={animateIndex(index)}>
                   <div className="author_list_pp">
                     <div className="skeleton skeleton-avatar"></div>
                           <i className="fa fa-check"></i>
@@ -59,7 +73,7 @@ const TopSellers = () => {
                 </li>
               ))
                 : topSellers.map((seller, index) => (
-                <li key={index}>
+                <li key={index} data-aos={animateIndex(index)}>
                   <div className="author_list_pp">
                     <Link to={`/author/${seller.authorId}`} >
                       <img

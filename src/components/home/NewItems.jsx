@@ -5,8 +5,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Carousel from "./Carousel";
 
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const NewItems = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -50,11 +55,12 @@ const NewItems = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up">
               <h2>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <div data-aos="fade-up">
           <Carousel key={showPlaceholders ? "loading" : "loaded"}>
             {showPlaceholders && (
               Array.from({ length: 8 }, (_, index) => (
@@ -75,6 +81,7 @@ const NewItems = () => {
                         </div>
                       </div>
                     </div>
+          
                   ))
             )}
     
@@ -141,6 +148,8 @@ const NewItems = () => {
           </Carousel>
         </div>
       </div>
+    </div>
+
     </section>
   );
 };

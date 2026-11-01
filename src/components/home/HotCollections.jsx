@@ -9,7 +9,13 @@ import "owl.carousel/dist/assets/owl.theme.default.min.css";
 
 import Carousel from "./Carousel";
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const HotCollections = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,13 +52,13 @@ const HotCollections = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
 
-          <div className="col-lg-12">
+          <div className="col-lg-12" data-aos="fade-up">
             <Carousel key={showPlaceholders ? "loading" : "loaded"}>
               {showPlaceholders
                 ? Array.from({ length: 8 }, (_, index) => (

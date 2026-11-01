@@ -1,6 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"; 
 
+import Aos from "aos";
+import 'aos/dist/aos.css'; 
+
 const AuthorItems = ({ authors, loading}) => {
   const { authorId } = useParams();
   const [likedNfts, setLikedNfts] = useState([]);
@@ -16,6 +19,29 @@ const AuthorItems = ({ authors, loading}) => {
             : [...prevLikedNfts, nftId]
         );
       };
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      requestAnimationFrame(() => {
+        Aos.refreshHard();
+      });
+    }
+  }, [loading]);
+
+  function animateIndex(index) {
+      if (index % 4 === 0) {
+        return "fade-right";
+      } else if (index % 4 === 1) {
+        return "fade-up";
+      } else if (index % 4 === 2) {
+        return "fade-down";
+      } else {
+        return "fade-left";
+      }
+    }
 
   return (
     <div className="de_tab_content">
@@ -26,6 +52,7 @@ const AuthorItems = ({ authors, loading}) => {
               <div
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 key={index}
+                data-aos={animateIndex(index)}
               >
                 <div className="nft__item">
                   <div className="author_list_pp">
@@ -44,17 +71,18 @@ const AuthorItems = ({ authors, loading}) => {
               </div>
             ))
           ) : (
-            nfts.map((nft) => (
+            nfts.map((nft, index) => (
               <div
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                key={nft.nftId}
+                key={index}
+                data-aos={animateIndex(index)}
               >
                 <div className="nft__item">
                   <div className="author_list_pp">
-                    <Link to={`/author/${authorId}`}>
+                    <Link to={`/author/${authors?.authorId}`}>
                       <img
                         className="lazy"
-                        src={author?.authorImage}
+                        src={authors?.authorImage}
                         alt=""
                       />
                       <i className="fa fa-check"></i>

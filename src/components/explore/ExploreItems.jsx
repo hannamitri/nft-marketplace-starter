@@ -3,9 +3,36 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Countdown from "../Universal/Countdown";
 
+import Aos from "aos";
+import 'aos/dist/aos.css';
+
 const ExploreItems = () => {
-  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
+  useEffect(() => {
+  if (!loading) {
+    requestAnimationFrame(() => {
+      Aos.refreshHard();
+    });
+  }
+}, [loading]);
+
+  function animateIndex(index) {
+      if (index % 4 === 0) {
+        return "fade-right";
+      } else if (index % 4 === 1) {
+        return "fade-up";
+      } else if (index % 4 === 2) {
+        return "fade-down";
+      } else {
+        return "fade-left";
+      }
+    }
+
+  const [items, setItems] = useState([]);
   const [visibleItems, setVisibleItems] = useState(8);
   const [filterStatus, setFilterStatus] = useState("");
 
@@ -26,6 +53,8 @@ const ExploreItems = () => {
 
   useEffect(() => {
   let active = true;
+
+    
 
   axios
     .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
@@ -55,7 +84,7 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue={filterStatus} onChange={(event) => setFilterStatus(event.target.value)}>
+        <select  data-aos="zoom-in" id="filter-items" defaultValue={filterStatus} onChange={(event) => setFilterStatus(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -67,8 +96,9 @@ const ExploreItems = () => {
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
+          data-aos={animateIndex(index)}
         >
-          <div className="nft__item">
+          <div className="nft__item"> 
             <div className="author_list_pp">
               <Link
                 to={`/author/${item?.authorId}`}
@@ -127,7 +157,7 @@ const ExploreItems = () => {
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
-          <div className="nft__item skeleton skeleton-item">
+          <div className="nft__item skeleton skeleton-item" data-aos={animateIndex(index)}>
             <div className="author_list_pp skeleton skeleton-avatar"/>
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
