@@ -6,7 +6,6 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "../components/home/NewItems.css";
 
-
 const Author = () => {
 
   const { id } = useParams();

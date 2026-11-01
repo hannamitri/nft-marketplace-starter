@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const AuthorItems = ({ items, loading, authorImage, authorId }) => {
   console.log(items);
+  
   return (
     <div className="de_tab_content">
       <div className="tab-1">
