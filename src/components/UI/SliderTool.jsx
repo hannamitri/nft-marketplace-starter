@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,14 +27,28 @@ function SamplePrevArrow(props) {
 
 
 const SliderTool = ({ children }) => {
+  const [windowWidth, setWindowWidth] = useState(() => window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const slidesToShow = windowWidth <= 576 ? 1 : windowWidth <= 990 ? 2 : 4;
+
   const settings = {
-    dots: false,          
-    infinite: true,      
-    speed: 500,          
-    slidesToShow: 4,     
-    slidesToScroll: 1,   
+    className: "slider",
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow,
+    slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,  
+    prevArrow: <SamplePrevArrow />,
   };
 
   return (

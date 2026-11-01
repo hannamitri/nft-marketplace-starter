@@ -1,44 +1,33 @@
-import { useEffect, useState } from "react"
+import React, { useEffect } from 'react'
 
-const ExpirationDate = ( expiryDate ) => {
+const ExpirationDate = ({ expiryDate }) => {
   const expiringIn = document.querySelector('.de_countdown')
-  const [loading, setLoading] = useState(true)
-
-  if (!!expiryDate) {
-    setLoading(false)
-  }
   
   let time
   let timeLeft
-  let cancelId
   let expirationTime = '0h 0m 0s'
   
-  function getTimeLeft(expiryDate) {
-    
+  function getTimeLeft(expiryDate) {    
     time = Date.now()
     timeLeft = expiryDate - time
 
-    console.log(timeLeft)
-
-    if (loading || timeLeft <= 0) {
+    if (timeLeft <= 0) {
       return (
-        expiringIn.innerHTML = '0h 0m 0s',
         expiringIn.style.display= 'none',
-        cancelAnimationFrame(cancelId)
-      )     
-    }
-  
-    cancelId = requestAnimationFrame(updateTime)
+        clearInterval(getTimeLeft)
+      )  
+    } 
+    updateTime() 
   }
-
-  let secondsText ='0s'
-  let minutesText ='0m'
-  let hoursText = '0h'
 
   function updateTime() { 
     let seconds = timeLeft / 1000
     let minutes = seconds / 60
     let hours = minutes / 60
+
+    let secondsText ='0s'
+    let minutesText ='0m'
+    let hoursText = '0h'
     
     secondsText = Math.floor(seconds % 60) + 's'
     minutesText = Math.floor(minutes % 60) + 'm'
@@ -51,17 +40,16 @@ const ExpirationDate = ( expiryDate ) => {
       minutesText = '0m'
     }
     
-    expirationTime = hoursText + minutesText + secondsText
-    
-    cancelId = requestAnimationFrame(updateTime)      
+    expirationTime = hoursText + minutesText + secondsText    
   }
-  
-  useEffect(() => {
-    getTimeLeft(expiryDate)
-  // eslint-disable-next-line  
-  }, [])
 
-  return expiringIn.innerHTML = expirationTime
+  useEffect(() => {
+    setInterval(() => {
+      getTimeLeft(expiryDate)
+  }, 1000)
+}, [])
+  
+  return <span>{expirationTime}</span> 
 }
 
 export default ExpirationDate
