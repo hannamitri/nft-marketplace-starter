@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
@@ -8,7 +8,9 @@ const HotCollections = () => {
 
   const [hotCollections, setHotCollections] = useState([]);
 
-   const fetchHotCollections = async () => {
+  useEffect(() => {
+
+    const fetchHotCollections = async () => {
     try {
       const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
       if (response.data) {
@@ -22,6 +24,7 @@ const HotCollections = () => {
   };
 
   fetchHotCollections();
+  }, []);
 
 
 
