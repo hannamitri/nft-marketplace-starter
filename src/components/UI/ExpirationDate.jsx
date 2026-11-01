@@ -1,22 +1,31 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
-const ExpirationDate = ( expiryDate, loading ) => {
+const ExpirationDate = ( expiryDate ) => {
   const expiringIn = document.querySelector('.de_countdown')
+  const [loading, setLoading] = useState(true)
 
+  if (!!expiryDate) {
+    setLoading(false)
+  }
+  
   let time
   let timeLeft
   let cancelId
-
+  let expirationTime = '0h 0m 0s'
+  
   function getTimeLeft(expiryDate) {
+    
     time = Date.now()
     timeLeft = expiryDate - time
 
-    if (timeLeft <= 0) {
+    console.log(timeLeft)
+
+    if (loading || timeLeft <= 0) {
       return (
         expiringIn.innerHTML = '0h 0m 0s',
         expiringIn.style.display= 'none',
         cancelAnimationFrame(cancelId)
-      )      
+      )     
     }
   
     cancelId = requestAnimationFrame(updateTime)
@@ -41,18 +50,18 @@ const ExpirationDate = ( expiryDate, loading ) => {
     if (minutes <= 0) {
       minutesText = '0m'
     }
- 
-    cancelId = requestAnimationFrame(updateTime)        
+    
+    expirationTime = hoursText + minutesText + secondsText
+    
+    cancelId = requestAnimationFrame(updateTime)      
   }
   
   useEffect(() => {
-    if (!loading) {
-    getTimeLeft()
-    }
-    return
+    getTimeLeft(expiryDate)
   // eslint-disable-next-line  
   }, [])
-  return expiringIn.innerHTML = hoursText + minutesText + secondsText
+
+  return expiringIn.innerHTML = expirationTime
 }
 
 export default ExpirationDate

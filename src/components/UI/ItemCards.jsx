@@ -3,10 +3,10 @@ import ExpirationDate from '../../components/UI/ExpirationDate'
 import { Link } from 'react-router-dom'
 
 
-const ItemCards = (key, item, loading) => {
+const ItemCards = (key, loading) => {
 
   return (
-    <div className="card" key={key}>
+    <div className="card" key={key.item.id}>
       <div className="nft__item item__card">
         <div className="author_list_pp">
           <Link
@@ -15,11 +15,11 @@ const ItemCards = (key, item, loading) => {
             data-bs-placement="top"
             title="Creator: Monica Lucas"
           >
-            <img className="lazy" src={item.authorImage} alt="" />
+            <img className="lazy" src={key.item.authorImage} alt="" />
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        <div className="de_countdown"><ExpirationDate expiryDate={item.expiryDate} loading={loading}/></div>
+        <div className="de_countdown"><ExpirationDate expiryDate={key.item.expiryDate} loading={loading}/></div>
 
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
@@ -42,7 +42,7 @@ const ItemCards = (key, item, loading) => {
 
           <Link to="/item-details">
             <img
-              src={item.nftImage}
+              src={key.item.nftImage}
               className="lazy nft__item_preview"
               alt=""
             />
@@ -50,12 +50,12 @@ const ItemCards = (key, item, loading) => {
         </div>
         <div className="nft__item_info">
           <Link to="/item-details">
-            <h4>{item.title}</h4>
+            <h4>{key.item.title}</h4>
           </Link>
-          <div className="nft__item_price">{item.price} ETH</div>
+          <div className="nft__item_price">{key.item.price} ETH</div>
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
-            <span>{item.likes}</span>
+            <span>{key.item.likes}</span>
           </div>
         </div>
       </div>
