@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SliderTool from "../UI/SliderTool"
 import ItemCards from "../UI/ItemCards"
 import axios from 'axios'
-import Skeleton from '../UI/Skeleton'
 
 const NewItems = () => {
   
@@ -18,9 +17,7 @@ const NewItems = () => {
   useEffect(() => {
     getNewItems()
   }, [])
-
-  let counter = 0
-
+  
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -33,8 +30,15 @@ const NewItems = () => {
           </div>
           <SliderTool>
             {loading ?
-            new Array(7).fill(0).map(() => (
-              <Skeleton key={counter++}  />
+            new Array(7).fill(0).map((_, index) => (
+              <div key={index} className="card__holder">
+                <div className='nft_coll skel__card' id={index}>
+                  <div className="skel__img"></div>
+                  <div className="skel__author"></div>
+                  <div className="nft_coll_info skel__title"></div>
+                  <div className="skel__code"></div>
+                </div>
+              </div>
             ))
             :
             itemsData.map((data) => (

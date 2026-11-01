@@ -1,54 +1,34 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from "react";
 
 const ExpirationDate = ({ expiryDate }) => {
-  
-  let timeLeft
-  let expirationTime = '0h 0m 0s'
-  
-  function getTimeLeft(expiryDate) {    
-    let time = Date.now()
-    timeLeft = expiryDate - time
-    if (timeLeft <= 0) {
-      return (
-        clearInterval(getTimeLeft)
-      )  
-    } 
-    updateTime() 
-  }
-
-  function updateTime() { 
-    let seconds = timeLeft / 1000
-    let minutes = seconds / 60
-    let hours = minutes / 60
-
-    let secondsText ='0s'
-    let minutesText ='0m'
-    let hoursText = '0h'
-    
-    secondsText = Math.floor(seconds % 60) + 's'
-    minutesText = Math.floor(minutes % 60) + 'm'
-    hoursText = Math.floor(hours) + 'h'
-    
-    if (hours <= 0) {
-      hoursText = '0h'
-    }
-    if (minutes <= 0) {
-      minutesText = '0m'
-    }
-    
-    expirationTime = hoursText + minutesText + secondsText    
-  }
+  const [timeLeft, setTimeLeft] = useState(
+    () => Math.max(0, Number(expiryDate) - Date.now())
+  );
 
   useEffect(() => {
-    setInterval(() => {
-      getTimeLeft(expiryDate)
-    }, 1000)
-  // eslint-disable-next-line
-  }, [])
+    const updateTime = () => {
+      setTimeLeft(Math.max(0, Number(expiryDate) - Date.now()));
+    };
 
-  if(timeLeft <= 0 ) return null
-  
-  return <span>{expirationTime}</span> 
-}
+    updateTime();
 
-export default ExpirationDate
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, [expiryDate]);
+
+  if (timeLeft <= 0) return null;
+
+  const seconds = Math.floor(timeLeft / 1000);
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  return (
+    <span>
+      {hours}h {minutes}m {remainingSeconds}s
+    </span>
+  );
+};
+
+export default ExpirationDate;

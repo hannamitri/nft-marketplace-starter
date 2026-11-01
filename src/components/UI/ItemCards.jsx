@@ -10,7 +10,7 @@ const ItemCards = (key, loading) => {
       <div className="nft__item item__card">
         <div className="author_list_pp">
           <Link
-            to="/author"
+            to="/author/:id"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Creator: Monica Lucas"
@@ -19,8 +19,11 @@ const ItemCards = (key, loading) => {
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        <div className="de_countdown"><ExpirationDate expiryDate={key.item.expiryDate} loading={loading}/></div>
-
+        {Number(key.item.expiryDate) > Date.now() && (
+          <div className="de_countdown">
+            <ExpirationDate expiryDate={key.item.expiryDate} />
+          </div>
+        )}
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
             <div className="nft__item_buttons">
