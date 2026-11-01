@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import AuthorImage from "../../images/author_thumbnail.jpg"
+import axios from "axios"
 
 const TopSellers = () => {
+  const [topSellers, setTopSellers] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  async function fetchTopSellers() {
+    const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
+    setTopSellers(data)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchTopSellers()
+  }, [])
+
+  console.log(topSellers)
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,24 +30,35 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
-                      />
-                      <i className="fa fa-check"></i>
-                    </Link>
+              {!loading ?
+                 new Array(12).fill(0).map((_, index) => (
+                  <div key={index} className="card__holder">
+                    <div className='skel__card' id={index}>
+                      <div className="skel__author"></div>
+                      <div className="skel__title"></div>
+                      <div className="skel__code"></div>
+                    </div>
                   </div>
-                  <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
-                  </div>
-                </li>
-              ))}
+                )) 
+                :              
+                topSellers.map((data) => (
+                  <li key={data.id}>
+                    <div className="author_list_pp">
+                      <Link to="/author/:id">
+                        <img
+                          className="lazy pp-author"
+                          src={data.authorImage}
+                          alt=""
+                        />
+                        <i className="fa fa-check"></i>
+                      </Link>
+                    </div>
+                    <div className="author_list_info">
+                      <Link to="/author">{data.authorName}</Link>
+                      <span>{data.price} ETH</span>
+                    </div>
+                  </li>
+                ))}
             </ol>
           </div>
         </div>
