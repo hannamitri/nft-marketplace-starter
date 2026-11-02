@@ -82,7 +82,7 @@ const ExploreItems = () => {
         </div>
         ))
       :
-      exploreItems.map((data) => (
+      exploreItems.slice(0, 8).map((data) => (
         <div
           key={data.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -91,7 +91,7 @@ const ExploreItems = () => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to="/author/:id"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
@@ -99,7 +99,11 @@ const ExploreItems = () => {
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown"><ExpirationDate expiryDate={data.expiryDate} /></div>
+            {Number(data.expiryDate) > Date.now() && (
+              <div className="de_countdown">
+                <ExpirationDate expiryDate={data.expiryDate} />
+              </div>
+            )}
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
                 <div className="nft__item_buttons">
