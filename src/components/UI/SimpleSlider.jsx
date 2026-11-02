@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Skeleton from './Skeleton';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -73,39 +74,50 @@ export default function SimpleSlider () {
         {loading
         ?        
         new Array(6).fill(0).map((_, index) => (
-          <div key={index} className="card__holder">
-            <div className='nft_coll skel__card' id={index}>
-              <div className="skel__img"></div>
-              <div className="skel__author"></div>
-              <div className="nft_coll_info skel__title"></div>
-              <div className="skel__code"></div>
+          <div className="card" key={index}>
+            <div className="nft_coll">
+              <div className="nft_wrap">
+                <Skeleton width="100%" height="200px" borderRadius="10px" />
+              </div>
+              <div className="nft_coll_pp">
+                <Link to="/author">
+                  <Skeleton width="50px" height="50px" borderRadius="50%" />
+                </Link>
+                <i className="fa fa-check"></i>
+              </div>
+              <div className="nft_coll_info">
+                <Link to="/explore">
+                  <Skeleton width="100px" height="20px" borderRadius="5px" />
+                </Link>
+                <span><Skeleton width="100px" height="20px" borderRadius="5px"/></span>
+              </div>
             </div>
           </div>
         ))       
         :
         hotData.map((data, index) => (
-              <div className="card" key={index}>
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      <img src={data.nftImage} className="lazy img-fluid" alt="" />
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      <img className="lazy pp-coll" src={data.authorImage} alt="" />
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      <h4>{data.title}</h4>
-                    </Link>
-                    <span>ERC-{data.code}</span>
-                  </div>
-                </div>
+          <div className="card" key={index}>
+            <div className="nft_coll">
+              <div className="nft_wrap">
+                <Link to="/item-details">
+                  <img src={data.nftImage} className="lazy img-fluid" alt="" />
+                </Link>
               </div>
-            ))}
+              <div className="nft_coll_pp">
+                <Link to="/author">
+                  <img className="lazy pp-coll" src={data.authorImage} alt="" />
+                </Link>
+                <i className="fa fa-check"></i>
+              </div>
+              <div className="nft_coll_info">
+                <Link to="/explore">
+                  <h4>{data.title}</h4>
+                </Link>
+                <span>ERC-{data.code}</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </Slider>
     </div>
   )  

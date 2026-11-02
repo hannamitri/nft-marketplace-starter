@@ -30,7 +30,7 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {!loading ?
+              {loading ?
                  new Array(12).fill(0).map((_, index) => (
                   <li key={index}>
                     <div className="author_list_pp">
