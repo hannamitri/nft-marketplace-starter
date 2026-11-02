@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg"
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
+import Skeleton from "../UI/Skeleton"
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([])
@@ -32,13 +32,18 @@ const TopSellers = () => {
             <ol className="author_list">
               {!loading ?
                  new Array(12).fill(0).map((_, index) => (
-                  <div key={index} className="card__holder">
-                    <div className='skel__card' id={index}>
-                      <div className="skel__author"></div>
-                      <div className="skel__title"></div>
-                      <div className="skel__code"></div>
+                  <li key={index}>
+                    <div className="author_list_pp">
+                      <Link to="/author/:id">
+                        <Skeleton width="50px" height="50px" borderRadius="50%" />
+                        <i className="fa fa-check"></i>
+                      </Link>
                     </div>
-                  </div>
+                    <div className="author_list_info">
+                      <Skeleton width="100px" height="20px" borderRadius="5px" />
+                    </div>
+                  </li>
+
                 )) 
                 :              
                 topSellers.map((data) => (
