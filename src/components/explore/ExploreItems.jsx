@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import NFTItemCard from "../UI/NFTItemCard";
 import NFTItemSkeleton from "../UI/NFTItemSkeleton";
+import LoadMoreButton from "../UI/LoadMoreButton";
 
 const exploreItemsUrl =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -76,19 +77,7 @@ const ExploreItems = () => {
           ))}
 
       {!loading && visibleCount < exploreItems.length && (
-        <div className="col-md-12 text-center">
-          <Link
-            to=""
-            id="loadmore"
-            className="btn-main lead"
-            onClick={(event) => {
-              event.preventDefault();
-              loadMoreItems();
-            }}
-          >
-            Load more
-          </Link>
-        </div>
+        <LoadMoreButton onClick={loadMoreItems} />
       )}
     </>
   );

@@ -10,7 +10,7 @@ const NFTItemSkeleton = () => {
           to={``}
           data-bs-toggle="tooltip"
           data-bs-placement="top"
-          title="Creator: Monica Lucas"
+          title=""
         >
           <Skeleton
             width="50px"
@@ -28,20 +28,20 @@ const NFTItemSkeleton = () => {
             <div className="nft__item_share">
               <h4>Share</h4>
               <a
-                href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
+                href=""
                 target="_blank"
                 rel="noreferrer"
               >
                 <i className="fa fa-facebook fa-lg"></i>
               </a>
               <a
-                href="https://twitter.com/intent/tweet?url=https://gigaland.io"
+                href=""
                 target="_blank"
                 rel="noreferrer"
               >
                 <i className="fa fa-twitter fa-lg"></i>
               </a>
-              <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
+              <a href="" target="_blank" rel="noreferrer">
                 <i className="fa fa-envelope fa-lg"></i>
               </a>
             </div>
