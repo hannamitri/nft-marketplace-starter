@@ -31,7 +31,7 @@ const NewItems = () => {
             </div>
           </div>
           <SliderTool>
-            {!loading ?
+            {loading ?
             new Array(7).fill(0).map((_, index) => (
               <div className="card" key={index}>
               <div className="nft__item item__card">
