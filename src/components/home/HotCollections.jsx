@@ -40,8 +40,29 @@ const HotCollections = () => {
           <SimpleSlider>
             {loading
               ? [1, 2, 3, 4].map((_, index) => (
-                  <div key={index}>
-                    <Skeleton> </Skeleton>
+                  <div className="nft_coll" key={index}>
+                    <div className="nft_wrap">
+                      <Link to={``}>
+                        <Skeleton width="100%" height="200px" />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to={``}>
+                        <Skeleton
+                          width="50px"
+                          height="50px"
+                          borderRadius="50%"
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="">
+                        <Skeleton width="100px" height="20px" />
+                      </Link>
+                      <br />
+                      <Skeleton width="60px" height="20px" />
+                    </div>
                   </div>
                 ))
               : hotCollections.map((collection, index) => (
