@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import SimpleSlider from "../UI/SimpleSlider";
+import Skeleton from "../UI/Skeleton";
 
 const hotCollectionsUrl =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
@@ -38,26 +39,16 @@ const HotCollections = () => {
           </div>
           <SimpleSlider>
             {loading
-              ? 
-                [1, 2, 3, 4].map((_, index) => (
+              ? [1, 2, 3, 4].map((_, index) => (
                   <div key={index}>
-                    <div className="nft_coll nft_coll--skeleton">
-                      <div className="nft_wrap nft_wrap--skeleton"></div>
-                      <div className="nft_coll_pp nft_coll_pp--skeleton">
-                        <div className="pp-coll pp-coll--skeleton"></div>
-                      </div>
-                      <div className="nft_coll_info nft_coll_info--skeleton">
-                        <div className="nft_coll_title--skeleton"></div>
-                        <div className="nft_coll_code--skeleton"></div>
-                      </div>
-                    </div>
+                    <Skeleton> </Skeleton>
                   </div>
                 ))
               : hotCollections.map((collection, index) => (
                   <div key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${collection.nftId}`}>
                           <img
                             src={collection.nftImage}
                             className="lazy img-fluid"
@@ -66,7 +57,7 @@ const HotCollections = () => {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${collection.authorId}`}>
                           <img
                             className="lazy pp-coll"
                             src={collection.authorImage}
