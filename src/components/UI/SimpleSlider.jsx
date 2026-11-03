@@ -67,7 +67,6 @@ export default function SimpleSlider () {
   }, [])
 
   let counter = 0
-
   return (
     <div key={counter++} className='slider--container'>
       <Slider key={loading ? 'loading' : 'loaded'} {...settings}>
@@ -95,22 +94,22 @@ export default function SimpleSlider () {
           </div>
         ))       
         :
-        hotData.map((data, index) => (
-          <div className="card" key={index}>
+        hotData.map((data) => (
+          <div className="card" key={data.id}>
             <div className="nft_coll">
               <div className="nft_wrap">
-                <Link to="/item-details">
+                <Link to={`/item-details/${data.nftId}`}>
                   <img src={data.nftImage} className="lazy img-fluid" alt="" />
                 </Link>
               </div>
               <div className="nft_coll_pp">
-                <Link to="/author">
+                <Link to={`/author/${data.authorId}`}>
                   <img className="lazy pp-coll" src={data.authorImage} alt="" />
                 </Link>
                 <i className="fa fa-check"></i>
               </div>
               <div className="nft_coll_info">
-                <Link to="/explore">
+                <Link to={`/explore`}>
                   <h4>{data.title}</h4>
                 </Link>
                 <span>ERC-{data.code}</span>

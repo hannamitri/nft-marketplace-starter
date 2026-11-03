@@ -10,10 +10,10 @@ const ItemCards = (key, loading) => {
       <div className="nft__item item__card">
         <div className="author_list_pp">
           <Link
-            to="/author/:id"
+            to={`/author/${key.item.authorId}`}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title="Creator: Monica Lucas"
+            title="Creator: ${key.item.authorName}"
           >
             <img className="lazy" src={key.item.authorImage} alt="" />
             <i className="fa fa-check"></i>
@@ -43,7 +43,7 @@ const ItemCards = (key, loading) => {
             </div>
           </div>
 
-          <Link to="/item-details">
+          <Link to={`/item-details/${key.item.nftId}`}>
             <img
               src={key.item.nftImage}
               className="lazy nft__item_preview"
@@ -52,7 +52,7 @@ const ItemCards = (key, loading) => {
           </Link>
         </div>
         <div className="nft__item_info">
-          <Link to="/item-details">
+          <Link to={`/item-details/${key.item.nftId}`}>
             <h4>{key.item.title}</h4>
           </Link>
           <div className="nft__item_price">{key.item.price} ETH</div>

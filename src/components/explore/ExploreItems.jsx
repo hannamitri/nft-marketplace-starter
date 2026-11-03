@@ -114,7 +114,7 @@ const ExploreItems = () => {
             <div className="nft__item">
               <div className="author_list_pp">
                 <Link
-                  to="/author/:id"
+                  to={`/author/${data.authorId}`}
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
                 >
@@ -145,12 +145,12 @@ const ExploreItems = () => {
                     </div>
                   </div>
                 </div>
-                <Link to="/item-details">
+                <Link to={`/item-details/${data.nftId}`}>
                   <img src={data.nftImage} className="lazy nft__item_preview" alt="" />
                 </Link>
               </div>
               <div className="nft__item_info">
-                <Link to="/item-details">
+                <Link to={`/item-details/${data.nftId}`}>
                   <h4>{data.title}</h4>
                 </Link>
                 <div className="nft__item_price">{data.price} ETH</div>
