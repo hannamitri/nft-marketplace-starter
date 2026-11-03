@@ -31,6 +31,24 @@ const ExploreItems = () => {
     return renderExploreItems(count)
   }
 
+  function sortItems(filter) {
+    if (filter === "price_low_to_high") {
+      setExploreItems((items) =>
+        [...items].sort((a, b) => ((a.price) - (b.price))
+      ))
+    } 
+    else if (filter === "price_high_to_low") {
+      setExploreItems((items) =>
+        [...items].sort((a, b) => ((b.price) - (a.price))
+      ))
+    }
+    else if (filter === "likes_high_to_low") {
+      setExploreItems((items) =>
+        [...items].sort((a, b) => (b.likes - a.likes),
+      ))
+    }
+  }
+
   function renderExploreItems() {
     return (
       loading ?
@@ -150,7 +168,7 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={(event) => sortItems(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
