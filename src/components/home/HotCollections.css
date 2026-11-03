@@ -15,7 +15,7 @@
 }
 
 .hot-collections-slider .slick-list {
-  overflow: visible !important;
+  overflow: hidden;
 }
 
 .hot-collections-slider .nft_coll_pp {
