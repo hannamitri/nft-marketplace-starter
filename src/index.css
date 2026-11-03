@@ -10,3 +10,59 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+/* 
+
+Slider Customization for React-Slick 
+Also added @import "slick-carousel/slick/slick.css" , @import "slick-carousel/slick/slick-theme.css"
+*/
+/* Prevent slider elements from collapsing inside flex/grid layouts */
+.slick-slider,
+.slick-list,
+.slick-track {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Add padding between slides so cards aren't touching */
+.slick-slide > div {
+  margin: 0 10px;
+}
+/* Custom Arrow Styling for React-Slick */
+.custom-arrow {
+  background: rgba(0, 0, 0, 0.1) !important; /* Mostly clear by default */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Arrow icon color when not hovered (translucent) */
+.custom-arrow:before {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+/* Hover Effect: Turns solid dark background and bright white arrow */
+.custom-arrow:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.custom-arrow:hover:before {
+  color: #ffffff !important; /* Turns pure white */
+}
+
+/* Positioning */
+.custom-prev {
+  left: -20px;
+}
+
+.custom-next {
+  right: -20px;
+}

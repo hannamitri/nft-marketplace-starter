@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import SimpleSlider from "../UI/SimpleSlider";
+import Skeleton from "../UI/Skeleton";
+import DynamicAuthorCard from "../DynamicAuthorCard";
+
+const hotCollectionsUrl =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
 const HotCollections = () => {
+  const [hotCollections, setHotCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  async function getHotCollections() {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(hotCollectionsUrl);
+      setHotCollections(data);
+    } catch (error) {
+      console.error("Error fetching hot collections:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getHotCollections();
+  }, []);
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -14,29 +38,62 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img src={nftImage} className="lazy img-fluid" alt="" />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img className="lazy pp-coll" src={AuthorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <span>ERC-192</span>
-                </div>
-              </div>
-            </div>
-          ))}
+          <SimpleSlider>
+            {loading
+              ? [1, 2, 3, 4].map((_, index) => (
+                  <div className="nft_coll" key={index}>
+                    <div className="nft_wrap">
+                      <Link to={``}>
+                        <Skeleton width="100%" height="200px" />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <Link to={``}>
+                        <Skeleton
+                          width="50px"
+                          height="50px"
+                          borderRadius="50%"
+                        />
+                      </Link>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <Link to="">
+                        <Skeleton width="100px" height="20px" />
+                      </Link>
+                      <br />
+                      <Skeleton width="60px" height="20px" />
+                    </div>
+                  </div>
+                ))
+              : hotCollections.map((collection, index) => (
+                  <div key={index}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to={`/item-details/${collection.nftId}`}>
+                          <img
+                            src={collection.nftImage}
+                            className="lazy img-fluid"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <DynamicAuthorCard
+                          className="lazy pp-coll"
+                          authorId={collection.authorId}
+                        />
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{collection.name}</h4>
+                        </Link>
+                        <span>ERC-{collection.code}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+          </SimpleSlider>
         </div>
       </div>
     </section>
