@@ -1,23 +1,20 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CountdownTimer from "./CountdownTimer";
 import DynamicAuthorCard from "../DynamicAuthorCard";
 
 const NFTItemCard = ({ item }) => {
-  const authorId = item.authorId; // Extract the authorId from the item prop
-
   return (
     <div className="nft__item">
       <div className="author_list_pp">
-        {item.authorId && 
+        {item.authorId && (
           <DynamicAuthorCard
-                          className="lazy"
-                          authorId={item.authorId}
-                          data-bs-toggle="tooltip"
-  data-bs-placement="top"
-                        />
-        }
-         
+            className="lazy"
+            authorId={item.authorId}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+          />
+        )}
       </div>
 
       <CountdownTimer expiryDate={item.expiryDate} />
@@ -28,13 +25,21 @@ const NFTItemCard = ({ item }) => {
             <button>Buy Now</button>
             <div className="nft__item_share">
               <h4>Share</h4>
-              <a href="" target="_blank" rel="noreferrer">
+              <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <i className="fa fa-facebook fa-lg"></i>
               </a>
-              <a href="" target="_blank" rel="noreferrer">
+              <a
+                href="https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20NFT!&url=https://gigaland.io"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <i className="fa fa-twitter fa-lg"></i>
               </a>
-              <a href="">
+              <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
                 <i className="fa fa-envelope fa-lg"></i>
               </a>
             </div>

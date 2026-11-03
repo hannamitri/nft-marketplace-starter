@@ -4,6 +4,9 @@ import backgroundImage from "../../images/bg-shape-1.jpg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  const animationDelay = 50;
+  const animationType = "fade-left";
+  const animationDuration = 2000;
   return (
     <section
       id="section-hero"
@@ -17,20 +20,22 @@ const Landing = () => {
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="spacer-single"></div>
-              <h6>
+              <h6 data-aos={animationType} data-aos-duration={animationDuration}data-aos-easing="ease-in-out" data-aos-delay={animationDelay}>
                 <span className="text-uppercase id-color-2">
                   Ultraverse Market
                 </span>
               </h6>
               <div className="spacer-10"></div>
-              <h1>Create, sell or collect digital items.</h1>
-              <p className="lead">
+              <h1 data-aos={animationType} data-aos-duration={animationDuration} data-aos-easing="ease-in-out" data-aos-delay={animationDelay}>
+                Create, sell or collect digital items.
+              </h1>
+              <p className="lead" data-aos={animationType} data-aos-duration={animationDuration}data-aos-easing="ease-in-out" data-aos-delay={animationDelay}>
                 Unit of data stored on a digital ledger, called a blockchain,
                 that certifies a digital asset to be unique and therefore not
                 interchangeable
               </p>
               <div className="spacer-10"></div>
-              <Link className="btn-main lead" to="/explore">
+              <Link className="btn-main lead" to="/explore" data-aos={animationType} data-aos-duration={animationDuration} data-aos-easing="ease-in-out" >
                 Explore
               </Link>
               <div className="mb-sm-30"></div>

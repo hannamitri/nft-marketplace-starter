@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import SimpleSlider from "../UI/SimpleSlider";
 import Skeleton from "../UI/Skeleton";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const topSellersUrl =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers";
