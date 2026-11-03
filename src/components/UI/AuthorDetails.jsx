@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import Skeleton from "./Skeleton";
+import { Link } from "react-router-dom";
+
 
 const AuthorDetails = ({ id, name, image, loading }) => {
   return (

@@ -6,17 +6,8 @@ const NFTItemSkeleton = () => {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
-        <Link
-          to={``}
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title=""
-        >
-          <Skeleton
-            width="50px"
-            height="50px"
-            borderRadius="50%"
-          />
+        <Link to={``} data-bs-toggle="tooltip" data-bs-placement="top" title="">
+          <Skeleton width="50px" height="50px" borderRadius="50%" />
           <i className="fa fa-check"></i>
         </Link>
       </div>
@@ -27,23 +18,15 @@ const NFTItemSkeleton = () => {
             <button>Buy Now</button>
             <div className="nft__item_share">
               <h4>Share</h4>
-              <a
-                href=""
-                target="_blank"
-                rel="noreferrer"
-              >
+              <div>
                 <i className="fa fa-facebook fa-lg"></i>
-              </a>
-              <a
-                href=""
-                target="_blank"
-                rel="noreferrer"
-              >
+              </div>
+              <div>
                 <i className="fa fa-twitter fa-lg"></i>
-              </a>
-              <a href="" target="_blank" rel="noreferrer">
+              </div>
+              <div>
                 <i className="fa fa-envelope fa-lg"></i>
-              </a>
+              </div>
             </div>
           </div>
         </div>
