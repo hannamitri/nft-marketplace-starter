@@ -61,7 +61,6 @@ const Author = () => {
                           borderRadius="50%"
                         />
                       )}
-
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         {!loading ? (
