@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Author = () => {
+  const [authorData, setAuthorData] = useState([])
+  const [loading, setLoading] = useState(true)
+  
+  const { id } = useParams()
+ 
+  async function fetchAuthorData(id) {
+    const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/author?author=${id}`);
+    setAuthorData(data)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchAuthorData(id)
+  }, [])
+
+  console.log(authorData, id)
+    
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,12 +42,12 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={authorData.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
+                          {authorData.authorName}
                           <span className="profile_username">@monicaaaa</span>
                           <span id="wallet" className="profile_wallet">
                             UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
@@ -45,7 +62,7 @@ const Author = () => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
+                      <Link to="" className="btn-main">
                         Follow
                       </Link>
                     </div>
