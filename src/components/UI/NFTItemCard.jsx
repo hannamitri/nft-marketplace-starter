@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import CountdownTimer from "./CountdownTimer";
 import DynamicAuthorCard from "../DynamicAuthorCard";
 
