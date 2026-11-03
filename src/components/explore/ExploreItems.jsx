@@ -7,8 +7,8 @@ import Skeleton from "../UI/Skeleton";
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([])
   const [loading, setLoading] = useState(true)
-
-  let count = 8
+  const [count, setCount]  = useState(8)
+  const loadRef = React.useRef(null)
 
   async function fetchExploreItems() {
     const { data } = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore");
@@ -21,12 +21,12 @@ const ExploreItems = () => {
   }, [])
 
   function loadMore() {
-    count += 4
+    setCount(count + 4)
     if (count > exploreItems.length) {
-      count = exploreItems.length
+      setCount(exploreItems.length)
     }
-    if (count === exploreItems.length) {
-      document.getElementById("loadmore").style.display = "none"
+    if ((count + 4) === exploreItems.length) {
+      loadRef.current.style.display = "none"
     } 
     return renderExploreItems(count)
   }
@@ -159,7 +159,7 @@ const ExploreItems = () => {
       </div>      
       {renderExploreItems()}      
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead" onClick={loadMore}>
+        <Link to="" id="loadmore" ref={loadRef} className="btn-main lead" onClick={loadMore}>
           Load more
         </Link>
       </div>
