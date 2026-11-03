@@ -12706,6 +12706,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
+  appearance: none;
   -webkit-appearance: none;
   height: 24px;
   width: 44px;
@@ -15145,7 +15146,6 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16713,132 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+/* Carousel container */
+#section-collections .owl-carousel {
+  position: relative;
+  width: 100%;
+}
+
+/* Carousel slides */
+#section-collections .owl-stage {
+  display: flex;
+  align-items: stretch;
+}
+
+#section-collections .owl-item {
+  display: flex;
+  align-items: stretch;
+}
+
+#section-collections .owl-item .item {
+  width: 100%;
+}
+
+/* Override Bootstrap column width */
+#section-collections .owl-item .item > div {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Navigation arrows */
+#section-collections .owl-nav {
+  margin: 0;
+}
+
+#section-collections .owl-nav button.owl-prev,
+#section-collections .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 40px;
+  height: 40px;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ddd !important;
+  border-radius: 50% !important;
+
+  background: #fff !important;
+  color: #151515 !important;
+
+  font-size: 25px !important;
+  line-height: 1 !important;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Left arrow */
+#section-collections .owl-nav button.owl-prev {
+  left: -16px;
+}
+
+/* Right arrow */
+#section-collections .owl-nav button.owl-next {
+  right: -16px;
+}
+
+/* Hide pagination dots */
+#section-collections .owl-dots {
+  display: none;
+}
+
+.skeleton-card {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  background: #e0e0e0;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.skeleton-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #d5d5d5;
+  border: 4px solid white;
+  margin: -25px auto 15px;
+  position: relative;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.skeleton-title {
+  width: 65%;
+  height: 18px;
+  margin: 0 auto 10px;
+  border-radius: 4px;
+  background: #e0e0e0;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.skeleton-code {
+  width: 35%;
+  height: 14px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: #e0e0e0;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
