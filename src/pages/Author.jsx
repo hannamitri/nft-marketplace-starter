@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
@@ -8,15 +8,35 @@ import Skeleton from "../components/UI/Skeleton";
 const Author = () => {
   const [authorData, setAuthorData] = useState([])
   const [loading, setLoading] = useState(true)
-  
-  
   const { id } = useParams()
+  const followersRef = useRef(null)
+  const followButtonRef = useRef("Follow")
+  
  
   async function fetchAuthorData(id) {
     const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`);
     setAuthorData(data)
+    followersRef.current = data.followers
     setLoading(false)
   }
+
+  function addFollower() {
+    if (followButtonRef === "Follow") {
+      return (
+      followersRef.current = followersRef.current + 1,
+      followButtonRef.current = "Unfollow"
+      )
+    }
+    if (followButtonRef === "Unfollow") {
+      return (
+        followersRef.current = followersRef.current - 1,
+        followButtonRef.current = "Follow"
+      )      
+    }
+    }
+  
+  
+  console.log(followersRef.current, followButtonRef.current)
 
   useEffect(() => {
     fetchAuthorData(id)
@@ -105,9 +125,9 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{authorData.followers} followers</div>
-                      <Link to="" className="btn-main">
-                        Follow
+                      <div className="profile_follower">{followersRef.current} followers</div>
+                      <Link to="" className="btn-main" onClick={addFollower}>
+                        {followButtonRef.current}
                       </Link>
                     </div>
                   </div>
