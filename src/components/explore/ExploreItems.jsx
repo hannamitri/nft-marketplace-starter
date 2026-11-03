@@ -33,18 +33,18 @@ const ExploreItems = () => {
 
   function sortItems(filter) {
     if (filter === "price_low_to_high") {
-      setExploreItems((items) =>
-        [...items].sort((a, b) => ((a.price) - (b.price))
+      setExploreItems((exploreItems) =>
+        [...exploreItems].sort((a, b) => ((a.price) - (b.price))
       ))
     } 
     else if (filter === "price_high_to_low") {
-      setExploreItems((items) =>
-        [...items].sort((a, b) => ((b.price) - (a.price))
+      setExploreItems((exploreItems) =>
+        [...exploreItems].sort((a, b) => ((b.price) - (a.price))
       ))
     }
     else if (filter === "likes_high_to_low") {
-      setExploreItems((items) =>
-        [...items].sort((a, b) => (b.likes - a.likes),
+      setExploreItems((exploreItems) =>
+        [...exploreItems].sort((a, b) => (b.likes - a.likes),
       ))
     }
   }
