@@ -6,24 +6,47 @@ const Explore = () => {
 
 const [data, setData] = useState([]);
 const [loading, setLoading] = useState(true);
+const [now, setNow] = useState(Date.now());
+const [visibleCount, setVisibleCount] = useState(8);
 
 useEffect(() => {
   let timer;
 
   async function fetchData() {
-    const response = await fetch(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-    );
-    const result = await response.json();
-    setData(result);
+    try {
+      const response = await fetch(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch Explore items");
+      }
+
+      const result = await response.json();
+
+      console.log("Explore API data:", result);
+      setData(result);
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
 
     timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
   }
+  
   fetchData();
-  return () => clearTimeout(timer);
-}, [data]);
+}, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+
+  return () => clearInterval(timer);
+  
+}, []);
 
   return (
     <div id="wrapper">
@@ -50,7 +73,12 @@ useEffect(() => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems items={data} loading={loading} />
+              <ExploreItems
+              items={data} 
+              loading={loading}
+              visibleCount={visibleCount}
+              setVisibleCount={setVisibleCount}
+            />
             </div>
           </div>
         </section>

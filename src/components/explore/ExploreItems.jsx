@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const ExploreItems = ({ items, loading }) => {
+const ExploreItems = ({ items, loading, visibleCount, setVisibleCount }) => {
 
   return (
     <>
@@ -23,11 +23,15 @@ const ExploreItems = ({ items, loading }) => {
         ></div>
         ))
       ) : (
-        items.map((item, index) => (
-          <div className="nft__item">
+        items.slice(0, visibleCount).map((item, index) => (
+          <div
+           className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+           key={item.nftId}
+          >
+          <div className="nft__item" key={index}>
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${item.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
@@ -55,12 +59,12 @@ const ExploreItems = ({ items, loading }) => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <img src={item.nftImage} className="lazy nft__item_preview" alt="" />
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <h4>{item.title}</h4>
               </Link>
               <div className="nft__item_price">{item.price} ETH</div>
@@ -70,15 +74,23 @@ const ExploreItems = ({ items, loading }) => {
               </div>
             </div>
           </div>
+        </div>
         ))
       )}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
+            <div className="col-md-12 text-center">
+        {!loading && visibleCount < Math.min(items.length, 16) && (
+          <button
+            className="btn-main lead"
+            onClick={() =>
+              setVisibleCount(prev => Math.min(prev + 4, 16))
+            }
+          >
+            Load More
+          </button>
+        )}
       </div>
-    </>
-  );
-};
+          </>
+        );
+      };
 
 export default ExploreItems;
