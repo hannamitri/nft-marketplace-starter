@@ -1,15 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import Skeleton from "./Skeleton";
 
 const NFTItemSkeleton = () => {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
-        <Link to={``} data-bs-toggle="tooltip" data-bs-placement="top" title="">
-          <Skeleton width="50px" height="50px" borderRadius="50%" />
-          <i className="fa fa-check"></i>
-        </Link>
+        <Skeleton width="50px" height="50px" borderRadius="50%" />
       </div>
 
       <div className="nft__item_wrap">
@@ -31,14 +28,11 @@ const NFTItemSkeleton = () => {
           </div>
         </div>
 
-        <Link to={``}>
-          <Skeleton width="100%" height="350px" />
-        </Link>
+        <Skeleton width="100%" height="350px" />
       </div>
       <div className="nft__item_info">
-        <Link to={``}>
-          <Skeleton width="180px" height="30px" />
-        </Link>
+        <Skeleton width="180px" height="30px" />
+
         <Skeleton width="100px" height="20px" />
       </div>
       <div className="nft__item_like">

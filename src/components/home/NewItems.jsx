@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import SimpleSlider from "../UI/SimpleSlider";
 import NFTItemCard from "../UI/NFTItemCard";
@@ -40,9 +39,7 @@ const NewItems = () => {
           </div>
           <SimpleSlider>
             {loading
-              ? [1, 2, 3, 4].map((_, index) => (
-                  <NFTItemSkeleton key={index} />
-                ))
+              ? [1, 2, 3, 4].map((_, index) => <NFTItemSkeleton key={index} />)
               : newItems.map((item) => (
                   <NFTItemCard key={item.id} item={item} />
                 ))}
