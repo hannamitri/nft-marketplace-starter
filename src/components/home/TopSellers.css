@@ -1,0 +1,27 @@
+#section-popular .author_list li {
+  min-height: 54px;
+  break-inside: avoid;
+}
+
+#section-popular .author_list_info {
+  overflow-wrap: anywhere;
+}
+
+#section-popular a:focus-visible {
+  outline: 3px solid #8364e2;
+  outline-offset: 3px;
+}
+
+.top-sellers-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #section-popular .skeleton-box::after { animation: none; }
+}
