@@ -41,10 +41,10 @@ const NewItems = () => {
           <SimpleSlider>
             {loading
               ? [1, 2, 3, 4].map((_, index) => (
-                  <NFTItemSkeleton />
+                  <NFTItemSkeleton key={index} />
                 ))
               : newItems.map((item) => (
-                  <NFTItemCard item={item} />
+                  <NFTItemCard key={item.id} item={item} />
                 ))}
           </SimpleSlider>
         </div>

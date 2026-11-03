@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import SimpleSlider from "../UI/SimpleSlider";
 import Skeleton from "../UI/Skeleton";
+import DynamicAuthorCard from "../DynamicAuthorCard";
 
 const hotCollectionsUrl =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
@@ -78,14 +79,10 @@ const HotCollections = () => {
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to={`/author/${collection.authorId}`}>
-                          <img
-                            className="lazy pp-coll"
-                            src={collection.authorImage}
-                            alt=""
-                          />
-                        </Link>
-                        <i className="fa fa-check"></i>
+                        <DynamicAuthorCard
+                          className="lazy pp-coll"
+                          authorId={collection.authorId}
+                        />
                       </div>
                       <div className="nft_coll_info">
                         <Link to="/explore">

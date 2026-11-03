@@ -1,23 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CountdownTimer from "./CountdownTimer";
+import DynamicAuthorCard from "../DynamicAuthorCard";
 
 const NFTItemCard = ({ item }) => {
+  const authorId = item.authorId; // Extract the authorId from the item prop
+
   return (
     <div className="nft__item">
       <div className="author_list_pp">
-        <Link
-          to={`/author/${item.authorId}`}
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title={`Creator: ${item.authorId}`}
-        >
-          <img className="lazy" src={item.authorImage} alt={item.authorId} />
-          <i className="fa fa-check"></i>
-        </Link>
+        {item.authorId && 
+          <DynamicAuthorCard
+                          className="lazy"
+                          authorId={item.authorId}
+                          data-bs-toggle="tooltip"
+  data-bs-placement="top"
+                        />
+        }
+         
       </div>
 
-      {/* Live Countdown Component */}
       <CountdownTimer expiryDate={item.expiryDate} />
 
       <div className="nft__item_wrap">
