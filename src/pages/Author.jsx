@@ -12,6 +12,12 @@ const Author = () => {
   const [followersCount, setFollowersCount] = useState(0)
   const [likeBtn, setLikeBtn] = useState('Follow')
   
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [])
  
   async function fetchAuthorData(id) {
     const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`);
@@ -85,7 +91,7 @@ const Author = () => {
               </div>
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems nftCollection={authorData.nftCollection} authorImage={authorData.aurthorImage} loading={loading} />
                 </div>
               </div>
             </div>
