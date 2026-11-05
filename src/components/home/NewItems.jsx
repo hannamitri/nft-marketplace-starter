@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "owl.carousel/dist/assets/owl.carousel.css";
@@ -29,18 +29,34 @@ const NewItems = ({ loading: propLoading = false }) => {
   
   const skeletonItems = Array.from({ length: 4 });
 
-  function getTimeRemaining(expiryDate) {
-    const timeLeft = expiryDate - Date.now();
+  function Countdown({ expiryDate }) {
+  const [timeLeft, setTimeLeft] = useState("");
 
-    if (timeLeft <= 0) {
-    return "EXPIRED";
-    }
-    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-    const seconds = Math.floor((timeLeft / 1000) % 60);
+  useEffect(() => {
+    const updateCountdown = () => {
+      const difference = Number(expiryDate) - Date.now();
 
-    return `${hours}h ${minutes}m ${seconds}s`;
-  }
+      if (difference <= 0) {
+        setTimeLeft("EXPIRED");
+        return;
+      }
+
+      const hours = Math.floor(difference / 3600000);
+      const minutes = Math.floor((difference / 60000) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+    };
+
+    updateCountdown();
+
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, [expiryDate]);
+
+  return <div className="de_countdown">{timeLeft}</div>;
+}
 
   return (
     <section id="section-items" className="no-bottom">
@@ -89,14 +105,13 @@ const NewItems = ({ loading: propLoading = false }) => {
                       to="/author"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
-                        title={item.creatorName}
+                        title=""
                       >
-                      <img src={item.authorImage} alt={`${item.creatorName} avatar`} />
+                      <img src={item.authorImage} alt="" />
                       <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                    <div className="de_countdown">{item.expiryDate}
-                    </div>
+                  <Countdown expiryDate={item.expiryDate} />
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
