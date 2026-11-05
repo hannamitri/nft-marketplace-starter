@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import ReactOwlCarousel from "react-owl-carousel";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const HotCollections = () => {
   const [data, setData] = useState([]);
@@ -58,7 +59,7 @@ const HotCollections = () => {
           />
         </Link>
       </div>
-
+      <Skeleton />
       <div className="nft_coll_pp">
         <Link to="/author">
           <img
