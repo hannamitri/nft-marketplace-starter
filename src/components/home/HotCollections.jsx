@@ -57,9 +57,7 @@ const HotCollections = () => {
             </div>
           </div>
 
-
-
-          {loading
+          {true
             ? <OwlCarousel className="owl-theme" {...options} loop margin={10} nav items={4}>
               {users.map((__, index) => (
                 <div key={index}>
