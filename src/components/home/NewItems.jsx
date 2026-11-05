@@ -71,7 +71,10 @@ const NewItems = () => {
       setError("Unable to load new items.");
 
     } finally {
-      setLoading(false);
+      // Keep skeleton visible for at least 1 second
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
   };
 
@@ -156,12 +159,19 @@ const NewItems = () => {
                 <div className="author_list_pp">
                   <Link
                     to="/author"
-                    title={`Creator: ${item.author || "Unknown"}`}
+                    state={{
+                      author: {
+                        authorId: item.authorId,
+                        authorImage: item.authorImage,
+                        authorName: item.authorName || "Unknown author",
+                      },
+                    }}
+                    title={`Creator: ${item.authorName || "Unknown"}`}
                   >
                     <img
                       className="lazy"
                       src={item.authorImage || AuthorImage}
-                      alt={item.author || "NFT creator"}
+                      alt={item.authorName || "NFT creator"}
                       loading="lazy"
                     />
                     <i className="fa fa-check"></i>
@@ -207,7 +217,7 @@ const NewItems = () => {
 
                 {/* NFT Information */}
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to="/item-details" state={{ item: item }}>
                     <h4>{item.title || "Untitled NFT"}</h4>
                   </Link>
 

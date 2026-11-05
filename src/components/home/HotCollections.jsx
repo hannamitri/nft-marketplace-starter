@@ -21,7 +21,10 @@ const HotCollections = () => {
       } catch (error) {
         console.error("Error fetching collections:", error);
       } finally {
-        setLoading(false);
+        // Keep skeleton visible for at least 1 second
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
 
@@ -116,11 +119,20 @@ const HotCollections = () => {
                       </div>
 
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link
+                          to="/author"
+                          state={{
+                            author: {
+                              authorId: collection.authorId,
+                              authorImage: collection.authorImage,
+                              authorName: collection.authorName || "Unknown author",
+                            },
+                          }}
+                        >
                           <img
                             className="lazy pp-coll"
                             src={collection.authorImage}
-                            alt={collection.title}
+                            alt="Collection author"
                           />
                         </Link>
 
@@ -128,8 +140,8 @@ const HotCollections = () => {
                       </div>
 
                       <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>{collection.title}</h4>
+                        <Link to="/item-details" state={{ item: collection }}>
+                          <h4>{collection.title || "Untitled NFT"}</h4>
                         </Link>
 
                         <span>ERC-{collection.code}</span>
