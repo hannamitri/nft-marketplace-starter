@@ -6,6 +6,10 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
+   
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState();
+
 
   const options = {
     loop: true,
@@ -30,13 +34,12 @@ const HotCollections = () => {
     }
   }
 
-  const [users, setUsers] = useState([]);
-
   async function fetchUsers() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
     );
     setUsers(data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -53,7 +56,43 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {users.length > 0 && (
+
+
+
+          {loading
+            ? <OwlCarousel className="owl-theme" {...options} loop margin={10} nav items={4}>
+              {users.map((__, index) => (
+                <div key={index}>
+                  <div className="nft_coll">
+                    <div className="skeleton-box">
+                      <Link >
+                        <img
+                          className="lazy img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    </div>
+                    <div className="nft_coll_pp--skeleton">
+                      <Link >
+                        <img
+                          className="lazy pp-coll"
+                          alt=""
+                        />
+                      </Link>
+                      <i></i>
+                    </div>
+                    <div className="nft_coll_info--skeleton">
+                      <Link to="/explore">
+                        <h4></h4>
+                      </Link>
+                      <span className="erc-code--skeleton"></span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </OwlCarousel>
+          
+           : users.length > 0 && (
             <OwlCarousel className="owl-theme" {...options} loop margin={10} nav items={4}>
               {users.map((user, index) => (
                 <div key={index}>
