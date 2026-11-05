@@ -1,10 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const Author = () => {
+  const location = useLocation();
+  const author = location.state?.author;
+
+  const [authorInfo, setAuthorInfo] = useState(author);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAuthor() {
+      try {
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+        );
+
+        const matchingAuthor = response.data.find(
+          (seller) => seller.authorId === author?.authorId
+        );
+
+        // Put your console.log statements here
+        console.log("Collection author ID:", author?.authorId);
+        console.log("Matching author:", matchingAuthor);
+
+        if (matchingAuthor) {
+          setAuthorInfo({ ...author, ...matchingAuthor });
+        }
+      } catch (error) {
+        console.error("Error fetching author:", error);
+      }
+    }
+
+    if (author?.authorId) {
+      fetchAuthor();
+    }
+  }, [author?.authorId]);
+
+  useEffect(() => {
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [author]);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -14,7 +60,6 @@ const Author = () => {
           id="profile_banner"
           aria-label="section"
           className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
           style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
 
@@ -25,26 +70,38 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
 
-                      <i className="fa fa-check"></i>
+                      {loading ? (
+                        <div className="author-profile-skeleton-image"></div>
+                      ) : (
+                        <img
+                          src={authorInfo?.authorImage || AuthorImage}
+                          alt={authorInfo?.authorName || "Author"}
+                        />
+                      )}
+
+                      {!loading && <i className="fa fa-check"></i>}
+
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
+                          {loading ? (
+                            <div className="author-profile-skeleton-name"></div>
+                          ) : (
+                            <>
+                              {authorInfo?.authorName || "Author"}
+
+                              <span className="profile_username">
+                                {authorInfo?.authorId ? `@${authorInfo.authorId}` : ""}
+                              </span>
+                            </>
+                          )}
                         </h4>
                       </div>
                     </div>
                   </div>
+
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -55,7 +112,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems author={authorInfo} />
                 </div>
               </div>
             </div>
