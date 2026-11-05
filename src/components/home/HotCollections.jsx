@@ -39,6 +39,7 @@ const HotCollections = ({ loading: propLoading = false }) => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+
           {propLoading || isLoading ? (
             skeletonItems.map((_, index) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
@@ -75,6 +76,7 @@ const HotCollections = ({ loading: propLoading = false }) => {
                       <img src={item.nftImage} className="img-fluid" alt={item.title} />
                     </Link>
                   </div>
+
                   <div className="nft_coll_pp">
                     <Link to="/author">
                       <img className="pp-coll" src={item.authorImage} alt="Collection creator" />

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "owl.carousel/dist/assets/owl.carousel.css";
@@ -11,7 +11,7 @@ const NewItems = ({ loading: propLoading = false }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     axios
         .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
@@ -29,6 +29,19 @@ const NewItems = ({ loading: propLoading = false }) => {
   
   const skeletonItems = Array.from({ length: 4 });
 
+  function getTimeRemaining(expiryDate) {
+    const timeLeft = expiryDate - Date.now();
+
+    if (timeLeft <= 0) {
+    return "EXPIRED";
+    }
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+    const seconds = Math.floor((timeLeft / 1000) % 60);
+
+    return `${hours}h ${minutes}m ${seconds}s`;
+  }
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -41,7 +54,7 @@ const NewItems = ({ loading: propLoading = false }) => {
           </div>
           {propLoading || isLoading ? (
             skeletonItems.map((_, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <div className key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Skeleton width="100%" height="180px" borderRadius="12px" />
@@ -69,20 +82,21 @@ const NewItems = ({ loading: propLoading = false }) => {
    }}
 >
         {data.map((item) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
+            <div key={item.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title={item.title}
-                  >
-                    <img className="lazy" src={item.AuthorImage} alt={item.title} />
-                    <i className="fa fa-check"></i>
+                      to="/author"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                        title={item.creatorName}
+                      >
+                      <img src={item.authorImage} alt={`${item.creatorName} avatar`} />
+                      <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">{item.countdown}</div>
+                    <div className="de_countdown">{item.expiryDate}
+                    </div>
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
