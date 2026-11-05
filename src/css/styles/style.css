@@ -312,6 +312,69 @@ header.smaller.scroll-light #mainmenu li li a:hover {
   color: #ffffff;
 }
 
+
+.hot-collections-slider .slick-slide {
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.hot-collections-slider .slick-list {
+  margin: 0 -12px;
+}
+
+.hot-collections-slider .slick-prev,
+.hot-collections-slider .slick-next {
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  background: white;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+}
+
+.hot-collections-slider .slick-prev {
+  left: -22px;
+}
+
+.hot-collections-slider .slick-next {
+  right: -22px;
+}
+
+.hot-collections-slider .slick-prev:before,
+.hot-collections-slider .slick-next:before {
+  color: black;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 1;
+}
+
+.hot-collections-slider .slick-prev:before {
+  content: "‹";
+}
+
+.hot-collections-slider .slick-next:before {
+  content: "›";
+}
+
+.hot-collections-slider .slick-prev:hover,
+.hot-collections-slider .slick-next:hover,
+.hot-collections-slider .slick-prev:focus,
+.hot-collections-slider .slick-next:focus {
+  background: white;
+}
+
+.hot-collections-slider .slick-slide > div {
+  display: flex;
+  justify-content: center;
+}
+
+.hot-collections-slider .nft_coll {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
 .logo-smaller div#logo {
   width: 150px;
   height: 30px;
@@ -15437,6 +15500,98 @@ img {
   }
 }
 
+
+/* Skeleton loading state */
+
+.hot-collections-skeleton {
+  overflow: hidden;
+}
+
+/* Base skeleton appearance and shimmer animation */
+
+.skeleton-box {
+  background-color: #dddbdd;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-box::after {
+  animation: shimmer 2s infinite;
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.2) 20%,
+    hsla(0, 0%, 100%, 0.5) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* NFT image placeholder */
+
+.hot-collections-skeleton .nft_wrap {
+  width: 100%;
+  height: 200px;
+}
+
+.hot-collections-skeleton .skeleton-nft-image {
+  display: block;
+  width: 100%;
+  height: 155px;
+  box-sizing: border-box;
+}
+
+/* Creator avatar placeholder */
+
+.hot-collections-skeleton .nft_coll_pp {
+  width: 60px;
+  height: 60px;
+  margin: -30px auto 10px;
+  position: relative;
+}
+
+.hot-collections-skeleton .skeleton-avatar {
+  display: block;
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* Collection title and code placeholders */
+
+.hot-collections-skeleton .nft_coll_info {
+  display: block;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.hot-collections-skeleton .skeleton-title {
+  display: block;
+  width: 50%;
+  height: 16px;
+  margin: 0 auto 8px;
+}
+
+.hot-collections-skeleton .skeleton-code {
+  display: block;
+  width: 25%;
+  height: 14px;
+  margin: 0 auto;
+}
+
 /* ================================================== */
 
 /* R E S P O N S I V E */
@@ -16713,4 +16868,14 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+@media (max-width: 575px) {
+  .hot-collections-slider .slick-prev {
+    left: calc(50% - 158px);
+  }
+
+  .hot-collections-slider .slick-next {
+    right: calc(50% - 158px);
+  }
 }
