@@ -3,36 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 
-const tilesData = [
-  { id: 1, title: 'Title 1' },
-  { id: 2, title: 'Title 2' },
-  { id: 3, title: 'Title 3' },
-  { id: 4, title: 'Title 4' },
-  { id: 5, title: 'Title 5' },
-  { id: 6, title: 'Title 6' },
-  { id: 7, title: 'Title 7' },
-  { id: 8, title: 'Title 8' },
-  { id: 9, title: 'Title 9' },
-  { id: 10, title: 'Title 10' },
-  { id: 11, title: 'Title 11' },
-  { id: 12, title: 'Title 12' },
-  { id: 13, title: 'Title 13' },
-  { id: 14, title: 'Title 14' },
-  { id: 15, title: 'Title 15' },
-  { id: 16, title: 'Title 16' },
-];
-
 const ExploreItems = ({ loading: propLoading = false }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const skeletonItems = Array.from({ length: 8 });
-  const [visibleCount, setVisibleCount] = useState(8);
-   const [sortType, setSortType] = useState('default');
-
-  const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 8);
-  };
+  const [sortType, setSortType] = useState('default');
+   const [itemsToShow, setItemsToShow] = useState(8);
 
   useEffect(() => {
     axios
@@ -77,19 +54,21 @@ const ExploreItems = ({ loading: propLoading = false }) => {
     return <div className="de_countdown">{timeLeft}</div>;
   }
 
-  function sortData(sortType, data) {
-    let sortedData = [...data];
-
+  function sortValue(sortType, value) {
+    let sortedValue = [...value];
+   
     if (sortType === "price_low_to_high") {
-      sortedData.sort((a, b) => a.price - b.price);
+      sortedValue.sort((a, b) => a.price - b.price);
     } else if (sortType === "price_high_to_low") {
-      sortedData.sort((a, b) => b.price - a.price);
+      sortedValue.sort((a, b) => b.price - a.price);
     } else if (sortType === "likes_high_to_low") {
-      sortedData.sort((a, b) => b.likes - a.likes);
+      sortedValue.sort((a, b) => b.likes - a.likes);
     }
 
-    return sortedData;
+    return sortedValue;
   }
+
+  const sortedData = sortValue(sortType, data);
 
   return (
     <>
@@ -119,7 +98,7 @@ const ExploreItems = ({ loading: propLoading = false }) => {
         ))
       ) : (
         <>
-          {data.map((item) => (
+          {sortedData.slice(0, itemsToShow).map((item) => (
             <div
               key={item.id}
               className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -173,13 +152,11 @@ const ExploreItems = ({ loading: propLoading = false }) => {
             </div>
           ))}
           <div className="col-md-12 text-center">
-            {visibleCount < data.length && (
-              <Link
-                to=""
-                id="loadmore"
-                className="btn-main lead"
-                onClick={handleLoadMore}
+            {itemsToShow < sortedData.length && (
+              <Link to="/explore" className="btn-main lead"
+                onClick={() => setItemsToShow((prev) => prev + 4)}
                 style={{ marginTop: "20px" }}
+                id="loadmore"
               >
                 Load more
               </Link>
