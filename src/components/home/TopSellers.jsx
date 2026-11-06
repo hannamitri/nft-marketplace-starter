@@ -56,7 +56,7 @@ const TopSellers = ({ loading: propLoading = false }) => {
             <ol className="author_list">
               {data.map((item) => (
                 <li key={item.id}>
-                  <div className="author_list_pp">
+                  <div className="author_list_pp">  
                     <Link to="/author/">
                       <img 
                         src={item.authorImage} 
