@@ -71,14 +71,14 @@ const NewItems = ({ loading: propLoading = false }) => {
           {propLoading || isLoading ? (
             skeletonItems.map((_, index) => (
               <div className key={index}>
-                  <div className="nft_coll">
-                    <div className="nft_wrap">
+                  <div className="owl-theme">
+                    <div className="nft_item">
                       <Skeleton width="100%" height="180px" borderRadius="12px" />
                     </div>
-                    <div className="nft_coll_pp">
+                    <div className="author_list_pp">
                     <Skeleton width="60px" height="60px" borderRadius="50%" />
                     </div>
-                    <div className="nft_coll_info">
+                    <div className="nft_item_wrap">
                       <Skeleton width="70%" height="20px" borderRadius="6px" />
                       <Skeleton width="40%" height="16px" borderRadius="6px" />
                     </div>
