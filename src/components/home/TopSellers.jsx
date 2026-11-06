@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react"; // Fixed missing imports
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton"
@@ -23,7 +23,6 @@ const TopSellers = () => {
         console.error("Error fetching top sellers:", error);
       } finally {
         setLoading(false);  
-        setLoading(true);  
       }
     };
     fetchTopSellers();
@@ -43,9 +42,9 @@ const TopSellers = () => {
             <ol className="author_list">
               {loading
                 ? new Array(12).fill(0).map((_, index) => (
-                    <li key="index">
-                          <Skeleton width={50} height={50} borderRadius="50%" />
-                      <div className="author_list_info" >
+                    <li key={index} className="skeleton-top-seller">
+                          <Skeleton width={50} height={50} borderRadius="50%"/>
+                      <div className="skeleton-top-seller-title" >
                         <Skeleton width={100} height={20} />
                         <Skeleton width={50} height={15} />
                       </div>
