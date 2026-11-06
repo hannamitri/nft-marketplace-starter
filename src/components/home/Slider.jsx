@@ -9,7 +9,6 @@ import Skeleton from "../UI/Skeleton.jsx";
 function Slider1() {
   const [hotCollections, setHotCollections] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchHotCollections = async () => {
