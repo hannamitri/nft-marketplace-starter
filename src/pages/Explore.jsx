@@ -3,6 +3,27 @@ import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+      .then((response) => {
+        setData(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+
+  const skeletonItems = Array.from({ length: 4 });
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
