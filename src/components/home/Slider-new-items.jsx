@@ -90,21 +90,13 @@ function Slider2() {
       <Slider {...settings}>
         {loading
           ? new Array(4).fill(0).map((_, index) => (
-              <div key={index}>
-                <div
-                  className="nft_coll"
-                  style={{ margin: "0 10px", display: "block" }}
-                >
-                  <div className="nft_wrap">
-                    <Skeleton height="200px" width="100%" />
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Skeleton width="50px" height="50px" borderRadius="50%" />
-                  </div>
-                  <div className="nft_coll_info" style={{ display: "flex", flexDirection: "column", gap: "5px", alignItems: "center" }}>
-                    <Skeleton width="60%" height="20px" />
-                    <Skeleton width="40%" height="15px" />
-                  </div>
+              <div key={index} style={{ padding: "0 10px"}}>
+                <div className="nft__item">
+                  <Skeleton width="50px" height="50px" borderRadius="50%" />
+                  <Skeleton width="100%" height="200px" />
+                  <Skeleton width="100%" height="25px" style={{ display: "flex", flexDirection: "column", gap: "5px" }} />
+                  <Skeleton width="80%" height="15px" /> 
+                  <Skeleton width="20px" height="20px" />
                 </div>
               </div>
             ))
