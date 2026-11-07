@@ -102,7 +102,7 @@ const NewItems = ({ loading: propLoading = false }) => {
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                      to={`/author/${item.authorId}`}
+                      to="/author/:authorID"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                         title=""
@@ -130,7 +130,7 @@ const NewItems = ({ loading: propLoading = false }) => {
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
+                  <Link to="/item-details/:nftId">
                     <img
                       src={item.nftImage}
                       className="lazy nft__item_preview"
@@ -139,7 +139,7 @@ const NewItems = ({ loading: propLoading = false }) => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to="/item-details/:nftId">
                     <h4>
                       {item.title}
                     </h4>

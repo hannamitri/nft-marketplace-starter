@@ -67,7 +67,6 @@ const Explore = ({ loading: propLoading = false }) => {
                 </div>
               </div>
             </section>
-
             <section aria-label="section">
               <div className="container">
                 <div className="row">

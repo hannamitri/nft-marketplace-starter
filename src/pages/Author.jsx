@@ -13,29 +13,27 @@ const Author = () => {
   const [authorData, setAuthorData] = useState(null);
 
   useEffect(() => {
-    const fetchAuthorData = async () => {
-      setIsLoading(true);
+      window.scrollTo(0, 0);
+    }, []);
 
-      try {
-        const { data } = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
-        );
-        setAuthorData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
+  useEffect(() => {
+    axios
+      .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
+      .then((response) => {
+        setAuthorData(response.data);
         setIsLoading(false);
-      }
-    };
-
-    fetchAuthorData();
+      })
+      .catch((err) => {
+        setError(err.message);
+        setIsLoading(false);
+      });
   }, [authorId]);
 
   if (error) return <p>Error: {error}</p>;
 
   const skeletonItems = Array.from({ length: 4 });
 
-  return (
+ return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>

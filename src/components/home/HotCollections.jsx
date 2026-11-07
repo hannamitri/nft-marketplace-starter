@@ -72,13 +72,13 @@ const HotCollections = ({ loading: propLoading = false }) => {
               {data.map((item) => (
                 <div className="nft_coll" key={item.id}>
                   <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to="/item-details/:nftId">
                       <img src={item.nftImage} className="img-fluid" alt={item.title} />
                     </Link>
                   </div>
 
                   <div className="nft_coll_pp">
-                    <Link to={`/author/${item.authorId}`}>
+                    <Link to="/author/:authorId">
                       <img className="pp-coll" src={item.authorImage} alt="Collection creator" />
                     </Link>
                     <i className="fa fa-check"></i>

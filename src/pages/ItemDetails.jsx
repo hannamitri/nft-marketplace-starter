@@ -10,21 +10,25 @@ const ItemDetails = () => {
   const { nftId } = useParams();
   const [authorData, setAuthorData] = useState(null);
 
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
-     try {
-        const { data } = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
-        );
-        setAuthorData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
+  useEffect(() => {
+    axios
+      .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`)
+      .then((response) => {
+        setAuthorData(response.data);
         setIsLoading(false);
-      }
-    };
+      })
+      .catch((err) => {
+        setError(err.message);
+        setIsLoading(false);
+      });
+  }, [nftId]);
 
   if (error) return <p>Error: {error}</p>;
-  
+ 
   const skeletonItems = Array.from({ length: 1 });
 
   return (
@@ -35,11 +39,13 @@ const ItemDetails = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6 text-center">
-                <img
-                  src={authorData.nftImage}
-                  className="img-fluid img-rounded mb-sm-30 nft-image"
-                  alt=""
-                />
+            {authorData && authorData.nftImage && (
+              <img
+                src={authorData.nftImage}
+                className="img-fluid img-rounded mb-sm-30 nft-image"
+                alt=""
+              />
+            )}
               </div>
                       {isLoading ? (
                         skeletonItems.map((_, index) => (
@@ -79,13 +85,13 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to="/author/:authorId">
                               <img className="lazy" src={authorData.ownerImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{authorData.ownerName}</Link>
+                            <Link to="/author/:authorId">{authorData.ownerName}</Link>
                           </div>
                         </div>
                       </div>
@@ -96,13 +102,13 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to="/author/:authorId">
                               <img className="lazy" src={authorData.creatorImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{authorData.creatorName}</Link>
+                            <Link to="/author/:authorId">{authorData.creatorName}</Link>
                           </div>
                         </div>
                       </div>

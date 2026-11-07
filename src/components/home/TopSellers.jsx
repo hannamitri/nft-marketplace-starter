@@ -25,7 +25,7 @@ const TopSellers = ({ loading: propLoading = false }) => {
   
   if (error) return <p>Error: {error}</p>;
 
-  const skeletonItems = Array.from({ length: 4 });
+  const skeletonItems = Array.from({ length: 1 });
   
   return (
     <section id="section-popular" className="pb-5">
@@ -57,7 +57,7 @@ const TopSellers = ({ loading: propLoading = false }) => {
               {data.map((item) => (
                 <li key={item.id}>
                   <div className="author_list_pp">  
-                    <Link to={`/author/${item.authorId}`}>
+                    <Link to="/author/:authorId">
                       <img 
                         src={item.authorImage} 
                         alt="collection creator" 
@@ -66,7 +66,7 @@ const TopSellers = ({ loading: propLoading = false }) => {
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">{item.authorName}</Link>
+                    <Link to="/author/:authorId">{item.authorName}</Link>
                     <span>{item.price} ETH</span>
                   </div>
                 </li>
