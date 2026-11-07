@@ -57,7 +57,7 @@ const TopSellers = ({ loading: propLoading = false }) => {
               {data.map((item) => (
                 <li key={item.id}>
                   <div className="author_list_pp">  
-                    <Link to="/author/:authorId">
+                    <Link to={`/author/${item.authorId}`}>
                       <img 
                         src={item.authorImage} 
                         alt="collection creator" 
@@ -66,7 +66,7 @@ const TopSellers = ({ loading: propLoading = false }) => {
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author/:authorId">{item.authorName}</Link>
+                    <Link to={`/author/${item.authorId}`}>{item.authorName}</Link>
                     <span>{item.price} ETH</span>
                   </div>
                 </li>

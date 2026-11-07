@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
 
 const AuthorItems = ({ authorData, authorImage, loading }) => {
+  const { authorId } = useParams();
+
    return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -17,13 +19,13 @@ const AuthorItems = ({ authorData, authorImage, loading }) => {
                 <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
                   <div className="nft__item">
                     <div className="author_list_pp">
-                      <Link to="author/:authorId">
+                      <Link to={`/author/${item.authorId}`}>
                         <img className="lazy" src={authorImage} alt="" />
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
                     <div className="nft__item_wrap">
-                      <Link to="item-details/:nftId">
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           className="lazy nft__item_preview"
@@ -32,7 +34,7 @@ const AuthorItems = ({ authorData, authorImage, loading }) => {
                       </Link>
                     </div>
                     <div className="nft__item_info">
-                      <Link to="item-details/:nftId">
+                      <Link to={`/item-details/${item.nftId}`}>
                         <h4>{item.title}</h4>
                       </Link>
                       <div className="nft__item_price">{item.price} ETH</div>

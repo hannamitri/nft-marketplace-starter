@@ -39,32 +39,34 @@ const ItemDetails = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6 text-center">
-            {authorData && authorData.nftImage && (
-              <img
-                src={authorData.nftImage}
-                className="img-fluid img-rounded mb-sm-30 nft-image"
-                alt=""
-              />
-            )}
+                {authorData && authorData.nftImage && (
+                  <img
+                    src={authorData.nftImage}
+                    className="img-fluid img-rounded mb-sm-30 nft-image"
+                    alt=""
+                  />
+                )}
               </div>
-                      {isLoading ? (
-                        skeletonItems.map((_, index) => (
-                          <div className="col-md-12" key={index}>
-                            <div className="d_profile de-flex">
-                              <div className="de-flex-col">
-                                <Skeleton width="100%" height="180px" borderRadius="12px" />
-                              </div>
-                              <div className="profile_avatar">
-                                <Skeleton width="60px" height="60px" borderRadius="50%" />
-                              </div>
-                              <div className="profile_name">
-                                <Skeleton width="70%" height="20px" borderRadius="6px" />
-                                <Skeleton width="40%" height="16px" borderRadius="6px" />
-                              </div>
-                            </div>
-                          </div>
-                        ))
-                      ) : (
+
+              {isLoading ? (
+                skeletonItems.map((_, index) => (
+                  <div className="col-md-12" key={index}>
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <Skeleton width="100%" height="180px" borderRadius="12px" />
+                      </div>
+                      <div className="profile_avatar">
+                        <Skeleton width="60px" height="60px" borderRadius="50%" />
+                      </div>
+                      <div className="profile_name">
+                        <Skeleton width="70%" height="20px" borderRadius="6px" />
+                        <Skeleton width="40%" height="16px" borderRadius="6px" />
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="col-md-6">
                   <div className="item_info">
                     <h2>{authorData.title}</h2>
                     <div className="item_info_counts">
@@ -74,24 +76,24 @@ const ItemDetails = () => {
                       </div>
                       <div className="item_info_like">
                         <i className="fa fa-heart"></i>
-                         {authorData.likes}
+                        {authorData.likes}
                       </div>
                     </div>
-                    <p>
-                     {authorData.description}
-                    </p>
+                    <p>{authorData.description}</p>
                     <div className="d-flex flex-row">
                       <div className="mr40">
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author/:authorId">
+                            <Link to={`/author/${authorData.ownerId}`}>
                               <img className="lazy" src={authorData.ownerImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author/:authorId">{authorData.ownerName}</Link>
+                            <Link to={`/author/${authorData.ownerId}`}>
+                              {authorData.ownerName}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -102,13 +104,15 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author/:authorId">
+                            <Link to={`/author/${authorData.creatorId}`}>
                               <img className="lazy" src={authorData.creatorImage} alt="" />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author/:authorId">{authorData.creatorName}</Link>
+                            <Link to={`/author/${authorData.creatorId}`}>
+                              {authorData.creatorName}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -120,8 +124,9 @@ const ItemDetails = () => {
                       </div>
                     </div>
                   </div>
-                )}
                 </div>
+              )}
+            </div>
           </div>
         </section>
       </div>

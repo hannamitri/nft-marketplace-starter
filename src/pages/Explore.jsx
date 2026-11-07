@@ -5,7 +5,7 @@ import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = ({ loading: propLoading = false }) => {
-  const [data, setData] = useState([]);
+  const [, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
