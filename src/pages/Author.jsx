@@ -3,28 +3,25 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import AuthorItems from "../components/author/AuthorItems";
+import AuthorBanner from "../images/author_banner.jpg";
 
-const Author = ({ loading: propLoading = false }) => {
-  const { authorId } = useParams();
-  const [data, setData] = useState([]);
+const Author = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { authorId } = useParams();
+  const [authorData, setAuthorData] = useState(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const fetchAuthorData = async () => {
+      setIsLoading(true);
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+    );
+      setAuthorData(data);
+      setIsLoading(false); 
+  };
 
-  useEffect(() => {
-    axios
-      .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors/${authorId}`)
-      .then((response) => {
-        setData(response.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
+    fetchAuthorData();
   }, [authorId]);
 
   if (error) return <p>Error: {error}</p>;
@@ -59,56 +56,56 @@ const Author = ({ loading: propLoading = false }) => {
               aria-label="section"
               className="text-light"
               data-bgimage="url(images/author_banner.jpg) top"
-              style={{ background: `url(${data[0]?.AuthorBanner}) top` }}
+              style={{
+                backgroundImage: `url(${AuthorBanner})`,
+                backgroundPosition: "top",
+              }}
             ></section>
-            {data.map((item, index) => (
-              <section aria-label="section" key={index}>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={item.AuthorImage} alt="" />
-
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          {item.authorName}
-                          <span className="profile_username">{item.tag}</span>
-                          <span id="wallet" className="profile_wallet">
-                            {item.address}
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
+            <section aria-label="section">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_avatar">
+                          <img src={authorData.authorImage} alt="" />
+                          <i className="fa fa-check"></i>
+                          <div className="profile_name">
+                            <h4>
+                              {authorData.authorName}
+                              <span className="profile_username">{authorData.tag}</span>
+                              <span id="wallet" className="profile_wallet">
+                                {authorData.address}
+                              </span>
+                              <button id="btn_copy" title="Copy Text">
+                                Copy
+                              </button>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <div className="profile_follower">{authorData.followers} Followers</div>
+                          <Link to="#" className="btn-main">
+                            Follow
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">{item.followers}</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                </div>
+              </div>
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="de_tab tab_simple">
+                      <AuthorItems />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-              </section>
-            ))}
-            <div className="container">
-              <div className="row">
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
-                </div>
-              </div>
-            </div>
-          </div>
+            </section>
           </>
         )}
       </div>

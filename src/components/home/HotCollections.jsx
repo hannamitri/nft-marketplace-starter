@@ -78,7 +78,7 @@ const HotCollections = ({ loading: propLoading = false }) => {
                   </div>
 
                   <div className="nft_coll_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${item.authorId}`}>
                       <img className="pp-coll" src={item.authorImage} alt="Collection creator" />
                     </Link>
                     <i className="fa fa-check"></i>
