@@ -11,18 +11,17 @@ const ItemDetails = () => {
   const [authorData, setAuthorData] = useState(null);
 
 
-  useEffect(() => {
-    const fetchAuthorData = async () => {
-      setIsLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
-    );
-      setAuthorData(data);
-      setIsLoading(false); 
-  };
-
-    fetchAuthorData();
-  }, [nftId]);
+     try {
+        const { data } = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
+        );
+        setAuthorData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
   if (error) return <p>Error: {error}</p>;
   
