@@ -8,18 +8,25 @@ import AuthorBanner from "../images/author_banner.jpg";
 const Author = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
   const { authorId } = useParams();
   const [authorData, setAuthorData] = useState(null);
 
   useEffect(() => {
     const fetchAuthorData = async () => {
       setIsLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
-    );
-      setAuthorData(data);
-      setIsLoading(false); 
-  };
+
+      try {
+        const { data } = await axios.get(
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+        );
+        setAuthorData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
     fetchAuthorData();
   }, [authorId]);
@@ -87,8 +94,15 @@ const Author = () => {
                       <div className="profile_follow de-flex">
                         <div className="de-flex-col">
                           <div className="profile_follower">{authorData.followers} Followers</div>
-                          <Link to="#" className="btn-main">
-                            Follow
+                          <Link
+                            to="#"
+                            className="btn-main"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              setIsFollowing((following) => !following);
+                            }}
+                          >
+                            {isFollowing ? "UnFollow" : "Follow"}
                           </Link>
                         </div>
                       </div>
@@ -100,7 +114,11 @@ const Author = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="de_tab tab_simple">
-                      <AuthorItems />
+                      <AuthorItems
+                        authorData={authorData.nftCollection}
+                        authorImage={authorData.authorImage}
+                        loading={isLoading}
+                      />
                     </div>
                   </div>
                 </div>

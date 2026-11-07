@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
 
-const AuthorItems = ({ authorData, loading }) => {
+const AuthorItems = ({ authorData, authorImage, loading }) => {
   return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -18,7 +18,7 @@ const AuthorItems = ({ authorData, loading }) => {
                   <div className="nft__item">
                     <div className="author_list_pp">
                       <Link to="">
-                        <img className="lazy" src={item.authorImage} alt="" />
+                        <img className="lazy" src={authorImage} alt="" />
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
