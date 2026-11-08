@@ -78,6 +78,7 @@ useEffect(() => {
               loading={loading}
               visibleCount={visibleCount}
               setVisibleCount={setVisibleCount}
+              now={now}
             />
             </div>
           </div>

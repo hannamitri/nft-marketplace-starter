@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const ExploreItems = ({ items, loading, visibleCount, setVisibleCount }) => {
+const ExploreItems = ({ items, loading, visibleCount, setVisibleCount, now }) => {
 
   return (
     <>
@@ -23,8 +23,16 @@ const ExploreItems = ({ items, loading, visibleCount, setVisibleCount }) => {
         ></div>
         ))
       ) : (
-        items.slice(0, visibleCount).map((item, index) => (
-          <div
+        items.slice(0, visibleCount).map((item, index) => {
+
+          const remainingTime = Math.max(0, item.expiryDate - now);
+          const seconds = Math.floor((remainingTime / 1000) % 60);
+          const minutes = Math.floor((remainingTime / 1000 / 60) % 60);
+          const hours = Math.floor((remainingTime / 1000 / 60 / 60) % 24);
+          const days = Math.floor(remainingTime / 1000 / 60 / 60 / 24);
+
+          return (
+            <div
            className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
            key={item.nftId}
           >
@@ -39,7 +47,11 @@ const ExploreItems = ({ items, loading, visibleCount, setVisibleCount }) => {
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+
+            {remainingTime > 0 && (
+              <div className="de_countdown">{days}d {hours}h {minutes}m {seconds}s</div>
+            )}
+          
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -75,7 +87,7 @@ const ExploreItems = ({ items, loading, visibleCount, setVisibleCount }) => {
             </div>
           </div>
         </div>
-        ))
+        )})
       )}
             <div className="col-md-12 text-center">
         {!loading && visibleCount < Math.min(items.length, 16) && (

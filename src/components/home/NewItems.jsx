@@ -107,9 +107,12 @@ const NewItems = () => {
                         </Link>
                       </div>
 
-                      <div className="de_countdown">
+                      {remainingTime > 0 && (
+                        <div className="de_countdown">
                         {days}d {hours}h {minutes}m {seconds}s
                       </div>
+                      )}
+                      
 
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
