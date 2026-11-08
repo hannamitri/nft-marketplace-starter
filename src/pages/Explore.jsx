@@ -8,6 +8,7 @@ const [data, setData] = useState([]);
 const [loading, setLoading] = useState(true);
 const [now, setNow] = useState(Date.now());
 const [visibleCount, setVisibleCount] = useState(8);
+const [filter, setFilter] = useState("");
 
 useEffect(() => {
   let timer;
@@ -15,7 +16,7 @@ useEffect(() => {
   async function fetchData() {
     try {
       const response = await fetch(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore${filter ? `?filter=${filter}` : ""}`
       );
 
       if (!response.ok) {
@@ -37,7 +38,11 @@ useEffect(() => {
   }
   
   fetchData();
-}, []);
+}, [filter]);
+
+const handleFilterChange = (event) => {
+  setFilter(event.target.value);
+}
 
   useEffect(() => {
     const timer = setInterval(() => {

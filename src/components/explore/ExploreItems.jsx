@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const ExploreItems = ({ items, loading, visibleCount, setVisibleCount, now }) => {
+const ExploreItems = ({ items, loading, visibleCount, setVisibleCount, now, filter, setFilter, handleFilterChange }) => {
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={filter} onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
