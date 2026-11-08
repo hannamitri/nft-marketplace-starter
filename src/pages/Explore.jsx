@@ -83,6 +83,7 @@ const handleFilterChange = (event) => {
               loading={loading}
               visibleCount={visibleCount}
               setVisibleCount={setVisibleCount}
+              handleFilterChange={handleFilterChange}
               now={now}
             />
             </div>
