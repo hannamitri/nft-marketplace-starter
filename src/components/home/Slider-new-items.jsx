@@ -5,40 +5,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "../UI/Skeleton.jsx";
-
-
-const CountdownTimer = ({ expiryDate }) => {
-  const [timeLeft, setTimeLeft] = useState("");
-
-  useEffect(() => {
-    if (!expiryDate) return;
-
-    const calculateTime = () => {
-      const difference = expiryDate - Date.now();
-      if (difference <= 0) {
-        setTimeLeft("Expired");
-        return;
-      }
-
-      const hours = Math.floor(difference / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
-    };
-
-    calculateTime();
-    const interval = setInterval(calculateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, [expiryDate]);
-
-  if (!expiryDate) {
-    return null;
-  }
-
-  return <div className="de_countdown">{timeLeft}</div>;
-};
+import CountdownTimer from "../UI/countdown.jsx";
 
 
 function Slider2() {
