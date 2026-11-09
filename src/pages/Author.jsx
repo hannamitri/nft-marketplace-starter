@@ -5,7 +5,6 @@ import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
 
 const Author = () => {
-
   const [authorItems, setAuthorItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const webId = useParams();
@@ -18,7 +17,6 @@ const Author = () => {
         );
         if (response.data) {
           setAuthorItems(response.data);
-          console.log(response.data)
         } else {
           setAuthorItems([]);
         }
@@ -29,51 +27,53 @@ const Author = () => {
       }
     };
     fetchAuthorItems();
-  }, []);
-
-
+  }, [webId.id]);
 
   return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
+    <div id='wrapper'>
+      <div className='no-bottom no-top' id='content'>
+        <div id='top'></div>
 
         <section
-          id="profile_banner"
-          aria-label="section"
-          className="text-light"
-          data-bgimage="url(images/author_banner.jpg) top"
+          id='profile_banner'
+          aria-label='section'
+          className='text-light'
+          data-bgimage='url(images/author_banner.jpg) top'
           style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
 
-        <section aria-label="section">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={authorItems.authorImage} alt="" />
+        <section aria-label='section'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-md-12'>
+                <div className='d_profile de-flex'>
+                  <div className='de-flex-col'>
+                    <div className='profile_avatar'>
+                      <img src={authorItems.authorImage} alt='' />
 
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
+                      <i className='fa fa-check'></i>
+                      <div className='profile_name'>
                         <h4>
                           Monica Lucas
-                          <span className="profile_username">{authorItems.tag}</span>
-                          <span id="wallet" className="profile_wallet">
+                          <span className='profile_username'>
+                            {authorItems.tag}
+                          </span>
+                          <span id='wallet' className='profile_wallet'>
                             {authorItems.address}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <button id='btn_copy' title='Copy Text'>
                             Copy
                           </button>
                         </h4>
                       </div>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">{authorItems.followers} followers</div>
-                      <Link to="#" className="btn-main">
+                  <div className='profile_follow de-flex'>
+                    <div className='de-flex-col'>
+                      <div className='profile_follower'>
+                        {authorItems.followers} followers
+                      </div>
+                      <Link to='#' className='btn-main'>
                         Follow
                       </Link>
                     </div>
@@ -81,9 +81,12 @@ const Author = () => {
                 </div>
               </div>
 
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems authorImage={authorItems.authorImage} collection={authorItems.nftCollection} />
+              <div className='col-md-12'>
+                <div className='de_tab tab_simple'>
+                  <AuthorItems
+                    authorImage={authorItems.authorImage}
+                    collection={authorItems.nftCollection || []}
+                  />
                 </div>
               </div>
             </div>
