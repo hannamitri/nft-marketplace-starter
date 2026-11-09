@@ -68,7 +68,7 @@ function Slider2() {
               </div>
             ))
           : newItems.map((item) => (
-              <ItemTile expiryDate={item.expiryDate} nftImage={item.nftImage} authorImage={item.authorImage} id={item.id} price={item.price} title={item.title} likes={item.likes} nftId={item.nftID} authorId={item.authorId}/>
+              <ItemTile expiryDate={item.expiryDate} nftImage={item.nftImage} authorImage={item.authorImage} id={item.id} price={item.price} title={item.title} likes={item.likes} nftId={item.nftId} authorId={item.authorId}/>
             ))}
       </Slider>
     </div>
