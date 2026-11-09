@@ -1,0 +1,46 @@
+/* Fixed-width digits so the timer doesn't jitter */
+.ei-countdown {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Loading skeleton */
+.ei-skeleton {
+  padding: 20px;
+}
+.ei-skeleton__img {
+  aspect-ratio: 1 / 1;
+  background: #e6e6e6;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.ei-skeleton__line {
+  display: block;
+  height: 14px;
+  width: 60%;
+  margin: 8px 0;
+  background: #e6e6e6;
+  border-radius: 4px;
+}
+.ei-skeleton__line--short {
+  width: 30%;
+}
+.ei-skeleton__img,
+.ei-skeleton__line {
+  animation: ei-pulse 1.4s ease-in-out infinite;
+}
+@keyframes ei-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ei-skeleton__img,
+  .ei-skeleton__line {
+    animation: none;
+  }
+}
+
+.ei-error {
+  margin: 30px 0;
+}

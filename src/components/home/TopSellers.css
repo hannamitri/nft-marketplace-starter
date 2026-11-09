@@ -1,0 +1,46 @@
+/* Loading skeleton: matches the size of a real seller row */
+.ts-skeleton {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ts-skeleton__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e6e6e6;
+  flex-shrink: 0;
+}
+.ts-skeleton__text {
+  flex: 1;
+}
+.ts-skeleton__line {
+  display: block;
+  height: 12px;
+  width: 70%;
+  margin: 6px 0;
+  background: #e6e6e6;
+  border-radius: 4px;
+}
+.ts-skeleton__line--short {
+  width: 35%;
+}
+.ts-skeleton__avatar,
+.ts-skeleton__line {
+  animation: ts-pulse 1.4s ease-in-out infinite;
+}
+@keyframes ts-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ts-skeleton__avatar,
+  .ts-skeleton__line {
+    animation: none;
+  }
+}
+
+.ts-error {
+  margin-top: 30px;
+}

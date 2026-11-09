@@ -1,0 +1,88 @@
+.hc-wrap {
+  position: relative;
+  margin-top: 30px;
+}
+
+/* Keep the slide's card filling its column */
+.hc-wrap .nft_coll {
+  height: 100%;
+}
+.hc-wrap .nft_wrap img {
+  width: 100%;
+  display: block;
+}
+
+/* Arrows: hidden on touch-size screens where swiping is the gesture */
+.hc-arrow {
+  display: none;
+  position: absolute;
+  top: 40%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.hc-arrow:hover {
+  background: #f2f2f2;
+}
+.hc-arrow:focus-visible {
+  outline: 3px solid #8364e2;
+  outline-offset: 2px;
+}
+.hc-arrow--prev {
+  left: -14px;
+}
+.hc-arrow--next {
+  right: -14px;
+}
+@media (min-width: 768px) {
+  .hc-arrow {
+    display: block;
+  }
+}
+
+/* Loading skeleton */
+.hc-skeleton__img {
+  aspect-ratio: 1 / 1;
+  background: #e6e6e6;
+}
+.hc-skeleton__info {
+  padding-top: 40px;
+}
+.hc-skeleton__line {
+  display: block;
+  height: 14px;
+  margin: 8px auto;
+  width: 60%;
+  background: #e6e6e6;
+  border-radius: 4px;
+}
+.hc-skeleton__line--short {
+  width: 30%;
+}
+.hc-skeleton__img,
+.hc-skeleton__line {
+  animation: hc-pulse 1.4s ease-in-out infinite;
+}
+@keyframes hc-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-skeleton__img,
+  .hc-skeleton__line {
+    animation: none;
+  }
+}
+
+.hc-error {
+  margin-top: 30px;
+}

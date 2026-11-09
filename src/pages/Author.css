@@ -1,0 +1,53 @@
+/* Loading skeleton */
+.au-skeleton {
+  padding: 20px;
+}
+.au-skeleton__img {
+  aspect-ratio: 1 / 1;
+  background: #e6e6e6;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.au-skeleton__line {
+  display: block;
+  height: 14px;
+  width: 60%;
+  margin: 8px 0;
+  background: #e6e6e6;
+  border-radius: 4px;
+}
+.au-skeleton__line--short {
+  width: 30%;
+}
+.au-skeleton__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #e6e6e6;
+}
+.au-skeleton__img,
+.au-skeleton__line,
+.au-skeleton__avatar {
+  animation: au-pulse 1.4s ease-in-out infinite;
+}
+@keyframes au-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .au-skeleton__img,
+  .au-skeleton__line,
+  .au-skeleton__avatar {
+    animation: none;
+  }
+}
+
+.au-error {
+  margin: 60px 0;
+}
+
+/* Long wallet address must not push the page sideways on phones */
+#wallet {
+  overflow-wrap: anywhere;
+}

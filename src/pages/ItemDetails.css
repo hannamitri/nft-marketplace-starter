@@ -1,0 +1,42 @@
+/* Loading skeleton */
+.id-skeleton__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #e6e6e6;
+  border-radius: 8px;
+}
+.id-skeleton__line {
+  display: block;
+  height: 14px;
+  width: 90%;
+  margin: 12px 0;
+  background: #e6e6e6;
+  border-radius: 4px;
+}
+.id-skeleton__line--title {
+  height: 32px;
+  width: 60%;
+  margin-bottom: 24px;
+}
+.id-skeleton__line--short {
+  width: 40%;
+}
+.id-skeleton__image,
+.id-skeleton__line {
+  animation: id-pulse 1.4s ease-in-out infinite;
+}
+@keyframes id-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .id-skeleton__image,
+  .id-skeleton__line {
+    animation: none;
+  }
+}
+
+.id-error {
+  margin: 60px 0;
+}

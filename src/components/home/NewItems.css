@@ -1,0 +1,95 @@
+.ni-wrap {
+  position: relative;
+  margin-top: 30px;
+}
+
+.ni-wrap .nft__item {
+  margin-bottom: 0;
+}
+.ni-wrap .nft__item_preview {
+  width: 100%;
+  display: block;
+}
+
+/* Fixed-width digits so the timer doesn't jitter as numbers change */
+.ni-countdown {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Arrows: shown from tablet up; phones swipe */
+.ni-arrow {
+  display: none;
+  position: absolute;
+  top: 40%;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.ni-arrow:hover {
+  background: #f2f2f2;
+}
+.ni-arrow:focus-visible {
+  outline: 3px solid #8364e2;
+  outline-offset: 2px;
+}
+.ni-arrow--prev {
+  left: -14px;
+}
+.ni-arrow--next {
+  right: -14px;
+}
+@media (min-width: 768px) {
+  .ni-arrow {
+    display: block;
+  }
+}
+
+/* Loading skeleton */
+.ni-skeleton {
+  padding: 20px;
+}
+.ni-skeleton__img {
+  aspect-ratio: 1 / 1;
+  background: #e6e6e6;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.ni-skeleton__line {
+  display: block;
+  height: 14px;
+  width: 60%;
+  margin: 8px 0;
+  background: #e6e6e6;
+  border-radius: 4px;
+}
+.ni-skeleton__line--short {
+  width: 30%;
+}
+.ni-skeleton__img,
+.ni-skeleton__line {
+  animation: ni-pulse 1.4s ease-in-out infinite;
+}
+@keyframes ni-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ni-skeleton__img,
+  .ni-skeleton__line {
+    animation: none;
+  }
+}
+
+.ni-error {
+  margin-top: 30px;
+}
