@@ -3,29 +3,28 @@ import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
+import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
   const [authorItems, setAuthorItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const webId = useParams();
   const [follow, setFollow] = useState(true);
-  const [follow1, setFollow1] = useState(true);
-  const [followCount, setFollowCount] = useState(0)
+  const [follow1, setFollow1] = useState("Follow");
+  const [followCount, setFollowCount] = useState(0);
 
-
-  const handleClick = (e) => { 
+  const handleClick = (e) => {
     e.preventDefault();
-    if (follow === true) { 
-      setFollow(false); 
-      setFollow1("Unfollow"); 
-      setFollowCount(followCount + 1); 
-    } else { 
-      setFollow(true); 
-      setFollow1("Follow"); 
-      setFollowCount(followCount - 1); 
-    } 
-  }; 
-
+    if (follow === true) {
+      setFollow(false);
+      setFollow1("Unfollow");
+      setFollowCount(followCount + 1);
+    } else {
+      setFollow(true);
+      setFollow1("Follow");
+      setFollowCount(followCount - 1);
+    }
+  };
 
   useEffect(() => {
     const fetchAuthorItems = async () => {
@@ -45,7 +44,7 @@ const Author = () => {
       } catch (error) {
         console.error("Error fetching Author items:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
     fetchAuthorItems();
@@ -70,32 +69,47 @@ const Author = () => {
               <div className='col-md-12'>
                 <div className='d_profile de-flex'>
                   <div className='de-flex-col'>
-                    <div className='profile_avatar'>
-                      <img src={authorItems.authorImage} alt='' />
+                    {loading ? (
+                      <>
+                        <Skeleton width='150px' height='150px' borderRadius='50%' />
+                        <div style={{ marginTop: '15px' }}>
+                          <Skeleton width="180px" height="25px" />
+                          <Skeleton width="100px" height="20px" style={{ marginTop: '10px' }} />
+                          <Skeleton width="100px" height="20px" style={{ marginTop: '10px' }} />
+                        </div>
+                      </>
+                    ) : (
+                      <div className='profile_avatar'>
+                        <img src={authorItems.authorImage} alt='' />
 
-                      <i className='fa fa-check'></i>
-                      <div className='profile_name'>
-                        <h4>
-                          Monica Lucas
-                          <span className='profile_username'>
-                            {authorItems.tag}
-                          </span>
-                          <span id='wallet' className='profile_wallet'>
-                            {authorItems.address}
-                          </span>
-                          <button id='btn_copy' title='Copy Text'>
-                            Copy
-                          </button>
-                        </h4>
+                        <i className='fa fa-check'></i>
+                        <div className='profile_name'>
+                          <h4>
+                            {authorItems.name || "Monica Lucas"}
+                            <span className='profile_username'>
+                              {authorItems.tag}
+                            </span>
+                            <span id='wallet' className='profile_wallet'>
+                              {authorItems.address}
+                            </span>
+                            <button id='btn_copy' title='Copy Text'>
+                              Copy
+                            </button>
+                          </h4>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className='profile_follow de-flex'>
                     <div className='de-flex-col'>
                       <div className='profile_follower'>
                         {followCount} followers
                       </div>
-                      <Link to='#' on onClick={handleClick} className='btn-main'>
+                      <Link
+                        to='#'
+                        onClick={handleClick}
+                        className='btn-main'
+                      >
                         {follow1}
                       </Link>
                     </div>
@@ -108,6 +122,7 @@ const Author = () => {
                   <AuthorItems
                     authorImage={authorItems.authorImage}
                     collection={authorItems.nftCollection || []}
+                    loading={loading}
                   />
                 </div>
               </div>
