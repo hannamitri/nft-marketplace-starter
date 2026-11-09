@@ -2,8 +2,50 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import Slider from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import Skeleton from "../UI/Skeleton";
+import axios from "axios";
 
 const NewItems = () => {
+  const [items, setItems] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
+        );
+        setItems(response.data);
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
+  const getTimeRemaining = (expiryDate) => {
+    const now = Date.now();
+    const distance = expiryDate - now; // Calculate the distance in milliseconds
+
+    if (distance < 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0};
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 *24));
+    const hours = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+
+  }
+
+
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -14,17 +56,31 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+          {loading ? (
+            <div className="skeleton-container">
+              {Array(10).fill(0).map((_, index) =>
+              <Skeleton key={index} 
+              width="100%" height="150px" borderRadius="8px" />
+              ))}
+              </div>
+  ) : (
+    <Slider className="owl-theme" loop nav dots={false} margin={8} responsive={{
+      0: {items: 1},
+      572: { items: 2},
+      992: { items: 3},
+      1200: { items: 4},
+    }}>
+          {items.map((item) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                   >
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    <img className="lazy" src={item.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -48,18 +104,17 @@ const NewItems = () => {
                       </div>
                     </div>
                   </div>
-
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.id}`}>
                     <img
-                      src={nftImage}
+                      src={item.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
                     />
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                  <Link to={`/item-details/${item.id}`}>
+                    <h4>{item.title}</h4>
                   </Link>
                   <div className="nft__item_price">3.08 ETH</div>
                   <div className="nft__item_like">
@@ -70,6 +125,8 @@ const NewItems = () => {
               </div>
             </div>
           ))}
+          </Slider>
+             )}
         </div>
       </div>
     </section>
