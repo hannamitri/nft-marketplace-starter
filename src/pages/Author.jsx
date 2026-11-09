@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -17,7 +18,7 @@ const Author = () => {
           data-bgimage="url(images/author_banner.jpg) top"
           style={{ background: `url(${AuthorBanner}) top` }}
         ></section>
-
+ 
         <section aria-label="section">
           <div className="container">
             <div className="row">

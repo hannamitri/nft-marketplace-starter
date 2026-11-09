@@ -1,8 +1,32 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const TopSellers = () => {
+
+const TopSellers = ({ loading: propLoading = false }) => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+        .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
+        .then((response) => {
+          setData(response.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setIsLoading(false);
+        });
+  }, []);
+  
+  if (error) return <p>Error: {error}</p>;
+
+  const skeletonItems = Array.from({ length: 4 });
+  
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -13,31 +37,46 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          {propLoading || isLoading ? (
+            skeletonItems.map((_, index) => (
+              <div className="col-md-12" key={index}>
+                <ol className="author_list">
+                  <div className="author_list_pp">
+                    <Skeleton width="100%" height="180px" borderRadius="12px" />
+                  </div>
+                  <div className="author_list_info">
+                    <Skeleton width="70%" height="20px" borderRadius="6px" />
+                    <Skeleton width="40%" height="16px" borderRadius="6px" />
+                  </div>
+                </ol>
+              </div>
+            ))
+          ) : (
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
-                  <div className="author_list_pp">
-                    <Link to="/author">
-                      <img
-                        className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
+              {data.map((item) => (
+                <li key={item.id}>
+                  <div className="author_list_pp">  
+                    <Link to="/author/">
+                      <img 
+                        src={item.authorImage} 
+                        alt="collection creator" 
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                    <Link to="/author">{item.authorName}</Link>
+                    <span>{item.price} ETH</span>
                   </div>
                 </li>
               ))}
             </ol>
           </div>
-        </div>
+          )}
       </div>
-    </section>
+    </div>
+ </section>
   );
 };
 
