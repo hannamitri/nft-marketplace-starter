@@ -8,6 +8,25 @@ const Author = () => {
   const [authorItems, setAuthorItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const webId = useParams();
+  const [follow, setFollow] = useState(true);
+  const [follow1, setFollow1] = useState(true);
+  const [followCount, setFollowCount] = useState(0)
+
+
+  const handleClick = (e) => { 
+    e.preventDefault();
+    if (follow === true) { 
+      setFollow(false); 
+      setFollow1("Unfollow"); 
+      setFollowCount(followCount + 1); 
+    } else { 
+      setFollow(true); 
+      setFollow1("Follow"); 
+      setFollowCount(followCount - 1); 
+    } 
+  }; 
+
+
   useEffect(() => {
     const fetchAuthorItems = async () => {
       setLoading(true);
@@ -17,6 +36,9 @@ const Author = () => {
         );
         if (response.data) {
           setAuthorItems(response.data);
+          setFollow1("Follow");
+          setFollow(true);
+          setFollowCount(response.data.followers || 0);
         } else {
           setAuthorItems([]);
         }
@@ -71,10 +93,10 @@ const Author = () => {
                   <div className='profile_follow de-flex'>
                     <div className='de-flex-col'>
                       <div className='profile_follower'>
-                        {authorItems.followers} followers
+                        {followCount} followers
                       </div>
-                      <Link to='#' className='btn-main'>
-                        Follow
+                      <Link to='#' on onClick={handleClick} className='btn-main'>
+                        {follow1}
                       </Link>
                     </div>
                   </div>
