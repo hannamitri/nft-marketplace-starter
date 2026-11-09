@@ -4,6 +4,7 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Skeleton from "../components/UI/Skeleton";
 
 const ItemDetails = () => {
   const location = useLocation();
@@ -12,44 +13,40 @@ const ItemDetails = () => {
   const [authorInfo, setAuthorInfo] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch author information based on the item's authorId
-  useEffect(() => {
-  async function fetchAuthor() {
-    try {
-      const response = await axios.get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
-      );
-
-      const author = response.data.find(
-        (seller) => seller.authorId === item?.authorId
-      );
-
-      setAuthorInfo(author);
-    } catch (error) {
-      console.log("Error fetching author:", error);
-    }
-  }
-
-  if (item?.authorId) {
-    fetchAuthor();
-  }
-}, [item?.authorId]);
-
-  // Skeleton loading effect for 1 second
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-    setLoading(true);
 
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    async function fetchAuthor() {
+      try {
+        setLoading(true);
 
-    return () => clearTimeout(timer);
-  }, [item]);
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+        );
 
-  if (!item) {
-    return <p>Item information not found. Please return to New Items.</p>;
-  }
+        const author = response.data.find(
+          (seller) => seller.authorId === item?.authorId
+        );
+
+        setAuthorInfo(author || null);
+      } catch (error) {
+        console.log("Error fetching author:", error);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
+      }
+    }
+
+    if (item?.authorId) {
+      fetchAuthor();
+    } else {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
+    }
+  }, [item?.authorId]);
 
   return (
     <div id="wrapper">
@@ -63,7 +60,11 @@ const ItemDetails = () => {
               {/* NFT IMAGE */}
               <div className="col-md-6 text-center">
                 {loading ? (
-                  <div className="item-skeleton-image"></div>
+                  <Skeleton
+                    width="100%"
+                    height="400px"
+                    borderRadius="12px"
+                  />
                 ) : (
                   <img
                     src={item.nftImage || nftImage}
@@ -79,7 +80,11 @@ const ItemDetails = () => {
 
                   {/* TITLE */}
                   {loading ? (
-                    <div className="item-skeleton-title"></div>
+                    <Skeleton
+                      width="75%"
+                      height="32px"
+                      borderRadius="5px"
+                    />
                   ) : (
                     <h2>{item.title || "Untitled NFT"}</h2>
                   )}
@@ -89,7 +94,11 @@ const ItemDetails = () => {
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
                       {loading ? (
-                        <div className="item-skeleton-small"></div>
+                        <Skeleton
+                          width="30px"
+                          height="15px"
+                          borderRadius="4px"
+                        />
                       ) : (
                         "100"
                       )}
@@ -98,8 +107,12 @@ const ItemDetails = () => {
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
                       {loading ? (
-                      <div className="item-skeleton-small"></div>
-                    ) : (
+                        <Skeleton
+                          width="30px"
+                          height="15px"
+                          borderRadius="4px"
+                        />
+                      ) : (
                       item.likes !== undefined && item.likes !== null
                         ? item.likes
                         : 0
@@ -109,12 +122,11 @@ const ItemDetails = () => {
 
                   {/* DESCRIPTION */}
                   {loading ? (
-                    <div className="item-skeleton-description">
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
+                    <div className="d-flex flex-column" style={{ gap: "10px" }}>
+                      <Skeleton width="100%" height="14px" />
+                      <Skeleton width="95%" height="14px" />
+                      <Skeleton width="90%" height="14px" />
+                      <Skeleton width="85%" height="14px" />
                     </div>
                   ) : (
                     <p>
@@ -127,7 +139,11 @@ const ItemDetails = () => {
                     <div className="mr40">
 
                       {loading ? (
-                        <div className="item-skeleton-heading"></div>
+                        <Skeleton
+                          width="65px"
+                          height="18px"
+                          borderRadius="4px"
+                        />
                       ) : (
                         <h6>Owner</h6>
                       )}
@@ -135,7 +151,11 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           {loading ? (
-                            <div className="item-skeleton-avatar"></div>
+                            <Skeleton
+                              width="50px"
+                              height="50px"
+                              borderRadius="50%"
+                            />
                           ) : (
                             <Link to="/author" 
                               state={{ author: authorInfo }}>
@@ -151,7 +171,11 @@ const ItemDetails = () => {
 
                         <div className="author_list_info">
                           {loading ? (
-                            <div className="item-skeleton-name"></div>
+                            <Skeleton
+                              width="110px"
+                              height="16px"
+                              borderRadius="4px"
+                            />
                           ) : (
                             <Link to="/author"
                               state={{ author: authorInfo }}
@@ -169,7 +193,11 @@ const ItemDetails = () => {
                     <div className="de_tab_content">
 
                       {loading ? (
-                        <div className="item-skeleton-heading"></div>
+                        <Skeleton
+                          width="65px"
+                          height="18px"
+                          borderRadius="4px"
+                        />
                       ) : (
                         <h6>Creator</h6>
                       )}
@@ -177,7 +205,11 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           {loading ? (
-                            <div className="item-skeleton-avatar"></div>
+                            <Skeleton
+                              width="50px"
+                              height="50px"
+                              borderRadius="50%"
+                            />
                           ) : (
                             <Link to="/author" 
                               state={{ author: authorInfo }}>
@@ -193,7 +225,11 @@ const ItemDetails = () => {
 
                         <div className="author_list_info">
                           {loading ? (
-                            <div className="item-skeleton-name"></div>
+                            <Skeleton
+                              width="110px"
+                              height="16px"
+                              borderRadius="4px"
+                            />
                           ) : (
                             <Link to="/author"
                               state={{ author: authorInfo }}
@@ -209,7 +245,11 @@ const ItemDetails = () => {
 
                     {/* PRICE */}
                     {loading ? (
-                      <div className="item-skeleton-heading"></div>
+                      <Skeleton
+                        width="65px"
+                        height="18px"
+                        borderRadius="4px"
+                      />
                     ) : (
                       <h6>Price</h6>
                     )}
@@ -217,8 +257,16 @@ const ItemDetails = () => {
                     <div className="nft-item-price">
                       {loading ? (
                         <>
-                          <div className="item-skeleton-eth"></div>
-                          <div className="item-skeleton-price"></div>
+                          <Skeleton
+                            width="25px"
+                            height="25px"
+                            borderRadius="50%"
+                          />
+                          <Skeleton
+                            width="100px"
+                            height="20px"
+                            borderRadius="4px"
+                          />
                         </>
                       ) : (
                         <>

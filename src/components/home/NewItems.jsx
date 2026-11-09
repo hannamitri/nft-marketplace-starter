@@ -2,51 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
+import Countdown from "../UI/Countdown";
+import Skeleton from "../UI/Skeleton";
 
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
-
-const NFTSkeleton = () => {
-  return (
-    <div className="item">
-      <div className="nft__item skeleton-card">
-        <div className="skeleton-image"></div>
-        <div className="skeleton-profile"></div>
-        <div className="skeleton-title"></div>
-        <div className="skeleton-code"></div>
-      </div>
-    </div>
-  );
-};
-
-const Countdown = ({ expiryDate }) => {
-const [currentTime, setCurrentTime] = useState(Date.now());
-
-useEffect(() => {
-  const timer = setInterval(() => {
-    setCurrentTime(Date.now());
-  }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const remaining = Math.max(0, expiryDate - currentTime);
-
-  if (remaining === 0) return null;
-
-  const hours = Math.floor(remaining / 3600000);
-  const minutes = Math.floor((remaining % 3600000) / 60000);
-  const seconds = Math.floor((remaining % 60000) / 1000);
-
-  return (
-    <div className="de_countdown">
-      {`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`}
-    </div>
-  );
-};
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -74,7 +37,7 @@ const NewItems = () => {
       // Keep skeleton visible for at least 1 second
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 1500);
     }
   };
 
@@ -119,7 +82,35 @@ const NewItems = () => {
                 className="col-lg-3 col-md-6 col-sm-6"
                 key={index}
               >
-                <NFTSkeleton />
+                <div className="item">
+                  <div className="nft__item skeleton-card">
+
+                    <Skeleton
+                      width="100%"
+                      height="200px"
+                      borderRadius="8px"
+                    />
+
+                    <Skeleton
+                      width="45px"
+                      height="45px"
+                      borderRadius="50%"
+                    />
+
+                    <Skeleton
+                      width="70%"
+                      height="20px"
+                      borderRadius="5px"
+                    />
+
+                    <Skeleton
+                      width="40%"
+                      height="15px"
+                      borderRadius="5px"
+                    />
+
+                  </div>
+                </div>
               </div>
             ))}
           </div>

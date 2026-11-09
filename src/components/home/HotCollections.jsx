@@ -5,6 +5,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "../../css/styles/style.css";
+import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -24,7 +25,7 @@ const HotCollections = () => {
         // Keep skeleton visible for at least 1 second
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 1500);
       }
     };
 
@@ -48,11 +49,38 @@ const HotCollections = () => {
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 key={item}
               >
-                <div className="skeleton-card">
-                  <div className="skeleton-image"></div>
-                  <div className="skeleton-profile"></div>
-                  <div className="skeleton-title"></div>
-                  <div className="skeleton-code"></div>
+                <div className="nft_coll">
+
+                  <div className="nft_wrap">
+                    <Skeleton
+                      width="100%"
+                      height="200px"
+                      borderRadius="8px"
+                    />
+                  </div>
+
+                  <div className="nft_coll_pp">
+                    <Skeleton
+                      width="50px"
+                      height="50px"
+                      borderRadius="50%"
+                    />
+                  </div>
+
+                  <div className="nft_coll_info">
+                    <Skeleton
+                      width="70%"
+                      height="20px"
+                      borderRadius="5px"
+                    />
+
+                    <Skeleton
+                      width="40%"
+                      height="15px"
+                      borderRadius="5px"
+                    />
+                  </div>
+
                 </div>
               </div>
             ))}
