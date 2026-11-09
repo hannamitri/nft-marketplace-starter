@@ -1,0 +1,38 @@
+#section-collections .arrow-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 100;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 60px;
+  color: #000;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+#section-collections .arrow-btn i {
+  font-size: 14px;
+}
+
+#section-collections .arrow-btn--left {
+  left: -20px;
+}
+
+#section-collections .arrow-btn--right {
+  right: -20px;
+}
+
+#section-collections .nft_coll.skeleton-box {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+  padding: 0;
+  background-color: #dddbdd;
+}
