@@ -1,5 +1,3 @@
-node_modules
-.firebase/
-.firebaserc
+node_modules/
 build/
-firebase.json
+.env
