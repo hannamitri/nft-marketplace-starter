@@ -9,12 +9,13 @@ const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(8); // Initially show 8 items
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`,
         );
         setItems(response.data);
         setLoading(false);
@@ -24,16 +25,20 @@ const ExploreItems = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [filter]);
 
   const loadMoreItems = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 4); // Load more items each time
   };
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" defaultValue="" onChange={handleFilterChange}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
@@ -43,35 +48,23 @@ const ExploreItems = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          {items.slice(0, visibleItems).map((item) => (
-            <div
-              key={item.id}
-              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-              style={{ display: "block" }}
-            >
-              {" "}
-              <NftCard item={item} />
-            </div>
-          ))}
-        </div>
+        items.slice(0, visibleItems).map((item) => (
+          <div
+            key={item.id}
+            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+            style={{ display: "block" }}
+          >
+            {" "}
+            <NftCard item={item} />
+          </div>
+        ))
       )}
-      {/* {items.map((item) => (
-        <div
-          key={item.id}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block" }}
-        >
-          <NftCard item={item} />
-        </div>
-      ))} */}
       <div className="col-md-12 text-center">
         {visibleItems < items.length && (
-          <button onClick={loadMoreItems} className="btn-main lead"></button>
+          <button onClick={loadMoreItems} className="btn-main lead">
+            Load More
+          </button>
         )}
-        {/* <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link> */}
       </div>
     </>
   );
