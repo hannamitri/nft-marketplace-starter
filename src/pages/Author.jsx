@@ -85,7 +85,7 @@ const Author = () => {
                         <i className='fa fa-check'></i>
                         <div className='profile_name'>
                           <h4>
-                            {authorItems.name || "Monica Lucas"}
+                            {authorItems.authorName }
                             <span className='profile_username'>
                               {authorItems.tag}
                             </span>
