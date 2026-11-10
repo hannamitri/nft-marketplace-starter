@@ -16815,3 +16815,26 @@ img {
   background-size: 250% 100%;
   animation: skeleton-loading 1.2s linear infinite;
 }
+
+/* AUTHOR PROFILE */
+
+.profile_follow {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.follower-count {
+  font-size: 24px;
+  color: #888;
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.profile_follow .btn-main {
+  min-width: 195px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}

@@ -22,31 +22,65 @@ const Author = () => {
 
   const [loading, setLoading] = useState(true);
   const [itemsLoading, setItemsLoading] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const isLoading = loading || itemsLoading;
 
-  
+  const handleFollow = () => {
+    if (isFollowing) {
+      // Unfollow: decrease followers by 1
+      setAuthorInfo((prev) => ({
+        ...prev,
+        followers: Math.max(0, (Number(prev?.followers) || 0) - 1),
+      }));
+
+      setIsFollowing(false);
+    } else {
+      // Follow: increase followers by 1
+      setAuthorInfo((prev) => ({
+        ...prev,
+        followers: (Number(prev?.followers) || 0) + 1,
+      }));
+
+      setIsFollowing(true);
+    }
+  };
+
   useEffect(() => {
     async function fetchAuthor() {
       try {
         setLoading(true);
 
+        console.log("Author ID being requested:", normalizedAuthor?.authorId);
+
         const response = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors",
+          {
+            params: {
+              author: normalizedAuthor?.authorId,
+            },
+          }
         );
 
-        const matchingAuthor = response.data.find(
-          (seller) => seller.authorId === normalizedAuthor?.authorId
-        );
+        console.log("API status:", response.status);
+        console.log("Full API response:", response.data);
 
-        console.log("Collection author ID:", author?.authorId);
-        console.log("Matching author:", matchingAuthor);
+        const fetchedAuthor = Array.isArray(response.data)
+          ? response.data[0]
+          : response.data.author || response.data;
 
-        if (matchingAuthor) {
-          setAuthorInfo({ ...normalizedAuthor, ...matchingAuthor });
+        console.log("Fetched author:", fetchedAuthor);
+
+        if (fetchedAuthor) {
+          setAuthorInfo({
+            ...normalizedAuthor,
+            ...fetchedAuthor,
+          });
         }
       } catch (error) {
-        console.error("Error fetching author:", error);
+        console.error("API error:", error);
+        console.error("Error response:", error.response?.data);
+        console.error("Status:", error.response?.status);
       } finally {
         setTimeout(() => {
           setLoading(false);
@@ -54,7 +88,7 @@ const Author = () => {
       }
     }
 
-    if (author?.authorId) {
+    if (normalizedAuthor?.authorId) {
       fetchAuthor();
     } else {
       setLoading(false);
@@ -108,7 +142,7 @@ const Author = () => {
                               {authorInfo?.authorName || "Author"}
 
                               <span className="profile_username">
-                                {authorInfo?.authorId ? `@${authorInfo.authorId}` : ""}
+                                {authorInfo?.tag ? `@${authorInfo.tag}` : ""}
                               </span>
                             </>
                           )}
@@ -119,9 +153,27 @@ const Author = () => {
 
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      {loading ? (
+                        <Skeleton
+                          width="130px"
+                          height="25px"
+                          borderRadius="5px"
+                        />
+                      ) : (
+                        <h4>
+                          {authorInfo?.followers ?? 0}
+                          <span> followers</span>
+                        </h4>
+                      )}
+                    </div>
+                    <div className="de-flex-col">
+                      <button
+                        className="btn-main"
+                        onClick={handleFollow}
+                        type="button"
+                      >
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
                 </div>

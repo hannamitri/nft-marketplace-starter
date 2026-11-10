@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 
 const AuthorItems = ({ author, onLoadingChange }) => {
@@ -11,89 +10,58 @@ const AuthorItems = ({ author, onLoadingChange }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  async function fetchAuthorItems() {
-    try {
-      setLoading(true);
-      onLoadingChange(true);
-      setError("");
-
-      // Fetch from all three APIs at the same time
-      const [
-        newItemsResponse,
-        hotCollectionsResponse,
-        exploreResponse,
-      ] = await Promise.all([
-        axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
-        ),
-        axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
-        ),
-        axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-        ),
-      ]);
-
-      // Combine all three API responses
-      const allItems = [
-        ...newItemsResponse.data,
-        ...hotCollectionsResponse.data,
-        ...exploreResponse.data,
-      ];
-
-      // Only keep items belonging to this author
-      const authorIds = [author?.authorId];
-
-      // Combine Monica Lucas's two author IDs
-      if (author?.authorId === 83937449 || author?.authorId === 1) {
-        authorIds.push(83937449, 1);
-      }
-      
-      // Only keep items belonging to these author IDs
-      const authorItems = allItems.filter((item) =>
-        authorIds.includes(item.authorId)
-      );
-
-      // Remove duplicate NFTs by comparing nftId
-      const uniqueItems = Array.from(
-        new Map(
-          authorItems.map((item) => [
-            item.nftId ?? item.id,
-            item,
-          ])
-        ).values()
-      );
-
-      setItems(uniqueItems);
-
-      console.log("All author items:", authorItems);
-
-    } catch (error) {
-      console.error("Error fetching author items:", error);
-      setError("Unable to load this author's items.");
-    } finally {
-      setTimeout(() => {
-        setLoading(false);
-        onLoadingChange(false);
-      }, 1500);
-    }
-  }
 
   useEffect(() => {
-    if (author?.authorId) {
-      fetchAuthorItems();
-    } else {
+    if (!author?.authorId) {
       setLoading(false);
       onLoadingChange(false);
+      return;
     }
-  }, [author?.authorId]);
+
+    // Wait for the Author API to provide the NFT collection
+    if (!Array.isArray(author.nftCollection)) {
+      setLoading(true);
+      onLoadingChange(true);
+      return;
+    }
+
+    setLoading(true);
+    onLoadingChange(true);
+    setError("");
+
+    try {
+      // Get all NFTs from this author's collection
+      const authorItems = author.nftCollection.map((item) => ({
+        ...item,
+        authorId: author.authorId,
+        authorName: author.authorName,
+        authorImage: author.authorImage,
+        tag: author.tag,
+      }));
+
+      setItems(authorItems);
+
+      console.log("Author's NFT collection:", authorItems);
+    } catch (error) {
+      console.error("Error loading author items:", error);
+      setError("Unable to load this author's items.");
+    }
+
+    // Keep skeleton visible for 1.5 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+      onLoadingChange(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [author?.authorId, author?.nftCollection]);
 
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
           {loading ? (
-            new Array(4).fill(0).map((_, index) => (
+            new Array(8).fill(0).map((_, index) => (
               <div
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 key={index}
@@ -156,25 +124,15 @@ const AuthorItems = ({ author, onLoadingChange }) => {
             items.map((item) => (
               <div
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                key={item.id}
+                key={item.nftId || item.id}
               >
                 <div className="nft__item">
                   <div className="author_list_pp">
-                    <Link
-                      to="/author"
-                      state={{
-                        author: {
-                          ...author,
-                          authorId: 83937449,
-                          authorName: "Monica Lucas",
-                        },
-                      }}
-                      onClick={() => console.log("Navigating with Monica's ID:", 83937449)}
-                    >
+                    <Link to="/author" state={{ author }}>
                       <img
                         className="lazy"
                         src={item.authorImage || AuthorImage}
-                        alt="Monica Lucas"
+                        alt={author.authorName || "Author"}
                       />
                       <i className="fa fa-check"></i>
                     </Link>
