@@ -15,10 +15,12 @@ const responsiveSettings = {
 
 const HotCollections = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function fetchUsers() {
     const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     setUsers(data)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -37,7 +39,22 @@ const HotCollections = () => {
                 <div className="small-border bg-color-2"></div>
               </div>
             </div>
-            {users.length > 0 && (
+            {loading ? (
+              new Array(3).fill(0).map((_, index) => (
+              <div className="item col-12 col-sm-6 col-lg-4" key={index}>
+                <div className="nft_coll">
+                  <div className="skeleton-box nft_wrap"></div>
+                  <div className="nft_coll_pp">
+                    <div className="skeleton-circle pp-coll"></div>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <div className="skeleton-info"></div>
+                    <div className="skeleton-id"></div>
+                  </div>
+                </div>
+              </div>
+            ))) : (
               <OwlCarousel 
                 className="owl-theme" loop margin={10} nav responsive={responsiveSettings}>
                 {users.map((user) => (
@@ -68,7 +85,6 @@ const HotCollections = () => {
           </div>
         </div>
       </section>
-      ))}
     </>
   );
 };

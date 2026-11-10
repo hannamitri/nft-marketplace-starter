@@ -10,3 +10,47 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.skeleton-box {
+  background-color: #dddbdd;
+  display: inline-block;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-box::after {
+  animation: shimmer 2s infinite;
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.2) 20%, hsla(0, 0%, 100%, 0.5) 60%, hsla(0, 0%, 100%, 0));
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+.skeleton-circle {
+  background-color: #dddbdd;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  border: solid 5px #ffffff;
+  margin-bottom: 0.5em;
+  position: relative;
+  margin: 0 auto;
+}
+
+.skeleton-info, .skeleton-id {
+  background-color: #dddbdd;
+  height: 1em;
+  width: 25%;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-id {
+  width: 15%;
+}
