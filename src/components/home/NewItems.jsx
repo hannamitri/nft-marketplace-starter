@@ -20,6 +20,7 @@ const NewItems = () => {
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
         );
         setItems(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching items:", error);
       } finally {
@@ -54,26 +55,27 @@ const NewItems = () => {
                 ))}
             </div>
           ) : (
-           <Slider
-  className="owl-theme"
-  loop
-  nav
-  dots={false}
-  margin={8}
-  responsive={{
-    0: { items: 1 },
-    572: { items: 2 },
-    992: { items: 3 },
-    1200: { items: 4 },
-  }}
->
-  {items.map((item) => (
-    <div
-      key={item.id} // Only on the outer div
-      style={{ width: "100%", maxWidth: "100%", padding: "0" }}
-      className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-    >
-      <div className="nft__item">
+            <Slider
+              className="owl-theme"
+              loop
+              nav
+              dots={false}
+              margin={8}
+              responsive={{
+                0: { items: 1 },
+                572: { items: 2 },
+                992: { items: 3 },
+                1200: { items: 4 },
+              }}
+            >
+              {!loading &&
+                items.map((item) => (
+                  <div
+                    key={item.id} // Only on the outer div
+                    style={{ width: "100%", maxWidth: "100%", padding: "0" }}
+                    className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                  >
+                    {/* <div className="nft__item">
         <div className="author_list_pp">
           <Link
             to={`/author/${item.authorId}`}
@@ -86,7 +88,7 @@ const NewItems = () => {
           </Link>
         </div>
         <div className="de_countdown">
-          {/* Countdown logic can go here */}
+          {/* Countdown logic can go here 
         </div>
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
@@ -124,11 +126,11 @@ const NewItems = () => {
             <span>69</span>
           </div>
         </div>
-      </div>
-    </div>
-  ))}
-</Slider>
-
+      </div> */}
+                    <NewItem item={item} />
+                  </div>
+                ))}
+            </Slider>
           )}
         </div>
       </div>

@@ -1,46 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function NewItem({item}) {
+function NewItem({ item }) {
   const { expiryDate } = item;
-  const [now, setNow] = useState(0);
 
-  const [hoursLeft, setHoursLeft] = useState(0);
-  const [minutesLeft, setMinutesLeft] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(0);
-
-  const useGetTimeRemaining = (expiryDate) => {
-    const [now, setNow] = useState(Date.now());
-  
-     useEffect(() => {
-      if (!expiryDate) return;
-
-      const interval = setInterval(() => {
-        setNow(Date.now());
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }, [expiryDate]);
-  };
-    const getTimeRemaining = (expiryDate) => {
+  function getTimeRemaining(expiryDate) {
+    const now = Date.now();
     const distance = expiryDate - now; // Calculate the distance in milliseconds
 
     if (distance <= 0) {
-      return null; // Countdown Finished
+      return "00:00:00"; // Countdown Finished
     }
 
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const hours = Math.floor(distance / (1000 * 60 * 60));
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
 
-    setHoursLeft(hours);
-    setMinutesLeft(minutes);
-    setSecondsLeft(seconds);
+    return [hours, minutes, seconds]
+      .map((unit) => String(unit).padStart(2, "0"))
+      .join(":");
+  }
 
-   return getTimeRemaining();
-  };
+  const [timeLeft, setTimeLeft] = useState(
+    expiryDate ? getTimeRemaining(expiryDate) : "00:00:10",
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(getTimeRemaining(expiryDate));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [expiryDate]);
+
+  console.log({ item });
 
   return (
     <div className="nft__item">
@@ -55,12 +47,7 @@ function NewItem({item}) {
           <i className="fa fa-check"></i>
         </Link>
       </div>
-      {expiryDate && (
-        <div className="de_countdown">
-          <span>{hoursLeft}h</span>
-          <span>{minutesLeft}m</span> <span>{secondsLeft}s</span>{" "}
-        </div>
-      )}
+      {expiryDate && <div className="de_countdown">{timeLeft}</div>}
       <div className="nft__item_wrap">
         <div className="nft__item_extra">
           <div className="nft__item_buttons">
@@ -95,6 +82,6 @@ function NewItem({item}) {
       </div>
     </div>
   );
-};
+}
 
 export default NewItem;
