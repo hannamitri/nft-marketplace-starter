@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
-// import Skeleton from "react-loading-skeleton";
+import Skeleton from "../UI/Skeleton";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -38,6 +38,7 @@ const TopSellers = () => {
           <div className="col-md-12">
             <ol className="author_list">
               {new Array(12).fill(0).map((seller) => (
+                <Skeleton key={index} width="100%" height="150px" borderRadius="8px" />
                 <li key={seller.id}>
                   <div className="author_list_pp">
                     <Link to={`/author/${seller.authorId}`}>
