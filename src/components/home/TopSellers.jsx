@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
 
 const TopSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -26,7 +27,7 @@ const TopSellers = () => {
         // Keep skeleton visible for at least 1 second
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 1500);
       }
     };
 
@@ -49,41 +50,56 @@ const TopSellers = () => {
               <p>{error}</p>
             ) : (
               <ol className="author_list">
-                {loading
-                  ? new Array(12).fill(0).map((_, index) => (
-                      <li className="seller-skeleton" key={index}>
-                        <div className="author_list_pp">
-                          <div className="skeleton seller-skeleton-image"></div>
-                        </div>
+                {loading ? (
+                  new Array(12).fill(0).map((_, index) => (
+                    <li key={index}>
+                      <div className="author_list_pp">
+                        <Skeleton
+                          width="50px"
+                          height="50px"
+                          borderRadius="50%"
+                        />
+                      </div>
 
-                        <div className="author_list_info">
-                          <div className="skeleton seller-skeleton-name"></div>
-                          <div className="skeleton seller-skeleton-price"></div>
-                        </div>
-                      </li>
-                    ))
-                  : sellers.map((seller) => (
-                      <li key={seller.id}>
-                        <div className="author_list_pp">
-                          <Link to="/author" state={{ author: seller }}>
-                            <img
-                              className="lazy pp-author"
-                              src={seller.authorImage}
-                              alt={seller.authorName}
-                            />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
+                      <div className="author_list_info">
+                        <Skeleton
+                          width="120px"
+                          height="16px"
+                          borderRadius="5px"
+                        />
 
-                        <div className="author_list_info">
-                          <Link to="/author" state={{ author: seller }}>
-                            {seller.authorName}
-                          </Link>
+                        <Skeleton
+                          width="70px"
+                          height="14px"
+                          borderRadius="5px"
+                        />
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  sellers.map((seller) => (
+                    <li key={seller.id}>
+                      <div className="author_list_pp">
+                        <Link to="/author" state={{ author: seller }}>
+                          <img
+                            className="lazy pp-author"
+                            src={seller.authorImage}
+                            alt={seller.authorName}
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
 
-                          <span>{seller.price} ETH</span>
-                        </div>
-                      </li>
-                    ))}
+                      <div className="author_list_info">
+                        <Link to="/author" state={{ author: seller }}>
+                          {seller.authorName}
+                        </Link>
+
+                        <span>{seller.price} ETH</span>
+                      </div>
+                    </li>
+                  ))
+                )}
               </ol>
             )}
           </div>

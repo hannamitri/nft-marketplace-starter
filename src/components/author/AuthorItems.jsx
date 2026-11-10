@@ -3,60 +3,88 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
 
-const AuthorItems = ({ author }) => {
+const AuthorItems = ({ author, onLoadingChange }) => {
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   async function fetchAuthorItems() {
-  try {
-    setLoading(true);
-    setError("");
+    try {
+      setLoading(true);
+      onLoadingChange(true);
+      setError("");
 
-    // Fetch from both APIs at the same time
-    const [newItemsResponse, hotCollectionsResponse] =
-      await Promise.all([
+      // Fetch from all three APIs at the same time
+      const [
+        newItemsResponse,
+        hotCollectionsResponse,
+        exploreResponse,
+      ] = await Promise.all([
         axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
         ),
         axios.get(
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         ),
+        axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+        ),
       ]);
 
-      // Combine both API responses
+      // Combine all three API responses
       const allItems = [
         ...newItemsResponse.data,
         ...hotCollectionsResponse.data,
+        ...exploreResponse.data,
       ];
 
       // Only keep items belonging to this author
-      const authorItems = allItems.filter(
-        (item) => item.authorId === author?.authorId
+      const authorIds = [author?.authorId];
+
+      // Combine Monica Lucas's two author IDs
+      if (author?.authorId === 83937449 || author?.authorId === 1) {
+        authorIds.push(83937449, 1);
+      }
+      
+      // Only keep items belonging to these author IDs
+      const authorItems = allItems.filter((item) =>
+        authorIds.includes(item.authorId)
       );
 
-      setItems(authorItems);
+      // Remove duplicate NFTs by comparing nftId
+      const uniqueItems = Array.from(
+        new Map(
+          authorItems.map((item) => [
+            item.nftId ?? item.id,
+            item,
+          ])
+        ).values()
+      );
+
+      setItems(uniqueItems);
 
       console.log("All author items:", authorItems);
 
-      } catch (error) {
-        console.error("Error fetching author items:", error);
-        setError("Unable to load this author's items.");
-      } finally {
-        // Keep skeleton visible for at least 1 second
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-      }
+    } catch (error) {
+      console.error("Error fetching author items:", error);
+      setError("Unable to load this author's items.");
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        onLoadingChange(false);
+      }, 1500);
     }
+  }
 
   useEffect(() => {
     if (author?.authorId) {
       fetchAuthorItems();
     } else {
       setLoading(false);
+      onLoadingChange(false);
     }
   }, [author?.authorId]);
 
@@ -64,30 +92,56 @@ const AuthorItems = ({ author }) => {
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-
           {loading ? (
-            // Skeleton loading cards
             new Array(4).fill(0).map((_, index) => (
               <div
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 key={index}
               >
-                <div className="nft__item author-item-skeleton">
-
+                <div className="nft__item">
+                  
                   {/* NFT image skeleton */}
-                  <div className="author-skeleton-image"></div>
+                  <Skeleton
+                    width="100%"
+                    height="200px"
+                    borderRadius="8px"
+                  />
 
                   {/* Author profile skeleton */}
-                  <div className="author-skeleton-profile"></div>
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "-25px" }}>
+                    <Skeleton
+                      width="55px"
+                      height="55px"
+                      borderRadius="50%"
+                    />
+                  </div>
 
                   {/* NFT title skeleton */}
-                  <div className="author-skeleton-title"></div>
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "15px" }}>
+                    <Skeleton
+                      width="75%"
+                      height="20px"
+                      borderRadius="5px"
+                    />
+                  </div>
 
                   {/* NFT price skeleton */}
-                  <div className="author-skeleton-price"></div>
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
+                    <Skeleton
+                      width="45%"
+                      height="16px"
+                      borderRadius="5px"
+                    />
+                  </div>
 
                   {/* NFT likes skeleton */}
-                  <div className="author-skeleton-likes"></div>
+                  <div style={{ display: "flex", justifyContent: "center", marginTop: "12px" }}>
+                    <Skeleton
+                      width="30%"
+                      height="15px"
+                      borderRadius="5px"
+                    />
+                  </div>
 
                 </div>
               </div>
@@ -106,11 +160,21 @@ const AuthorItems = ({ author }) => {
               >
                 <div className="nft__item">
                   <div className="author_list_pp">
-                    <Link to="/author" state={{ author }}>
+                    <Link
+                      to="/author"
+                      state={{
+                        author: {
+                          ...author,
+                          authorId: 83937449,
+                          authorName: "Monica Lucas",
+                        },
+                      }}
+                      onClick={() => console.log("Navigating with Monica's ID:", 83937449)}
+                    >
                       <img
                         className="lazy"
                         src={item.authorImage || AuthorImage}
-                        alt={author.authorName || "Author"}
+                        alt="Monica Lucas"
                       />
                       <i className="fa fa-check"></i>
                     </Link>
