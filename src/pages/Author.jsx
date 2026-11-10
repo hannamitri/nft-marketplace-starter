@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
+const AUTHORS_URL =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors";
+
 const Author = () => {
+  const { authorId } = useParams();
+  const [author, setAuthor] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setAuthor(null);
+    if (!authorId) return undefined;
+    const controller = new AbortController();
+    axios
+      .get(AUTHORS_URL, {
+        params: { author: authorId },
+        signal: controller.signal,
+      })
+      .then((res) => setAuthor(res.data?.data ?? res.data))
+      .catch(() => {});
+    return () => controller.abort();
+  }, [authorId]);
+
+  const name = author?.authorName ?? "Monica Lucas";
+  const username = author?.tag ?? "@monicaaaa";
+  const wallet =
+    author?.address ?? "UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7";
+  const followers = author?.followers ?? 573;
+  const avatar = author?.authorImage ?? AuthorImage;
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -25,15 +54,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={avatar} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {name}
+                          <span className="profile_username">{username}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {wallet}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -44,7 +73,9 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">
+                        {followers} followers
+                      </div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
@@ -55,7 +86,10 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems
+                    items={author?.nftCollection}
+                    authorImage={avatar}
+                  />
                 </div>
               </div>
             </div>
