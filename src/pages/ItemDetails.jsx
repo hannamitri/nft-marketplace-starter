@@ -145,9 +145,7 @@ export default function ItemDetails() {
                       )}
                       <div>
                         <h6>Creator</h6>
-                        <Link
-                          to={`/author?authorId=${encodeURIComponent(authorId)}`}
-                        >
+                        <Link to={`/author/${encodeURIComponent(authorId)}`}>
                           {String(authorId)}
                         </Link>
                       </div>
