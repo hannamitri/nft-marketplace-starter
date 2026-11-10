@@ -12706,6 +12706,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
+  appearance: none;
   -webkit-appearance: none;
   height: 24px;
   width: 44px;
@@ -15145,7 +15146,6 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16713,128 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+/* Carousel container */
+#section-collections .owl-carousel {
+  position: relative;
+  width: 100%;
+}
+
+/* Carousel slides */
+#section-collections .owl-stage {
+  display: flex;
+  align-items: stretch;
+}
+
+#section-collections .owl-item {
+  display: flex;
+  align-items: stretch;
+}
+
+#section-collections .owl-item .item {
+  width: 100%;
+}
+
+/* Override Bootstrap column width */
+#section-collections .owl-item .item > div {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Navigation arrows */
+#section-collections .owl-nav {
+  margin: 0;
+}
+
+#section-collections .owl-nav button.owl-prev,
+#section-collections .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 40px;
+  height: 40px;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ddd !important;
+  border-radius: 50% !important;
+
+  background: #fff !important;
+  color: #151515 !important;
+
+  font-size: 25px !important;
+  line-height: 1 !important;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Left arrow */
+#section-collections .owl-nav button.owl-prev {
+  left: -16px;
+}
+
+/* Right arrow */
+#section-collections .owl-nav button.owl-next {
+  right: -16px;
+}
+
+/* Hide pagination dots */
+#section-collections .owl-dots {
+  display: none;
+}
+
+
+/* GENERAL SKELETON ANIMATION */
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* REUSABLE SKELETON COMPONENT */
+
+.skeleton-box {
+  background: linear-gradient(
+    110deg,
+    #a8a8a8 8%,
+    #eeeeee 18%,
+    #a8a8a8 33%
+  );
+
+  background-size: 250% 100%;
+  animation: skeleton-loading 1.2s linear infinite;
+}
+
+/* AUTHOR PROFILE */
+
+.profile_follow {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.follower-count {
+  font-size: 24px;
+  color: #888;
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.profile_follow .btn-main {
+  min-width: 195px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
 }
