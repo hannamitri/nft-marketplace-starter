@@ -1,4 +1,6 @@
-import react from "react";
+import react, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import Slider1 from "./Slider.jsx";
 
 const HotCollections = () => {
@@ -20,3 +22,5 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+
+

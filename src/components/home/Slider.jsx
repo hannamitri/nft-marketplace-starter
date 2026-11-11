@@ -9,7 +9,6 @@ import Skeleton from "../UI/Skeleton.jsx";
 function Slider1() {
   const [hotCollections, setHotCollections] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchHotCollections = async () => {
@@ -81,7 +80,7 @@ function Slider1() {
                   style={{ margin: "0 10px", display: "block" }}
                 >
                   <div className='nft_wrap'>
-                    <Link to={`/item-details/${hotCollection.nftId}`}>
+                    <Link to={`/item-details`}>
                       <img
                         src={hotCollection.nftImage}
                         className='lazy img-fluid'
@@ -91,7 +90,7 @@ function Slider1() {
                     </Link>
                   </div>
                   <div className='nft_coll_pp'>
-                    <Link to={`/author/${hotCollection.authorId}`}>
+                    <Link to={`/author`}>
                       <img
                         className='lazy pp-coll'
                         src={hotCollection.authorImage}
