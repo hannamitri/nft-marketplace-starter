@@ -14,10 +14,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
 
-        {/*  :authorId */}
+        {/* Updated with dynamic path parameter :authorId */}
         <Route path="/author/:authorId" element={<Author />} />
 
-        {/* :nftId */}
+        {/* Updated with dynamic path parameter :nftId */}
         <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
       <Footer />
