@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import axios from "axios";
+import NftCard from "../components/UI/NftCard";
 
 const Explore = () => {
   useEffect(() => {

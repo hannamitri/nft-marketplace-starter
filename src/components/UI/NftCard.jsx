@@ -77,7 +77,7 @@ function NewItem({ item }) {
         <div className="nft__item_price">{item.price} ETH</div>
         <div className="nft__item_like">
           <i className="fa fa-heart"></i>
-          <span>69</span>
+          <span>{item.likes}</span>
         </div>
       </div>
     </div>
