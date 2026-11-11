@@ -16518,6 +16518,8 @@ img {
   #items-carousel-big .owl-next {
     top: 22.5%;
   }
+
+
 }
 
 /* -------------------------------------------------- 
@@ -16669,6 +16671,8 @@ img {
   overflow: hidden;
   background-color: #dddbdd;
   height: 200px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
 }
 
 .skeleton-box::after {
@@ -16700,24 +16704,97 @@ img {
   }
 }
 
-.nft_coll_pp--skeleton {
-  width: 60px;
-  display: block;
-  margin: 0 auto;
-  margin-top: -30px;
+.nft_coll-skeleton {
+  text-align: center;
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  border: solid 1px #dddddd;
   margin-bottom: 10px;
+  border-radius: 10px;
+  width: 100%;
+ 
+}
+
+.nft_wrap-skeleton {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
   position: relative;
+  
+}
+
+
+.lazy .img-fluid-skeleton {
+  display: block;
+  width: 233px;
+  height: 132px;
   background-color: #dddbdd;
 }
 
-.nft_coll_info--skeleton {
-  margin-bottom: 0px;
+
+
+.nft_coll_pp-skeleton {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  position: absolute;
+  display: flex;
   background-color: #dddbdd;
+  border-radius: 999px;
+  margin-top: -30px;
+  left: 4px;
+  right: 4px
+
+}
+
+.lazy .pp-coll-skeleton {
+  width: 60px;
+  height: 60px;
+  border: solid 5px #ffffff;
+  background: #dddbdd;
+
+}
+
+.nft_coll_pp-i-skeleton {
+  font-size: 10px;
+  color: #ffffff;
+  background: #333;
+  border-radius: 100%;
+  padding: 3px;
+  position: absolute;
+  bottom: 4px;
+  right: 5px;
+}
+
+.nft_coll_info-skeleton{
+  margin-top: 35px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.author_name-skeleton{
+  background-color: #dddbdd;
+  width: 80px;
+  height: 19px;
 }
 
 .erc-code--skeleton {
+  margin-top: 5px;
   background-color: #dddbdd;
+  width: 55px;
+  height: 18px;
+  display: block;
+  
+
 }
+
+
+
+
 
 
 .nft-image {
