@@ -96,6 +96,7 @@ a.a-underline:hover span {
   width: 100%;
 }
 
+
 /* ================================================== */
 
 /*  header  */
@@ -16648,6 +16649,14 @@ img {
     left: 0;
     top: -21px;
   }
+}
+
+.skeleton-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  background: #f8f8f8;
 }
 
 .skeleton-box {
