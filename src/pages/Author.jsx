@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
-  const { id } = useParams(); // Get the author ID from the URL
+  const { authorId } = useParams(); // Get the author ID from the URL
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,8 +14,13 @@ const Author = () => {
     const fetchAuthorData = async () => {
       try {
         const response = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`,
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
         );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch author");
+        }
+
         const data = await response.json();
         setAuthorData(data);
       } catch (error) {
@@ -24,8 +29,11 @@ const Author = () => {
         setLoading(false);
       }
     };
-    fetchAuthorData();
-  }, [id]); // The effect depends on the author ID
+
+    if (authorId) {
+      fetchAuthorData();
+    }
+  }, [authorId]); // The effect depends on the author ID
 
   return (
     <div id="wrapper">
@@ -47,15 +55,15 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img src={authorData.AuthorImage} alt={authorData.authorName} />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
+                          {authorData.authorName}
+                          <span className="profile_username">@{authorData.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                            {authorData.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -66,7 +74,7 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">{authorData.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
