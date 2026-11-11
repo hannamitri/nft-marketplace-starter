@@ -69,17 +69,17 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${nftDetails.ownerId}`}>
                             <img
                               className="lazy"
-                              src={nftDetails.AuthorImage}
+                              src={nftDetails.ownerImage}
                               alt=""
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${nftDetails.ownerId}`}></Link>
                         </div>
                       </div>
                     </div>
