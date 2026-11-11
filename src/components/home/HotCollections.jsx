@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 const HOT_COLLECTIONS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
+const MIN_LOADING_MS = 800;
+
 const arrowStyle = {
   position: "absolute",
   top: "40%",
@@ -29,13 +31,21 @@ const arrowStyle = {
 };
 
 const PrevArrow = ({ onClick }) => (
-  <button type="button" style={{ ...arrowStyle, left: "-22px" }} onClick={onClick}>
+  <button 
+    type="button" 
+    style={{ ...arrowStyle, left: "-22px" }} onClick={onClick}
+    aria-label="Previous collections"
+  >
     ‹
   </button>
 );
 
 const NextArrow = ({ onClick }) => (
-  <button type="button" style={{ ...arrowStyle, right: "-22px" }} onClick={onClick}>
+  <button 
+    type="button" 
+    style={{ ...arrowStyle, right: "-22px" }} onClick={onClick}
+    aria-label="Next collections"
+  >
     ›
   </button>
 );
@@ -55,93 +65,107 @@ const sliderSettings = {
   ],
 };
 
+const skeletonSliderSettings = {
+  ...sliderSettings,
+  infinite: false,
+  arrows: false,
+  swipe: false,
+  draggable: false,
+  touchMove: false,
+  accessibility: false,
+};
+
 const SkeletonCards = ({ count = 4 }) => (
   <>
     <style>{`
-      .hc-sk-row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -6px;
-      }
-      .hc-sk-item {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding: 0 6px;
-        box-sizing: border-box;
-      }
       .hc-sk-card {
-        position: relative;
-        margin-top: 30px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        background: #fff;
+        pointer-events: none;
       }
+
       .hc-sk-image {
+        display: block;
+        width: 100%;
         height: 200px;
         border-radius: 8px 8px 0 0;
       }
-      .hc-sk-avatar {
-        position: absolute;
-        left: 50%;
-        top: 200px;
-        transform: translate(-50%, -50%);
+
+      .hc-sk-card .hc-sk-avatar {
         width: 50px;
         height: 50px;
-        border-radius: 50%;
+        margin: 0 auto;
         border: 3px solid #fff;
+        border-radius: 50%;
+        box-sizing: border-box;
       }
-      .hc-sk-info {
-        padding: 40px 16px 20px;
-        text-align: center;
-      }
+
       .hc-sk-title {
-        height: 16px;
         width: 55%;
+        height: 18px;
         margin: 0 auto 10px;
         border-radius: 4px;
       }
+
       .hc-sk-sub {
-        height: 12px;
         width: 30%;
+        height: 12px;
         margin: 0 auto;
         border-radius: 4px;
       }
+
       .hc-sk-shimmer {
-        background: linear-gradient(90deg, #dcdce2 25%, #f0f0f4 50%, #dcdce2 75%);
-        background-size: 300% 100%;
-        animation: hc-sk-shine 1.2s linear infinite;
+        background: linear-gradient(
+          90deg,
+          #e2e2e7 25%,
+          #f5f5f8 50%,
+          #e2e2e7 75%
+        );
+        background-size: 200% 100%;
+        animation: hc-sk-shine 1.5s ease-in-out infinite;
       }
+
       @keyframes hc-sk-shine {
-        0% { background-position: 100% 50%; }
-        100% { background-position: 0 50%; }
+        from {
+          background-position: -200% 0;
+        }
+        to {
+          background-position: 200% 0;
+        }
       }
-      @media (max-width: 1280px) {
-        .hc-sk-item { flex-basis: 33.333%; max-width: 33.333%; }
-      }
-      @media (max-width: 768px) {
-        .hc-sk-item { flex-basis: 50%; max-width: 50%; }
-      }
-      @media (max-width: 480px) {
-        .hc-sk-item { flex-basis: 100%; max-width: 100%; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hc-sk-shimmer {
+          animation: none;
+        }
       }
     `}</style>
 
-    <div className="hc-sk-row">
-      {Array.from({ length: count }).map((_, i) => {
-        const delay = { animationDelay: `${i * 0.15}s` };
-        return (
-          <div className="hc-sk-item" key={i}>
-            <div className="hc-sk-card">
-              <div className="hc-sk-image hc-sk-shimmer" style={delay} />
-              <div className="hc-sk-avatar hc-sk-shimmer" style={delay} />
-              <div className="hc-sk-info">
-                <div className="hc-sk-title hc-sk-shimmer" style={delay} />
-                <div className="hc-sk-sub hc-sk-shimmer" style={delay} />
+    <div
+      style={{ position: "relative", marginTop: 30 }}
+      aria-hidden="true"
+    >
+      <Slider {...skeletonSliderSettings}>
+        {Array.from({ length: count }).map((_, index) => (
+          <div key={index}>
+            <div
+              className="nft_coll hc-sk-card"
+              style={{ margin: "0 6px" }}
+            >
+              <div className="nft_wrap">
+                <div className="hc-sk-image hc-sk-shimmer" />
+              </div>
+
+              <div className="nft_coll_pp">
+                <div className="hc-sk-avatar hc-sk-shimmer" />
+              </div>
+
+              <div className="nft_coll_info">
+                <div className="hc-sk-title hc-sk-shimmer" />
+                <div className="hc-sk-sub hc-sk-shimmer" />
               </div>
             </div>
           </div>
-        );
-      })}
+        ))}
+      </Slider>
     </div>
   </>
 );
@@ -154,19 +178,33 @@ const HotCollections = () => {
     let cancelled = false;
 
     const load = async () => {
+      setStatus("loading");
+
       try {
-        const { data } = await axios.get(HOT_COLLECTIONS_URL);
+        const minDelay = new Promise((resolve) =>
+          setTimeout(resolve, MIN_LOADING_MS)
+        );
+
+        const [{ data }] = await Promise.all([
+          axios.get(HOT_COLLECTIONS_URL),
+          minDelay,
+        ]);
+
         if (!cancelled) {
           setCollections(data);
           setStatus("ready");
         }
       } catch (err) {
         console.error("Failed to load hot collections:", err);
-        if (!cancelled) setStatus("error");
+
+        if (!cancelled) {
+          setStatus("error");
+        }
       }
     };
 
     load();
+
     return () => {
       cancelled = true;
     };
@@ -187,7 +225,9 @@ const HotCollections = () => {
             {status === "loading" && <SkeletonCards />}
 
             {status === "error" && (
-              <p className="text-center">Couldn't load hot collections.</p>
+              <p className="text-center">
+                Couldn't load hot collections.
+              </p>
             )}
 
             {status === "ready" && (
@@ -195,7 +235,10 @@ const HotCollections = () => {
                 <Slider {...sliderSettings}>
                   {collections.map((item) => (
                     <div key={item.id}>
-                      <div className="nft_coll" style={{ margin: "0 6px" }}>
+                      <div
+                        className="nft_coll"
+                        style={{ margin: "0 6px" }}
+                      >
                         <div className="nft_wrap">
                           <Link to={`/item-details/${item.nftId}`}>
                             <img
@@ -205,6 +248,7 @@ const HotCollections = () => {
                             />
                           </Link>
                         </div>
+
                         <div className="nft_coll_pp">
                           <Link to={`/author/${item.authorId}`}>
                             <img
@@ -215,6 +259,7 @@ const HotCollections = () => {
                           </Link>
                           <i className="fa fa-check"></i>
                         </div>
+
                         <div className="nft_coll_info">
                           <Link to={`/item-details/${item.nftId}`}>
                             <h4>{item.title}</h4>
