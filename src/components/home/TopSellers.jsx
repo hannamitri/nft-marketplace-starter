@@ -6,46 +6,76 @@ import axios from "axios";
 const TOP_SELLERS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers";
 
+const MIN_LOADING_MS = 800;
+
 const SkeletonList = ({ count = 12 }) => (
   <>
     <style>{`
-      .ts-sk-block {
-        background: linear-gradient(90deg, #dcdce2 25%, #f0f0f4 50%, #dcdce2 75%);
-        background-size: 300% 100%;
-        animation: ts-sk-shine 1.2s linear infinite;
+      .ts-sk-shimmer {
+        background: linear-gradient(
+          90deg,
+          #e2e2e7 25%,
+          #f5f5f8 50%,
+          #e2e2e7 75%
+        );
+        background-size: 200% 100%;
+        animation: ts-sk-shimmer 1.5s ease-in-out infinite;
       }
+
+      .ts-sk-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      .ts-sk-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .ts-sk-name {
+        width: 120px;
+        max-width: 100%;
+        height: 14px;
+        border-radius: 4px;
+      }
+
+      .ts-sk-price {
+        width: 60px;
+        max-width: 100%;
+        height: 12px;
+        border-radius: 4px;
+      }
+
       @keyframes ts-sk-shine {
-        0% { background-position: 100% 50%; }
-        100% { background-position: 0 50%; }
+        from {
+          background-position: -200% 0;
+        }
+        to {
+          background-position: 200% 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ts-sk-shimmer {
+          animation: none;
+        }
       }
     `}</style>
-    <ol className="author_list">
-      {Array.from({ length: count }).map((_, i) => {
-        const delay = { animationDelay: `${i * 0.1}s` };
-        return (
-          <li key={i}>
-            <div className="author_list_pp">
-              <div
-                className="ts-sk-block"
-                style={{ width: 50, height: 50, borderRadius: "50%", ...delay }}
-              />
-            </div>
-            <div
-              className="author_list_info"
-              style={{ display: "flex", flexDirection: "column", gap: 8 }}
-            >
-              <div
-                className="ts-sk-block"
-                style={{ width: 120, height: 14, borderRadius: 4, ...delay }}
-              />
-              <div
-                className="ts-sk-block"
-                style={{ width: 60, height: 12, borderRadius: 4, ...delay }}
-              />
-            </div>
-          </li>
-        );
-      })}
+
+    <ol className="author_list" aria-hidden="true">
+      {Array.from({ length: count }).map((_, index) => (
+        <li key={index}>
+          <div className="author_list_pp">
+            <div className="ts-sk-avatar ts-sk-shimmer" />
+          </div>
+          <div className="author_list_info ts-sk-info">
+            <div className="ts-sk-name ts-sk-shimmer" />
+            <div className="ts-sk-price ts-sk-shimmer" />
+          </div>
+        </li>
+      ))}
     </ol>
   </>
 );
@@ -58,19 +88,33 @@ const TopSellers = () => {
     let cancelled = false;
 
     const load = async () => {
+      setStatus("loading");
+
       try {
-        const { data } = await axios.get(TOP_SELLERS_URL);
+        const minDelay = new Promise((resolve) =>
+          setTimeout(resolve, MIN_LOADING_MS)
+        );
+
+        const [{ data }] = await Promise.all([
+          axios.get(TOP_SELLERS_URL),
+          minDelay,
+        ]);
+
         if (!cancelled) {
           setSellers(data);
           setStatus("ready");
         }
       } catch (err) {
         console.error("Failed to load top sellers:", err);
-        if (!cancelled) setStatus("error");
+
+        if (!cancelled) {
+          setStatus("error");
+        }
       }
     };
 
     load();
+
     return () => {
       cancelled = true;
     };
@@ -91,7 +135,9 @@ const TopSellers = () => {
             {status === "loading" && <SkeletonList />}
 
             {status === "error" && (
-              <p className="text-center">Couldn't load top sellers.</p>
+              <p className="text-center">
+                Couldn't load top sellers.
+              </p>
             )}
 
             {status === "ready" && (
@@ -108,6 +154,7 @@ const TopSellers = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
+
                     <div className="author_list_info">
                       <Link to={`/author/${seller.authorId}`}>
                         {seller.authorName}
@@ -126,3 +173,5 @@ const TopSellers = () => {
 };
 
 export default TopSellers;
+
+
