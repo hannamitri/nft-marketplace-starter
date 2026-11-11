@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 const NEW_ITEMS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
+const MIN_LOADING_MS = 800;
+
 const arrowStyle = {
   position: "absolute",
   top: "40%",
@@ -29,13 +31,21 @@ const arrowStyle = {
 };
 
 const PrevArrow = ({ onClick }) => (
-  <button type="button" style={{ ...arrowStyle, left: "-22px" }} onClick={onClick}>
+  <button 
+    type="button" 
+    style={{ ...arrowStyle, left: "-22px" }} onClick={onClick}
+    aria-label="Previous items"
+  >
     ‹
   </button>
 );
 
 const NextArrow = ({ onClick }) => (
-  <button type="button" style={{ ...arrowStyle, right: "-22px" }} onClick={onClick}>
+  <button 
+    type="button" 
+    style={{ ...arrowStyle, right: "-22px" }} onClick={onClick}
+    aria-label="Next items"
+  >
     ›
   </button>
 );
@@ -55,93 +65,118 @@ const sliderSettings = {
   ],
 };
 
+const skeletonSliderSettings = {
+  ...sliderSettings,
+  infinite: false,
+  arrows: false,
+  swipe: false,
+  draggable: false,
+  touchMove: false,
+  accessibility: false,
+};
+
 const SkeletonCards = ({ count = 4 }) => (
   <>
     <style>{`
-      .hc-sk-row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -6px;
+      .ni-sk-card {
+        pointer-events: none;
       }
-      .hc-sk-item {
-        flex: 0 0 25%;
-        max-width: 25%;
-        padding: 0 6px;
-        box-sizing: border-box;
-      }
-      .hc-sk-card {
-        position: relative;
-        margin-top: 30px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        background: #fff;
-      }
-      .hc-sk-image {
-        height: 200px;
-        border-radius: 8px 8px 0 0;
-      }
-      .hc-sk-avatar {
-        position: absolute;
-        left: 50%;
-        top: 200px;
-        transform: translate(-50%, -50%);
+
+      .ni-sk-card .ni-sk-avatar {
         width: 50px;
         height: 50px;
-        border-radius: 50%;
         border: 3px solid #fff;
+        border-radius: 50%;
+        box-sizing: border-box;
       }
-      .hc-sk-info {
-        padding: 40px 16px 20px;
-        text-align: center;
+
+      .ni-sk-card .ni-sk-image {
+        display: block;
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
       }
-      .hc-sk-title {
-        height: 16px;
-        width: 55%;
-        margin: 0 auto 10px;
+
+      .ni-sk-card .ni-sk-title {
+        width: 65%;
+        height: 18px;
+        margin-bottom: 10px;
         border-radius: 4px;
       }
-      .hc-sk-sub {
-        height: 12px;
-        width: 30%;
-        margin: 0 auto;
+
+      .ni-sk-card .ni-sk-price {
+        width: 35%;
+        height: 14px;
         border-radius: 4px;
       }
-      .hc-sk-shimmer {
-        background: linear-gradient(90deg, #dcdce2 25%, #f0f0f4 50%, #dcdce2 75%);
-        background-size: 300% 100%;
-        animation: hc-sk-shine 1.2s linear infinite;
+
+      .ni-sk-card .ni-sk-like {
+        width: 32px;
+        height: 14px;
+        border-radius: 4px;
       }
-      @keyframes hc-sk-shine {
-        0% { background-position: 100% 50%; }
-        100% { background-position: 0 50%; }
+
+      .ni-sk-shimmer {
+        background: linear-gradient(
+          90deg,
+          #e2e2e7 25%,
+          #f5f5f8 50%,
+          #e2e2e7 75%
+        );
+        background-size: 200% 100%;
+        animation: ni-sk-shine 1.5s ease-in-out infinite;
       }
-      @media (max-width: 1280px) {
-        .hc-sk-item { flex-basis: 33.333%; max-width: 33.333%; }
+
+      @keyframes ni-sk-shine {
+        from {
+          background-position: -200% 0;
+        }
+        to {
+          background-position: 200% 0;
+        }
       }
-      @media (max-width: 768px) {
-        .hc-sk-item { flex-basis: 50%; max-width: 50%; }
-      }
-      @media (max-width: 480px) {
-        .hc-sk-item { flex-basis: 100%; max-width: 100%; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ni-sk-shimmer {
+          animation: none;
+        }
       }
     `}</style>
 
-    <div className="hc-sk-row">
-      {Array.from({ length: count }).map((_, i) => {
-        const delay = { animationDelay: `${i * 0.15}s` };
-        return (
-          <div className="hc-sk-item" key={i}>
-            <div className="hc-sk-card">
-              <div className="hc-sk-image hc-sk-shimmer" style={delay} />
-              <div className="hc-sk-avatar hc-sk-shimmer" style={delay} />
-              <div className="hc-sk-info">
-                <div className="hc-sk-title hc-sk-shimmer" style={delay} />
-                <div className="hc-sk-sub hc-sk-shimmer" style={delay} />
+    <div
+      style={{ position: "relative", marginTop: 30 }}
+      aria-hidden="true"
+    >
+      <Slider {...skeletonSliderSettings}>
+        {Array.from({ length: count }).map((_, index) => (
+          <div key={index}>
+            <div
+              className="nft__item ni-sk-card"
+              style={{ margin: "0 6px" }}
+            >
+              <div className="author_list_pp">
+                <div className="ni-sk-avatar ni-sk-shimmer" />
+              </div>
+
+              <div className="nft__item_wrap">
+                <div className="ni-sk-image ni-sk-shimmer" />
+              </div>
+
+              <div className="nft__item_info">
+                <div className="ni-sk-title ni-sk-shimmer" />
+
+                <div className="nft__item_price">
+                  <div className="ni-sk-price ni-sk-shimmer" />
+                </div>
+
+                <div className="nft__item_like">
+                  <div className="ni-sk-like ni-sk-shimmer" />
+                </div>
               </div>
             </div>
           </div>
-        );
-      })}
+        ))}
+      </Slider>
     </div>
   </>
 );
@@ -177,19 +212,33 @@ const NewItems = () => {
     let cancelled = false;
 
     const load = async () => {
+      setStatus("loading");
+
       try {
-        const { data } = await axios.get(NEW_ITEMS_URL);
+        const minDelay = new Promise((resolve) =>
+          setTimeout(resolve, MIN_LOADING_MS)
+        );
+
+        const [{ data }] = await Promise.all([
+          axios.get(NEW_ITEMS_URL),
+          minDelay,
+        ]);
+
         if (!cancelled) {
           setItems(data);
           setStatus("ready");
         }
       } catch (err) {
         console.error("Failed to load new items:", err);
-        if (!cancelled) setStatus("error");
+
+        if (!cancelled) {
+          setStatus("error");
+        }
       }
     };
 
     load();
+
     return () => {
       cancelled = true;
     };
