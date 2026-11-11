@@ -50,7 +50,7 @@ const ItemDetails = () => {
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  {console.log({nftDetails})}
+                  {console.log({ nftDetails })}
                   <h2>{nftDetails.title}</h2>
 
                   <div className="item_info_counts">
@@ -79,7 +79,9 @@ const ItemDetails = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${nftDetails.ownerId}`}></Link>
+                          <Link to={`/author/${nftDetails.ownerId}`}>
+                            {nftDetails.ownerName}
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -91,12 +93,18 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to={`/author/${nftDetails.creatorId}`}>
-                            <img className="lazy" src={nftDetails.creatorImage} alt="" />
+                            <img
+                              className="lazy"
+                              src={nftDetails.creatorImage}
+                              alt=""
+                            />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${nftDetails.creatorId}`}>{nftDetails.creatorName}</Link>
+                          <Link to={`/author/${nftDetails.creatorId}`}>
+                            {nftDetails.creatorName}
+                          </Link>
                         </div>
                       </div>
                     </div>
