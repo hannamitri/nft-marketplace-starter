@@ -1,0 +1,154 @@
+
+/* New Items carousel */
+
+.new-items .ni-slider {
+  margin: 0 -10px;
+  padding: 0 20px;
+}
+
+.new-items .ni-slide {
+  padding: 8px 10px 20px;
+  box-sizing: border-box;
+}
+
+.new-items .ni-card {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.new-items .nft__item_preview {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.new-items .slick-track {
+  display: flex;
+}
+
+.new-items .slick-slide {
+  height: auto;
+}
+
+.new-items .slick-slide > div {
+  height: 100%;
+}
+
+.new-items .slick-prev,
+.new-items .slick-next {
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+}
+
+.new-items .slick-prev {
+  left: -5px;
+}
+
+.new-items .slick-next {
+  right: -5px;
+}
+
+.new-items .slick-prev:before,
+.new-items .slick-next:before {
+  color: #555;
+  font-size: 28px;
+  opacity: 1;
+}
+
+.new-items .ni-status {
+  text-align: center;
+  padding: 28px 12px;
+}
+
+/* Skeleton loading cards */
+
+.new-items .ni-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 8px 20px 20px;
+}
+
+.new-items .ni-skeleton-card {
+  min-width: 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f8f8fa;
+}
+
+.new-items .ni-shimmer {
+  background: linear-gradient(
+    100deg,
+    #e6e6eb 20%,
+    #f6f6fa 40%,
+    #e6e6eb 60%
+  );
+  background-size: 200% 100%;
+  animation: ni-shimmer 1.25s linear infinite;
+}
+
+@keyframes ni-shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.new-items .ni-skeleton-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.new-items .ni-skeleton-image {
+  height: 190px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.new-items .ni-skeleton-title {
+  height: 18px;
+  width: 75%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.new-items .ni-skeleton-price {
+  height: 14px;
+  width: 40%;
+  border-radius: 5px;
+}
+
+/* Tablet */
+
+@media (max-width: 1023px) {
+  .new-items .ni-skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .new-items .ni-skeleton-card:nth-child(n+3) {
+    display: none;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 599px) {
+  .new-items .ni-slider {
+    padding: 0 24px;
+  }
+
+  .new-items .ni-skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .new-items .ni-skeleton-card:nth-child(n+2) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .new-items .ni-shimmer {
+    animation: none;
+  }
+}

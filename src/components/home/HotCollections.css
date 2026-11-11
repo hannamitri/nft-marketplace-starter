@@ -1,0 +1,31 @@
+/* Scoped to the Hot Collections section; no global stylesheet changes. */
+.hot-collections .hc-slider { margin: 0 -10px; padding: 0 20px; }
+.hot-collections .hc-slide { padding: 8px 10px 20px; box-sizing: border-box; }
+.hot-collections .hc-card { height: 100%; margin-bottom: 0; }
+.hot-collections .hc-card__image img { width: 100%; display: block; object-fit: cover; }
+.hot-collections .hc-card .nft_coll_info h4 { overflow-wrap: anywhere; }
+.hot-collections .slick-track { display: flex; }
+.hot-collections .slick-slide { height: auto; }
+.hot-collections .slick-slide > div { height: 100%; }
+.hot-collections .slick-prev, .hot-collections .slick-next { z-index: 2; width: 28px; height: 28px; }
+.hot-collections .slick-prev { left: -5px; }
+.hot-collections .slick-next { right: -5px; }
+.hot-collections .slick-prev:before, .hot-collections .slick-next:before { color: #555; font-size: 28px; opacity: 1; }
+.hot-collections .hc-status { text-align: center; padding: 28px 12px; }
+@media (max-width: 599px) {
+  .hot-collections .hc-slider { padding: 0 24px; }
+  .hot-collections .hc-slide { padding-left: 8px; padding-right: 8px; }
+}
+
+/* Two-second loading placeholders. Shimmer continues if the request is slower. */
+.hot-collections .hc-skeleton-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; padding:8px 20px 20px; }
+.hot-collections .hc-skeleton-card { min-width:0; padding:12px; border-radius:12px; background:#f8f8fa; }
+.hc-shimmer, .nd-shimmer { background:linear-gradient(100deg,#e6e6eb 20%,#f6f6fa 40%,#e6e6eb 60%); background-size:200% 100%; animation:nft-shimmer 1.25s linear infinite; }
+@keyframes nft-shimmer { to { background-position-x:-200%; } }
+.hot-collections .hc-skeleton-image { aspect-ratio: 4/3; border-radius:10px; }
+.hot-collections .hc-skeleton-avatar { width:48px; height:48px; border-radius:50%; margin:-18px auto 14px; position:relative; }
+.hot-collections .hc-skeleton-title { height:18px; width:75%; border-radius:5px; margin:0 auto 12px; }
+.hot-collections .hc-skeleton-code { height:12px; width:42%; border-radius:5px; margin:0 auto 10px; }
+@media(max-width:1023px){.hot-collections .hc-skeleton-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.hot-collections .hc-skeleton-card:nth-child(n+3){display:none;}}
+@media(max-width:599px){.hot-collections .hc-skeleton-grid{grid-template-columns:1fr;}.hot-collections .hc-skeleton-card:nth-child(n+2){display:none;}}
+@media(prefers-reduced-motion:reduce){.hc-shimmer,.nd-shimmer{animation:none;}}

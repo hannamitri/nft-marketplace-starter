@@ -11,10 +11,13 @@ function App() {
     <Router>
       <Nav />
       <Routes>
+        <Route path="/author/:authorId" element={<Author />} />
+        <Route path="/line-detail/:nftId" element={<ItemDetails />} />
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
         <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/item-details/:nftId" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
