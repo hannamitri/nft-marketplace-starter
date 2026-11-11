@@ -12,8 +12,8 @@ const AuthorItems = ({authorData}) => {
         <div className="row">
           {authorData?.nftCollection?.map((item) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.nftId}>
-            <Link key={author.id} to={`/author/${author.id}`}>
-              {author.name}
+            <Link key={authorData.id} to={`/author/${authorData.id}`}>
+              {authorData.name}
             </Link>
               <div className="nft__item">
                 <div className="author_list_pp">

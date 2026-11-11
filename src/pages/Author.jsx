@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
@@ -9,6 +9,8 @@ const Author = () => {
   const { authorId } = useParams(); // Get the author ID from the URL
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false); // State to track if the user is following
+  const [followerCount, setFollowerCount] = useState(0);
 
   useEffect(() => {
     const fetchAuthorData = async () => {
@@ -30,10 +32,19 @@ const Author = () => {
       }
     };
 
+    const handleFollow = () => {
+      setIsFollowing(!isFollowing); // Toggle following state
+      setFollowerCount(prevCount => isFollowing ? prevCount - 1 : prevCount + 1); // Increment or decremenet follower count
+    };
+
     if (authorId) {
       fetchAuthorData();
     }
   }, [authorId]); // The effect depends on the author ID
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div id="wrapper">
@@ -55,13 +66,18 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={authorData.AuthorImage} alt={authorData.authorName} />
+                      <img
+                        src={authorData.authorImage}
+                        alt={authorData.authorName}
+                      />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
                           {authorData.authorName}
-                          <span className="profile_username">@{authorData.tag}</span>
+                          <span className="profile_username">
+                            @{authorData.tag}
+                          </span>
                           <span id="wallet" className="profile_wallet">
                             {authorData.address}
                           </span>
@@ -74,9 +90,14 @@ const Author = () => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{authorData.followers} followers</div>
+                      <div className="profile_follower">
+                        {authorData.followers} followers
+                      </div>
                       <Link to="#" className="btn-main">
+                      <button onClick={handleFollow}
+                      {isFollowing ? 'unfollow' : 'Follow'}>
                         Follow
+                        </button>
                       </Link>
                     </div>
                   </div>
@@ -85,7 +106,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems authorData={authorData} />
+                  <authorItems authorData={authorData} />
                 </div>
               </div>
             </div>
