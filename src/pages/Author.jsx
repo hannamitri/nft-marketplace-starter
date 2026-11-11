@@ -97,12 +97,8 @@ const Author = () => {
                       <div className="profile_follower">
                         {authorData.followers} followers
                       </div>
-                      <Link to="#" className="btn-main">
-                        <>
-                          <button onClick={handleFollow}>
-                            {isFollowing ? "unfollow" : "Follow"}
-                          </button>
-                        </>
+                      <Link to="#" className="btn-main" onClick={handleFollow}>
+                        {isFollowing ? "unfollow" : "Follow"}
                       </Link>
                     </div>
                   </div>
@@ -111,7 +107,7 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <authorItems authorData={authorData} />
+                  <AuthorItems authorData={authorData} />
                 </div>
               </div>
             </div>
