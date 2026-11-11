@@ -13206,7 +13206,7 @@ a.read_more i {
 .nft_wrap {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: auto;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
@@ -13629,6 +13629,8 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .nft__item.style-2,
@@ -15145,7 +15147,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16713,4 +16715,28 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+.slick-prev:hover,
+.slick-next:hover {
+  color: white !important;
+  background-color: black !important;
+  opacity: 1 !important;;     
+  border-radius: 50%;     
+}
+
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+}
+
+
+.slick-prev {
+  left: -10px !important;
+
+}
+.slick-next {
+  right: -10px !important;
 }
