@@ -7,10 +7,19 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
   const { authorId } = useParams(); // Get the author ID from the URL
+  const [nfts, setNfts] = useState([]);
+  const [authorImage, setAuthorImage] = useState("");
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false); // State to track if the user is following
   const [followerCount, setFollowerCount] = useState(0);
+
+  const handleFollow = () => {
+    setIsFollowing(!isFollowing); // Toggle following state
+    setFollowerCount((prevCount) =>
+      isFollowing ? prevCount - 1 : prevCount + 1,
+    ); // Increment or decremenet follower count
+  };
 
   useEffect(() => {
     const fetchAuthorData = async () => {
@@ -30,11 +39,6 @@ const Author = () => {
       } finally {
         setLoading(false);
       }
-    };
-
-    const handleFollow = () => {
-      setIsFollowing(!isFollowing); // Toggle following state
-      setFollowerCount(prevCount => isFollowing ? prevCount - 1 : prevCount + 1); // Increment or decremenet follower count
     };
 
     if (authorId) {
@@ -94,10 +98,11 @@ const Author = () => {
                         {authorData.followers} followers
                       </div>
                       <Link to="#" className="btn-main">
-                      <button onClick={handleFollow}
-                      {isFollowing ? 'unfollow' : 'Follow'}>
-                        Follow
-                        </button>
+                        <>
+                          <button onClick={handleFollow}>
+                            {isFollowing ? "unfollow" : "Follow"}
+                          </button>
+                        </>
                       </Link>
                     </div>
                   </div>
