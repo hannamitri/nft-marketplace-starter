@@ -17,26 +17,26 @@ const Landing = () => {
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="spacer-single"></div>
-              <h6>
-                <span className="text-uppercase id-color-2">
+              <h6 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50">
+                <span className="text-uppercase id-color-2"> 
                   Ultraverse Market
                 </span>
               </h6>
               <div className="spacer-10"></div>
-              <h1>Create, sell or collect digital items.</h1>
-              <p className="lead">
+              <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-easing="linear">Create, sell or collect digital items.</h1>
+              <p className="lead" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="linear">
                 Unit of data stored on a digital ledger, called a blockchain,
                 that certifies a digital asset to be unique and therefore not
                 interchangeable
               </p>
               <div className="spacer-10"></div>
-              <Link className="btn-main lead" to="/explore">
+              <Link className="btn-main lead" to="/explore" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" data-aos-easing="linear">
                 Explore
               </Link>
               <div className="mb-sm-30"></div>
             </div>
             <div className="col-md-6 xs-hide">
-              <img src={NFT} className="lazy img-fluid" alt="" />
+              <img src={NFT} className="lazy img-fluid" alt="" data-aos="fade-up" data-aos-duration="1000"/>
             </div>
           </div>
         </div>
