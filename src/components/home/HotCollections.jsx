@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
-// Custom Left Arrow Component
+// Left Arrow
 const PrevArrow = ({ onClick }) => (
   <button
     className="slick-arrow slick-prev custom-arrow"
@@ -20,7 +20,7 @@ const PrevArrow = ({ onClick }) => (
   </button>
 );
 
-// Custom Right Arrow Component
+// Right Arrow
 const NextArrow = ({ onClick }) => (
   <button
     className="slick-arrow slick-next custom-arrow"
@@ -52,7 +52,7 @@ const HotCollections = () => {
     fetchHotCollections();
   }, []);
 
-  // Carousel Configuration
+  // Carousel
   const settings = {
     dots: false,
     infinite: true,
@@ -75,9 +75,9 @@ const HotCollections = () => {
         },
       },
       {
-        breakpoint: 480, // Mobile screen
+        breakpoint: 480,
         settings: {
-          slidesToShow: 1, // Single card view
+          slidesToShow: 1,
         },
       },
     ],
@@ -96,7 +96,7 @@ const HotCollections = () => {
 
           <div className="col-lg-12">
             {loading ? (
-              /* SKELETON LOADING STATE */
+              /* SKELETON */
               <div className="row">
                 {new Array(4).fill(0).map((_, index) => (
                   <div
@@ -152,7 +152,7 @@ const HotCollections = () => {
                 ))}
               </div>
             ) : (
-              /* LIVE CAROUSEL DATA */
+              /*  CAROUSEL  */
               <Slider {...settings}>
                 {collections.map((collection) => (
                   <div key={collection.id} className="px-2">
