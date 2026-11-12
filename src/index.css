@@ -10,3 +10,152 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+.hot-collections__layout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hot-collections__arrow {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hot-collections__carousel {
+  flex: 1;
+  min-width: 0;
+}
+
+.hot-collections__skeleton {
+  position: relative;
+}
+
+.hot-collections__skeleton-author {
+  position: absolute;
+  top: 190px;
+  left: 16px;
+  width: 54px;
+  height: 54px;
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--background-color, #fff);
+}
+
+.hot-collections__skeleton-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 16px 16px;
+}
+
+#content img {
+  max-width: 100%;
+}
+
+#section-hero h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  line-height: 1.08;
+}
+
+#section-hero .lead {
+  max-width: 38rem;
+}
+
+@media (max-width: 991.98px) {
+  header #logo img {
+    width: min(48vw, 200px);
+    height: auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #section-hero.vh-100 {
+    height: auto !important;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 5rem 0 3rem;
+  }
+
+  #section-hero .v-center {
+    min-height: 0;
+  }
+
+  #section-hero h1 {
+    font-size: clamp(2.25rem, 8vw, 3.5rem);
+  }
+
+  #subheader {
+    min-height: 0;
+    padding: 4rem 0 !important;
+  }
+
+  #subheader h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  #profile_banner {
+    min-height: clamp(180px, 42vw, 300px);
+  }
+
+  .profile_name,
+  .profile_avatar {
+    min-width: 0;
+  }
+
+  .profile_wallet {
+    max-width: min(70vw, 260px);
+  }
+
+  .item_info h2 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #section-hero {
+    padding-top: 4rem;
+  }
+
+  #section-hero .lead {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hot-collections__layout {
+    gap: 8px;
+  }
+
+  .hot-collections__arrow {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .hot-collections__skeleton-author {
+    top: 190px;
+    left: 12px;
+  }
+
+  .footer__link {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer__link .f-logo {
+    width: min(200px, 70vw);
+    margin-right: 0;
+  }
+}
