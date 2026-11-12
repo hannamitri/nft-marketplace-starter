@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.48e15fcb.css",
+    "main.js": "/static/js/main.915ae864.js",
+    "static/js/787.f774173f.chunk.js": "/static/js/787.f774173f.chunk.js",
+    "static/media/icofont.woff": "/static/media/icofont.dad3accba068281878f1.woff",
+    "static/media/icofont.woff2": "/static/media/icofont.9c33516aab48c61e3081.woff2",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.6878d55e3615ccf40c38.svg",
+    "static/media/author_banner.jpg": "/static/media/author_banner.3461d4a43582732aed21.jpg",
+    "static/media/ElegantIcons.svg": "/static/media/ElegantIcons.44385f164a99385eb34f.svg",
+    "static/media/et-line.svg": "/static/media/et-line.3e441a4587befc7eeb4f.svg",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/nftImage.jpg": "/static/media/nftImage.0299eed903ee71c8c953.jpg",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/ElegantIcons.woff": "/static/media/ElegantIcons.941bf29b415d3a9b7099.woff",
+    "static/media/ElegantIcons.eot": "/static/media/ElegantIcons.78ba4ad1289e5a66ca11.eot",
+    "static/media/ElegantIcons.ttf": "/static/media/ElegantIcons.4555dd9ce623f8fd6d72.ttf",
+    "static/media/et-line.woff": "/static/media/et-line.d59b23856f66f9876c47.woff",
+    "static/media/subheader.jpg": "/static/media/subheader.bd3b04df2c5c85b26398.jpg",
+    "static/media/nft.png": "/static/media/nft.c82a8c50b34e0c3cbdda.png",
+    "static/media/et-line.eot": "/static/media/et-line.3f5eecf9f3326c4d6d81.eot",
+    "static/media/et-line.ttf": "/static/media/et-line.cc7129c849c81d254698.ttf",
+    "static/media/author_thumbnail.jpg": "/static/media/author_thumbnail.04ee784f53cbe427d362.jpg",
+    "static/media/bg-shape-1.jpg": "/static/media/bg-shape-1.ba54a8e086d0e99d912d.jpg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "index.html": "/index.html",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/slick.woff2": "/static/media/slick.690f0f2928abb870b888.woff2",
+    "main.48e15fcb.css.map": "/static/css/main.48e15fcb.css.map",
+    "main.915ae864.js.map": "/static/js/main.915ae864.js.map",
+    "787.f774173f.chunk.js.map": "/static/js/787.f774173f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48e15fcb.css",
+    "static/js/main.915ae864.js"
+  ]
+}

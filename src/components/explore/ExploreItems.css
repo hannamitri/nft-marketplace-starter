@@ -1,0 +1,74 @@
+/* Explore uses the same NFT card and shimmer as New Items. */
+.explore-items {
+  width: 100%;
+}
+.explore-filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.explore-filter select {
+  min-width: 195px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+}
+.explore-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+.explore-card-grid > .explore-card-item {
+  min-width: 0;
+  padding: 0;
+}
+.explore-card-grid .ni-card {
+  height: 100%;
+}
+.explore-more-wrap {
+  padding: 15px 0 30px;
+}
+.explore-more-wrap button {
+  cursor: pointer;
+}
+.explore-message {
+  text-align: center;
+  padding: 45px 0;
+}
+.explore-skeleton .ni-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 0 0 24px;
+}
+.explore-skeleton .ni-skeleton-card {
+  min-width: 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f8f8fa;
+}
+@media (max-width: 991px) {
+  .explore-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explore-skeleton .ni-skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explore-skeleton .ni-skeleton-card:nth-child(n) {
+    display: block;
+  }
+}
+@media (max-width: 575px) {
+  .explore-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .explore-skeleton .ni-skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+  .explore-skeleton .ni-skeleton-card:nth-child(n) {
+    display: block;
+  }
+}

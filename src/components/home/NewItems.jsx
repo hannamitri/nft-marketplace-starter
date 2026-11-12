@@ -1,79 +1,115 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Slider from "react-slick";
+import { NewItemCard, NewItemsSkeleton, extractItems } from "../UI/NftCard";
 
-const NewItems = () => {
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./NewItems.css";
+
+const API_URL =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
+
+export default function NewItems() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchItems() {
+      const started = Date.now();
+
+      try {
+        const response = await axios.get(API_URL, {
+          signal: controller.signal,
+        });
+
+        const results = extractItems(response.data);
+        setItems(results.slice(0, 7));
+      } catch (err) {
+        if (err.code !== "ERR_CANCELED") {
+          setError("Unable to load new items.");
+        }
+      } finally {
+        const remaining = Math.max(0, 2000 - (Date.now() - started));
+
+        await new Promise((resolve) => setTimeout(resolve, remaining));
+
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchItems();
+
+    return () => controller.abort();
+  }, []);
+
+  const settings = {
+    dots: false,
+    infinite: items.length > 4,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    accessibility: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          infinite: items.length > 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          infinite: items.length > 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <section id="section-items" className="no-bottom">
+    <section id="section-items" className="no-bottom new-items">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
+              <div className="small-border bg-color-2" />
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-              <div className="nft__item">
-                <div className="author_list_pp">
-                  <Link
-                    to="/author"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
-                    <i className="fa fa-check"></i>
-                  </Link>
-                </div>
-                <div className="de_countdown">5h 30m 32s</div>
-
-                <div className="nft__item_wrap">
-                  <div className="nft__item_extra">
-                    <div className="nft__item_buttons">
-                      <button>Buy Now</button>
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
-                        <a href="" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Link to="/item-details">
-                    <img
-                      src={nftImage}
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft__item_info">
-                  <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
-                  </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
-                  <div className="nft__item_like">
-                    <i className="fa fa-heart"></i>
-                    <span>69</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
+
+        {loading && <NewItemsSkeleton />}
+
+        {!loading && error && (
+          <p className="ni-status" role="alert">
+            {error}
+          </p>
+        )}
+
+        {!loading && !error && items.length === 0 && (
+          <p className="ni-status">No new items available.</p>
+        )}
+
+        {!loading && !error && items.length > 0 && (
+          <div className="ni-slider">
+            <Slider {...settings}>
+              {items.map((item) => (
+                <div key={item.id} className="ni-slide">
+                  <NewItemCard item={item} />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        )}
       </div>
     </section>
   );
-};
-
-export default NewItems;
+}
