@@ -36,7 +36,7 @@ const HotCollections = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections",
     );
     setUsers(data);
-    setLoading(true);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -59,6 +59,7 @@ const HotCollections = () => {
 
           {loading ? (
             <OwlCarousel
+              key="skeleton"
               className="owl-theme"
               {...options}
               loop
@@ -88,6 +89,7 @@ const HotCollections = () => {
           ) : (
             users.length > 0 && (
               <OwlCarousel
+                key="collections"
                 className="owl-theme"
                 {...options}
                 loop
