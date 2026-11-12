@@ -16,6 +16,7 @@ const AuthorItems = ({ items, authorId, authorImage }) => {
                 ? "/item-details"
                 : `/item-details/${encodeURIComponent(nftId)}`;
             const detailsState = { item, authorId, authorImage };
+            const shareUrl = `${window.location.origin}${detailsPath}`;
 
             return (
               <div
@@ -39,13 +40,23 @@ const AuthorItems = ({ items, authorId, authorImage }) => {
                         <button>Buy Now</button>
                         <div className="nft__item_share">
                           <h4>Share</h4>
-                          <a href="" target="_blank" rel="noreferrer">
+                          <a
+                            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <i className="fa fa-facebook fa-lg"></i>
                           </a>
-                          <a href="" target="_blank" rel="noreferrer">
+                          <a
+                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <i className="fa fa-twitter fa-lg"></i>
                           </a>
-                          <a href="">
+                          <a
+                            href={`mailto:?subject=${encodeURIComponent("Check out this NFT")}&body=${encodeURIComponent(shareUrl)}`}
+                          >
                             <i className="fa fa-envelope fa-lg"></i>
                           </a>
                         </div>

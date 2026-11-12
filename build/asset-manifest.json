@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.48e15fcb.css",
-    "main.js": "/static/js/main.915ae864.js",
-    "static/js/787.f774173f.chunk.js": "/static/js/787.f774173f.chunk.js",
+    "main.css": "/static/css/main.18d3ddf1.css",
+    "main.js": "/static/js/main.0b920a43.js",
+    "static/js/787.73f610ee.chunk.js": "/static/js/787.73f610ee.chunk.js",
     "static/media/icofont.woff": "/static/media/icofont.dad3accba068281878f1.woff",
     "static/media/icofont.woff2": "/static/media/icofont.9c33516aab48c61e3081.woff2",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.6878d55e3615ccf40c38.svg",
@@ -24,17 +24,18 @@
     "static/media/et-line.ttf": "/static/media/et-line.cc7129c849c81d254698.ttf",
     "static/media/author_thumbnail.jpg": "/static/media/author_thumbnail.04ee784f53cbe427d362.jpg",
     "static/media/bg-shape-1.jpg": "/static/media/bg-shape-1.ba54a8e086d0e99d912d.jpg",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/index.html",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "static/media/slick.woff2": "/static/media/slick.690f0f2928abb870b888.woff2",
-    "main.48e15fcb.css.map": "/static/css/main.48e15fcb.css.map",
-    "main.915ae864.js.map": "/static/js/main.915ae864.js.map",
-    "787.f774173f.chunk.js.map": "/static/js/787.f774173f.chunk.js.map"
+    "static/media/ethereum.svg": "/static/media/ethereum.df265e367364f285053a1285ad8d418d.svg",
+    "main.18d3ddf1.css.map": "/static/css/main.18d3ddf1.css.map",
+    "main.0b920a43.js.map": "/static/js/main.0b920a43.js.map",
+    "787.73f610ee.chunk.js.map": "/static/js/787.73f610ee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48e15fcb.css",
-    "static/js/main.915ae864.js"
+    "static/css/main.18d3ddf1.css",
+    "static/js/main.0b920a43.js"
   ]
 }
