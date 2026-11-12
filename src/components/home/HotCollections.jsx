@@ -7,6 +7,7 @@ import Slider from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import Skeleton from "../UI/Skeleton";
+import AOS from 'aos';
 
 const HotCollections = () => {
   const [collections, setCollections] = React.useState([]);
@@ -27,10 +28,11 @@ const HotCollections = () => {
     };
 
     fetchCollections();
+    AOS.init();
   }, []);
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" className="no-bottom" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="250">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

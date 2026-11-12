@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
+import AOS from 'aos';
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -26,10 +27,11 @@ const TopSellers = () => {
     };
 
     fetchTopSellers();
+    AOS.init();
   }, []);
 
   return (
-    <section id="section-popular" className="pb-5">
+    <section id="section-popular" className="pb-5" data-aos="zoom-in" data-aos-duration="1500">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

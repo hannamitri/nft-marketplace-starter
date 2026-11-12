@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import NftCard from "../UI/NftCard";
+import AOS from 'aos';
 
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
@@ -25,6 +26,7 @@ const ExploreItems = () => {
       }
     };
     fetchData();
+    AOS.init();
   }, [filter]);
 
   const loadMoreItems = () => {
@@ -51,7 +53,7 @@ const ExploreItems = () => {
         items.slice(0, visibleItems).map((item) => (
           <div
             key={item.id}
-            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" 
             style={{ display: "block" }}
           >
             {" "}
@@ -59,9 +61,9 @@ const ExploreItems = () => {
           </div>
         ))
       )}
-      <div className="col-md-12 text-center">
+      <div className="col-md-12 text-center" ata-aos="zoom-in" data-aos-duration="400">
         {visibleItems < items.length && (
-          <button onClick={loadMoreItems} className="btn-main lead">
+          <button onClick={loadMoreItems} className="btn-main lead" data-aos="zoom-in-left" data-aos-duration="1000">
             Load More
           </button>
         )}

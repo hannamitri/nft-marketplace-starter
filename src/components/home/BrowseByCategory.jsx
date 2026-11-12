@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
 
 const BrowseByCategory = () => {
+  AOS.init();
+
   return (
-    <section id="section-category" className="no-top">
+    <section id="section-category" className="no-top" data-aos="flip-up" data-aos-duration="2000" data-aos-delay="500">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

@@ -4,6 +4,7 @@ import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import AOS from "aos";
 
 const Author = () => {
   const { authorId } = useParams(); // Get the author ID from the URL
@@ -44,6 +45,7 @@ const Author = () => {
     if (authorId) {
       fetchAuthorData();
     }
+    AOS.init();
   }, [authorId]); // The effect depends on the author ID
 
   if (loading) {
@@ -77,7 +79,7 @@ const Author = () => {
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
-                        <h4>
+                        <h4 data-aos="zoom-in-up" data-aos-duration="500">
                           {authorData.authorName}
                           <span className="profile_username">
                             @{authorData.tag}
@@ -85,7 +87,12 @@ const Author = () => {
                           <span id="wallet" className="profile_wallet">
                             {authorData.address}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
+                          <button
+                            id="btn_copy"
+                            title="Copy Text"
+                            data-aos="zoom-in-up"
+                            data-aos-duration="500"
+                          >
                             Copy
                           </button>
                         </h4>
