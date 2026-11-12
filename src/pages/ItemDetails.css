@@ -49,6 +49,9 @@
   color: #60449a;
   font-weight: 600;
 }
+.nd-price {
+  font-size: 1.5em;
+}
 .nd-price-value {
   font-weight: 700;
 }

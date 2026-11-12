@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./ItemDetails.css";
+import ethereumIcon from "../images/ethereum.svg";
 
 const ITEM_DETAILS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails";
@@ -185,7 +186,11 @@ export default function ItemDetails() {
                     </div>
                   )}
                   <p className="nd-price">
-                    <strong>Price:</strong>{" "}
+                    <img
+                      src={ethereumIcon}
+                      alt="Price"
+                      style={{ height: "1em", verticalAlign: "middle" }}
+                    />{" "}
                     <span className="nd-price-value">
                       {item.price != null ? `${item.price} ETH` : "Unavailable"}
                     </span>
