@@ -20,12 +20,16 @@ export function extractCollections(payload) {
 }
 
 export function getNftId(collection) {
-  return collection.nftId ?? collection.nftid;
+  return collection.nftId ?? collection.nftID ?? collection.nftid;
 }
 
 function CollectionCard({ collection }) {
   const nftId = getNftId(collection);
-  const authorId = collection.authorId ?? collection.authorid;
+  const authorId =
+    collection.authorId ??
+    collection.authorID ??
+    collection.authorid ??
+    collection.author?.id;
   const authorImage = collection.authorImage ?? collection.authorimage;
   const nftImage = collection.nftImage ?? collection.nftimage;
   const code = collection.code ?? collection.ercCode ?? collection.erc;
@@ -33,7 +37,9 @@ function CollectionCard({ collection }) {
   const detailsPath =
     nftId == null
       ? "/item-details"
-      : `/item-details/${encodeURIComponent(nftId)}`;
+      : `/item-details/${encodeURIComponent(nftId)}#`;
+  const authorPath =
+    authorId == null ? "/author" : `/author/${encodeURIComponent(authorId)}`;
 
   return (
     <article className="hc-card nft_coll">
@@ -48,14 +54,7 @@ function CollectionCard({ collection }) {
         </Link>
       </div>
       <div className="nft_coll_pp">
-        <Link
-          to={
-            authorId == null
-              ? "/author"
-              : `/author/${encodeURIComponent(authorId)}`
-          }
-          aria-label={`View creator of ${title}`}
-        >
+        <Link to={authorPath} aria-label={`View ${title} creator`}>
           <img
             className="lazy pp-coll"
             src={authorImage}

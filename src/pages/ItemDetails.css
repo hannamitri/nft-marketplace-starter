@@ -1,20 +1,132 @@
 /* Scoped styles for the dynamic NFT details page. */
-.nd-section { min-height: 55vh; }
-.nd-back { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; padding:9px 15px; border:1px solid #ccc; background:transparent; border-radius:7px; cursor:pointer; color:inherit; font:inherit; }
-.nd-back:hover,.nd-back:focus-visible { border-color:#555; outline-offset:3px; }
-.nd-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:36px; align-items:start; }
-.nd-image { width:100%; max-height:560px; object-fit:contain; }
-.nd-image-placeholder { width:100%; aspect-ratio:1/1; border-radius:12px; }
-.nd-skeleton-info { padding:12px 0; }
-.nd-line { height:18px; border-radius:5px; margin-bottom:22px; }
-.nd-line-long { width:78%; height:32px; }
-.nd-line-short { width:35%; }
-.nd-line-medium { width:60%; }
-.nd-avatar { width:55px; height:55px; border-radius:50%; margin-top:36px; }
-.nd-creator { display:flex; gap:14px; align-items:center; margin:26px 0; }
-.nd-creator-image { width:55px; height:55px; object-fit:cover; border-radius:50%; }
-.nd-note { color:#777; margin-top:30px; font-size:14px; }
-.nd-message { padding:30px 0; }
-.nd-empty-image { display:grid; place-items:center; background:#eee; color:#555; }
-@media(max-width:767px){.nd-layout{grid-template-columns:1fr;gap:24px;}.nd-image{max-height:420px;}}
-@media(prefers-reduced-motion:reduce){.nd-shimmer{animation:none;}}
+.nd-section {
+  min-height: 55vh;
+}
+.nd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 9px 15px;
+  border: 1px solid #ccc;
+  background: transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+.nd-back:hover,
+.nd-back:focus-visible {
+  border-color: #555;
+  outline-offset: 3px;
+}
+.nd-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+.nd-title-row {
+  margin: 0;
+}
+.nd-tag {
+  color: inherit;
+  font: inherit;
+}
+.nd-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 22px;
+}
+.nd-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: #f0eaff;
+  color: #60449a;
+  font-weight: 600;
+}
+.nd-price-value {
+  font-weight: 700;
+}
+.nd-image {
+  width: 100%;
+  max-height: 560px;
+  object-fit: contain;
+}
+.nd-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+}
+.nd-skeleton-info {
+  padding: 12px 0;
+}
+.nd-line {
+  height: 18px;
+  border-radius: 5px;
+  margin-bottom: 22px;
+}
+.nd-line-long {
+  width: 78%;
+  height: 32px;
+}
+.nd-line-short {
+  width: 35%;
+}
+.nd-line-medium {
+  width: 60%;
+}
+.nd-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-top: 36px;
+}
+.nd-creator {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 26px 0;
+}
+.nd-creator-image {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.nd-creator-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+.nd-note {
+  color: #777;
+  margin-top: 30px;
+  font-size: 14px;
+}
+.nd-message {
+  padding: 30px 0;
+}
+.nd-empty-image {
+  display: grid;
+  place-items: center;
+  background: #eee;
+  color: #555;
+}
+@media (max-width: 767px) {
+  .nd-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .nd-image {
+    max-height: 420px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nd-shimmer {
+    animation: none;
+  }
+}

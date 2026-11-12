@@ -3,17 +3,8 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./ItemDetails.css";
 
-const API_URL =
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
-
-function getCollections(payload) {
-  if (Array.isArray(payload)) return payload;
-  if (Array.isArray(payload?.data)) return payload.data;
-  if (Array.isArray(payload?.collections)) return payload.collections;
-  if (Array.isArray(payload?.data?.collections))
-    return payload.data.collections;
-  return [];
-}
+const ITEM_DETAILS_URL =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails";
 
 function DetailsSkeleton() {
   return (
@@ -51,15 +42,15 @@ export default function ItemDetails() {
           setError("No NFT was selected. Choose a card from Hot Collections.");
           return;
         }
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(ITEM_DETAILS_URL, {
+          params: { nftId },
           signal: controller.signal,
         });
-        const matching = getCollections(response.data).find(
-          (record) => String(record.nftId ?? record.nftid) === String(nftId),
-        );
+        const details = response.data?.data ?? response.data;
         if (active) {
-          if (matching) setItem(matching);
-          else setError("This NFT was not found in New Items.");
+          if (details && (details.nftId != null || details.id != null))
+            setItem(details);
+          else setError("This NFT could not be found.");
         }
       } catch (err) {
         if (active && err.code !== "ERR_CANCELED")
@@ -84,10 +75,13 @@ export default function ItemDetails() {
     else navigate("/");
   }
 
-  const image = item?.nftImage ?? item?.nftimage;
-  const authorImage = item?.authorImage ?? item?.authorimage;
-  const authorId = item?.authorId ?? item?.authorid;
-  const ercCode = item?.code ?? item?.ercCode ?? item?.erc;
+  const image = item?.nftImage ?? item?.nftimage ?? item?.image;
+  const creatorImage = item?.creatorImage ?? item?.authorImage;
+  const ownerId = item?.ownerId;
+  const creatorId = item?.creatorId ?? item?.authorId;
+  const ownerPath = `/author/${encodeURIComponent(ownerId)}`;
+  const creatorPath = `/author/${encodeURIComponent(creatorId)}`;
+  const tag = item?.tag ?? item?.id;
 
   return (
     <div id="wrapper">
@@ -125,35 +119,76 @@ export default function ItemDetails() {
                   )}
                 </div>
                 <div className="item_info nd-info">
-                  <h2>{item.title || "Untitled NFT"}</h2>
-                  <p>
-                    <strong>NFT ID:</strong> {String(nftId)}
+                  <h2 className="nd-title-row">
+                    {item.title || item.name || "Untitled NFT"}
+                    {tag != null && <span className="nd-tag"> #{tag}</span>}
+                  </h2>
+                  <div className="nd-stats" aria-label="NFT activity">
+                    <div
+                      className="nd-stat"
+                      aria-label={`${item.views ?? 0} views`}
+                    >
+                      <i className="fa fa-eye" aria-hidden="true" />
+                      <span>{item.views ?? 0}</span>
+                    </div>
+                    <div
+                      className="nd-stat"
+                      aria-label={`${item.likes ?? 0} likes`}
+                    >
+                      <i className="fa fa-heart" aria-hidden="true" />
+                      <span>{item.likes ?? 0}</span>
+                    </div>
+                  </div>
+                  <p className="nd-description">
+                    <strong>Description:</strong>{" "}
+                    {item.description || "No description available."}
                   </p>
-                  {ercCode && (
-                    <p>
-                      <strong>ERC code:</strong> {ercCode}
-                    </p>
-                  )}
-                  {authorId != null && (
+                  {ownerId != null && (
                     <div className="nd-creator">
-                      {authorImage && (
-                        <img
-                          src={authorImage}
-                          alt="Creator avatar"
-                          className="nd-creator-image"
-                        />
+                      {item.ownerImage && (
+                        <Link to={ownerPath} aria-label="View owner profile">
+                          <img
+                            src={item.ownerImage}
+                            alt="Owner avatar"
+                            className="nd-creator-image"
+                          />
+                        </Link>
                       )}
                       <div>
-                        <h6>Creator</h6>
-                        <Link to={`/author/${encodeURIComponent(authorId)}`}>
-                          {String(authorId)}
-                        </Link>
+                        <h6>Owner</h6>
+                        <span className="nd-creator-name">
+                          {item.ownerName || String(ownerId)}
+                        </span>
                       </div>
                     </div>
                   )}
-                  <p className="nd-note">
-                    Additional information such as price, description, and
-                    ownership requires a separate NFT details data source.
+                  {creatorId != null && (
+                    <div className="nd-creator">
+                      {creatorImage && (
+                        <Link
+                          to={creatorPath}
+                          aria-label="View creator profile"
+                        >
+                          <img
+                            src={creatorImage}
+                            alt="Creator avatar"
+                            className="nd-creator-image"
+                          />
+                        </Link>
+                      )}
+                      <div>
+                        <h6>Creator</h6>
+                        <span className="nd-creator-name">
+                          {item.creatorName || String(creatorId)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <p className="nd-price">
+                    <strong>Price:</strong>{" "}
+                    <span className="nd-price-value">
+                      {item.price != null ? `${item.price} ETH` : "Unavailable"}
+                    </span>
                   </p>
                 </div>
               </div>
