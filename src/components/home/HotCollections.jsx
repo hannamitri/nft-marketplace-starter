@@ -11,7 +11,7 @@ const CollectionCard = ({ collection }) => (
   <div className="keen-slider__slide hot-collections__slide">
     <div className="nft_coll">
       <div className="nft_wrap">
-        <Link to="/item-details">
+        <Link to={`/item-details/${collection.id}`}>
           <img
             src={collection.nftImage}
             className="lazy img-fluid"

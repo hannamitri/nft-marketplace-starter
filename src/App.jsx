@@ -15,6 +15,11 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
         <Route path="/item-details" element={<ItemDetails />} />
+        <Route
+          path="/item-details/new/:id"
+          element={<ItemDetails itemType="new" />}
+        />
+        <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>
