@@ -6,6 +6,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AOS from "aos";
 
 const NEW_ITEMS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
@@ -31,9 +32,10 @@ const arrowStyle = {
 };
 
 const PrevArrow = ({ onClick }) => (
-  <button 
-    type="button" 
-    style={{ ...arrowStyle, left: "-22px" }} onClick={onClick}
+  <button
+    type="button"
+    style={{ ...arrowStyle, left: "-22px" }}
+    onClick={onClick}
     aria-label="Previous items"
   >
     ‹
@@ -41,9 +43,10 @@ const PrevArrow = ({ onClick }) => (
 );
 
 const NextArrow = ({ onClick }) => (
-  <button 
-    type="button" 
-    style={{ ...arrowStyle, right: "-22px" }} onClick={onClick}
+  <button
+    type="button"
+    style={{ ...arrowStyle, right: "-22px" }}
+    onClick={onClick}
     aria-label="Next items"
   >
     ›
@@ -227,6 +230,10 @@ const NewItems = () => {
         if (!cancelled) {
           setItems(data);
           setStatus("ready");
+          // Refresh AOS positions after slider DOM elements mount
+          setTimeout(() => {
+            AOS.refresh();
+          }, 100);
         }
       } catch (err) {
         console.error("Failed to load new items:", err);
@@ -247,7 +254,13 @@ const NewItems = () => {
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div
+          className="row"
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-offset="150"
+          data-aos-easing="ease-in-out"
+        >
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>

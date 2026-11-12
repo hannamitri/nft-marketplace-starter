@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
+import AOS from "aos";
 
 const TOP_SELLERS_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers";
@@ -103,6 +104,10 @@ const TopSellers = () => {
         if (!cancelled) {
           setSellers(data);
           setStatus("ready");
+          // Recalculate AOS trigger points after data mounts
+          setTimeout(() => {
+            AOS.refresh();
+          }, 100);
         }
       } catch (err) {
         console.error("Failed to load top sellers:", err);
@@ -123,7 +128,13 @@ const TopSellers = () => {
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div
+          className="row"
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-offset="150"
+          data-aos-easing="ease-in-out"
+        >
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
+import AOS from "aos";
 
 const EXPLORE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -168,6 +169,10 @@ const ExploreItems = () => {
         if (!cancelled) {
           setItems(data);
           setStatus("ready");
+          // Refresh AOS positions when cards render
+          setTimeout(() => {
+            AOS.refresh();
+          }, 100);
         }
       } catch (err) {
         console.error("Failed to load explore items:", err);
@@ -184,6 +189,13 @@ const ExploreItems = () => {
       cancelled = true;
     };
   }, [filter]);
+
+  const handleLoadMore = () => {
+    setVisibleCount((count) => count + LOAD_MORE_STEP);
+    setTimeout(() => {
+      AOS.refresh();
+    }, 100);
+  };
 
   const visibleItems = items.slice(0, visibleCount);
   const hasMore = visibleCount < items.length;
@@ -228,6 +240,9 @@ const ExploreItems = () => {
               display: "block",
               backgroundSize: "cover",
             }}
+            data-aos="fade-in"
+            data-aos-duration="1000"
+            data-aos-offset="100"
           >
             <div className="nft__item">
               <div className="author_list_pp">
@@ -249,7 +264,6 @@ const ExploreItems = () => {
                     <Link to={`/item-details/${item.nftId}`}>
                       <button>Buy Now</button>
                     </Link>
-
                     <div className="nft__item_share">
                       <h4>Share</h4>
 
@@ -308,9 +322,7 @@ const ExploreItems = () => {
           <button
             id="loadmore"
             className="btn-main lead"
-            onClick={() =>
-              setVisibleCount((count) => count + LOAD_MORE_STEP)
-            }
+            onClick={handleLoadMore}
           >
             Load more
           </button>
