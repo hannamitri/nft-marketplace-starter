@@ -10642,7 +10642,7 @@ div.round,
   display: none;
 }
 
-.fp-wrap:hover {
+.fp-wrap:hoveowl-itemr {
   -webkit-box-shadow: 0 40px 40px 0 rgba(10, 10, 10, 0.1);
   -moz-box-shadow: 0 40px 40px 0 rgba(10, 10, 10, 0.1);
   box-shadow: 0 40px 40px 0 rgba(10, 10, 10, 0.1);
@@ -12706,7 +12706,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -13219,6 +13219,7 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
+  margin: 5px;
 }
 
 .nft_coll_info {
@@ -15145,7 +15146,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
