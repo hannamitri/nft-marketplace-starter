@@ -184,21 +184,36 @@ const ExploreItems = () => {
                     <div className="nft__item_buttons">
                       <button>Buy Now</button>
 
-                      <div className="nft__item_share">
-                        <h4>Share</h4>
+                     
+<div className="nft__item_share">
+  <h4>Share</h4>
 
-                        <a href="#" target="_blank" rel="noreferrer">
-                          <i className="fa fa-facebook fa-lg"></i>
-                        </a>
+  <a
+    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Share on Facebook"
+  >
+    <i className="fa fa-facebook fa-lg"></i>
+  </a>
 
-                        <a href="#" target="_blank" rel="noreferrer">
-                          <i className="fa fa-twitter fa-lg"></i>
-                        </a>
+  <a
+    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Share on Twitter"
+  >
+    <i className="fa fa-twitter fa-lg"></i>
+  </a>
 
-                        <a href="#">
-                          <i className="fa fa-envelope fa-lg"></i>
-                        </a>
-                      </div>
+  <a
+    href={`mailto:?subject=${encodeURIComponent(item.title)}&body=${encodeURIComponent(window.location.href)}`}
+    aria-label="Share by email"
+  >
+    <i className="fa fa-envelope fa-lg"></i>
+  </a>
+</div>
+
                     </div>
                   </div>
 
