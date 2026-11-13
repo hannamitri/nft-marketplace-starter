@@ -1,9 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const ExploreItems = () => {
+  const { authorId } = useParams();
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    async function fetchExploreItems()
+    {
+      try {
+  const response = await fetch(
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+  );
+  if (!response.ok) {throw new Error("Failed to fetch Explore items");
+  }
+  const data = await response.json();
+  if (!Array.isArray(data)) {throw new Error ("Explore API did not return an array");
+  }
+  console.log("Fetched Explore items:", data);
+  if (active) {
+    setItems(data);
+  }
+} catch (err) {
+  console.error("Error fetching Explore items:", err);
+  if (active) {
+    setError(err.message);
+}
+    } finally {
+      if (active) {
+        setLoading(false);
+      }
+    }
+  }
+  fetchExploreItems();
+  return () => {
+    active = false;
+  }
+}, [authorId]);
   return (
     <>
       <div>
@@ -14,20 +50,20 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {items.map((item) => (
         <div
-          key={index}
+          key={item.id}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${item.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={item.authorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
@@ -51,18 +87,18 @@ const ExploreItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+              <Link to={`/item-details/${item.nftId}`}>
+                <img src={item.nftImage} className="lazy nft__item_preview" alt="" />
               </Link>
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{item.title}</h4>
               </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+              <div className="nft__item_price">{item.price} ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>{item.likes}</span>
               </div>
             </div>
           </div>
