@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import AOS from "aos"; // 1. Add this at the top with your other imports
 import BrowseByCategory from "../components/home/BrowseByCategory";
 import HotCollections from "../components/home/HotCollections";
 import Landing from "../components/home/Landing";
@@ -9,6 +10,7 @@ import TopSellers from "../components/home/TopSellers";
 const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    AOS.refresh(); // 2. Add this inside your existing useEffect
   }, []);
 
   return (
@@ -17,9 +19,19 @@ const Home = () => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections />
-        <NewItems />
-        <TopSellers />
+
+        <div data-aos="fade-up">
+          <HotCollections />
+        </div>
+
+        <div data-aos="fade-up">
+          <NewItems />
+        </div>
+
+        <div data-aos="fade-up">
+          <TopSellers />
+        </div>
+
         <BrowseByCategory />
       </div>
     </div>
