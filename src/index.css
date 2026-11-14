@@ -43,14 +43,26 @@
   margin: 0 auto;
 }
 
-.skeleton-info, .skeleton-id {
+.skeleton-info, .skeleton-id, .skeleton__title, .skeleton__price, .skeleton__like {
   background-color: #dddbdd;
   height: 1em;
   width: 25%;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-info, .skeleton-id {
   margin: 0 auto;
   margin-bottom: 0.5em;
 }
 
 .skeleton-id {
   width: 15%;
+}
+
+.skeleton__title {
+  width: 70%;
+}
+
+.skeleton__like {
+  width: 10%;
 }

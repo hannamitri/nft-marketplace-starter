@@ -40,8 +40,10 @@ const HotCollections = () => {
               </div>
             </div>
             {loading ? (
-              new Array(3).fill(0).map((_, index) => (
-              <div className="item col-12 col-sm-6 col-lg-4" key={index}>
+              <OwlCarousel key="loading"
+                className="owl-theme" margin={10} nav responsive={responsiveSettings}>
+              {new Array(3).fill(0).map((_, index) => (
+              <div className="item" key={index}>
                 <div className="nft_coll">
                   <div className="skeleton-box nft_wrap"></div>
                   <div className="nft_coll_pp">
@@ -54,8 +56,10 @@ const HotCollections = () => {
                   </div>
                 </div>
               </div>
-            ))) : (
-              <OwlCarousel 
+            ))}
+            </OwlCarousel>
+            ) : (
+              <OwlCarousel key="loaded"
                 className="owl-theme" loop margin={10} nav responsive={responsiveSettings}>
                 {users.map((user) => (
                   <div className="item" key={user.id}>
