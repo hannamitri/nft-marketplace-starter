@@ -8,6 +8,8 @@ import nftImage from "../../images/nftImage.jpg";
 const AuthorItems = () => {
   const currentUrl = encodeURIComponent(window.location.href);
   const emailUrl = `mailto:?subject=Pinky Ocean NFT&body=${currentUrl}`;
+  const { authorId } = useParams();
+  console.log("Current Author ID:", authorId);
 
   return (
     <div className="de_tab_content">
