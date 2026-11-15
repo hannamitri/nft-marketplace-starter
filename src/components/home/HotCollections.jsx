@@ -89,7 +89,7 @@ const HotCollections = () => {
                     <div className="nft_coll"
                     data-aos="fade-up">
                       <div className="nft_wrap">
-                        <Link to={'/item/${collection.nftId}'}>
+                        <Link to={`/item/${collection.nftId}`}>
                           <img
                             src={collection.nftImage || nftImage}
                             className="lazy img-fluid"
