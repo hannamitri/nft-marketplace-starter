@@ -1,11 +1,63 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+  const { authorId } = useParams();
+
+  const [author, setAuthor] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setError("");
+    setAuthor(null);
+
+    axios
+      .get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
+      )
+      .then((response) => {
+        setAuthor(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching author:", error);
+        setError("Unable to load author information.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [authorId]);
+
+  if (isLoading) {
+    return (
+      <div className="container text-center mt-5">
+        <h3>Loading author...</h3>
+      </div>
+    );
+  }
+
+  if (error || !author) {
+    return (
+      <div className="container text-center mt-5">
+        <h3>{error || "Author not found."}</h3>
+        <Link to="/" className="btn-main">
+          Back to Home
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -26,16 +78,24 @@ const Author = () => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                      <img
+                        src={author.authorImage || AuthorImage}
+                        alt={author.authorName || "Author"}
+                      />
 
                       <i className="fa fa-check"></i>
+
                       <div className="profile_name">
                         <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
+                          {author.authorName}
+                          <span className="profile_username">
+                            @{author.tag}
                           </span>
+
+                          <span id="wallet" className="profile_wallet">
+                            {author.address}
+                          </span>
+
                           <button id="btn_copy" title="Copy Text">
                             Copy
                           </button>
@@ -43,9 +103,13 @@ const Author = () => {
                       </div>
                     </div>
                   </div>
+
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
+                      <div className="profile_follower">
+                        {author.followers} followers
+                      </div>
+
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
