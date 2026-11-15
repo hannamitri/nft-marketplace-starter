@@ -21,21 +21,14 @@ const ItemDetails = () => {
   useEffect(() => {
     setIsLoading(true);
     setError("");
+    setItem(null);
 
     axios
       .get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`
       )
       .then((response) => {
-        const matchingItem = response.data.find(
-          (nft) => String(nft.nftId) === String(nftId)
-        );
-
-        if (!matchingItem) {
-          setError("NFT not found in the New Items collection.");
-        }
-
-        setItem(matchingItem || null);
+        setItem(response.data);
       })
       .catch((error) => {
         console.error("Error fetching NFT details:", error);
@@ -98,7 +91,8 @@ const ItemDetails = () => {
                   </div>
 
                   <p>
-                    {item.description || "Explore this unique NFT collectible."}
+                    {item.description ||
+                      "Explore this unique NFT collectible."}
                   </p>
 
                   <div className="d-flex flex-row">
@@ -107,19 +101,19 @@ const ItemDetails = () => {
 
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${item.authorId}`}>
+                          <Link to={`/author/${item.ownerId}`}>
                             <img
                               className="lazy"
-                              src={item.authorImage || AuthorImage}
-                              alt={item.authorName || "Owner"}
+                              src={item.ownerImage || AuthorImage}
+                              alt={item.ownerName || "Owner"}
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
 
                         <div className="author_list_info">
-                          <Link to={`/author/${item.authorId}`}>
-                            {item.authorName || `Creator #${item.authorId}`}
+                          <Link to={`/author/${item.ownerId}`}>
+                            {item.ownerName}
                           </Link>
                         </div>
                       </div>
@@ -134,19 +128,19 @@ const ItemDetails = () => {
 
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${item.authorId}`}>
+                          <Link to={`/author/${item.creatorId}`}>
                             <img
                               className="lazy"
-                              src={item.authorImage || AuthorImage}
-                              alt={item.authorName || "Creator"}
+                              src={item.creatorImage || AuthorImage}
+                              alt={item.creatorName || "Creator"}
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
 
                         <div className="author_list_info">
-                          <Link to={`/author/${item.authorId}`}>
-                            {item.authorName || `Creator #${item.authorId}`}
+                          <Link to={`/author/${item.creatorId}`}>
+                            {item.creatorName}
                           </Link>
                         </div>
                       </div>
@@ -172,4 +166,5 @@ const ItemDetails = () => {
 };
 
 export default ItemDetails;
+
 
