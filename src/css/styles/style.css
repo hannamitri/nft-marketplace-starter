@@ -16714,3 +16714,123 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+.hot-collections-slider {
+  position: relative;
+}
+
+.hot-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.hot-slider-prev {
+  left: -20px;
+}
+
+.hot-slider-next {
+  right: -20px;
+}
+
+
+
+/* Hot Collections Skeleton Loading */
+
+.skeleton-card {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+/* Skeleton shimmer animation */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e5e5e5;
+}
+
+/* Moving light effect */
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+/* NFT image placeholder */
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Creator avatar placeholder */
+
+.skeleton-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: -30px auto 20px;
+  position: relative;
+  border: 4px solid white;
+}
+
+/* Collection title placeholder */
+
+.skeleton-title {
+  width: 120px;
+  height: 18px;
+  border-radius: 4px;
+  margin: 0 auto 12px;
+}
+
+/* ERC code placeholder */
+
+.skeleton-code {
+  width: 80px;
+  height: 14px;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+/* Shimmer movement */
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
+
