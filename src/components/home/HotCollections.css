@@ -40,6 +40,7 @@
   background: white;
   cursor: pointer;
   pointer-events: auto;
+  margin: 0 350px;
 }
 
 .carousel-buttons button:disabled {
