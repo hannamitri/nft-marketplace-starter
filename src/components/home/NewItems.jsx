@@ -150,7 +150,7 @@ const NewItems = () => {
                     {/* Author */}
                     <div className="author_list_pp">
                       <Link
-                        to={'/author/${item.authorId}'}
+                        to={`/author/${item.authorId}`}
                         title={`Creator: ${item.title}`}
                       >
                         <img
@@ -204,7 +204,7 @@ const NewItems = () => {
                         </div>
                       </div>
 
-                      <Link to={'/item/${item.nftId}'}>
+                      <Link to={`/item/${item.nftId}`}>
                         <img
                           src={item.nftImage || nftImage}
                           className="lazy nft__item_preview"
