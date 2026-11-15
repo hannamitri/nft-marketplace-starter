@@ -215,7 +215,7 @@ const NewItems = () => {
 
                     {/* NFT information */}
                     <div className="nft__item_info">
-                      <Link to={'/item/${item.nftId}'}>
+                     <Link to={`/item/${item.nftId}`}>
                         <h4>{item.title}</h4>
                       </Link>
 

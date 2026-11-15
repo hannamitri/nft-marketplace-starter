@@ -62,7 +62,7 @@ const TopSellers = () => {
                   <li key={seller.id}
                   data-aos="fade-up">
                     <div className="author_list_pp">
-                      <Link to={'/author/${seller.authorId}'}>
+                     <Link to={`/author/$DIL0`}>
                         <img
                           className="lazy pp-author"
                           src={seller.authorImage || AuthorImage}
@@ -73,7 +73,7 @@ const TopSellers = () => {
                     </div>
 
                     <div className="author_list_info">
-                      <Link to={'/author/${seller.authorId}'}>
+                    <Link to={`/author/$DIL0`}>
                         {seller.authorName}
                       </Link>
 
