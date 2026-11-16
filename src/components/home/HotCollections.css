@@ -21,35 +21,6 @@
   position: relative;
 }
 
-.carousel-buttons {
-  position: absolute;
-  top: 70%;
-  left: 5%;
-  width: 90%;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
-.carousel-buttons button {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  pointer-events: auto;
-  margin: 0 460px;
-}
-
-.carousel-buttons button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* SKELETON LOADER */
-
 .skeleton {
   background-color: #e0e0e0;
   border-radius: 4px;
@@ -79,3 +50,45 @@
 
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+
+.slider-controls {
+  position: relative;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.slider-arrow:hover {
+  background: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.slider-arrow--left {
+  left: -35px;
+}
+
+.slider-arrow--right {
+  right: -35px;
+}
+
+.slick-slider {
+  position: relative;
+}
