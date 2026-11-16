@@ -178,7 +178,7 @@ const Explore = () => {
                             <button>Buy Now</button>
                             <div className="nft__item_share">
                               <h4>Share</h4>
-                                <i className="fa fa-facebook fa-lg"></i
+                                <i className="fa fa-facebook fa-lg"></i>
                                 <i className="fa fa-twitter fa-lg"></i>
                                 <i className="fa fa-envelope fa-lg"></i>
                             </div>
