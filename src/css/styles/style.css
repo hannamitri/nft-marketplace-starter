@@ -16742,3 +16742,19 @@ img {
 font-size: 30px;
   color: #000;
 }
+
+.nft-slider .slick-prev,
+.nft-slider .slick-next {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.nft-slider .slick-prev:before,
+.nft-slider .slick-next:before {
+  color: black !important;
+}
+
+.nft-slider .slick-prev:hover,
+.nft-slider .slick-next:hover {
+  background: transparent !important;
+}
