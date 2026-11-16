@@ -11,7 +11,6 @@ const TopSellers = () => {
   async function fetchTopSellerData() {
     const { data } = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`)
     setSellers(data)
-    console.log(data)
   }
   
   fetchTopSellerData();    
