@@ -56,7 +56,7 @@ const HotCollections = () => {
           </div>
           <div className="col-lg-12">
             {collections.length > 0 && (
-              <Slider {...settings}>
+              <Slider {...settings} className="nft-slider">
                 {collections.map((collection) => (
                 <div key={collection.id}>
                   <div key={collection.id}>

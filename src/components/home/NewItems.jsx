@@ -62,6 +62,7 @@ const NewItems = () => {
           {items.length > 0 && (
             <Slider
             {...settings}
+            className="nft-slider"
             >
             {items.map((item) => (
               <div className="px-2" key={item.id}>

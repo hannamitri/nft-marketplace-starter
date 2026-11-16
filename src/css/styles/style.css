@@ -16739,9 +16739,6 @@ img {
 #section-items .slick-prev:before,
 #section-items .slick-next:before {
   
-  color: whitesmoke;
-  caret-color: black;
-  border-radius: 2px solid black;
-  opacity: 1;
-  font-size: 50px;
+font-size: 30px;
+  color: #000;
 }
