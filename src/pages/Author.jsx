@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import Skeleton from "../components/UI/Skeleton";
 
 const Author = () => {
+  const [authors, setAuthors] = useState(null);
+  const { authorId } = useParams();
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  useEffect(() => {
+    async function fetchAuthorData() {
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
+      );
+      setAuthors(data);
+    }
+    fetchAuthorData();
+  }, []);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -21,41 +36,89 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+              {authors ? (
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <img src={authors.authorImage} alt="" />
 
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
+                        <i className="fa fa-check"></i>
+                        <div className="profile_name">
+                          <h4>
+                            {authors.authorName}
+                            <span className="profile_username">
+                              @{authors.tag}
+                            </span>
+                            <span id="wallet" className="profile_wallet">
+                              {authors.address}
+                            </span>
+                            <button id="btn_copy" title="Copy Text">
+                              Copy
+                            </button>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col">
+                        
+                        <div className="profile_follower">
+                          {authors.followers + (isFollowing ? 1 : 0)} followers
+                        </div>
+                        {isFollowing ? (
+                          <Link to="#" className="btn-main" onClick={() => setIsFollowing(!isFollowing)}>
+                          Unfollow
+                        </Link>
+                        ) : (
+                          <Link to="#" className="btn-main" onClick={() => setIsFollowing(!isFollowing)}>
+                          Follow
+                        </Link>
+                        )}
+                        
                       </div>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
+                </div>
+              ) : (
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <div className="profile_avatar">
+                        <Skeleton
+                          width="150px"
+                          height="150px"
+                          borderRadius="50%"
+                        />
+
+                        <i className="fa fa-check"></i>
+                        <div className="profile_name">
+                          <h4>
+                            <Skeleton width="200px" />
+                            <span className="profile_username">
+                              <Skeleton width="100px" />
+                            </span>
+                            <span id="wallet" className="profile_wallet">
+                              <Skeleton width="250px" />
+                            </span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_follower"></div>
+
+                        <Skeleton width="150px" height="40px" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems authors={authors} />
                 </div>
               </div>
             </div>
