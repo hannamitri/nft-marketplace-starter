@@ -8,7 +8,9 @@ const TopSellers = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center"
+            data-aos="fade-up"
+          data-aos-duration="800">
               <h2>Top Sellers</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -16,7 +18,9 @@ const TopSellers = () => {
           <div className="col-md-12">
             <ol className="author_list">
               {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
+                <li key={index}
+                data-aos="fade-up"
+                data-aos-duration="800">
                   <div className="author_list_pp">
                     <Link to="/author">
                       <img
