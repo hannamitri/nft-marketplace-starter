@@ -92,7 +92,7 @@ const ExploreItems = () => {
               </Link>
             </div>
             <div className="nft__item_wrap">
-              <Link to={`/item-details/explore/${item.id}`}>
+              <Link to={`/item-details/nft/${encodeURIComponent(item.nftId)}`}>
                 <img src={item.nftImage} className="nft__item_preview" alt={item.title} />
               </Link>
               {typeof item.expiryDate === "number" && Number.isFinite(item.expiryDate) && (
@@ -100,7 +100,7 @@ const ExploreItems = () => {
               )}
             </div>
             <div className="nft__item_info">
-              <Link to={`/item-details/explore/${item.id}`}><h4>{item.title}</h4></Link>
+              <Link to={`/item-details/nft/${encodeURIComponent(item.nftId)}`}><h4>{item.title}</h4></Link>
               <div className="nft__item_price">{item.price} ETH</div>
               <div className="nft__item_like">
                 <i className="fa fa-heart" aria-hidden="true"></i>{" "}

@@ -10,7 +10,7 @@ const NewItemCard = ({ item }) => (
   <div className="keen-slider__slide hot-collections__slide">
     <div className="nft_coll new-item__card">
       <div className="nft_wrap">
-        <Link to={`/item-details/new/${item.id}`}>
+        <Link to={`/item-details/nft/${encodeURIComponent(item.nftId)}`}>
           <img
             src={item.nftImage}
             className="lazy img-fluid new-item__image"
@@ -30,7 +30,7 @@ const NewItemCard = ({ item }) => (
         <i className="fa fa-check"></i>
       </div>
       <div className="nft_coll_info new-item__info">
-        <Link to={`/item-details/new/${item.id}`}>
+        <Link to={`/item-details/nft/${encodeURIComponent(item.nftId)}`}>
           <h4>{item.title}</h4>
         </Link>
         <div className="new-item__stats">

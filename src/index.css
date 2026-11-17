@@ -173,6 +173,26 @@
   overflow-wrap: anywhere;
 }
 
+.item-details__people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  margin-top: 32px;
+}
+
+.item-details__person {
+  min-width: 0;
+}
+
+.item_info .item-details__person h6,
+.item_info .item-details__price h6 {
+  margin-bottom: 10px;
+}
+
+.item-details__price {
+  margin-top: 32px;
+}
+
 .hot-collections__layout {
   display: flex;
   align-items: center;

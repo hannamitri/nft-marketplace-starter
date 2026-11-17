@@ -55,7 +55,7 @@ test("loads the requested author and displays API fields and collection", async 
   expect(screen.getByText("Address: example-address")).toBeInTheDocument();
   expect(screen.getByText("632 followers")).toBeInTheDocument();
   expect(screen.getByText("Author record ID: 6")).toBeInTheDocument();
-  expect(screen.getByRole("img", { name: "Papercut" }).closest("a")).toHaveAttribute("href", "/item-details/author/73855012/1");
+  expect(screen.getByRole("img", { name: "Papercut" }).closest("a")).toHaveAttribute("href", "/item-details/nft/525");
 });
 
 test("reports an author not found when the API returns an empty response", async () => {

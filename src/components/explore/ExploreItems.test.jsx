@@ -8,6 +8,7 @@ import { EXPLORE_URL } from "../home/marketplaceApi";
 
 const items = Array.from({ length: 16 }, (_, index) => ({
   id: index + 1,
+  nftId: index + 100,
   authorId: index + 10,
   authorImage: `/author-${index}.jpg`,
   nftImage: `/nft-${index}.jpg`,
@@ -33,7 +34,7 @@ test("shows skeletons then 8 NFTs and reveals 4 at a time", async () => {
   expect(global.fetch).toHaveBeenCalledWith(EXPLORE_URL, expect.objectContaining({ signal: expect.any(AbortSignal) }));
   await act(async () => resolve({ ok: true, json: async () => items }));
   expect(container.querySelectorAll(".explore-item")).toHaveLength(8);
-  expect(screen.getByRole("img", { name: "NFT 1" }).closest("a")).toHaveAttribute("href", "/item-details/explore/1");
+  expect(screen.getByRole("img", { name: "NFT 1" }).closest("a")).toHaveAttribute("href", "/item-details/nft/100");
   expect(screen.getByRole("link", { name: "NFT 1 creator" })).toHaveAttribute("href", "/author/10");
   expect(screen.getByText("1 ETH")).toBeInTheDocument();
   expect(screen.getByLabelText("2 likes")).toBeInTheDocument();

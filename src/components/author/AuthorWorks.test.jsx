@@ -22,10 +22,10 @@ test("combines the collection and matching feeds, deduplicating NFTs by ID", asy
   };
   global.fetch = jest.fn((url) => Promise.resolve({ ok: true, json: async () => feeds[url] }));
   const { container } = render(<MemoryRouter><AuthorWorks authorId="42" authorName="Lori Hart" authorImage="/lori.jpg" items={[{ id: 1, nftId: 100, title: "Owned NFT", nftImage: "/owned.jpg" }]} /></MemoryRouter>);
-  expect(screen.getByRole("img", { name: "Owned NFT" }).closest("a")).toHaveAttribute("href", "/item-details/author/42/1");
-  expect((await screen.findByRole("img", { name: "New NFT" })).closest("a")).toHaveAttribute("href", "/item-details/new/2");
-  expect((await screen.findByRole("img", { name: "Collection NFT" })).closest("a")).toHaveAttribute("href", "/item-details/1");
-  expect((await screen.findByRole("img", { name: "Explore NFT" })).closest("a")).toHaveAttribute("href", "/item-details/explore/1");
+  expect(screen.getByRole("img", { name: "Owned NFT" }).closest("a")).toHaveAttribute("href", "/item-details/nft/100");
+  expect((await screen.findByRole("img", { name: "New NFT" })).closest("a")).toHaveAttribute("href", "/item-details/nft/200");
+  expect((await screen.findByRole("img", { name: "Collection NFT" })).closest("a")).toHaveAttribute("href", "/item-details/nft/400");
+  expect((await screen.findByRole("img", { name: "Explore NFT" })).closest("a")).toHaveAttribute("href", "/item-details/nft/500");
   expect(screen.queryByRole("img", { name: "Duplicate" })).not.toBeInTheDocument();
   expect(screen.queryByRole("img", { name: "Other author" })).not.toBeInTheDocument();
   const profileLinks = screen.getAllByRole("link", { name: "Lori Hart profile" });

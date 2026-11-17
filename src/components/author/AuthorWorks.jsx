@@ -50,12 +50,16 @@ const AuthorWorks = ({ authorId, authorImage, authorName, items, loading = false
     ...items.map((item) => ({
       item,
       key: `author:${item.id}`,
-      path: `/item-details/author/${encodeURIComponent(authorId)}/${encodeURIComponent(item.id)}`,
+      path: item.nftId == null
+        ? `/item-details/author/${encodeURIComponent(authorId)}/${encodeURIComponent(item.id)}`
+        : `/item-details/nft/${encodeURIComponent(item.nftId)}`,
     })),
     ...sourceResults.flatMap((source) => source.items.map((item) => ({
       item,
       key: `${source.key}:${item.id}`,
-      path: source.key === "collection" ? `/item-details/${item.id}` : `/item-details/${source.key}/${item.id}`,
+      path: item.nftId == null
+        ? (source.key === "collection" ? `/item-details/${item.id}` : `/item-details/${source.key}/${item.id}`)
+        : `/item-details/nft/${encodeURIComponent(item.nftId)}`,
     }))),
   ].filter(({ item }) => {
     if (item.nftId == null) return true;
