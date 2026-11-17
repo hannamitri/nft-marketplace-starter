@@ -4,13 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import { EXPLORE_URL, HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../components/home/marketplaceApi";
+import { fetchAuthor } from "../components/author/authorApi";
 
 const ItemDetails = ({ itemType = "collection" }) => {
-  const { id } = useParams();
+  const { id, authorId } = useParams();
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(Boolean(id));
   const [error, setError] = useState(null);
-  const isPricedItem = itemType === "new" || itemType === "explore";
+  const isPricedItem = itemType === "new" || itemType === "explore" || itemType === "author";
   const itemUrl = itemType === "explore"
     ? EXPLORE_URL
     : itemType === "new" ? NEW_ITEMS_URL : HOT_COLLECTIONS_URL;
@@ -26,22 +27,18 @@ const ItemDetails = ({ itemType = "collection" }) => {
     const controller = new AbortController();
     const loadItem = async () => {
       try {
-        const response = await fetch(
-          itemUrl,
-          {
-          signal: controller.signal,
-          }
-        );
-        if (!response.ok) {
-          throw new Error(`Item details request failed (${response.status})`);
+        let selectedItem;
+        if (itemType === "author") {
+          const author = await fetchAuthor(authorId, controller.signal);
+          const work = author?.nftCollection.find((entry) => String(entry.id) === id);
+          if (work) selectedItem = { ...work, authorId: author.authorId, authorImage: author.authorImage, authorName: author.authorName };
+        } else {
+          const response = await fetch(itemUrl, { signal: controller.signal });
+          if (!response.ok) throw new Error(`Item details request failed (${response.status})`);
+          const items = await response.json();
+          if (!Array.isArray(items)) throw new Error("Item details response was not a list");
+          selectedItem = items.find((entry) => String(entry.id) === id);
         }
-
-        const items = await response.json();
-        if (!Array.isArray(items)) {
-          throw new Error("Item details response was not a list");
-        }
-
-        const selectedItem = items.find((entry) => String(entry.id) === id);
         if (!selectedItem) {
           throw new Error(`Item ${id} was not found`);
         }
@@ -61,7 +58,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
 
     loadItem();
     return () => controller.abort();
-  }, [id, itemUrl]);
+  }, [id, itemUrl, itemType, authorId]);
 
   if (isLoading) {
     return (
@@ -138,7 +135,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                   )}
                   <div className="d-flex flex-row">
                     <div className="mr40">
-                      <h6>{item ? "Creator" : "Owner"}</h6>
+                      <h6>{itemType === "author" ? "Collection owner" : item ? "Creator" : "Owner"}</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to={item ? `/author/${item.authorId}` : "/author"}>
@@ -147,7 +144,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                               src={item?.authorImage || AuthorImage}
                               alt={
                                 item
-                                  ? `${item.title} creator`
+                                  ? `${item.title} ${itemType === "author" ? "collection owner" : "creator"}`
                                   : ""
                               }
                             />
@@ -157,7 +154,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                         <div className="author_list_info">
                           <Link to={item ? `/author/${item.authorId}` : "/author"}>
                             {item
-                              ? `Creator #${item.authorId}`
+                              ? item.authorName || `Creator #${item.authorId}`
                               : "Monica Lucas"}
                           </Link>
                         </div>

@@ -5,101 +5,73 @@ import { MemoryRouter } from "react-router-dom";
 import AuthorWorks from "./AuthorWorks";
 import { EXPLORE_URL, HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../home/marketplaceApi";
 
-const renderWorks = (authorId) =>
-  render(
-    <MemoryRouter>
-      <AuthorWorks authorId={authorId} />
-    </MemoryRouter>
-  );
-
 afterEach(() => {
   jest.restoreAllMocks();
   delete global.fetch;
 });
 
-test("shows all matching images from both feeds in one grid with correct links", async () => {
-  global.fetch = jest.fn((url) =>
-    Promise.resolve({
-      ok: true,
-      json: async () =>
-        url === NEW_ITEMS_URL
-          ? [
-              { id: 1, authorId: 42, title: "My item", nftId: 100, nftImage: "/item.jpg", price: 2, likes: 7, expiryDate: 1700000000000 },
-              { id: 4, authorId: 42, title: "Another item", nftId: 101, nftImage: "/other-item.jpg", price: 3, likes: 8 },
-              { id: 2, authorId: 99, title: "Other item" },
-            ]
-          : url === HOT_COLLECTIONS_URL ? [
-              { id: 1, authorId: 42, title: "My collection", nftId: 200, nftImage: "/collection.jpg", code: 721 },
-              { id: 3, authorId: 99, title: "Other collection" },
-            ] : [
-              { id: 8, authorId: 42, title: "Duplicate item", nftId: 100, nftImage: "/duplicate.jpg" },
-              { id: 9, authorId: 42, title: "Explore item", nftId: 300, nftImage: "/explore.jpg" },
-            ],
-    })
-  );
-
-  const { container } = renderWorks("42");
-  expect(screen.getByText("Loading new items...")).toBeInTheDocument();
-  expect(screen.getByText("Loading collections...")).toBeInTheDocument();
-  const item = await screen.findByRole("img", { name: "My item" });
-  const collection = await screen.findByRole("img", { name: "My collection" });
-
-  expect(item).toHaveAttribute("src", "/item.jpg");
-  expect(item.closest("a")).toHaveAttribute("href", "/item-details/new/1");
-  expect(collection.closest("a")).toHaveAttribute("href", "/item-details/1");
-  expect(screen.getByRole("img", { name: "Another item" }).closest("a")).toHaveAttribute("href", "/item-details/new/4");
-  expect((await screen.findByRole("img", { name: "Explore item" })).closest("a")).toHaveAttribute("href", "/item-details/explore/9");
-  expect(screen.queryByRole("img", { name: "Duplicate item" })).not.toBeInTheDocument();
-  expect(item.closest(".row")).toBe(collection.closest(".row"));
-  expect(container.querySelectorAll(".author-works .row")).toHaveLength(1);
-  expect(screen.queryByRole("img", { name: "Other item" })).not.toBeInTheDocument();
-  expect(screen.queryByRole("img", { name: "Other collection" })).not.toBeInTheDocument();
-  expect(screen.queryByRole("heading", { name: /works|new items|collections/i })).not.toBeInTheDocument();
+test("combines the collection and matching feeds, deduplicating NFTs by ID", async () => {
+  const feeds = {
+    [NEW_ITEMS_URL]: [
+      { id: 1, nftId: 100, authorId: 42, title: "Duplicate", nftImage: "/duplicate.jpg" },
+      { id: 2, nftId: 200, authorId: 42, title: "New NFT", nftImage: "/new.jpg" },
+      { id: 3, nftId: 300, authorId: 99, title: "Other author", nftImage: "/other.jpg" },
+    ],
+    [HOT_COLLECTIONS_URL]: [{ id: 1, nftId: 400, authorId: 42, title: "Collection NFT", nftImage: "/collection.jpg" }],
+    [EXPLORE_URL]: [{ id: 1, nftId: 500, authorId: 42, title: "Explore NFT", nftImage: "/explore.jpg" }],
+  };
+  global.fetch = jest.fn((url) => Promise.resolve({ ok: true, json: async () => feeds[url] }));
+  const { container } = render(<MemoryRouter><AuthorWorks authorId="42" authorName="Lori Hart" authorImage="/lori.jpg" items={[{ id: 1, nftId: 100, title: "Owned NFT", nftImage: "/owned.jpg" }]} /></MemoryRouter>);
+  expect(screen.getByRole("img", { name: "Owned NFT" }).closest("a")).toHaveAttribute("href", "/item-details/author/42/1");
+  expect((await screen.findByRole("img", { name: "New NFT" })).closest("a")).toHaveAttribute("href", "/item-details/new/2");
+  expect((await screen.findByRole("img", { name: "Collection NFT" })).closest("a")).toHaveAttribute("href", "/item-details/1");
+  expect((await screen.findByRole("img", { name: "Explore NFT" })).closest("a")).toHaveAttribute("href", "/item-details/explore/1");
+  expect(screen.queryByRole("img", { name: "Duplicate" })).not.toBeInTheDocument();
+  expect(screen.queryByRole("img", { name: "Other author" })).not.toBeInTheDocument();
+  const profileLinks = screen.getAllByRole("link", { name: "Lori Hart profile" });
+  expect(profileLinks).toHaveLength(4);
+  profileLinks.forEach((link) => {
+    expect(link).toHaveAttribute("href", "/author/42");
+    expect(link.querySelector("img")).toHaveAttribute("src", "/lori.jpg");
+    expect(link.querySelector(".author-works__badge")).toHaveClass("fa-check");
+    expect(link.querySelector(".author-works__badge")).toHaveAttribute("aria-hidden", "true");
+  });
   expect(container.querySelector(".author-works").textContent).toBe("");
 });
 
-test("reports when both feeds have no artwork", async () => {
+test("shows loading and empty states only after all feeds finish", async () => {
   global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => [] });
-  renderWorks("42");
-  expect(await screen.findByText("No NFTs found for this author.")).toBeInTheDocument();
+  const { rerender, container } = render(<MemoryRouter><AuthorWorks authorId="42" items={[]} loading /></MemoryRouter>);
+  expect(screen.getByRole("status")).toHaveTextContent("Loading NFTs...");
+  expect(container.querySelectorAll(".skeleton-box")).toHaveLength(8);
+  await act(async () => {});
+  rerender(<MemoryRouter><AuthorWorks authorId="42" items={[]} /></MemoryRouter>);
+  expect(screen.getByText("No NFTs found for this author.")).toBeInTheDocument();
 });
 
-test("shows available works when the other feed fails", async () => {
+test("keeps available NFTs and reports an unavailable feed", async () => {
   jest.spyOn(console, "error").mockImplementation(() => {});
-  global.fetch = jest.fn((url) =>
-    Promise.resolve(url === HOT_COLLECTIONS_URL
-      ? { ok: false, status: 500 }
-      : { ok: true, json: async () => url === EXPLORE_URL ? [] : [{ id: 1, authorId: 42, title: "My item", nftId: 100, nftImage: "/item.jpg", price: 2, likes: 7 }] })
-  );
-  renderWorks("42");
-  expect(await screen.findByRole("img", { name: "My item" })).toBeInTheDocument();
-  expect(await screen.findByRole("alert")).toHaveTextContent("Collections could not be loaded.");
+  global.fetch = jest.fn((url) => Promise.resolve(url === EXPLORE_URL
+    ? { ok: false, status: 500 }
+    : { ok: true, json: async () => [] }));
+  render(<MemoryRouter><AuthorWorks authorId="42" items={[{ id: 1, nftId: 100, title: "Owned NFT", nftImage: "/owned.jpg" }]} /></MemoryRouter>);
+  expect(screen.getByRole("img", { name: "Owned NFT" })).toBeInTheDocument();
+  expect(await screen.findByRole("alert")).toHaveTextContent("Explore NFTs could not be loaded.");
   expect(screen.queryByText("No NFTs found for this author.")).not.toBeInTheDocument();
-  expect(console.error).toHaveBeenCalled();
 });
 
-test("aborts old requests and never shows their results when author changes", async () => {
+test("aborts old feed requests and ignores responses after author changes", async () => {
   const requests = [];
-  global.fetch = jest.fn((url, { signal }) => new Promise((resolve) => {
-    requests.push({ url, signal, resolve });
-  }));
-  const { rerender, unmount } = renderWorks("42");
-  expect(requests).toHaveLength(3);
-  rerender(<MemoryRouter><AuthorWorks authorId="99" /></MemoryRouter>);
-  expect(requests[0].signal.aborted).toBe(true);
-  expect(requests[1].signal.aborted).toBe(true);
-  expect(requests[2].signal.aborted).toBe(true);
-
+  global.fetch = jest.fn((url, { signal }) => new Promise((resolve) => requests.push({ signal, resolve })));
+  const { rerender, unmount } = render(<MemoryRouter><AuthorWorks authorId="42" items={[]} /></MemoryRouter>);
+  rerender(<MemoryRouter><AuthorWorks authorId="99" items={[]} /></MemoryRouter>);
+  expect(requests.slice(0, 3).every((request) => request.signal.aborted)).toBe(true);
   await act(async () => {
-    requests[0].resolve({ ok: true, json: async () => [{ id: 1, authorId: 42, title: "Old work" }] });
-    requests[3].resolve({ ok: true, json: async () => [] });
-    requests[4].resolve({ ok: true, json: async () => [] });
-    requests[5].resolve({ ok: true, json: async () => [] });
+    requests[0].resolve({ ok: true, json: async () => [{ id: 1, authorId: 42, title: "Stale" }] });
+    requests.slice(3).forEach((request) => request.resolve({ ok: true, json: async () => [] }));
   });
-  expect(screen.queryByRole("img", { name: "Old work" })).not.toBeInTheDocument();
+  expect(screen.queryByRole("img", { name: "Stale" })).not.toBeInTheDocument();
   expect(screen.getByText("No NFTs found for this author.")).toBeInTheDocument();
   unmount();
-  expect(requests[3].signal.aborted).toBe(true);
-  expect(requests[4].signal.aborted).toBe(true);
-  expect(requests[5].signal.aborted).toBe(true);
+  expect(requests.slice(3).every((request) => request.signal.aborted)).toBe(true);
 });

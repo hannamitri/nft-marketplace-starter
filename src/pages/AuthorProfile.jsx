@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Skeleton from "../components/UI/Skeleton";
 import AuthorWorks from "../components/author/AuthorWorks";
-import { TOP_SELLERS_URL } from "../components/home/topSellersApi";
-import { EXPLORE_URL } from "../components/home/marketplaceApi";
+import { fetchAuthor } from "../components/author/authorApi";
 import AuthorBanner from "../images/author_banner.jpg";
 
-const AuthorActions = ({ authorId }) => {
+const AuthorActions = ({ authorId, followers, address }) => {
   const storageKey = `ultraverse:follow:v1:${authorId}`;
   const [following, setFollowing] = useState(false);
   const [followError, setFollowError] = useState("");
   const [copyMessage, setCopyMessage] = useState("");
+  const [followLoaded, setFollowLoaded] = useState(false);
+  const followerCount = typeof followers === "number" ? followers + (following ? 1 : 0) : null;
 
   useEffect(() => {
     const readFollowState = () => {
@@ -24,6 +25,8 @@ const AuthorActions = ({ authorId }) => {
       } catch (error) {
         console.error("Failed to read follow state:", error);
         setFollowError("Follow state is unavailable in this browser.");
+      } finally {
+        setFollowLoaded(true);
       }
     };
 
@@ -53,16 +56,16 @@ const AuthorActions = ({ authorId }) => {
     }
   };
 
-  const copyAuthorId = async () => {
+  const copyValue = async (value, label) => {
     try {
       if (!navigator.clipboard?.writeText) {
         throw new Error("Clipboard API is unavailable");
       }
-      await navigator.clipboard.writeText(String(authorId));
-      setCopyMessage("Author ID copied.");
+      await navigator.clipboard.writeText(String(value));
+      setCopyMessage(`${label} copied.`);
     } catch (error) {
-      console.error("Failed to copy author ID:", error);
-      setCopyMessage("Could not copy author ID. Please copy it manually.");
+      console.error(`Failed to copy ${label.toLowerCase()}:`, error);
+      setCopyMessage(`Could not copy ${label === "Author ID" ? label : label.toLowerCase()}. Please copy it manually.`);
     }
   };
 
@@ -70,15 +73,34 @@ const AuthorActions = ({ authorId }) => {
     <div className="author-profile__actions">
       <div className="author-profile__id">
         <span className="profile_username">Author ID: {authorId}</span>
-        <button type="button" onClick={copyAuthorId}>Copy ID</button>
+        <button type="button" onClick={() => copyValue(authorId, "Author ID")}>Copy ID</button>
       </div>
+      {address && (
+        <div className="author-profile__id">
+          <span className="author-profile__address">Address: {address}</span>
+          <button type="button" onClick={() => copyValue(address, "Address")}>Copy address</button>
+        </div>
+      )}
       {copyMessage && <div role="status">{copyMessage}</div>}
-      <div className="author-profile__follow">
-        <span>{following ? 1 : 0} {following ? "follower" : "followers"} in this browser</span>
-        <button type="button" className="btn-main" aria-pressed={following} onClick={toggleFollow}>
-          {following ? "Following" : "Follow"}
-        </button>
-      </div>
+      {followLoaded ? (
+        <div className="author-profile__follow">
+          {followerCount !== null && (
+            <span>{followerCount} {followerCount === 1 ? "follower" : "followers"}</span>
+          )}
+          <button type="button" className="btn-main" aria-pressed={following} onClick={toggleFollow}>
+            {following ? "Unfollow" : "Follow"}
+          </button>
+          <span>Follow and count adjustment are saved in this browser only.</span>
+        </div>
+      ) : (
+        <div className="author-profile__follow" role="status">
+          <span className="visually-hidden">Loading follow preference...</span>
+          <div className="author-profile__follow-skeleton" aria-hidden="true">
+            <Skeleton width="100px" height="20px" borderRadius="4px" />
+            <Skeleton width="90px" height="40px" borderRadius="4px" />
+          </div>
+        </div>
+      )}
       {followError && <div role="alert">{followError}</div>}
     </div>
   );
@@ -94,35 +116,7 @@ const AuthorProfile = () => {
 
     const loadAuthor = async () => {
       try {
-        const response = await fetch(TOP_SELLERS_URL, {
-          signal: controller.signal,
-        });
-        if (!response.ok) {
-          throw new Error(`Top sellers request failed (${response.status})`);
-        }
-
-        const sellers = await response.json();
-        if (!Array.isArray(sellers)) {
-          throw new Error("Top sellers response was not a list");
-        }
-
-        let author = sellers.find((seller) => String(seller.authorId) === id);
-        if (!author) {
-          const exploreResponse = await fetch(EXPLORE_URL, { signal: controller.signal });
-          if (!exploreResponse.ok) {
-            throw new Error(`Explore request failed (${exploreResponse.status})`);
-          }
-          const items = await exploreResponse.json();
-          if (!Array.isArray(items)) throw new Error("Explore response was not a list");
-          const item = items.find((entry) => String(entry.authorId) === id);
-          if (item) {
-            author = {
-              authorId: item.authorId,
-              authorImage: item.authorImage,
-              authorName: `Creator #${item.authorId}`,
-            };
-          }
-        }
+        const author = await fetchAuthor(id, controller.signal);
         if (!controller.signal.aborted) {
           setResult(
             author ? { id, status: "success", author } : { id, status: "not-found" }
@@ -163,6 +157,10 @@ const AuthorProfile = () => {
                     <Skeleton width="200px" height="24px" borderRadius="4px" />
                     <Skeleton width="130px" height="16px" borderRadius="4px" />
                     <Skeleton width="90px" height="16px" borderRadius="4px" />
+                    <div className="author-profile__follow-skeleton">
+                      <Skeleton width="100px" height="20px" borderRadius="4px" />
+                      <Skeleton width="90px" height="40px" borderRadius="4px" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -174,25 +172,30 @@ const AuthorProfile = () => {
               <div role="alert">Author not found.</div>
             )}
             {status === "success" && (
-              <div className="d_profile de-flex">
-                <div className="de-flex-col">
-                  <div className="profile_avatar">
-                    <img src={result.author.authorImage} alt={result.author.authorName} />
-                    <i className="fa fa-check"></i>
-                    <div className="profile_name author-profile__info">
-                      <h4>{result.author.authorName}</h4>
-                      <AuthorActions key={id} authorId={result.author.authorId} />
-                      {result.author.price != null && <span>{result.author.price} ETH</span>}
-                      {result.author.id != null && (
-                        <div>Seller record ID: {result.author.id}</div>
-                      )}
-                    </div>
-                  </div>
+              <div className="author-profile__layout">
+                <div className="author-profile__avatar">
+                  <img src={result.author.authorImage} alt={result.author.authorName} />
+                  <i className="fa fa-check author-profile__badge" aria-hidden="true"></i>
+                </div>
+                <div className="author-profile__info">
+                  <h4>{result.author.authorName}</h4>
+                  {result.author.tag && <div>@{result.author.tag}</div>}
+                  <AuthorActions key={id} authorId={result.author.authorId} followers={result.author.followers} address={result.author.address} />
+                  {result.author.id != null && (
+                    <div>Author record ID: {result.author.id}</div>
+                  )}
                 </div>
               </div>
             )}
             {(status === "loading" || status === "success") && (
-              <AuthorWorks key={id} authorId={id} />
+              <AuthorWorks
+                key={id}
+                authorId={id}
+                authorImage={status === "success" ? result.author.authorImage : undefined}
+                authorName={status === "success" ? result.author.authorName : undefined}
+                items={status === "success" ? result.author.nftCollection : []}
+                loading={status === "loading"}
+              />
             )}
           </div>
         </section>
