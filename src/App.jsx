@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Explore from "./pages/Explore";
 import Author from "./pages/Author";
+import AuthorProfile from "./pages/AuthorProfile";
 import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -14,7 +15,22 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/author" element={<Author />} />
+        <Route path="/author/:id" element={<AuthorProfile />} />
         <Route path="/item-details" element={<ItemDetails />} />
+        <Route path="/item-details/nft/:id" element={<ItemDetails itemType="nft" />} />
+        <Route
+          path="/item-details/new/:id"
+          element={<ItemDetails itemType="new" />}
+        />
+        <Route
+          path="/item-details/explore/:id"
+          element={<ItemDetails itemType="explore" />}
+        />
+        <Route
+          path="/item-details/author/:authorId/:id"
+          element={<ItemDetails itemType="author" />}
+        />
+        <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />
     </Router>

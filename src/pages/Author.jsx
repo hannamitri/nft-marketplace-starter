@@ -22,7 +22,7 @@ const Author = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <div className="d_profile de-flex">
+                <div className="d_profile de-flex" data-aos="fade-up">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
                       <img src={AuthorImage} alt="" />
