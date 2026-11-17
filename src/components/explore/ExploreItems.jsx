@@ -1,79 +1,104 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import NFTCard from "../UI/NFTCard";
+import Skeleton from "../UI/Skeleton";
 
 const ExploreItems = () => {
-  return (
-    <>
-      <div>
-        <select id="filter-items" defaultValue="">
-          <option value="">Default</option>
-          <option value="price_low_to_high">Price, Low to High</option>
-          <option value="price_high_to_low">Price, High to Low</option>
-          <option value="likes_high_to_low">Most liked</option>
-        </select>
-      </div>
-      {new Array(8).fill(0).map((_, index) => (
-        <div
-          key={index}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          style={{ display: "block", backgroundSize: "cover" }}
-        >
-          <div className="nft__item">
-            <div className="author_list_pp">
-              <Link
-                to="/author"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-              >
-                <img className="lazy" src={AuthorImage} alt="" />
-                <i className="fa fa-check"></i>
-              </Link>
-            </div>
-            <div className="de_countdown">5h 30m 32s</div>
+  const [items, setItems] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(8);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("");
 
-            <div className="nft__item_wrap">
-              <div className="nft__item_extra">
-                <div className="nft__item_buttons">
-                  <button>Buy Now</button>
-                  <div className="nft__item_share">
-                    <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="" target="_blank" rel="noreferrer">
-                      <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="">
-                      <i className="fa fa-envelope fa-lg"></i>
-                    </a>
-                  </div>
+  const fetchExploreItems = async (selectedFilter = "") => {
+    setLoading(true);
+    try {
+      const url = selectedFilter
+        ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${selectedFilter}`
+        : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+
+      const response = await axios.get(url);
+      const dataArray = Array.isArray(response.data)
+        ? response.data
+        : response.data.data || [];
+      setItems(dataArray);
+    } catch (error) {
+      console.error("Error fetching explore items:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchExploreItems();
+  }, []);
+
+  const handleFilterChange = (e) => {
+    const selectedValue = e.target.value;
+    setFilter(selectedValue);
+    setVisibleCount(8);
+    fetchExploreItems(selectedValue);
+  };
+
+  const loadMoreItems = () => {
+    setVisibleCount((prev) => prev + 4);
+  };
+
+  return (
+    <div className="row g-4">
+      {/* Filter Dropdown Row */}
+      <div className="col-12 mb-3">
+        <div className="d-flex justify-content-between align-items-center">
+          <select
+            id="filter-items"
+            value={filter}
+            onChange={handleFilterChange}
+            className="form-select shadow-sm border-light rounded-3 bg-white cursor-pointer"
+            style={{ maxWidth: "220px" }}
+          >
+            <option value="">Default sorting</option>
+            <option value="price_low_to_high">Price, low to high</option>
+            <option value="price_high_to_low">Price, high to low</option>
+            <option value="likes_high_to_low">Most liked</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Items Grid / Skeleton Loader */}
+      {loading
+        ? [...Array(8)].map((_, index) => (
+            <div key={index} className="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div className="card h-100 shadow-sm border-light rounded-4 p-3 d-flex flex-column justify-content-between">
+                <Skeleton
+                  width="100%"
+                  height="200px"
+                  borderRadius="rounded-4"
+                />
+                <div className="py-3 w-100">
+                  <Skeleton width="75%" height="18px" className="mb-2" />
+                  <Skeleton width="50%" height="14px" />
                 </div>
               </div>
-              <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
-              </Link>
             </div>
-            <div className="nft__item_info">
-              <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
-              </Link>
-              <div className="nft__item_price">1.74 ETH</div>
-              <div className="nft__item_like">
-                <i className="fa fa-heart"></i>
-                <span>69</span>
-              </div>
+          ))
+        : items.slice(0, visibleCount).map((item, index) => (
+            <div
+              key={item.id || index}
+              className="col-lg-3 col-md-6 col-sm-6 col-12"
+            >
+              {/* Reusable Bootstrap NFT Card */}
+              <NFTCard item={item} isCollection={false} />
             </div>
-          </div>
+          ))}
+
+      {/* Load More Button */}
+      {!loading && visibleCount < items.length && (
+        <div className="col-12 text-center mt-5">
+          <button onClick={loadMoreItems} className="btn-main px-5 py-3 shadow">
+            Load more
+          </button>
         </div>
-      ))}
-      <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 

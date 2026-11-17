@@ -1,43 +1,51 @@
-import React, { useEffect } from "react";
-import SubHeader from "../images/subheader.jpg";
+import React, { useState, useEffect } from "react";
+import HeaderExplore from "../components/explore/HeaderExplore";
 import ExploreItems from "../components/explore/ExploreItems";
 
 const Explore = () => {
+  const [filter, setFilter] = useState("");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div id="wrapper">
-      <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
+    <>
+      {/* Full-Width Purple Banner */}
+      <section
+        id="subheader"
+        className="text-light w-100 mb-5"
+        style={{
+          background: "linear-gradient(135deg, #8364e2 0%, #5b3cc4 100%)",
+          paddingTop: "140px",
+          paddingBottom: "70px",
+        }}
+      >
+        <div className="container text-center">
+          <h1
+            className="fw-bold display-4 text-white mb-0"
+            data-aos="fade-down"
+            data-aos-duration="700"
+          >
+            Explore
+          </h1>
+        </div>
+      </section>
 
-        <section
-          id="subheader"
-          className="text-light"
-          style={{ background: `url("${SubHeader}") top` }}
-        >
-          <div className="center-y relative text-center">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <h1>Explore</h1>
-                </div>
-                <div className="clearfix"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section aria-label="section">
-          <div className="container">
-            <div className="row">
-              <ExploreItems />
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+      {/* Main Content Section (Max-Width Constrained) */}
+      <section
+        aria-label="section"
+        className="container-fluid px-5"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="150"
+      >
+        <div className="row">
+          <HeaderExplore filter={filter} setFilter={setFilter} />
+          <ExploreItems filter={filter} />
+        </div>
+      </section>
+    </>
   );
 };
 

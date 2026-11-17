@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/Ultraverse.png";
+import Logo from "../../images/Ultraverse.png";
 
 const Footer = () => {
   return (
-    <footer className="footer-light">
+    <footer className="bg-light">
       <div className="container">
         <div className="row">
           <div className="col-md-3 col-sm-6 col-xs-1">
