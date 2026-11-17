@@ -121,11 +121,11 @@ const ItemDetails = () => {
 
                       <div className="item_info_counts">
                         <div className="item_info_views">
-                          
+                          <Skeleton width="80px" height="20px" />
                           
                         </div>
                         <div className="item_info_like">
-                          
+                          <Skeleton width="80px" height="20px" />
                           
                         </div>
                       </div>
@@ -136,13 +136,13 @@ const ItemDetails = () => {
                           <div className="item_author">
                             <div className="author_list_pp">
                               <Link to={``}>
-                                <Skeleton width="20px" height="20px" borderRadius="50%" />
+                                <Skeleton width="30px" height="30px" borderRadius="50%" />
                                 
                               </Link>
                             </div>
                             <div className="author_list_info">
                               <Link to={``}>
-                                <Skeleton width="50px" />
+                                <Skeleton width="80px" />
                               </Link>
                             </div>
                           </div>
@@ -155,13 +155,13 @@ const ItemDetails = () => {
                           <div className="item_author">
                             <div className="author_list_pp">
                               <Link to={``}>
-                                <Skeleton width="20px" height="20px" borderRadius="50%" />
+                                <Skeleton width="30px" height="30px" borderRadius="50%" />
                                 
                               </Link>
                             </div>
                             <div className="author_list_info">
                               <Link to={``}>
-                                 <Skeleton width="50px" />
+                                 <Skeleton width="80px" />
                               </Link>
                             </div>
                           </div>
@@ -169,7 +169,7 @@ const ItemDetails = () => {
                         <div className="spacer-40"></div>
                         <h6>Price</h6>
                         <div className="nft-item-price">
-                          <Skeleton width="25px" />
+                          <Skeleton width="50px" />
                           <span></span>
                         </div>
                       </div>
