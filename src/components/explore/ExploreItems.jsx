@@ -6,24 +6,33 @@ import axios from "axios";
 import NftCard from "../UI/NftCard";
 
 const ExploreItems = () => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [visibleCount, setVisibleCount] = useState(8)
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(8);
+  const [filter, setFilter] = useState("");
     
-  async function fetchUsers() {
-    const {data} = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+  async function fetchUsers(filter) {
+    setLoading(true);
+    const url = filter
+    ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+    : "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    const { data } = await axios.get(url);
     setUsers(data)
     setLoading(false)
   }
 
   useEffect (() => {
-    fetchUsers()
-  }, []);
+    fetchUsers(filter)
+  }, [filter]);
 
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={filter}
+        onChange={(e) => {
+          setFilter(e.target.value);
+          setVisibleCount(8);
+        }}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
