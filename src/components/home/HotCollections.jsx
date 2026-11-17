@@ -43,7 +43,7 @@ const HotCollections = () => {
           </div>
           {collections.length ? (
             <>
-              <OwlCarousel className="owl-theme" key='loaded' {...carouselOptions}>
+              <OwlCarousel className="owl-theme" key='loaded' data-aos="fade-up" {...carouselOptions}>
                 {collections.map((collection) => (
                   <div className="nft_coll" key={collection.id}>
                     <div className="nft_wrap">

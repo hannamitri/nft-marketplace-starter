@@ -47,6 +47,7 @@ const NewItems = () => {
               <OwlCarousel
                 className="owl-theme"
                 key="loaded"
+                data-aos="fade-up"
                 {...carouselOptions}
               >
                 {items.map((item) => (
