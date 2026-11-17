@@ -8,16 +8,22 @@ const ExploreItems = () => {
   const [exploreData, setExploreData] = useState([]);
   const [value, setValue] = useState('');
   const [visibleCount, setVisibleCount] = useState(8);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchExploreData() {
+      setLoading(true);
+      setVisibleCount(8);
+
+
       const { data } = await axios.get(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`,
       );
       setExploreData(data);
+      setLoading(false);
     }
     fetchExploreData();
-  }, [filterCards]);
+  }, [value]);
 
   function filterCards(event) {
     setValue(event.target.value)
@@ -37,7 +43,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {exploreData.length ? (
+      {!loading ? (
         <>
           {exploreData.slice(0, visibleCount).map((item) => (
             <div
