@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Skeleton from "../UI/Skeleton";
-
-const HOT_COLLECTIONS_URL =
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
+import { HOT_COLLECTIONS_URL } from "./marketplaceApi";
 
 const CollectionCard = ({ collection }) => (
   <div className="keen-slider__slide hot-collections__slide">
@@ -20,7 +18,7 @@ const CollectionCard = ({ collection }) => (
         </Link>
       </div>
       <div className="nft_coll_pp">
-        <Link to="/author">
+        <Link to={`/author/${collection.authorId}`}>
           <img
             className="lazy pp-coll"
             src={collection.authorImage}

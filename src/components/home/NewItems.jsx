@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import Skeleton from "../UI/Skeleton";
+import { NEW_ITEMS_URL } from "./marketplaceApi";
 
-const NEW_ITEMS_URL =
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 const COUNTDOWN_SECONDS = 5 * 60 * 60 + 30 * 60;
 
 const NewItemCountdown = () => {
@@ -47,7 +46,7 @@ const NewItemCard = ({ item }) => (
         <NewItemCountdown />
       </div>
       <div className="nft_coll_pp">
-        <Link to="/author">
+        <Link to={`/author/${item.authorId}`}>
           <img
             className="lazy pp-coll"
             src={item.authorImage}

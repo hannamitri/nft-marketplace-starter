@@ -3,11 +3,7 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
-
-const HOT_COLLECTIONS_URL =
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
-const NEW_ITEMS_URL =
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
+import { HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../components/home/marketplaceApi";
 
 const ItemDetails = ({ itemType = "collection" }) => {
   const { id } = useParams();
@@ -142,7 +138,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                       <h6>{item ? "Creator" : "Owner"}</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={item ? `/author/${item.authorId}` : "/author"}>
                             <img
                               className="lazy"
                               src={item?.authorImage || AuthorImage}
@@ -156,7 +152,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">
+                          <Link to={item ? `/author/${item.authorId}` : "/author"}>
                             {item
                               ? `Creator #${item.authorId}`
                               : "Monica Lucas"}

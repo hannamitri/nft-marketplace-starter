@@ -11,6 +11,71 @@
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
 
+.top-sellers__skeleton li {
+  min-height: 50px;
+}
+
+.top-sellers__skeleton .skeleton-box {
+  max-width: 100%;
+}
+
+.author-profile__skeleton {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.author-profile__skeleton-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.author-profile__info {
+  display: block;
+}
+
+.author-profile__id,
+.author-profile__follow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.author-profile__id button {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 10px;
+  background: transparent;
+}
+
+.author-profile__follow .btn-main {
+  border: 0;
+  cursor: pointer;
+}
+
+.author-works {
+  margin-top: 24px;
+}
+
+.author-works__image {
+  display: block;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.author-works__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hot-collections__layout {
   display: flex;
   align-items: center;
