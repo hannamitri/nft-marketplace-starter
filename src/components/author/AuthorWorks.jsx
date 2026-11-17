@@ -79,7 +79,7 @@ const AuthorWorks = ({ authorId, authorImage, authorName, items, loading = false
     {!loading && artworks.length > 0 && (
       <div className="row">
         {artworks.map(({ item, key, path }) => (
-          <div className="col-lg-3 col-md-6 col-12 mb-4" key={key}>
+          <div className="col-lg-3 col-md-6 col-12 mb-4" key={key} data-aos="fade-up">
             <div className="author-works__thumbnail">
               <Link className="author-works__image" to={path}>
                 <img src={item.nftImage} alt={item.title} />

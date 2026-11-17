@@ -83,7 +83,7 @@ const ExploreItems = () => {
       {status === "error" && <div className="col-12" role="alert">NFTs could not be loaded.</div>}
       {status === "success" && items.length === 0 && <p className="col-12">No NFTs found.</p>}
       {status === "success" && items.slice(0, visibleCount).map((item) => (
-        <div key={item.id} className="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div key={item.id} className="col-lg-3 col-md-6 col-sm-6 col-12" data-aos="fade-up">
           <div className="nft__item explore-item">
             <div className="author_list_pp">
               <Link to={`/author/${item.authorId}`}>

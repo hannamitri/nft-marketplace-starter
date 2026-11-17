@@ -47,7 +47,7 @@ const TopSellers = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up">
               <h2>Top Sellers</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -77,7 +77,7 @@ const TopSellers = () => {
               <div>No top sellers available.</div>
             )}
             {sellers.length > 0 && (
-              <ol className="author_list">
+              <ol className="author_list" data-aos="fade-up">
                 {sellers.map((seller) => (
                   <li key={seller.id}>
                     <div className="author_list_pp">

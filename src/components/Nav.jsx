@@ -20,7 +20,7 @@ const Nav = () => {
             <div className="de-flex sm-pt10">
               <div className="de-flex-col">
                 <div className="de-flex-col">
-                  <div id="logo">
+                  <div id="logo" data-aos="fade">
                     <Link to="/">
                       <img alt="" className="logo-2" src={Logo} />
                     </Link>

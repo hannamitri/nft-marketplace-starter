@@ -172,7 +172,7 @@ const AuthorProfile = () => {
               <div role="alert">Author not found.</div>
             )}
             {status === "success" && (
-              <div className="author-profile__layout">
+              <div className="author-profile__layout" data-aos="fade-up">
                 <div className="author-profile__avatar">
                   <img src={result.author.authorImage} alt={result.author.authorName} />
                   <i className="fa fa-check author-profile__badge" aria-hidden="true"></i>

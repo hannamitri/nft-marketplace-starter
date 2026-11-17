@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer-light">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-12 col-sm-6 col-lg-3">
             <div className="widget">
               <h5>Marketplace</h5>

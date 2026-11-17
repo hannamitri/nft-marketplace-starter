@@ -11,6 +11,20 @@
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
 
+[data-aos]:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 .top-sellers__skeleton li {
   min-height: 50px;
 }

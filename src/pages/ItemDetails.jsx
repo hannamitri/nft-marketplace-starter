@@ -101,10 +101,10 @@ const ItemDetails = ({ itemType = "collection" }) => {
           <section aria-label="Item details" className="mt90 sm-mt-0">
             <div className="container">
               <div className="row">
-                <div className="col-md-6 text-center">
+                <div className="col-md-6 text-center" data-aos="fade">
                   <img src={item.nftImage} className="img-fluid img-rounded mb-sm-30 nft-image" alt={item.title} />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6" data-aos="fade-up">
                   <div className="item_info">
                     <h2>{item.title}{item.tag != null && ` #${item.tag}`}</h2>
                     <div className="item_info_counts">
@@ -158,14 +158,14 @@ const ItemDetails = ({ itemType = "collection" }) => {
         <section aria-label="Item details" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 text-center">
+              <div className="col-md-6 text-center" data-aos="fade">
                 <img
                   src={item?.nftImage || nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt={item?.title || "Rainbow Style #194"}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" data-aos="fade-up">
                 <div className="item_info">
                   <h2>{item?.title || "Rainbow Style #194"}</h2>
 
