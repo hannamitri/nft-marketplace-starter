@@ -13,7 +13,7 @@ const TopSellers = () => {
     setLoading(false)
   }
   useEffect(() => {
-    // fetchTpUsers()
+    fetchTpUsers()
   }, [])
 
   return (
