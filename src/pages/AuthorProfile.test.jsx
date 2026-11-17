@@ -5,7 +5,7 @@ import "@testing-library/jest-dom";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import AuthorProfile from "./AuthorProfile";
 import { TOP_SELLERS_URL } from "../components/home/topSellersApi";
-import { HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../components/home/marketplaceApi";
+import { EXPLORE_URL, HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../components/home/marketplaceApi";
 
 const mockSellers = (sellers) => {
   global.fetch = jest.fn((url) =>
@@ -75,16 +75,31 @@ test("loads the author's works alongside the profile", async () => {
     [TOP_SELLERS_URL]: [{ id: 2, authorId: 73855012, authorName: "Lori Hart", authorImage: "/lori.jpg", price: 7.2 }],
     [NEW_ITEMS_URL]: [{ id: 1, authorId: 73855012, title: "Running Puppets", nftId: 1, nftImage: "/item.jpg", price: 1, likes: 2 }],
     [HOT_COLLECTIONS_URL]: [{ id: 2, authorId: 73855012, title: "Patternlicious", nftId: 2, nftImage: "/collection.jpg", code: 721 }],
+    [EXPLORE_URL]: [{ id: 3, authorId: 73855012, title: "Explore artwork", nftId: 3, nftImage: "/explore.jpg" }],
   };
   global.fetch = jest.fn((url) =>
     Promise.resolve({ ok: true, json: async () => feeds[url] })
   );
   renderProfile("73855012");
-  expect(global.fetch).toHaveBeenCalledTimes(3);
+  expect(global.fetch).toHaveBeenCalledTimes(4);
   expect(await screen.findByRole("heading", { name: "Lori Hart" })).toBeInTheDocument();
   expect(await screen.findByRole("img", { name: "Running Puppets" })).toBeInTheDocument();
   expect(await screen.findByRole("img", { name: "Patternlicious" })).toBeInTheDocument();
+  expect(await screen.findByRole("img", { name: "Explore artwork" })).toBeInTheDocument();
   expect(screen.getByText("Seller record ID: 2")).toBeInTheDocument();
+});
+
+test("shows an explore creator without a seller record", async () => {
+  global.fetch = jest.fn((url) => Promise.resolve({
+    ok: true,
+    json: async () => url === EXPLORE_URL
+      ? [{ id: 16, authorId: 1, authorImage: "/creator.jpg", title: "Teal Ocean", nftId: 16, nftImage: "/nft.jpg" }]
+      : [],
+  }));
+  renderProfile("1");
+  expect(await screen.findByRole("heading", { name: "Creator #1" })).toBeInTheDocument();
+  expect(await screen.findByRole("img", { name: "Teal Ocean" })).toBeInTheDocument();
+  expect(screen.queryByText(/Seller record ID/)).not.toBeInTheDocument();
 });
 
 test("reports a request failure", async () => {

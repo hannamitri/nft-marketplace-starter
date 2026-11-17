@@ -21,6 +21,10 @@ function App() {
           path="/item-details/new/:id"
           element={<ItemDetails itemType="new" />}
         />
+        <Route
+          path="/item-details/explore/:id"
+          element={<ItemDetails itemType="explore" />}
+        />
         <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
       <Footer />

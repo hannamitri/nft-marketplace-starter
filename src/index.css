@@ -151,6 +151,37 @@
   white-space: nowrap;
 }
 
+.explore-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.explore-item .nft__item_wrap {
+  height: 250px;
+  margin-bottom: 16px;
+}
+
+.explore-item .nft__item_wrap a {
+  height: 100%;
+}
+
+.explore-item .nft__item_wrap img {
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.explore-item__countdown {
+  top: 10px;
+  right: 10px;
+  white-space: nowrap;
+}
+
+#loadmore {
+  cursor: pointer;
+  border: 0;
+}
+
 #content img {
   max-width: 100%;
 }

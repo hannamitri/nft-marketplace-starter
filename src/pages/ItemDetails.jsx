@@ -3,14 +3,17 @@ import EthImage from "../images/ethereum.svg";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
-import { HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../components/home/marketplaceApi";
+import { EXPLORE_URL, HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../components/home/marketplaceApi";
 
 const ItemDetails = ({ itemType = "collection" }) => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(Boolean(id));
   const [error, setError] = useState(null);
-  const isNewItem = itemType === "new";
+  const isPricedItem = itemType === "new" || itemType === "explore";
+  const itemUrl = itemType === "explore"
+    ? EXPLORE_URL
+    : itemType === "new" ? NEW_ITEMS_URL : HOT_COLLECTIONS_URL;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +27,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
     const loadItem = async () => {
       try {
         const response = await fetch(
-          isNewItem ? NEW_ITEMS_URL : HOT_COLLECTIONS_URL,
+          itemUrl,
           {
           signal: controller.signal,
           }
@@ -43,9 +46,9 @@ const ItemDetails = ({ itemType = "collection" }) => {
           throw new Error(`Item ${id} was not found`);
         }
 
-        setItem(selectedItem);
+        if (!controller.signal.aborted) setItem(selectedItem);
       } catch (requestError) {
-        if (requestError.name !== "AbortError") {
+        if (!controller.signal.aborted) {
           console.error("Failed to load item details:", requestError);
           setError("Item details could not be loaded.");
         }
@@ -58,7 +61,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
 
     loadItem();
     return () => controller.abort();
-  }, [id, isNewItem]);
+  }, [id, itemUrl]);
 
   if (isLoading) {
     return (
@@ -105,7 +108,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                   {item ? (
                     <div className="item_info_counts">
                       <div>NFT ID: {item.nftId}</div>
-                      {isNewItem ? (
+                      {isPricedItem ? (
                         <div>
                           <i className="fa fa-heart" aria-hidden="true"></i>{" "}
                           {item.likes}
@@ -161,7 +164,7 @@ const ItemDetails = ({ itemType = "collection" }) => {
                       </div>
                     </div>
                   </div>
-                  {isNewItem && item ? (
+                  {isPricedItem && item ? (
                     <div className="de_tab tab_simple">
                       <h6>Price</h6>
                       <div className="nft-item-price">

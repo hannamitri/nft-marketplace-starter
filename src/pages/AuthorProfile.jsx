@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Skeleton from "../components/UI/Skeleton";
 import AuthorWorks from "../components/author/AuthorWorks";
 import { TOP_SELLERS_URL } from "../components/home/topSellersApi";
+import { EXPLORE_URL } from "../components/home/marketplaceApi";
 import AuthorBanner from "../images/author_banner.jpg";
 
 const AuthorActions = ({ authorId }) => {
@@ -105,7 +106,23 @@ const AuthorProfile = () => {
           throw new Error("Top sellers response was not a list");
         }
 
-        const author = sellers.find((seller) => String(seller.authorId) === id);
+        let author = sellers.find((seller) => String(seller.authorId) === id);
+        if (!author) {
+          const exploreResponse = await fetch(EXPLORE_URL, { signal: controller.signal });
+          if (!exploreResponse.ok) {
+            throw new Error(`Explore request failed (${exploreResponse.status})`);
+          }
+          const items = await exploreResponse.json();
+          if (!Array.isArray(items)) throw new Error("Explore response was not a list");
+          const item = items.find((entry) => String(entry.authorId) === id);
+          if (item) {
+            author = {
+              authorId: item.authorId,
+              authorImage: item.authorImage,
+              authorName: `Creator #${item.authorId}`,
+            };
+          }
+        }
         if (!controller.signal.aborted) {
           setResult(
             author ? { id, status: "success", author } : { id, status: "not-found" }
@@ -165,7 +182,7 @@ const AuthorProfile = () => {
                     <div className="profile_name author-profile__info">
                       <h4>{result.author.authorName}</h4>
                       <AuthorActions key={id} authorId={result.author.authorId} />
-                      <span>{result.author.price} ETH</span>
+                      {result.author.price != null && <span>{result.author.price} ETH</span>}
                       {result.author.id != null && (
                         <div>Seller record ID: {result.author.id}</div>
                       )}

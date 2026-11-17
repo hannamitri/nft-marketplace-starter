@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
-import { HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../home/marketplaceApi";
+import { EXPLORE_URL, HOT_COLLECTIONS_URL, NEW_ITEMS_URL } from "../home/marketplaceApi";
 
 const sources = [
   { key: "items", label: "New items", url: NEW_ITEMS_URL },
   { key: "collections", label: "Collections", url: HOT_COLLECTIONS_URL },
+  { key: "explore", label: "Explore NFTs", url: EXPLORE_URL },
 ];
 
 const AuthorWorks = ({ authorId }) => {
@@ -62,6 +63,17 @@ const AuthorWorks = ({ authorId }) => {
   const isEmpty = sourceResults.every(
     (source) => source.status === "success" && source.items.length === 0
   );
+  const seenNftIds = new Set();
+  const uniqueResults = sourceResults.map((source) => ({
+    ...source,
+    items: source.items.filter((item) => {
+      if (item.nftId == null) return true;
+      const nftId = String(item.nftId);
+      if (seenNftIds.has(nftId)) return false;
+      seenNftIds.add(nftId);
+      return true;
+    }),
+  }));
 
   return (
     <div className="author-works">
@@ -70,7 +82,7 @@ const AuthorWorks = ({ authorId }) => {
       ))}
       {isEmpty && <p>No NFTs found for this author.</p>}
       <div className="row">
-        {sourceResults.map((source) => (
+        {uniqueResults.map((source) => (
           <React.Fragment key={source.key}>
             {source.status === "loading" && (
               <>
@@ -88,7 +100,11 @@ const AuthorWorks = ({ authorId }) => {
               <div className="col-lg-3 col-md-6 col-12 mb-4" key={item.id}>
                 <Link
                   className="author-works__image"
-                  to={source.key === "items" ? `/item-details/new/${item.id}` : `/item-details/${item.id}`}
+                  to={source.key === "items"
+                    ? `/item-details/new/${item.id}`
+                    : source.key === "explore"
+                      ? `/item-details/explore/${item.id}`
+                      : `/item-details/${item.id}`}
                 >
                   <img src={item.nftImage} alt={item.title} />
                 </Link>
