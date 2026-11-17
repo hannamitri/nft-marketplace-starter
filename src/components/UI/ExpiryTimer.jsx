@@ -7,7 +7,8 @@ const ExpiryTimer = ({ expiryDate }) => {
     if (!expiryDate) return;
 
     const updateTimer = () => {
-      const millisLeft = expiryDate - Date.now();
+      const expiryInMillis = expiryDate > 1e12 ? expiryDate : expiryDate * 1000;
+      const millisLeft = expiryInMillis - Date.now();
 
       if (millisLeft < 0) {
         setTimeLeft('EXPIRED');
@@ -30,7 +31,15 @@ const ExpiryTimer = ({ expiryDate }) => {
   if (!expiryDate) return null;
 
   return (
-    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-800 border border-gray-200 shadow-sm z-10">
+    <div
+      className="position-absolute bg-white bg-opacity-75 backdrop-blur p-1 rounded-pill text-dark border shadow-sm fw-semibold text-nowrap"
+      style={{
+        top: '12px',
+        right: '12px',
+        fontSize: '12px',
+        zIndex: 20
+      }}
+    >
       {timeLeft}
     </div>
   );

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../images/Ultraverse.png';
+import Logo from '../../images/Ultraverse.png';
 
 const Nav = () => {
   return (
-    <header className="nav-header">
-      <div className="nav-bar-container">
+    <header className="nav-header fixed-top bg-white border-bottom shadow-sm max-width-400px">
+      <div className="nav-bar-container-fluid px-3 px-lg-4 d-flex align-items-center justify-content-between mx-auto my-3" 
+        style={{ minWidth: "1000px", maxWidth: "1600px", height: "100px" }}
+      >
         
         {/* Left Group */}
         <div className="nav-left-group">
@@ -23,7 +25,8 @@ const Nav = () => {
         </div>
 
         {/* Right Group */}
-        <div className="nav-right-group">
+        <div className="nav-right-group d-flex align-items-center"
+        style={{ fontSize: "1.25rem" }}>
           <Link to="/" className="nav-link">
             Home
           </Link>
