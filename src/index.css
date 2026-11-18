@@ -10,3 +10,21 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+/* Hot Collections carousel arrows */
+#section-collections .slick-prev,
+#section-collections .slick-next {
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+}
+#section-collections .slick-prev { left: -10px; }
+#section-collections .slick-next { right: -10px; }
+#section-collections .slick-prev:before,
+#section-collections .slick-next:before {
+  color: #000;
+  opacity: 1;
+}
