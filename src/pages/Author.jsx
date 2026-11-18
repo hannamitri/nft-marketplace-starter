@@ -41,8 +41,56 @@ const Author = () => {
 
   if (isLoading) {
     return (
-      <div className="container text-center mt-5">
-        <h3>Loading author...</h3>
+      <div className="container mt-5 mb-5">
+        <div className="d-flex align-items-center">
+          <div
+            style={{
+              width: "100px",
+              height: "100px",
+              borderRadius: "50%",
+              backgroundColor: "#e5e5e5",
+              marginRight: "20px",
+            }}
+          ></div>
+
+          <div style={{ flex: 1 }}>
+            <div
+              style={{
+                width: "180px",
+                height: "22px",
+                backgroundColor: "#e5e5e5",
+                marginBottom: "10px",
+                borderRadius: "4px",
+              }}
+            ></div>
+
+            <div
+              style={{
+                width: "120px",
+                height: "15px",
+                backgroundColor: "#e5e5e5",
+                borderRadius: "4px",
+              }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="row mt-5">
+          {new Array(8).fill(0).map((_, index) => (
+            <div
+              className="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-4"
+              key={index}
+            >
+              <div
+                style={{
+                  height: "250px",
+                  backgroundColor: "#e5e5e5",
+                  borderRadius: "8px",
+                }}
+              ></div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -51,6 +99,7 @@ const Author = () => {
     return (
       <div className="container text-center mt-5">
         <h3>{error || "Author not found."}</h3>
+
         <Link to="/" className="btn-main">
           Back to Home
         </Link>
@@ -88,11 +137,15 @@ const Author = () => {
                       <div className="profile_name">
                         <h4>
                           {author.authorName}
+
                           <span className="profile_username">
                             @{author.tag}
                           </span>
 
-                          <span id="wallet" className="profile_wallet">
+                          <span
+                            id="wallet"
+                            className="profile_wallet"
+                          >
                             {author.address}
                           </span>
 
@@ -120,7 +173,11 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems
+                    nftCollection={author.nftCollection}
+                    authorImage={author.authorImage}
+                    authorId={author.authorId}
+                  />
                 </div>
               </div>
             </div>
@@ -132,3 +189,4 @@ const Author = () => {
 };
 
 export default Author;
+

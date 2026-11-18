@@ -149,8 +149,7 @@ const NewItems = () => {
 
                     {/* Author */}
                     <div className="author_list_pp">
-                      <Link
-                        to={`/author/${item.authorId}`}
+                      <Link to={"/author/" + item.authorId}
                         title={`Creator: ${item.title}`}
                       >
                         <img
