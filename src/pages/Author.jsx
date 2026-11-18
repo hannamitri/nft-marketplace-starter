@@ -13,11 +13,14 @@ const Author = () => {
   const [author, setAuthor] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isFollowing, setIsFollowing] = useState(false);
 
+  // Scroll to the top when the page loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Fetch author information from the API
   useEffect(() => {
     setIsLoading(true);
     setError("");
@@ -39,6 +42,7 @@ const Author = () => {
       });
   }, [authorId]);
 
+  // Skeleton loading screen
   if (isLoading) {
     return (
       <div className="container mt-5 mb-5">
@@ -95,6 +99,7 @@ const Author = () => {
     );
   }
 
+  // Error screen
   if (error || !author) {
     return (
       <div className="container text-center mt-5">
@@ -107,6 +112,7 @@ const Author = () => {
     );
   }
 
+  // Author profile
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -123,8 +129,11 @@ const Author = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
+
+              {/* Author Profile */}
               <div className="col-md-12">
                 <div className="d_profile de-flex">
+
                   <div className="de-flex-col">
                     <div className="profile_avatar">
                       <img
@@ -149,7 +158,10 @@ const Author = () => {
                             {author.address}
                           </span>
 
-                          <button id="btn_copy" title="Copy Text">
+                          <button
+                            id="btn_copy"
+                            title="Copy Text"
+                          >
                             Copy
                           </button>
                         </h4>
@@ -157,20 +169,28 @@ const Author = () => {
                     </div>
                   </div>
 
+                  {/* Follow Button */}
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">
-                        {author.followers} followers
+                        {author.followers + (isFollowing ? 1 : 0)} followers
                       </div>
 
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                      <button
+                        className="btn-main"
+                        onClick={() =>
+                          setIsFollowing(!isFollowing)
+                        }
+                      >
+                        {isFollowing ? "Unfollow" : "Follow"}
+                      </button>
                     </div>
                   </div>
+
                 </div>
               </div>
 
+              {/* Author NFT Collection */}
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
                   <AuthorItems
@@ -180,6 +200,7 @@ const Author = () => {
                   />
                 </div>
               </div>
+
             </div>
           </div>
         </section>

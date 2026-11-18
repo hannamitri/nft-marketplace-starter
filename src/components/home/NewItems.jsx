@@ -108,7 +108,6 @@ const NewItems = () => {
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
-
           {/* Section heading */}
           <div className="col-lg-12">
             <div className="text-center">
@@ -117,140 +116,142 @@ const NewItems = () => {
             </div>
           </div>
 
-          {/* Keen Slider */}
-          <div ref={sliderRef} className="keen-slider">
-
-            {/* Skeleton loading */}
-            {isLoading &&
-              Array.from({ length: 4 }).map((_, index) => (
-                <div
-                  className="keen-slider__slide"
-                  key={index}
-                >
-                  <div className="nft__item skeleton-card">
-                    <div className="skeleton skeleton-avatar"></div>
-                    <div className="skeleton skeleton-countdown"></div>
-                    <div className="skeleton skeleton-image"></div>
-                    <div className="skeleton skeleton-title"></div>
-                    <div className="skeleton skeleton-text"></div>
-                  </div>
-                </div>
-              ))}
-
-            {/* Actual NFT items */}
-            {!isLoading &&
-              items.map((item) => (
-                <div
-                  className="keen-slider__slide"
-                  key={item.id}
-                >
-                  <div className="nft__item"
-                  data-aos="fade-up">
-
-                    {/* Author */}
-                    <div className="author_list_pp">
-                      <Link to={"/author/" + item.authorId}
-                        title={`Creator: ${item.title}`}
-                      >
-                        <img
-                          className="lazy"
-                          src={item.authorImage || AuthorImage}
-                          alt=""
-                        />
-                        <i className="fa fa-check"></i>
-                      </Link>
+          {/* Slider column */}
+          <div className="col-lg-12">
+            <div ref={sliderRef} className="keen-slider">
+              {/* Skeleton loading */}
+              {isLoading &&
+                Array.from({ length: 4 }).map((_, index) => (
+                  <div
+                    className="keen-slider__slide"
+                    key={index}
+                  >
+                    <div className="nft__item skeleton-card">
+                      <div className="skeleton skeleton-avatar"></div>
+                      <div className="skeleton skeleton-countdown"></div>
+                      <div className="skeleton skeleton-image"></div>
+                      <div className="skeleton skeleton-title"></div>
+                      <div className="skeleton skeleton-text"></div>
                     </div>
+                  </div>
+                ))}
 
-                    {/* Countdown */}
-                    <Countdown expiryDate={item.expiryDate} />
+              {/* Actual NFT items */}
+              {!isLoading &&
+                items.map((item) => (
+                  <div
+                    className="keen-slider__slide"
+                    key={item.id}
+                  >
+                    <div
+                      className="nft__item"
+                      data-aos="fade-up"
+                    >
+                      {/* Author */}
+                      <div className="author_list_pp">
+                        <Link
+                          to={"/author/" + item.authorId}
+                          title={`Creator: ${item.title}`}
+                        >
+                          <img
+                            className="lazy"
+                            src={item.authorImage || AuthorImage}
+                            alt=""
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
 
-                    {/* NFT image */}
-                    <div className="nft__item_wrap">
-                      <div className="nft__item_extra">
-                        <div className="nft__item_buttons">
-                          <button>Buy Now</button>
+                      {/* Countdown */}
+                      {item.expiryDate && (
+                        <Countdown expiryDate={item.expiryDate} />
+                      )}
 
-                       
-<div className="nft__item_share">
-  <h4>Share</h4>
+                      {/* NFT image */}
+                      <div className="nft__item_wrap">
+                        <div className="nft__item_extra">
+                          <div className="nft__item_buttons">
+                            <button>Buy Now</button>
 
-  <a
-    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Share on Facebook"
-  >
-    <i className="fa fa-facebook fa-lg"></i>
-  </a>
+                            <div className="nft__item_share">
+                              <h4>Share</h4>
 
-  <a
-    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(item.title)}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Share on Twitter"
-  >
-    <i className="fa fa-twitter fa-lg"></i>
-  </a>
+                              <a
+                                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Share on Facebook"
+                              >
+                                <i className="fa fa-facebook fa-lg"></i>
+                              </a>
 
-  <a
-    href={`mailto:?subject=${encodeURIComponent(item.title)}&body=${encodeURIComponent(window.location.href)}`}
-    aria-label="Share by email"
-  >
-    <i className="fa fa-envelope fa-lg"></i>
-  </a>
-</div>
+                              <a
+                                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(item.title)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Share on Twitter"
+                              >
+                                <i className="fa fa-twitter fa-lg"></i>
+                              </a>
 
+                              <a
+                                href={`mailto:?subject=${encodeURIComponent(item.title)}&body=${encodeURIComponent(window.location.href)}`}
+                                aria-label="Share by email"
+                              >
+                                <i className="fa fa-envelope fa-lg"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Link to={`/item/${item.nftId}`}>
+                          <img
+                            src={item.nftImage || nftImage}
+                            className="lazy nft__item_preview"
+                            alt={item.title}
+                          />
+                        </Link>
+                      </div>
+
+                      {/* NFT information */}
+                      <div className="nft__item_info">
+                        <Link to={`/item/${item.nftId}`}>
+                          <h4>{item.title}</h4>
+                        </Link>
+
+                        <div className="nft__item_price">
+                          {item.price} ETH
+                        </div>
+
+                        <div className="nft__item_like">
+                          <i className="fa fa-heart"></i>
+                          <span>{item.likes}</span>
                         </div>
                       </div>
-
-                      <Link to={`/item/${item.nftId}`}>
-                        <img
-                          src={item.nftImage || nftImage}
-                          className="lazy nft__item_preview"
-                          alt={item.title}
-                        />
-                      </Link>
                     </div>
-
-                    {/* NFT information */}
-                    <div className="nft__item_info">
-                     <Link to={`/item/${item.nftId}`}>
-                        <h4>{item.title}</h4>
-                      </Link>
-
-                      <div className="nft__item_price">
-                        {item.price} ETH
-                      </div>
-
-                      <div className="nft__item_like">
-                        <i className="fa fa-heart"></i>
-                        <span>{item.likes}</span>
-                      </div>
-                    </div>
-
                   </div>
-                </div>
-              ))}
-
+                ))}
+            </div>
           </div>
 
           {/* Slider controls */}
-          <div className="text-center mt-4">
-            <button
-              className="btn-main"
-              onClick={() => slider.current?.prev()}
-            >
-              Previous
-            </button>
+          <div className="col-lg-12">
+            <div className="text-center mt-4">
+              <button
+                className="btn-main"
+                onClick={() => slider.current?.prev()}
+              >
+                Previous
+              </button>
 
-            <button
-              className="btn-main ml-2"
-              onClick={() => slider.current?.next()}
-            >
-              Next
-            </button>
+              <button
+                className="btn-main ml-2"
+                onClick={() => slider.current?.next()}
+              >
+                Next
+              </button>
+            </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -258,4 +259,3 @@ const NewItems = () => {
 };
 
 export default NewItems;
-

@@ -39,13 +39,75 @@ const ItemDetails = () => {
       });
   }, [nftId]);
 
-  if (isLoading) {
-    return (
-      <div className="container text-center mt-5">
-        <h3>Loading NFT...</h3>
+ if (isLoading) {
+  return (
+    <div className="container mt-5 mb-5">
+      <div className="row">
+        <div className="col-md-6">
+          <div
+            style={{
+              width: "100%",
+              height: "450px",
+              backgroundColor: "#e5e5e5",
+              borderRadius: "8px",
+            }}
+          ></div>
+        </div>
+
+        <div className="col-md-6">
+          <div
+            style={{
+              width: "70%",
+              height: "30px",
+              backgroundColor: "#e5e5e5",
+              marginBottom: "20px",
+              borderRadius: "4px",
+            }}
+          ></div>
+
+          <div
+            style={{
+              width: "40%",
+              height: "20px",
+              backgroundColor: "#e5e5e5",
+              marginBottom: "30px",
+              borderRadius: "4px",
+            }}
+          ></div>
+
+          <div
+            style={{
+              width: "100%",
+              height: "80px",
+              backgroundColor: "#e5e5e5",
+              marginBottom: "30px",
+              borderRadius: "4px",
+            }}
+          ></div>
+
+          <div
+            style={{
+              width: "50%",
+              height: "25px",
+              backgroundColor: "#e5e5e5",
+              marginBottom: "15px",
+              borderRadius: "4px",
+            }}
+          ></div>
+
+          <div
+            style={{
+              width: "35%",
+              height: "25px",
+              backgroundColor: "#e5e5e5",
+              borderRadius: "4px",
+            }}
+          ></div>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   if (error || !item) {
     return (
@@ -76,7 +138,9 @@ const ItemDetails = () => {
 
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>{item.title}</h2>
+                  <h2>
+                    {item.title} #{item.tag}
+                  </h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">

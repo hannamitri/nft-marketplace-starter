@@ -67,7 +67,7 @@ const ExploreItems = () => {
   useEffect(() => {
     axios
       .get(
-        "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
       )
       .then((response) => {
         setItems(response.data);
@@ -176,7 +176,9 @@ const ExploreItems = () => {
                 </div>
 
                 {/* Countdown */}
-              <Countdown expiryDate={item.expiryDate} />
+             {item.expiryDate && (
+  <Countdown expiryDate={item.expiryDate} />
+)}
 
                 {/* NFT Image */}
                 <div className="nft__item_wrap">
@@ -255,7 +257,7 @@ const ExploreItems = () => {
             id="loadmore"
             className="btn-main lead"
             onClick={() =>
-              setVisibleItems((previous) => previous + 8)
+             setVisibleItems((previous) => previous + 4)
             }
           >
             Load more
