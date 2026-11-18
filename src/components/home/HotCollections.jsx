@@ -5,6 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios"; 
 import "../../jquery-global";
 import OwlCarousel from "react-owl-carousel";
+import Skeleton from "../UI/Skeleton";
 
 const responsiveSettings = {
   0: { items: 1 },
@@ -45,14 +46,14 @@ const HotCollections = () => {
               {new Array(3).fill(0).map((_, index) => (
               <div className="item" key={index}>
                 <div className="nft_coll">
-                  <div className="skeleton-box nft_wrap"></div>
+                  <Skeleton width="100%" height="200px" borderRadius="8px" />
                   <div className="nft_coll_pp">
-                    <div className="skeleton-circle pp-coll"></div>
+                    <Skeleton width="60px" height="60px" borderRadius="50%" />
                     <i className="fa fa-check"></i>
                   </div>
                   <div className="nft_coll_info">
-                    <div className="skeleton-info"></div>
-                    <div className="skeleton-id"></div>
+                    <div><Skeleton width="100px" height="20px" /></div>
+                    <div><Skeleton width="60px" height="16px" /></div>
                   </div>
                 </div>
               </div>
@@ -70,7 +71,7 @@ const HotCollections = () => {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${user.authorId}`}>
                         <img className="lazy pp-coll" src={user.authorImage} alt="" />
                       </Link>
                       <i className="fa fa-check"></i>

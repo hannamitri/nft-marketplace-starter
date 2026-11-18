@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import NftCard from "../UI/NftCard";
+import NftCardSkeleton from "../UI/NftCardSkeleton";
 
 const ExploreItems = () => {
   const [users, setUsers] = useState([]);
@@ -45,23 +46,7 @@ const ExploreItems = () => {
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
-          <div className="nft__item">
-            <div className="author_list_pp">
-                <div className="skeleton__avatar"></div>
-                <i className="fa fa-check"></i>
-            </div>
-
-            <div className="nft__item_wrap">
-              <div className="skeleton-box" />
-            </div>
-            <div className="nft__item_info">
-              <h4 className="skeleton__title"></h4>
-              <div className="nft__item_price skeleton__price" />
-              <div className="nft__item_like">
-                <div className="skeleton__like" />
-              </div>
-            </div>
-          </div>
+          <NftCardSkeleton />
         </div>
       ))) : (
         users.slice(0, visibleCount).map((user) =>

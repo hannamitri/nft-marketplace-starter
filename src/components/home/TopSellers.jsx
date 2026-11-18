@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
+import Skeleton from "../UI/Skeleton";
 
 const TopSellers = () => {
   const [tpUsers, settpUsers] = useState([])
@@ -32,12 +33,13 @@ const TopSellers = () => {
                 new Array(12).fill(0).map((_, index) => (
                   <li key={index}>
                   <div className="author_list_pp">
-                    <div className="skeleton__avatar"></div>
+                    <Skeleton width="50px" height="50px" borderRadius="50%">
                       <i className="fa fa-check"></i>
+                    </Skeleton>
                   </div>
                   <div className="author_list_info">
-                    <div className="skeleton__title"></div>
-                    <span className="skeleton__price"> </span>
+                    <div><Skeleton width="100px" height="18px" /></div>
+                    <Skeleton width="50px" height="14px" />
                   </div>
                 </li>
                 ))  
@@ -45,7 +47,7 @@ const TopSellers = () => {
               tpUsers.slice(0, 12).map((users) => 
                 <li key={users.id}>
                   <div className="author_list_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${users.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={users.authorImage}
