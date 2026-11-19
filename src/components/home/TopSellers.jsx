@@ -1,8 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 const TopSellers = () => {
+  const [sellers, setSellers] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchSellers = async () => {
+      try {
+        const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
+        );
+        setSellers(response.data);
+      } catch (error) {
+        console.error("Error fetching sellers:", error);
+      }  
+    };
+
+    fetchSellers();
+  }, []);
+
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
@@ -15,21 +33,24 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((_, index) => (
-                <li key={index}>
+
+              {sellers.map((item) => (
+                <li key={item.Id || item.authorId}>
                   <div className="author_list_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${item.authorId}`}>
                       <img
                         className="lazy pp-author"
-                        src={AuthorImage}
-                        alt=""
+                        src={item.authorImage}
+                        alt={item.authorName}
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">Monica Lucas</Link>
-                    <span>2.1 ETH</span>
+                    <Link to="/author" id={`${item.authorName}`}>
+                      {item.authorName}
+                    </Link>
+                    <span>{item.price} ETH</span>
                   </div>
                 </li>
               ))}
