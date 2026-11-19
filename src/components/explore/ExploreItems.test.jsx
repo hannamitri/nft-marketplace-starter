@@ -24,7 +24,7 @@ afterEach(() => {
   jest.restoreAllMocks();
   delete global.fetch;
 });
-
+// FROM MAIN !!! DO NOT REMOVE
 test("shows skeletons then 8 NFTs and reveals 4 at a time", async () => {
   let resolve;
   global.fetch = jest.fn(() => new Promise((done) => { resolve = done; }));
