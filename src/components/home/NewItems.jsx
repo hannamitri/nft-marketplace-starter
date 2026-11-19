@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import nftImage from "../../images/nftImage.jpg";   
+import { Link } from "react-router-dom";  
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
