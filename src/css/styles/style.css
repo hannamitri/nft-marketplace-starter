@@ -905,7 +905,7 @@ header:not(.header-mobile) #mainmenu > li:hover ul.mega {
   height: 32px;
   padding: 4px;
   text-align: center;
-  cursor: poInter;
+  cursor: pointer;
   color: #fff;
   margin-left: 20px;
 }
@@ -2597,7 +2597,7 @@ footer:not(.footer-light) #form_subscribe.form-dark input[type="text"] {
   left: 0;
   right: 0;
   bottom: 0;
-  cursor: poInter;
+  cursor: pointer;
   z-index: 101;
 }
 
@@ -3196,7 +3196,7 @@ a.btn-border:hover a {
 
 .d-btn-close {
   color: #ffffff;
-  cursor: poInter;
+  cursor: pointer;
   text-align: center;
   display: block;
   text-align: center;
@@ -6006,7 +6006,7 @@ i.font60 {
   width: 100%;
   padding: 15px;
   border-radius: 3px;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .accordion-section-title {
@@ -6096,7 +6096,7 @@ i.font60 {
   display: block;
   margin-top: 10px;
   float: right;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .rtl .expand-custom .toggle {
@@ -6190,7 +6190,7 @@ i.font60 {
   text-decoration: none;
   color: #646464;
   font-size: 15px;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .dark-scheme .de_tab .de_nav li span {
@@ -6457,7 +6457,7 @@ i.font60 {
   display: block;
   text-decoration: none;
   font-size: 14px;
-  cursor: poInter;
+  cursor: pointer;
   border: none;
 }
 
@@ -6528,7 +6528,7 @@ i.font60 {
   display: block;
   text-decoration: none;
   font-size: 14px;
-  cursor: poInter;
+  cursor: pointer;
   border: none;
   padding: 5px 30px 5px 30px;
   min-width: 150px;
@@ -6602,7 +6602,7 @@ i.font60 {
   display: inline-block;
   text-decoration: none;
   font-size: 14px;
-  cursor: poInter;
+  cursor: pointer;
   border: none;
   padding: 15px 30px 15px 30px;
   min-width: 150px;
@@ -8935,12 +8935,12 @@ blockquote.s1:before {
 
 .toggle-list li h2 {
   -moz-user-select: none;
-  -html-user-select: none;
+  -webkit-user-select: none;
   user-select: none;
   color: #555;
   font-size: 16px;
   line-height: 20px;
-  font-family: "Inter", Arial, Helvetica, sans-serifr;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   padding: 10px 20px 0px 60px;
   font-weight: 700;
   display: block;
@@ -9315,7 +9315,7 @@ a:hover,
   display: block;
   margin: 0 auto;
   margin-bottom: 80px;
-  cursor: poInter;
+  cursor: pointer;
   padding: 20px;
 }
 
@@ -9346,7 +9346,7 @@ span.overlay {
 }
 
 span.icon {
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .f_box {
@@ -10260,7 +10260,7 @@ i.bg-color-secondary {
 
 #closeCookieConsent {
   display: inline-block;
-  cursor: poInter;
+  cursor: pointer;
   height: 20px;
   width: 20px;
   margin: -15px 0 0 0;
@@ -10278,7 +10278,7 @@ i.bg-color-secondary {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   padding: 0 20px;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 #cookieConsent a.cookieConsentOK:hover {
@@ -11089,7 +11089,7 @@ section .color-overlay {
   color: #fff;
   padding: 20px;
   font-size: 24px;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .nav-exit:before {
@@ -11437,7 +11437,7 @@ section.no-padding {
   background: #fff;
   margin-top: 48%;
   display: none;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .owl-arrow span {
@@ -11782,7 +11782,7 @@ section.bg-grey {
   height: 30px;
   text-align: center;
   line-height: 30px;
-  cursor: poInter;
+  cursor: pointer;
   border: 0;
   border-radius: 100%;
   -moz-border-radius: 100%;
@@ -12098,7 +12098,7 @@ a.read_more i {
 
 .owl-custom-nav .btn-prev:hover:before,
 .owl-custom-nav .btn-next:hover:before {
-  cursor: poInter;
+  cursor: pointer;
 }
 
 #custom-owl-slider {
@@ -12136,7 +12136,7 @@ a.read_more i {
 .owl-slider-nav div {
   position: absolute;
   z-index: 10;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .owl-slider-nav .next {
@@ -12707,12 +12707,13 @@ a.read_more i {
 .switch {
   margin-bottom: -5px;
   -webkit-appearance: none;
+  appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
   border-radius: 60px;
   position: relative;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .switch::after {
@@ -12913,7 +12914,7 @@ a.read_more i {
   border-radius: 30px;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
-  cursor: poInter;
+  cursor: pointer;
   border: solid 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -12979,7 +12980,7 @@ a.read_more i {
   background: #21273e;
   padding: 8px;
   padding-top: 6px;
-  cursor: poInter;
+  cursor: pointer;
   overflow: hidden;
   border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
@@ -13039,7 +13040,7 @@ a.read_more i {
 }
 
 #selector .sc-opt {
-  cursor: poInter;
+  cursor: pointer;
   color: #fff;
   font-size: 14px;
   height: 38px;
@@ -14740,7 +14741,7 @@ header:not(.header-light) #quick_search::-webkit-input-placeholder {
   text-decoration: none;
   color: #646464;
   font-size: 13px;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .de_review blockquote {
@@ -15055,7 +15056,7 @@ a.btn-slider:hover {
   display: block;
   text-align: center;
   margin-top: 10px;
-  cursor: poInter;
+  cursor: pointer;
 }
 
 .prev-slider i,
@@ -15145,7 +15146,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  
 }
 
 .testi-slider .flex-control-paging li a {
@@ -15154,7 +15155,7 @@ a.btn-slider:hover {
   height: 8px;
   display: block;
   border: solid 1px #fff;
-  cursor: poInter;
+  cursor: pointer;
   text-indent: -9999px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -16020,7 +16021,7 @@ img {
     right: 0;
     margin-top: 10px;
     z-index: 1000;
-    cursor: poInter;
+    cursor: pointer;
   }
 
   header.header-mobile #mainmenu li > ul > li > span {
@@ -16030,7 +16031,7 @@ img {
     right: 0;
     margin-top: -45px;
     z-index: 1000;
-    cursor: poInter;
+    cursor: pointer;
   }
 
   header.header-mobile #mainmenu li ul li a {
@@ -16713,4 +16714,178 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+/* ====================================
+   HOT COLLECTIONS CAROUSEL
+==================================== */
+
+.hot-collections-slider {
+  margin-top: 30px;
+  padding: 0 15px;
+}
+
+.hot-collection-slide {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.hot-collection-slide .nft_coll {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.hot-collection-slide .nft_wrap img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Carousel Arrows */
+
+.hot-collections-slider .slick-prev,
+.hot-collections-slider .slick-next {
+  width: 35px;
+  height: 35px;
+  z-index: 10;
+  background: #8364e2;
+  border-radius: 50%;
+}
+
+.hot-collections-slider .slick-prev {
+  left: -20px;
+}
+
+.hot-collections-slider .slick-next {
+  right: -20px;
+}
+
+.hot-collections-slider .slick-prev:hover,
+.hot-collections-slider .slick-next:hover,
+.hot-collections-slider .slick-prev:focus,
+.hot-collections-slider .slick-next:focus {
+  background: #6f4ed8;
+}
+
+.hot-collections-slider .slick-prev:before,
+.hot-collections-slider .slick-next:before {
+  color: white;
+  font-size: 20px;
+  opacity: 1;
+}
+
+/* ====================================
+   SKELETON LOADING
+==================================== */
+
+.hot-collections-skeleton {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.skeleton-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+
+.skeleton-image,
+.skeleton-avatar,
+.skeleton-title,
+.skeleton-text {
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #dddddd 50%,
+    #eeeeee 75%
+  );
+
+  background-size: 200% 100%;
+
+  animation: skeleton-loading 1.5s infinite linear;
+}
+
+.skeleton-image {
+  height: 180px;
+  width: 100%;
+}
+
+.skeleton-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin: -25px auto 15px;
+  position: relative;
+}
+
+.skeleton-title {
+  height: 18px;
+  width: 60%;
+  margin: 15px auto;
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  height: 12px;
+  width: 40%;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ====================================
+   RESPONSIVE DESIGN
+==================================== */
+
+@media (max-width: 1199px) {
+  .hot-collections-skeleton {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991px) {
+  .hot-collections-skeleton {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .hot-collections-skeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .hot-collections-slider {
+    padding: 0 20px;
+  }
+
+  .hot-collections-slider .slick-prev {
+    left: -10px;
+  }
+
+  .hot-collections-slider .slick-next {
+    right: -10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-image,
+  .skeleton-avatar,
+  .skeleton-title,
+  .skeleton-text {
+    animation: none;
+  }
 }
