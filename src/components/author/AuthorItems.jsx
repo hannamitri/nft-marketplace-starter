@@ -26,10 +26,10 @@ const AuthorItems = () => {
                         <a href="/" target="_blank" rel="noreferrer">
                           <i className="fa fa-facebook fa-lg"></i>
                         </a>
-                        <a href="" target="_blank" rel="noreferrer">
+                        <a href="/" target="_blank" rel="noreferrer">
                           <i className="fa fa-twitter fa-lg"></i>
                         </a>
-                        <a href="/">
+                        <a href="/" target="_blank" rel="noreferrer">
                           <i className="fa fa-envelope fa-lg"></i>
                         </a>
                       </div>
