@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 const ExploreItems = () => {
   const [itemCount, setItemCount] = useState(8);
 const [exploreItems, setExploreItems] = useState([]);
+const [sortBy, setSortBy] = useState("");
 async function fetchExploreItems() {
   const response = await fetch(
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
@@ -46,14 +47,26 @@ useEffect(() => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" value={sortBy}
+  onChange={(e) => setSortBy(e.target.value)}>
+
+
+
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {exploreItems.slice(0, itemCount).map((item, index) => (
+   {[...exploreItems]
+  .sort((a, b) => {
+    if (sortBy === "price_low_to_high") return a.price - b.price;
+    if (sortBy === "price_high_to_low") return b.price - a.price;
+    if (sortBy === "likes_high_to_low") return b.likes - a.likes;
+    return 0;
+  })
+  .slice(0, itemCount)
+  .map((item, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"

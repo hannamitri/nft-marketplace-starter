@@ -14,14 +14,13 @@ const [item, setItem] = useState({});
 useEffect(() => {
   async function fetchItem() {
     const response = await fetch(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-    );
-
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+);
     const data = await response.json();
 
-    const selectedItem = data.find(
-      (item) => item.id === Number(id)
-    );
+   const selectedItem = data.find(
+  (item) => String(item.id) === String(id)
+);
 
     console.log(selectedItem);
     setItem(selectedItem);
@@ -57,11 +56,12 @@ useEffect(() => {
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      100
+                      {item.views}
+
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      74
+                      {item.likes}
                     </div>
                   </div>
                   <p>

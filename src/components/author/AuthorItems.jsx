@@ -41,7 +41,7 @@ const AuthorItems = ({ nftCollection = [], authorImage }) => {
                       </div>
                     </div>
                   </div>
-                 <Link to={`/item-details/${item.id}`}>
+                 <Link to={`/item-details/${item.nftId}`}>
                   
                   <img
                   className="lazy nft__item_preview"

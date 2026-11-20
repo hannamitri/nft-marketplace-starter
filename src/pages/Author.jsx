@@ -53,9 +53,11 @@ const Author = () => {
                           <span id="wallet" className="profile_wallet">
                             {author.address}
                           </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
+                          <button id="btn_copy"
+                           title="Copy Text"
+                     onClick={() => navigator.clipboard.writeText(author.address)}>
+                       Copy
+                     </button>
                         </h4>
                       </div>
                     </div>
