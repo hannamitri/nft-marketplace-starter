@@ -16,8 +16,10 @@ const Author = () => {
   const [error, setError] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
 
-  // FETCH AUTHOR DATA
+  // FETCH DYNAMIC AUTHOR DATA
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const controller = new AbortController();
 
     const fetchAuthor = async () => {
@@ -31,8 +33,6 @@ const Author = () => {
           params: { author: id },
           signal: controller.signal,
         });
-
-        console.log("Author API Response:", response.data);
 
         const data = response.data;
 
@@ -48,8 +48,7 @@ const Author = () => {
         if (
           !selectedAuthor ||
           typeof selectedAuthor !== "object" ||
-          Array.isArray(selectedAuthor) ||
-          !selectedAuthor.authorName
+          Array.isArray(selectedAuthor)
         ) {
           throw new Error("Author not found");
         }
@@ -67,6 +66,7 @@ const Author = () => {
         }
 
         console.error("Error loading author:", err);
+
         setError("Unable to load author information.");
       } finally {
         if (!controller.signal.aborted) {
@@ -99,10 +99,9 @@ const Author = () => {
     author?.tag ||
     authorName.replace(/\s+/g, "").toLowerCase();
 
-  // FIXED: INCLUDE API ADDRESS FIELD
   const authorWallet =
-    author?.address ||
     author?.walletAddress ||
+    author?.address ||
     author?.wallet ||
     "Wallet unavailable";
 
@@ -146,7 +145,6 @@ const Author = () => {
                   <div className="d_profile de-flex">
                     <div className="de-flex-col">
                       <div className="profile_avatar">
-
                         <div
                           style={{
                             width: "120px",
@@ -176,7 +174,6 @@ const Author = () => {
                             }}
                           ></div>
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -236,7 +233,12 @@ const Author = () => {
             {!loading && !error && author && (
               <div className="row">
 
-                <div className="col-md-12">
+                {/* AUTHOR PROFILE - FADE IN */}
+                <div
+                  className="col-md-12"
+                  data-aos="fade-in"
+                  data-aos-duration="800"
+                >
                   <div className="d_profile de-flex">
 
                     <div className="de-flex-col">
@@ -252,11 +254,9 @@ const Author = () => {
 
                         <div className="profile_name">
                           <h4>
-
-                            {/* AUTHOR NAME */}
                             {authorName}
 
-                            {/* AUTHOR TAG */}
+                            {/* AUTHOR USERNAME */}
                             <span className="profile_username">
                               @{String(authorTag).replace(/^@/, "")}
                             </span>
@@ -268,15 +268,17 @@ const Author = () => {
                             >
                               {authorWallet}
                             </span>
-
                           </h4>
                         </div>
                       </div>
                     </div>
 
-                    {/* FOLLOW SECTION */}
-                    <div className="profile_follow de-flex">
-
+                    {/* FOLLOW SECTION - FADE LEFT */}
+                    <div
+                      className="profile_follow de-flex"
+                      data-aos="fade-left"
+                      data-aos-duration="900"
+                    >
                       <div className="de-flex-col">
 
                         <div
@@ -303,20 +305,21 @@ const Author = () => {
                   </div>
                 </div>
 
-                {/* AUTHOR NFT COLLECTION */}
-                <div className="col-md-12">
+                {/* DYNAMIC NFT COLLECTION - FADE UP */}
+                <div
+                  className="col-md-12"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                >
                   <div className="de_tab tab_simple">
-
-                    {/* FIXED: PASS NFTS PROP */}
                     <AuthorItems
-                      nfts={
+                      items={
                         Array.isArray(nftCollection)
                           ? nftCollection
                           : []
                       }
                       author={author}
                     />
-
                   </div>
                 </div>
 

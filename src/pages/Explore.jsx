@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
@@ -12,12 +13,17 @@ const Explore = () => {
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
 
+        {/* EXPLORE HEADER */}
         <section
           id="subheader"
           className="text-light"
           style={{ background: `url("${SubHeader}") top` }}
         >
-          <div className="center-y relative text-center">
+          <div
+            className="center-y relative text-center"
+            data-aos="fade-in"
+            data-aos-duration="800"
+          >
             <div className="container">
               <div className="row">
                 <div className="col-md-12 text-center">
@@ -29,7 +35,12 @@ const Explore = () => {
           </div>
         </section>
 
-        <section aria-label="section">
+        {/* EXPLORE NFT COLLECTION */}
+        <section
+          aria-label="section"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
           <div className="container">
             <div className="row">
               <ExploreItems />

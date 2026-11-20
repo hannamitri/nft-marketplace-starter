@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import AOS from "aos";
 import { Link, useLocation, useParams } from "react-router-dom";
 
 import EthImage from "../images/ethereum.svg";
@@ -16,7 +17,6 @@ const ItemDetails = () => {
 
   // SUPPORT NFT ID FROM URL
   const queryParams = new URLSearchParams(location.search);
-
   const nftId = id || queryParams.get("nftId");
 
   // STATES
@@ -29,6 +29,7 @@ const ItemDetails = () => {
     window.scrollTo(0, 0);
 
     if (!nftId) {
+      setNft(null);
       setError("NFT ID not found.");
       setLoading(false);
       return;
@@ -78,7 +79,6 @@ const ItemDetails = () => {
         }
 
         console.error("Error fetching NFT details:", err);
-
         setError("Unable to load NFT details.");
       } finally {
         if (!controller.signal.aborted) {
@@ -91,6 +91,19 @@ const ItemDetails = () => {
 
     return () => controller.abort();
   }, [nftId]);
+
+  // REFRESH AOS AFTER DYNAMIC CONTENT LOADS
+  useEffect(() => {
+    if (loading || error || !nft) {
+      return;
+    }
+
+    const animationFrame = requestAnimationFrame(() => {
+      AOS.refreshHard();
+    });
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [loading, error, nft]);
 
   // NFT INFORMATION
   const title = nft?.title || "Unknown NFT";
@@ -105,16 +118,12 @@ const ItemDetails = () => {
     : nft?.tag || nft?.tags || "";
 
   const price = nft?.price ?? 0;
-
   const likes = nft?.likes ?? 0;
-
   const views = nft?.views ?? 0;
 
   // OWNER INFORMATION
   const ownerName = nft?.ownerName || "Unknown Owner";
-
   const ownerImage = nft?.ownerImage || AuthorImage;
-
   const ownerId = nft?.ownerId;
 
   // CREATOR INFORMATION
@@ -141,6 +150,7 @@ const ItemDetails = () => {
             {loading && (
               <div className="row">
 
+                {/* NFT IMAGE SKELETON */}
                 <div className="col-md-6">
                   <div
                     style={{
@@ -151,6 +161,7 @@ const ItemDetails = () => {
                   ></div>
                 </div>
 
+                {/* NFT DETAILS SKELETON */}
                 <div className="col-md-6">
 
                   <div
@@ -207,35 +218,43 @@ const ItemDetails = () => {
 
             {/* ERROR MESSAGE */}
             {!loading && error && (
-              <div className="text-center">
+              <div className="text-center" role="alert">
                 <h3>{error}</h3>
               </div>
             )}
 
             {/* DYNAMIC NFT DETAILS */}
             {!loading && !error && nft && (
-              <div className="row">
+              <div className="row" key={nftId}>
 
-                {/* NFT IMAGE */}
-                <div className="col-md-6 text-center">
+                {/* NFT IMAGE - FADE IN */}
+                <div
+                  className="col-md-6 text-center"
+                  data-aos="fade-in"
+                  data-aos-duration="800"
+                >
                   <img
                     src={image}
                     className="img-fluid img-rounded mb-sm-30 nft-image"
                     alt={title}
+                    onLoad={() => AOS.refresh()}
                   />
                 </div>
 
-                {/* NFT INFORMATION */}
-                <div className="col-md-6">
+                {/* NFT INFORMATION - FADE UP */}
+                <div
+                  className="col-md-6"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay="100"
+                >
                   <div className="item_info">
 
                     {/* NFT TITLE */}
                     <h2>{title}</h2>
 
                     {/* NFT TAG */}
-                    {tag && (
-                      <p>{tag}</p>
-                    )}
+                    {tag && <p>{tag}</p>}
 
                     {/* VIEWS AND LIKES */}
                     <div className="item_info_counts">
@@ -252,10 +271,10 @@ const ItemDetails = () => {
 
                     </div>
 
-                    {/* DESCRIPTION */}
+                    {/* NFT DESCRIPTION */}
                     <p>{description}</p>
 
-                    {/* OWNER */}
+                    {/* OWNER INFORMATION */}
                     <div className="d-flex flex-row">
                       <div className="mr40">
 
@@ -263,6 +282,7 @@ const ItemDetails = () => {
 
                         <div className="item_author">
 
+                          {/* OWNER IMAGE */}
                           <div className="author_list_pp">
                             <Link
                               to={
@@ -280,6 +300,7 @@ const ItemDetails = () => {
                             </Link>
                           </div>
 
+                          {/* OWNER NAME */}
                           <div className="author_list_info">
                             <Link
                               to={
@@ -296,7 +317,7 @@ const ItemDetails = () => {
                       </div>
                     </div>
 
-                    {/* CREATOR */}
+                    {/* CREATOR INFORMATION */}
                     <div className="de_tab tab_simple">
 
                       <div className="de_tab_content">
@@ -305,6 +326,7 @@ const ItemDetails = () => {
 
                         <div className="item_author">
 
+                          {/* CREATOR IMAGE */}
                           <div className="author_list_pp">
                             <Link
                               to={
@@ -322,6 +344,7 @@ const ItemDetails = () => {
                             </Link>
                           </div>
 
+                          {/* CREATOR NAME */}
                           <div className="author_list_info">
                             <Link
                               to={
