@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import NFTCard from "../UI/NFTCard";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,64 +9,6 @@ import "../../css/styles/new-items.css";
 
 const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
-
-// Convert expiry timestamps into milliseconds
-const getExpiryTime = (expiryDate) => {
-  if (
-    expiryDate === null ||
-    expiryDate === undefined ||
-    expiryDate === ""
-  ) {
-    return null;
-  }
-
-  const timestamp = Number(expiryDate);
-
-  if (!Number.isFinite(timestamp) || timestamp <= 0) {
-    return null;
-  }
-
-  return timestamp < 100000000000
-    ? timestamp * 1000
-    : timestamp;
-};
-
-// Countdown Timer
-const Countdown = ({ expiryDate }) => {
-  const [now, setNow] = useState(Date.now());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(Date.now());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const expiry = getExpiryTime(expiryDate);
-
-  if (!expiry) {
-    return null;
-  }
-
-  const remaining = Math.max(0, expiry - now);
-
-  if (remaining === 0) {
-    return <div className="de_countdown">Expired</div>;
-  }
-
-  const days = Math.floor(remaining / 86400000);
-  const hours = Math.floor((remaining / 3600000) % 24);
-  const minutes = Math.floor((remaining / 60000) % 60);
-  const seconds = Math.floor((remaining / 1000) % 60);
-
-  return (
-    <div className="de_countdown">
-      {days > 0 && `${days}d `}
-      {hours}h {minutes}m {seconds}s
-    </div>
-  );
-};
 
 // Skeleton Loading Card
 const SkeletonCard = () => {
@@ -227,80 +169,16 @@ const NewItems = () => {
           </div>
         ) : (
           <div className="new-items-slider">
-
             <Slider {...sliderSettings}>
-
-              {items.map((item) => (
+              {items.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={item.id || item.nftId || index}
                   className="new-items-slide"
                 >
-                  <div className="nft__item">
-
-                    {/* Author Image */}
-                    <div className="author_list_pp">
-                      <Link
-                        to={`/author/${item.authorId}`}
-                        title="View Creator"
-                      >
-                        <img
-                          className="lazy"
-                          src={item.authorImage}
-                          alt="NFT Creator"
-                        />
-                        <i className="fa fa-check"></i>
-                      </Link>
-                    </div>
-
-                    {/* Live Countdown Timer */}
-                    <Countdown expiryDate={item.expiryDate} />
-
-                    {/* NFT Image */}
-                    <div className="nft__item_wrap">
-
-                      <div className="nft__item_extra">
-                        <div className="nft__item_buttons">
-                          <button type="button">
-                            Buy Now
-                          </button>
-                        </div>
-                      </div>
-
-                      <Link to={`/item-details/${item.nftId}`}>
-                        <img
-                          src={item.nftImage}
-                          className="lazy nft__item_preview"
-                          alt={item.title || "NFT"}
-                        />
-                      </Link>
-
-                    </div>
-
-                    {/* NFT Information */}
-                    <div className="nft__item_info">
-
-                      {/* NFT Title */}
-                      <Link to={`/item-details/${item.nftId}`}>
-                        <h4>{item.title}</h4>
-                      </Link>
-
-                      {/* NFT Price */}
-                      <div className="nft__item_price">
-                        {item.price} ETH
-                      </div>
-
-                      {/* NFT Likes */}
-                      <div className="nft__item_like">
-                        <i className="fa fa-heart"></i>
-                        <span>{item.likes}</span>
-                      </div>
-
-                    </div>
-
-                  </div>
+                  {/* Reusable NFT Card */}
+                  <NFTCard item={item} />
                 </div>
               ))}
-
             </Slider>
           </div>
         )}
