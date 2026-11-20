@@ -12,14 +12,21 @@ function App() {
       <Nav />
 
       <Routes>
+        {/* HOME PAGE */}
         <Route path="/" element={<Home />} />
+
+        {/* EXPLORE PAGE */}
         <Route path="/explore" element={<Explore />} />
 
-        {/* Author routes */}
+        {/* DYNAMIC AUTHOR PAGES */}
         <Route path="/author" element={<Author />} />
         <Route path="/author/:id" element={<Author />} />
 
+        {/* NFT ITEM DETAILS */}
         <Route path="/item-details" element={<ItemDetails />} />
+
+        {/* DYNAMIC NFT ITEM DETAILS */}
+        <Route path="/item-details/:id" element={<ItemDetails />} />
       </Routes>
 
       <Footer />
