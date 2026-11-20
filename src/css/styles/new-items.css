@@ -1,0 +1,56 @@
+
+/* NEW ITEMS CAROUSEL */
+
+.new-items-slider {
+  position: relative;
+  margin-top: 30px;
+  padding: 0 35px;
+}
+
+.new-items-slide {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.new-items-slide .nft__item {
+  width: 100%;
+}
+
+/* Carousel navigation arrows */
+
+.new-items-slider .slick-prev,
+.new-items-slider .slick-next {
+  width: 38px;
+  height: 38px;
+  background: #6c4bd3;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.new-items-slider .slick-prev {
+  left: -10px;
+}
+
+.new-items-slider .slick-next {
+  right: -10px;
+}
+
+.new-items-slider .slick-prev:before,
+.new-items-slider .slick-next:before {
+  color: white;
+  font-size: 22px;
+  opacity: 1;
+}
+
+.new-items-slider .slick-prev:hover,
+.new-items-slider .slick-next:hover,
+.new-items-slider .slick-prev:focus,
+.new-items-slider .slick-next:focus {
+  background: #5133b5;
+}
+
+@media (max-width: 767px) {
+  .new-items-slider {
+    padding: 0 25px;
+  }
+}

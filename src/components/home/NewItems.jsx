@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/styles/new-items.css";
+
 const API_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
@@ -108,6 +109,7 @@ const NewItems = () => {
         }
 
         if (active) {
+          console.log("New Items count:", data.length);
           setItems(data);
         }
       } catch (err) {
@@ -130,17 +132,40 @@ const NewItems = () => {
     };
   }, []);
 
-  // Carousel Settings
+  // CAROUSEL SETTINGS
   const sliderSettings = {
     dots: false,
+
+    // Infinite scrolling when more than 4 NFTs exist
     infinite: items.length > 4,
+
+    // Animation speed
     speed: 500,
+
+    // Show 4 NFTs on desktop
     slidesToShow: 4,
+
+    // Move one NFT at a time
     slidesToScroll: 1,
+
+    // Navigation arrows
     arrows: true,
-    autoplay: false,
+
+    // Automatic sliding
+    autoplay: true,
+    autoplaySpeed: 3000,
+
+    // Pause automatic sliding when hovering
+    pauseOnHover: true,
+
+    // Enable dragging and swiping
+    swipe: true,
+    draggable: true,
+    touchMove: true,
+
     adaptiveHeight: false,
 
+    // Responsive carousel
     responsive: [
       {
         breakpoint: 1024,
@@ -174,9 +199,7 @@ const NewItems = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-
               <h2>New Items</h2>
-
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
@@ -204,6 +227,7 @@ const NewItems = () => {
           </div>
         ) : (
           <div className="new-items-slider">
+
             <Slider {...sliderSettings}>
 
               {items.map((item) => (
@@ -242,9 +266,7 @@ const NewItems = () => {
                         </div>
                       </div>
 
-                      <Link
-                        to={`/item-details/${item.nftId}`}
-                      >
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           className="lazy nft__item_preview"
@@ -258,9 +280,7 @@ const NewItems = () => {
                     <div className="nft__item_info">
 
                       {/* NFT Title */}
-                      <Link
-                        to={`/item-details/${item.nftId}`}
-                      >
+                      <Link to={`/item-details/${item.nftId}`}>
                         <h4>{item.title}</h4>
                       </Link>
 
