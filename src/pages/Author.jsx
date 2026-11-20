@@ -1,10 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const Author = () => {
+  const { id } = useParams();
+
+  const [author, setAuthor] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    setLoading(true);
+    setError(null);
+
+    axios
+      .get(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers",
+        { signal: controller.signal }
+      )
+      .then((response) => {
+        if (!Array.isArray(response.data)) {
+          throw new Error("Invalid author data");
+        }
+
+        const selectedAuthor = response.data.find(
+          (seller) => String(seller.authorId) === String(id)
+        );
+
+        if (!selectedAuthor) {
+          setError("Author not found.");
+          return;
+        }
+
+        setAuthor(selectedAuthor);
+      })
+      .catch((error) => {
+        if (
+          error.code === "ERR_CANCELED" ||
+          error.name === "CanceledError"
+        ) {
+          return;
+        }
+
+        console.error("Error loading author:", error);
+        setError("Unable to load author information.");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      });
+
+    return () => controller.abort();
+  }, [id]);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -15,50 +69,68 @@ const Author = () => {
           aria-label="section"
           className="text-light"
           data-bgimage="url(images/author_banner.jpg) top"
-          style={{ background: `url(${AuthorBanner}) top` }}
+          style={{
+            background: `url(${AuthorBanner}) top`,
+          }}
         ></section>
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+            {loading && <p>Loading author...</p>}
 
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
+            {error && !loading && <p>{error}</p>}
+
+            {!loading && author && (
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="d_profile de-flex">
+                    <div className="de-flex-col">
+                      <div className="profile_avatar">
+                        <img
+                          src={author.authorImage || AuthorImage}
+                          alt={author.authorName}
+                        />
+
+                        <i className="fa fa-check"></i>
+
+                        <div className="profile_name">
+                          <h4>
+                            {author.authorName}
+
+                            <span className="profile_username">
+                              @{author.authorName
+                                .replace(/\s+/g, "")
+                                .toLowerCase()}
+                            </span>
+
+                            <span
+                              id="wallet"
+                              className="profile_wallet"
+                            >
+                              Author ID: {author.authorId}
+                            </span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="profile_follow de-flex">
+                      <div className="de-flex-col">
+                        <Link to="#" className="btn-main">
+                          Follow
+                        </Link>
                       </div>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
-                    </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="de_tab tab_simple">
+                    <AuthorItems />
                   </div>
                 </div>
               </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </section>
       </div>
