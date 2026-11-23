@@ -31,9 +31,7 @@ const Explore = () => {
 
         <section aria-label="section">
           <div className="container">
-            <div className="row">
-              <ExploreItems />
-            </div>
+            <ExploreItems />
           </div>
         </section>
       </div>
