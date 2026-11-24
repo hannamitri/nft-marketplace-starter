@@ -1,35 +1,72 @@
-import React from "react";
+import { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
 
+const AuthorItems = ({ authorId }) => {
+  const [items, setItems] = useState([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
 
-const AuthorItems = ({ items = [], authorImage, loading = false, }) => {
-  
+useEffect(() => {
+  let active = true;
+
+  async function fetchAuthorItems() {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch(
+        "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch author NFTs");
+      }
+
+      const data = await response.json();
+
+      if (!Array.isArray(data)) {
+        throw new Error("Unexpected API response");
+      }
+
+      const authorNFTs = data.filter(
+        (item) => String(item.authorId) === String(authorId)
+      );
+
+      if (active) setItems(authorNFTs);
+    } catch (error) {
+      if (active) setError(error.message);
+    } finally {
+      if (active) setLoading(false);
+    }
+  }
+
+  if (authorId) {
+    fetchAuthorItems();
+  } else {
+    setLoading(false);
+    setItems([]);
+  }
+
+  return () => {
+    active = false;
+  };
+}, [authorId]);
+
+if (loading) return <p>Loading creator NFTs...</p>
+if (error) return <p>{error}</p>;
+if (items.length === 0) { return <p>No NFTs found for this creator.</p>; }
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-          {loading 
-          ? Array.from({length: 8}, (_,index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}
-            style={{ padding: "10px"}}>
-              <div className="skeleton-card">
-                <Skeleton width="100%" height="200px" borderRadius="10px"/>
-                <div style={{ marginTop: "20px"}}>
-                  <Skeleton width="70%" height="20px" borderRadius="5px"/>
-                  <div style={{ marginTop: "10px" }}>
-                    <Skeleton width="40%" height="15px" borderRadius="5px"/>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-          ))
-          : items.map((item) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          {items.map((item) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link to="">
-                    <img className="lazy" src={authorImage} alt="" />
+                    <img className="lazy" src={item.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -60,7 +97,7 @@ const AuthorItems = ({ items = [], authorImage, loading = false, }) => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.id}`}>
                     <h4>{item.title}</h4>
                   </Link>
                   <div className="nft__item_price">{item.price} ETH</div>
