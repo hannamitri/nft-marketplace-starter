@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import AuthorBanner from "../images/author_banner.jpg";
+import AuthorItems from "../components/author/AuthorItems";
+import { Link, useParams } from "react-router-dom";
+import AuthorImage from "../images/author_thumbnail.jpg";
+
+const Author = () => {
+  const { authorId } = useParams();
+  const [author, setAuthor] = useState(null);
 import { Link, useParams } from "react-router-dom";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
@@ -11,11 +19,33 @@ const Author = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!authorId) {
+      setLoading(false);
+      return;
+    }
     let active = true;
 
     async function fetchAuthor() {
       setLoading(true);
       setError("");
+      try {
+        const response = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
+        if (!response.ok) {
+          throw new Error("Failed to fetch author details");
+        }
+        const data = await response.json();
+        
+        const selectedAuthor = data.find((item) => String(item.authorId) === String(authorId));
+        
+        if (!selectedAuthor) {
+          throw new Error("Author not found");
+        }
+        if (active) {
+          setAuthor(selectedAuthor);
+        }
+      } catch (error) {
+        if (active) {
+          setError(error.message);
       setSelectedAuthor(null);
 
       try {
@@ -83,6 +113,14 @@ const Author = () => {
     };
   }, [authorId]);
 
+  if (loading) return <div className="container mt-5">Loading author...</div>;
+  if (error) return <div className="container mt-5">{error}</div>;
+  if (!authorId) {
+    return (
+      <div className="container mt-5">
+        <h2>Select an author to view their profile</h2>
+      </div>
+    );
   if (loading) {
     return <div className="container mt-5">Loading author...</div>;
   }
