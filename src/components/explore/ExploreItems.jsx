@@ -1,9 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Skeleton from "../UI/Skeleton";  
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import { useState, useEffect} from "react";
+import Countdown from "../UI/Countdown";
 
 const ExploreItems = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate API call
+    setTimeout(() => {
+      setLoading(false); // Set loading to false once data is fetched
+    }, 1000);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="row">
+        {new Array(8).fill(0).map((_, index) => (
+          <div className="col-12 col-sm-6 col-lg-3" key={index}>
+            <Skeleton />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <>
       <div>
@@ -17,7 +41,7 @@ const ExploreItems = () => {
       {new Array(8).fill(0).map((_, index) => (
         <div
           key={index}
-          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+          className="d-item col-12 col-sm-6 col-lg-3"
           style={{ display: "block", backgroundSize: "cover" }}
         >
           <div className="nft__item">
@@ -31,7 +55,9 @@ const ExploreItems = () => {
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+           <Countdown
+  expiryDate={new Date(Date.now() + 6 * 60 * 60 * 1000)}
+/> 
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -39,15 +65,15 @@ const ExploreItems = () => {
                   <button>Buy Now</button>
                   <div className="nft__item_share">
                     <h4>Share</h4>
-                    <a href="" target="_blank" rel="noreferrer">
+                    <button type="button" target="_blank" rel="noreferrer">
                       <i className="fa fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="" target="_blank" rel="noreferrer">
+                    </button>
+                    <button type="button" target="_blank" rel="noreferrer">
                       <i className="fa fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="">
+                    </button>
+                    <button type="button" target="_blank" rel="noreferrer">
                       <i className="fa fa-envelope fa-lg"></i>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

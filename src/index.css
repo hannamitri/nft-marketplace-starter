@@ -10,3 +10,32 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+.nft-slider {
+  position: relative;
+}
+
+
+.nft-slider .slick-prev,
+.nft-slider .slick-next,
+.nft-slider .slick-prev:hover,
+.nft-slider .slick-next:hover,
+.nft-slider .slick-prev:focus,
+.nft-slider .slick-next:focus {
+  background: white !important;
+  border-radius: 50%;
+}
+
+.nft-slider .slick-prev {
+  left: -20px;
+}
+
+.nft-slider .slick-next {
+  right: -20px;
+}
+
+.nft-slider .slick-prev::before,
+.nft-slider .slick-next::before {
+  color: black ;
+  opacity: 1;
+}
+

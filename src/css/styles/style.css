@@ -16714,3 +16714,47 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+
+/* Slick Arrows */
+#section-collections .slick-prev,
+#section-collections .slick-next
+#section-items .slick-prev,
+#section-items .slick-next {
+  z-index: 20;
+}
+
+#section-collections .slick-prev
+#section-items .slick-prev {
+  right: 10px;
+}
+
+#section-collections .slick-next
+#section-items .slick-next {
+  left: 10px;
+}
+
+#section-collections .slick-prev:before,
+#section-collections .slick-next:before,
+#section-items .slick-prev:before,
+#section-items .slick-next:before {
+  
+font-size: 30px;
+  color: #000;
+}
+
+.nft-slider .slick-prev,
+.nft-slider .slick-next {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.nft-slider .slick-prev:before,
+.nft-slider .slick-next:before {
+  color: black !important;
+}
+
+.nft-slider .slick-prev:hover,
+.nft-slider .slick-next:hover {
+  background: transparent !important;
+}
