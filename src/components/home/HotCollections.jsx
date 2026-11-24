@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./HotCollections.css";
+import Skeleton from "../UI/Skeleton";
 
 
 
@@ -15,6 +16,7 @@ import "./HotCollections.css";
 
 const HotCollections = () => {
 const [hotCollections, setHotCollections] = useState([]);
+const [loading, setLoading] = useState(true);
 
 async function fetchHotCollections() {
   const response = await fetch(
@@ -23,6 +25,7 @@ async function fetchHotCollections() {
   const data = await response.json();
 console.log(data);
 setHotCollections(data);
+setLoading(false);
 
   
 }
@@ -86,12 +89,7 @@ const settings = {
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
-                <div className="nft_coll_pp">
-                  <Link to={`/author/${collection.authorId}`}>
-                    <img className="lazy pp-coll" src={collection.authorImage} alt="" />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
+              
 
 
 
