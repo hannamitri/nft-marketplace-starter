@@ -1,7 +1,6 @@
 import { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
+import Skeleton from "../UI/Skeleton";
 
 const AuthorItems = ({ authorId }) => {
   const [items, setItems] = useState([]);
@@ -108,7 +107,7 @@ if (items.length === 0) { return <p>No NFTs found for this creator.</p>; }
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
           ))}
         </div>
       </div>

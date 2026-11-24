@@ -1,3 +1,45 @@
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+
+const ExploreItems = () => {
+  const { authorId } = useParams();
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    async function fetchExploreItems()
+    {
+      try {
+  const response = await fetch(
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+  );
+  if (!response.ok) {throw new Error("Failed to fetch Explore items");
+  }
+  const data = await response.json();
+  if (!Array.isArray(data)) {throw new Error ("Explore API did not return an array");
+  }
+  console.log("Fetched Explore items:", data);
+  if (active) {
+    setItems(data);
+  }
+} catch (err) {
+  console.error("Error fetching Explore items:", err);
+  if (active) {
+    setError(err.message);
+}
+    } finally {
+      if (active) {
+        setLoading(false);
+      }
+    }
+  }
+  fetchExploreItems();
+  return () => {
+    active = false;
+  }
+}, [authorId]);
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "./Countdown";
@@ -58,6 +100,12 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
+      {items.map((item) => (
+        <div
+          key={item.id}
+          className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+          style={{ display: "block", backgroundSize: "cover" }}
+        >
       <div className="row">
       {loading ? (
         Array.from({ length: 8 }, (_, index) => (
@@ -116,6 +164,7 @@ const ExploreItems = () => {
               </Link>
             </div>
             <div className="nft__item_info">
+              <Link to="/item-details">
               <Link to={`/item-details/${item.nftId}`}>
                 <h4>{item.title}</h4>
               </Link>
