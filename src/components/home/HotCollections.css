@@ -26,4 +26,8 @@
   padding:20px;
 }
 
+.hot-collections-slider .slick-slide > div {
+  padding: 0 10px;
+}
+
 

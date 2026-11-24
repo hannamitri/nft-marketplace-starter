@@ -93,7 +93,7 @@ if (selectedItem?.authorId) {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${item.authorId}`}>{item.authorName}</Link>
+                          <Link to={`/author/${item.authorId}`}>{authorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -110,7 +110,7 @@ if (selectedItem?.authorId) {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${item.authorId}`}>{item.authorName}</Link>
+                          <Link to={`/author/${item.authorId}`}>{authorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -118,7 +118,7 @@ if (selectedItem?.authorId) {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      <span>{item.price}</span>
                     </div>
                   </div>
                 </div>

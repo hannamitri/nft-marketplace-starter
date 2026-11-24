@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import Skeleton from "../UI/Skeleton";
 
 
 
@@ -10,6 +11,7 @@ const NewItems = () => {
 
 
   const [timeLeft, setTimeLeft] = useState(19832);
+  const [loading, setLoading] = useState(true);
 
     const hours = Math.floor(timeLeft / 3600);
 const minutes = Math.floor((timeLeft % 3600) / 60);
@@ -39,6 +41,7 @@ useEffect(() => {
 
     console.log(data);
     setNewItems(data);
+    setLoading(false);
   }
 
 
@@ -50,7 +53,7 @@ useEffect(() => {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   responsive: [
     {
@@ -88,7 +91,16 @@ useEffect(() => {
           </div>
 
           <Slider {...settings} className="hot-collections-slider">
-          {newItems.map((item, index) => (
+          {loading
+  ? Array.from({ length: 4 }).map((_, index) => (
+      <div className="px-2" key={index}>
+        <div className="nft__item">
+          <Skeleton width="100%" height="200px" />
+          <Skeleton width="60%" height="20px" />
+        </div>
+      </div>
+    ))
+  : newItems.map((item, index) => (
             <div className="px-2" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">

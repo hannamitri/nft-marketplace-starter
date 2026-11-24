@@ -38,7 +38,7 @@ const settings = {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   responsive: [
     {
@@ -75,7 +75,14 @@ const settings = {
          
         
       <Slider {...settings} className="hot-collections-slider">
-          {hotCollections.map((collection, index) => (
+         {loading
+  ? Array.from({ length: 4 }).map((_, index) => (
+      <div className="nft_coll" key={index}>
+        <Skeleton width="100%" height="200px" />
+        <Skeleton width="60%" height="20px" />
+      </div>
+    ))
+  : hotCollections.map((collection, index) => (
             
               <div className="nft_coll" key={index}>
                 <div className="nft_wrap">
