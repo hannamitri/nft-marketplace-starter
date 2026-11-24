@@ -88,7 +88,7 @@ if (items.length === 0) { return <p>No NFTs found for this creator.</p>; }
                       </div>
                     </div>
                   </div>
-                  <Link to="/item-details">
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
                       src={item.nftImage}
                       className="lazy nft__item_preview"
