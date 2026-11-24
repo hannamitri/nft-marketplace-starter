@@ -10,3 +10,29 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+.hot-collections-slide {
+  box-sizing: border-box;
+  padding-inline: 8px;
+}
+
+.hot-collections-slider {
+  padding-inline: 28px;
+}
+
+.hot-collections-slider .slick-prev,
+.hot-collections-slider .slick-next {
+  width: 44px;
+  height: 44px;
+}
+
+.hot-collections-slider .slick-prev::before,
+.hot-collections-slider .slick-next::before {
+  color: #000000;
+  font-size: 44px;
+}
+
+.skeleton-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
