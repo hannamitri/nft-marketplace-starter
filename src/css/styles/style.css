@@ -16802,6 +16802,14 @@ img {
   }
 }
 
+.skeleton-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  background: #f8f8f8;
+}
+
 .skeleton-box {
   display: inline-block;
   height: 1em;
