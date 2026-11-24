@@ -4,6 +4,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "../../css/styles/HotCollections.css";
 import { fetchHotCollections } from "../../services/marketplace";
+import { CollectionCardSkeleton } from "../UI/LoadingSkeletons";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -82,6 +83,8 @@ const HotCollections = () => {
           <div
             style={{ position: "relative", width: "100%" }}
             aria-busy={loading}
+            role={loading ? "status" : undefined}
+            aria-label={loading ? "Loading hot collections" : undefined}
           >
             {error && <p role="alert">{error}</p>}
             {!loading && !error && collections.length === 0 && (
@@ -91,11 +94,7 @@ const HotCollections = () => {
               {loading
                 ? Array.from({ length: 4 }, (_, index) => (
                     <div className="keen-slider__slide" key={index}>
-                      <div
-                        className="nft_coll skeleton-box"
-                        style={{ margin: 0 }}
-                        aria-hidden="true"
-                      />
+                      <CollectionCardSkeleton />
                     </div>
                   ))
                 : collections.map((coll) => (

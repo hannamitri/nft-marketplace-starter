@@ -2,6 +2,7 @@ import {
   fetchExploreItems,
   fetchAuthor,
   fetchHotCollections,
+  fetchItemDetails,
   fetchNewItems,
   fetchTopSellers,
 } from "./marketplace";
@@ -72,5 +73,18 @@ it("loads an author profile from its author ID", async () => {
   await expect(fetchAuthor("83937449")).resolves.toEqual(author);
   expect(global.fetch).toHaveBeenCalledWith(
     `${API_BASE_URL}/authors?author=83937449`
+  );
+});
+
+it("loads item details by NFT ID", async () => {
+  const item = { nftId: 17914494, title: "Cartoonism" };
+  global.fetch = jest.fn().mockResolvedValue({
+    ok: true,
+    json: jest.fn().mockResolvedValue(item),
+  });
+
+  await expect(fetchItemDetails("17914494")).resolves.toEqual(item);
+  expect(global.fetch).toHaveBeenCalledWith(
+    `${API_BASE_URL}/itemDetails?nftId=17914494`
   );
 });

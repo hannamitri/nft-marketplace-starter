@@ -4,6 +4,10 @@ import AuthorItems from "../components/author/AuthorItems";
 import { useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import { fetchAuthor } from "../services/marketplace";
+import {
+  AuthorProfileSkeleton,
+  NftGridSkeleton,
+} from "../components/UI/LoadingSkeletons";
 
 const Author = () => {
   const { authorId } = useParams();
@@ -80,9 +84,9 @@ const Author = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                {loading && <p role="status">Loading creator profile...</p>}
+                {loading && <AuthorProfileSkeleton />}
                 {error && <p role="alert">{error}</p>}
-                {(!authorId || author) && (
+                {!loading && !error && (!authorId || author) && (
                   <div className="d_profile de-flex">
                     <div className="de-flex-col">
                       <div className="profile_avatar">
@@ -128,7 +132,19 @@ const Author = () => {
                 )}
               </div>
 
-              {(!authorId || author) && (
+              {loading && (
+                <div className="col-md-12">
+                  <div className="de_tab tab_simple">
+                    <div className="de_tab_content">
+                      <div className="tab-1">
+                        <NftGridSkeleton count={8} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {!loading && !error && (!authorId || author) && (
                 <div className="col-md-12">
                   <div className="de_tab tab_simple">
                     <AuthorItems

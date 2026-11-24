@@ -33,6 +33,29 @@ export const fetchExploreItems = (filter = "") => {
   return fetchList(`explore${query}`, "explore items");
 };
 
+export const fetchItemDetails = async (nftId) => {
+  if (nftId == null || String(nftId).trim() === "") {
+    throw new Error("An NFT ID is required");
+  }
+
+  const item = await fetchJson(
+    `itemDetails?nftId=${encodeURIComponent(nftId)}`,
+    "item details"
+  );
+
+  if (
+    !item ||
+    typeof item !== "object" ||
+    Array.isArray(item) ||
+    item.nftId == null ||
+    String(item.nftId) !== String(nftId)
+  ) {
+    throw new Error("The item details API returned an invalid item");
+  }
+
+  return item;
+};
+
 export const fetchAuthor = async (authorId) => {
   if (!authorId) {
     throw new Error("An author ID is required");

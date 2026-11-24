@@ -4,6 +4,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "../../css/styles/NewItems.css";
 import { fetchNewItems } from "../../services/marketplace";
+import { NftCardSkeleton } from "../UI/LoadingSkeletons";
 
 const formatCountdown = (expiryDate, now) => {
   const remaining = Number(expiryDate) - now;
@@ -103,15 +104,14 @@ const NewItems = () => {
             className="new-items-carousel"
             aria-busy={loading}
             aria-live="polite"
+            role={loading ? "status" : undefined}
+            aria-label={loading ? "Loading new items" : undefined}
           >
             <div ref={sliderRef} className="keen-slider">
               {loading
                 ? Array.from({ length: 4 }, (_, index) => (
                     <div className="keen-slider__slide" key={index}>
-                      <div
-                        className="nft__item skeleton-box"
-                        aria-hidden="true"
-                      />
+                      <NftCardSkeleton />
                     </div>
                   ))
                 : items.map((item) => {

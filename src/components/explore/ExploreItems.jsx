@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchExploreItems } from "../../services/marketplace";
+import { NftCardSkeleton } from "../UI/LoadingSkeletons";
 
 const INITIAL_ITEMS_COUNT = 8;
 const LOAD_MORE_COUNT = 4;
@@ -71,7 +72,13 @@ const ExploreItems = ({ searchTerm, sortBy }) => {
   const visibleItems = filteredItems.slice(0, visibleCount);
 
   return (
-    <div className="row" aria-busy={loading} aria-live="polite">
+    <div
+      className="row"
+      aria-busy={loading}
+      aria-live="polite"
+      role={loading ? "status" : undefined}
+      aria-label={loading ? "Loading explore items" : undefined}
+    >
       {loading ? (
         Array.from({ length: INITIAL_ITEMS_COUNT }, (_, index) => (
           <div
@@ -79,10 +86,7 @@ const ExploreItems = ({ searchTerm, sortBy }) => {
             className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
             aria-hidden="true"
           >
-            <div
-              className="skeleton-box"
-              style={{ width: "100%", height: "400px" }}
-            />
+            <NftCardSkeleton />
           </div>
         ))
       ) : error ? (

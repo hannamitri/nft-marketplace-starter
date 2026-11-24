@@ -1,0 +1,73 @@
+.skeleton-media {
+  display: block;
+}
+
+.skeleton-nft-meta,
+.skeleton-item-counts,
+.skeleton-item-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skeleton-nft-meta {
+  margin-top: 12px;
+}
+
+.skeleton-collection-card {
+  margin: 0;
+  min-height: 300px;
+}
+
+.skeleton-collection-card .nft_coll_info {
+  display: grid;
+  gap: 8px;
+}
+
+.skeleton-profile-lines,
+.skeleton-profile-actions,
+.skeleton-person-copy,
+.skeleton-description,
+.skeleton-item-person {
+  display: grid;
+  gap: 8px;
+}
+
+.skeleton-profile-lines {
+  margin-top: 8px;
+}
+
+.skeleton-profile-actions {
+  justify-items: end;
+}
+
+.skeleton-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skeleton-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skeleton-description {
+  margin: 0;
+}
+
+.skeleton-item-person {
+  gap: 10px;
+}
+
+.skeleton-item-price {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+@media (max-width: 767px) {
+  .skeleton-item-info {
+    margin-top: 24px;
+  }
+}
