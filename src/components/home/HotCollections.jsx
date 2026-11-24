@@ -86,6 +86,16 @@ const settings = {
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
+                <div className="nft_coll_pp">
+                  <Link to={`/author/${collection.authorId}`}>
+                    <img className="lazy pp-coll" src={collection.authorImage} alt="" />
+                  </Link>
+                  <i className="fa fa-check"></i>
+                </div>
+
+
+
+
                 <div className="nft_coll_info">
                   
                   <Link to="/explore">

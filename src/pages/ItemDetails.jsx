@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 const ItemDetails = () => {
 const { id } = useParams();
 const [item, setItem] = useState({});
+const [authorName, setAuthorName] = useState("");
 
 useEffect(() => {
   async function fetchItem() {
@@ -24,6 +25,18 @@ useEffect(() => {
 
     console.log(selectedItem);
     setItem(selectedItem);
+
+if (selectedItem?.authorId) {
+  const authorResponse = await fetch(
+    `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${selectedItem.authorId}`
+  );
+
+  const authorData = await authorResponse.json();
+  setAuthorName(authorData.authorName);
+}
+
+
+
   }
 
   fetchItem();

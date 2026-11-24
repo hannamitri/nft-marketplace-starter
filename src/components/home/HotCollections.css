@@ -12,13 +12,18 @@
 .hot-collections-slider .slick-next:before {
   color: black !important;
   opacity: 1 !important;
+ 
 }
 
 .hot-collections-slider .slick-list {
   overflow: hidden;
+  
 }
 
 .hot-collections-slider .nft_coll_pp {
   position: relative;
   z-index: 20;
+  padding:20px;
 }
+
+
