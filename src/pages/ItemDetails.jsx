@@ -8,12 +8,51 @@ const ItemDetails = () => {
   const { nftId } = useParams();
 
   const [item, setItem] = useState(null);
+import { useEffect, useState } from "react";
+import EthImage from "../images/ethereum.svg";
+import { Link, useParams } from "react-router-dom";
+
+
+const ItemDetails = () => {
+  const { nftId } = useParams();
+  const [nft, setNft] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    async function fetchNFT() {
+      setLoading(true);
+      setError("");
+      setNft(null);
+      try {
+        const response = await fetch(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch NFT details");
+        }
+        const data = await response.json();
+        
+        setNft(data);
+      } catch (error) {
+        console.error("Error fetching NFT details:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchNFT();
+  }, [nftId]);
+
+  if (loading) {
+    return <div className="container mt-5">Loading...</div>;
+  }
+  if (error) {
+    return <div className="container mt-5">Error: {error}</div>;
+  }
+  if (!nft) {
+    return <div className="container mt-5">NFT not found</div>;
+  }
 
   useEffect(() => {
     let active = true;
@@ -69,9 +108,9 @@ const ItemDetails = () => {
                   <Skeleton width="100%" height="450px" borderRadius="10px"/>
               ) : (
                 <img
-                  src={item?.nftImage || nftImage}
+                  src={nft.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
-                  alt=""
+                  alt="{nft.title}"
                 />
               )}
               </div>
@@ -100,6 +139,16 @@ const ItemDetails = () => {
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
                       {item?.likes ?? 0}
+                  <h2>{nft.title}</h2>
+
+                  <div className="item_info_counts">
+                    <div className="item_info_views">
+                      <i className="fa fa-eye"></i>
+                      {nft.views}
+                    </div>
+                    <div className="item_info_like">
+                      <i className="fa fa-heart"></i>
+                      {nft.likes}
                     </div>
                   </div>
                   )}
@@ -116,6 +165,7 @@ const ItemDetails = () => {
                   ) : (
                   <p>
                     {item?.description}
+                    {nft.description}
                   </p>
                   )}
                   {loading ? (
@@ -135,13 +185,14 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to={`/author/${item?.ownerId}`}>
-                            <img className="lazy" src={item?.ownerImage} alt="" />
+                          <Link to={`/author/${nft.authorId}`}>
+                            <img className="lazy" src={nft.nftImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
                           <Link to={`/author/${item?.ownerId}`}>{item?.ownerName}</Link>
+                          <Link to={`/author/${nft.authorId}`}>{nft.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -154,11 +205,14 @@ const ItemDetails = () => {
                         <div className="author_list_pp">
                           <Link to={`/author/${item?.creatorId}`}>
                             <img className="lazy" src={item?.creatorImage} alt="" />
+                          <Link to={`/author/${nft.authorId}`}>
+                            <img className="lazy" src={nft.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
                           <Link to={`/author/${item?.creatorId}`}>{item?.creatorName}</Link>
+                          <Link to={`/author/${nft.authorId}`}>{nft.creatorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -174,6 +228,7 @@ const ItemDetails = () => {
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
                       <span>{item?.price}</span>
+                      <span>{nft.price}</span>
                     </div>
                     </>
                     )}
