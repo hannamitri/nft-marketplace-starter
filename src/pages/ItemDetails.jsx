@@ -19,9 +19,13 @@ useEffect(() => {
 );
     const data = await response.json();
 
-   const selectedItem = data.find(
-  (item) => String(item.id) === String(id)
+const selectedItem = data.find(
+  (item) => String(item.id) === String(id) ||
+            String(item.nftId) === String(id)
 );
+
+console.log("URL ID:", id);
+console.log("Available NFTs:", data);
 
     console.log(selectedItem);
     setItem(selectedItem);
@@ -47,6 +51,10 @@ if (selectedItem?.authorId) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  if (!item) {
+  return <p>NFT not found.</p>;
+}
 
   return (
     <div id="wrapper">
