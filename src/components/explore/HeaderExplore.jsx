@@ -1,98 +1,44 @@
 import React from "react";
 
-const HeaderExplore = () => {
+const HeaderExplore = ({
+  searchTerm,
+  onSearchChange,
+  sortBy,
+  onSortChange,
+}) => {
   return (
     <div className="col-lg-12">
-      <div className="items_filter">
+      <div className="items_filter row align-items-center">
         <form
-          action="blank.php"
-          className="row form-dark"
-          id="form_quick_search"
-          method="post"
-          name="form_quick_search"
+          className="col-md-8 form-dark"
+          role="search"
+          onSubmit={(event) => event.preventDefault()}
         >
-          <div className="col text-center">
+          <div>
             <input
               className="form-control"
-              id="name_1"
-              name="name_1"
-              placeholder="search item here..."
-              type="text"
-            />{" "}
-            <a href="#" id="btn-submit">
-              <i className="fa fa-search bg-color-secondary"></i>
-            </a>
-            <div className="clearfix"></div>
+              id="explore-search"
+              name="explore-search"
+              placeholder="Search items..."
+              type="search"
+              value={searchTerm}
+              onChange={(event) => onSearchChange(event.target.value)}
+              aria-label="Search items"
+            />
           </div>
         </form>
-
-        <div id="item_category" className="dropdown">
-          <a href="#" className="btn-selector">
-            All categories
-          </a>
-          <ul>
-            <li className="active">
-              <span>All categories</span>
-            </li>
-            <li>
-              <span>Art</span>
-            </li>
-            <li>
-              <span>Music</span>
-            </li>
-            <li>
-              <span>Domain Names</span>
-            </li>
-            <li>
-              <span>Virtual World</span>
-            </li>
-            <li>
-              <span>Trading Cards</span>
-            </li>
-            <li>
-              <span>Collectibles</span>
-            </li>
-            <li>
-              <span>Sports</span>
-            </li>
-            <li>
-              <span>Utility</span>
-            </li>
-          </ul>
-        </div>
-
-        <div id="buy_category" className="dropdown">
-          <a href="#" className="btn-selector">
-            Buy Now
-          </a>
-          <ul>
-            <li className="active">
-              <span>Buy Now</span>
-            </li>
-            <li>
-              <span>On Auction</span>
-            </li>
-            <li>
-              <span>Has Offers</span>
-            </li>
-          </ul>
-        </div>
-
-        <div id="items_type" className="dropdown">
-          <a href="#" className="btn-selector">
-            All Items
-          </a>
-          <ul>
-            <li className="active">
-              <span>All Items</span>
-            </li>
-            <li>
-              <span>Single Items</span>
-            </li>
-            <li>
-              <span>Bundles</span>
-            </li>
-          </ul>
+        <div className="col-md-4">
+          <select
+            id="filter-items"
+            value={sortBy}
+            onChange={(event) => onSortChange(event.target.value)}
+            aria-label="Sort items"
+          >
+            <option value="">Default</option>
+            <option value="price_low_to_high">Price, Low to High</option>
+            <option value="price_high_to_low">Price, High to Low</option>
+            <option value="likes_high_to_low">Most liked</option>
+          </select>
         </div>
       </div>
     </div>
