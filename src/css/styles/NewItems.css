@@ -1,0 +1,54 @@
+#section-items .new-items-carousel {
+  position: relative;
+  width: 100%;
+}
+
+#section-items .arrow-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 100;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 60px;
+  color: #000;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+#section-items .arrow-btn i {
+  font-size: 14px;
+}
+
+#section-items .arrow-btn--left {
+  left: -20px;
+}
+
+#section-items .arrow-btn--right {
+  right: -20px;
+}
+
+#section-items .nft__item.skeleton-box {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 430px;
+  margin-bottom: 25px;
+  padding: 0;
+  background-color: #dddbdd;
+}
+
+@media (max-width: 480px) {
+  #section-items .arrow-btn--left {
+    left: -10px;
+  }
+
+  #section-items .arrow-btn--right {
+    right: -10px;
+  }
+}

@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import HeaderExplore from "../components/explore/HeaderExplore";
 
 const Explore = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -32,8 +36,14 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems />
+              <HeaderExplore
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
+                sortBy={sortBy}
+                onSortChange={setSortBy}
+              />
             </div>
+            <ExploreItems searchTerm={searchTerm} sortBy={sortBy} />
           </div>
         </section>
       </div>
