@@ -9207,6 +9207,11 @@ a:hover,
   padding: 0 10px;
 }
 
+.collection-slide .collection-card-spacing {
+  box-sizing: border-box;
+  padding-inline: 12px;
+}
+
 .slick-list {
   margin: 0 -10px;
 }

@@ -125,13 +125,6 @@ const Author = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <Link to="/explore" className="btn-main">
-                        Explore NFTs
-                      </Link>
-                    </div>
-                  </div>
                   </>
                 )}
                 </div>

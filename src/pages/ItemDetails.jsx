@@ -152,7 +152,7 @@ const ItemDetails = () => {
                         </div>
                         <div className="author_list_info">
                           <Link to={`/author/${item?.ownerId}`}>{item?.ownerName}</Link>
-                          <Link to={`/author/${item?.authorId}`}>{item?.ownerName}</Link>
+                          
                         </div>
                       </div>
                     </div>
@@ -166,14 +166,10 @@ const ItemDetails = () => {
                           <Link to={`/author/${item?.creatorId}`}>
                             <img className="lazy" src={item?.creatorImage} alt="" />
                           </Link>
-                          <Link to={`/author/${item?.authorId}`}>
-                            <img className="lazy" src={item?.creatorImage} alt="" />
-                            <i className="fa fa-check"></i>
-                          </Link>
                         </div>
                         <div className="author_list_info">
                           <Link to={`/author/${item?.creatorId}`}>{item?.creatorName}</Link>
-                          <Link to={`/author/${item?.authorId}`}>{item?.creatorName}</Link>
+                          
                         </div>
                       </div>
                     </div>

@@ -44,36 +44,26 @@ const NewItems = () => {
     };
   }, []);
 
+  const [oneCard, setOneCard] = useState(
+    () => window.matchMedia("(max-width: 991px)").matches
+  )
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 991px)");
+    const update = () => setOneCard(query.matches);
+
+    query.addEventListener("change", update);
+    update();
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: oneCard ? 1 : 4,
     slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    arrows: true 
   };
 
   return (

@@ -31,36 +31,26 @@ const [loading, setLoading] = useState(true);
     fetchCollections();
   }, []);
 
+  const [oneCard, setOneCard] = useState(
+    () => window.matchMedia("(max-width: 991px)").matches
+  )
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 991px)");
+    const update = () => setOneCard(query.matches);
+
+    query.addEventListener("change", update);
+    update();
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: oneCard ? 1 : 4,
     slidesToScroll: 1,
     arrows: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          
-        }
-      }
-    ]
   };
 
   return (
@@ -89,10 +79,10 @@ const [loading, setLoading] = useState(true);
           ) : (
             <Slider {...settings} className="collection-slide">
               {collections.map((collection) => (
-                <div key={collection.id}>
+                <div key={collection.id} className="collection-card-spacing">
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                    <Link to="/item-details">
+                    <Link to={`/item-details/${collection.nftId}`}>
                       <img src={collection.nftImage} className="lazy img-fluid" alt={collection.name} />
                   </Link>
                 </div>
