@@ -2,31 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Skeleton from "../UI/Skeleton";
+import CountdownTimer from "../UI/CountdownTimer";
 
 
 
 const NewItems = () => {
-  const [newItems, setNewItems] = useState([]);
+  
   
 
 
-  const [timeLeft, setTimeLeft] = useState(19832);
+  const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-    const hours = Math.floor(timeLeft / 3600);
-const minutes = Math.floor((timeLeft % 3600) / 60);
-const seconds = timeLeft % 60;
-
-useEffect(() => {
-  const timer = setInterval(() => {
-    setTimeLeft((prevTime) => prevTime - 1);
-  }, 1000);
+ 
 
 
 
-
-  return () => clearInterval(timer);
-}, []);
+ 
 
 useEffect(() => {
   fetchNewItems();
@@ -114,9 +106,7 @@ useEffect(() => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-              <div className="de_countdown">
-             {hours}h {minutes}m {seconds}s
-             </div>
+             <CountdownTimer expiryDate={item.expiryDate} />
 
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
@@ -137,7 +127,7 @@ useEffect(() => {
                     </div>
                   </div>
 
-                  <Link to={`/item-details/${item.id}`}>
+                  <Link to={`/item-details/${item.nftId}`}>
                     <img
                      src={item.nftImage}
                       className="lazy nft__item_preview"
@@ -146,7 +136,7 @@ useEffect(() => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-              <Link to={`/item-details/${item.id}`}>
+              <Link to={`/item-details/${item.nftId}`}>
                    <h4> {item.title}</h4>
                   </Link>
                   <div className="nft__item_price">{item.price} ETH</div>

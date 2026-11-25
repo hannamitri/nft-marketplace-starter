@@ -14,18 +14,14 @@ const [authorName, setAuthorName] = useState("");
 
 useEffect(() => {
   async function fetchItem() {
-    const response = await fetch(
-  "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
+const response = await fetch(
+  `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
 );
-    const data = await response.json();
 
-const selectedItem = data.find(
-  (item) => String(item.id) === String(id) ||
-            String(item.nftId) === String(id)
-);
+const selectedItem = await response.json();
 
 console.log("URL ID:", id);
-console.log("Available NFTs:", data);
+
 
     console.log(selectedItem);
     setItem(selectedItem);
@@ -85,23 +81,19 @@ if (selectedItem?.authorId) {
                       {item.likes}
                     </div>
                   </div>
-                  <p>
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                    illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
-                  </p>
+                 <p>{item.description}</p>
                   <div className="d-flex flex-row">
                     <div className="mr40">
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                         <Link to={`/author/${item.authorId}`}>
-                            <img className="lazy" src={item.authorImage} alt="" />
+                         <Link to={`/author/${item.creatorId}`}>
+                            <img className="lazy" src={item.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${item.authorId}`}>{authorName}</Link>
+                          <Link to={`/author/${item.creatorId}`}>{item.creatorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -112,13 +104,13 @@ if (selectedItem?.authorId) {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                         <Link to={`/author/${item.authorId}`}>
-                            <img className="lazy" src={item.authorImage} alt="" />
+                         <Link to={`/author/${item.creatorId}`}>
+                            <img className="lazy" src={item.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to={`/author/${item.authorId}`}>{authorName}</Link>
+                          <Link to={`/author/${item.creatorId}`}>{item.creatorName}</Link>
                         </div>
                       </div>
                     </div>
