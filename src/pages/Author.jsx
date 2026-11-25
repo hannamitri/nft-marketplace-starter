@@ -51,130 +51,11 @@ const Author = () => {
     return () => controller.abort();
   }, [authorId]);
 
-  const [author, setAuthor] = useState(null);
-import { Link, useParams } from "react-router-dom";
-import AuthorBanner from "../images/author_banner.jpg";
-import AuthorItems from "../components/author/AuthorItems";
-
-const Author = () => {
-  const { authorId } = useParams();
-
-  const [selectedAuthor, setSelectedAuthor] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    if (!authorId) {
-      setLoading(false);
-      return;
-    }
-    let active = true;
-
-    async function fetchAuthor() {
-      setLoading(true);
-      setError("");
-      try {
-        const response = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems");
-        if (!response.ok) {
-          throw new Error("Failed to fetch author details");
-        }
-        const data = await response.json();
-        
-        const selectedAuthor = data.find((item) => String(item.authorId) === String(authorId));
-        
-        if (!selectedAuthor) {
-          throw new Error("Author not found");
-        }
-        if (active) {
-          setAuthor(selectedAuthor);
-        }
-      } catch (error) {
-        if (active) {
-          setError(error.message);
-      setSelectedAuthor(null);
-
-      try {
-        const baseUrl =
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net";
-
-        const sellersResponse = await fetch(
-          `${baseUrl}/topSellers`
-        );
-
-        if (!sellersResponse.ok) {
-          throw new Error("Failed to fetch sellers");
-        }
-
-        const sellers = await sellersResponse.json();
-
-        let author = sellers.find(
-          (seller) =>
-            String(seller.authorId) === String(authorId)
-        );
-
-        if (!author) {
-          const itemsResponse = await fetch(
-            `${baseUrl}/newItems`
-          );
-
-          if (!itemsResponse.ok) {
-            throw new Error("Failed to fetch creators");
-          }
-
-          const items = await itemsResponse.json();
-
-          const item = items.find(
-            (item) =>
-              String(item.authorId) === String(authorId)
-          );
-
-          if (item) {
-            author = {
-              authorId: item.authorId,
-              authorImage: item.authorImage,
-              authorName: `Creator #${item.authorId}`,
-            };
-          }
-        }
-
-        if (active) {
-          setSelectedAuthor(author || null);
-        }
-      } catch (err) {
-        if (active) {
-          setError(err.message);
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
-    }
-
-    fetchAuthor();
-
-    return () => {
-      active = false;
-    };
-  }, [authorId]);
-
-  if (loading) return <div className="container mt-5">Loading author...</div>;
-  if (error) return <div className="container mt-5">{error}</div>;
-  if (!authorId) {
-    return (
-      <div className="container mt-5">
-        <h2>Select an author to view their profile</h2>
-      </div>
-    );
-  if (loading) {
-    return <div className="container mt-5">Loading author...</div>;
-  }
-
-  if (error) {
+  if (!loading && error) {
     return <div className="container mt-5">Error: {error}</div>;
   }
 
-  if (!selectedAuthor) {
+  if (!loading && !author) {
     return <div className="container mt-5">Author not found.</div>;
   }
 
@@ -221,26 +102,15 @@ const Author = () => {
                     <div className="de-flex-col">
                         <div className="profile_avatar">
                       <img src={author?.authorImage || AuthorImage} alt="" />
-                    </div>
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img
-                        src={selectedAuthor.authorImage}
-                        alt={selectedAuthor.authorName}
-                      />
-
-                      <i className="fa fa-check"></i>
+                       <i className="fa fa-check"></i>
+                       </div>
 
                       <div className="profile_name">
                         <h4>
-                          {author?.authorName || "Loading..."}
-                          <span className="profile_username">@{author?.tag || ""}</span>
+                          {author?.authorName}
+                          <span className="profile_username">{author?.tag ? `@${author.tag}` : `Creator #${authorId}`}</span>
                           <span id="wallet" className="profile_wallet">
-                            {author?.address || ""}
-                          {selectedAuthor.authorName}
-
-                          <span className="profile_username">
-                            Creator #{selectedAuthor.authorId}
+                            {author?.address}
                           </span>
                         </h4>
                       </div>
@@ -255,7 +125,6 @@ const Author = () => {
                       </button>
                     </div>
                   </div>
-
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <Link to="/explore" className="btn-main">
@@ -269,11 +138,10 @@ const Author = () => {
                 </div>
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems items={author?.nftCollection ?? []}
+                  <AuthorItems authorId={authorId}
                     authorImage={author?.authorImage}
                     loading={loading}
                    />
-                  <AuthorItems authorId={authorId} />
                 </div>
               </div>
             </div>
