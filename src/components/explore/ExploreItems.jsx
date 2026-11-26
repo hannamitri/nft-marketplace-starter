@@ -170,13 +170,13 @@ const ExploreItems = () => {
                 </div>
               </div>
 
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <img src={item.nftImage} className="lazy nft__item_preview" alt={item.title} />
               </Link>
             </div>
 
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <h4>{item.title}</h4>
               </Link>
 
